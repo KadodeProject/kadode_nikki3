@@ -13,3 +13,11 @@ $ make create-project # Install the latest Laravel project
 $ make install-recommend-packages # Optional
 
 http://localhost
+
+```
+dc exec app php
+```
+
+```
+dc exec app php artisan migrate:fresh --seed
+```
