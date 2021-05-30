@@ -18,7 +18,7 @@ class CreateDiariesTable extends Migration
             $table->unsignedBigInteger("user_id")->comment("ユーザーID");
             $table->string("title")->comment("タイトル");
             $table->text("content")->comment("本文");
-            $table->date("date")->comment("日付")->format('Y/m/d') ;
+            $table->date("date")->comment("日付");
             $table->integer("feel")->comment("気持ち");
             $table->uuid("uuid")->unique()->comment("uuid");
         

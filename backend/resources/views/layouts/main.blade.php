@@ -5,13 +5,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-    <title>@yield('title')</title>
+    <title>@yield('title') | かどで日記</title>
     <link href="https://use.fontawesome.com/releases/v5.15.1/css/all.css" rel="stylesheet">
 
     {{-- GoogleFonts --}}
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Potta+One&display=swap" rel="stylesheet">
     <meta name=”robots” content=”noindex,nofollow”>
+
+    {{-- マテリアルアイコン --}}
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 </head>
 <body>
     <style>
@@ -23,14 +26,22 @@
     .potta {
         font-family: "Potta One", cursive;
     }
-    .sunDock-frame{
+    .diary_dashboard{
         
         border:1px solid gray;
-        border-radius:74% 26% 24% 76% / 54% 30% 70% 46% ;
+        padding:5%;
     }
-    .sunDock-frame{
-        border:1px solid gray;
-        border-radius:74% 26% 24% 76% / 54% 30% 70% 46% ;
+    .diary-main{
+        max-width: 1120px;
+        display: flex;
+        justify-content: center;
+        margin:3em auto;
+    }
+    .diary-main div{
+        width:50%;
+        border:2px solid black;
+        height:40vh;
+        padding:2em;
     }
     </style>
     @section('header')
@@ -44,7 +55,7 @@
         <div class="">
             <form class=" flex"method="POST" action="/diary/search">
                 @csrf
-                <input class="" type="text" name="search" value="検索">
+                <input class="" type="search" name="search" value="検索">
                 <input type="submit" value="検索">
                 
             </form>
@@ -99,7 +110,7 @@
         var nowHour = set2fig(nowTime.getHours());
         var nowMin = set2fig(nowTime.getMinutes());
         var nowSec = set2fig(nowTime.getSeconds());
-        var msg =
+        var time =
         "<span class='main-date'>" +
         nowYear +
         "年" +
@@ -114,8 +125,19 @@
         ":<span class='main-second'>" +
         nowSec +
         "</span>";
-        headerClock.innerHTML = msg;
+        var date="<span class='main-date'>" +
+        nowYear +
+        "年" +
+        nowMonth +
+        "月" +
+        nowDate +
+        "日" +
+        "</span><span class='main-hour'>" ;
+        headerClock.innerHTML = time;
+        if(document.URL.match("/dashboard")) {
 
+            diaryDate.innerHTML = date;
+        }
         
         }
         setInterval("showClock()", 1000);

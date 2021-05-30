@@ -56,6 +56,7 @@ https://www.figma.com/file/dHA1JlVuyrXWHatdpSoPgI/SM-and-PC?node-id=0%3A1
 -   バックエンドソーシャル認証:Laravel socialite(現在不使用)
 -   フロントエンド:Laravel Blade
 -   CSS ライブラリ:TailwindCSS
+-   アイコン:Material icons
 
 # 開発用
 

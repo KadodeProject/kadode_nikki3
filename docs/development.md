@@ -15,14 +15,11 @@ dc exec app php artisan migrate:fresh --seed
 ### DB 閲覧
 
 ```
-dc exec db bash
-mysql -u root -p
+dc exec db mysql -u root -p
 pass:secret
 
 
-show databases;
-show tables from laravel_local;
-USE laravel_local;
+show databases;show tables from laravel_local;USE laravel_local;
 SHOW COLUMNS FROM users;
 SELECT * FROM users;
 ```

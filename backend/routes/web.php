@@ -26,8 +26,8 @@ Route::get('/', function () {
 });
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
-    return view('dashboard');
-})->name('dashboard');
+    return view('diary');
+})->name('dashboard_redirect');
 Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     Route::get('/diary', DashboardDiaryController::class)->name('dashboard');
     Route::get('/diary/setting', SettingDiaryController::class)->name('setting');
