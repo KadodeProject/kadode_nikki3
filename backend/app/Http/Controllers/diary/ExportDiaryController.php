@@ -7,5 +7,8 @@ use Illuminate\Http\Request;
 
 class ExportDiaryController extends Controller
 {
-    //
+    public function __invoke($request)
+    {
+        
+    }
 }

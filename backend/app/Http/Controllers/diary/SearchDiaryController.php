@@ -7,5 +7,8 @@ use Illuminate\Http\Request;
 
 class SearchDiaryController extends Controller
 {
-    //
+    public function __invoke($request)
+    {
+        
+    }
 }

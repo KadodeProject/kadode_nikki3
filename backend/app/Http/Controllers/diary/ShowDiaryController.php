@@ -7,5 +7,8 @@ use Illuminate\Http\Request;
 
 class ShowDiaryController extends Controller
 {
-    //
+    public function __invoke($request)
+    {
+        
+    }
 }

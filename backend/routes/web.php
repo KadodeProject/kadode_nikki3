@@ -1,5 +1,12 @@
 <?php
 
+use App\Http\Controllers\diary\DashboardDiaryController;
+use App\Http\Controllers\diary\EditDiaryController;
+use App\Http\Controllers\diary\ExportDiaryController;
+use App\Http\Controllers\diary\ImportDiaryController;
+use App\Http\Controllers\diary\SearchDiaryController;
+use App\Http\Controllers\diary\ShowDiaryController;
+use App\Http\Controllers\diary\StatisticsDiaryController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -20,13 +27,13 @@ Route::get('/', function () {
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return view('dashboard');
 })->name('dashboard');
-Route::group(['auth:sanctum', 'verified'], function () {
-    Route::get('/diary', [DashboardDiaryController::class])->name('dashboard');
-    Route::get('/diary/edit', [EditDiaryController::class])->name('dashboard');
-    Route::get('/diary/{year}/{month}', [ShowDiaryController::class])->name('dashboard');
-    Route::get('/diary/{keyword}', [SearchDiaryController::class])->name('dashboard');
-    Route::get('/diary/statistics', [StatisticsDiaryController::class])->name('dashboard');
-    Route::get('/diary/import', [ImportDiaryController::class])->name('dashboard');
-    Route::get('/diary/export', [ExportDiaryController::class])->name('dashboard');
+Route::middleware(['auth:sanctum', 'verified'])->group(function () {
+    Route::get('/diary', DashboardDiaryController::class)->name('dashboard');
+    Route::get('/diary/edit', EditDiaryController::class)->name('edit');
+    Route::get('/diary/{year}/{month}', ShowDiaryController::class)->name('show');
+    Route::get('/diary/{keyword}', SearchDiaryController::class)->name('search');
+    Route::get('/diary/statistics', StatisticsDiaryController::class)->name('statics');
+    Route::get('/diary/import', ImportDiaryController::class)->name('import');
+    Route::get('/diary/export', ExportDiaryController::class)->name('export');
 
 });
