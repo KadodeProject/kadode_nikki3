@@ -38,7 +38,7 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     Route::delete('/diary/edit/{uuid}', [EditDiaryController::class,"delete"])->name('delete');
     //閲覧
     Route::get('/diary/{year}/{month}', ShowDiaryController::class)->name('show');
-    Route::get('/diary/{keyword}', SearchDiaryController::class)->name('search');
+    Route::get('/diary/search', SearchDiaryController::class)->name('search');
     Route::get('/diary/statistics', StatisticsDiaryController::class)->name('statics');
     //入出力
     Route::post('/diary/import', ImportDiaryController::class)->name('import');
