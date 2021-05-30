@@ -20,3 +20,13 @@ Route::get('/', function () {
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return view('dashboard');
 })->name('dashboard');
+Route::group(['auth:sanctum', 'verified'], function () {
+    Route::get('/diary', [DashboardDiaryController::class])->name('dashboard');
+    Route::get('/diary/edit', [EditDiaryController::class])->name('dashboard');
+    Route::get('/diary/{year}/{month}', [ShowDiaryController::class])->name('dashboard');
+    Route::get('/diary/{keyword}', [SearchDiaryController::class])->name('dashboard');
+    Route::get('/diary/statistics', [StatisticsDiaryController::class])->name('dashboard');
+    Route::get('/diary/import', [ImportDiaryController::class])->name('dashboard');
+    Route::get('/diary/export', [ExportDiaryController::class])->name('dashboard');
+
+});
