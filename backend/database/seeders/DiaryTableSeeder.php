@@ -18,8 +18,8 @@ class DiaryTableSeeder extends Seeder
     {
         $dt = Carbon::now();
         $param=[
-            'user_id'=>1-1,
-            'title'=>"日記1",
+            'user_id'=>1,
+            'title'=>"日記1-1",
             'content'=>"今日は日記を書いた。あああああああああ",
             'date'=>$dt->format('Y/m/d'),
             'feel'=>-2,

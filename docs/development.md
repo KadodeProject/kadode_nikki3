@@ -12,6 +12,21 @@ dc exec app php
 dc exec app php artisan migrate:fresh --seed
 ```
 
+### DB 閲覧
+
+```
+dc exec db bash
+mysql -u root -p
+pass:secret
+
+
+show databases;
+show tables from laravel_local;
+USE laravel_local;
+SHOW COLUMNS FROM users;
+SELECT * FROM users;
+```
+
 ### 最初
 
 ```
@@ -46,3 +61,7 @@ https://biz.addisteria.com/laravel_jetstream_customize/#toc6
 https://github.com/ucan-lab/docker-laravel
 
 ## テストアカウント
+
+氏名:tester
+メール:example@example.com
+パス:test12345
