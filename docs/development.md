@@ -1,5 +1,7 @@
 http://localhost
 
+https://translate.google.com/?sl=en&tl=ja&op=translate
+
 ## docker
 
 ### よく使う

@@ -41,9 +41,7 @@ class DashboardDiaryController extends Controller
                 $diaries[]=$latest;
             }
         }
-        \Log::debug($yesterday_date."dateY");
-        \Log::debug($today."today");
-        \Log::debug($yesterday."yesterday");
+
         //最新10件、ただし直近で取れた日記は除く
         return view('diary/dashboard',['user' => $user,'yesterday'=>$yesterday,'today'=>$today,'diaries'=>$diaries]);
     }

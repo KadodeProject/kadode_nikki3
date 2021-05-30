@@ -8,7 +8,7 @@
 @section('content')
 <div class="board-main">
       
-    <div class="flex flex-wrap m-12">
+    
 
             <div class="diary-main">
                 <div>
@@ -36,9 +36,7 @@
                 </div>
                 <div>
                     @empty($today)
-                        <p id="diaryDate"class=" dark:text-white">
-                            本日の日付
-                        </p>
+                       
                         @component('components.diary.submitForm')
                             
                         @endcomponent
@@ -65,7 +63,7 @@
                     
      
             </div>
-            <div class="flex flex-wrap m-12 darl:bg-gray-100">
+            <div class="flex w-auto m-4 overflow-y-auto" style="height: 500px;">
                 @empty($diaries)
                     <h3 class="text-center text-3xl my-20">直近の日記はありません！</h3>
                 @else
@@ -91,7 +89,7 @@
                 @endempty
             </div>
     
-        </div>
+        
     </div>
       
 @endsection

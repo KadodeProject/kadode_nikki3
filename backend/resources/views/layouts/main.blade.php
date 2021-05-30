@@ -29,7 +29,9 @@
     .diary_dashboard{
         
         border:1px solid gray;
-        padding:5%;
+        padding:2em;
+        width:400px!important;
+        height: 400px;
     }
     .diary-main{
         max-width: 1120px;
@@ -37,11 +39,19 @@
         justify-content: center;
         margin:3em auto;
     }
-    .diary-main div{
+    .diary-main>div{
         width:50%;
         border:2px solid black;
-        height:40vh;
+        height:600px;
         padding:2em;
+    }
+    .diary-main article{
+        height: 400px;
+        overflow: scroll;
+    }
+    .diary-content-edit{
+        height: 400px;
+        overflow: scroll;
     }
     </style>
     @section('header')
@@ -134,7 +144,7 @@
         "日" +
         "</span><span class='main-hour'>" ;
         headerClock.innerHTML = time;
-        if(document.URL.match("/dashboard")) {
+        if(document.URL.match("/diary")) {
 
             diaryDate.innerHTML = date;
         }
