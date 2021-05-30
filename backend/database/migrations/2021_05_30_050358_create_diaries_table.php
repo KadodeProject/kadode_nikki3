@@ -20,6 +20,7 @@ class CreateDiariesTable extends Migration
             $table->text("content")->comment("本文");
             $table->date("date")->comment("日付")->format('Y/m/d') ;
             $table->integer("feel")->comment("気持ち");
+            $table->uuid("uuid")->unique()->comment("uuid");
         
             $table->timestamps();
         });
