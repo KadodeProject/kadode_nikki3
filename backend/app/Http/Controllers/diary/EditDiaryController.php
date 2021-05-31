@@ -18,13 +18,13 @@ class EditDiaryController extends Controller
     public function post(Request $request){
         // バリデーション
         $request->date=$request->date ?? Carbon::today()->format("y-m-d");
-        \Log::debug( $request->date);
+        \Log::debug("user_id". $request->user_id);
         // $this->validate($request,Diary::$rules);
         
-        $user = Auth::user();
-        \Log::debug( $user);
+
+ 
         $form=[
-            "user_id"=>$user->id,
+            "user_id"=>Auth::id(),
             "title"=>$request->title,
             "content"=>$request->content,
             "date"=>$request->date,
@@ -33,7 +33,7 @@ class EditDiaryController extends Controller
         ];
         \Log::debug( $form);
         Diary::create($form);
-        return view('diary');
+        return redirect('diary');
     }
     public function update(Request $request){
         $updateContent=[
@@ -43,11 +43,11 @@ class EditDiaryController extends Controller
             "feel"=>$request->feel,
         ];
         Diary::where('uuid',$request->uuid)->save($updateContent);
-        return view('diary');
+        return redirect('diary');
     }
     public function delete(Request $request){
         Diary::where('uuid',$request->uuid)->delete();
-        return view('diary');
+        return redirect('diary');
     }
 
    
