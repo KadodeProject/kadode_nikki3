@@ -16,7 +16,7 @@ class EditDiaryController extends Controller
         $diary=Diary::where("uuid",$uuid)->first();
         return view('diary/edit',['diary' => $diary,]);
     }
-    public function post(Request $request){
+    public function create(Request $request){
         $request->date=$request->date ?? Carbon::today()->format("y-m-d");
         
         // バリデーション
@@ -38,10 +38,10 @@ class EditDiaryController extends Controller
         $updateContent=[
             "title"=>$request->title,
             "content"=>$request->content,
-            "date"=>$request->content,
+            "date"=>$request->date,
             "feel"=>$request->feel,
         ];
-        Diary::where('uuid',$request->uuid)->save($updateContent);
+        Diary::where('uuid',$request->uuid)->update($updateContent);
         return redirect('home');
     }
     public function delete(Request $request){

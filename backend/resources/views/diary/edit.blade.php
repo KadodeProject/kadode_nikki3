@@ -14,8 +14,11 @@
                
                 <div>
                     @component('components.diary.submitForm')
-                    @slot("http_method")
-                    PUT
+                    @slot("db_method")
+                    update
+                    @endslot
+                    @slot("original_uuid")
+                    {{$diary->uuid}}
                     @endslot
                     @slot("original_date")
                     {{$diary->date}}

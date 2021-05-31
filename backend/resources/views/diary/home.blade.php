@@ -17,7 +17,7 @@
                     @else
                         @component('components.diary.latestDiaryContent')
                             @slot("uuid")
-                            {{$yesterday->uuid}}
+                            {{$today->uuid}}
                             @endslot
                             @slot("title")
                             {{$yesterday->title}}
@@ -38,14 +38,17 @@
                     @empty($today)
                        
                     @component('components.diary.submitForm')
-                    @slot("http_method")
-                    POST
+                    @slot("db_method")
+                    create
+                    @slot("original_uuid")
+                    @endslot
                     @endslot
                     @slot("original_date")
                     @endslot
                     @slot("original_title")
                     @endslot
                     @slot("original_feel")
+                    5
                     @endslot
                     @slot("original_content")
                     @endslot

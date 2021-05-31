@@ -36,9 +36,9 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     Route::get('/setting', SettingDiaryController::class)->name('setting');
     //日記のCRUD
     Route::get('/edit/{uuid}', [EditDiaryController::class,"get"])->name('edit');
-    Route::post('/edit', [EditDiaryController::class,"post"])->name('new');
-    Route::put('/edit', [EditDiaryController::class,"update"])->name('update');
-    Route::delete('/edit', [EditDiaryController::class,"delete"])->name('delete');
+    Route::post('/create', [EditDiaryController::class,"create"])->name('new');
+    Route::post('/update', [EditDiaryController::class,"update"])->name('update');
+    Route::post('/delete', [EditDiaryController::class,"delete"])->name('delete');
     //閲覧
     Route::get('/{year}/{month}', ShowDiaryController::class)->name('show');
     Route::get('/search', SearchDiaryController::class)->name('search');
