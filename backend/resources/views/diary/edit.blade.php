@@ -26,11 +26,11 @@
                     @slot("original_title")
                     {{$diary->title}}
                     @endslot
-                    @slot("original_feel")
-                    {{$diary->feel}}
-                    @endslot
                     @slot("original_content")
                     {{$diary->content}}
+                    @endslot
+                    @slot("original_feel")
+                    {{$diary->feel}}
                     @endslot
                     @endcomponent
                 </div>
