@@ -48,7 +48,8 @@
                     @slot("original_title")
                     @endslot
                     @slot("original_feel")
-                    5
+                    6
+                    {{-- ここは5だがjsの都合で+1してる --}}
                     @endslot
                     @slot("original_content")
                     @endslot

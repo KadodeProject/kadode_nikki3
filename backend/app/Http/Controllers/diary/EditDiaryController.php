@@ -14,6 +14,7 @@ class EditDiaryController extends Controller
     public function get($uuid){
 
         $diary=Diary::where("uuid",$uuid)->first();
+        $diary->feel=$diary->feel+1;//JSのセレクターの都合で+1している
         return view('diary/edit',['diary' => $diary,]);
     }
     public function create(Request $request){
