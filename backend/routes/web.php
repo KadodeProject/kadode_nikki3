@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\diary\DashboardDiaryController;
+use App\Http\Controllers\diary\HomeDiaryController;
 use App\Http\Controllers\diary\EditDiaryController;
 use App\Http\Controllers\diary\ExportDiaryController;
 use App\Http\Controllers\diary\ImportDiaryController;
@@ -24,24 +24,27 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+Route::get('/diary', function () {
+    return view('welcome');
+});
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
-    return redirect('diary');
-})->name('dashboard_redirect');
+    return redirect('/home ');
+})->name('home_redirect');
 Route::middleware(['auth:sanctum', 'verified'])->group(function () {
-    Route::get('/diary', DashboardDiaryController::class)->name('dashboard');
-    Route::get('/diary/setting', SettingDiaryController::class)->name('setting');
+    Route::get('/home', HomeDiaryController::class)->name('home');
+    Route::get('/setting', SettingDiaryController::class)->name('setting');
     //日記のCRUD
-    Route::get('/diary/edit', [EditDiaryController::class,"get"])->name('edit');
-    Route::post('/diary/edit', [EditDiaryController::class,"post"])->name('new');
-    Route::put('/diary/edit', [EditDiaryController::class,"update"])->name('update');
-    Route::delete('/diary/edit', [EditDiaryController::class,"delete"])->name('delete');
+    Route::get('/edit/{uuid}', [EditDiaryController::class,"get"])->name('edit');
+    Route::post('/edit', [EditDiaryController::class,"post"])->name('new');
+    Route::put('/edit', [EditDiaryController::class,"update"])->name('update');
+    Route::delete('/edit', [EditDiaryController::class,"delete"])->name('delete');
     //閲覧
-    Route::get('/diary/{year}/{month}', ShowDiaryController::class)->name('show');
-    Route::get('/diary/search', SearchDiaryController::class)->name('search');
-    Route::get('/diary/statistics', StatisticsDiaryController::class)->name('statics');
+    Route::get('/{year}/{month}', ShowDiaryController::class)->name('show');
+    Route::get('/search', SearchDiaryController::class)->name('search');
+    Route::get('/statistics', StatisticsDiaryController::class)->name('statics');
     //入出力
-    Route::post('/diary/import', ImportDiaryController::class)->name('import');
-    Route::get('/diary/export', ExportDiaryController::class)->name('export');
+    Route::post('/import', ImportDiaryController::class)->name('import');
+    Route::get('/export', ExportDiaryController::class)->name('export');
 
 });

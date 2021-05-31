@@ -7,7 +7,7 @@ use App\Models\Diary;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-class DashboardDiaryController extends Controller
+class homeDiaryController extends Controller
 {
     /**
      * Undocumented function
@@ -43,6 +43,6 @@ class DashboardDiaryController extends Controller
         }
 
         //最新10件、ただし直近で取れた日記は除く
-        return view('diary/dashboard',['user' => $user,'yesterday'=>$yesterday,'today'=>$today,'diaries'=>$diaries]);
+        return view('diary/home',['user' => $user,'yesterday'=>$yesterday,'today'=>$today,'diaries'=>$diaries]);
     }
 }

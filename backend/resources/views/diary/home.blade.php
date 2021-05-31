@@ -1,6 +1,6 @@
 
 @extends("layouts.main")
-@section("title","ダッシュボード")
+@section("title","ホーム")
 
 @section('header')
 @parent
@@ -37,9 +37,20 @@
                 <div>
                     @empty($today)
                        
-                        @component('components.diary.submitForm')
-                            
-                        @endcomponent
+                    @component('components.diary.submitForm')
+                    @slot("http_method")
+                    POST
+                    @endslot
+                    @slot("original_date")
+                    @endslot
+                    @slot("original_title")
+                    @endslot
+                    @slot("original_feel")
+                    @endslot
+                    @slot("original_content")
+                    @endslot
+                    @endcomponent
+
                     @else
                         @component('components.diary.latestDiaryContent')
                             @slot("uuid")

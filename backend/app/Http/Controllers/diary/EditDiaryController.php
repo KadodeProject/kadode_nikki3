@@ -11,18 +11,17 @@ use Illuminate\Support\Str;
 
 class EditDiaryController extends Controller
 {
-    public function get(){
-        $user = Auth::user();
-        return view('diary/edit',['user' => $user,]);
+    public function get($uuid){
+
+        $diary=Diary::where("uuid",$uuid)->first();
+        return view('diary/edit',['diary' => $diary,]);
     }
     public function post(Request $request){
-        // バリデーション
         $request->date=$request->date ?? Carbon::today()->format("y-m-d");
-        \Log::debug("user_id". $request->user_id);
+        
+        // バリデーション
         // $this->validate($request,Diary::$rules);
         
-
- 
         $form=[
             "user_id"=>Auth::id(),
             "title"=>$request->title,
@@ -31,9 +30,9 @@ class EditDiaryController extends Controller
             "feel"=>$request->feel,
             "uuid"=>Str::uuid(),
         ];
-        \Log::debug( $form);
+
         Diary::create($form);
-        return redirect('diary');
+        return redirect('home');
     }
     public function update(Request $request){
         $updateContent=[
@@ -43,11 +42,11 @@ class EditDiaryController extends Controller
             "feel"=>$request->feel,
         ];
         Diary::where('uuid',$request->uuid)->save($updateContent);
-        return redirect('diary');
+        return redirect('home');
     }
     public function delete(Request $request){
         Diary::where('uuid',$request->uuid)->delete();
-        return redirect('diary');
+        return redirect('home');
     }
 
    

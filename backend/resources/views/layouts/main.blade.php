@@ -144,7 +144,7 @@
         "日" +
         "</span><span class='main-hour'>" ;
         headerClock.innerHTML = time;
-        if(document.URL.match("/diary")) {
+        if(document.URL.match("/dashboard ")) {
 
             diaryDate.innerHTML = date;
         }
