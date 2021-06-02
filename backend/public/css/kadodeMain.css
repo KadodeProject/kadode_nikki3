@@ -1,0 +1,83 @@
+textarea {
+    resize: none;
+    width: 300px;
+    height: 200px;
+}
+
+.potta {
+    font-family: "Potta One", cursive;
+}
+.diary_dashboard {
+    border: 1px solid gray;
+    padding: 2em;
+    width: 400px;
+    height: 450px;
+    flex-shrink: 0;
+}
+.diary-main {
+    max-width: 1120px;
+    display: flex;
+    justify-content: center;
+    margin: 3em auto;
+}
+.diary-main > div {
+    width: 50%;
+    border: 2px solid black;
+    height: 600px;
+    padding: 2em;
+}
+.diary-main article {
+    height: 400px;
+    overflow-y: scroll;
+    overflow-x: hidden;
+}
+.diary-content-edit {
+    height: 400px;
+    overflow: scroll;
+}
+.delete-button {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: aquamarine;
+}
+
+/* 
+スクロールバー
+ここから 
+*/
+/*スクロールバー全体*/
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+/*スクロールバーの軌道*/
+::-webkit-scrollbar-track {
+    border-radius: 10px;
+    box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.1);
+}
+
+/*スクロールバーの動く部分*/
+::-webkit-scrollbar-thumb {
+    background-color: rgba(0, 0, 50, 0.5);
+    border-radius: 10px;
+    box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.3);
+}
+
+.container {
+    width: 100%;
+    height: 400px;
+    overflow: auto;
+}
+
+.inner {
+    background-image: url("http://lorempixel.com/800/800/");
+    background-repeat: no-repeat;
+    width: 100%;
+    height: 800px;
+}
+
+/* 
+ここまで 
+スクロールバー
+*/

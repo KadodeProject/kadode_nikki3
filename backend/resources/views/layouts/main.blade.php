@@ -8,65 +8,23 @@
     <title>@yield('title') | かどで日記</title>
     <link href="https://use.fontawesome.com/releases/v5.15.1/css/all.css" rel="stylesheet">
 
+    
     {{-- GoogleFonts --}}
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Potta+One&display=swap" rel="stylesheet">
     <meta name=”robots” content=”noindex,nofollow”>
-
+    
     {{-- マテリアルアイコン --}}
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    {{-- CSS読み込み --}}
+    <link rel="stylesheet" href="{{ asset('css/kadodeMain.css') }}">
 </head>
 <body>
-    <style>
-        textarea {
-    resize: none;
-    width: 300px;
-    height: 200px;
-}
 
-    .potta {
-        font-family: "Potta One", cursive;
-    }
-    .diary_dashboard{
-        
-        border:1px solid gray;
-        padding:2em;
-        width:400px;
-        height: 450px;
-        flex-shrink: 0;
-
-    }
-    .diary-main{
-        max-width: 1120px;
-        display: flex;
-        justify-content: center;
-        margin:3em auto;
-    }
-    .diary-main>div{
-        width:50%;
-        border:2px solid black;
-        height:600px;
-        padding:2em;
-    }
-    .diary-main article{
-        height: 400px;
-        overflow: scroll;
-    }
-    .diary-content-edit{
-        height: 400px;
-        overflow: scroll;
-    }
-    .delete-button{
-        width:40px;
-        height: 40px;
-        border-radius: 50%;
-        background-color: aquamarine;
-    }
-    </style>
     @section('header')
     <header class="px-4 relative border-b-2 w-screen flex justify-between items-center">
         <div class="flex items-center justify-around">
-            <a href="{{url("/")}}"><img style="object-fit:contain;width:auto;height:64px"src="/img/kadode_logo.png"></a>
+            <a href="{{url("/home")}}"><img style="object-fit:contain;width:auto;height:64px"src="/img/kadode_logo.png"></a>
             <div class="ml-4"id="headerClock">
                 現在時刻
             </div>

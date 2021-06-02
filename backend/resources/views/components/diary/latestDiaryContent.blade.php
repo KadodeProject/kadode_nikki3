@@ -8,4 +8,8 @@
     <article class="">
         <p class="p-2 text-lg">{{$content}}</p>
     </article>
-<a href="{{url('/edit')}}/{{$uuid}}"><span class="material-icons-outlined">edit</span>編集</a>
+    @component('components.buttons.editDiaryButton')
+    @slot("edit_uuid")
+    {{$uuid}}
+    @endslot
+    @endcomponent
