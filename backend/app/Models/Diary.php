@@ -9,12 +9,23 @@ use App\Scopes\ScopeDiary;
 class Diary extends Model
 {
 
+    // public function user()
+    // {
+    //     return $this->belongsTo(User::class);
+    // }
 
+    /**
+     * 日記を自動でログインユーザーのみに絞り込むグローバルスコープの呼び出し関数
+     *
+     * @return void
+     */
     protected static function boot()
     {
         parent::boot();
         static::addGlobalScope(new ScopeDiary);
     }
+
+
     /**
      * Undocumented variable
      *
@@ -32,7 +43,7 @@ class Diary extends Model
     public static $rules=array(
         "date"=>"required",
         "title"=>"max:50",
-        "feel"=>"required|integer|min:0|max:10",
+        "feel"=>"required|numeric|min:0|max:10",
         "content"=>"required|min:1|max:20000",
         // "user_id"=>"required|numeric",
         );
