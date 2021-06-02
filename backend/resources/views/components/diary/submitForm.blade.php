@@ -2,6 +2,23 @@
 
 
 <form class="flex justify-center flex-wrap flex-col " method="POST"action="/{{$db_method}}">
+    @if(count($errors)>0)
+    {{-- バリデーションエラーのとき --}}
+    {{-- エラー前に書いていたフォームの保持 --}}
+    @php
+        $original_date=old("date");
+        $original_uuid=old("uuid");
+        $original_title=old("title");
+        $original_content=old("content");
+        $original_feel=old("feel")-1;
+    @endphp
+    {{-- エラーの表示 --}}
+    <ul class="text-red-500">
+        @foreach($errors->all() as $error)
+        <li>{{$error}}</li>
+        @endforeach
+    </ul>
+    @endif
     @csrf
     @if($original_date=="null")
     <p id="diaryDate" class="text-xl text-center">
@@ -34,7 +51,5 @@
     
     <input type="submit" value="日記を書き込む">
 </form>
-@error('title')
-<div class="text-red-700">{{ $message }}</div>
-@enderror
+
 </div>

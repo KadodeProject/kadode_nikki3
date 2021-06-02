@@ -16,7 +16,7 @@ class CreateDiariesTable extends Migration
         Schema::create('diaries', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger("user_id")->comment("ユーザーID");
-            $table->string("title")->comment("タイトル");
+            $table->string("title")->nullable()->comment("タイトル");
             $table->text("content")->comment("本文");
             $table->date("date")->comment("日付");
             $table->integer("feel")->comment("気持ち");

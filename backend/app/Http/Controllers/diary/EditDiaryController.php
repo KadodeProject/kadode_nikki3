@@ -20,6 +20,10 @@ class EditDiaryController extends Controller
     public function get($uuid){
 
         $diary=Diary::where("uuid",$uuid)->first();
+        if($diary==null){
+            //日記無かったらリダイレクトさせる
+            return redirect("home");
+        }
         $diary->feel=$diary->feel-1;//JSのセレクターの都合で-1している
         return view('diary/edit',['diary' => $diary,]);
     }
@@ -34,7 +38,7 @@ class EditDiaryController extends Controller
         $request->date=$request->date ?? Carbon::today()->format("y-m-d");
         
         // バリデーション
-        // $this->validate($request,Diary::$rules);
+        $this->validate($request,Diary::$rules);
         
         $form=[
             "user_id"=>Auth::id(),
@@ -59,7 +63,8 @@ class EditDiaryController extends Controller
 
 
         // 日付のバリデーション→既に存在する日付ならエラー返す
-
+        // バリデーション
+        $this->validate($request,Diary::$rules);
         
         $updateContent=[
             "title"=>$request->title,
@@ -78,9 +83,7 @@ class EditDiaryController extends Controller
      * @return void
      */
     public function delete(Request $request){
-        \Log::debug("uuid".$request->uuid);
         Diary::where('uuid',$request->uuid)->delete();
-        \Log::debug("deleted");
         return redirect('home');
     }
 
