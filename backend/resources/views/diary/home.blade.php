@@ -17,7 +17,7 @@
                     @else
                         @component('components.diary.latestDiaryContent')
                             @slot("uuid")
-                            {{$today->uuid}}
+                            {{$yesterday->uuid}}
                             @endslot
                             @slot("title")
                             {{$yesterday->title}}
@@ -44,12 +44,13 @@
                     @endslot
                     @endslot
                     @slot("original_date")
+                    null
                     @endslot
                     @slot("original_title")
                     @endslot
                     @slot("original_feel")
-                    6
-                    {{-- ここは5だがjsの都合で+1してる --}}
+                    4
+                    {{-- ここは5だがjsの都合で-1してる --}}
                     @endslot
                     @slot("original_content")
                     @endslot

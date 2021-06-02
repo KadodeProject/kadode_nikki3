@@ -3,13 +3,13 @@
 
 <form class="flex justify-center flex-wrap flex-col " method="POST"action="/{{$db_method}}">
     @csrf
-    @empty($original_date)
+    @if($original_date=="null")
     <p id="diaryDate" class="text-xl text-center">
-        {{$original_date}}
+
     </p>
     @else
     <input type="date"class="text-xl text-center" name="date" value="{{$original_date}}">
-    @endempty
+    @endif
     <input  type="hidden" value="{{$original_uuid}}" name="uuid">
     <input  placeholder="タイトル"style="height:32px" class="mx-auto w-2/3" type="text" name="title"  value="{{$original_title}}">
     <div class="flex justify-center items-center"  >

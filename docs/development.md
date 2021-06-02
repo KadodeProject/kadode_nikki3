@@ -61,6 +61,10 @@ https://github.com/ucan-lab/docker-laravel
 
 ## テストアカウント
 
-氏名:tester
-メール:example@example.com
-パス:test12345
+氏名:開発者 1
+メール:test1@example.com
+パス:test1234
+
+氏名:開発者 2
+メール:test2@example.com
+パス:test1234

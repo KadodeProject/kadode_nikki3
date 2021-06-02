@@ -137,14 +137,14 @@
         "</span>";
         var date="<span class='main-date'>" +
         nowYear +
-        "年" +
+        "-" +
         nowMonth +
-        "月" +
+        "-" +
         nowDate +
-        "日" +
+        "-" +
         "</span><span class='main-hour'>" ;
         headerClock.innerHTML = time;
-        if(document.URL.match("/dashboard ")) {
+        if(document.URL.match("/home")) {
 
             diaryDate.innerHTML = date;
         }
