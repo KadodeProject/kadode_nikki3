@@ -102,6 +102,7 @@
         ":<span class='main-second'>" +
         nowSec +
         "</span>";
+        headerClock.innerHTML = time;
         // var date="<span class='main-date'>" +
         // nowYear +
         // "-" +
@@ -109,7 +110,6 @@
         // "-" +
         // set2fig(nowDate) +
         // "</span><span class='main-hour'>" ;
-        // headerClock.innerHTML = time;
         // if(document.URL.match("/home")) {
 
         //     diaryDate.innerHTML = date;
