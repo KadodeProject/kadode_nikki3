@@ -44,7 +44,7 @@
                     @endslot
                     @endslot
                     @slot("original_date")
-                    null
+                    {{$this_day}}
                     @endslot
                     @slot("original_title")
                     @endslot

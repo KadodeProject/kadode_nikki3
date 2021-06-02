@@ -49,8 +49,8 @@ class homeDiaryController extends Controller
                 $diaries[]=$latest;
             }
         }
-
+        $this_day=Carbon::today()->format("Y-m-d");
         //最新10件、ただし直近で取れた日記は除く
-        return view('diary/home',['user' => $user,'yesterday'=>$yesterday,'today'=>$today,'diaries'=>$diaries]);
+        return view('diary/home',['user' => $user,'yesterday'=>$yesterday,'today'=>$today,'diaries'=>$diaries,'this_day'=>$this_day]);
     }
 }
