@@ -5,7 +5,7 @@
 ## 名前の由来
 
 かどでは土佐日記の最初の章？である「門出」より引用しました。
-3 な理由は、1,2 で挫折(Next.JS を使用した)ため、3 回目のリポジトリということで kadode_nikki3 です。
+3 な理由は、1,2 で挫折(Next.JS を使用)したため、3 回目のリポジトリということで kadode_nikki3 です。
 
 ## ロゴ
 
@@ -52,56 +52,12 @@ https://www.figma.com/file/dHA1JlVuyrXWHatdpSoPgI/SM-and-PC?node-id=0%3A1
 -   ローカル開発:Docker
 -   コード管理:GitHub
 -   バックエンドフレームワーク:Laravel
+-   バックエンド認証:Laravel Jetstream Livewire
+-   バックエンドソーシャル認証:Laravel socialite(現在不使用)
 -   フロントエンド:Laravel Blade
 -   CSS ライブラリ:TailwindCSS
+-   アイコン:Material icons
 
 # 開発用
 
-http://localhost
-
-## docker
-
-### よく使う
-
-```
-dc exec app php
-```
-
-```
-dc exec app php artisan migrate:fresh --seed
-```
-
-### 最初
-
-```
-docker-compose exec app chmod -R 777 storage bootstrap/cache
-docker-compose exec app chmod -R 777 storage/logs
-```
-
-## 認証
-
-(laravel jetstream 導入)
-https://readouble.com/jetstream/1.0/ja/installation.html
-認証は livewire を使った。
-
-(laravel jetsream で sociolite)
-https://qiita.com/manbolila/items/b64d0e9a9d42e4b8502c
-
-google auth
-https://qiita.com/u-dai/items/91df3b923dc82fed5b76
-
-### jetstream 日本語化
-
-https://php-junkie.net/framework/laravel/jetstream-ja/
-composer require laravel-lang/lang:~8.0
-
-### jetstream カスタマイズ
-
-https://biz.addisteria.com/laravel_jetstream_customize/#toc6
-
-## 環境構築
-
-参考
-https://github.com/ucan-lab/docker-laravel
-
-## テストアカウント
+開発者向け: [development.md](./docs/development.md)
