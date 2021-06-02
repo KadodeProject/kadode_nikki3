@@ -11,7 +11,13 @@
         <div class=" text-xl flex items-center justify-center" style="height: 54px"><p>きもち:{{$feel}}</p></div>
     </section>
     <article class="p-2 text-sm overflow-y-hidden">
-        <p class="">{{$content}}</p>
+        <p class="">
+            @component('customFunctions.omitContent')
+            @slot("content")
+            {{$content}}
+            @endslot
+            @endcomponent
+        </p>
     </article>
     @component('components.buttons.editDiaryButton')
     @slot("edit_uuid")
