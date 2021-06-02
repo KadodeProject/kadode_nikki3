@@ -11,12 +11,25 @@ use Illuminate\Support\Str;
 
 class EditDiaryController extends Controller
 {
+    /**
+     * Undocumented function
+     *
+     * @param [type] $uuid
+     * @return void
+     */
     public function get($uuid){
 
         $diary=Diary::where("uuid",$uuid)->first();
         $diary->feel=$diary->feel-1;//JSのセレクターの都合で-1している
         return view('diary/edit',['diary' => $diary,]);
     }
+
+    /**
+     * Undocumented function
+     *
+     * @param Request $request
+     * @return void
+     */
     public function create(Request $request){
         $request->date=$request->date ?? Carbon::today()->format("y-m-d");
         
@@ -35,6 +48,13 @@ class EditDiaryController extends Controller
         Diary::create($form);
         return redirect('home');
     }
+    
+    /**
+     * Undocumented function
+     *
+     * @param Request $request
+     * @return void
+     */
     public function update(Request $request){
 
 
@@ -50,8 +70,17 @@ class EditDiaryController extends Controller
         Diary::where('uuid',$request->uuid)->update($updateContent);
         return redirect('home');
     }
+
+    /**
+     * Undocumented function
+     *
+     * @param Request $request
+     * @return void
+     */
     public function delete(Request $request){
+        \Log::debug("uuid".$request->uuid);
         Diary::where('uuid',$request->uuid)->delete();
+        \Log::debug("deleted");
         return redirect('home');
     }
 

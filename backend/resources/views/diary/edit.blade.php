@@ -33,6 +33,12 @@
                     {{$diary->feel}}
                     @endslot
                     @endcomponent
+
+                    @component('components.buttons.editorDiaryButton')
+                    @slot("delete_uuid")
+                    {{$diary->uuid}}
+                    @endslot
+                    @endcomponent
                 </div>
               
      

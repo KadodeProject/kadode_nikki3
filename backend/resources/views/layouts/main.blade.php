@@ -23,6 +23,7 @@
     width: 300px;
     height: 200px;
 }
+
     .potta {
         font-family: "Potta One", cursive;
     }
@@ -52,6 +53,12 @@
     .diary-content-edit{
         height: 400px;
         overflow: scroll;
+    }
+    .delete-button{
+        width:40px;
+        height: 40px;
+        border-radius: 50%;
+        background-color: aquamarine;
     }
     </style>
     @section('header')
@@ -138,10 +145,9 @@
         var date="<span class='main-date'>" +
         nowYear +
         "-" +
-        nowMonth +
+        set2fig(nowMonth) +
         "-" +
-        nowDate +
-        "-" +
+        set2fig(nowDate) +
         "</span><span class='main-hour'>" ;
         headerClock.innerHTML = time;
         if(document.URL.match("/home")) {
