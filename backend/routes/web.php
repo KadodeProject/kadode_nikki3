@@ -40,7 +40,8 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     Route::post('/update', [EditDiaryController::class,"update"])->name('update');
     Route::post('/delete', [EditDiaryController::class,"delete"])->name('delete');
     //閲覧
-    Route::get('/{year}/{month}', ShowDiaryController::class)->name('show');
+    Route::get('/{year}/{month}', [ShowDiaryController::class,"getMonthArchive"])->name('show');
+    Route::get('/{year}',  [ShowDiaryController::class,"getYearArchive"])->name('show');
     Route::get('/search', SearchDiaryController::class)->name('search');
     Route::get('/statistics', StatisticsDiaryController::class)->name('statics');
     //入出力
