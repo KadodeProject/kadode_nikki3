@@ -32,7 +32,7 @@ class homeDiaryController extends Controller
         $today=null;
         $yesterday=null;
         $diaries=null;
-        $latests= Diary::where("user_id",$user->id)->orderby("date","desc")->take(10)->get();
+        $latests= Diary::user()->orderby("date","desc")->take(10)->get();
         foreach($latests as $latest){
             $date=Carbon::parse($latest->date);
             if($today_date->eq($date)){
@@ -40,12 +40,6 @@ class homeDiaryController extends Controller
             }else if($yesterday_date->eq($date)){
                 $yesterday=$latest;
             }else{
-                //300字超えたら…で以後省略
-                $char_limit=300;
-                if(mb_strlen($latest->content)>=$char_limit){
-                    $latest->content=mb_substr($latest->content,0,$char_limit)."……";
-                }
-                
                 $diaries[]=$latest;
             }
         }
