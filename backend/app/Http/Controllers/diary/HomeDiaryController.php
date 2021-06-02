@@ -26,6 +26,8 @@ class homeDiaryController extends Controller
         /**
          * 最新10件を取って、今日と昨日があるか調べる
          * →あったら代入、
+         * 
+         * さらに、下で挿入するようのデータは特定文字数超えたら切って「…」にする。
          */
         $today=null;
         $yesterday=null;
@@ -38,6 +40,12 @@ class homeDiaryController extends Controller
             }else if($yesterday_date->eq($date)){
                 $yesterday=$latest;
             }else{
+                //300字超えたら…で以後省略
+                $char_limit=300;
+                if(mb_strlen($latest->content)>=$char_limit){
+                    $latest->content=mb_substr($latest->content,0,$char_limit)."……";
+                }
+                
                 $diaries[]=$latest;
             }
         }

@@ -31,8 +31,10 @@
         
         border:1px solid gray;
         padding:2em;
-        width:400px!important;
-        height: 400px;
+        width:400px;
+        height: 450px;
+        flex-shrink: 0;
+
     }
     .diary-main{
         max-width: 1120px;

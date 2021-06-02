@@ -79,7 +79,7 @@
                     
      
             </div>
-            <div class="flex w-auto m-4 overflow-y-auto" style="height: 500px;">
+            <div class="flex w-auto m-4 overflow-x-auto" >
                 @empty($diaries)
                     <h3 class="text-center text-3xl my-20">直近の日記はありません！</h3>
                 @else
