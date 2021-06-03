@@ -36,16 +36,30 @@ class SearchDiaryController extends Controller
             $contentLength=mb_strlen($diary->content);
             //キーワードまでの文字数
             $placeOfWord=mb_strpos($diary->content,$request->keyword);
-            //前後20字含めた切り出し
+
             //キーワードまでの文字数-20がマイナスなら0にする
-            
             $placeStart=($placeOfWord -20 >=0) ?($placeOfWord -20 ):0 ;
             //検索したキーワード含めずに後ろ20字 日記の文字数オーバーしない範囲で
             $placeEnd=($placeOfWord+$keywordLength+20 <=$contentLength)?($placeOfWord+$keywordLength+20):$contentLength;
-            \Log::debug("placeOfWord".$placeOfWord);
-            \Log::debug("start".$placeStart);
-            \Log::debug("end".$placeEnd);
+            
+            //前後20字含めた切り出し
             $diary->content=mb_substr($diary->content,$placeStart,$placeEnd-$placeStart);
+            
+            /*
+             * キーワードハイライトのための代入
+             */
+            //キーワードの長さ
+            $keywordLength=mb_strlen($request->keyword);
+            //日記の長さ
+            $contentLength=mb_strlen($diary->content);
+            //キーワードまでの文字数
+            $placeOfWord=mb_strpos($diary->content,$request->keyword);
+            //ハイライト追加に際して、シーケンスせずhtml解釈させるので、その前に攻撃防止のためにタグを防ぐ
+            $diary->content=htmlspecialchars($diary->content, ENT_QUOTES);
+            //ハイライト追加
+            $diary->content=mb_substr($diary->content,0,$placeOfWord)."<span class='bg-yellow-200'>".mb_substr($diary->content,$placeOfWord,$keywordLength)."</span>".mb_substr($diary->content,$placeOfWord+$keywordLength);
+
+
             $proceedDiary[]=$diary;
             
             }
