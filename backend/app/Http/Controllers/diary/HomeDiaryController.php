@@ -32,7 +32,7 @@ class homeDiaryController extends Controller
         $today=null;
         $yesterday=null;
         $diaries=null;
-        $latests= Diary::user()->orderby("date","desc")->take(10)->get();
+        $latests= Diary::orderby("date","desc")->take(10)->get();
         foreach($latests as $latest){
             $date=Carbon::parse($latest->date);
             if($today_date->eq($date)){

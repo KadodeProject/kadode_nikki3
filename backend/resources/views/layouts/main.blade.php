@@ -12,6 +12,7 @@
     {{-- GoogleFonts --}}
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Potta+One&display=swap" rel="stylesheet">
+    {{-- 検索インデックスさせない --}}
     <meta name=”robots” content=”noindex,nofollow”>
     
     {{-- マテリアルアイコン --}}
@@ -30,9 +31,17 @@
             </div>
         </div>
         <div class="">
+            @if(count($errors)>0)
+            {{-- エラーの表示 --}}
+            <ul class="text-red-500">
+                @foreach($errors->all() as $error)
+                <li>{{$error}}</li>
+                @endforeach
+            </ul>
+            @endif
             <form class=" flex"method="POST" action="/diary/search">
                 @csrf
-                <input class="" type="search" name="search" value="検索">
+                <input class="" type="search" name="keyword" placeholder="キーワード(2~20字)">
                 <input type="submit" value="検索">
                 
             </form>
