@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 
 class SettingDiaryController extends Controller
 {
-    public function __invoke($request)
+    public function __invoke()
     {
         
     }
