@@ -41,7 +41,7 @@
             @endif
             <form class=" flex"method="POST" action="/diary/search">
                 @csrf
-                <input class="" type="search" name="keyword" placeholder="キーワード">
+                <input class="" type="search" name="keyword" placeholder="キーワード(2~20字)">
                 <input type="submit" value="検索">
                 
             </form>
