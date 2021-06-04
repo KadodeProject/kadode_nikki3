@@ -39,7 +39,14 @@ class ExportDiaryController extends Controller
         header('Content-Length: '.filesize("exportCsv/$uuid.csv"));
         header("Content-Disposition: attachment; filename=exportCsv/$uuid.csv");
         readfile("exportCsv/$uuid.csv");
-        
+
+        $file="exportCsv/$uuid.csv";
+        if (unlink($file)){
+            // echo $file.'の削除に成功しました。';
+            \Log::debug("$file.の削除成功");
+        }else{
+              \Log::debug("$file.の削除失敗");
+          }
         return view("diary/io/afterExport");
     }
 }

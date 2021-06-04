@@ -81,3 +81,21 @@ textarea {
 ここまで 
 スクロールバー
 */
+
+.setting {
+    border: 1px solid plum;
+    border-radius: 12px;
+    margin: 2em;
+    padding: 1em;
+    text-align: center;
+}
+.settingContentWrapper {
+    padding: 1em;
+}
+
+.settingContent {
+    color: white;
+    background-color: black;
+    margin: 2em;
+    padding: 1em;
+}
