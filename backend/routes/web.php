@@ -46,7 +46,9 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     Route::get('/diary/detailSearch',[ SearchDiaryController::class,"showSearch"])->name('search');
     Route::get('/statistics', StatisticsDiaryController::class)->name('statics');
     //入出力
-    Route::post('/import', ImportDiaryController::class)->name('import');
+    Route::get('/import/kadode', [ImportDiaryController::class,"kadode"])->name('importKadode');
+    Route::get('/import/tukini', [ImportDiaryController::class,"tukini"])->name('importTukini');
+    Route::get('/export', ExportDiaryController::class)->name('export');
     Route::get('/export', ExportDiaryController::class)->name('export');
 
 });

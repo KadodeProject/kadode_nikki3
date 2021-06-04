@@ -7,7 +7,11 @@ use Illuminate\Http\Request;
 
 class ImportDiaryController extends Controller
 {
-    public function __invoke($request)
+    public function kadode()
+    {
+        
+    }
+    public function tukini()
     {
         
     }

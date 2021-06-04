@@ -13,7 +13,7 @@ class StatisticsDiaryController extends Controller
      * @param [type] $request
      * @return void
      */
-    public function __invoke($request)
+    public function __invoke()
     {
         
     }
