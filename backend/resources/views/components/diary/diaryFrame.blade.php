@@ -14,7 +14,8 @@
         <p class="">
             @component('customFunctions.omitContent')
             @slot("content")
-            {{$content}}
+            {{-- nl2br関数で\nを<br>に変換、さらにXSS攻撃防止のためにe()でサニタイズ、さらに!!!!でHTMLタグをエスケープさせない --}}
+            {!! nl2br(e($content)) !!}
             @endslot
             @endcomponent
         </p>
