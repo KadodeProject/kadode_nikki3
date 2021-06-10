@@ -57,6 +57,7 @@ https://www.figma.com/file/dHA1JlVuyrXWHatdpSoPgI/SM-and-PC?node-id=0%3A1
 -   フロントエンド:Laravel Blade
 -   CSS ライブラリ:TailwindCSS
 -   アイコン:Material icons
+-   CSV インポート:Goodby CSV
 
 # 開発用
 

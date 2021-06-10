@@ -14,7 +14,7 @@
 
             <div class="settingContent">
                 <h4 class="text-xl">かどで日記形式のCSVファイル</h4>
-                <form class="flex justify-center flex-wrap flex-col " method="POST"action="/import/kadode">
+                <form class="flex justify-center flex-wrap flex-col " method="POST" enctype="multipart/form-data" action="/import/kadode">
                     @if(count($errors)>0)
                     {{-- エラーの表示 --}}
                     <ul class="text-red-500">
@@ -24,13 +24,13 @@
                     </ul>
                     @endif
                     @csrf
-                    <input type="file"accept=".csv" enctype="multipart/form-data"　value="かどで日記形式のCSVファイルをアップロード" name="kadodeCsv">
+                    <input type="file"accept=".csv" value="かどで日記形式のCSVファイルをアップロード" name="kadodeCsv">
                     <input type="submit"  class="text-black" value="インポート">
                 </form>
             </div>
             <div class="settingContent">
                 <h4 class="text-xl">月に書く日記形式のtxtファイル</h4>
-                <form class="flex justify-center flex-wrap flex-col " method="POST"action="/import/tukini">
+                <form class="flex justify-center flex-wrap flex-col " method="POST" enctype="multipart/form-data" action="/import/tukini">
                     @if(count($errors)>0)
                     {{-- エラーの表示 --}}
                     <ul class="text-red-500">
@@ -40,7 +40,7 @@
                     </ul>
                     @endif
                     @csrf
-                    <input type="file"accept=".txt" enctype="multipart/form-data"　value="月に書く日記形式のtxtファイルをアップロード" name="tukiniTxt">
+                    <input type="file"accept=".txt" value="月に書く日記形式のtxtファイルをアップロード" name="tukiniTxt">
                     <input type="submit" class="text-black" value="インポート">
                 </form>
             </div>
