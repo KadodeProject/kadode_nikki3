@@ -7,7 +7,7 @@
 @endsection
 @section('content')
 <div class="board-main">
-    <h1 class="text-center text-3xl my-4">「{{$keyword}}」の検索結果 <span class="text-sm">[{{$counter}}件(最大50件)]</span></h1>
+    <h1 class="text-center text-3xl my-4">「{{$keyword}}」の検索結果 <span class="text-sm">[{{$counter}}件(最大200件)]</span><span class="text-xs">[クエリ時間:{{$queryTime}}ミリ秒]</span></h1>
     
             <div class="flex w-full m-4 justify-center flex-wrap" >
                 @empty($diaries)
