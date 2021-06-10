@@ -22,7 +22,7 @@
                             {{$diary->title}}
                             @endslot
                             @slot("content")
-                            {{!! $diary->content !!}}
+                            {!! $diary->content !!}
                             @endslot
                             @slot("date")
                             {{$diary->date}}
