@@ -10,9 +10,9 @@
 
     
     {{-- GoogleFonts --}}
-    {{-- kiwi maru --}}
-    <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css2?family=Kiwi+Maru&display=swap" rel="stylesheet">
+ {{-- kiwi maru --}}
+ <link rel="preconnect" href="https://fonts.gstatic.com">
+ <link href="https://fonts.googleapis.com/css2?family=Kiwi+Maru&display=swap" rel="stylesheet">
     {{-- 検索インデックスさせない --}}
     <meta name=”robots” content=”noindex,nofollow”>
     
@@ -53,6 +53,7 @@
         
         <div class="px-6 py-4 sm:block">
       
+                <a href="{{ url('/dashboard') }}" class="text-sm text-gray-700 underline">{{ Auth::user()->name }}</a>
        
 
          

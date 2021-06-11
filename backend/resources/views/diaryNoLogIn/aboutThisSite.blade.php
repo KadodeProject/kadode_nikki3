@@ -1,5 +1,4 @@
-
-@extends("layouts.main")
+@extends("layouts.noLogIn")
 @section("title","トップ")
 
 @section('header')

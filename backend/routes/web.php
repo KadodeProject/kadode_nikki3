@@ -21,13 +21,29 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+
+
+
+/**
+ * 未ログインでも閲覧できるページ
+ */
 Route::get('/', function () {
-    return view('welcome');
+    return view('diaryNoLogIn/top');
 });
-Route::get('/diary', function () {
-    return view('welcome');
+Route::get('/privacyPolicy', function () {
+    return view('diaryNoLogIn/privacyPolicy');
+});
+Route::get('/aboutThisPage', function () {
+    return view('diaryNoLogIn/aboutThisPage');
+});
+Route::get('/contact', function () {
+    return view('diaryNoLogIn/aboutThisPage');
 });
 
+
+/**
+ * ログイン時閲覧できるリンク
+ */
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return redirect('/home ');
 })->name('home_redirect');
