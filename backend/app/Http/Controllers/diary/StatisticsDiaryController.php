@@ -15,6 +15,6 @@ class StatisticsDiaryController extends Controller
      */
     public function __invoke()
     {
-        
+        return view("diary/statistics/statisticsTop");
     }
 }

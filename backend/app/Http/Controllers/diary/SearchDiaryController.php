@@ -12,7 +12,6 @@ class SearchDiaryController extends Controller
     {
         //効果あるか分からないけれど、危険な変数のエスケープをする
         $request->keyword=htmlspecialchars($request->keyword, ENT_QUOTES);
-
         // 検索結果のバリデーション
         $rules=array(
             "keyword"=>"min:2|max:20",
@@ -72,6 +71,6 @@ class SearchDiaryController extends Controller
     }
 
     public function showSearch(){
-        return view("diary/search/detailSearch");
+        return view('diary/search/searchResult');
     }
 }

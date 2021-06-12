@@ -47,6 +47,6 @@ class ExportDiaryController extends Controller
         }else{
               \Log::debug("$file.の削除失敗");
           }
-        return redirect("setting");
+        return redirect("settings");
     }
 }

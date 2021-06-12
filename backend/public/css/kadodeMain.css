@@ -1,3 +1,35 @@
+:root {
+    /* カラー定義 */
+    --bg-main-color: #2f3437;
+    --text-main-color: #f9fff9;
+    --logo-main-color: #624464;
+    --button-main-color: #4b8996;
+    --border-main-color: #8a8772;
+    /* ヘッダー高さ */
+    --header-height: 73px;
+}
+.bg-main-color {
+    background-color: var(--bg-main-color);
+}
+.text-main-color {
+    color: var(--text-main-color);
+}
+.border-main-color {
+    color: var(border-main-color);
+}
+body {
+    background-color: var(--bg-main-color);
+}
+
+p,
+h1,
+h2,
+h3,
+h4,
+h5 {
+    color: var(--text-main-color);
+}
+
 .kiwi-maru {
     font-family: "Kiwi Maru", serif;
 }
@@ -7,11 +39,53 @@ textarea {
     height: 200px;
 }
 
-.potta {
-    font-family: "Potta One", cursive;
+header {
+    border-bottom: 1px solid var(--border-main-color);
 }
+footer {
+}
+
+/* 動く検索フォーム用ここから */
+
+.move-label-wrapper div {
+    position: relative;
+}
+
+.move-label {
+    position: absolute;
+    top: 0;
+    font-size: 20px;
+    margin: 10px;
+    padding: 0 10px;
+    background-color: var(--bg-main-color);
+    -webkit-transition: top 0.2s ease-in-out, font-size 0.2s ease-in-out;
+    transition: top 0.2s ease-in-out, font-size 0.2s ease-in-out;
+}
+.active {
+    top: -25px;
+    font-size: 16px;
+}
+
+.search-keyword {
+    background-color: var(--bg-main-color);
+    border-radius: 3px; /*ボックス角の丸み*/
+    color: var(--text-main-color);
+    border: 1px solid var(--button-main-color); /*枠線*/
+}
+.search-keyword::placeholder {
+    color: var(--bg-main-color);
+}
+.active-input::placeholder {
+    color: var(--border-main-color);
+}
+.search-keyword:focus {
+    border: 2px solid var(--button-main-color); /*枠線*/
+    outline: none;
+}
+/* 動く検索フォーム用ここまで*/
+
 .diary_dashboard {
-    border: 1px solid gray;
+    border: 1px solid var(--button-main-color);
     padding: 2em;
     width: 400px;
     height: 450px;
@@ -25,7 +99,7 @@ textarea {
 }
 .diary-main > div {
     width: 50%;
-    border: 2px solid black;
+    border: 2px solid var(--button-main-color);
     height: 600px;
     padding: 2em;
 }
@@ -86,7 +160,7 @@ textarea {
 */
 
 .setting {
-    border: 1px solid plum;
+    border: 1px solid var(--button-main-color);
     border-radius: 12px;
     margin: 2em;
     padding: 1em;

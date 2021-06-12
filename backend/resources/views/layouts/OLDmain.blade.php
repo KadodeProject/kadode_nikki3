@@ -27,8 +27,10 @@
     <header class="px-4 relative border-b-2 w-screen flex justify-between items-center">
         <div class="flex items-center justify-around">
             <a href="{{url("/home")}}"><img style="object-fit:contain;width:auto;height:64px"src="/img/kadode_logo.png"></a>
-            <div class="ml-4"id="headerClock">
-                現在時刻
+            <div class="flex  flex-row flex-wrap justify-center">
+                <p id="headerYear">年</p>
+                <p id="headerMontDate">月</p>
+                <p id="headerTime">日</p>
             </div>
         </div>
         <div class="">
@@ -87,7 +89,7 @@
 
         function showClock() {
         var nowTime = new Date();
-        var nowUnixTime = nowTime.getTime();
+        // var nowUnixTime = nowTime.getTime();
 
         var nowYear = nowTime.getFullYear();
         // getYearは2000年問題の関係で4桁返してくれないのでgetFullYearを使用
@@ -97,22 +99,25 @@
         var nowHour = set2fig(nowTime.getHours());
         var nowMin = set2fig(nowTime.getMinutes());
         var nowSec = set2fig(nowTime.getSeconds());
-        var time =
-        "<span class='main-date'>" +
-        nowYear +
-        "年" +
-        nowMonth +
-        "月" +
-        nowDate +
-        "日" +
-        "</span><span class='main-hour'>" +
-        nowHour +
-        ":" +
-        nowMin +
-        ":<span class='main-second'>" +
-        nowSec +
-        "</span>";
-        headerClock.innerHTML = time;
+        headerYear.innerHTML=nowYear;
+        headerMonthDate.innerHTML=nowMonth+"<span class='' style='font-size:1.5em'>月</span>"+nowDate+"<span class='' style='font-size:1.5em'>日</span>";
+        headerTime.innerHTML=nowHour+":"+nowMin+":"+nowSec;
+        // var time =
+        // "<span class='main-date'>" +
+        // nowYear +
+        // "年" +
+        // nowMonth +
+        // "月" +
+        // nowDate +
+        // "日" +
+        // "</span><span class='main-hour'>" +
+        // nowHour +
+        // ":" +
+        // nowMin +
+        // ":<span class='main-second'>" +
+        // nowSec +
+        // "</span>";
+        // headerClock.innerHTML = time;
         // var date="<span class='main-date'>" +
         // nowYear +
         // "-" +
