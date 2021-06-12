@@ -72,37 +72,38 @@
             <p><a href="{{url("/statistics")}}">統計</a></p>
             <p><a href="{{url("/setting")}}">設定</a></p>   
         </div>
-        <div class="flex justify-end items-end">
-            @if(count($errors)>0)
-            {{-- エラーの表示 --}}
-            <ul class="text-red-500">
-                @foreach($errors->all() as $error)
-                <li>{{$error}}</li>
-                @endforeach
-            </ul>
-            @endif
-            <form class="move-label-wrapper flex"method="POST" action="/search">
-                @csrf
-                <div>
-                    <label id="moveLabelJs"class="move-label text-main-color text-sm" for="keywordLabel">日記検索</label>
-                    <input id="keywordLabel" autocomplete="off"class="search-keyword" type="search" name="keyword" placeholder="キーワード(2~20字)">
-                </div>
-                <input type="submit" value="検索">
-                
-            </form>
-        </div>
-       
-
-
+        <div class="flex justify-center ">
+            <div class="flex justify-end items-end mb-4 mr-8">
+                @if(count($errors)>0)
+                {{-- エラーの表示 --}}
+                <ul class="text-red-500">
+                    @foreach($errors->all() as $error)
+                    <li>{{$error}}</li>
+                    @endforeach
+                </ul>
+                @endif
+                <form class="move-label-wrapper flex"method="POST" action="/search">
+                    @csrf
+                    <div>
+                        <label id="moveLabelJs"class="move-label text-main-color text-sm" for="keywordLabel">日記検索</label>
+                        <input id="keywordLabel" autocomplete="off"class="search-keyword" type="search" name="keyword" placeholder="キーワード(2~20字)">
+                    </div>
+                    <input type="submit" value="検索">
+                    
+                </form>
+            </div>
         
-        <div class="px-6 py-4 sm:block">
-            <p> <a href="{{ url('/dashboard') }}" class="text-sm  underline">{{ Auth::user()->name }}</a></p>
-               
-       
 
-         
+
+            
+            <div class="px-6 py-4 sm:block">
+                <p> <a href="{{ url('/dashboard') }}" class="text-sm  underline">{{ Auth::user()->name }}</a></p>
+                
+        
+
+            
+            </div>
         </div>
-
     </header>
    
     <main>
@@ -111,8 +112,15 @@
         
         
     </main>
-    <footer>
-     <p class="text-center">{{"@"}}usuyuki{{date("Y")}}</p>
+    <footer class="py-4">
+    <div class="py-8 flex justify-between items-center mx-auto flex-wrap footer-menu" style="max-width: 700px">
+        <p><a href="{{url("/privacyPolicy")}}">プライバシーポリシー</a></p>
+        <p><a href="{{url("/aboutThisSite")}}">このサイトについて</a></p>
+        <p><a href="{{url("/contact")}}">お問い合わせ</a></p>
+        <p><a href="{{url("/")}}">使い方</a></p>
+        <p><a href="{{url("/news")}}">お知らせ</a></p>
+    </div>
+     <p class="text-center mt-4 copyright">{{"@"}}usuyuki{{date("Y")}}</p>
     </footer>
 
     <script type="text/javascript" src="{{ asset('js/kadodeMain.js') }}"></script>

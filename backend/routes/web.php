@@ -37,7 +37,10 @@ Route::get('/aboutThisPage', function () {
     return view('diaryNoLogIn/aboutThisPage');
 });
 Route::get('/contact', function () {
-    return view('diaryNoLogIn/aboutThisPage');
+    return view('diaryNoLogIn/contact');
+});
+Route::get('/news', function () {
+    return view('diaryNoLogIn/news');
 });
 
 

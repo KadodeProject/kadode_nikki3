@@ -11,14 +11,24 @@
 .bg-main-color {
     background-color: var(--bg-main-color);
 }
+.border-bg-main-color {
+    background-color: var(--border-main-color);
+}
 .text-main-color {
     color: var(--text-main-color);
 }
 .border-main-color {
-    color: var(border-main-color);
+    color: var(--border-main-color);
+}
+.copyright {
+    color: var(--logo-main-color);
+}
+.footer-menu {
+    color: var(--border-main-color);
 }
 body {
     background-color: var(--bg-main-color);
+    overflow-x: hidden;
 }
 
 p,
@@ -37,12 +47,46 @@ textarea {
     resize: none;
     width: 300px;
     height: 200px;
+    background-color: var(--bg-main-color) !important;
+    border-color: var(--button-main-color) !important;
+}
+textarea::placeholder {
+    color: var(--border-main-color);
+}
+input[type="submit"] {
+    background-color: var(--button-main-color);
+    color: var(--text-main-color);
+}
+input[type="text"] {
+    background-color: var(--bg-main-color);
+    border-color: var(--button-main-color);
+}
+input[type="text"]::placeholder {
+    color: var(--border-main-color);
+}
+input[type="date"] {
+    color: var(--text-main-color);
+    background-color: var(--bg-main-color);
+    border-color: var(--button-main-color);
+}
+select {
+    color: var(--text-main-color);
+    background-color: var(--bg-main-color);
+    border-color: var(--button-main-color);
 }
 
 header {
     border-bottom: 1px solid var(--border-main-color);
 }
 footer {
+    border-top: 1px solid var(--border-main-color);
+}
+
+.kadode-normal-button {
+    background-color: var(--button-main-color);
+    color: var(--bg-main-color);
+    padding: 0.7em 0.6em;
+    border-radius: 6px;
 }
 
 /* 動く検索フォーム用ここから */
