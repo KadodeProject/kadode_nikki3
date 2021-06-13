@@ -36,7 +36,8 @@ h1,
 h2,
 h3,
 h4,
-h5 {
+h5,
+ol {
     color: var(--text-main-color);
 }
 
@@ -81,7 +82,18 @@ header {
 footer {
     border-top: 1px solid var(--border-main-color);
 }
-
+p a {
+    transition: 1s;
+}
+p a:hover {
+    color: var(--button-main-color);
+}
+.list-decimal li {
+    margin-left: 1em;
+}
+li ol {
+    margin-left: 1em;
+}
 .kadode-normal-button {
     background-color: var(--button-main-color);
     color: var(--bg-main-color);

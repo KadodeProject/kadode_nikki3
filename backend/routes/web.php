@@ -33,14 +33,20 @@ Route::get('/', function () {
 Route::get('/privacyPolicy', function () {
     return view('diaryNoLogIn/privacyPolicy');
 });
-Route::get('/aboutThisPage', function () {
-    return view('diaryNoLogIn/aboutThisPage');
+Route::get('/aboutThisSite', function () {
+    return view('diaryNoLogIn/aboutThisSite');
 });
 Route::get('/contact', function () {
     return view('diaryNoLogIn/contact');
 });
 Route::get('/news', function () {
     return view('diaryNoLogIn/news');
+});
+Route::get('/releaseNote', function () {
+    return view('diaryNoLogIn/releaseNote');
+});
+Route::get('/terms', function () {
+    return view('diaryNoLogIn/terms');
 });
 
 
