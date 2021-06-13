@@ -124,7 +124,7 @@ li ol {
 /* 動く検索フォーム用ここから */
 /*
     https://codepen.io/charlyn/pen/MwRBBo
-    
+
     Copyright (c) August 14, 2015 Charlyn G
     Released under the MIT license
     http://opensource.org/licenses/mit-license.php
@@ -133,6 +133,9 @@ li ol {
     position: relative;
 }
 
+.error-page {
+    min-height: 100vh;
+}
 .move-label {
     position: absolute;
     top: 0;

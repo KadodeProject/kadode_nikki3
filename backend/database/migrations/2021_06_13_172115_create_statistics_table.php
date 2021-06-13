@@ -18,14 +18,16 @@ class CreateStatisticsTable extends Migration
             $table->unsignedBigInteger("user_id")->comment("ユーザーID");
             $table->unsignedBigInteger("total_words")->nullable()->comment("総文字数");
             $table->unsignedBigInteger("total_diaries")->nullable()->comment("総日記数");
-            $table->json("month_words")->comment("月ごとの文字数");
-            $table->json("month_diaries")->comment("月ごとの日記数");
-            $table->json("year_words")->comment("年ごとの文字数");
-            $table->json("year_diaries")->comment("年ごとの日記数");
-            $table->json("year_noun_asc")->comment("年ごとの名詞昇順");
-            $table->json("month_noun_asc")->comment("月ごとの名詞昇順");
-            $table->json("year_adjective_asc")->comment("年ごとの形容詞昇順");
-            $table->json("month_adjective_asc")->comment("月ごとの形容詞昇順");
+            $table->unsignedBigInteger("feel_month")->nullable()->comment("月間の気持ち");
+            $table->unsignedBigInteger("feel_year")->nullable()->comment("年間の気持ち");
+            $table->json("month_words")->nullable()->comment("月ごとの文字数");
+            $table->json("month_diaries")->nullable()->comment("月ごとの日記数");
+            $table->json("year_words")->nullable()->comment("年ごとの文字数");
+            $table->json("year_diaries")->nullable()->comment("年ごとの日記数");
+            $table->json("year_noun_asc")->nullable()->comment("年ごとの名詞昇順");
+            $table->json("month_noun_asc")->nullable()->comment("月ごとの名詞昇順");
+            $table->json("year_adjective_asc")->nullable()->comment("年ごとの形容詞昇順");
+            $table->json("month_adjective_asc")->nullable()->comment("月ごとの形容詞昇順");
           
         
             $table->timestamps();

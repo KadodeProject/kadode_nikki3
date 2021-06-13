@@ -61,6 +61,8 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     Route::get('/home', HomeDiaryController::class)->name('home');
     //ユーザー操作
     Route::get('/settings', SettingDiaryController::class)->name('setting');
+    Route::post('/updateEmail', [UserController::class,"updateEmail"])->name('updateEmail');
+    Route::post('/updatePassWord', [UserController::class,"updatePassWord"])->name('updatePassWord');
     Route::post('/deleteUser', [UserController::class,"deleteUser"])->name('deleteUser');
     //日記のCRUD
     Route::get('/edit/{uuid}', [EditDiaryController::class,"get"])->name('edit');
