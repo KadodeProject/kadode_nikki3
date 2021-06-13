@@ -1,4 +1,11 @@
 //検索フォーカス
+/*
+    https://codepen.io/charlyn/pen/MwRBBo
+
+    Copyright (c) August 14, 2015 Charlyn G
+    Released under the MIT license
+    http://opensource.org/licenses/mit-license.php
+*/
 const input = document.getElementById("keywordLabel");
 const label = document.getElementById("moveLabelJs");
 input.addEventListener(

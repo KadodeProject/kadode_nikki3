@@ -96,12 +96,8 @@
 
 
             
-            <div class="px-6 py-4 sm:block">
-                <p> <a href="{{ url('/dashboard') }}" class="text-sm  underline">{{ Auth::user()->name }}</a></p>
-                
-        
-
-            
+            <div class="flex items-center justify-center mr-4">          
+                <p>{{ Auth::user()->name }}</p>
             </div>
         </div>
     </header>

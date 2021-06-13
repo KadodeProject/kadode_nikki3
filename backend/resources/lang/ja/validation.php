@@ -127,5 +127,15 @@ return [
             'rule-name' => 'custom-message',
         ],
     ],
-    'attributes'           => [],
+    'attributes'           => [
+        'name' => '名前', 
+        'email' => 'メールアドレス', 
+        'password' => 'パスワード' ,
+        'content'=>'本文',
+        'title'=>'タイトル',
+        'feel'=>'気持ち',
+        'date'=>'日付',
+        "terms"=> "利用規約とプライバシーポリシーへの同意",
+
+    ],
 ];
