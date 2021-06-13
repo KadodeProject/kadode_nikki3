@@ -12,7 +12,6 @@ class SearchDiaryController extends Controller
     {
         //効果あるか分からないけれど、危険な変数のエスケープをする
         $request->keyword=htmlspecialchars($request->keyword, ENT_QUOTES);
-
         // 検索結果のバリデーション
         $rules=array(
             "keyword"=>"min:2|max:20",
@@ -21,7 +20,11 @@ class SearchDiaryController extends Controller
 
         
         //DB叩く 最近の日記から直近50個
-        $diaries=Diary::where("content","like","%$request->keyword%")->orderby("date","desc")->take(50)->get();
+        \DB::enableQueryLog();
+        $diaries=Diary::where("content","like","%$request->keyword%")->orderby("date","desc")->take(200)->get();
+        //クエリ時間取得
+        $queryLog=\DB::getQueryLog();
+        $queryTime=$queryLog[0]["time"];
         // \Log::debug("requests".$request->keyword);
 
         //文字の抽出　該当箇所の前後飲みにする
@@ -64,10 +67,10 @@ class SearchDiaryController extends Controller
             
             }
         }
-        return view('diary/search/searchResult',['counter'=>$counter,'keyword' => $request->keyword,'diaries'=>$proceedDiary,]);
+        return view('diary/search/searchResult',['counter'=>$counter,'keyword' => $request->keyword,'diaries'=>$proceedDiary,'queryTime'=>$queryTime]);
     }
 
     public function showSearch(){
-        return view("diary/search/detailSearch");
+        return view('diary/search/searchResult');
     }
 }

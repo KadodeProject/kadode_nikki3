@@ -165,10 +165,7 @@ class ImportDiaryController extends Controller
 
                  
                 foreach($dateTxt as $date){
-                    \Log::debug("db insert");
-                    \Log::debug($date);
-                    \Log::debug($proceededTitleTxt);
-                    \Log::debug($proceededContentTxt);
+
                     
                     Diary::insert(['user_id'=>Auth::Id(),'uuid'=>Str::uuid(), 'date' => $date, 'title' => $proceededTitleTxt[$arrayCounter], 'feel' => 5,'content' =>$proceededContentTxt[$arrayCounter]]);
                     $count++;

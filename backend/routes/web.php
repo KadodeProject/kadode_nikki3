@@ -21,19 +21,44 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+
+
+
+/**
+ * 未ログインでも閲覧できるページ
+ */
 Route::get('/', function () {
-    return view('welcome');
+    return view('diaryNoLogIn/top');
 });
-Route::get('/diary', function () {
-    return view('welcome');
+Route::get('/privacyPolicy', function () {
+    return view('diaryNoLogIn/privacyPolicy');
+});
+Route::get('/aboutThisSite', function () {
+    return view('diaryNoLogIn/aboutThisSite');
+});
+Route::get('/contact', function () {
+    return view('diaryNoLogIn/contact');
+});
+Route::get('/news', function () {
+    return view('diaryNoLogIn/news');
+});
+Route::get('/releaseNote', function () {
+    return view('diaryNoLogIn/releaseNote');
+});
+Route::get('/terms', function () {
+    return view('diaryNoLogIn/terms');
 });
 
+
+/**
+ * ログイン時閲覧できるリンク
+ */
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return redirect('/home ');
 })->name('home_redirect');
 Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     Route::get('/home', HomeDiaryController::class)->name('home');
-    Route::get('/setting', SettingDiaryController::class)->name('setting');
+    Route::get('/settings', SettingDiaryController::class)->name('setting');
     //日記のCRUD
     Route::get('/edit/{uuid}', [EditDiaryController::class,"get"])->name('edit');
     Route::post('/create', [EditDiaryController::class,"create"])->name('new');
@@ -42,13 +67,17 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     //閲覧
     Route::get('/diary/{year}/{month}', [ShowDiaryController::class,"getMonthArchive"])->name('show');
     Route::get('/diary/{year}',  [ShowDiaryController::class,"getYearArchive"])->name('show');
-    Route::post('/diary/search', [SearchDiaryController::class,"post"])->name('search');
-    Route::get('/diary/detailSearch',[ SearchDiaryController::class,"showSearch"])->name('search');
-    Route::get('/statistics', StatisticsDiaryController::class)->name('statics');
+    Route::post('/search', [SearchDiaryController::class,"post"])->name('search');
+    Route::get('/search', [SearchDiaryController::class,"showSearch"])->name('searchConsole');
+    // Route::get('/search',[ SearchDiaryController::class,"showSearch"])->name('search');
     //入出力
     Route::post('/import/kadode', [ImportDiaryController::class,"kadode"])->name('importKadode');
     Route::post('/import/tukini', [ImportDiaryController::class,"tukini"])->name('importTukini');
     Route::get('/export', ExportDiaryController::class)->name('export');
     Route::get('/export', ExportDiaryController::class)->name('export');
+    //統計
+    Route::get('/statistics', StatisticsDiaryController::class)->name('statics');
+
+
 
 });
