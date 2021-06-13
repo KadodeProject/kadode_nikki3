@@ -45,7 +45,7 @@
     </div>
     <textarea  placeholder="本文(20000字以内)"class="p-4 w-full diary-content-edit" type="text" name="content" >{{$original_content}}</textarea>
     
-    <input type="submit" value="日記を書き込む">
+    <input style="height:2em"type="submit" value="日記を書き込む">
 </form>
 
 </div>

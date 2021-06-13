@@ -1,4 +1,4 @@
-<x-guest-layout>
+<x-guest-layout style="background-color:#2F3437!important">
     <x-jet-authentication-card>
         <x-slot name="logo">
             <x-jet-authentication-card-logo />
@@ -20,7 +20,7 @@
             </div>
 
             <div class="mt-4">
-                <x-jet-label for="password" value="{{ __('Password') }}" />
+                <x-jet-label for="password" value="{{ __('Password') }}（8字以上）" />
                 <x-jet-input id="password" class="block mt-1 w-full" type="password" name="password" required autocomplete="new-password" />
             </div>
 
@@ -37,11 +37,13 @@
 
                             <div class="ml-2">
                                 {!! __('I agree to the :terms_of_service and :privacy_policy', [
-                                        'terms_of_service' => '<a target="_blank" href="'.route('terms.show').'" class="underline text-sm text-gray-600 hover:text-gray-900">'.__('Terms of Service').'</a>',
-                                        'privacy_policy' => '<a target="_blank" href="'.route('policy.show').'" class="underline text-sm text-gray-600 hover:text-gray-900">'.__('Privacy Policy').'</a>',
+                                        '利用規約' => '<a target="_blank" href="'.url('terms').'" class="underline text-sm text-gray-600 hover:text-gray-900">'.__('Terms of Service').'</a>',
+                                        'プライバシーポリシー' => '<a target="_blank" href="'.url('privacyPolicy').'" class="underline text-sm text-gray-600 hover:text-gray-900">'.__('Privacy Policy').'</a>',
                                 ]) !!}
                             </div>
                         </div>
+                        {{-- <p>利用規約は<a target="_blank" href="{{url("terms")}}">こちら</a></p>
+                        <p>プライバシーポリシーは<a target="_blank" href="{{url("privacyPolicy")}}">こちら</a></p> --}}
                     </x-jet-label>
                 </div>
             @endif

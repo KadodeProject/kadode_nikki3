@@ -18,6 +18,17 @@ class User extends Authenticatable implements MustVerifyEmail
     use Notifiable;
     use TwoFactorAuthenticatable;
 
+
+    public static $updatePassWordRules=[
+        "password"=>"min:8"
+    ];
+    public static $updateEmailRules=[
+        "email"=>"email"
+        
+    ];
+
+
+
     // public function diaries(){
     //     return $this->hasMany(Diary::class);
     // }
