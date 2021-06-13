@@ -74,7 +74,9 @@
         </div>
         <div class="flex justify-center ">
             <div class="flex justify-end items-end mb-4 mr-8">
-                @if(count($errors)>0)
+               
+                <form class="move-label-wrapper flex"method="POST" action="/search">
+                    @if(count($errors)>0)
                 {{-- エラーの表示 --}}
                 <ul class="text-red-500">
                     @foreach($errors->all() as $error)
@@ -82,7 +84,6 @@
                     @endforeach
                 </ul>
                 @endif
-                <form class="move-label-wrapper flex"method="POST" action="/search">
                     @csrf
                     <div>
                         <label id="moveLabelJs"class="move-label text-main-color text-sm" for="keywordLabel">日記検索</label>
