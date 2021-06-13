@@ -88,7 +88,24 @@ footer {
     padding: 0.7em 0.6em;
     border-radius: 6px;
 }
-
+#top-animation {
+    width: 80%;
+    height: 400px;
+    margin: 0 auto;
+    /* background: #04bbd3; */
+}
+.kaihatusya {
+    position: relative;
+    transition: 1s;
+}
+.kaihatusya:hover:after {
+    position: relative;
+    top: -30px;
+    left: 40px;
+    content: "こんばんは。";
+    font-size: 20px;
+    color: var(--text-main-color);
+}
 /* 動く検索フォーム用ここから */
 
 .move-label-wrapper div {

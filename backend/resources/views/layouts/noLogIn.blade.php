@@ -20,7 +20,6 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     {{-- CSS読み込み --}}
     <link rel="stylesheet" href="{{ asset('css/kadodeMain.css') }}">
-
 </head>
 <body>
     
@@ -43,7 +42,7 @@
                         <a href="{{ route('login') }}" class="kadode-normal-button">ログイン</a>
 
                         @if (Route::has('register'))
-                            <a href="{{ route('register') }}" class="kadode-normal-button">会員登録</a>
+                            <a href="{{ route('register') }}" class="kadode-normal-button">新規登録</a>
                         @endif
                     @endauth
                 </div>
