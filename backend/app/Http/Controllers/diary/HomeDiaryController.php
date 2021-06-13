@@ -43,8 +43,37 @@ class homeDiaryController extends Controller
                 $diaries[]=$latest;
             }
         }
+
+        
         $this_day=Carbon::today()->format("Y-m-d");
-        //最新10件、ただし直近で取れた日記は除く
-        return view('diary/home',['user' => $user,'yesterday'=>$yesterday,'today'=>$today,'diaries'=>$diaries,'this_day'=>$this_day]);
+
+
+        /**
+         * 古い日記の取得
+         */
+        $lastWeek=new Carbon("-1 weeks");
+        $lastWeekDiary=Diary::where("date",$lastWeek->format("Y-m-d"))->first();
+        $lastWeekDiary=["explain"=>"先週"]+($lastWeekDiary ?$lastWeekDiary->toArray() :["date"=>"no"]);
+   
+        $lastMonth=new Carbon("-1 months");
+        $lastMonthDiary=Diary::where("date",$lastMonth->format("Y-m-d"))->first();
+        $lastMonthDiary=["explain"=>"先月"]+($lastMonthDiary ? $lastMonthDiary->toArray() : ["date"=>"no"]);
+
+
+        $halfYear=new Carbon("-6 months");
+        $halfYearDiary=Diary::where("date",$halfYear->format("Y-m-d"))->first();
+        $halfYearDiary=["explain"=>"半年前"]+($halfYearDiary ?$halfYearDiary->toArray() : ["date"=>"no"]);
+
+        $lastYear=new Carbon("-1 years");
+        $lastYearDiary=Diary::where("date",$lastYear->format("Y-m-d"))->first();
+        $lastYearDiary=["explain"=>"1年前"]+($lastYearDiary ?$lastYearDiary->toArray() : ["date"=>"no"]);
+
+        
+        $oldDiaries=[$lastWeekDiary,$lastMonthDiary,$halfYearDiary, $lastYearDiary];
+
+
+        //古い日記の取得
+
+        return view('diary/home',['user' => $user,'yesterday'=>$yesterday,'today'=>$today,'diaries'=>$diaries,'this_day'=>$this_day,'oldDiaries'=>$oldDiaries]);
     }
 }

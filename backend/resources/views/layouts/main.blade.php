@@ -70,7 +70,7 @@
             <p><a href="{{url("/diary").date("/Y/n")}}">アーカイブ</a></p>
             <p><a href="{{url("/search")}}">検索</a></p>
             <p><a href="{{url("/statistics")}}">統計</a></p>
-            <p><a href="{{url("/setting")}}">設定</a></p>   
+            <p><a href="{{url("/settings")}}">設定</a></p>   
         </div>
         <div class="flex justify-center ">
             <div class="flex justify-end items-end mb-4 mr-8">
