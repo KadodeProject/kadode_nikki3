@@ -43,8 +43,7 @@ class homeDiaryController extends Controller
                 $diaries[]=$latest;
             }
         }
-        \Log::debug("diaries");
-        \Log::debug($diaries);
+
         
         $this_day=Carbon::today()->format("Y-m-d");
 
@@ -71,8 +70,7 @@ class homeDiaryController extends Controller
 
         
         $oldDiaries=[$lastWeekDiary,$lastMonthDiary,$halfYearDiary, $lastYearDiary];
-        \Log::debug("lastYearDiary");
-        \Log::debug($oldDiaries);
+
 
         //古い日記の取得
 

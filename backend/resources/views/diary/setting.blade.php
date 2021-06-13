@@ -49,9 +49,20 @@
     <div class="setting">
         <h2 class="text-2xl">エクスポート</h2>
         <div class="settingContentWrapper">
-
-            <div class="settingContent"><a href="/export">CSVエクスポート</a></div>
+            <form class="flex justify-center flex-wrap flex-col " method="POST"  action="/export">
+                @csrf
+                <input type="submit" class="text-black" value="エクスポートする">
+            </form>
+            {{-- <div class="settingContent"><a href="/export">CSVエクスポート</a></div> --}}
         </div>
+    </div>
+    <div class="setting">
+        <h2 class="text-2xl">ユーザー削除</h2>
+        <p class="text-xl text-red-500">！！一度削除すると復元できません。日記も統計データも全て削除されます。ご注意ください！！</p>
+        <form class="flex justify-center flex-wrap flex-col " method="POST"  action="/deleteUser">
+            @csrf
+            <input type="submit" class="text-black" value="かどで日記からログイン中のユーザーを削除する">
+        </form>
     </div>
     
 

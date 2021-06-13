@@ -23,6 +23,18 @@ class CreateDiariesTable extends Migration
             $table->uuid("uuid")->unique()->comment("uuid");
         
             $table->timestamps();
+
+            //インデックスを作る
+            $table->index('id');
+            $table->index('user_id');
+            // $table->index('content');
+            $table->index('date');
+
+            //他テーブルとの関連付け
+            $table->foreign('user_id')
+                ->references('id')
+                ->on('users')
+                ->onDelete('cascade');//cascadeでユーザー消えたら日記も消せる
         });
     }
 

@@ -7,7 +7,7 @@
 @endsection
 @section('content')
 <div class="board-main">
-@empty($counter)
+@empty($keyword)
 <h1 class="text-center text-3xl my-4">検索ページ</h1>
 <div style="min-width:100vh"></div>
 @else
