@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ja">
+<html lang="ja"  prefix="og: http://ogp.me/ns#">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -15,7 +15,15 @@
  <link href="https://fonts.googleapis.com/css2?family=Kiwi+Maru&display=swap" rel="stylesheet">
     {{-- 検索インデックスさせない --}}
     <meta name=”robots” content=”noindex,nofollow”>
-    
+
+    {{-- OGP --}}
+    <meta property="og:title" content="@yield('title') | かどで日記">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://kadode_nikki3.usuyuki.net/">
+    <meta property="og:image" content="https://kadode_nikki3.usuyuki.net/img/ogp.png">
+    <meta property="og:site_name" content="かどで日記">
+    <meta property="og:description" content="かどで日記は日記を管理できるwebアプリです">
+    <meta name="twitter:card" content="summary">
     {{-- マテリアルアイコン --}}
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     {{-- CSS読み込み --}}

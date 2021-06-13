@@ -11,8 +11,11 @@
 .bg-main-color {
     background-color: var(--bg-main-color);
 }
-.border-bg-main-color {
+.border-main-color {
     background-color: var(--border-main-color);
+}
+.border-bg-main-color {
+    border-color: var(--border-main-color);
 }
 .button-bg-main-color {
     background-color: var(--button-main-color);
@@ -260,4 +263,18 @@ li ol {
     background-color: black;
     margin: 2em;
     padding: 1em;
+}
+
+.archive-month-menu {
+    max-width: 1200px;
+    cursor: pointer;
+    /* -ms-writing-mode: tb-rl;
+    writing-mode: vertical-rl;
+    -webkit-text-combine: horizontal;
+    -ms-text-combine-horizontal: all;
+    text-combine-upright: all; */
+}
+.archive-year-menu {
+    max-width: 1200px;
+    cursor: pointer;
 }
