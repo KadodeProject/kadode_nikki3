@@ -4,6 +4,7 @@ namespace App\Http\Controllers\diary;
 
 use App\Http\Controllers\Controller;
 use App\Models\Diary;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 //csvインポート用
@@ -70,11 +71,10 @@ class ImportDiaryController extends Controller
             }else{
                   \Log::debug("$tmpPath.の削除失敗");
               }
-
-        
+              $today_date=Carbon::today();
             // 登録処理
             foreach($dataList as $row){
-                Diary::insert(['user_id'=>Auth::Id(),'uuid'=>Str::uuid(), 'date' => $row[0], 'title' => $row[1], 'feel' => $row[2],'content' => $row[3]]);
+                Diary::insert(['updated_at'=>$today_date,'created_at'=>$today_date,'user_id'=>Auth::Id(),'uuid'=>Str::uuid(), 'date' => $row[0], 'title' => $row[1], 'feel' => $row[2],'content' => $row[3]]);
                 $count++;
             }
         }
@@ -163,11 +163,11 @@ class ImportDiaryController extends Controller
                  // 登録処理 feelは存在しないのでデフォルトの5
                  $arrayCounter=0;
 
+                 $today_date=Carbon::today();
                  
                 foreach($dateTxt as $date){
 
-                    
-                    Diary::insert(['user_id'=>Auth::Id(),'uuid'=>Str::uuid(), 'date' => $date, 'title' => $proceededTitleTxt[$arrayCounter], 'feel' => 5,'content' =>$proceededContentTxt[$arrayCounter]]);
+                    Diary::insert(['updated_at'=>$today_date,'created_at'=>$today_date,'user_id'=>Auth::Id(),'uuid'=>Str::uuid(), 'date' => $date, 'title' => $proceededTitleTxt[$arrayCounter], 'feel' => 5,'content' =>$proceededContentTxt[$arrayCounter]]);
                     $count++;
                     $arrayCounter++;
                 }

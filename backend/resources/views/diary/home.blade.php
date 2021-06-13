@@ -79,22 +79,11 @@
                     
      
             </div>
-            <div class="flex items-center justify-center m-4 border-4 border-gray-700 p-4">
-                <div class="border-2 border-green-200">
-                    月別に見る
-                </div>
-                <div class="border-2 border-green-200">
-                    1週間前、1ヶ月前、半年前、1年前を見る
-                </div>
-                <div class="border-2 border-green-200">
-                    高度な検索をして見る
-                </div>
-                
-            </div>
-            <div class="flex w-auto m-4 overflow-x-auto" >
-                @empty($diaries)
-                    <h3 class="text-center text-3xl my-20">直近の日記はありません！</h3>
+            @empty($diaries)
+                <h3 class="text-center text-3xl my-20">直近の日記はありません！</h3>
                 @else
+            <h3 class="text-center text-3xl my-20">直近の日記</h3>
+            <div class="flex w-auto m-4 overflow-x-auto" >
                     @foreach($diaries as $diary )
                         @component('components.diary.diaryFrame')
                             @slot("uuid")
@@ -114,8 +103,44 @@
                             @endslot
                         @endcomponent
                     @endforeach
-                @endempty
-            </div>
+                </div>
+            @endempty
+
+            @empty($oldDiaries)
+                <h3 class="text-center text-xl my-20">過去の日記が増えると過去の日記が表示されます。</h3>
+                @else
+            <h3 class="text-center text-3xl my-20">過去の日記</h3>
+            <div class="flex w-auto m-4 overflow-x-auto" >
+                    @foreach($oldDiaries as $diary )
+                    <article>
+                        <p class="text-center">
+                            {{$diary->explain}}
+                        </p>
+                        @empty($diary->uuid)
+                        
+                        @else
+                            @component('components.diary.diaryFrame')
+                                @slot("uuid")
+                                {{$diary->uuid}}
+                                @endslot
+                                @slot("title")
+                                {{$diary->title}}
+                                @endslot
+                                @slot("content")
+                                {{$diary->content}}
+                                @endslot
+                                @slot("date")
+                                {{$diary->date}}
+                                @endslot
+                                @slot("feel")
+                                {{$diary->feel}}
+                                @endslot
+                            @endcomponent
+                        @endempty
+                    </article>
+                    @endforeach
+                </div>
+            @endempty
     
         
     </div>
