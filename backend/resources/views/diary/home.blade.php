@@ -110,30 +110,34 @@
                 <h3 class="text-center text-xl my-20">過去の日記が増えると過去の日記が表示されます。</h3>
                 @else
             <h3 class="text-center text-3xl my-20">過去の日記</h3>
-            <div class="flex w-auto m-4 overflow-x-auto" >
-                    @foreach($oldDiaries as $diary )
+            <div class="flex w-auto m-4 overflow-x-auto justify-center" >
+                    @foreach($oldDiaries as $oldDiary )
+            
                     <article>
                         <p class="text-center">
-                            {{$diary->explain}}
+                            {{$oldDiary["explain"]}}
                         </p>
-                        @empty($diary->uuid)
-                        
+                        @empty($oldDiary["uuid"])
+
+                        <div class="diary_dashboard m-2 flex justify-center items-center ">
+                            <p class="text-2xl border-main-color">なし</p>
+                        </div>
                         @else
                             @component('components.diary.diaryFrame')
                                 @slot("uuid")
-                                {{$diary->uuid}}
+                                {{$oldDiary["uuid"]}}
                                 @endslot
                                 @slot("title")
-                                {{$diary->title}}
+                                {{$oldDiary["title"]}}
                                 @endslot
                                 @slot("content")
-                                {{$diary->content}}
+                                {{$oldDiary["content"]}}
                                 @endslot
                                 @slot("date")
-                                {{$diary->date}}
+                                {{$oldDiary["date"]}}
                                 @endslot
                                 @slot("feel")
-                                {{$diary->feel}}
+                                {{$oldDiary["feel"]}}
                                 @endslot
                             @endcomponent
                         @endempty
