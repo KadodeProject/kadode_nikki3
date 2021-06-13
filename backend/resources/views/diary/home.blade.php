@@ -83,7 +83,7 @@
                 <h3 class="text-center text-3xl my-20">直近の日記はありません！</h3>
                 @else
             <h3 class="text-center text-3xl my-20">直近の日記</h3>
-            <div class="flex w-auto m-4 overflow-x-auto" >
+            <div class="flex w-auto m-4 overflow-x-auto my-12" style="height: 500px!important" >
                     @foreach($diaries as $diary )
                         @component('components.diary.diaryFrame')
                             @slot("uuid")
