@@ -9,6 +9,8 @@ use App\Http\Controllers\diary\SettingDiaryController;
 use App\Http\Controllers\diary\ShowDiaryController;
 use App\Http\Controllers\diary\StatisticsDiaryController;
 use App\Http\Controllers\diary\UserController;
+use App\Http\Controllers\statistics\makeStatisticsController;
+use App\Http\Controllers\statistics\updateStatisticsController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -65,7 +67,7 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     Route::post('/updatePassWord', [UserController::class,"updatePassWord"])->name('updatePassWord');
     Route::post('/deleteUser', [UserController::class,"deleteUser"])->name('deleteUser');
     //日記のCRUD
-    Route::get('/edit/{uuid}', [EditDiaryController::class,"get"])->name('edit');
+    Route::get('/edit', [EditDiaryController::class,"new"])->name('edit');
     Route::post('/create', [EditDiaryController::class,"create"])->name('new');
     Route::post('/update', [EditDiaryController::class,"update"])->name('update');
     Route::post('/delete', [EditDiaryController::class,"delete"])->name('delete');
@@ -82,6 +84,8 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     Route::post('/export', ExportDiaryController::class)->name('export');
     //統計
     Route::get('/statistics', StatisticsDiaryController::class)->name('statics');
+    Route::post('/makeStatistics', makeStatisticsController::class)->name('makeStatics');
+    Route::post('/updateStatistics', updateStatisticsController::class)->name('updateStatics');
 
 
 

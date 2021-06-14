@@ -11,6 +11,12 @@
     
 
 @include('components.noLogIn.releaseNote',
+['title'=>'一般向けサービスローンチ',
+'date'=>'2021年6月14日',
+'genre'=>'Feature',
+'explain'=>'会員登録してご利用いただけます。
+'])
+@include('components.noLogIn.releaseNote',
 ['title'=>'日記のインポート機能を追加しました',
 'date'=>'2021年6月10日',
 'genre'=>'Feature',

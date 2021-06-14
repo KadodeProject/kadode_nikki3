@@ -14,7 +14,7 @@
 .border-bg-main-color {
     background-color: var(--border-main-color);
 }
-.border-bg-main-color {
+.border-border-main-color {
     border-color: var(--border-main-color);
 }
 .button-bg-main-color {

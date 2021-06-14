@@ -34,20 +34,24 @@
         .header-links p:nth-of-type(1){
             border-bottom:2px solid var(--button-main-color);
         }
-        @elseif(Request::is('diary/*'))
+        @elseif(Request::is('edit'))
         .header-links p:nth-of-type(2){
             border-bottom:2px solid var(--button-main-color);
         }
-        @elseif(Request::is('search'))
+        @elseif(Request::is('diary/*'))
         .header-links p:nth-of-type(3){
             border-bottom:2px solid var(--button-main-color);
         }
-        @elseif(Request::is('statistics/*'))
+        @elseif(Request::is('search'))
         .header-links p:nth-of-type(4){
             border-bottom:2px solid var(--button-main-color);
         }
-        @elseif(Request::is('settings'))
+        @elseif(Request::is('statistics/*'))
         .header-links p:nth-of-type(5){
+            border-bottom:2px solid var(--button-main-color);
+        }
+        @elseif(Request::is('settings'))
+        .header-links p:nth-of-type(6){
             border-bottom:2px solid var(--button-main-color);
         }
         @endif
@@ -67,6 +71,7 @@
 
         <div class="flex justify-between items-end header-links h-full" style="height:var(--header-height)">
             <p><a href="{{url("/home")}}">ホーム</a></p>
+            <p><a href="{{url("/edit")}}">日記作成</a></p>   
             <p><a href="{{url("/diary").date("/Y/n")}}">アーカイブ</a></p>
             <p><a href="{{url("/search")}}">検索</a></p>
             <p><a href="{{url("/statistics")}}">統計</a></p>
