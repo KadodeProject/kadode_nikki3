@@ -14,7 +14,7 @@
         <div class="flex  justify-around archive-year-menu w-full items-center mx-auto" >
             <p class="mx-2 text-xl"><a href="{{url("/diary")."/".($year+2)}}">{{$year+2}}</a></p>
             <p class="mx-2 text-xl"><a href="{{url("/diary")."/".($year+1)}}">{{$year+1}}</a></p>
-            <h1 class="text-center text-5xl my-4 mx-4 pb-2 border-b-2 border-bg-main-color">{{$year}}年</h1>
+            <h1 class="text-center text-5xl my-4 mx-4 pb-2 border-b-2 border-border-main-color">{{$year}}年</h1>
             <p class="mx-2 text-xl"><a href="{{url("/diary")."/".($year-1)}}">{{$year-1}}</a></p>
             <p class="mx-2 text-xl"><a href="{{url("/diary")."/".($year-2)}}">{{$year-2}}</a></p>
         </div>

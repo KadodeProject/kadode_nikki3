@@ -49,6 +49,6 @@ class Diary extends Model
         );
     
     protected $fillable = [
-            "user_id","content","title","date" ,"feel","uuid"
+            "user_id","content","title","date" ,"feel","uuid","created_at","updated_at"
         ];
 }
