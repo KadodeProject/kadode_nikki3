@@ -69,7 +69,12 @@ class homeDiaryController extends Controller
         $lastYearDiary=["explain"=>"1年前"]+($lastYearDiary ?$lastYearDiary->toArray() : ["date"=>"no"]);
 
         
-        $oldDiaries=[$lastWeekDiary,$lastMonthDiary,$halfYearDiary, $lastYearDiary];
+        $lastTwoYear=new Carbon("-2 years");
+        $lastTwoYearDiary=Diary::where("date",$lastTwoYear->format("Y-m-d"))->first();
+        $lastTwoYearDiary=["explain"=>"2年前"]+($lastTwoYearDiary ?$lastTwoYearDiary->toArray() : ["date"=>"no"]);
+
+        
+        $oldDiaries=[$lastWeekDiary,$lastMonthDiary,$halfYearDiary, $lastYearDiary, $lastTwoYearDiary];
 
 
         //古い日記の取得

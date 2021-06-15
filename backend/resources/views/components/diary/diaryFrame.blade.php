@@ -1,5 +1,5 @@
 
-<div class="diary_dashboard m-2  overflow-hidden" style="max-height: 450px" >
+<div class="diary_dashboard m-2 " >
     
     <section>
         <p class=" text-center text-xl">{{$date}} <span class="text-sm">[{{mb_strlen($content)}}文字]</span><span class="text-sm"> [気持ち:{{$feel}}]</span></p>

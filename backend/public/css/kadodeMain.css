@@ -7,6 +7,11 @@
     --border-main-color: #8a8772;
     /* ヘッダー高さ */
     --header-height: 73px;
+    /* メディアクエリ */
+    --media-sm: 640px;
+    --media-md: 768px;
+    --media-lg: 1024px;
+    --media-xl: 1280px;
 }
 .bg-main-color {
     background-color: var(--bg-main-color);
@@ -181,11 +186,13 @@ li ol {
     width: 400px;
     height: 450px;
     flex-shrink: 0;
+    overflow: hidden;
 }
 .diary-main {
     max-width: 1120px;
     display: flex;
     justify-content: center;
+    flex-wrap: wrap;
     margin: 3em auto;
 }
 .diary-main > div {
@@ -194,6 +201,7 @@ li ol {
     height: 600px;
     padding: 2em;
 }
+
 .diary-main article {
     height: 400px;
     overflow-y: scroll;
@@ -282,4 +290,12 @@ li ol {
 .archive-year-menu {
     max-width: 1200px;
     cursor: pointer;
+}
+@media screen and (max-width: 640px) {
+    .diary-main > div {
+        width: 90%;
+    }
+    .diary_dashboard {
+        width: 300px;
+    }
 }
