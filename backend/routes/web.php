@@ -36,9 +36,6 @@ Route::get('/', function () {
 Route::get('/privacyPolicy', function () {
     return view('diaryNoLogIn/privacyPolicy');
 });
-Route::get('/aboutThisSite', function () {
-    return view('diaryNoLogIn/aboutThisSite');
-});
 Route::get('/contact', function () {
     return view('diaryNoLogIn/contact');
 });
@@ -51,6 +48,7 @@ Route::get('/releaseNote', function () {
 Route::get('/terms', function () {
     return view('diaryNoLogIn/terms');
 });
+Route::get('/aboutThisSite', [UserController::class,"showUserNumber"]);
 
 
 /**

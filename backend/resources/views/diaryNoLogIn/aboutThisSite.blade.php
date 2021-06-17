@@ -35,6 +35,9 @@
     '])
     <p class="mb-20"><br><a href="https://policies.google.com/technologies/partner-sites?hl=ja">GoogleAnalyticsの利用規約</a><br><a href="https://policies.google.com/technologies/partner-sites?hl=ja">Googeプライバシーポリシー</a></p>
     
+    <div>
+        <p class="text-center mb-20">現在のユーザー数 : {{$userCounter}}人</p>
+    </div>
     
 </div>
       
