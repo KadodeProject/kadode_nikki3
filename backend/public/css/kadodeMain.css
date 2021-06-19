@@ -299,6 +299,15 @@ li ol {
     max-width: 1200px;
     cursor: pointer;
 }
+
+/* チャート用 */
+.chartWrapper {
+    margin: 0 auto;
+    /* overflow-x: scroll; */
+    width: 600px;
+    height: 600px;
+}
+
 @media screen and (max-width: 640px) {
     /* スマホの時 */
     .diary-main > div {
@@ -307,5 +316,9 @@ li ol {
     }
     .diary_dashboard {
         width: 300px;
+    }
+    .chartWrapper {
+        width: 90vw;
+        height: 90vw;
     }
 }
