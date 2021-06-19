@@ -21,7 +21,7 @@ class showStatisticsController extends Controller
     public function __invoke()
     {
         $statistic=Statistic::where("user_id",Auth::id())->first();
-        if(isEmpty($statistic)){
+        if(!empty($statistic)){
         /**
          * 月ごとの1日記あたりの平均文字数算出
          */
