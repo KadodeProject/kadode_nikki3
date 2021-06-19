@@ -2,6 +2,8 @@
 
 個人的に欲しかった日記管理アプリです。
 
+https://kadodenikki3.usuyuki.net/
+
 ## 名前の由来
 
 かどでは土佐日記の最初の章？である「門出」より引用しました。
@@ -13,17 +15,18 @@
 
 ## カラー
 
-背景カラー:<span style="color:#E4B182">#E4B182</span>
+背景カラー:<span style="color:#2F3437">#2F3437</span>
 
-文字色:<span style="color:#DFE9F7">#DFE9F7</span>
+文字色:<span style="color:#F9FFF9">#F9FFF9</span>
 
 ロゴカラー:<span style="color:#624466">#624466</span>
 
-枠・ボタンカラー:<span style="color:#ACC49B">#ACC49B</span>
+枠・ボタンカラー1:<span style="color:#4B8996">#4B8996</span>
 
-![AD835C-DFE9F7-624466-ACC49B](https://user-images.githubusercontent.com/63891531/103437377-633b3100-4c6a-11eb-8f16-a651b6c65499.png)
+枠・ボタンカラー2:<span style="color:#8A8772">#8A8772</span>
 
-https://palettable.io/AD835C-DFE9F7-624466-ACC49B
+![image](https://user-images.githubusercontent.com/63891531/122196315-1c688d00-ced2-11eb-8f2f-0b4d04c6340d.png)
+
 
 ## フォント
 
@@ -35,7 +38,12 @@ https://palettable.io/AD835C-DFE9F7-624466-ACC49B
 
 -   本文
 
-    Sawarabi Mincho か Kosugi で検討中
+    デフォルト
+    
+-  見出し文字
+
+    Kiwi Maru
+
 
 ## ER 図
 
@@ -43,21 +51,23 @@ Notion に記載(非公開)
 
 ## 画面レイアウト
 
-![image](https://user-images.githubusercontent.com/63891531/103432630-84c5f980-4c25-11eb-9907-2c417adae0d8.png)
+Figmaに記載(非公開)
 
-https://www.figma.com/file/dHA1JlVuyrXWHatdpSoPgI/SM-and-PC?node-id=0%3A1
+
 
 # 技術スタック
 
 -   ローカル開発:Docker
 -   コード管理:GitHub
+-   デザイン:Figma
 -   バックエンドフレームワーク:Laravel
 -   バックエンド認証:Laravel Jetstream Livewire
 -   バックエンドソーシャル認証:Laravel socialite(現在不使用)
 -   フロントエンド:Laravel Blade
 -   CSS ライブラリ:TailwindCSS
 -   アイコン:Material icons
--   CSV インポート:Goodby CSV(メモリ使用軽減)
+-   フォント:Google Fonts
+-   CSV インポートライブラリ:Goodby CSV(メモリ使用軽減)
 
 # 開発用
 
