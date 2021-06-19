@@ -22,8 +22,8 @@ class makeStatisticsController extends Controller
             "user_id"=>Auth::id(),
             "total_words"=>$calculateDiary["total_words"],
             "total_diaries"=>$calculateDiary["total_diaries"],
-            'month_words'=>$calculateDiary["month_words"]->toJson(),
-            'month_diaries'=>$calculateDiary["month_diaries"]->toJson(),
+            'month_words'=>$calculateDiary["month_words"],
+            'month_diaries'=>$calculateDiary["month_diaries"],
         ];
 
         Statistic::create($data);
