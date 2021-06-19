@@ -24,8 +24,8 @@
                     </ul>
                     @endif
                     @csrf
-                    <input type="file"accept=".csv" value="かどで日記形式のCSVファイルをアップロード" name="kadodeCsv">
-                    <input type="submit"  class="text-black" value="インポート">
+                    <input type="file"accept=".csv" class="w-full" value="かどで日記形式のCSVファイルをアップロード" name="kadodeCsv">
+                    <input type="submit"  class="text-black w-full"value="インポート">
                 </form>
             </div>
             <div class="settingContent">
@@ -40,8 +40,8 @@
                     </ul>
                     @endif
                     @csrf
-                    <input type="file"accept=".txt" value="月に書く日記形式のtxtファイルをアップロード" name="tukiniTxt">
-                    <input type="submit" class="text-black" value="インポート">
+                    <input type="file"accept=".txt" class="w-full" value="月に書く日記形式のtxtファイルをアップロード" name="tukiniTxt">
+                    <input type="submit" class="text-black w-full" value="インポート">
                 </form>
             </div>
         </div>
@@ -52,7 +52,7 @@
         <div class="settingContentWrapper">
             <form class="flex justify-center flex-wrap flex-col " method="POST"  action="/export">
                 @csrf
-                <input type="submit" class="text-black" value="CSV形式でエクスポートする">
+                <input type="submit" class="text-black px-2" value="CSV形式でエクスポートする">
             </form>
             {{-- <div class="settingContent"><a href="/export">CSVエクスポート</a></div> --}}
         </div>

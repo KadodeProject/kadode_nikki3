@@ -28,7 +28,7 @@ class EditDiaryController extends Controller
         return view('diary/edit',['diary' => $diary,]);
     }
 
-    public function new(){
+    public function newPage(){
         return view('diary/newDiary');
     }
     /**

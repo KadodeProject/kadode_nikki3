@@ -206,7 +206,7 @@ li ol {
     width: 50%;
     border: 2px solid var(--button-main-color);
     height: 600px;
-    padding: 2em;
+    padding: 1.5em;
 }
 
 .diary-main article {
@@ -281,8 +281,9 @@ li ol {
 .settingContent {
     color: white;
     background-color: black;
-    margin: 2em;
+    margin: 2em 0;
     padding: 1em;
+    /* overflow: hidden; */
 }
 
 .archive-month-menu {
@@ -299,8 +300,10 @@ li ol {
     cursor: pointer;
 }
 @media screen and (max-width: 640px) {
+    /* スマホの時 */
     .diary-main > div {
         width: 90%;
+        padding: 1em;
     }
     .diary_dashboard {
         width: 300px;

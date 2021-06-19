@@ -62,14 +62,14 @@
     <header class="px-4 relative w-screen flex justify-between ">
         <div class="flex justify-center items-center" style="height:var(--header-height)">
             <a href="{{url("/home")}}"><img style="object-fit:contain;width:auto;height:64px"src="/img/kadode_logo.png"></a>
-            <div class="ml-4 flex  flex-col flex-wrap justify-center items-center">
+            <div class="sm:flex hidden ml-4   flex-col flex-wrap justify-center items-center">
                 <p id="headerYear">年</p>
                 <p class="text-xl"id="headerMonthDate">月日</p>
                 <p id="headerTime">時刻</p>
             </div>
         </div>
 
-        <div class="flex justify-between items-end header-links h-full" style="height:var(--header-height)">
+        <div class="sm:flex hidden  justify-between items-end header-links h-full" style="height:var(--header-height)">
             <p><a href="{{url("/home")}}">ホーム</a></p>
             <p><a href="{{url("/edit")}}">日記作成</a></p>   
             <p><a href="{{url("/diary").date("/Y/n")}}">アーカイブ</a></p>
@@ -78,7 +78,7 @@
             <p><a href="{{url("/settings")}}">設定</a></p>   
         </div>
         <div class="flex justify-center ">
-            <div class="flex justify-end items-end mb-4 mr-8">
+            <div class="flex justify-end items-end sm:mb-4 sm:mr-8 mb-2">
                
                 <form class="move-label-wrapper flex"method="POST" action="/search">
                     @if(count($errors)>0)
@@ -103,7 +103,8 @@
 
             
             <div class="flex items-center justify-center mr-4">          
-                <p>{{ Auth::user()->name }}</p>
+                <p class="sm:block hidden">{{ Auth::user()->name }}</p>
+                <p class="sm:hidden block ml-4 mt-2"><a href="{{url("/settings")}}"><span class="material-icons">settings</span></a></p>  
             </div>
         </div>
     </header>
@@ -116,7 +117,17 @@
     </main>
     @component('components.footer')
     @endcomponent
-    
+    <div class="sm:hidden" style="height: 60px" >
+    <!-- smフッターメニューのための余白 -->
+    </div>
+
+        <div id="smFooter" class="bg-main-color w-full border-border-main-color border-t-2  fixed bottom-0 right-0 sm:hidden flex  justify-around items-center " style="height: 60px" >
+            <p><a class="flex justify-center flex-col" href="{{url("/home")}}"><span class="material-icons mx-auto">home</span><span class="text-xs">ホーム</span></a></p>
+            <p><a class="flex justify-center flex-col" href="{{url("/edit")}}"><span class="material-icons mx-auto">edit</span><span class="text-xs">日記作成</span></a></p>   
+            <p><a class="flex justify-center flex-col" href="{{url("/diary").date("/Y/n")}}"><span class="material-icons mx-auto">collections_bookmark</span><span class="text-xs">アーカイブ</span></a></p>
+            <p><a class="flex justify-center flex-col" href="{{url("/statistics")}}"><span class="material-icons mx-auto">poll</span><span class="text-xs">統計</span></a></p>
+        </div>    
+
 
     <script type="text/javascript" src="{{ asset('js/kadodeMain.js') }}"></script>
 </body>
