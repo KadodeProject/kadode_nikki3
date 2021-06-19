@@ -8,6 +8,8 @@ use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
+use function PHPUnit\Framework\isEmpty;
+
 class showStatisticsController extends Controller
 {
     /**
@@ -19,7 +21,7 @@ class showStatisticsController extends Controller
     public function __invoke()
     {
         $statistic=Statistic::where("user_id",Auth::id())->first();
-
+        if(isEmpty($statistic)){
         /**
          * 月ごとの1日記あたりの平均文字数算出
          */
@@ -74,19 +76,20 @@ class showStatisticsController extends Controller
         }
         $statistic->monthWritingRate=$monthWritingRate;
         
+        //         month_words
+        // month_diaries
+        // year_words
+        // year_diaries
+        // year_noun_asc
+        // month_noun_asc
+        // year_adjective_asc
+        // month_adjective_asc
 
 
-
-
-//         month_words
-// month_diaries
-// year_words
-// year_diaries
-// year_noun_asc
-// month_noun_asc
-// year_adjective_asc
-// month_adjective_asc
-
+    }else{
+        // 統計データないとき
+        
+    }
         return view("diary/statistics/statisticsTop",["statistics"=>$statistic]);
     }
 }
