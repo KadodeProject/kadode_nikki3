@@ -33,7 +33,7 @@
     
 
     @section('header')
-    <header class="px-4 relative w-screen flex justify-between ">
+    <header class="px-4 relative w-screen flex justify-center sm:justify-between flex-wrap ">
         <a href="{{url("/home")}}"><img style="object-fit:contain;width:auto;height:64px"src="/img/kadode_logo.png"></a>
         
         </div>
@@ -41,9 +41,9 @@
 
             <h2 class="text-3xl kiwi-maru"><a href="{{url("/")}}">かどで日記3</a></h2>
         </div>
-        <div class="px-6 py-4 sm:block">
+        <div class="p-2 sm:w-auto sm:mb-0 mb-4">
             @if (Route::has('login'))
-                <div class="hidden fixed top-0 right-0 px-6 py-4 sm:block">
+                <div class="">
                     @auth
                         <a href="{{ url('/home') }}" class="kadode-normal-button">ホームへ</a>
                     @else
@@ -69,18 +69,9 @@
         
         
     </main>
-    <footer class="py-4">
-    <div class="py-8 flex justify-between items-center mx-auto flex-wrap footer-menu kiwi-maru" style="max-width: 1200px">
-        <p><a href="{{url("/privacyPolicy")}}">プライバシーポリシー</a></p>
-        <p><a href="{{url("/terms")}}">利用規約</a></p>
-        <p><a href="{{url("/aboutThisSite")}}">このサイトについて</a></p>
-        <p><a href="{{url("/contact")}}">お問い合わせ</a></p>
-        <p><a href="{{url("/")}}">トップ</a></p>
-        <p><a href="{{url("/news")}}">お知らせ</a></p>
-        <p><a href="{{url("/releaseNote")}}">リリースノート</a></p>
-    </div>
-     <p class="text-center mt-4 copyright">{{"@"}}usuyuki{{date("Y")}}</p>
-    </footer>
+    @component('components.footer')
+    @endcomponent
+    
 
     <script type="text/javascript" src="{{ asset('js/kadodeMain.js') }}"></script>
 </body>

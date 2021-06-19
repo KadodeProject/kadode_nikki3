@@ -21,15 +21,15 @@
     </ul>
     @endif
     <div class="search-form my-12 flex justify-center">
-        <form class="move-label-wrapper flex items-center "method="POST" action="/search">
+        <form class="move-label-wrapper flex items-center flex-col flex-wrap "method="POST" action="/search">
             @csrf
-            <p class="text-xl">キーワード検索</p>
-            <div>
-                <input  autocomplete="off"class="search-keyword" type="search" name="keyword"  placeholder="キーワード(2~20字)">
-            </div>
+        <p class="text-xl sm:text-left text-center">キーワード検索</p>
+        <div>
+            <input  autocomplete="off"class="search-keyword" type="search" name="keyword" placeholder="キーワード(2~20字)">
             <input type="submit" class="h-full"value="検索">
-            
-        </form>
+        </div>
+        
+    </form>
     </div>
 </div>
 @else
@@ -43,18 +43,18 @@
     </ul>
     @endif
 <div class="search-form my-12 flex justify-center">
-    <form class="move-label-wrapper flex items-center "method="POST" action="/search">
-        @csrf
-    <p class="text-xl">キーワード検索</p>
-    <div>
-        <input  autocomplete="off"class="search-keyword" type="search" name="keyword" value="{{$keyword}}" placeholder="キーワード(2~20字)">
-    </div>
-    <input type="submit" class="h-full"value="検索">
+    <form class="move-label-wrapper flex items-center flex-col flex-wrap "method="POST" action="/search">
+            @csrf
+        <p class="text-xl sm:text-left text-center">キーワード検索</p>
+        <div>
+            <input  autocomplete="off"class="search-keyword" type="search" name="keyword" value="{{$keyword}}" placeholder="キーワード(2~20字)">
+            <input type="submit" class="h-full"value="検索">
+        </div>
         
-</form>
+    </form>
 </div>
 
-<div class="flex w-full m-4 justify-center flex-wrap" >
+<div class="flex w-full justify-center flex-wrap" >
     @empty($diaries)
         <h3 class="text-center text-3xl my-20">「{{$keyword}}」を含む日記はありません！</h3>
     @else

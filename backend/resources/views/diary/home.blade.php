@@ -11,7 +11,7 @@
     
 
             <div class="diary-main">
-                <div>
+                <div class="sm:order-1 order-2">
                     @empty($yesterday)
                         <h3 class="text-center text-3xl my-20">昨日の日記なし</h3>
                     @else
@@ -34,7 +34,7 @@
                         @endcomponent
                     @endempty
                 </div>
-                <div>
+                <div class="sm:order-2 order-1">
                     @empty($today)
                        
                     @component('components.diary.submitForm')
@@ -82,8 +82,8 @@
             @empty($diaries)
                 <h3 class="text-center text-3xl my-20">直近の日記はありません！</h3>
                 @else
-            <h3 class="text-center text-3xl my-20">直近の日記</h3>
-            <div class="flex w-auto m-4 overflow-x-auto my-12" style="height: 500px!important" >
+            <h3 class="text-center text-3xl mt-16 mb-2">直近の日記</h3>
+            <div class="flex w-auto m-4 overflow-x-auto " style="height: 500px!important" >
                     @foreach($diaries as $diary )
                         @component('components.diary.diaryFrame')
                             @slot("uuid")
@@ -109,8 +109,8 @@
             @empty($oldDiaries)
                 <h3 class="text-center text-xl my-20">過去の日記が増えると過去の日記が表示されます。</h3>
                 @else
-            <h3 class="text-center text-3xl my-20">過去の日記</h3>
-            <div class="flex w-auto m-4 overflow-x-auto justify-center" >
+            <h3 class="text-center text-3xl mt-16 mb-2">過去の日記</h3>
+            <div class="flex w-auto m-4 overflow-x-auto " >
                     @foreach($oldDiaries as $oldDiary )
             
                     <article>

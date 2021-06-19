@@ -1,6 +1,6 @@
 
 <div class="flex pb-8">
-    <div class="w-12">
+    <div class="sm:block hidden w-12">
         <div class="w-8 h-8 mx-auto border-bg-main-color rounded-full"></div>
         <div class=" mx-auto h-full border-bg-main-color" style="width:6px;"></div>
     </div>

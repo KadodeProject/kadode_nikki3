@@ -11,6 +11,12 @@
     
 
 @include('components.noLogIn.releaseNote',
+['title'=>'レスポンシブ対応',
+'date'=>'2021年6月19日',
+'genre'=>'Feature',
+'explain'=>'スマホでもかどで日記をご利用いただけるようになりました。
+'])
+@include('components.noLogIn.releaseNote',
 ['title'=>'一般向けサービスローンチ',
 'date'=>'2021年6月14日',
 'genre'=>'Feature',

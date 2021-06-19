@@ -11,6 +11,11 @@
     
 
 @include('components.noLogIn.news',
+['title'=>'かどで日記ポスター作成',
+'date'=>'2021年6月19日',
+'explain'=>'かどで日記ポスターを作ってみました。よろしければ御覧ください。
+'])
+@include('components.noLogIn.news',
 ['title'=>'かどで日記公開',
 'date'=>'2021年6月14日',
 'explain'=>'かどで日記を一般公開しました。
