@@ -1,3 +1,9 @@
+/* tailwindで謎に当てられるフォントの修正 */
+body {
+    font-family: "Helvetica Neue", Arial, "Hiragino Kaku Gothic ProN",
+        "Hiragino Sans", Meiryo, sans-serif;
+}
+
 :root {
     /* カラー定義 */
     --bg-main-color: #2f3437;
@@ -13,6 +19,7 @@
     --media-lg: 1024px;
     --media-xl: 1280px;
 }
+
 .bg-main-color {
     background-color: var(--bg-main-color);
 }
