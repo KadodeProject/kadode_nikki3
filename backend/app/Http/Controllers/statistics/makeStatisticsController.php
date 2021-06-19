@@ -6,6 +6,7 @@ use App\CustomFunction\calculateDiary;
 use App\Http\Controllers\Controller;
 use App\Models\Diary;
 use App\Models\Statistic;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -22,11 +23,28 @@ class makeStatisticsController extends Controller
             "user_id"=>Auth::id(),
             "total_words"=>$calculateDiary["total_words"],
             "total_diaries"=>$calculateDiary["total_diaries"],
-            'month_words'=>$calculateDiary["month_words"],
-            'month_diaries'=>$calculateDiary["month_diaries"],
         ];
 
         Statistic::create($data);
+
+        //なぜか初回生成でjson投げると怒られる。
+        //すごく汚いコードだが、初回生成して、もう1度データ投げる方式
+        
+
+
+        $userId=Auth::id();
+        $dt=new Carbon();
+        $data=[
+            "user_id"=>$userId,
+            "total_words"=>$calculateDiary["total_words"],
+            "total_diaries"=>$calculateDiary["total_diaries"],
+            'month_words'=>$calculateDiary["month_words"],//tojson外しても行ける
+            'month_diaries'=>$calculateDiary["month_diaries"],//tojson外しても行ける
+            'updated_at'=>$dt,
+        
+        ];
+
+        Statistic::where("user_id",$userId)->update($data);
 
         return redirect("statistics");
     }
