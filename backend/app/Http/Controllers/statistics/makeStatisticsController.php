@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\statistics;
 
+use App\CustomFunction\calculateDiary;
 use App\Http\Controllers\Controller;
 use App\Models\Diary;
 use App\Models\Statistic;
@@ -12,20 +13,17 @@ class makeStatisticsController extends Controller
 {
     public function __invoke()
     {
-        $diaries=Diary::where("user_id",Auth::id())->get();
-        $diaryCounter=0;
-        $diaryContentCharactersCounter=0;
-        foreach($diaries as $diary){
-            $diaryCounter+=1;
-            $diaryContentCharactersCounter+=mb_strlen($diary->content);
-            
-        }
+        $diaries=Diary::orderby("date","asc")->get();
+        $calculateDiary=calculateDiary::calculateDiary($diaries);
+
+
 
         $data=[
             "user_id"=>Auth::id(),
-            "total_words"=>$diaryContentCharactersCounter,
-            "total_diaries"=>$diaryCounter,
-           
+            "total_words"=>$calculateDiary["total_words"],
+            "total_diaries"=>$calculateDiary["total_diaries"],
+            'month_words'=>$calculateDiary["month_words"]->toJson(),
+            'month_diaries'=>$calculateDiary["month_diaries"]->toJson(),
         ];
 
         Statistic::create($data);

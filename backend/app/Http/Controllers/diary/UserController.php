@@ -10,13 +10,6 @@ use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
-
-
-    public function showUserNumber(){
-        $userCounter=User::count();
-        return view('diaryNoLogin/aboutThisSite',['userCounter'=>$userCounter]);
-
-    }
     /**
      * ユーザー削除
      *

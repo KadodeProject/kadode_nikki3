@@ -7,8 +7,8 @@ use App\Http\Controllers\diary\ImportDiaryController;
 use App\Http\Controllers\diary\SearchDiaryController;
 use App\Http\Controllers\diary\SettingDiaryController;
 use App\Http\Controllers\diary\ShowDiaryController;
-use App\Http\Controllers\diary\StatisticsDiaryController;
 use App\Http\Controllers\diary\UserController;
+use App\Http\Controllers\statistics\showStatisticsController;
 use App\Http\Controllers\statistics\makeStatisticsController;
 use App\Http\Controllers\statistics\updateStatisticsController;
 use Illuminate\Support\Facades\Route;
@@ -48,7 +48,9 @@ Route::get('/releaseNote', function () {
 Route::get('/terms', function () {
     return view('diaryNoLogIn/terms');
 });
-Route::get('/aboutThisSite', [UserController::class,"showUserNumber"]);
+Route::get('/aboutThisSite', function () {
+    return view('diaryNoLogin/aboutThisSite');
+});
 
 
 /**
@@ -83,7 +85,7 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     Route::post('/import/tukini', [ImportDiaryController::class,"tukini"])->name('importTukini');
     Route::post('/export', ExportDiaryController::class)->name('export');
     //統計
-    Route::get('/statistics', StatisticsDiaryController::class)->name('statics');
+    Route::get('/statistics', showStatisticsController::class)->name('showStatics');
     Route::post('/makeStatistics', makeStatisticsController::class)->name('makeStatics');
     Route::post('/updateStatistics', updateStatisticsController::class)->name('updateStatics');
 
