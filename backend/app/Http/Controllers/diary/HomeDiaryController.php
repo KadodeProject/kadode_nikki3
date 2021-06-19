@@ -59,6 +59,10 @@ class homeDiaryController extends Controller
         $lastMonthDiary=Diary::where("date",$lastMonth->format("Y-m-d"))->first();
         $lastMonthDiary=["explain"=>"先月"]+($lastMonthDiary ? $lastMonthDiary->toArray() : ["date"=>"no"]);
 
+        $lastTwoMonth=new Carbon("-2 months");
+        $lastTwoMonthDiary=Diary::where("date",$lastTwoMonth->format("Y-m-d"))->first();
+        $lastTwoMonthDiary=["explain"=>"2ヶ月前"]+($lastTwoMonthDiary ? $lastTwoMonthDiary->toArray() : ["date"=>"no"]);
+
 
         $halfYear=new Carbon("-6 months");
         $halfYearDiary=Diary::where("date",$halfYear->format("Y-m-d"))->first();
@@ -73,8 +77,12 @@ class homeDiaryController extends Controller
         $lastTwoYearDiary=Diary::where("date",$lastTwoYear->format("Y-m-d"))->first();
         $lastTwoYearDiary=["explain"=>"2年前"]+($lastTwoYearDiary ?$lastTwoYearDiary->toArray() : ["date"=>"no"]);
 
+        $lastThreeYear=new Carbon("-3 years");
+        $lastThreeYearDiary=Diary::where("date",$lastThreeYear->format("Y-m-d"))->first();
+        $lastThreeYearDiary=["explain"=>"3年前"]+($lastThreeYearDiary ?$lastThreeYearDiary->toArray() : ["date"=>"no"]);
+
         
-        $oldDiaries=[$lastWeekDiary,$lastMonthDiary,$halfYearDiary, $lastYearDiary, $lastTwoYearDiary];
+        $oldDiaries=[$lastWeekDiary,$lastMonthDiary, $lastTwoMonthDiary,$halfYearDiary, $lastYearDiary, $lastTwoYearDiary,$lastThreeYearDiary];
 
 
         //古い日記の取得

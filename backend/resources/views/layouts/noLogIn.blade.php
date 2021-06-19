@@ -41,13 +41,13 @@
 
             <h2 class="text-3xl kiwi-maru"><a href="{{url("/")}}">かどで日記3</a></h2>
         </div>
-        <div class="p-2 sm:w-auto sm:mb-0 mb-4">
+        <div class="p-2 sm:w-auto sm:mb-0 mb-4 md:w-auto w-full">
             @if (Route::has('login'))
-                <div class="">
+                <div class="flex justify-center">
                     @auth
-                        <a href="{{ url('/home') }}" class="kadode-normal-button">ホームへ</a>
+                        <a href="{{ url('/home') }}" class=" kadode-normal-button">ホームへ</a>
                     @else
-                        <a href="{{ route('login') }}" class="kadode-normal-button">ログイン</a>
+                        <a href="{{ route('login') }}" class=" mr-2 kadode-normal-button">ログイン</a>
 
                         @if (Route::has('register'))
                             <a href="{{ route('register') }}" class="kadode-normal-button">新規登録</a>
