@@ -8,7 +8,7 @@ use App\Models\Statistic;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-
+use App\CustomFunction\calculateDiary;
 class updateStatisticsController extends Controller
 {
     public function __invoke()
@@ -21,21 +21,22 @@ class updateStatisticsController extends Controller
         // \Log::debug($yesterday->diffInHours($static->updated_at));
         
         // 24時間以内なら更新しない
-        if(($yesterday->diffInHours($static->updated_at))>=24){
-            $diaries=Diary::where("user_id",Auth::id())->get();
-            $diaryCounter=0;
-            $diaryContentCharactersCounter=0;
-            foreach($diaries as $diary){
-                $diaryCounter+=1;
-                $diaryContentCharactersCounter+=mb_strlen($diary->content);
-                
-            }
+        if(($yesterday->diffInHours($static->updated_at))>=0){
+            $diaries=Diary::orderby("date","asc")->get();
 
+            $calculateDiary=calculateDiary::calculateDiary($diaries);
+
+            // \Log::debug("calculateDiary[month_words]");
+            // \Log::debug($calculateDiary['month_words']);
+            // \Log::debug("calculateDiary[month_diaries]");
+            // \Log::debug($calculateDiary['month_diaries']);
             $data=[
                 "user_id"=>$userId,
-                "total_words"=>$diaryContentCharactersCounter,
-                "total_diaries"=>$diaryCounter,
-                'updated_at'=>$dt,
+                "total_words"=>$calculateDiary["total_words"],
+                "total_diaries"=>$calculateDiary["total_diaries"],
+                'month_words'=>$calculateDiary["month_words"],//tojson外しても行ける
+                'month_diaries'=>$calculateDiary["month_diaries"],//tojson外しても行ける
+                'updated_at'=>$dt->addHour(24),
             
             ];
 
