@@ -60,6 +60,8 @@ return [
             'username' => 'Laravel Log',
             'emoji' => ':boom:',
             'level' => env('LOG_SLACK_LEVEL', 'critical'),
+            'short' => true, // 短めなフォーマット
+            // 'context' => false // context部分を表示しない
         ],
 
         'papertrail' => [

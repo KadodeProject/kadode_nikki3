@@ -31,7 +31,7 @@ use Illuminate\Support\Facades\Route;
  * 未ログインでも閲覧できるページ
  */
 Route::get('/', function () {
-    return view('diaryNoLogIn/topa');
+    return view('diaryNoLogIn/top');
 });
 Route::get('/privacyPolicy', function () {
     return view('diaryNoLogIn/privacyPolicy');
