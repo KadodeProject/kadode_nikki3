@@ -1,90 +1,73 @@
-FROM php:8.0-fpm-buster
-LABEL maintainer="ucan-lab <yes@u-can.pro>"
-SHELL ["/bin/bash", "-oeux", "pipefail", "-c"]
+FROM php:7.3-fpm-alpine
+LABEL maintainer="ikuma"
 
-# timezone environment
-ENV TZ=UTC \
-  # locale
-  LANG=en_US.UTF-8 \
-  LANGUAGE=en_US:en \
-  LC_ALL=en_US.UTF-8 \
-  # composer environment
-  COMPOSER_ALLOW_SUPERUSER=1 \
-  COMPOSER_HOME=/composer
+# tinker(psysh)
+ARG PSYSH_DIR=/usr/local/share/psysh
+ARG PHP_MANUAL_URL=http://psysh.org/manual/ja/php_manual.sqlite
 
+# timezone
+ARG TZ
 
-COPY --from=composer:2.0 /usr/bin/composer /usr/bin/composer
+# composer
+ENV COMPOSER_ALLOW_SUPERUSER 1
+ENV COMPOSER_HOME /composer
 
-RUN apt-get update && \
-  apt-get -y install git libicu-dev libonig-dev libzip-dev unzip locales curl bash file sudo openssl openssh make ssh && \
-  apt-get update &&\
-  apt-get clean && \
-  rm -rf /var/lib/apt/lists/* && \
-  locale-gen en_US.UTF-8 && \
-  localedef -f UTF-8 -i en_US en_US.UTF-8 && \
-  mkdir /var/run/php-fpm && \
+RUN set -eux && \
+  apk update && \
+  apk add --update --no-cache --virtual=.build-dependencies \
+    autoconf \
+    gcc \
+    g++ \
+    make \
+    bash \
+    tzdata \
+    git && \
+  apk add --update --no-cache \
+    icu-dev \
+    libzip-dev && \
+  #Mecab,ipadic, php-mecabのインストール
+  cd /tmp && \
+  wget "https://drive.google.com/uc?export=download&id=0B4y35FiV1wh7cENtOXlicTFaRUE" -O mecab-0.996.tar.gz && \
+  tar zxf mecab-0.996.tar.gz && \
+  cd mecab-0.996 && \
+  ./configure --enable-utf8-only --with-charset=utf8 && \
+  make && \
+  make install && \
+  cd /tmp && \
+  wget "https://drive.google.com/uc?export=download&id=0B4y35FiV1wh7MWVlSDBCSXZMTXM" -O mecab-ipadic-2.7.0-20070801.tar.gz && \
+  tar zxf mecab-ipadic-2.7.0-20070801.tar.gz && \
+  cd mecab-ipadic-2.7.0-20070801 && \
+  ./configure --with-charset=utf8  && \
+  make && \
+  make install && \
+  cd /tmp && \
+  git clone https://github.com/rsky/php-mecab.git && \
+  cd php-mecab/mecab && \
+  phpize && \
+  ./configure --with-mecab=/usr/local/bin/mecab-config && \
+  make && \
+  make install && \
+  echo 'extension=mecab.so' > /usr/local/etc/php/conf.d/docker-php-ext-mecab.ini && \
+  #OSの設定
+  cp /usr/share/zoneinfo/Asia/Tokyo /etc/localtime && \
+  echo ${TZ} > /etc/timezone && \
+  #Laravel関連のインストール
+  pecl install xdebug && \
   docker-php-ext-install intl pdo_mysql zip bcmath && \
+  docker-php-ext-enable xdebug && \
+  mkdir $PSYSH_DIR && wget $PHP_MANUAL_URL -P $PSYSH_DIR && \
+  curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/bin --filename=composer && \
+  # composer config -g repos.packagist composer https://packagist.jp && \
+  # composer global require hirak/prestissimo && \
   composer config -g process-timeout 3600 && \
-  composer config -g repos.packagist composer https://packagist.org
-
+  composer config -g repos.packagist composer https://packagist.org  &&\
+  #お片付け
+  #apk del .build-dependencies && \
+  rm -rf \
+    mecab-0.996* \
+    mecab-ipadic-2.7.0-20070801* \
+    php-mecab
 COPY ./infra/docker/php/php-fpm.d/zzz-www.conf /usr/local/etc/php-fpm.d/zzz-www.conf
 COPY ./infra/docker/php/php.ini /usr/local/etc/php/php.ini
 
 WORKDIR /work/backend
-
-
-## ここから
-# https://qiita.com/nownabe/items/4171776aec1f05de9f28#dockerfile
-
-ENV MECAB_VERSION 0.996
-ENV IPADIC_VERSION 2.7.0-20070801
-ENV mecab_url https://drive.google.com/uc?export=download&id=0B4y35FiV1wh7cENtOXlicTFaRUE
-ENV ipadic_url https://drive.google.com/uc?export=download&id=0B4y35FiV1wh7MWVlSDBCSXZMTXM
-ENV build_deps 'curl git bash file sudo openssh'
-ENV dependencies 'openssl'
-
-RUN curl -SL -o mecab-${MECAB_VERSION}.tar.gz ${mecab_url} \
-  && tar zxf mecab-${MECAB_VERSION}.tar.gz \
-  && cd mecab-${MECAB_VERSION} \
-  && ./configure --enable-utf8-only --with-charset=utf8 \
-  && make \
-  && make install \
-  && cd \
-  # Install IPA dic
-  && curl -SL -o mecab-ipadic-${IPADIC_VERSION}.tar.gz ${ipadic_url} \
-  && tar zxf mecab-ipadic-${IPADIC_VERSION}.tar.gz \
-  && cd mecab-ipadic-${IPADIC_VERSION} \
-  && ./configure --with-charset=utf8 \
-  && make \
-  && make install \
-  && cd \
-  # Install Neologd
-  && git clone --depth 1 https://github.com/neologd/mecab-ipadic-neologd.git \
-  && mecab-ipadic-neologd/bin/install-mecab-ipadic-neologd -n -y \
-  # Clean up
-  && apk del ${build_deps} \
-  && rm -rf \
-    mecab-${MECAB_VERSION}* \
-    mecab-${IPADIC_VERSION}* \
-    mecab-ipadic-neologd
-
-## ここまで
-
-## ここから追記する
-ENV build_deps_phpmecab 'git autoconf'
-COPY php.mecab.ini /usr/local/etc/php/conf.d/
-RUN apk add --update --no-cache ${build_deps_phpmecab} \ 
-  && git clone https://github.com/rsky/php-mecab.git \
-  && cd ./php-mecab/mecab \
-  && phpize \
-  && ./configure --with-php-config=/usr/local/bin/php-config --with-mecab=/usr/local/bin/mecab-config \
-  && make \
-  && make test \
-  && make install \
-  # Clean up
-  && cd  \
-  && rm -rf php-mecab \
-  && apk del ${build_deps_phpmecab}
-
-# ▼▼このコマンドが最後に来るようにしてください
-RUN docker-php-ext-install pdo pdo_mysql

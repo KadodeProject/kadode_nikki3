@@ -7,6 +7,8 @@ services:
   app:
     build:
       context: .
+      args:
+        - TZ=${TZ}
       dockerfile: ./infra/docker/php/Dockerfile
     volumes:
       - type: volume

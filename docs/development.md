@@ -31,6 +31,10 @@ SELECT * FROM users;
 ```
 docker-compose exec app chmod -R 777 storage bootstrap/cache
 docker-compose exec app chmod -R 777 storage/logs
+docker-compose exec app bash;mysql -u root -p;
+root or secret
+SELECT user, host, plugin from mysql.user;
+
 ```
 
 ## 認証
