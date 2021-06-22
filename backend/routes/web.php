@@ -49,7 +49,7 @@ Route::get('/terms', function () {
     return view('diaryNoLogIn/terms');
 });
 Route::get('/aboutThisSite', function () {
-    return view('diaryNoLogin/aboutThisSite');
+    return view('diaryNoLogIn/aboutThisSite');
 });
 
 
