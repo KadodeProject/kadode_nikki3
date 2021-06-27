@@ -24,10 +24,13 @@ class CreateStatisticsTable extends Migration
             $table->json("month_diaries")->nullable()->comment("月ごとの日記数");
             $table->json("year_words")->nullable()->comment("年ごとの文字数");
             $table->json("year_diaries")->nullable()->comment("年ごとの日記数");
+            $table->json("total_noun_asc")->nullable()->comment("トータル名詞昇順");
             $table->json("year_noun_asc")->nullable()->comment("年ごとの名詞昇順");
             $table->json("month_noun_asc")->nullable()->comment("月ごとの名詞昇順");
+            $table->json("total_adjective_asc")->nullable()->comment("トータルの形容詞昇順");
             $table->json("year_adjective_asc")->nullable()->comment("年ごとの形容詞昇順");
             $table->json("month_adjective_asc")->nullable()->comment("月ごとの形容詞昇順");
+            $table->json("diary_grass")->nullable()->comment("月ごとの形容詞昇順");
           
         
             $table->timestamps();
