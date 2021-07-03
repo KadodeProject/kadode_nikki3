@@ -21,7 +21,7 @@ class updateStatisticsController extends Controller
         // \Log::debug($yesterday->diffInHours($static->updated_at));
         
         // 24時間以内なら更新しない
-        if(($yesterday->diffInHours($static->updated_at))>=24){
+        if(($yesterday->diffInHours($static->updated_at))>=0){
             $diaries=Diary::orderby("date","asc")->get();
 
             $calculateDiary=calculateDiary::calculateDiary($diaries);
