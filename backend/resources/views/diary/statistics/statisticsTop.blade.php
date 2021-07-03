@@ -15,7 +15,8 @@
 
     <div class="mt-12">
         <div class="setting">
-            <h2 class="text-2xl">統計データ作成(α版)<span class="text-xs">日記数が少ない場合は正しくデータを取れないことがありますのでご了承ください。</span></h2>
+            <h2 class="text-2xl">統計データ作成(α版)</h2>
+            <p class="text-xs">日記数が少ない場合は正しくデータを表示できないことがありますのでご了承ください。</p>
             <form class="flex justify-center flex-wrap flex-col " method="POST"  action="/makeStatistics">
                 @csrf
                 <input type="submit" class="text-black" value="統計データを生成する">
@@ -46,7 +47,7 @@
 
 
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.3.2/chart.min.js"></script>
+
 <div class="px-2">
   <h3 class="my-4 text-2xl text-center kiwi-maru">月ごとの1日記あたりの平均文字数推移<span style="font-size:0.5em">(月の合計文字数÷日記数)</span></h3>
   <div class="chartWrapper">
@@ -56,6 +57,10 @@
   <div class="chartWrapper">
       <canvas id="chartWritingRatePerMonth" width="400px" height="400px"></canvas>
   </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.3.2/chart.min.js"></script>
+{{-- 補助線引くためのプラグイン↓ --}}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/chartjs-plugin-annotation/1.0.2/chartjs-plugin-annotation.min.js" integrity="sha512-FuXN8O36qmtA+vRJyRoAxPcThh/1KJJp7WSRnjCpqA+13HYGrSWiyzrCHalCWi42L5qH1jt88lX5wy5JyFxhfQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
   <script>
       //月ごとの合計文字数
       // 月ごとの1日記あたりの平均文字数
@@ -125,14 +130,19 @@ options: {
   },
 options: {
   indexAxis: 'y',
-  scales: {
-              yAxes : [{
-                  ticks : {
-                      max : 100,    
-                      min : 0,
-                  }
-              }]
-          },
+  // scales: {
+  //             yAxes : [{
+  //               id:"RateYZiku",
+  //                 ticks : {
+  //                     max : 100,    
+  //                     min : 0,
+  //                 }
+  //             }],
+  //             xAxes : [{
+  //               id:"RateXZiku",
+  //             }]
+  //         },
+  
   elements: {
     bar: {
       borderWidth: 2,
@@ -140,13 +150,43 @@ options: {
   },
   responsive: true,
   plugins: {
+    autocolors: false,
     legend: {
       display:false
     },
     title: {
-      display: true,
+      display: false,
       text: '月ごとの日記執筆率'
-    }
+    },
+            // 補助線用ここから
+    annotation: {
+      annotations: {
+        line100: {
+            type: 'line',
+            xMin: 100,
+            xMax: 100,
+            borderColor: '#624464',
+            borderWidth: 3,
+            label: { // ラベルの設定
+                    backgroundColor: '#624464',
+                    // bordercolor: 'rgba(200,60,60,0.8)',
+                    borderwidth: 2,
+                    fontSize: 8,
+                    fontStyle: 'bold',
+                    fontColor: '#f9fff9',
+                    xPadding: 10,
+                    yPadding: 10,
+                    cornerRadius: 3,
+                    position: 'left',
+                    xAdjust: 0,
+                    yAdjust: 0,
+                    enabled: true,
+                    content: '100%'
+                }
+          }
+      }
+    },
+    // ここまで補助線用
   }
 },
 });
