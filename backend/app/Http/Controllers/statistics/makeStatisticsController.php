@@ -40,10 +40,24 @@ class makeStatisticsController extends Controller
             "total_diaries"=>$calculateDiary["total_diaries"],
             'month_words'=>$calculateDiary["month_words"],//tojson外しても行ける
             'month_diaries'=>$calculateDiary["month_diaries"],//tojson外しても行ける
-            'year_noun_asc'=>$calculateDiary["year_noun_asc"],
-            'month_noun_asc'=>$calculateDiary["month_noun_asc"],
-            'year_adjective_asc'=>$calculateDiary["year_adjective_asc"],
-            'month_adjective_asc'=>$calculateDiary["month_adjective_asc"],
+            
+            /**
+             * 品詞
+             */
+            //名詞
+            'total_noun_asc'=>$calculateDiary["month_adjective_asc"],
+            // 'year_noun_asc'=>$calculateDiary["year_noun_asc"],
+            // 'month_noun_asc'=>$calculateDiary["month_noun_asc"],
+            //形容詞
+            'total_adjective_asc'=>$calculateDiary["month_adjective_asc"],
+            // 'year_adjective_asc'=>$calculateDiary["year_adjective_asc"],
+            // 'month_adjective_asc'=>$calculateDiary["month_adjective_asc"],
+
+            /**
+             * 日記グラス
+             */
+            // 'diary_grass'=>$calculateDiary["diary_grass"],
+
             'updated_at'=>$dt,
         
         ];

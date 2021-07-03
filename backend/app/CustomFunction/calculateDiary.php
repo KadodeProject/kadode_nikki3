@@ -17,7 +17,9 @@ class calculateDiary
     $month_words=[];
     $month_diaries=[];
     foreach($diaries as $diary){
-
+        /**
+        * 日記数と文字数計算
+        */
         $diaryCharacters=mb_strlen($diary->content);
         // 合計カウント
         $diaryCounter+=1;
@@ -26,22 +28,31 @@ class calculateDiary
         // 月ごとカウント
         $diaryDate = Carbon::parse($diary->date);
 
-        ///こうするしかなかった…　本当は2020年12月みたいにしたかったけれど、sort関数邪道にもできず、数値で諦めた。
+        ///こうするしかなかった…　本当は2020年12月みたいにしたかったけれど、sort関数じゃどうにもできず、数値で諦めた。
+       
         $keyName=$diaryDate->year.($diaryDate->month >=10?$diaryDate->month:"0".$diaryDate->month );
         $month_diaries[$keyName]=isSet( $month_diaries[$keyName])? $month_diaries[$keyName]+1:1;
         $month_words[$keyName]=isSet( $month_words[$keyName])?$month_words[$keyName]+$diaryCharacters:$diaryCharacters;
+
+
+
+        /**
+        * 形態素解析
+        */
         
     }
     //配列ソート(普通にやると2019年9月の次が2020年1月になり、2桁目の日付が全部ずれる)
     //→どう頑張っても正しくソートされないので諦め
     // ksort($month_words,SORT_LOCALE_STRING   );
     // ksort($month_diaries,SORT_LOCALE_STRING   );
+
     $result=[
         'total_words'=> $diaryCounter,
         'total_diaries'=>$diaryContentCharactersCounter,
         'month_words'=>$month_words,
         'month_diaries'=>$month_diaries,
     ];
+    
     return $result;
   }
 }
