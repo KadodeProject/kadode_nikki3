@@ -37,8 +37,8 @@ class calculateDiary
     // ksort($month_words,SORT_LOCALE_STRING   );
     // ksort($month_diaries,SORT_LOCALE_STRING   );
     $result=[
-        'total_words'=> $diaryCounter,
-        'total_diaries'=>$diaryContentCharactersCounter,
+        'total_words'=>$diaryContentCharactersCounter,
+        'total_diaries'=> $diaryCounter,
         'month_words'=>$month_words,
         'month_diaries'=>$month_diaries,
     ];
