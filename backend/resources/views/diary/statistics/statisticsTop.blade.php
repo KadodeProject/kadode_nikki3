@@ -15,7 +15,7 @@
 
     <div class="mt-12">
         <div class="setting">
-            <h2 class="text-2xl">統計データ作成(α版)</h2>
+            <h2 class="text-2xl">統計データ作成(α版)<span class="text-xs">日記数が少ない場合は正しくデータを取れないことがありますのでご了承ください。</span></h2>
             <form class="flex justify-center flex-wrap flex-col " method="POST"  action="/makeStatistics">
                 @csrf
                 <input type="submit" class="text-black" value="統計データを生成する">
