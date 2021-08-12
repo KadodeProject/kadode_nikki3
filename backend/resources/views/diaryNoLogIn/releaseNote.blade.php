@@ -14,7 +14,7 @@
 ['title'=>'日記表示改善',
 'date'=>'2021年8月12日',
 'genre'=>'Fix',
-'explain'=>'日記を部分表示ではなく全文表示するようにしました。
+'explain'=>'ホームページやアーカイブページなどで日記の表示文字数を最大2000文字に変更しました。
 '])
 @include('components.noLogIn.releaseNote',
 ['title'=>'統計機能追加',
