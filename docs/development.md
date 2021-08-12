@@ -1,6 +1,6 @@
 http://localhost
 
-https://translate.google.com/?sl=en&tl=ja&op=translate
+https://fonts.google.com/icons
 
 ## docker
 

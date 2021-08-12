@@ -11,7 +11,13 @@
     
 
 @include('components.noLogIn.releaseNote',
-['title'=>'日記表示改善',
+['title'=>'日記編集ページ改善',
+'date'=>'2021年8月12日',
+'genre'=>'Fix',
+'explain'=>'前後の日記のリンクが表示されるようになりました。ただし、一番最新の日記だけ過去の日記へのリンクが正しく表示されないバグがあります。熟考した結果直近では実用上問題ないと判断し、導入しました。
+'])
+@include('components.noLogIn.releaseNote',
+['title'=>'日記表示文字数変更',
 'date'=>'2021年8月12日',
 'genre'=>'Fix',
 'explain'=>'ホームページやアーカイブページなどで日記の表示文字数を最大2000文字に変更しました。

@@ -24,8 +24,10 @@ class EditDiaryController extends Controller
             //日記無かったらリダイレクトさせる
             return redirect("home");
         }
+        $next=Diary::where("date",">",$diary->date)->orderBy("date","asc")->first();
+        $previous=Diary::where("date","<",$diary->date)->orderBy("date","desc")->first();
         $diary->feel=$diary->feel-1;//JSのセレクターの都合で-1している
-        return view('diary/edit',['diary' => $diary,]);
+        return view('diary/edit',['diary' => $diary,'previous'=>$previous, 'next'=>$next]);
     }
 
     public function newPage(){

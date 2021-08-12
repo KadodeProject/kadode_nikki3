@@ -4,7 +4,7 @@
         <div class="w-8 h-8 mx-auto border-bg-main-color rounded-full"></div>
         <div class=" mx-auto h-full border-bg-main-color" style="width:6px;"></div>
     </div>
-    <div>
+    <div class="w-full pr-4">
             <h2 class="ml-2 text-3xl">{{$date}}</h2>
         <div class="border-2 rounded-sm my-2 inline-block">
 
