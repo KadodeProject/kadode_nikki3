@@ -11,6 +11,18 @@
     
 
 @include('components.noLogIn.releaseNote',
+['title'=>'日記表示改善',
+'date'=>'2021年8月12日',
+'genre'=>'Fix',
+'explain'=>'日記を部分表示ではなく全文表示するようにしました。
+'])
+@include('components.noLogIn.releaseNote',
+['title'=>'統計機能追加',
+'date'=>'2021年6月19日',
+'genre'=>'Feature',
+'explain'=>'月ごとの1日記あたりの平均文字数推移、月ごとの日記執筆率のグラフが表示できるようになりました。
+'])
+@include('components.noLogIn.releaseNote',
 ['title'=>'レスポンシブ対応',
 'date'=>'2021年6月19日',
 'genre'=>'Feature',
