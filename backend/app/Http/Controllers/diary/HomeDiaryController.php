@@ -49,12 +49,12 @@ class homeDiaryController extends Controller
 
 
         //pythonテスト
-        $python_path="/usr/bin/python3 /work/backend/python/test.py 2>&1";
-        $file_path="";
-        $path = $python_path." ".$file_path. "";
+        $py_file_name="test";
+        $path = env('PYTHON_PRO_DIR')." ".env('PYTHON_FOLDER_DIR')."/". $py_file_name.".py";
         $output=null;
+        $error_check="2>&1";
         //2>&1でエラーメッセージ出せる
-        exec($python_path, $output);
+        exec($path, $output);
         \Log::debug("php");
         \Log::debug($output);
 
