@@ -1,7 +1,9 @@
 import MySQLdb
 import loadEnv
 
-
+"""
+データベースに接続して、引数のユーザーIDのすべての日記(id,本文,タイトル)を取得
+"""
 def get_all_diaries_from_user(user_id):
     # 接続する
     conn = MySQLdb.connect(
@@ -16,15 +18,12 @@ def get_all_diaries_from_user(user_id):
     cur= conn.cursor()
 
     # クエリを実行する
-    sql = "select * from diaries WHERE user_id="+user_id+";"
+    sql = "SELECT id,title,content,date FROM diaries WHERE user_id="+user_id+";"
     cur.execute(sql)
 
     # 実行結果をすべて取得する
     rows = cur.fetchall()
 
-    # 一行ずつ表示する
-    for row in rows:
-        print(row)
     
     # カーソルを閉じる
     cur.close()
@@ -32,5 +31,19 @@ def get_all_diaries_from_user(user_id):
     # 接続を閉じる
     conn.close()
 
+    return rows
+    """
+    [[id,タイトル,本文,日付],.......]
+    """
+
+"""
+解析済みのデータを書き込む
+"""
+
+
 if __name__=="__main__":
-    get_all_diaries_from_user("3")
+
+    rows=get_all_diaries_from_user("3")
+    for row in rows:
+        for column in row:
+            print(column)
