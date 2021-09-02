@@ -48,6 +48,16 @@ class homeDiaryController extends Controller
         $this_day=Carbon::today()->format("Y-m-d");
 
 
+        //pythonテスト
+        $python_path="/usr/bin/python3 /work/backend/python/test.py 2>&1";
+        $file_path="";
+        $path = $python_path." ".$file_path. "";
+        $output=null;
+        //2>&1でエラーメッセージ出せる
+        exec($python_path, $output);
+        \Log::debug("php");
+        \Log::debug($output);
+
         /**
          * 古い日記の取得
          */
