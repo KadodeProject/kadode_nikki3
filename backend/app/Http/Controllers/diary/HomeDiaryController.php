@@ -50,9 +50,10 @@ class homeDiaryController extends Controller
 
         //pythonテスト
         $py_file_name="test";
-        $path = env('PYTHON_PRO_DIR')." ".env('PYTHON_FOLDER_DIR')."/". $py_file_name.".py";
-        $output=null;
+        $user_id=$user->id;
         $error_check="2>&1";
+        $path = "export LANG=ja_JP.UTF-8;python3"." ".env('PYTHON_FOLDER_DIR')."/". $py_file_name.".py". " ".$user_id." ".$error_check;
+        $output=null;
         //2>&1でエラーメッセージ出せる
         exec($path, $output);
         \Log::debug("php");

@@ -52,6 +52,10 @@ https://biz.addisteria.com/laravel_jetstream_customize/#toc6
 参考
 https://github.com/ucan-lab/docker-laravel
 
+## python MySQLdb
+
+https://www.sejuku.net/blog/82657
+
 ## テストアカウント
 
 氏名:開発者 1
