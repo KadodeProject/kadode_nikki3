@@ -10,7 +10,6 @@
         $original_uuid=old("uuid");
         $original_title=old("title");
         $original_content=old("content");
-        $original_feel=old("feel")-1;
     @endphp
     {{-- エラーの表示 --}}
     <ul class="text-red-500">
@@ -21,28 +20,12 @@
     @endif
     @csrf
   
-    <input type="date"class="text-xl mx-auto mb-2" name="date" value="{{$original_date}}">
+    <input type="date"class="text-xl mx-auto mb-4" name="date" value="{{$original_date}}">
 
     <input  type="hidden" value="{{$original_uuid}}" name="uuid">
-    <input  placeholder="タイトル(50字以内)"style="height:32px" class="mx-auto w-2/3" type="text" name="title"  value="{{$original_title}}">
-    <div class="flex justify-center items-center"  >
-        <p class="text-xl mr-4">きもち:</p>
-    <select id="feel_selector"style="width:8em;"class="text-sm my-2" name="feel"size="1" >
-        <option value="1" >1(悪い)</option>
-        <option value="2">2</option>
-        <option value="3">3</option>
-        <option value="4">4</option>
-        <option value="5">5(普通)</option>
-        <option value="6">6</option>
-        <option value="7">7</option>
-        <option value="8">8</option>
-        <option value="9">9</option>
-        <option value="10" >10(良い)</option>
-    </select>
-    <script>
-        document.getElementById('feel_selector').options[{{$original_feel}}].selected = true;
-        </script>
-    </div>
+    <input  placeholder="タイトル(50字以内)"style="height:32px" class="mx-auto w-2/3 " type="text" name="title"  value="{{$original_title}}">
+
+ 
     <textarea  placeholder="本文(20000字以内)"class="sm:p-4 w-full diary-content-edit" type="text" name="content" >{{$original_content}}</textarea>
     
     <input style="height:2em"type="submit" value="日記を書き込む">

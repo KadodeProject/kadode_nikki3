@@ -28,9 +28,7 @@
                             @slot("date")
                             {{$yesterday->date}}
                             @endslot
-                            @slot("feel")
-                            {{$yesterday->feel}}
-                            @endslot
+             
                         @endcomponent
                     @endempty
                 </div>
@@ -48,10 +46,7 @@
                     @endslot
                     @slot("original_title")
                     @endslot
-                    @slot("original_feel")
-                    4
-                    {{-- ここは5だがjsの都合で-1してる --}}
-                    @endslot
+              
                     @slot("original_content")
                     @endslot
                     @endcomponent
@@ -70,9 +65,7 @@
                             @slot("date")
                             {{$today->date}}
                             @endslot
-                            @slot("feel")
-                            {{$today->feel}}
-                            @endslot
+                
                         @endcomponent
                     @endempty
                 </div>
@@ -98,9 +91,7 @@
                             @slot("date")
                             {{$diary->date}}
                             @endslot
-                            @slot("feel")
-                            {{$diary->feel}}
-                            @endslot
+                           
                         @endcomponent
                     @endforeach
                 </div>
@@ -136,9 +127,7 @@
                                 @slot("date")
                                 {{$oldDiary["date"]}}
                                 @endslot
-                                @slot("feel")
-                                {{$oldDiary["feel"]}}
-                                @endslot
+                                
                             @endcomponent
                         @endempty
                     </article>

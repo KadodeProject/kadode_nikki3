@@ -53,9 +53,7 @@
                             @slot("date")
                             {{$diary->date}}
                             @endslot
-                            @slot("feel")
-                            {{$diary->feel}}
-                            @endslot
+                         
                         @endcomponent
                     @endforeach
                 @endempty

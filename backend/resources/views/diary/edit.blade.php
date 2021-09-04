@@ -43,9 +43,6 @@
                     @slot("original_content")
                     {{$diary->content}}
                     @endslot
-                    @slot("original_feel")
-                    {{$diary->feel}}
-                    @endslot
                     @endcomponent
 
                     @component('components.buttons.editorDiaryButton')
@@ -75,9 +72,7 @@
                             @slot("date")
                             {{$diary->date}}
                             @endslot
-                            @slot("feel")
-                            {{$diary->feel}}
-                            @endslot
+                      
                         @endcomponent
                     @endforeach
                 @endempty

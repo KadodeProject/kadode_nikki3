@@ -74,7 +74,7 @@ class ImportDiaryController extends Controller
               $today_date=Carbon::today();
             // 登録処理
             foreach($dataList as $row){
-                Diary::insert(['updated_at'=>$today_date,'created_at'=>$today_date,'user_id'=>Auth::Id(),'uuid'=>Str::uuid(), 'date' => $row[0], 'title' => $row[1], 'feel' => $row[2],'content' => $row[3]]);
+                Diary::insert(['updated_at'=>$today_date,'created_at'=>$today_date,'user_id'=>Auth::Id(),'uuid'=>Str::uuid(), 'date' => $row[0], 'title' => $row[1], 'content' => $row[2]]);
                 $count++;
             }
         }
@@ -160,14 +160,14 @@ class ImportDiaryController extends Controller
 
                 //各配列をまとめて1つの配列とする
 
-                 // 登録処理 feelは存在しないのでデフォルトの5
+                 // 登録処理
                  $arrayCounter=0;
 
                  $today_date=Carbon::today();
                  
                 foreach($dateTxt as $date){
 
-                    Diary::insert(['updated_at'=>$today_date,'created_at'=>$today_date,'user_id'=>Auth::Id(),'uuid'=>Str::uuid(), 'date' => $date, 'title' => $proceededTitleTxt[$arrayCounter], 'feel' => 5,'content' =>$proceededContentTxt[$arrayCounter]]);
+                    Diary::insert(['updated_at'=>$today_date,'created_at'=>$today_date,'user_id'=>Auth::Id(),'uuid'=>Str::uuid(), 'date' => $date, 'title' => $proceededTitleTxt[$arrayCounter], 'content' =>$proceededContentTxt[$arrayCounter]]);
                     $count++;
                     $arrayCounter++;
                 }

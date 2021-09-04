@@ -120,10 +120,7 @@
         </form>
     </div>
     
-    <div>
-        <p class="text-center mb-20">現在のユーザー数 : {{$userCounter}}人</p>
-    </div>
-
+ 
        
     
         

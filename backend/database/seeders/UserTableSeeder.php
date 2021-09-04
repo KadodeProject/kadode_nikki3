@@ -21,7 +21,7 @@ class UserTableSeeder extends Seeder
         $param=[
             'name'=>"開発者1",
             'email'=>"test1@example.com",
-            'email_verified_at'=>null,
+            'email_verified_at'=>Carbon::now(),
             'password'=>Hash::make("test1234"),
             "two_factor_secret"=>null,
             "two_factor_recovery_codes"=>null,
@@ -35,7 +35,7 @@ class UserTableSeeder extends Seeder
         $param=[
             'name'=>"開発者2",
             'email'=>"test2@example.com",
-            'email_verified_at'=>null,
+            'email_verified_at'=>Carbon::now(),
             'password'=>Hash::make("test1234"),
             "two_factor_secret"=>null,
             "two_factor_recovery_codes"=>null,

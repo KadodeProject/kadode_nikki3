@@ -43,12 +43,11 @@ class Diary extends Model
     public static $rules=array(
         "date"=>"required",
         "title"=>"max:50",
-        "feel"=>"required|numeric|min:0|max:10",
         "content"=>"required|min:1|max:20000",
         // "user_id"=>"required|numeric",
         );
     
     protected $fillable = [
-            "user_id","content","title","date" ,"feel","uuid","created_at","updated_at"
+            "user_id","content","title","date" ,"uuid","created_at","updated_at"
         ];
 }

@@ -13,10 +13,10 @@ class ExportDiaryController extends Controller
     public function __invoke()
     {
         $user=Auth::user();
-        $diaries=Diary::orderby("date","asc")->select(['date','title','feel','content'])->get()->toArray();
+        $diaries=Diary::orderby("date","asc")->select(['date','title','content'])->get()->toArray();
         // \Log::debug("message".$diary);
         //CSVカラムの生成
-        $head=["日付","タイトル","気持ち","内容"];
+        $head=["日付","タイトル","内容"];
         
         // 書き込み用ファイルを開く
         $uuid=Str::uuid();
