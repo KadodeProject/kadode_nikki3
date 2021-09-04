@@ -11,6 +11,11 @@
     
 
 @include('components.noLogIn.news',
+['title'=>'セキュリティ対策について',
+'date'=>'2021年9月4日',
+'explain'=>'SQLインジェクション対策、XSS攻撃対策が機能していることを改めて確認しました。
+'])
+@include('components.noLogIn.news',
 ['title'=>'プライバシーポリシー改定',
 'date'=>'2021年7月3日',
 'explain'=>'プライバシーポリシーを一部改定いたしました。
