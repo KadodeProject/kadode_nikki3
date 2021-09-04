@@ -19,7 +19,7 @@ class CreateDiariesTable extends Migration
             $table->string("title")->nullable()->comment("タイトル");
             $table->text("content")->comment("本文");
             $table->date("date")->comment("日付");
-            $table->integer("feel")->comment("気持ち");
+            // $table->integer("feel")->comment("気持ち"); 2021-9-4削除
             $table->uuid("uuid")->unique()->comment("uuid");
         
             $table->timestamps();

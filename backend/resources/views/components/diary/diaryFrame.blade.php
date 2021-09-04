@@ -2,7 +2,7 @@
 <div class="diary_dashboard m-2 " >
     
     <section>
-        <p class=" text-center text-xl">{{$date}} <span class="text-sm">[{{mb_strlen($content)}}文字]</span><span class="text-sm"> [気持ち:{{$feel}}]</span></p>
+        <p class=" text-center text-xl">{{$date}} <span class="text-sm">[{{mb_strlen($content)}}文字]</span></p>
         <p class=" text-center text-2xl">
             @php
             echo ((mb_strlen($title)>=1) ? $title:"<span class='text-gray-300'>タイトルなし</span>");

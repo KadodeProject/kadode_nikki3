@@ -11,6 +11,12 @@
     
 
 @include('components.noLogIn.releaseNote',
+['title'=>'「気持ち」機能削除',
+'date'=>'2021年9月4日',
+'genre'=>'Remove',
+'explain'=>'形態素解析導入に伴い、各日記で手動で設定できた十段階の「気持ち」機能を削除しました。
+'])
+@include('components.noLogIn.releaseNote',
 ['title'=>'日記編集ページ改善',
 'date'=>'2021年8月12日',
 'genre'=>'Fix',

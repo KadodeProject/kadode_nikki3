@@ -26,7 +26,6 @@ class EditDiaryController extends Controller
         }
         $next=Diary::where("date",">",$diary->date)->orderBy("date","asc")->first();
         $previous=Diary::where("date","<",$diary->date)->orderBy("date","desc")->first();
-        $diary->feel=$diary->feel-1;//JSのセレクターの都合で-1している
         return view('diary/edit',['diary' => $diary,'previous'=>$previous, 'next'=>$next]);
     }
 
@@ -50,7 +49,6 @@ class EditDiaryController extends Controller
             "title"=>$request->title,
             "content"=>$request->content,
             "date"=>$request->date,
-            "feel"=>$request->feel,
             "uuid"=>Str::uuid(),
         ];
 
@@ -75,7 +73,6 @@ class EditDiaryController extends Controller
             "title"=>$request->title,
             "content"=>$request->content,
             "date"=>$request->date,
-            "feel"=>$request->feel,
         ];
         Diary::where('uuid',$request->uuid)->update($updateContent);
         return redirect('home');

@@ -22,10 +22,7 @@
                     @endslot
                     @slot("original_title")
                     @endslot
-                    @slot("original_feel")
-                    4
-                    {{-- ここは5だがjsの都合で-1してる --}}
-                    @endslot
+                
                     @slot("original_content")
                     @endslot
                     @endcomponent

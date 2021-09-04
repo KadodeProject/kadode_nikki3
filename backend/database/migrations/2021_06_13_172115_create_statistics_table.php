@@ -18,8 +18,6 @@ class CreateStatisticsTable extends Migration
             $table->unsignedBigInteger("user_id")->comment("ユーザーID");
             $table->unsignedBigInteger("total_words")->nullable()->comment("総文字数");
             $table->unsignedBigInteger("total_diaries")->nullable()->comment("総日記数");
-            $table->unsignedBigInteger("feel_month")->nullable()->comment("月間の気持ち");
-            $table->unsignedBigInteger("feel_year")->nullable()->comment("年間の気持ち");
             $table->json("month_words")->nullable()->comment("月ごとの文字数");
             $table->json("month_diaries")->nullable()->comment("月ごとの日記数");
             $table->json("year_words")->nullable()->comment("年ごとの文字数");
