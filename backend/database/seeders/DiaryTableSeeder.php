@@ -18,12 +18,12 @@ class DiaryTableSeeder extends Seeder
     {
         $dt = Carbon::now();
         $param=[
+            'uuid'=>Str::uuid(),
             'user_id'=>2,
             'title'=>"日記1-1",
             'content'=>"今日は日記を書いた。今日は日記を書いた。今日は日記を書いた。今日は日記を書いた。今日は日記を書いた。今日は日記を書いた。今日は日記を書いた。",
             'date'=>$dt,
             'feel'=>2,
-            'uuid'=>Str::uuid(),
             'created_at' => Carbon::now(),
             'updated_at' => Carbon::now(),
         ];

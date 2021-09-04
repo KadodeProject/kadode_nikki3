@@ -26,17 +26,6 @@ SHOW COLUMNS FROM users;
 SELECT * FROM users;
 ```
 
-### 最初
-
-```
-docker-compose exec app chmod -R 777 storage bootstrap/cache
-docker-compose exec app chmod -R 777 storage/logs
-docker-compose exec app bash;mysql -u root -p;
-root or secret
-SELECT user, host, plugin from mysql.user;
-
-```
-
 ## 認証
 
 (laravel jetstream 導入)
@@ -62,6 +51,10 @@ https://biz.addisteria.com/laravel_jetstream_customize/#toc6
 
 参考
 https://github.com/ucan-lab/docker-laravel
+
+## python MySQLdb
+
+https://www.sejuku.net/blog/82657
 
 ## テストアカウント
 

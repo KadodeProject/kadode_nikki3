@@ -1,11 +1,10 @@
 # この web アプリについて
 
-個人的に欲しかった日記管理webアプリを作っています。
+個人的に欲しかった日記管理 web アプリを作っています。
 
 https://kadodenikki3.usuyuki.net/
 
 ![かどでリリースのお知らせ](https://user-images.githubusercontent.com/63891531/124377606-ad6ba080-dce7-11eb-8cf4-af3fc95656ef.png)
-
 
 ## 名前の由来
 
@@ -24,12 +23,11 @@ https://kadodenikki3.usuyuki.net/
 
 ロゴカラー:<span style="color:#624466">#624466</span>
 
-枠・ボタンカラー1:<span style="color:#4B8996">#4B8996</span>
+枠・ボタンカラー 1:<span style="color:#4B8996">#4B8996</span>
 
-枠・ボタンカラー2:<span style="color:#8A8772">#8A8772</span>
+枠・ボタンカラー 2:<span style="color:#8A8772">#8A8772</span>
 
 ![image](https://user-images.githubusercontent.com/63891531/122196315-1c688d00-ced2-11eb-8f2f-0b4d04c6340d.png)
-
 
 ## フォント
 
@@ -42,11 +40,10 @@ https://kadodenikki3.usuyuki.net/
 -   本文
 
     デフォルト
-    
--  見出し文字
+
+-   見出し文字
 
     Kiwi Maru
-
 
 ## ER 図
 
@@ -54,9 +51,7 @@ Notion に記載(非公開)
 
 ## 画面レイアウト
 
-Figmaに記載(非公開)
-
-
+Figma に記載(非公開)
 
 # 技術スタック
 
@@ -71,6 +66,9 @@ Figmaに記載(非公開)
 -   アイコン:Material icons
 -   フォント:Google Fonts
 -   CSV インポートライブラリ:Goodby CSV(メモリ使用軽減)
+-   グラフ表示:chart.js
+-   形態素解析:
+-   hogehoge:
 
 # 開発用
 
