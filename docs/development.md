@@ -62,7 +62,9 @@ https://www.sejuku.net/blog/82657
 氏名:開発者 1
 メール:test1@example.com
 パス:test1234
+日記多めのアカウント
 
 氏名:開発者 2
 メール:test2@example.com
 パス:test1234
+日記少なめのアカウント
