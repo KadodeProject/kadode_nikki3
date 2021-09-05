@@ -9,6 +9,7 @@ use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\CustomFunction\calculateDiary;
+use App\CustomFunction\throwPython;
 class updateStatisticsController extends Controller
 {
     public function __invoke()
@@ -21,10 +22,10 @@ class updateStatisticsController extends Controller
         // \Log::debug($yesterday->diffInHours($static->updated_at));
         
         // 24時間以内なら更新しない
-        if(($yesterday->diffInHours($static->updated_at))>=24){
+        if(($yesterday->diffInHours($static->updated_at))>=0){
             $diaries=Diary::orderby("date","asc")->get();
             $calculateDiary=calculateDiary::calculateDiary($diaries);
-
+            // $nlpedDiary=throwPython::throwPython("preparationNlp",$userId,true,true);
             // \Log::debug("calculateDiary[month_words]");
             // \Log::debug($calculateDiary['month_words']);
             // \Log::debug("calculateDiary[month_diaries]");
