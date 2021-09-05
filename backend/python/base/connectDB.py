@@ -1,5 +1,5 @@
 import MySQLdb
-import loadEnv
+from base import loadEnv
 
 """
 データベースに接続して、引数のユーザーIDのすべての日記(id,本文,タイトル)を取得

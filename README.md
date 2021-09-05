@@ -70,7 +70,7 @@ Figma に記載(非公開)
 -   形態素解析:
 -   hogehoge:
 
-# 文章
+# 文章周り
 
 ## 開発者向け
 
@@ -80,13 +80,13 @@ Figma に記載(非公開)
 
 ## ライセンス
 
-かどで日記ライセンス: [development.md](.LICENSE)
+かどで日記ライセンス: [LICENSE](.LICENSE)
 
-使用しているソフトウェアのライセンス周り: [development.md](./docs/99_usedLicense.md)
+使用しているソフトウェアのライセンス周り: [usedLicense.md](./docs/99_usedLicense.md)
 
 ## 弊社の取り組み的なやつ？
 
-セキュリティ周りの取り組み: [development.md](./docs/99_usedLicense.md)
+セキュリティ周りの取り組み: [usedLicense.md](./docs/99_usedLicense.md)
 
 [プライバシーポリシー](https://kadodenikki3.usuyuki.net/privacyPolicy)
 
