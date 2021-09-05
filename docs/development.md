@@ -12,6 +12,7 @@ dc exec app php
 
 ```
 dc exec app php artisan migrate:fresh --seed
+dc exec app php artisan make:model Book --migration
 ```
 
 ### DB 閲覧

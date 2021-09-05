@@ -19,9 +19,5 @@ docker-compose exec app pip3 install python-dotenv
 docker-compose exec app pip3 install mysqlclient
 
 
-下記は不要
-docker-compose exec app bash;mysql -u root -p;
-root or secret
-SELECT user, host, plugin from mysql.user;
 
 ```

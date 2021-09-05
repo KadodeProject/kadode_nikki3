@@ -322,3 +322,35 @@ li ol {
         height: 90vw;
     }
 }
+
+/* 統計用のボーダー */
+.box-statistic {
+    background-image: linear-gradient(
+            0deg,
+            transparent 15%,
+            var(--clr-border) 15%,
+            var(--clr-border) 85%,
+            transparent 85%
+        ),
+        linear-gradient(
+            90deg,
+            transparent 15%,
+            var(--clr-border) 15%,
+            var(--clr-border) 85%,
+            transparent 85%
+        ),
+        linear-gradient(
+            180deg,
+            transparent 15%,
+            var(--clr-border) 15%,
+            var(--clr-border) 85%,
+            transparent 85%
+        ),
+        linear-gradient(
+            270deg,
+            transparent 15%,
+            var(--clr-border) 15%,
+            var(--clr-border) 85%,
+            transparent 85%
+        );
+}
