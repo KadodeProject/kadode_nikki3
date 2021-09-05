@@ -8,9 +8,6 @@ namespace App\CustomFunction;
 
 class throwPython
 {
-    public function access_py($py_file_name,$user_id,$error_check=false){
-  
-    }
     public static function throwPython($py_file_name,$user_id,$error_check=false,$debug=false){
         if($error_check==true){
             //2>&1でエラーメッセージ出せる
