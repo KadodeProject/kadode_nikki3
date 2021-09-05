@@ -16,19 +16,24 @@ class CreateStatisticsTable extends Migration
         Schema::create('statistics', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger("user_id")->comment("ユーザーID");
-            $table->unsignedBigInteger("total_words")->nullable()->comment("総文字数");
-            $table->unsignedBigInteger("total_diaries")->nullable()->comment("総日記数");
-            $table->json("month_words")->nullable()->comment("月ごとの文字数");
-            $table->json("month_diaries")->nullable()->comment("月ごとの日記数");
-            $table->json("year_words")->nullable()->comment("年ごとの文字数");
-            $table->json("year_diaries")->nullable()->comment("年ごとの日記数");
-            $table->json("total_noun_asc")->nullable()->comment("トータル名詞昇順");
-            $table->json("year_noun_asc")->nullable()->comment("年ごとの名詞昇順");
-            $table->json("month_noun_asc")->nullable()->comment("月ごとの名詞昇順");
-            $table->json("total_adjective_asc")->nullable()->comment("トータルの形容詞昇順");
-            $table->json("year_adjective_asc")->nullable()->comment("年ごとの形容詞昇順");
-            $table->json("month_adjective_asc")->nullable()->comment("月ごとの形容詞昇順");
-            $table->json("diary_grass")->nullable()->comment("月ごとの形容詞昇順");
+            $table->json("month_words")->nullable()->comment("各月の合計文字数");
+            $table->json("month_diaries")->nullable()->comment("各月の合計日記数");
+            $table->json("year_words")->nullable()->comment("各年の合計文字数");
+            $table->json("year_diaries")->nullable()->comment("各年の合計日記数");
+            $table->unsignedBigInteger("total_words")->nullable()->comment("トータル文字数");
+            $table->unsignedBigInteger("total_diaries")->nullable()->comment("トータル日記数");
+            $table->json("month_noun_asc")->nullable()->comment("各月の名詞トップ50");
+            $table->json("year_noun_asc")->nullable()->comment("各年の名詞トップ50");
+            $table->json("total_noun_asc")->nullable()->comment("トータルの名詞トップ50");
+            $table->json("month_adjective_asc")->nullable()->comment("各月の形容詞トップ50");
+            $table->json("year_adjective_asc")->nullable()->comment("各年の形容詞トップ50");
+            $table->json("total_adjective_asc")->nullable()->comment("トータルの形容詞トップ50");
+            $table->json("diary_grass")->nullable()->comment("日記投稿頻度閲覧用");
+
+            $table->integer("progress")->nullable()->comment("生成状況(生成まで時間かかるので)");
+            $table->double("ave_emotions")->nullable()->comment("感情数値化の平均値？");
+            $table->json("classifications")->nullable()->comment("推定分類(top10)");
+            $table->json("special_people")->nullable()->comment("登場人物(top10)");
           
         
             $table->timestamps();

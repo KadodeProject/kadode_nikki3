@@ -15,13 +15,31 @@ class CreateDiariesTable extends Migration
     {
         Schema::create('diaries', function (Blueprint $table) {
             $table->id();
+            $table->uuid("uuid")->unique()->comment("uuid");
             $table->unsignedBigInteger("user_id")->comment("ユーザーID");
             $table->string("title")->nullable()->comment("タイトル");
             $table->text("content")->comment("本文");
-            $table->date("date")->comment("日付");
+            $table->date("date")->comment("日記の日付");
             // $table->integer("feel")->comment("気持ち"); 2021-9-4削除
-            $table->uuid("uuid")->unique()->comment("uuid");
         
+            //nlp演算系
+            $table->json("sentence")->nullable()->comment("一文ごとの位置(係り受けで使う)");
+            $table->json("chunk")->nullable()->comment("係り受け構造");
+            $table->json("token")->nullable()->comment("形態素分析された中身を格納 品詞(POS)、原形(lemma)などが存在");
+            $table->json("affiliation")->nullable()->comment("アノテーション");
+            $table->json("cause")->nullable()->comment("原因(nlp用)");
+            $table->json("effect")->nullable()->comment("結果(nlp用)");
+            
+            //nlp表示系
+            $table->unsignedBigInteger("char_length")->nullable()->comment("文字数");
+            $table->double("emotions")->nullable()->comment("感情数値化");
+            $table->double("flavor")->nullable()->comment("ユーザーの日記らしさ");
+            $table->json("classification")->nullable()->comment("推定分類");
+            $table->json("important_words")->nullable()->comment("重要そうな言葉(top3)");
+            $table->json("cause_effect_sentences")->nullable()->comment("原因と結果のjson");
+            $table->json("special_people")->nullable()->comment("登場人物");
+            $table->dateTime("updated_statistic_at")->nullable()->comment("統計更新日時");
+            
             $table->timestamps();
 
             //インデックスを作る
