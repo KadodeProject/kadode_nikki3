@@ -22,11 +22,9 @@ class CreateStatisticsTable extends Migration
             $table->json("year_diaries")->nullable()->comment("各年の合計日記数");
             $table->unsignedBigInteger("total_words")->nullable()->comment("トータル文字数");
             $table->unsignedBigInteger("total_diaries")->nullable()->comment("トータル日記数");
-            $table->json("month_noun_asc")->nullable()->comment("各月の名詞トップ50");
-            $table->json("year_noun_asc")->nullable()->comment("各年の名詞トップ50");
+
+
             $table->json("total_noun_asc")->nullable()->comment("トータルの名詞トップ50");
-            $table->json("month_adjective_asc")->nullable()->comment("各月の形容詞トップ50");
-            $table->json("year_adjective_asc")->nullable()->comment("各年の形容詞トップ50");
             $table->json("total_adjective_asc")->nullable()->comment("トータルの形容詞トップ50");
             $table->json("diary_grass")->nullable()->comment("日記投稿頻度閲覧用");
 
