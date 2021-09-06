@@ -98,7 +98,7 @@ def set_statistics_json(user_id, column_name, value):
     conn.close()
 
 
-def set_statistic_progress_100(user_id, table_name):
+def set_statistic_progress(user_id, table_name,value):
            # 接続する
     conn = MySQLdb.connect(
     user=loadEnv.DB_USERNAME,
@@ -112,7 +112,8 @@ def set_statistic_progress_100(user_id, table_name):
     cur= conn.cursor()
     # クエリを実行する
     cur.execute(
-            'UPDATE %s SET statistic_progress = 100 where user_id = %s;',(table_name,user_id))
+            'UPDATE {0} SET statistic_progress = %s where user_id = %s;'.format(table_name),(str(value),str(user_id))
+            )
 
 
     # 保存する

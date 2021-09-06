@@ -34,6 +34,7 @@ class updateStatisticsController extends Controller
             // \Log::debug("calculateDiary[month_diaries]");
             // \Log::debug($calculateDiary['month_diaries']);
             $data=[
+                'statistic_progress'=>0,//再生成なので、一旦0にする必要がある！！！
                 "user_id"=>$userId,
                 //文字数と日記数
                 "total_words"=>$calculateDiary["total_words"],

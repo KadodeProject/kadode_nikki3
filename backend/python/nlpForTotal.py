@@ -11,8 +11,12 @@ if __name__ == "__main__":
     """
     from_php = sys.argv#php側の引数
     user_id=from_php[1]
+    # user_id=1
 
 
+
+    #進行度を10%に
+    db.set_statistic_progress(user_id,"statistics",10)
     # # データ取得
     # rows=db.get_all_diaries_from_user(user_id)
     
@@ -28,5 +32,5 @@ if __name__ == "__main__":
 
 
     #完了を送る
-    db.set_statistic_progress_100(user_id,"statistics")
+    db.set_statistic_progress(user_id,"statistics",100)
     print("終了")

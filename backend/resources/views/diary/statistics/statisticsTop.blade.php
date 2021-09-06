@@ -73,6 +73,12 @@
       </div>
     </div>
   </div>
+  @elseif($statistics->statistic_progress>=1)
+  <h3 class="my-4 text-2xl text-center kiwi-maru">自然言語処理の進行度</h3>
+  <p class="text-center">※ページをリロードすると更新されます</p>
+    <div class="chartWrapper_small">
+      <canvas id="chartNlpAnalyzing" width="400px" height="400px"></canvas>
+  </div>
   @endif
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.3.2/chart.min.js"></script>
@@ -331,6 +337,42 @@ options: {
 
 
   </script>
+@elseif($statistics->statistic_progress>=1)
+
+<!--進行中のときの動作-->
+<script>
+  
+const chartNlpAnalyzing_id = document.getElementById('chartNlpAnalyzing');
+      var chartNlpAnalyzing = new Chart(chartNlpAnalyzing_id, {
+          type: 'pie',
+          data: {
+    labels: ['分析済み','未分析'],
+
+    datasets: [
+      {
+        label: 'NLP進行度',
+        data:  [{{$statistics->statistic_progress}},{{100-$statistics->statistic_progress}}],
+        backgroundColor: ['#4B8996', '#8A8772'],
+        borderColor: "rgba(75,137,150,0)",
+        weight: 100,
+
+      },
+    ],
+  },
+options: {
+  // responsive: true,
+  plugins: {
+    autocolors: false,
+   
+    title: {
+      display: false,
+    },
+    
+  }
+},
+});
+
+</script>
 @endif
 </div>
 @endempty
