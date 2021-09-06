@@ -11,6 +11,18 @@
     
 
 @include('components.noLogIn.releaseNote',
+['title'=>'【統計】自然言語処理進行状況のグラフ化',
+'date'=>'2021年9月7日',
+'genre'=>'Feat',
+'explain'=>'今後の自然言語処理関連の実装に備えて、どれくらい現段階で処理が進んでいるかを表示するグラフを描画するようにしました。
+'])
+@include('components.noLogIn.releaseNote',
+['title'=>'【統計】名詞と形容詞の登場順をグラフ化',
+'date'=>'2021年9月6日',
+'genre'=>'Feat',
+'explain'=>'形態素解析を用いて、日記全体に含まれる単語をカウントし、名詞と形容詞をグラフ化しました。
+'])
+@include('components.noLogIn.releaseNote',
 ['title'=>'「気持ち」機能削除',
 'date'=>'2021年9月4日',
 'genre'=>'Remove',
