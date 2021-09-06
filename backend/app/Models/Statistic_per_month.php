@@ -9,6 +9,10 @@ class Statistic_per_month extends Model
 {
     use HasFactory;
     protected $fillable = [
-        "user_id","year","month","ave_emotions","word_counts","noun_rank","adjective_rank","important_words","special_people","classifications","created_at","updated_at"
+        "statistic_progress","user_id","year","month","ave_emotions","word_counts","noun_rank","adjective_rank","important_words","special_people","classifications","created_at","updated_at"
+    ];
+    // 初期値設定(statistic_progressを0にする)
+    protected $attributes = [
+        "statistic_progress" =>0,
     ];
 }

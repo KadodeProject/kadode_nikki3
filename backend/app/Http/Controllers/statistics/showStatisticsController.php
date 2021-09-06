@@ -22,6 +22,19 @@ class showStatisticsController extends Controller
     {
         $statistic=Statistic::where("user_id",Auth::id())->first();
         if(!empty($statistic)){
+            /**
+             * 自然言語処理の部はstatistic_progressが100になってから表示する
+             */
+            if($statistic->statistic_progress==100){
+            /**
+             * 名詞と形容詞の登場順
+             */
+            //jsonを配列に戻し、連想配列を配列にする
+
+            $statistic->total_noun_asc=array_values(json_decode($statistic->total_noun_asc,true));
+            $statistic->total_adjective_asc=array_values(json_decode($statistic->total_adjective_asc,true));
+            }
+            
         /**
          * 月ごとの1日記あたりの平均文字数算出
          */
@@ -84,6 +97,9 @@ class showStatisticsController extends Controller
         // month_noun_asc
         // year_adjective_asc
         // month_adjective_asc
+
+
+
 
 
     }else{
