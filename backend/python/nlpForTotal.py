@@ -9,9 +9,9 @@ if __name__ == "__main__":
     [id,タイトル,本文,日付]
     [0 ,1     ,2     ,3    ]
     """
-    # from_php = sys.argv#php側の引数
-    # user_id=from_php[1]
-    user_id=1
+    from_php = sys.argv#php側の引数
+    user_id=from_php[1]
+
 
     # # データ取得
     # rows=db.get_all_diaries_from_user(user_id)
@@ -26,4 +26,7 @@ if __name__ == "__main__":
     db.set_statistics_json(user_id,"total_noun_asc",total_noun_asc)   
     db.set_statistics_json(user_id,"total_adjective_asc",total_adjective_asc)   
 
+
+    #完了を送る
+    db.set_statistic_progress_100(user_id,"statistics")
     print("終了")

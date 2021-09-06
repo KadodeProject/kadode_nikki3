@@ -97,6 +97,35 @@ def set_statistics_json(user_id, column_name, value):
     # 接続を閉じる
     conn.close()
 
+
+def set_statistic_progress_100(user_id, table_name):
+           # 接続する
+    conn = MySQLdb.connect(
+    user=loadEnv.DB_USERNAME,
+    passwd=loadEnv.DB_PASSWORD,
+    host=loadEnv.DB_HOST,
+    db=loadEnv.DB_DATABASE,
+    charset="utf8"
+    )
+
+    # カーソルを取得する
+    cur= conn.cursor()
+    # クエリを実行する
+    cur.execute(
+            'UPDATE %s SET statistic_progress = 100 where user_id = %s;',(table_name,user_id))
+
+
+    # 保存する
+    conn.commit()
+
+    
+    # カーソルを閉じる
+    cur.close()
+
+    # 接続を閉じる
+    conn.close()
+
+
 if __name__=="__main__":
 
     rows=get_all_diaries_from_user("3")

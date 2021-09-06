@@ -57,7 +57,8 @@
   <div class="chartWrapper">
       <canvas id="chartWritingRatePerMonth" width="400px" height="400px"></canvas>
   </div>
-  @isset($statistics->total_adjective_asc)
+  <!-- ここより自然言語処理の部 -->
+  @if($statistics->statistic_progress==100)
   <div class="flex justify-center flex-wrap ">
     <div class="md:w-1/2">
       <h3 class="my-4 text-2xl text-center kiwi-maru">全日記の中でよく使われる名詞Top50</h3>
@@ -72,7 +73,7 @@
       </div>
     </div>
   </div>
-  @endisset
+  @endif
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.3.2/chart.min.js"></script>
 {{-- 補助線引くためのプラグイン↓ --}}
@@ -212,7 +213,8 @@ options: {
 });
 </script>
 
-@isset($statistics->total_adjective_asc)
+<!--ここより自然言語処理の部 -->
+@if($statistics->statistic_progress==100)
 <script>
   //ここからNLP周り
 // 名詞登場順
@@ -329,7 +331,7 @@ options: {
 
 
   </script>
-@endisset
+@endif
 </div>
 @endempty
 <div>

@@ -19,7 +19,6 @@ class makeStatisticsController extends Controller
         $calculateDiary=calculateDiary::calculateDiary($diaries);
 
 
-
         $data=[
             "user_id"=>Auth::id(),
             "total_words"=>$calculateDiary["total_words"],
@@ -36,7 +35,6 @@ class makeStatisticsController extends Controller
         $userId=Auth::id();
         $dt=new Carbon();
         $data=[
-            "statistic_progress"=>0,
             "user_id"=>$userId,
             "total_words"=>$calculateDiary["total_words"],
             "total_diaries"=>$calculateDiary["total_diaries"],
@@ -57,7 +55,7 @@ class makeStatisticsController extends Controller
          * ここからPython
          */
     
-        throwPython::throwPython("nlpForTotal",$userId,true,true);
+        throwPython::throwPython("nlpForTotal",$userId,false,true);
 
         return redirect("statistics");
     }

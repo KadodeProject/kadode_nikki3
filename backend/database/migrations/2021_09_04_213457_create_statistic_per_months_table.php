@@ -16,6 +16,7 @@ class CreateStatisticPerMonthsTable extends Migration
         Schema::create('statistic_per_months', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger("user_id")->comment("ユーザーID");
+            $table->integer("statistic_progress")->nullable()->comment("生成状況(生成まで時間かかるので)");
             $table->integer("year")->comment("年");
             $table->integer("month")->comment("月");
             $table->double("ave_emotions")->nullable()->comment("感情数値化の平均値？");
