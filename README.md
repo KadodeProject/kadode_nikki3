@@ -80,7 +80,7 @@ Figma に記載(非公開)
 
 ## ライセンス
 
-かどで日記ライセンス: [LICENSE](.LICENSE)
+かどで日記ライセンス: [LICENSE](./LICENSE.md)
 
 使用しているソフトウェアのライセンス周り: [usedLicense.md](./docs/99_usedLicense.md)
 

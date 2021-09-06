@@ -8,9 +8,6 @@ namespace App\CustomFunction;
 
 class throwPython
 {
-    public function access_py($py_file_name,$user_id,$error_check=false){
-  
-    }
     public static function throwPython($py_file_name,$user_id,$error_check=false,$debug=false){
         if($error_check==true){
             //2>&1でエラーメッセージ出せる
@@ -20,7 +17,7 @@ class throwPython
         }
   
 
-        $path = "export LANG=ja_JP.UTF-8;python3"." ".env('PYTHON_FOLDER_DIR')."/". $py_file_name.".py". " ".$user_id." ".$error_check;
+        $path = "export LANG=ja_JP.UTF-8;python3"." ".env('PYTHON_FOLDER_DIR')."/". $py_file_name.".py". " ".$user_id." > /dev/null &";
         $output=null;
         exec($path, $output);//python実行
 

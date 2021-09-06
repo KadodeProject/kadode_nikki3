@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\statistics;
 
 use App\CustomFunction\calculateDiary;
+use App\CustomFunction\throwPython;
 use App\Http\Controllers\Controller;
 use App\Models\Diary;
 use App\Models\Statistic;
@@ -16,7 +17,6 @@ class makeStatisticsController extends Controller
     {
         $diaries=Diary::orderby("date","asc")->get();
         $calculateDiary=calculateDiary::calculateDiary($diaries);
-
 
 
         $data=[
@@ -49,6 +49,13 @@ class makeStatisticsController extends Controller
         ];
 
         Statistic::where("user_id",$userId)->update($data);
+
+
+        /**
+         * ここからPython
+         */
+    
+        throwPython::throwPython("nlpForTotal",$userId,false,true);
 
         return redirect("statistics");
     }

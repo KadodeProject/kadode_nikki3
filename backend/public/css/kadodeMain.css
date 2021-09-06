@@ -307,6 +307,20 @@ li ol {
     width: 600px;
     height: 600px;
 }
+.chartWrapper_small {
+    margin: 0 auto;
+    padding: 2em;
+    /* overflow-x: scroll; */
+    width: 300px;
+    height: 300px;
+}
+
+.chartWrapper_nlp_long {
+    margin: 0 auto;
+    /* overflow-x: scroll; */
+    width: 600px;
+    height: 1800px;
+}
 
 @media screen and (max-width: 640px) {
     /* スマホの時 */
@@ -320,6 +334,9 @@ li ol {
     .chartWrapper {
         width: 90vw;
         height: 90vw;
+    }
+    .chartWrapper_nlp_long {
+        width: 90vw;
     }
 }
 

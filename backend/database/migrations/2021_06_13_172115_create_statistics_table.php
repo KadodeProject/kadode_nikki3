@@ -16,6 +16,7 @@ class CreateStatisticsTable extends Migration
         Schema::create('statistics', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger("user_id")->comment("ユーザーID");
+            $table->integer("statistic_progress")->nullable()->comment("生成状況(生成まで時間かかるので)");
             $table->json("month_words")->nullable()->comment("各月の合計文字数");
             $table->json("month_diaries")->nullable()->comment("各月の合計日記数");
             $table->json("year_words")->nullable()->comment("各年の合計文字数");
@@ -28,7 +29,6 @@ class CreateStatisticsTable extends Migration
             $table->json("total_adjective_asc")->nullable()->comment("トータルの形容詞トップ50");
             $table->json("diary_grass")->nullable()->comment("日記投稿頻度閲覧用");
 
-            $table->integer("progress")->nullable()->comment("生成状況(生成まで時間かかるので)");
             $table->double("ave_emotions")->nullable()->comment("感情数値化の平均値？");
             $table->json("classifications")->nullable()->comment("推定分類(top10)");
             $table->json("special_people")->nullable()->comment("登場人物(top10)");
