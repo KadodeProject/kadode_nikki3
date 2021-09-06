@@ -61,14 +61,14 @@
   <div class="flex justify-center flex-wrap ">
     <div class="md:w-1/2">
       <h3 class="my-4 text-2xl text-center kiwi-maru">全日記の中でよく使われる名詞Top50</h3>
-      <div class="chartWrapper">
-        <canvas id="chartTotalNounAsc" width="400px" height="400px"></canvas>
+      <div class="chartWrapper_nlp_long">
+        <canvas id="chartTotalNounAsc" width="400px" height="1200px"></canvas>
       </div>
     </div>
     <div class="md:w-1/2">
       <h3 class="my-4 text-2xl text-center kiwi-maru">全日記の中でよく使われる形容詞Top50</h3>
-      <div class="chartWrapper">
-        <canvas id="chartTotalAdjectiveAsc" width="400px" height="400px"></canvas>
+      <div class="chartWrapper_nlp_long"  >
+        <canvas id="chartTotalAdjectiveAsc" width="400px" height="1200px"></canvas>
       </div>
     </div>
   </div>
@@ -118,6 +118,7 @@
           legend: {
             display:false
           },
+      
           
         }
       },
@@ -140,12 +141,15 @@
         {{$monthWritingRate}},
         @endforeach],
         borderColor: "rgba(75,137,150,1)",
-        backgroundColor: "rgba(0,0,0,0)"
+        backgroundColor: "rgba(0,0,0,0)",
+        hoverBackgroundColor:"rgba(75,137,150,0.9)",
       },
     ],
   },
 options: {
   indexAxis: 'y',
+  categoryPercentage: 1.0,
+  barPercentage: 1.0,
   // scales: {
   //             yAxes : [{
   //               id:"RateYZiku",
@@ -161,7 +165,7 @@ options: {
   
   elements: {
     bar: {
-      borderWidth: 2,
+      borderWidth: 1,
     }
   },
   responsive: true,
@@ -214,60 +218,63 @@ options: {
 // 名詞登場順
 
        const chartTotalNounAsc_id = document.getElementById('chartTotalNounAsc');
-      var chartTotalNounAsc = new Chart(chartTotalNounAsc_id, {
+        var chartTotalNounAsc = new Chart(chartTotalNounAsc_id, {
           type: 'bar',
           data: {
-    labels: [
-      @foreach( $statistics->total_noun_asc as $noun)
-        "{{$noun['word']}}",
-        @endforeach],
+            labels: [
+              @foreach( $statistics->total_noun_asc as $noun)
+                "{{$noun['word']}}",
+                @endforeach],
+                yAxisID: 'meisi_name',
 
-    datasets: [
-      {
-        label: '名詞登場順',
-        data:  [
-        @foreach( $statistics->total_noun_asc as $noun)
-        {{$noun['count']}},
-        @endforeach],
-        borderColor: "rgba(75,137,150,1)",
-        backgroundColor: "rgba(0,0,0,0)"
-      },
-    ],
-  },
-options: {
-  indexAxis: 'y',
-  // scales: {
-  //             yAxes : [{
-  //               id:"RateYZiku",
-  //                 ticks : {
-  //                     max : 100,    
-  //                     min : 0,
-  //                 }
-  //             }],
-  //             xAxes : [{
-  //               id:"RateXZiku",
-  //             }]
-  //         },
-  
-  elements: {
-    bar: {
-      borderWidth: 2,
-    }
-  },
-  responsive: true,
-  plugins: {
-    autocolors: false,
-    legend: {
-      display:false
-    },
-    title: {
-      display: false,
-      text: '名詞登場順'
-    },
-    
-  }
-},
-});
+            datasets: [
+              {
+                xAxisID: 'meisi_count',
+                label: '名詞登場順',
+                data:  [
+                @foreach( $statistics->total_noun_asc as $noun)
+                {{$noun['count']}},
+                @endforeach],
+                borderColor: "rgba(75,137,150,1)",
+                backgroundColor:  "rgba(75,137,150,0)",
+                hoverBackgroundColor:"rgba(75,137,150,0.9)",
+              },
+            ],
+          },
+          options: {
+            
+            indexAxis: 'y',
+            categoryPercentage: 1.0,
+            barPercentage: 1.0,
+            scales: {
+         
+              // 'meisi_name':[{
+              //   categoryPercentage: 1.0,
+              //   barPercentage: 1.0
+              // }]
+            },
+            elements: {
+              bar: {
+                borderWidth: 1,
+              }
+            },
+            responsive: true,
+            plugins: {
+              autocolors: false,
+              legend: {
+                display:false
+              },
+              title: {
+                display: false,
+              },
+              decimation:{
+                enabled: false,
+              },
+              
+            }
+          },
+        });
+
 
 const chartTotalAdjectiveAsc_id = document.getElementById('chartTotalAdjectiveAsc');
       var chartTotalAdjectiveAsc = new Chart(chartTotalAdjectiveAsc_id, {
@@ -280,37 +287,33 @@ const chartTotalAdjectiveAsc_id = document.getElementById('chartTotalAdjectiveAs
 
     datasets: [
       {
+        fill: true,
         label: '形容詞登場順',
         data:  [
         @foreach( $statistics->total_adjective_asc as $noun)
         {{$noun['count']}},
         @endforeach],
         borderColor: "rgba(75,137,150,1)",
-        backgroundColor: "rgba(0,0,0,0)"
+        backgroundColor:  "rgba(75,137,150,0)",
+        hoverBackgroundColor:"rgba(75,137,150,0.9)",
+
       },
     ],
   },
 options: {
-  indexAxis: 'y',
-  // scales: {
-  //             yAxes : [{
-  //               id:"RateYZiku",
-  //                 ticks : {
-  //                     max : 100,    
-  //                     min : 0,
-  //                 }
-  //             }],
-  //             xAxes : [{
-  //               id:"RateXZiku",
-  //             }]
-  //         },
+  indexAxis: 'y',//	Y軸に対してX軸が変動量となるグラフを描画する
+  categoryPercentage: 1.0,
+  barPercentage: 1.0,
+  scales: {
+      
+            },
   
   elements: {
     bar: {
-      borderWidth: 2,
+      borderWidth: 1,
     }
   },
-  responsive: true,
+  // responsive: true,
   plugins: {
     autocolors: false,
     legend: {
@@ -318,7 +321,6 @@ options: {
     },
     title: {
       display: false,
-      text: '形容詞登場順'
     },
     
   }

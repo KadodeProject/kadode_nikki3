@@ -308,6 +308,13 @@ li ol {
     height: 600px;
 }
 
+.chartWrapper_nlp_long {
+    margin: 0 auto;
+    /* overflow-x: scroll; */
+    width: 600px;
+    height: 1800px;
+}
+
 @media screen and (max-width: 640px) {
     /* スマホの時 */
     .diary-main > div {
@@ -320,6 +327,9 @@ li ol {
     .chartWrapper {
         width: 90vw;
         height: 90vw;
+    }
+    .chartWrapper_nlp_long {
+        width: 90vw;
     }
 }
 

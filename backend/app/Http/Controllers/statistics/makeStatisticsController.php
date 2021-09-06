@@ -36,6 +36,7 @@ class makeStatisticsController extends Controller
         $userId=Auth::id();
         $dt=new Carbon();
         $data=[
+            "statistic_progress"=>0,
             "user_id"=>$userId,
             "total_words"=>$calculateDiary["total_words"],
             "total_diaries"=>$calculateDiary["total_diaries"],
