@@ -40,6 +40,12 @@
 'date'=>'2021年6月14日',
 'explain'=>'かどで日記を一般公開しました。
 '])
+@include('components.noLogIn.news',
+['title'=>'かどで日記公開',
+'date'=>'2021年6月14日',
+'explain'=>'かどで日記を一般公開しました。
+'])
+
 
 </div>
       

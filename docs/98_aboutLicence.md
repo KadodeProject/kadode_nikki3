@@ -1,4 +1,4 @@
-# ライセンスについて
+# ライセンスについての思考
 
 https://www.monster-dive.com/blog/contents_planning/20140427_000151.php
 

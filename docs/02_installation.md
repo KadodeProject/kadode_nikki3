@@ -1,6 +1,7 @@
 # 参考
 
 https://qiita.com/ucan-lab/items/56c9dc3cf2e6762672f4
+
 コチラを参考に作成していますが、mysqlclient 入れたり、python 入れたりかなり変更加わってます。
 
 # 最初

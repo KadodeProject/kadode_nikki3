@@ -13,19 +13,19 @@
 @include('components.noLogIn.releaseNote',
 ['title'=>'【統計】自然言語処理進行状況のグラフ化',
 'date'=>'2021年9月7日',
-'genre'=>'Feat',
+'genre'=>'Feature',
 'explain'=>'今後の自然言語処理関連の実装に備えて、どれくらい現段階で処理が進んでいるかを表示するグラフを描画するようにしました。
 '])
 @include('components.noLogIn.releaseNote',
 ['title'=>'【統計】名詞と形容詞の登場順をグラフ化',
 'date'=>'2021年9月6日',
-'genre'=>'Feat',
+'genre'=>'Feature',
 'explain'=>'形態素解析を用いて、日記全体に含まれる単語をカウントし、名詞と形容詞をグラフ化しました。
 '])
 @include('components.noLogIn.releaseNote',
 ['title'=>'「気持ち」機能削除',
 'date'=>'2021年9月4日',
-'genre'=>'Remove',
+'genre'=>'Fix',
 'explain'=>'形態素解析導入に伴い、各日記で手動で設定できた十段階の「気持ち」機能を削除しました。
 '])
 @include('components.noLogIn.releaseNote',
@@ -69,6 +69,18 @@
 'date'=>'2021年6月4日',
 'genre'=>'Feature',
 'explain'=>'かどで日記形式のCSVファイルを出力できます。
+'])
+@include('components.noLogIn.releaseNote',
+['title'=>'かどで日記3開発開始',
+'date'=>'2021年5月30日',
+'genre'=>'Feature',
+'explain'=>'現行版となる、かどで日記3の初期リポジトリでのinitial commit日。
+'])
+@include('components.noLogIn.releaseNote',
+['title'=>'かどで日記開発開始',
+'date'=>'2020年12月31日',
+'genre'=>'Feature',
+'explain'=>'かどで日記の初期リポジトリでのinitial commit日。
 '])
 
 </div>
