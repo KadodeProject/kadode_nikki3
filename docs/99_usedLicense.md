@@ -20,7 +20,21 @@ https://github.com/mocobeta/janome/blob/master/LICENSE.txt
 
 https://mocobeta.github.io/janome/
 
-##
+## トップページの動く図形
+
+Copyright (c) June 1, 2015 Tuomas Pöyry
+
+Released under the MIT license
+
+http://opensource.org/licenses/mit-license.php
+
+## ヘッダーの日記検索のアニメーション
+
+Copyright (c) August 14, 2015 Charlyn G
+
+Released under the MIT license
+
+http://opensource.org/licenses/mit-license.php
 
 ## かどで日記本体
 
