@@ -12,6 +12,7 @@
            <p class="">かどで日記はweb上で日記を作成、管理できるサービスです。日記の検索機能だけでなく、形態素解析などを用いた統計機能の実装も準備中です。</p>
        </div>
    </div>
+   <div></div>
 
     <!--
     Copyright (c) June 1, 2015 Tuomas Pöyry
@@ -25,14 +26,20 @@
            <p class="">人は忘れてしまいます。でも記録は残ります。10世紀に書かれた土佐日記も私達へ受け継がれています。かどで日記の「かどで」は土佐日記に登場する最初の章？「門出」より引用しました。一方で、ページデザインはちょっとSFチックな色を選びました。近未来っぽさと古代っぽさを掛け合わせたコンセプトです。</p>
        </div>
    </div>
+   <div class="flex">
+       <div class="md:w-full w-1/2">
+        がぞう
+       </div>
+       <div class="md:w-full w-1/2">
+        <p class="text-3xl">日記作成</p>
+       </div>
+   </div>
    <div class="w-full h-80 flex items-center justify-center">
-<div>
-
-    <span class="kaihatusya material-icons text-main-color text-xl">
-        face
-        
-    </span>
-</div>
+        <div>
+            <span class="kaihatusya material-icons text-main-color text-xl">
+                face
+            </span>
+        </div>
    </div>
    <div class="mb-24">
        <h2 class="text-center text-3xl my-4 kiwi-maru">開発者より</h2>

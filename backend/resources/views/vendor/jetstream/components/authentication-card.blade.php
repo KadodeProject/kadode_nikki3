@@ -23,7 +23,7 @@
         color:#f9fff9!important;
     }
 </style>
-<div class="min-h-screen flex flex-col sm:justify-center items-center pt-6 sm:pt-0 " style="background-color:#2F3437">
+<div class="min-h-screen flex flex-col sm:justify-center items-center pt-6 sm:pt-0 " >
     <div class="bg-white rounded-full p-4">
         {{ $logo }}
     </div>

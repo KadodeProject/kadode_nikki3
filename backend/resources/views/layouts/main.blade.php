@@ -32,41 +32,42 @@
         }
         @if(Request::is('home'))
         .header-links p:nth-of-type(1){
-            border-bottom:2px solid var(--button-main-color);
+            color: var(--button-main-color);
         }
         @elseif(Request::is('edit'))
         .header-links p:nth-of-type(2){
-            border-bottom:2px solid var(--button-main-color);
+            color: var(--button-main-color);
         }
         @elseif(Request::is('diary/*'))
         .header-links p:nth-of-type(3){
-            border-bottom:2px solid var(--button-main-color);
+            color: var(--button-main-color);
         }
         @elseif(Request::is('search'))
         .header-links p:nth-of-type(4){
-            border-bottom:2px solid var(--button-main-color);
+            color: var(--button-main-color);
         }
-        @elseif(Request::is('statistics/*'))
+        @elseif(Request::is('statistics'))
         .header-links p:nth-of-type(5){
-            border-bottom:2px solid var(--button-main-color);
+            color: var(--button-main-color);
         }
         @elseif(Request::is('settings'))
         .header-links p:nth-of-type(6){
-            border-bottom:2px solid var(--button-main-color);
+            color: var(--button-main-color);
         }
         @endif
 
     </style>
 
     @section('header')
-    <header class="px-4 relative w-screen flex justify-between ">
-        <div class="flex justify-center items-center" style="height:var(--header-height)">
-            <a href="{{url("/home")}}"><img style="object-fit:contain;width:auto;height:64px"src="/img/kadode_logo.png"></a>
-            <div class="sm:flex hidden ml-4   flex-col flex-wrap justify-center items-center">
+    <header class="px-4 relative w-screen flex justify-between " style="box-shadow: 0px 8px 8px -5px rgba(0,0,0,0.5);">
+        <div class="flex justify-center items-center" style="height:var(--header-height);filter:drop-shadow(0px 8px 8px -5px rgba(0,0,0,0.5));">
+            <a href="{{url("/home")}}"><img class="logo-header" src="/img/kadode_logo.png"></a>
+            <p class="ml-4 md:block hidden kiwi-maru">Public<br>Beta</p>
+            <!-- <div class="sm:flex hidden ml-4   flex-col flex-wrap justify-center items-center">
                 <p id="headerYear">年</p>
                 <p class="text-xl"id="headerMonthDate">月日</p>
                 <p id="headerTime">時刻</p>
-            </div>
+            </div> -->
         </div>
 
         <div class="sm:flex hidden  justify-between items-end header-links h-full" style="height:var(--header-height)">
@@ -94,7 +95,7 @@
                         <label id="moveLabelJs"class="move-label text-main-color text-sm" for="keywordLabel">日記検索</label>
                         <input id="keywordLabel" autocomplete="off"class="search-keyword" type="search" name="keyword" placeholder="キーワード(2~20字)">
                     </div>
-                    <input type="submit" value="検索">
+                    <input type="submit" style="border-radius: 0px" value="検索">
                     
                 </form>
             </div>

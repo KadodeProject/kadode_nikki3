@@ -11,6 +11,10 @@ body {
     --logo-main-color: #624464;
     --button-main-color: #4b8996;
     --border-main-color: #8a8772;
+    /* カラー定義その2 */
+    --status-poor: #e2534a;
+    --status-good: #339c76;
+    --status-excellent: #33769c;
     /* ヘッダー高さ */
     --header-height: 73px;
     /* メディアクエリ */
@@ -38,6 +42,26 @@ body {
 .border-main-color {
     color: var(--border-main-color);
 }
+
+.bg-status-poor {
+    background-color: var(--status-poor) !important;
+}
+.text-status-poor {
+    color: var(--status-poor);
+}
+.bg-status-good {
+    background-color: var(--status-good);
+}
+.text-status-good {
+    color: var(--status-good);
+}
+.bg-status-excellent {
+    background-color: var(--status-excellent);
+}
+.text-status-excellent {
+    color: var(--status-excellent);
+}
+
 .copyright {
     color: var(--logo-main-color);
 }
@@ -62,6 +86,29 @@ ol {
 .kiwi-maru {
     font-family: "Kiwi Maru", serif;
 }
+input[type="file"] {
+    position: relative;
+    margin: 8px 0 0 -14px;
+}
+input[type="file"]:focus {
+    outline: none;
+}
+input[type="file"]::before {
+    content: "添付ファイル：";
+    position: absolute;
+    background: var(--bg-main-color);
+    width: 130px;
+    height: 32px;
+    line-height: 1.8;
+    text-align: right;
+}
+.file-input-wrapper {
+    font-size: 16px;
+    border: 1px solid var(--button-main-color);
+    border-radius: 4px;
+    padding: 0.5em;
+    margin: 0.5em auto;
+}
 textarea {
     resize: none;
     width: 300px;
@@ -77,6 +124,8 @@ input[type="submit"] {
     background-color: var(--button-main-color);
     color: var(--text-main-color);
     cursor: pointer;
+    border-radius: 4px;
+    padding: 0.25em 0.5em;
 }
 input[type="text"] {
     background-color: var(--bg-main-color);
@@ -114,6 +163,12 @@ p a:hover {
 }
 li ol {
     margin-left: 1em;
+}
+.logo-header {
+    object-fit: contain;
+    width: auto;
+    height: 64px;
+    filter: drop-shadow(5px 5px 5px black);
 }
 .kadode-normal-button {
     background-color: var(--button-main-color);
@@ -266,13 +321,16 @@ li ol {
 ここまで 
 スクロールバー
 */
-
+main {
+    max-width: 1600px;
+    margin: 0 auto;
+    min-height: 100vh;
+}
 .setting {
-    border: 1px solid var(--button-main-color);
+    /* border: 1px solid var(--button-main-color); */
     border-radius: 12px;
-    margin: 2em;
+    margin: 1em;
     padding: 1em;
-    text-align: center;
 }
 .settingContentWrapper {
     padding: 1em;
@@ -280,8 +338,7 @@ li ol {
 
 .settingContent {
     color: white;
-    background-color: black;
-    margin: 2em 0;
+
     padding: 1em;
     /* overflow: hidden; */
 }
@@ -370,4 +427,17 @@ li ol {
             var(--clr-border) 85%,
             transparent 85%
         );
+}
+
+/* ログインの背景 */
+
+/* 統計関係 */
+.statistic-content {
+    margin: 2em auto;
+    margin-bottom: 60px;
+}
+@media screen and (max-width: 640px) {
+    .statistic-content {
+        margin: 2em 1em;
+    }
 }

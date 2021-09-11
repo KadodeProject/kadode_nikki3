@@ -23,10 +23,10 @@
     <input type="date"class="text-xl mx-auto mb-4" name="date" value="{{$original_date}}">
 
     <input  type="hidden" value="{{$original_uuid}}" name="uuid">
-    <input  placeholder="タイトル(50字以内)"style="height:32px" class="mx-auto w-2/3 " type="text" name="title"  value="{{$original_title}}">
+    <input  placeholder="タイトル(50字以内)"style="height:32px" class="mx-auto w-2/3 " type="text" name="title" autocomplete="off" value="{{$original_title}}">
 
  
-    <textarea  placeholder="本文(20000字以内)"class="sm:p-4 w-full diary-content-edit" type="text" name="content" >{{$original_content}}</textarea>
+    <textarea  placeholder="本文(20000字以内)"class="sm:p-4 w-full diary-content-edit" type="text" name="content"  autocomplete="off"  id="diary-content">{{$original_content}}</textarea>
     
     <input style="height:2em"type="submit" value="日記を書き込む">
 </form>

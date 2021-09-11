@@ -6,383 +6,116 @@
 @parent
 @endsection
 @section('content')
-<div class="board-main" style="min-height: 100vh">
+<div class="board-main mb-12 mt-12">
 
 
 
-@empty($statistics)
-    <h2 class="text-center text-2xl">統計データはありません。</h2>
-
-    <div class="mt-12">
-        <div class="setting">
-            <h2 class="text-2xl">統計データ作成(α版)</h2>
-            <p class="text-xs">日記数が少ない場合は正しくデータを表示できないことがありますのでご了承ください。</p>
-            <form class="flex justify-center flex-wrap flex-col " method="POST"  action="/makeStatistics">
-                @csrf
-                <input type="submit" class="text-black" value="統計データを生成する">
-            </form>
-        </div>
-    </div>
+  @empty($statistics)
+  <div class="statistic-content">
     
-@else
-<div>
-  <div class="setting">
-      <h2 class="text-2xl">統計データ更新</h2>
-      <p class="text-xl ">※24時間以内に更新済みの場合、新たに生成はされません。</p>
-      <form class="flex justify-center flex-wrap flex-col " method="POST"  action="/updateStatistics">
+    @include('components.statisticHeading',['icon'=>'report_problem','title'=>'統計データはありません'])
+    <div class="mt-12">
+      <div class="setting">
+        <h2 class="text-2xl">統計データ作成(α版)</h2>
+        <p class="text-xs">日記数が少ない場合は正しくデータを表示できないことがありますのでご了承ください。</p>
+        <form class="flex justify-center flex-wrap flex-col " method="POST"  action="/makeStatistics">
+          @csrf
+          <input type="submit" class="text-black" value="統計データを生成する">
+        </form>
+      </div>
+    </div>
+  </div>
+    
+    @else
+    <!-- ここに置かないとコンポーネントでchar.js使えないので -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.3.2/chart.min.js"></script>
+  {{-- 補助線引くためのプラグイン↓ --}}
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/chartjs-plugin-annotation/1.0.2/chartjs-plugin-annotation.min.js" integrity="sha512-FuXN8O36qmtA+vRJyRoAxPcThh/1KJJp7WSRnjCpqA+13HYGrSWiyzrCHalCWi42L5qH1jt88lX5wy5JyFxhfQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+  <div>
+    <div class="statistic-content">
+        @include('components.statisticHeading',['icon'=>'update','title'=>'統計データ更新'])
+        <p class="text-xl text-center my-4">※24時間以内に更新済みの場合、新たに生成はされません。</p>
+        @if($statistics->statistic_progress>=1 && $statistics->statistic_progress<=99)
+          <h3 class=" ml-2 text-2xl kiwi-maru align-middle text-center"><span class="material-icons" style="margin-right:0.25em">hourglass_bottom</span>自然言語処理の進行度</h3>
+          @component('components.statistics.progressGraph')
+            @slot("statistic_progress")
+            {{$statistics->statistic_progress}}
+            @endslot
+            @slot("statistic_progress_remain")
+            {{100-($statistics->statistic_progress)}}
+            @endslot
+          @endcomponent
+        @else
+        <form class="flex justify-center flex-wrap flex-col " method="POST"  action="/updateStatistics">
           @csrf
           <input type="submit" class="text-black" value="統計データを更新する">
-      </form>
+        </form>
+        @endif
+        <p class="text-lg my-2 ml-4 text-center">前回データ更新日 : {{$statistics->updated_at}}</p>
+    </div>
   </div>
-</div>
+  <div class="statistic-content">
+    @include('components.statisticHeading',['icon'=>'info','title'=>'基本情報'])
+      <div class="md:ml-24 ml-4">
+        <p class="text-xl ml-4">総文字数 : {{$statistics->total_words}}字</p>
+        <p class="text-xl ml-4">総日記数 : {{$statistics->total_diaries}}日記</p>
+        <p class="text-xl ml-4">平均文字数 : {{$statistics->total_words/$statistics->total_diaries}}字</p>
+        <p class="text-xl ml-4">最古の日記 : {{$oldest_diary_date}}</p>
+      </div>
+  </div>
 
-<div class="flex justify-center">
+
+  <div class="statistic-content">
+    @include('components.statisticHeading',['icon'=>'bar_chart','title'=>'傾向'])
+    <div class="px-2">
+      <h3 class="my-4 text-2xl text-center kiwi-maru">月ごとの1日記あたりの平均文字数推移<span style="font-size:0.5em">(月の合計文字数÷日記数)</span></h3>
+        @component('components.statistics.numberOfCharactersGraph',["months"=>$statistics->months,"month_words_per_diaries"=>$statistics->month_words_per_diary])
+        @endcomponent
+
+      <h3 class="my-4 text-2xl text-center kiwi-maru">月ごとの日記執筆率</h3>
+        @component('components.statistics.writingRateGraph',["months"=>$statistics->months,"monthWritingRates"=>$statistics->monthWritingRate])
+        @endcomponent
+    </div>
+  </div>
+
+
+  <div class="statistic-content">
+    <!-- ここより自然言語処理の部 -->
+    @include('components.statisticHeading',['icon'=>'manage_search','title'=>'テキストマイニング'])
+    @if($statistics->statistic_progress==100)
+    <div class="flex justify-center flex-wrap ">
+      <div class="md:w-1/2">
+        <h3 class="my-4 text-2xl text-center kiwi-maru">全日記の中でよく使われる名詞Top50</h3>
+        @component('components.statistics.partOfSpeechGraph',["source"=>$statistics->total_noun_asc])
+          @slot("slug")
+          noun
+          @endslot
+          @slot("pof_name")
+          名詞
+          @endslot
+        @endcomponent
+      </div>
+      <div class="md:w-1/2">
+        <h3 class="my-4 text-2xl text-center kiwi-maru">全日記の中でよく使われる形容詞Top50</h3>
+        @component('components.statistics.partOfSpeechGraph',["source"=>$statistics->total_adjective_asc])
+        @slot("slug")
+        adjective
+        @endslot
+        @slot("pof_name")
+        形容詞
+        @endslot
+      @endcomponent
+      </div>
+    </div>
+    @elseif($statistics->statistic_progress>=1)
+    <p class="text-center my-12 text-3xl kiwi-maru align-middle"><span class="material-icons" style="margin-right:0.25em">hourglass_bottom</span>データ生成中<span class="material-icons" style="margin-left:0.25em">hourglass_bottom</span></p>
+    @else
+    <p class="text-center my-12 text-3xl">自然言語処理が機能していません</p>
+    @endif
+  </div>
+  @endempty
   <div>
-
-      <p class="text-xl ml-4">総文字数 : {{$statistics->total_words}}</p>
-      <p class="text-xl ml-4">総日記数 : {{$statistics->total_diaries}}</p>
-      <p class="text-xl ml-4">生成日 : {{$statistics->updated_at}}</p>
-  </div>
-</div>
-
-
-
-
-<div class="px-2">
-  <h3 class="my-4 text-2xl text-center kiwi-maru">月ごとの1日記あたりの平均文字数推移<span style="font-size:0.5em">(月の合計文字数÷日記数)</span></h3>
-  <div class="chartWrapper">
-      <canvas id="chartCharactersPerMonth" width="400px" height="400px"></canvas>
-  </div>
-  <h3 class="my-4 text-2xl text-center kiwi-maru">月ごとの日記執筆率</h3>
-  <div class="chartWrapper">
-      <canvas id="chartWritingRatePerMonth" width="400px" height="400px"></canvas>
-  </div>
-  <!-- ここより自然言語処理の部 -->
-  @if($statistics->statistic_progress==100)
-  <div class="flex justify-center flex-wrap ">
-    <div class="md:w-1/2">
-      <h3 class="my-4 text-2xl text-center kiwi-maru">全日記の中でよく使われる名詞Top50</h3>
-      <div class="chartWrapper_nlp_long">
-        <canvas id="chartTotalNounAsc" width="400px" height="1200px"></canvas>
-      </div>
-    </div>
-    <div class="md:w-1/2">
-      <h3 class="my-4 text-2xl text-center kiwi-maru">全日記の中でよく使われる形容詞Top50</h3>
-      <div class="chartWrapper_nlp_long"  >
-        <canvas id="chartTotalAdjectiveAsc" width="400px" height="1200px"></canvas>
-      </div>
-    </div>
-  </div>
-  @elseif($statistics->statistic_progress>=1)
-  <h3 class="my-4 text-2xl text-center kiwi-maru">自然言語処理の進行度</h3>
-  <p class="text-center">※ページをリロードすると更新されます</p>
-    <div class="chartWrapper_small">
-      <canvas id="chartNlpAnalyzing" width="400px" height="400px"></canvas>
-  </div>
-  @endif
-
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.3.2/chart.min.js"></script>
-{{-- 補助線引くためのプラグイン↓ --}}
-<script src="https://cdnjs.cloudflare.com/ajax/libs/chartjs-plugin-annotation/1.0.2/chartjs-plugin-annotation.min.js" integrity="sha512-FuXN8O36qmtA+vRJyRoAxPcThh/1KJJp7WSRnjCpqA+13HYGrSWiyzrCHalCWi42L5qH1jt88lX5wy5JyFxhfQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-  <script>
-      //月ごとの合計文字数
-      // 月ごとの1日記あたりの平均文字数
-      const chartCharactersPerMonth_id = document.getElementById('chartCharactersPerMonth');
-      var chartCharactersPerMonth = new Chart(chartCharactersPerMonth_id, {
-                type: 'line',
-      data: {
-          labels: [
-              @foreach( $statistics->months as $month)
-              "{{$month}}",
-              @endforeach],
-
-          datasets: [
-            {
-              label: '月ごとの平均文字数推移',
-              data:  [
-              @foreach( $statistics->month_words_per_diary as $month_words_per_diary)
-              {{$month_words_per_diary}},
-              @endforeach],
-              borderColor: "rgba(75,137,150,1)",
-              backgroundColor: "rgba(0,0,0,0)"
-            },
-          ],
-        },
-      options: {
-        // animation: {
-        //   onComplete: () => {
-        //     delayed = true;
-        //   },
-        //   delay: (context) => {
-        //     let delay = 0;
-        //     if (context.type === 'data' && context.mode === 'default' && !delayed) {
-        //       delay = context.dataIndex * 300 + context.datasetIndex * 100;
-        //     }
-        //     return delay;
-        //   }},
-        responsive: true,
-        plugins: {
-          legend: {
-            display:false
-          },
-      
-          
-        }
-      },
-      });
-      // 月ごとの日記執筆率
-      const chartWritingRatePerMonth_id = document.getElementById('chartWritingRatePerMonth');
-      var chartWritingRatePerMonth = new Chart(chartWritingRatePerMonth_id, {
-          type: 'bar',
-          data: {
-    labels: [
-        @foreach( $statistics->months as $month)
-        "{{$month}}",
-        @endforeach],
-
-    datasets: [
-      {
-        label: '月ごとの日記執筆率',
-        data:  [
-        @foreach( $statistics->monthWritingRate as $monthWritingRate)
-        {{$monthWritingRate}},
-        @endforeach],
-        borderColor: "rgba(75,137,150,1)",
-        backgroundColor: "rgba(0,0,0,0)",
-        hoverBackgroundColor:"rgba(75,137,150,0.9)",
-      },
-    ],
-  },
-options: {
-  indexAxis: 'y',
-  categoryPercentage: 1.0,
-  barPercentage: 1.0,
-  // scales: {
-  //             yAxes : [{
-  //               id:"RateYZiku",
-  //                 ticks : {
-  //                     max : 100,    
-  //                     min : 0,
-  //                 }
-  //             }],
-  //             xAxes : [{
-  //               id:"RateXZiku",
-  //             }]
-  //         },
-  
-  elements: {
-    bar: {
-      borderWidth: 1,
-    }
-  },
-  responsive: true,
-  plugins: {
-    autocolors: false,
-    legend: {
-      display:false
-    },
-    title: {
-      display: false,
-      text: '月ごとの日記執筆率'
-    },
-            // 補助線用ここから
-    annotation: {
-      annotations: {
-        line100: {
-            type: 'line',
-            xMin: 100,
-            xMax: 100,
-            borderColor: '#624464',
-            borderWidth: 3,
-            label: { // ラベルの設定
-                    backgroundColor: '#624464',
-                    // bordercolor: 'rgba(200,60,60,0.8)',
-                    borderwidth: 2,
-                    fontSize: 8,
-                    fontStyle: 'bold',
-                    fontColor: '#f9fff9',
-                    xPadding: 10,
-                    yPadding: 10,
-                    cornerRadius: 3,
-                    position: 'left',
-                    xAdjust: 0,
-                    yAdjust: 0,
-                    enabled: true,
-                    content: '100%'
-                }
-          }
-      }
-    },
-    // ここまで補助線用
-  }
-},
-});
-</script>
-
-<!--ここより自然言語処理の部 -->
-@if($statistics->statistic_progress==100)
-<script>
-  //ここからNLP周り
-// 名詞登場順
-
-       const chartTotalNounAsc_id = document.getElementById('chartTotalNounAsc');
-        var chartTotalNounAsc = new Chart(chartTotalNounAsc_id, {
-          type: 'bar',
-          data: {
-            labels: [
-              @foreach( $statistics->total_noun_asc as $noun)
-                "{{$noun['word']}}",
-                @endforeach],
-                yAxisID: 'meisi_name',
-
-            datasets: [
-              {
-                xAxisID: 'meisi_count',
-                label: '名詞登場順',
-                data:  [
-                @foreach( $statistics->total_noun_asc as $noun)
-                {{$noun['count']}},
-                @endforeach],
-                borderColor: "rgba(75,137,150,1)",
-                backgroundColor:  "rgba(75,137,150,0)",
-                hoverBackgroundColor:"rgba(75,137,150,0.9)",
-              },
-            ],
-          },
-          options: {
-            
-            indexAxis: 'y',
-            categoryPercentage: 1.0,
-            barPercentage: 1.0,
-            scales: {
-         
-              // 'meisi_name':[{
-              //   categoryPercentage: 1.0,
-              //   barPercentage: 1.0
-              // }]
-            },
-            elements: {
-              bar: {
-                borderWidth: 1,
-              }
-            },
-            responsive: true,
-            plugins: {
-              autocolors: false,
-              legend: {
-                display:false
-              },
-              title: {
-                display: false,
-              },
-              decimation:{
-                enabled: false,
-              },
-              
-            }
-          },
-        });
-
-
-const chartTotalAdjectiveAsc_id = document.getElementById('chartTotalAdjectiveAsc');
-      var chartTotalAdjectiveAsc = new Chart(chartTotalAdjectiveAsc_id, {
-          type: 'bar',
-          data: {
-    labels: [
-      @foreach( $statistics->total_adjective_asc as $noun)
-        "{{$noun['word']}}",
-        @endforeach],
-
-    datasets: [
-      {
-        fill: true,
-        label: '形容詞登場順',
-        data:  [
-        @foreach( $statistics->total_adjective_asc as $noun)
-        {{$noun['count']}},
-        @endforeach],
-        borderColor: "rgba(75,137,150,1)",
-        backgroundColor:  "rgba(75,137,150,0)",
-        hoverBackgroundColor:"rgba(75,137,150,0.9)",
-
-      },
-    ],
-  },
-options: {
-  indexAxis: 'y',//	Y軸に対してX軸が変動量となるグラフを描画する
-  categoryPercentage: 1.0,
-  barPercentage: 1.0,
-  scales: {
-      
-            },
-  
-  elements: {
-    bar: {
-      borderWidth: 1,
-    }
-  },
-  // responsive: true,
-  plugins: {
-    autocolors: false,
-    legend: {
-      display:false
-    },
-    title: {
-      display: false,
-    },
-    
-  }
-},
-});
-
-
-  </script>
-@elseif($statistics->statistic_progress>=1)
-
-<!--進行中のときの動作-->
-<script>
-  
-const chartNlpAnalyzing_id = document.getElementById('chartNlpAnalyzing');
-      var chartNlpAnalyzing = new Chart(chartNlpAnalyzing_id, {
-          type: 'pie',
-          data: {
-    labels: ['分析済み','未分析'],
-
-    datasets: [
-      {
-        label: 'NLP進行度',
-        data:  [{{$statistics->statistic_progress}},{{100-$statistics->statistic_progress}}],
-        backgroundColor: ['#4B8996', '#8A8772'],
-        borderColor: "rgba(75,137,150,0)",
-        weight: 100,
-
-      },
-    ],
-  },
-options: {
-  // responsive: true,
-  plugins: {
-    autocolors: false,
-   
-    title: {
-      display: false,
-    },
-    
-  }
-},
-});
-
-</script>
-@endif
-</div>
-@endempty
-<div>
-
-
-<h1 class="text-center mt-12 text-3xl" style="">他の機能については準備中です。</h1>
-<p class="text-center mt-12 text-xl mx-2" style="">このページでは、文字数のグラフ化や形態素解析を用いた品詞の傾向の表示を検討しています。</p>
-<img src="img/others/shigureniConstructing2.png" class="mx-auto object-contain h-80 w-80">
-</div>
 </div>
 
 @endsection
