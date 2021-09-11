@@ -34,7 +34,7 @@
 
     @section('header')
     <header class="px-4 relative w-screen flex justify-center sm:justify-between flex-wrap ">
-        <a href="{{url("/home")}}"><img style="object-fit:contain;width:auto;height:64px"src="/img/kadode_logo.png"></a>
+        <a href="{{url("/home")}}"><img class="logo-header"src="/img/kadode_logo.png"></a>
         
         </div>
         <div class="flex items-center">

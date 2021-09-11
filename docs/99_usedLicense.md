@@ -36,6 +36,10 @@ Released under the MIT license
 
 http://opensource.org/licenses/mit-license.php
 
+## 設定ページの目次コンペイトウ
+
+https://nureyon.com/about
+
 ## かどで日記本体
 
 Copyright (c) 2021 Usuyuki
