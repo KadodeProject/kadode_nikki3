@@ -3,7 +3,11 @@ body {
     font-family: "Helvetica Neue", Arial, "Hiragino Kaku Gothic ProN",
         "Hiragino Sans", Meiryo, sans-serif;
 }
-
+main {
+    max-width: min(90vw, 1600px);
+    margin: 0 auto;
+    min-height: 100vh;
+}
 :root {
     /* カラー定義 */
     --bg-main-color: #2f3437;
@@ -35,6 +39,9 @@ body {
 }
 .button-bg-main-color {
     background-color: var(--button-main-color);
+}
+.button-border-main-color {
+    border-color: var(--button-main-color);
 }
 .text-main-color {
     color: var(--text-main-color);
@@ -321,11 +328,7 @@ li ol {
 ここまで 
 スクロールバー
 */
-main {
-    max-width: 1600px;
-    margin: 0 auto;
-    min-height: 100vh;
-}
+
 .setting {
     /* border: 1px solid var(--button-main-color); */
     border-radius: 12px;

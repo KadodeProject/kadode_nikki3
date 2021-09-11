@@ -60,7 +60,8 @@
         <div class="settingContentWrapper flex justify-center items-center flex-wrap">
 
             <div class="settingContent md:w-1/2 w-full">
-                <h4 class="text-xl text-center my-4">かどで日記形式の<br class="md:hidden">CSVファイル</h4>
+                <h4 class="text-xl text-center mt-4">かどで日記形式の<br class="md:hidden">CSVファイル</h4>
+                <p class="text-sm text-center mb-4">かどで日記からエクスポートしていないものは動作保証外です</p>
                 <form class="text-center flex justify-center flex-wrap flex-col " method="POST" enctype="multipart/form-data" action="/import/kadode">
                     @if(count($errors)>0)
                     {{-- エラーの表示 --}}
@@ -81,7 +82,8 @@
                 </form>
             </div>
             <div class="settingContent md:w-1/2 w-full">
-                <h4 class="text-xl text-center my-4">月に書く日記形式の<br class="md:hidden">txtファイル</h4>
+                <h4 class="text-xl text-center mt-4">月に書く日記形式の<br class="md:hidden">txtファイル</h4>
+                <p class="text-sm text-center mb-4">月に書く日記からエクスポートしていないものは動作保証外です</p>
                 <form class="text-center flex justify-center flex-wrap flex-col " method="POST" enctype="multipart/form-data" action="/import/tukini">
                     @if(count($errors)>0)
                     {{-- エラーの表示 --}}
