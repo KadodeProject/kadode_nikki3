@@ -118,7 +118,7 @@
 
         <form class="flex justify-center flex-wrap flex-col my-2" method="POST"  action="/logout">
             @csrf
-            <input type="submit" class="text-black md:w-1/2 w-full mx-auto" value="ログアウト">
+            <input type="submit" class="text-black bg-status-good md:w-1/2 w-full mx-auto" value="ログアウト">
         </form>
     </div>
 

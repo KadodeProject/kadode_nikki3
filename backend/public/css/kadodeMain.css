@@ -50,13 +50,13 @@ body {
     color: var(--status-poor);
 }
 .bg-status-good {
-    background-color: var(--status-good);
+    background-color: var(--status-good) !important;
 }
 .text-status-good {
     color: var(--status-good);
 }
 .bg-status-excellent {
-    background-color: var(--status-excellent);
+    background-color: var(--status-excellent) !important;
 }
 .text-status-excellent {
     color: var(--status-excellent);
