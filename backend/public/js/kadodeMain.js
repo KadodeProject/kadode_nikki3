@@ -25,6 +25,17 @@ input.addEventListener(
     true
 );
 
+//sp本文でバーチャルキーボードの上にfooterメニューでてしまうの防止
+
+let textarea = document.getElementById("diary-content");
+let removeFooter = document.getElementById("smFooter");
+textarea.addEventListener("focusin", (e) => {
+    removeFooter.classList.add("hidden");
+});
+textarea.addEventListener("focusout", (e) => {
+    removeFooter.classList.remove("hidden");
+});
+
 //ヘッダー時計用桁数調整
 // function set2fig(num) {
 //     // 桁数が1桁だったら先頭に0を加えて2桁に調整する
