@@ -50,7 +50,7 @@ https://nureyon.com/about
 
 土佐日記
 
-Copyright (c) 934 土佐日記
+Copyright (c) 934 紀貫之
 
 https://www.aozora.gr.jp/cards/000155/files/832_16016.html
 
