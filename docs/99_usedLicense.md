@@ -38,7 +38,21 @@ http://opensource.org/licenses/mit-license.php
 
 ## 設定ページの目次コンペイトウ
 
+※ライセンス表記不要
+
+© 2021 塗れるイラスト素材-ぬれよん
+
 https://nureyon.com/about
+
+## トップページの画像の文章
+
+※著作権消失済み
+
+土佐日記
+
+Copyright (c) 934 土佐日記
+
+https://www.aozora.gr.jp/cards/000155/files/832_16016.html
 
 ## かどで日記本体
 
