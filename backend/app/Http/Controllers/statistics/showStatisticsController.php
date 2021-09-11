@@ -110,6 +110,7 @@ class showStatisticsController extends Controller
 
     }else{
         // 統計データないとき
+        $oldest_diary_date="なし";
         
     }
         return view("diary/statistics/statisticsTop",["statistics"=>$statistic,'oldest_diary_date'=>$oldest_diary_date]);
