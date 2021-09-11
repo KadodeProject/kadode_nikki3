@@ -324,6 +324,7 @@ li ol {
 main {
     max-width: 1600px;
     margin: 0 auto;
+    min-height: 100vh;
 }
 .setting {
     /* border: 1px solid var(--button-main-color); */
@@ -429,3 +430,14 @@ main {
 }
 
 /* ログインの背景 */
+
+/* 統計関係 */
+.statistic-content {
+    margin: 2em auto;
+    margin-bottom: 60px;
+}
+@media screen and (max-width: 640px) {
+    .statistic-content {
+        margin: 2em 1em;
+    }
+}

@@ -11,6 +11,18 @@
     
 
 @include('components.noLogIn.releaseNote',
+['title'=>'モバイル端末で本文入力中のフッターメニュー除去',
+'date'=>'2021年9月11日',
+'genre'=>'Fix',
+'explain'=>'モバイル端末で日記の本文を入力している際に、フッターメニューがバーチャルキーボードの上に表示され操作性が低下している問題を解決しました。
+'])
+@include('components.noLogIn.releaseNote',
+['title'=>'設定、統計のデザイン刷新',
+'date'=>'2021年9月11日',
+'genre'=>'Fix',
+'explain'=>'設定ページと統計ページのデザインを刷新しました。
+'])
+@include('components.noLogIn.releaseNote',
 ['title'=>'【統計】自然言語処理進行状況のグラフ化',
 'date'=>'2021年9月7日',
 'genre'=>'Feature',

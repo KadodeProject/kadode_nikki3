@@ -8,7 +8,7 @@
 @section('content')
 <div class=" my-8" id="">
     <div class="setting">
-        @include('components.settingToc',['title'=>'アカウント情報・設定',])
+        @include('components.settingHeading',['title'=>'アカウント情報・設定',])
         <div class="md:ml-12 ml-4 my-4">
             <p class="text-xl my-2">ユーザー名 : {{$user->name}}</p>
             <p class="text-xl my-2">ユーザーID : {{$userDB->id}}</p>
@@ -56,7 +56,7 @@
     
     </div>
     <div class="setting">
-        @include('components.settingToc',['title'=>'日記のインポート',])
+        @include('components.settingHeading',['title'=>'日記のインポート',])
         <div class="settingContentWrapper flex justify-center items-center flex-wrap">
 
             <div class="settingContent md:w-1/2 w-full">
@@ -104,7 +104,7 @@
         </div>
     </div>
     <div class="setting">
-        @include('components.settingToc',['title'=>'日記のエクスポート'])
+        @include('components.settingHeading',['title'=>'日記のエクスポート'])
         <div class="settingContentWrapper">
             <form class="flex justify-center flex-wrap flex-col " method="POST"  action="/export">
                 @csrf
@@ -114,7 +114,7 @@
         </div>
     </div>
     <div class="setting">
-        @include('components.settingToc',['title'=>'各種操作'])
+        @include('components.settingHeading',['title'=>'各種操作'])
 
         <form class="flex justify-center flex-wrap flex-col my-2" method="POST"  action="/logout">
             @csrf
@@ -125,7 +125,7 @@
   
     
      <div class="setting">
-        @include('components.settingToc',['title'=>'Danger Zone'])
+        @include('components.settingHeading',['title'=>'Danger Zone'])
         <p class="text-xl text-red-500 text-center">！！一度削除すると復元できません。日記も統計データも全て削除されます。ご注意ください！！</p>
         <form class="flex justify-center flex-wrap flex-col" method="POST"  action="/deleteUser">
             @csrf

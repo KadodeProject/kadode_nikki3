@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\statistics;
 
 use App\Http\Controllers\Controller;
+use App\Models\Diary;
 use App\Models\Statistic;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -99,6 +100,11 @@ class showStatisticsController extends Controller
         // month_adjective_asc
 
 
+        // 基本情報の追加
+        //最古の日記
+        $oldest_diary=Diary::where("user_id",Auth::id())->orderBy("date","asc")->first();
+        $oldest_diary_date=$oldest_diary->date;
+
 
 
 
@@ -106,6 +112,6 @@ class showStatisticsController extends Controller
         // 統計データないとき
         
     }
-        return view("diary/statistics/statisticsTop",["statistics"=>$statistic]);
+        return view("diary/statistics/statisticsTop",["statistics"=>$statistic,'oldest_diary_date'=>$oldest_diary_date]);
     }
 }
