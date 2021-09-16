@@ -11,6 +11,11 @@
     
 
 @include('components.noLogIn.news',
+['title'=>'Google Analyticsの部分導入',
+'date'=>'2021年9月16日',
+'explain'=>'より快適なサイト運用を行うため、ログインを伴わないページに限りGoogle Analyticsを導入いたしました。ログイン後のページはGoogle Analyticsが作用しませんので、安心してご利用ください。
+'])
+@include('components.noLogIn.news',
 ['title'=>'自然言語処理機能追加について',
 'date'=>'2021年9月6日',
 'explain'=>'かどで日記では自然言語処理の導入を進めています。本日2021年9月6日に最初の自然言語処理機能の1つである、「名詞」「形容詞」の登場順をグラフ化しました。統計コーナーでご覧いただけます。
