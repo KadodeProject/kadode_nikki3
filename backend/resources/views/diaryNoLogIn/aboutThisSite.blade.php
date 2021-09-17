@@ -11,7 +11,7 @@
     
     @include('components.noLogIn.explain',
     ['title'=>'技術スタックについて',
-    'explain'=>'本サイトはLaravelを用いて開発しています。詳細はGitHubリポジトリをご覧ください。
+    'explain'=>'詳細はGitHubリポジトリをご覧ください→<a href="https://github.com/Usuyuki/kadode_nikki3">https://github.com/Usuyuki/kadode_nikki3</a>
     '])
     @include('components.noLogIn.explain',
     ['title'=>'複数タブでのご利用',

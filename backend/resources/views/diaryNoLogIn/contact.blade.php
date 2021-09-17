@@ -14,7 +14,16 @@
         </div>
         <div class="py-4">
             <p class="my-2">Twitter : <br class="md:hidden"><a target="_blank" href="https://twitter.com/usuyuki26">https://twitter.com/usuyuki26</a></p>
-            <p class="my-2">ポートフォリオ : <br class="md:hidden"><a target="_blank" href="https://portfolio.usuyuki.com">https://usuyuki.com</a></p>
+            <p class="my-2">ポートフォリオ : <br class="md:hidden"><a target="_blank" href="https://usuyuki.com">https://usuyuki.com</a></p>
+        </div>
+    </div>
+    <div class="mb-12">
+        <div class="flex items-center">
+            <div class="border-bg-main-color w-2 h-8"></div>
+            <h2 class="ml-2 text-2xl">かどで日記GitHubリポジトリ</h2>
+        </div>
+        <div class="py-4">
+            <p class="my-2">GitHub : <br class="md:hidden"><a target="_blank" href="https://github.com/Usuyuki/kadode_nikki3">https://github.com/Usuyuki/kadode_nikki3</a></p>
         </div>
     </div>
     <div class="mb-12">

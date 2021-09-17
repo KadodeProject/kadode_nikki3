@@ -45,10 +45,6 @@ https://kadodenikki3.usuyuki.net/
 
     Kiwi Maru
 
-## ER 図
-
-Notion に記載(非公開)
-
 ## 画面レイアウト
 
 Figma に記載(非公開)
@@ -67,22 +63,17 @@ Figma に記載(非公開)
 -   フォント:Google Fonts
 -   CSV インポートライブラリ:Goodby CSV(メモリ使用軽減)
 -   グラフ表示:chart.js
--   形態素解析:
--   hogehoge:
+-   形態素解析:janome(mecabベース)
+-   今後の自然言語処理の技術選定はまだ未定です。
 
 # 文章周り
-
-## 開発者向け
-
-開発者向け: [development.md](./docs/01_development.md)
-
-ローカルインストールで使うコマンド: [installation.md](./docs/02_installation.md)
 
 ## ライセンス
 
 かどで日記ライセンス: [LICENSE](./LICENSE.md)
 
 使用しているソフトウェアのライセンス周り: [usedLicense.md](./docs/99_usedLicense.md)
+
 
 ## 弊社の取り組み的なやつ？
 
@@ -99,3 +90,13 @@ Figma に記載(非公開)
 [お知らせ](https://kadodenikki3.usuyuki.net/news)
 
 [リリースノート](https://kadodenikki3.usuyuki.net/releaseNote)
+
+
+
+## 開発者向け
+
+開発者向け: [development.md](./docs/01_development.md)
+
+ローカルインストールで使うコマンド: [installation.md](./docs/02_installation.md)
+
+

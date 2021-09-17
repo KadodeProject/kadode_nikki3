@@ -111,8 +111,9 @@ class showStatisticsController extends Controller
     }else{
         // 統計データないとき
         $oldest_diary_date="なし";
-        
-    }
-        return view("diary/statistics/statisticsTop",["statistics"=>$statistic,'oldest_diary_date'=>$oldest_diary_date]);
+    }   
+        //日記数少なすぎるときは警告出したいので
+        $number_of_nikki=Diary::where("user_id",Auth::id())->count();
+        return view("diary/statistics/statisticsTop",["statistics"=>$statistic,'oldest_diary_date'=>$oldest_diary_date,'number_of_nikki'=>$number_of_nikki]);
     }
 }

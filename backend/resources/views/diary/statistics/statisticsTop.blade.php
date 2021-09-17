@@ -17,16 +17,22 @@
     <div class="mt-12">
       <div class="setting">
         <h2 class="text-2xl">統計データ作成(α版)</h2>
-        <p class="text-xs">日記数が少ない場合は正しくデータを表示できないことがありますのでご了承ください。</p>
+        
+        @if($number_of_nikki<30)
+        <p class="text-xl my-2 text-center kiwi-maru">あなたの日記は{{$number_of_nikki}}件です。統計に必要な最低限の日記数を下回っています。<br>日記    が30件を超えるとご利用いただけるようになります。</p>
+        @else
+        <p class="text-xs mt-4 mb-2">日記数が少ない場合は正しくデータを表示できないことがありますのでご了承ください。</p>
         <form class="flex justify-center flex-wrap flex-col " method="POST"  action="/makeStatistics">
           @csrf
           <input type="submit" class="text-black" value="統計データを生成する">
         </form>
+        @endif
+
       </div>
     </div>
   </div>
     
-    @else
+  @else
     <!-- ここに置かないとコンポーネントでchar.js使えないので -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.3.2/chart.min.js"></script>
   {{-- 補助線引くためのプラグイン↓ --}}
@@ -47,10 +53,14 @@
             @endslot
           @endcomponent
         @else
+        @if($number_of_nikki<30)
+        <p class="text-xl my-2 text-center kiwi-maru">あなたの日記は{{$number_of_nikki}}件です。統計に必要な最低限の日記数を下回っています。<br>日記    が30件を超えるとご利用いただけるようになります。</p>
+        @else
         <form class="flex justify-center flex-wrap flex-col " method="POST"  action="/updateStatistics">
           @csrf
           <input type="submit" class="text-black" value="統計データを更新する">
         </form>
+        @endif
         @endif
         <p class="text-lg my-2 ml-4 text-center">前回データ更新日 : {{$statistics->updated_at}}</p>
     </div>
