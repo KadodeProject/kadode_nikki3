@@ -13,7 +13,7 @@
             <div class="diary-main">
                 <div class="sm:order-1 order-2">
                     @empty($yesterday)
-                        <h3 class="text-center text-3xl my-20">昨日の日記なし</h3>
+                        <h3 class="text-center text-3xl my-20 kiwi-maru">昨日の日記なし</h3>
                     @else
                         @component('components.diary.latestDiaryContent')
                             @slot("uuid")
@@ -73,9 +73,9 @@
      
             </div>
             @empty($diaries)
-                <h3 class="text-center text-3xl my-20">直近の日記はありません！</h3>
+                <h3 class="text-center text-3xl my-20 kiwi-maru">直近の日記はありません！</h3>
                 @else
-            <h3 class="text-center text-3xl mt-16 mb-2">直近の日記</h3>
+            <h3 class="text-center text-3xl mt-16 mb-2 kiwi-maru">直近の日記</h3>
             <div class="flex w-auto m-4 overflow-x-auto " style="height: 500px!important" >
                     @foreach($diaries as $diary )
                         @component('components.diary.diaryFrame')
@@ -98,20 +98,20 @@
             @endempty
 
             @empty($oldDiaries)
-                <h3 class="text-center text-xl my-20">過去の日記が増えると過去の日記が表示されます。</h3>
+                <h3 class="text-center text-xl my-20 kiwi-maru">過去の日記が増えると過去の日記が表示されます。</h3>
                 @else
-            <h3 class="text-center text-3xl mt-16 mb-2">過去の日記</h3>
+            <h3 class="text-center text-3xl mt-16 mb-2 kiwi-maru">過去の日記</h3>
             <div class="flex w-auto m-4 overflow-x-auto " >
                     @foreach($oldDiaries as $oldDiary )
             
                     <article>
-                        <p class="text-center">
+                        <p class="text-center kiwi-maru">
                             {{$oldDiary["explain"]}}
                         </p>
                         @empty($oldDiary["uuid"])
 
                         <div class="diary_dashboard m-2 flex justify-center items-center ">
-                            <p class="text-2xl border-main-color">なし</p>
+                            <p class="text-2xl border-main-color kiwi-maru">なし</p>
                         </div>
                         @else
                             @component('components.diary.diaryFrame')

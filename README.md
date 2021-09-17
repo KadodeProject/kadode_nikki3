@@ -45,10 +45,6 @@ https://kadodenikki3.usuyuki.net/
 
     Kiwi Maru
 
-## ER 図
-
-Notion に記載(非公開)
-
 ## 画面レイアウト
 
 Figma に記載(非公開)
