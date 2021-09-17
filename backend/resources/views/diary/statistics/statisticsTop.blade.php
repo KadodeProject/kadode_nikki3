@@ -53,10 +53,14 @@
             @endslot
           @endcomponent
         @else
+        @if($number_of_nikki<30)
+        <p class="text-xl my-2 text-center kiwi-maru">あなたの日記は{{$number_of_nikki}}件です。統計に必要な最低限の日記数を下回っています。<br>日記    が30件を超えるとご利用いただけるようになります。</p>
+        @else
         <form class="flex justify-center flex-wrap flex-col " method="POST"  action="/updateStatistics">
           @csrf
           <input type="submit" class="text-black" value="統計データを更新する">
         </form>
+        @endif
         @endif
         <p class="text-lg my-2 ml-4 text-center">前回データ更新日 : {{$statistics->updated_at}}</p>
     </div>

@@ -11,6 +11,12 @@
     
 
 @include('components.noLogIn.releaseNote',
+['title'=>'統計機能の日記数制限',
+'date'=>'2021年9月17日',
+'genre'=>'Fix',
+'explain'=>'日記数が少ない場合グラフの崩壊などが生じるため、日記が30件未満の場合には生成できないように制限を設けました。
+'])
+@include('components.noLogIn.releaseNote',
 ['title'=>'モバイル端末で本文入力中のフッターメニュー除去',
 'date'=>'2021年9月11日',
 'genre'=>'Fix',
