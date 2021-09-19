@@ -23,7 +23,10 @@ RUN apt-get update && \
   mkdir /var/run/php-fpm && \
   docker-php-ext-install intl pdo_mysql zip bcmath && \
   composer config -g process-timeout 3600 && \
-  composer config -g repos.packagist composer https://packagist.org
+  composer config -g repos.packagist composer https://packagist.org && \
+  pip3 install --upgrade pip && \
+  pip3 install janome python-dotenv mysqlclient && \
+  pip3 install -U ginza ja-ginza 
 
 COPY ./infra/docker/php/php-fpm.d/zzz-www.conf /usr/local/etc/php-fpm.d/zzz-www.conf
 COPY ./infra/docker/php/php.ini /usr/local/etc/php/php.ini
