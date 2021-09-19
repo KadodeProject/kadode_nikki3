@@ -36,6 +36,8 @@ https://kadodenikki3.usuyuki.net/
 
 ローカルインストールで使うコマンド: [installation.md](./docs/02_installation.md)
 
+自然言語処理周りについて [nlp.md](./docs/07_nlp.md)
+
 ## 名前の由来
 
 かどでは土佐日記の最初の章？である「門出」より引用しました。
@@ -94,4 +96,5 @@ Figma に記載(非公開)
 -   CSV インポートライブラリ:Goodby CSV(メモリ使用軽減)
 -   グラフ表示:chart.js
 -   形態素解析:janome(mecab ベース)
+-   係り受け解析:GiNZA
 -   今後の自然言語処理の技術選定はまだ未定です。
