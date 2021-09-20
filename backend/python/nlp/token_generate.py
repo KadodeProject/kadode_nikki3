@@ -5,10 +5,13 @@
 # from janome.charfilter import *
 import spacy
 
+model="ja_ginza" #軽量モデルを使用。本当はtransformer採用型を使いたいけど、メモリが足りない。
+
+
 """
 個別に日記の分析(diaryテーブルのtokenカラム生成用)
 """
-def get_nlpMeta_by_ginza(row:list):
+def get_tokenChunkSentence_by_ginza(row:list):
     # 返す値
     '''
     {
@@ -22,10 +25,27 @@ def get_nlpMeta_by_ginza(row:list):
     '''
     nlp_token={}
     nlp_chunk={}
-    where_chr=0
-    nlp = spacy.load('ja_ginza')
+    nlp_sentence={}
+    where_chr=0#単語の文字位置
+    where_sentence=0#文の文字位置
+    sentence_num=0#文の番号
+    nlp = spacy.load(model)
     doc = nlp(row[2])
+
+
     for sent in doc.sents:
+
+        '''
+        文の区切り情報(sentence)取得
+        '''
+        #文章情報
+        nlp_sentence[sentence_num]={
+            'start':where_sentence,#開始文字位置
+            'end':where_sentence+len(sent),#終了文字位置
+        }
+        where_sentence+=len(sent)
+        sentence_num+=1
+
         for token in sent:
             #CoNLL-U Syntactic Annotation形式
             #1	銀座	銀座	PROPN	名詞-固有名詞-地名-一般	_	6	obl	_	SpaceAfter=No|BunsetuBILabel=B|BunsetuPositionType=SEM_HEAD|NP_B|Reading=ギンザ|NE=B-GPE|ENE=B-City
@@ -33,6 +53,9 @@ def get_nlpMeta_by_ginza(row:list):
             #ID,FORM(表層形),LEMMA(基本形),UPOSTAG(品詞),XPOSTAG(言語依存の品詞),FEATS(形態論情報),HEAD(係り先),DEPREL(係り受け関係ラベル),DEPS(二次係り受け),MISC
 
             #品詞情報は 単語id={}
+            '''
+            単語の品詞など(token)取得
+            '''
             nlp_token[token.i]={
                 'start':where_chr,#開始文字位置
                 'end':where_chr+len(token.orth_),#終了文字位置
@@ -44,15 +67,16 @@ def get_nlpMeta_by_ginza(row:list):
                 'isUnknown':token.is_oov,#未知語
             }
             #係り受け情報は 単語id={}
+            '''
+            係り受け情報(chunk)取得
+            ''' 
             nlp_chunk[token.i]={
                 'dependencyTag':token.dep_,#形態論情報
                 'dependencyFor':token.head.i,#係り先
             }
+            
             where_chr+=len(token.orth_)
-
-    print(nlp_token)
-    print(nlp_chunk)
-    return nlp_token,nlp_chunk
+    return nlp_token,nlp_chunk,nlp_sentence
 
     # token={}#形態素解析された結果を格納する辞書型配列
 
@@ -79,4 +103,3 @@ def get_nlpMeta_by_ginza(row:list):
     # return token
     # token{'日記id':{},'日記id':{}……}
     # token{'日記id':{},'日記id':{}……}
-

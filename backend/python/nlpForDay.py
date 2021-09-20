@@ -52,9 +52,10 @@ if __name__ == "__main__":
 
             #sentence:一文ごとの位置(係り受けで使う)
             #chunk:係り受け構造
-            token,chunk=token_generate.get_nlpMeta_by_ginza(row)
-            print(token)
-            print(chunk)
+            token,chunk,sentence=token_generate.get_tokenChunkSentence_by_ginza(row)
+            print(sentence)
+            # print(token)
+            # print(chunk)
             #token:形態素解析
             # token=morphological_analysis.get_morphological_for_token(row)
             #affiliation:アノテーション
@@ -68,7 +69,7 @@ if __name__ == "__main__":
 
             #DB代入
             #まだ　sentence=sentence　affiliation=affiliation　cause=cause,effect=effect
-            # db.set_diary_json(user_id,chunk=chunk,token=token,)
+            # db.set_diary_json(user_id,chunk=chunk,token=token,sentence=sentence)
 
 
             # #完了を送る
