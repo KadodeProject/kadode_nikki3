@@ -18,7 +18,7 @@ if __name__ == "__main__":
 
 
     #進行度を10%に
-    db.set_statistic_progress(user_id,"statistics",10)
+    db.set_statistic_progress(user_id,"statistics",20)
     # # データ取得
     # rows=db.get_all_diaries_from_user(user_id)
     

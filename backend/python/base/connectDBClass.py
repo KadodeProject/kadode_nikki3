@@ -26,7 +26,7 @@ class connectDB:
         # カーソルを取得する
         cur= self.conn.cursor()
         # クエリを実行する
-        sql = "SELECT id,title,content,date FROM diaries WHERE user_id="+str(user_id)+";"
+        sql = "SELECT id,title,content,date,updated_at,updated_statistic_at FROM diaries WHERE user_id="+str(user_id)+";"
         cur.execute(sql)
         # 実行結果をすべて取得する
         rows = cur.fetchall()
@@ -39,9 +39,7 @@ class connectDB:
     """
     def set_statistics_json(self,user_id, column_name, value):
         # カーソルを取得する
-        cur= self.conn.cursor()
-        print(  'UPDATE statistics SET '+column_name+' = '+json.dumps(value,ensure_ascii=False)+' where user_id = '+str(user_id)+';')
-        # クエリを実行する ここはsqkインジェクションにならないところなので、そのまま自家絵やり倒す
+        cur= self.conn.cursor()        # クエリを実行する ここはsqkインジェクションにならないところなので、そのまま自家絵やり倒す
         json_value = json.dumps(value,ensure_ascii=False)
         cur.execute(
                 'UPDATE statistics SET {0} = %s WHERE user_id = %s;'.format(column_name),(json_value,user_id))
@@ -49,6 +47,21 @@ class connectDB:
         self.conn.commit()
         # カーソルを閉じる
         cur.close()
+    """
+    解析済みのJSONデータを書き込む(複数)
+    """
+    def set_statistics_json(self,user_id,**jsons):
+        for (key,value) in jsons.items():
+            # カーソルを取得する
+            cur= self.conn.cursor()
+            # クエリを実行する ここはsqkインジェクションにならないところなので、そのまま
+            json_value = json.dumps(value,ensure_ascii=False)
+            cur.execute(
+                    'UPDATE statistics SET {0} = %s WHERE user_id = %s;'.format(key),(value,user_id))
+            # 保存する
+            self.conn.commit()
+            # カーソルを閉じる
+            cur.close()
 
     """
     進捗状況
