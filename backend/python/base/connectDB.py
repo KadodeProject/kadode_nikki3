@@ -98,7 +98,7 @@ def set_statistics_json(user_id, column_name, value):
     conn.close()
 
 
-def set_statistic_progress(user_id, table_name,value):
+def set_multiple_progress(user_id, table_name,value):
            # 接続する
     conn = MySQLdb.connect(
     user=loadEnv.DB_USERNAME,

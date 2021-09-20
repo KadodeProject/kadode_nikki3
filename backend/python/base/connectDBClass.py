@@ -64,9 +64,24 @@ class connectDB:
             cur.close()
 
     """
-    進捗状況
+    進捗状況--日記テーブルなど1ユーザー複数テーブルのもの用
     """
-    def set_statistic_progress(self,user_id, table_name,value):
+    def set_single_progress(self,db_id,table_name,value):
+        # カーソルを取得する
+        cur= self.conn.cursor()
+        # クエリを実行する
+        cur.execute(
+                'UPDATE {0} SET statistic_progress = %s where id = %s;'.format(table_name),(str(value),str(db_id))
+                )
+        # 保存する
+        self.conn.commit()
+        # カーソルを閉じる
+        cur.close()
+
+    """
+    進捗状況--統計テーブルなど1ユーザー1テーブルのもの用
+    """
+    def set_multiple_progress(self,user_id, table_name,value):
         # カーソルを取得する
         cur= self.conn.cursor()
         # クエリを実行する
@@ -77,6 +92,7 @@ class connectDB:
         self.conn.commit()
         # カーソルを閉じる
         cur.close()
+
 
 
 if __name__ == '__main__':

@@ -71,7 +71,8 @@ def get_tokenChunkSentence_by_ginza(row:list):
             ''' 
             nlp_chunk[token.i]={
                 'dependencyTag':token.dep_,#形態論情報
-                'dependencyFor':token.head.i,#係り先
+                'dependencyForId':token.head.i,#係り先
+                'dependencyForTxt':token.head.text,#係り先の単語(本番では、日記の更新かかると引っ張ってこれなくなるので。)
             }
             
             where_chr+=len(token.orth_)
@@ -102,3 +103,12 @@ def get_tokenChunkSentence_by_ginza(row:list):
     # return token
     # token{'日記id':{},'日記id':{}……}
     # token{'日記id':{},'日記id':{}……}
+
+'''
+アノテーション抽出
+'''
+def get_affiliation_by_ginza(row:list):
+    nlp = spacy.load(model)
+    doc = nlp(row[2])
+    for ent in doc.ents:
+        print(ent.text, ent.start_char, ent.end_char, ent.label_)

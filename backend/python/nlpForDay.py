@@ -18,7 +18,7 @@ if __name__ == "__main__":
     db = database.connectDB()
 
     #進行度を10%に
-    db.set_statistic_progress(user_id,"statistics",10)
+    db.set_multiple_progress(user_id,"statistics",10)
     # # データ取得
     # rows=db.get_all_diaries_from_user(user_id)
     
@@ -53,12 +53,13 @@ if __name__ == "__main__":
             #sentence:一文ごとの位置(係り受けで使う)
             #chunk:係り受け構造
             token,chunk,sentence=token_generate.get_tokenChunkSentence_by_ginza(row)
-            print(sentence)
-            print(token)
+            # print(sentence)
+            # print(token)
             # print(chunk)
             #token:形態素解析
             # token=morphological_analysis.get_morphological_for_token(row)
             #affiliation:アノテーション
+            affiliation=token_generate.get_affiliation_by_ginza(row)
             #cause:原因
             #effect:結果
             #形態素解析
@@ -69,11 +70,12 @@ if __name__ == "__main__":
 
             #DB代入
             #まだ　sentence=sentence　affiliation=affiliation　cause=cause,effect=effect
-            # db.set_diary_json(user_id,chunk=chunk,token=token,sentence=sentence)
+            # db.set_diary_json(user_id,chunk=chunk,token=token,sentence=sentence,affiliation=affiliation)
 
 
             # #完了を送る
-            # db.set_statistic_progress(user_id,"statistics",100)
+            # db.set_single_progress(row[0],"diaries",100)
+            # db.set_multiple_progress(user_id,"statistics",40)
 
     #インスタンス破棄
     del db
