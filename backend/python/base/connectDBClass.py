@@ -47,21 +47,39 @@ class connectDB:
         self.conn.commit()
         # カーソルを閉じる
         cur.close()
+    
     """
-    解析済みのJSONデータを書き込む(複数)
+    解析済みのノーマルデータを書き込む(1ユーザー複数テーブルのもの用)
     """
-    def set_statistics_json(self,user_id,**jsons):
+    def set_single_normal_data(self,column,db_id,**values):
+        for (key,value) in values.items():
+            # カーソルを取得する
+            cur= self.conn.cursor()
+            # クエリを実行する ここはsqkインジェクションにならないところなので、そのまま
+            cur.execute(
+                    'UPDATE {0} SET {1} = %s WHERE id = %s;'.format(column,key),(value,db_id))
+            # 保存する
+            self.conn.commit()
+            # カーソルを閉じる
+            cur.close()
+
+    """
+    解析済みのJSONデータを書き込む(1ユーザー複数テーブルのもの用)
+    """
+    def set_single_json_data(self,column,db_id,**jsons):
         for (key,value) in jsons.items():
             # カーソルを取得する
             cur= self.conn.cursor()
             # クエリを実行する ここはsqkインジェクションにならないところなので、そのまま
             json_value = json.dumps(value,ensure_ascii=False)
             cur.execute(
-                    'UPDATE statistics SET {0} = %s WHERE user_id = %s;'.format(key),(value,user_id))
+                    'UPDATE {0} SET {1} = %s WHERE id = %s;'.format(column,key),(json_value,db_id))
             # 保存する
             self.conn.commit()
             # カーソルを閉じる
             cur.close()
+
+
 
     """
     進捗状況--日記テーブルなど1ユーザー複数テーブルのもの用

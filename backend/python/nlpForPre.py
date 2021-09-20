@@ -6,7 +6,7 @@ from base import connectDBClass as database
 
 from nlp import morphological_analysis
 from nlp import dependency_analysis
-from nlp import token_generate
+from nlp import meta_generate
 
 
 if __name__ == "__main__":
@@ -49,29 +49,42 @@ if __name__ == "__main__":
         else:
             print("ないよ")
 
+            '''
+            char_length:日記の文字数
+            '''
+            char_length = len(row[2])#pythonはマルチバイトそのままでいける口
+            # print(char_length)
 
-            #sentence:一文ごとの位置(係り受けで使う)
-            #chunk:係り受け構造
-            token,chunk,sentence=token_generate.get_tokenChunkSentence_by_ginza(row)
+            '''
+            token:形態素解析
+            chunk:係り受け構造
+            sentence:一文ごとの位置(係り受けで使う)
+            '''
+           
+            token,chunk,sentence=meta_generate.get_tokenChunkSentence_by_ginza(row)
             # print(sentence)
             # print(token)
-            # print(chunk)
-            #token:形態素解析
-            # token=morphological_analysis.get_morphological_for_token(row)
-            #affiliation:アノテーション
-            affiliation=token_generate.get_affiliation_by_ginza(row)
-            print(affiliation)
+            # print(chunk
+
+            '''
+            affiliation:アノテーション
+            annotationは注釈、affiliationは所属という意味
+            ↑誤字っているわけではない。
+            '''
+            affiliation=meta_generate.get_affiliation_by_ginza(row)
+            # print(affiliation)
             #cause:原因
             #effect:結果
-            #形態素解析
-            # #構文解析
+            cause,effect=meta_generate.get_causeEffect_by_ginza(row)
+
 
             # #更新日更新
             # DB更新
 
             #DB代入
-            #まだ　sentence=sentence　affiliation=affiliation　cause=cause,effect=effect
-            # db.set_diary_json(user_id,chunk=chunk,token=token,sentence=sentence,affiliation=affiliation)
+            #まだ　テーブル名、id、任意引数
+            # db.set_single_json_data('diaries',row[0],chunk=chunk,token=token,sentence=sentence,affiliation=affiliation,cause=cause,effect=effect)
+            # db.set_single_normal_data('diaries',row[0],char_length=char_length)
 
 
             # #完了を送る
