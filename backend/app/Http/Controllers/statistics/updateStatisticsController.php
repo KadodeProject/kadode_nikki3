@@ -46,7 +46,7 @@ class updateStatisticsController extends Controller
                 // 'month_noun_asc'=>$calculateDiary["month_noun_asc"],
                 // 'year_adjective_asc'=>$calculateDiary["year_adjective_asc"],
                 // 'month_adjective_asc'=>$calculateDiary["month_adjective_asc"],
-
+                'statistic_progress'=>1,
                 'updated_at'=>$dt->addHour(24),
             
             ];

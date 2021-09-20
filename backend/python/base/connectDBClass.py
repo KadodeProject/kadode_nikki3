@@ -1,5 +1,5 @@
 import MySQLdb
-import loadEnv
+from base import loadEnv
 import json
 
 class connectDB:
@@ -10,31 +10,68 @@ class connectDB:
     db=loadEnv.DB_DATABASE,
     charset="utf8"
     )
+    
     def __init__(self):
+
         print('DB接続処理')
     def __del__(self):
-        conn.close()
+        self.conn.close()
         print('DB接続解除処理')
-    
+
+    """
+    データベースに接続して、引数のユーザーIDのすべての日記(id,本文,タイトル)を取得
+    """
     def get_all_diaries_from_user(self,user_id):
         print('日記の取得')
         # カーソルを取得する
-        cur= conn.cursor()
-
+        cur= self.conn.cursor()
         # クエリを実行する
         sql = "SELECT id,title,content,date FROM diaries WHERE user_id="+str(user_id)+";"
         cur.execute(sql)
-
         # 実行結果をすべて取得する
         rows = cur.fetchall()
-        
         # カーソルを閉じる
         cur.close()
         return rows
-    def write_pre_data(self):
-        print('日記の書き込み')
 
-f = connectDB()
-f.get_all_diaries_from_user(2)
-del f
+    """
+    解析済みのJSONデータを書き込む
+    """
+    def set_statistics_json(self,user_id, column_name, value):
+        # カーソルを取得する
+        cur= self.conn.cursor()
+        print(  'UPDATE statistics SET '+column_name+' = '+json.dumps(value,ensure_ascii=False)+' where user_id = '+str(user_id)+';')
+        # クエリを実行する ここはsqkインジェクションにならないところなので、そのまま自家絵やり倒す
+        json_value = json.dumps(value,ensure_ascii=False)
+        cur.execute(
+                'UPDATE statistics SET {0} = %s WHERE user_id = %s;'.format(column_name),(json_value,user_id))
+        # 保存する
+        self.conn.commit()
+        # カーソルを閉じる
+        cur.close()
+
+    """
+    進捗状況
+    """
+    def set_statistic_progress(self,user_id, table_name,value):
+        # カーソルを取得する
+        cur= self.conn.cursor()
+        # クエリを実行する
+        cur.execute(
+                'UPDATE {0} SET statistic_progress = %s where user_id = %s;'.format(table_name),(str(value),str(user_id))
+                )
+        # 保存する
+        self.conn.commit()
+        # カーソルを閉じる
+        cur.close()
+
+
+if __name__ == '__main__':
+    f = connectDB()
+
+    rows=f.get_all_diaries_from_user(2)
+    for row in rows:
+        for column in row:
+            print(column)
+    del f
 

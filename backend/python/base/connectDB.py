@@ -1,5 +1,5 @@
 import MySQLdb
-import loadEnv
+from base import loadEnv
 import json
 
 """

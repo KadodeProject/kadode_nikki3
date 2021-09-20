@@ -1,6 +1,6 @@
 
 import sys
-from base import connectDB as db
+from base import connectDBClass as database
 
 from nlp import morphological_analysis
 
@@ -13,6 +13,8 @@ if __name__ == "__main__":
     user_id=from_php[1]
     # user_id=1
 
+    #DBインスタンス
+    db = database.connectDB()
 
 
     #進行度を10%に
@@ -33,4 +35,8 @@ if __name__ == "__main__":
 
     #完了を送る
     db.set_statistic_progress(user_id,"statistics",100)
+
+    #インスタンス破棄
+    del db
+
     print("終了")
