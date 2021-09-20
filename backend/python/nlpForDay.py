@@ -12,7 +12,7 @@ from nlp import token_generate
 if __name__ == "__main__":
     # from_php = sys.argv#php側の引数
     # user_id=from_php[1]
-    user_id=2
+    user_id=1
 
     #DBインスタンス
     db = database.connectDB()
@@ -60,6 +60,7 @@ if __name__ == "__main__":
             # token=morphological_analysis.get_morphological_for_token(row)
             #affiliation:アノテーション
             affiliation=token_generate.get_affiliation_by_ginza(row)
+            print(affiliation)
             #cause:原因
             #effect:結果
             #形態素解析

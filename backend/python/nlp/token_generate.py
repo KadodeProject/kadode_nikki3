@@ -108,7 +108,19 @@ def get_tokenChunkSentence_by_ginza(row:list):
 アノテーション抽出
 '''
 def get_affiliation_by_ginza(row:list):
+    nlp_affiliation={}
+    affiliation_num=0#文の番号
     nlp = spacy.load(model)
     doc = nlp(row[2])
     for ent in doc.ents:
-        print(ent.text, ent.start_char, ent.end_char, ent.label_)
+        # print('ent.text, ent.start_char, ent.end_char, ent.label_')
+        # print(ent.text, ent.start_char, ent.end_char, ent.label_)
+        nlp_affiliation[affiliation_num]={
+            'start':ent.start_char,#開始文字位置
+            'end':ent.end_char,#終了文字位置z
+            'lemma':ent.text,#基本形
+            'form':ent.label_,#抽象分類
+        }
+        affiliation_num+=1
+    
+    return nlp_affiliation
