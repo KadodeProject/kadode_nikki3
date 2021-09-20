@@ -54,7 +54,7 @@ if __name__ == "__main__":
             #chunk:係り受け構造
             token,chunk,sentence=token_generate.get_tokenChunkSentence_by_ginza(row)
             print(sentence)
-            # print(token)
+            print(token)
             # print(chunk)
             #token:形態素解析
             # token=morphological_analysis.get_morphological_for_token(row)

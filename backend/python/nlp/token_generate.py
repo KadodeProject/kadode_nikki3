@@ -27,12 +27,12 @@ def get_tokenChunkSentence_by_ginza(row:list):
     nlp_chunk={}
     nlp_sentence={}
     where_chr=0#単語の文字位置
-    where_sentence=0#文の文字位置
     sentence_num=0#文の番号
+
+
     nlp = spacy.load(model)
     doc = nlp(row[2])
-
-
+    
     for sent in doc.sents:
 
         '''
@@ -40,10 +40,9 @@ def get_tokenChunkSentence_by_ginza(row:list):
         '''
         #文章情報
         nlp_sentence[sentence_num]={
-            'start':where_sentence,#開始文字位置
-            'end':where_sentence+len(sent),#終了文字位置
+            'start':sent.start_char,#開始文字位置
+            'end':sent.end_char,#終了文字位置
         }
-        where_sentence+=len(sent)
         sentence_num+=1
 
         for token in sent:
