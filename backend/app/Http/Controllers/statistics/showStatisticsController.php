@@ -22,6 +22,9 @@ class showStatisticsController extends Controller
     public function __invoke()
     {
         $statistic=Statistic::where("user_id",Auth::id())->first();
+        //日記数少なすぎるときは警告出したいので
+        $number_of_nikki=Diary::where("user_id",Auth::id())->count();
+        
         if(!empty($statistic)){
             /**
              * 自然言語処理の部はstatistic_progressが100になってから表示する
@@ -35,6 +38,11 @@ class showStatisticsController extends Controller
             $statistic->total_noun_asc=array_values(json_decode($statistic->total_noun_asc,true));
             $statistic->total_adjective_asc=array_values(json_decode($statistic->total_adjective_asc,true));
             }
+
+        /**
+         * 個別日記処理の進捗を取得する処理
+         */
+        $sended_diaries_count=Diary::sum('statistic_progress') /100 #終わっている日記数の推定値(本当は50で全部通してから次行くので、実際の値とは違う)
             
         /**
          * 月ごとの1日記あたりの平均文字数算出
@@ -112,8 +120,7 @@ class showStatisticsController extends Controller
         // 統計データないとき
         $oldest_diary_date="なし";
     }   
-        //日記数少なすぎるときは警告出したいので
-        $number_of_nikki=Diary::where("user_id",Auth::id())->count();
-        return view("diary/statistics/statisticsTop",["statistics"=>$statistic,'oldest_diary_date'=>$oldest_diary_date,'number_of_nikki'=>$number_of_nikki]);
+
+        return view("diary/statistics/statisticsTop",["statistics"=>$statistic,'oldest_diary_date'=>$oldest_diary_date,'number_of_nikki'=>$number_of_nikki,'sended_diaries_count'=>$sended_diaries_count]);
     }
 }
