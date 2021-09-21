@@ -4,7 +4,7 @@ from base import connectDBClass as database
 
 from nlp import morphological_analysis
 
-if __name__ == "__main__":
+def nlpForTotal():
     """
     [id,タイトル,本文,日付]
     [0 ,1     ,2     ,3    ]
@@ -39,3 +39,6 @@ if __name__ == "__main__":
     del db
 
     print("nlpForTotal処理終了")
+
+if __name__ == '__main__':
+    nlpForTotal()

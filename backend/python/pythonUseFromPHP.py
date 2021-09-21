@@ -10,7 +10,13 @@ pre終わる前に次の実行行ってエラーでる
 '''
 
 import nlpForPre
-# import nlpForDiary
-# import nlpForMonth
-# import nlpForYear
+import nlpForDiary
+import nlpForMonth
+import nlpForYear
 import nlpForTotal
+
+nlpForPre.nlpForPre()
+# nlpForDiary.nlpForDiary()
+# nlpForMonth.nlpForMonth()
+# nlpForYear.nlpForYear()
+nlpForTotal.nlpForTotal()

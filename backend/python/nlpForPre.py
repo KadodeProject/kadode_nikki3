@@ -6,7 +6,7 @@ from base import connectDBClass as database
 from nlp import meta_generate
 
 
-if __name__ == "__main__":
+def nlpForPre():
     from_php = sys.argv#php側の引数
     user_id=from_php[1]
     # user_id=1
@@ -89,3 +89,5 @@ if __name__ == "__main__":
     del db
 
     print("nlpForPre処理終了")
+if __name__ == '__main__':
+    nlpForPre()

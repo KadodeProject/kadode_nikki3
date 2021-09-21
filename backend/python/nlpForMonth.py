@@ -9,7 +9,7 @@ from nlp import dependency_analysis
 from nlp import cosSimilarity_analysis
 
 
-if __name__ == "__main__":
+def nlpForMonth():
     # from_php = sys.argv#php側の引数
     # user_id=from_php[1]
     user_id=1
@@ -97,3 +97,7 @@ if __name__ == "__main__":
     del db
 
     print("nlpForMonth終了")
+
+
+if __name__ == '__main__':
+    nlpForMonth()

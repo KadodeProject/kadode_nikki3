@@ -13,7 +13,7 @@ from nlp import causeEffect_analysis
 from nlp import dependency_analysis
 from nlp import cosSimilarity_analysis
 
-if __name__ == "__main__":
+def nlpForDiary():
     # from_php = sys.argv#php側の引数
     # user_id=from_php[1]
     user_id=3
@@ -123,3 +123,6 @@ if __name__ == "__main__":
     del db
 
     print("nlpForDiary終了")
+
+if __name__ == '__main__':
+    nlpForDiary()
