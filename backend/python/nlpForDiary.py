@@ -1,10 +1,11 @@
 
 import sys
 import time
+import json
 
 from base import connectDBClass as database
 
-from nlp import morphological_analysis
+from nlp import special_people_extract
 from nlp import dependency_analysis
 from nlp import cosSimilarity_analysis
 
@@ -12,16 +13,15 @@ from nlp import cosSimilarity_analysis
 if __name__ == "__main__":
     # from_php = sys.argv#php側の引数
     # user_id=from_php[1]
-    user_id=1
+    user_id=3
 
     #DBインスタンス
     db = database.connectDB()
 
 
-    # # データ取得
-    # rows=db.get_all_diaries_from_user(user_id)
-    
-    rows=db.get_all_diaries_from_user(user_id)
+
+    # SELECT id,updated_at,updated_statistic_at,sentence,chunk,token,affiliation,char_length
+    rows=db.get_all_diariesPre_from_user(user_id)
 
     all_sentences=""
     # for row in rows:
@@ -50,15 +50,16 @@ if __name__ == "__main__":
             #処理不要 リーダーブルコードに乗ってたやつ
             continue
         else:
-            '''
-            affiliation:アノテーション
-            annotationは注釈、affiliationは所属という意味
-            ↑誤字っているわけではない。
-            '''
-            affiliation=meta_generate.get_affiliation_by_ginza(row)
-            # print(affiliation)
-
-
+            # nlp関係はNoneがあるので注
+            #jsonはdecodeする
+            value_id=row[0]
+            value_updated_at=row[1]
+            value_updated_statistic_at=row[2]
+            value_sentence=json.loads(row[3])
+            value_chunk=json.loads(row[4])
+            value_token=json.loads(row[5])
+            value_affiliation=json.loads(row[6])
+            value_char_length=row[7]
             '''
             emotions:感情数値化
             '''
@@ -80,6 +81,7 @@ if __name__ == "__main__":
             '''
             special_people:登場人物←これもafliationでける
             '''
+            special_people=special_people_extract.get_special_people(value_affiliation)
 
             '''
             updated_statistic_at:統計更新日更新処理
@@ -87,9 +89,10 @@ if __name__ == "__main__":
             # DB更新
 
             #DB代入
-            #まだ　テーブル名、id、任意引数
+            #まだ　meta_info,emotions,flavor,similar_sentences,classification,important_words,cause_effect_sentences,special_people,updated_statistic_at
             # db.set_single_json_data('diaries',row[0],chunk=chunk,token=token,sentence=sentence,affiliation=affiliation,cause=cause,effect=effect)
             # db.set_single_normal_data('diaries',row[0],char_length=char_length)
+
             db.set_single_progress(row[0],"diaries",100)
 
 
