@@ -8,6 +8,7 @@ from base import connectDBClass as database
 
 from nlp import special_people_extract
 from nlp import classification_analysis
+from nlp import importantWords_analysis
 from nlp import dependency_analysis
 from nlp import cosSimilarity_analysis
 
@@ -78,7 +79,8 @@ if __name__ == "__main__":
             '''
             important_words:重要そうな言葉top3
             '''
-            # print(value_chunk)
+            important_words=importantWords_analysis.get_importantWords(value_affiliation)
+            # print(important_words)
             '''
             cause_effect_sentences:原因と結果のjson,場所と文字列保持
             '''
