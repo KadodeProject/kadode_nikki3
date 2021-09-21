@@ -2,13 +2,13 @@
 import sys
 import time
 import json
+import datetime
 
 from base import connectDBClass as database
 
 from nlp import special_people_extract
 from nlp import dependency_analysis
 from nlp import cosSimilarity_analysis
-
 
 if __name__ == "__main__":
     # from_php = sys.argv#php側の引数
@@ -34,7 +34,7 @@ if __name__ == "__main__":
     for row in rows:
         #個別日記のループ
         try:
-            time_updated_at = time.strptime(row[1], '%Y-%m-%d %H:%M %S')
+            time_updated_at = time.strptime(row[1], '%Y-%m-%d %H:%M:%S')
         except:
             # データない場合
             time_updated_at = time.strptime('2001-1-1 11:11:11', '%Y-%m-%d %H:%M:%S')
@@ -86,6 +86,9 @@ if __name__ == "__main__":
             '''
             updated_statistic_at:統計更新日更新処理
             '''
+            updated_statistic_at=time.strftime('%Y-%m-%d %H:%M:%S')
+            print(updated_statistic_at)
+            # db.set_single_normal_data('diaries',row[0],updated_statistic_at)
             # DB更新
 
             #DB代入

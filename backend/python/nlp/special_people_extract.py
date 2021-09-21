@@ -31,7 +31,7 @@ def get_special_people(affiliation):
             'name':key,
             'count':value
         })
-    print(special_people)
+    # print(special_people)
         
 
 

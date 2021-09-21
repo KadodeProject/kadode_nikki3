@@ -29,7 +29,7 @@ if __name__ == "__main__":
         #個別日記のループ
         #日記の更新日取得
         try:
-            time_updated_at = time.strptime(row[4], '%Y-%m-%d %H:%M %S')
+            time_updated_at = time.strptime(row[4], '%Y-%m-%d %H:%M:%S')
         except:
             # データない場合
             time_updated_at = time.strptime('2001-1-1 11:11:11', '%Y-%m-%d %H:%M:%S')

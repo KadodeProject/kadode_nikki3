@@ -30,7 +30,7 @@ if __name__ == "__main__":
     for row in rows:
         #個別日記のループ
         try:
-            time_updated_at = time.strptime(row[1], '%Y-%m-%d %H:%M %S')
+            time_updated_at = time.strptime(row[1], '%Y-%m-%d %H:%M:%S')
         except:
             # データない場合
             time_updated_at = time.strptime('2001-1-1 11:11:11', '%Y-%m-%d %H:%M:%S')
