@@ -28,11 +28,11 @@ class CreateDiariesTable extends Migration
             $table->json("chunk")->nullable()->comment("係り受け構造");
             $table->json("token")->nullable()->comment("形態素分析された中身を格納 品詞(POS)、原形(lemma)などが存在");
             $table->json("affiliation")->nullable()->comment("アノテーション");
-            $table->json("cause")->nullable()->comment("原因(nlp用)");
-            $table->json("effect")->nullable()->comment("結果(nlp用)");
+            $table->unsignedBigInteger("char_length")->nullable()->comment("文字数");
             
             //nlp表示系
-            $table->unsignedBigInteger("char_length")->nullable()->comment("文字数");
+            $table->json("meta_info")->nullable()->comment("事実上予備領域");
+            $table->json("similar_sentences")->nullable()->comment("似ている日記の日記ID(5)");
             $table->double("emotions")->nullable()->comment("感情数値化");
             $table->double("flavor")->nullable()->comment("ユーザーの日記らしさ");
             $table->json("classification")->nullable()->comment("推定分類");

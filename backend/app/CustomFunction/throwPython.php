@@ -17,7 +17,7 @@ class throwPython
         }
   
 
-        $path = "export LANG=ja_JP.UTF-8;python3"." ".env('PYTHON_FOLDER_DIR')."/". $py_file_name.".py". " ".$user_id." > /dev/null &";
+        $path = "export LANG=ja_JP.UTF-8;python3"." ".env('PYTHON_FOLDER_DIR'). $py_file_name.".py". " ".$user_id." ".$error_check." > /dev/null &";
         $output=null;
         exec($path, $output);//python実行
 

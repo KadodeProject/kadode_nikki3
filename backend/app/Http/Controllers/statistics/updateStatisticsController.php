@@ -25,7 +25,8 @@ class updateStatisticsController extends Controller
         if(($yesterday->diffInHours($static->updated_at))>=0){
             $diaries=Diary::orderby("date","asc")->get();
             $calculateDiary=calculateDiary::calculateDiary($diaries);
-            throwPython::throwPython("nlpForTotal",$userId,false,true);
+            throwPython::throwPython("nlpForPre",$userId,true,true);
+            throwPython::throwPython("nlpForTotal",$userId,true,true);
             // throwPython::throwPython("nlpForYear",$userId);
             // throwPython::throwPython("nlpForMonth",$userId);
             // throwPython::throwPython("nlpForDay",$userId);
@@ -46,7 +47,7 @@ class updateStatisticsController extends Controller
                 // 'month_noun_asc'=>$calculateDiary["month_noun_asc"],
                 // 'year_adjective_asc'=>$calculateDiary["year_adjective_asc"],
                 // 'month_adjective_asc'=>$calculateDiary["month_adjective_asc"],
-
+                'statistic_progress'=>1,
                 'updated_at'=>$dt->addHour(24),
             
             ];

@@ -45,6 +45,7 @@ class makeStatisticsController extends Controller
             // 'year_adjective_asc'=>$calculateDiary["year_adjective_asc"],
             // 'month_adjective_asc'=>$calculateDiary["month_adjective_asc"],
             'updated_at'=>$dt,
+            'statistic_progress'=>1,
         
         ];
 
@@ -55,6 +56,7 @@ class makeStatisticsController extends Controller
          * ここからPython
          */
     
+        throwPython::throwPython("nlpForPre",$userId,false,true);
         throwPython::throwPython("nlpForTotal",$userId,false,true);
 
         return redirect("statistics");

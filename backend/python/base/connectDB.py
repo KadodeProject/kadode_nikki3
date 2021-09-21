@@ -19,7 +19,7 @@ def get_all_diaries_from_user(user_id):
     cur= conn.cursor()
 
     # クエリを実行する
-    sql = "SELECT id,title,content,date FROM diaries WHERE user_id="+str(user_id)+";"
+    sql = "SELECT id,title,content,date,updated_at,updated_statistic_at FROM diaries WHERE user_id="+str(user_id)+";"
     cur.execute(sql)
 
     # 実行結果をすべて取得する
@@ -98,7 +98,7 @@ def set_statistics_json(user_id, column_name, value):
     conn.close()
 
 
-def set_statistic_progress(user_id, table_name,value):
+def set_multiple_progress(user_id, table_name,value):
            # 接続する
     conn = MySQLdb.connect(
     user=loadEnv.DB_USERNAME,
