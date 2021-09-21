@@ -15,4 +15,3 @@
             <p class="flex flex-wrap m-4 p-2 border-bg-main-color kiwi-maru rounded-xl"><span class="material-icons">person</span>ぶいちゃでイチャイチャ</p>
         </div>
     </div>
-z

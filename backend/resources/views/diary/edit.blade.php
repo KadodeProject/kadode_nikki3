@@ -43,11 +43,6 @@
             @endcomponent
         </div>
     </div>
-    @component('components.buttons.editorDiaryButton')
-    @slot("delete_uuid")
-    {{$diary->uuid}}
-    @endslot
-    @endcomponent
     
     <div class="my-12  border button-border-main-color md:w-2/3 md:mx-auto">
         <h2 class="kiwi-maru text-3xl text-center mt-4">この日記の解析情報</h2>
@@ -91,6 +86,11 @@
             @endslot --}}
         @endcomponent
     </div>
+    @component('components.buttons.editorDiaryButton')
+    @slot("delete_uuid")
+    {{$diary->uuid}}
+    @endslot
+    @endcomponent
 
 
 </div>
