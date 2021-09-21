@@ -240,7 +240,7 @@
                 <mxCell id="g4WrYvB8RdJQh1RJ1ry5-115" value="cause" style="text;strokeColor=none;fillColor=none;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fontSize=12;" parent="g4WrYvB8RdJQh1RJ1ry5-105" vertex="1">
                     <mxGeometry y="334" width="160" height="30" as="geometry"/>
                 </mxCell>
-                <mxCell id="g4WrYvB8RdJQh1RJ1ry5-116" value="effect" style="text;strokeColor=none;fillColor=none;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fontSize=12;" parent="g4WrYvB8RdJQh1RJ1ry5-105" vertex="1">
+                <mxCell id="g4WrYvB8RdJQh1RJ1ry5-116" value="similar_sentences" style="text;strokeColor=none;fillColor=none;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fontSize=12;" parent="g4WrYvB8RdJQh1RJ1ry5-105" vertex="1">
                     <mxGeometry y="364" width="160" height="30" as="geometry"/>
                 </mxCell>
                 <mxCell id="g4WrYvB8RdJQh1RJ1ry5-117" value="char_length" style="text;strokeColor=none;fillColor=none;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fontSize=12;" parent="g4WrYvB8RdJQh1RJ1ry5-105" vertex="1">

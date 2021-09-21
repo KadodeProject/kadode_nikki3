@@ -18,7 +18,7 @@ if __name__ == "__main__":
 
 
     #進行度を10%に
-    db.set_multiple_progress(user_id,"statistics",20)
+    db.set_multiple_progress(user_id,"statistics",30)
     # # データ取得
     # rows=db.get_all_diaries_from_user(user_id)
     
@@ -39,4 +39,4 @@ if __name__ == "__main__":
     #インスタンス破棄
     del db
 
-    print("終了")
+    print("total処理終了")

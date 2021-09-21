@@ -1,18 +1,15 @@
-
-import sys
 import time
+import sys
 
 from base import connectDBClass as database
 
-from nlp import morphological_analysis
-from nlp import dependency_analysis
 from nlp import meta_generate
 
 
 if __name__ == "__main__":
-    # from_php = sys.argv#php側の引数
-    # user_id=from_php[1]
-    user_id=1
+    from_php = sys.argv#php側の引数
+    user_id=from_php[1]
+    # user_id=1
 
     #DBインスタンス
     db = database.connectDB()
@@ -23,19 +20,20 @@ if __name__ == "__main__":
     # rows=db.get_all_diaries_from_user(user_id)
     
     rows=db.get_all_diaries_from_user(user_id)
-
+    
     '''
     統計更新してから日記側に変更がないとき(updated_statistic_at<=udpated_at)→処理しない分岐
     dbに入っている日付2021-09-20 14:29:16
     '''
     for row in rows:
         #個別日記のループ
+        #日記の更新日取得
         try:
-            time_udpated_at = time.strptime(row[4], '%Y-%m-%d %H:%M %S')
+            time_updated_at = time.strptime(row[4], '%Y-%m-%d %H:%M %S')
         except:
             # データない場合
-            time_udpated_at = time.strptime('2001-1-1 11:11:11', '%Y-%m-%d %H:%M:%S')
-
+            time_updated_at = time.strptime('2001-1-1 11:11:11', '%Y-%m-%d %H:%M:%S')
+        #統計の更新日取得
         try:
             time_updated_statistic_at = time.strptime(row[5], '%Y-%m-%d %H:%M:%S')
         except:
@@ -43,11 +41,10 @@ if __name__ == "__main__":
             time_updated_statistic_at = time.strptime('2000-1-1 11:11:11', '%Y-%m-%d %H:%M:%S')
 
             
-        if(time_updated_statistic_at>time_udpated_at):
-            #処理不要 リーダーブルコードに乗ってたやつ
-            pass
+        if(time_updated_statistic_at>time_updated_at):
+            #処理不要 リーダーブルコードに乗ってたなんとかかんとかってやつ
+            continue
         else:
-            print("ないよ")
 
             '''
             char_length:日記の文字数
@@ -73,25 +70,19 @@ if __name__ == "__main__":
             '''
             affiliation=meta_generate.get_affiliation_by_ginza(row)
             # print(affiliation)
-            #cause:原因
-            #effect:結果
-            cause,effect=meta_generate.get_causeEffect_by_ginza(row)
 
 
-            # #更新日更新
-            # DB更新
+            '''
+            更新日更新はnlpDorDiaryで行う
+            '''
 
-            #DB代入
-            #まだ　テーブル名、id、任意引数
-            # db.set_single_json_data('diaries',row[0],chunk=chunk,token=token,sentence=sentence,affiliation=affiliation,cause=cause,effect=effect)
-            # db.set_single_normal_data('diaries',row[0],char_length=char_length)
-
-
-            # #完了を送る
-            # db.set_single_progress(row[0],"diaries",100)
-            # db.set_multiple_progress(user_id,"statistics",40)
+            '''
+            DB代入
+            '''
+            db.set_single_json_data('diaries',row[0],chunk=chunk,token=token,sentence=sentence,affiliation=affiliation)
+            db.set_single_normal_data('diaries',row[0],char_length=char_length)
 
     #インスタンス破棄
     del db
 
-    print("終了")
+    print("pre処理終了")

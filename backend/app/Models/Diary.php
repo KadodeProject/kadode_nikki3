@@ -48,7 +48,7 @@ class Diary extends Model
         );
     
     protected $fillable = [
-            "statistic_progress","user_id","uuid","title","content","date" ,"sentence","chunk","token","affiliation","cause","effect","char_length","emotions","flavor","classification","important_words","cause_effect_sentences","special_people","updated_statistic_at","created_at","updated_at"
+            "statistic_progress","user_id","uuid","title","content","date" ,"sentence","chunk","token","affiliation","meta_info","similar_sentences","char_length","emotions","flavor","classification","important_words","cause_effect_sentences","special_people","updated_statistic_at","created_at","updated_at"
     ];
     
      // 初期値設定(statistic_progressを0にする)
