@@ -11,6 +11,12 @@
     
 
 @include('components.noLogIn.releaseNote',
+['title'=>'【統計】自然言語処理個別日記の進行状況のグラフ化',
+'date'=>'2021年9月21日',
+'genre'=>'Feature',
+'explain'=>'今後の自然言語処理関連の実装に備えて、どのくらいの日記が解析済みかを示すプログレスバーを表示するようにしました。
+'])
+@include('components.noLogIn.releaseNote',
 ['title'=>'統計機能の日記数制限',
 'date'=>'2021年9月17日',
 'genre'=>'Fix',

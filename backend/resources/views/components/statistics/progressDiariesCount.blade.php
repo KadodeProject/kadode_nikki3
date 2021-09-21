@@ -7,13 +7,13 @@
 
               </div>
               <div class="text-right">
-                <span class="text-xs font-semibold inline-block text-pink-600">
+                <span class="text-xs font-semibold inline-block ">
                {{$number_of_nikki}}日記中{{$ended_diaries_count}}日記完了
                 </span>
               </div>
             </div>
-            <div class="overflow-hidden h-2 mb-4 text-xs flex rounded bg-pink-200">
-              <div style="width:{{$percecntage}}%" class="shadow-none flex flex-col text-center whitespace-nowrap text-white justify-center bg-pink-500"></div>
+            <div class="overflow-hidden h-2 mb-4 text-xs flex rounded " style="background-color:#8A8772">
+              <div style="width:{{$percecntage}}%" class="shadow-none flex flex-col text-center whitespace-nowrap text-white justify-center" style="background-color:#4B8996"></div>
             </div>
           </div>
    
