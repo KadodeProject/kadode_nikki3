@@ -9,6 +9,7 @@ from base import connectDBClass as database
 from nlp import special_people_extract
 from nlp import classification_analysis
 from nlp import importantWords_analysis
+from nlp import causeEffect_analysis
 from nlp import dependency_analysis
 from nlp import cosSimilarity_analysis
 
@@ -62,6 +63,7 @@ if __name__ == "__main__":
             value_token=json.loads(row[5])
             value_affiliation=json.loads(row[6])
             value_char_length=row[7]
+            value_content=row[8]
             '''
             emotions:感情数値化
             '''
@@ -84,6 +86,9 @@ if __name__ == "__main__":
             '''
             cause_effect_sentences:原因と結果のjson,場所と文字列保持
             '''
+            cause_effect_sentences=causeEffect_analysis.get_causeEffect(value_chunk)
+
+
             '''
             special_people:登場人物←これもafliationでいける
             多い順が帰ってくる
@@ -115,7 +120,6 @@ if __name__ == "__main__":
             # db.set_single_progress(row[0],"diaries",100)
 
     db.set_multiple_progress(user_id,"statistics",40)
-    #インスタンス破棄
     del db
 
     print("nlpForDiary終了")

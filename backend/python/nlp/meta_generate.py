@@ -71,6 +71,8 @@ def get_tokenChunkSentence_by_ginza(row:list):
             ''' 
             nlp_chunk[token.i]={
                 # 'dependencyTag':token.pos_,#形態論情報→品詞は別で持っているので不要
+                #場所の情報無いのは、形態素解析のidと共通なので、そこから取ってこれるから
+                'dependencyTxt':token.text,#該当単語(番号だけだときつい)
                 'dependencyTag':token.dep_,#形態論情報
                 'dependencyForId':token.head.i,#係り先
                 'dependencyForTxt':token.head.text,#係り先の単語(本番では、日記の更新かかると引っ張ってこれなくなるので。)

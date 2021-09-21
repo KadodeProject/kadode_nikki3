@@ -43,7 +43,7 @@ class connectDB:
         cur= self.conn.cursor()
         # クエリを実行する
         #このクエリの順番は他所でrow[2]的な依存をしているので変更は要注意
-        sql = "SELECT id,updated_at,updated_statistic_at,sentence,chunk,token,affiliation,char_length FROM diaries WHERE user_id="+str(user_id)+";"
+        sql = "SELECT id,updated_at,updated_statistic_at,sentence,chunk,token,affiliation,char_length,content FROM diaries WHERE user_id="+str(user_id)+";"
         cur.execute(sql)
         # 実行結果をすべて取得する
         rows = cur.fetchall()

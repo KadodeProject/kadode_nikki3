@@ -55,9 +55,7 @@ class makeStatisticsController extends Controller
         /**
          * ここからPython
          */
-    
-        throwPython::throwPython("nlpForPre",$userId,false,false);
-        throwPython::throwPython("nlpForTotal",$userId,false,false);
+        throwPython::throwNlpToPython($userId,false,false);
 
         return redirect("statistics");
     }

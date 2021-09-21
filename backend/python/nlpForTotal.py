@@ -33,6 +33,7 @@ if __name__ == "__main__":
 
 
     #完了を送る
+    #statisticでのpython実行はすべて並列で行われる
     db.set_multiple_progress(user_id,"statistics",100)
     #インスタンス破棄
     del db
