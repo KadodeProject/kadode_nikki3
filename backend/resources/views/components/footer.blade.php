@@ -8,5 +8,5 @@
         <p class="md:py-0 py-4"><a href="{{url("/news")}}">お知らせ</a></p>
         <p class="md:py-0 py-4"><a href="{{url("/releaseNote")}}">リリースノート</a></p>
     </div>
-     <p class="text-center mt-4 copyright">{{"@"}}usuyuki{{date("Y")}}</p>
-    </footer>
+     <p class="text-center mt-4 copyright">Copyright (c) {{date("Y")}} usuyuki</p>
+</footer>

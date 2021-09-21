@@ -90,6 +90,7 @@ if __name__ == "__main__":
             #まだ　テーブル名、id、任意引数
             # db.set_single_json_data('diaries',row[0],chunk=chunk,token=token,sentence=sentence,affiliation=affiliation,cause=cause,effect=effect)
             # db.set_single_normal_data('diaries',row[0],char_length=char_length)
+            db.set_single_progress(row[0],"diaries",100)
 
 
             # #完了を送る

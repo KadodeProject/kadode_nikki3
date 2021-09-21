@@ -7,9 +7,9 @@ from nlp import meta_generate
 
 
 if __name__ == "__main__":
-    from_php = sys.argv#php側の引数
-    user_id=from_php[1]
-    # user_id=1
+    # from_php = sys.argv#php側の引数
+    # user_id=from_php[1]
+    user_id=1
 
     #DBインスタンス
     db = database.connectDB()
@@ -45,6 +45,7 @@ if __name__ == "__main__":
             #処理不要 リーダーブルコードに乗ってたなんとかかんとかってやつ
             continue
         else:
+            db.set_multiple_progress(row[0],"diaries",10)
 
             '''
             char_length:日記の文字数
@@ -81,7 +82,7 @@ if __name__ == "__main__":
             '''
             db.set_single_json_data('diaries',row[0],chunk=chunk,token=token,sentence=sentence,affiliation=affiliation)
             db.set_single_normal_data('diaries',row[0],char_length=char_length)
-
+            db.set_single_progress(row[0],"diaries",50)
     #インスタンス破棄
     del db
 
