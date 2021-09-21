@@ -17,37 +17,36 @@ if __name__ == "__main__":
     #DBインスタンス
     db = database.connectDB()
 
-    #進行度を10%に
-    db.set_multiple_progress(user_id,"statistics",30)
+
     # # データ取得
     # rows=db.get_all_diaries_from_user(user_id)
     
     rows=db.get_all_diaries_from_user(user_id)
 
     all_sentences=""
-    for row in rows:
-        all_sentences+=row[2]
+    # for row in rows:
+    #     all_sentences+=row[2]
     
     '''
-    統計更新してから日記側に変更がないとき(updated_statistic_at<=udpated_at)→処理しない分岐
+    統計更新してから日記側に変更がないとき(updated_statistic_at<=updated_at)→処理しない分岐
     dbに入っている日付2021-09-20 14:29:16
     '''
     for row in rows:
         #個別日記のループ
         try:
-            time_udpated_at = time.strptime(row[4], '%Y-%m-%d %H:%M %S')
+            time_updated_at = time.strptime(row[1], '%Y-%m-%d %H:%M %S')
         except:
             # データない場合
-            time_udpated_at = time.strptime('2001-1-1 11:11:11', '%Y-%m-%d %H:%M:%S')
+            time_updated_at = time.strptime('2001-1-1 11:11:11', '%Y-%m-%d %H:%M:%S')
 
         try:
-            time_updated_statistic_at = time.strptime(row[5], '%Y-%m-%d %H:%M:%S')
+            time_updated_statistic_at = time.strptime(row[2], '%Y-%m-%d %H:%M:%S')
         except:
             # データない場合
             time_updated_statistic_at = time.strptime('2000-1-1 11:11:11', '%Y-%m-%d %H:%M:%S')
 
             
-        if(time_updated_statistic_at>time_udpated_at):
+        if(time_updated_statistic_at>time_updated_at):
             #処理不要 リーダーブルコードに乗ってたやつ
             continue
         else:
@@ -81,6 +80,7 @@ if __name__ == "__main__":
             '''
             special_people:登場人物←これもafliationでける
             '''
+
             '''
             updated_statistic_at:統計更新日更新処理
             '''
@@ -95,9 +95,9 @@ if __name__ == "__main__":
 
             # #完了を送る
             # db.set_single_progress(row[0],"diaries",100)
-            # db.set_multiple_progress(user_id,"statistics",40)
 
+    db.set_multiple_progress(user_id,"statistics",40)
     #インスタンス破棄
     del db
 
-    print("終了")
+    print("nlpForDiary終了")

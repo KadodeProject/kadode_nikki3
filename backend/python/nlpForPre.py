@@ -7,9 +7,9 @@ from nlp import meta_generate
 
 
 if __name__ == "__main__":
-    # from_php = sys.argv#php側の引数
-    # user_id=from_php[1]
-    user_id=1
+    from_php = sys.argv#php側の引数
+    user_id=from_php[1]
+    # user_id=1
 
     #DBインスタンス
     db = database.connectDB()
@@ -83,7 +83,9 @@ if __name__ == "__main__":
             db.set_single_json_data('diaries',row[0],chunk=chunk,token=token,sentence=sentence,affiliation=affiliation)
             db.set_single_normal_data('diaries',row[0],char_length=char_length)
             db.set_single_progress(row[0],"diaries",50)
+
+    db.set_multiple_progress(user_id,"statistics",20)
     #インスタンス破棄
     del db
 
-    print("pre処理終了")
+    print("nlpForPre処理終了")

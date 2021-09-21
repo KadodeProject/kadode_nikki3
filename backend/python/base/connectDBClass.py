@@ -19,14 +19,31 @@ class connectDB:
         print('DB接続解除処理')
 
     """
-    データベースに接続して、引数のユーザーIDのすべての日記(id,本文,タイトル)を取得
+    データベースに接続して、引数のユーザーIDのすべての日記の基本情報を取得
     """
     def get_all_diaries_from_user(self,user_id):
         print('日記の取得')
         # カーソルを取得する
         cur= self.conn.cursor()
         # クエリを実行する
+        #このクエリの順番は他所でrow[2]的な依存をしているので変更は要注意
         sql = "SELECT id,title,content,date,updated_at,updated_statistic_at FROM diaries WHERE user_id="+str(user_id)+";"
+        cur.execute(sql)
+        # 実行結果をすべて取得する
+        rows = cur.fetchall()
+        # カーソルを閉じる
+        cur.close()
+        return rows
+    """
+    データベースに接続して、引数のユーザーIDのすべての日記の自然言語Pre情報を取得
+    """
+    def get_all_diariesPre_from_user(self,user_id):
+        print('日記の取得')
+        # カーソルを取得する
+        cur= self.conn.cursor()
+        # クエリを実行する
+        #このクエリの順番は他所でrow[2]的な依存をしているので変更は要注意
+        sql = "SELECT id,updated_at,updated_statistic_at,sentence,chunk,token,affiliation,char_length FROM diaries WHERE user_id="+str(user_id)+";"
         cur.execute(sql)
         # 実行結果をすべて取得する
         rows = cur.fetchall()
