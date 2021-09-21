@@ -42,7 +42,7 @@ class showStatisticsController extends Controller
         /**
          * 個別日記処理の進捗を取得する処理
          */
-        $sended_diaries_count=Diary::sum('statistic_progress') /100 #終わっている日記数の推定値(本当は50で全部通してから次行くので、実際の値とは違う)
+        $ended_diaries_count=Diary::sum('statistic_progress') /100; #終わっている日記数の推定値(本当は50で全部通してから次行くので、実際の値とは違う)
             
         /**
          * 月ごとの1日記あたりの平均文字数算出
@@ -121,6 +121,6 @@ class showStatisticsController extends Controller
         $oldest_diary_date="なし";
     }   
 
-        return view("diary/statistics/statisticsTop",["statistics"=>$statistic,'oldest_diary_date'=>$oldest_diary_date,'number_of_nikki'=>$number_of_nikki,'sended_diaries_count'=>$sended_diaries_count]);
+        return view("diary/statistics/statisticsTop",["statistics"=>$statistic,'oldest_diary_date'=>$oldest_diary_date,'number_of_nikki'=>$number_of_nikki,'ended_diaries_count'=>$ended_diaries_count]);
     }
 }

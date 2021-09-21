@@ -381,6 +381,12 @@ li ol {
     width: 600px;
     height: 1800px;
 }
+.chartWrapper_nlp_1_2 {
+    margin: 0 auto;
+    /* overflow-x: scroll; */
+    width: 900px;
+    height: 300px;
+}
 
 @media screen and (max-width: 640px) {
     /* スマホの時 */
@@ -397,6 +403,10 @@ li ol {
     }
     .chartWrapper_nlp_long {
         width: 90vw;
+    }
+    .chartWrapper_nlp_1_2 {
+        width: 300px;
+        height: 100px;
     }
 }
 
@@ -442,5 +452,19 @@ li ol {
 @media screen and (max-width: 640px) {
     .statistic-content {
         margin: 2em 1em;
+    }
+}
+
+/* 統計の砂時計回転 */
+.hourglass_animation {
+    animation: 3s linear infinite hourglass;
+}
+
+@keyframes hourglass {
+    0% {
+        transform: rotateX(0);
+    }
+    100% {
+        transform: rotateX(360deg);
     }
 }
