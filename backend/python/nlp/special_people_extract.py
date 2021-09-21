@@ -25,14 +25,15 @@ def get_special_people(affiliation):
             name_counter[people]=1
     
     #それを登録する形に改変
-    special_people=[]
+    special_people_raw=[]
     for key,value in name_counter.items():
-        special_people.append({
+        special_people_raw.append({
             'name':key,
             'count':value
         })
-    # print(special_people)
-        
+    # print(special_people_raw)
 
+    #多い順に並び替え
+    special_people=sorted(special_people_raw, key=lambda x:x['count'],reverse=True)
 
     return special_people

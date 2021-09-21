@@ -70,6 +70,7 @@ def get_tokenChunkSentence_by_ginza(row:list):
             係り受け情報(chunk)取得
             ''' 
             nlp_chunk[token.i]={
+                # 'dependencyTag':token.pos_,#形態論情報→品詞は別で持っているので不要
                 'dependencyTag':token.dep_,#形態論情報
                 'dependencyForId':token.head.i,#係り先
                 'dependencyForTxt':token.head.text,#係り先の単語(本番では、日記の更新かかると引っ張ってこれなくなるので。)

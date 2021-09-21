@@ -7,6 +7,7 @@ import datetime
 from base import connectDBClass as database
 
 from nlp import special_people_extract
+from nlp import classification_analysis
 from nlp import dependency_analysis
 from nlp import cosSimilarity_analysis
 
@@ -72,14 +73,18 @@ if __name__ == "__main__":
             '''
             classification:推定分類　←afliation使えばすぐ行けそう
             '''
+            classification=classification_analysis.get_mostGuess_classification(value_affiliation)
+            # print(classification)
             '''
             important_words:重要そうな言葉top3
             '''
+            # print(value_chunk)
             '''
             cause_effect_sentences:原因と結果のjson,場所と文字列保持
             '''
             '''
-            special_people:登場人物←これもafliationでける
+            special_people:登場人物←これもafliationでいける
+            多い順が帰ってくる
             '''
             special_people=special_people_extract.get_special_people(value_affiliation)
 
@@ -87,9 +92,14 @@ if __name__ == "__main__":
             updated_statistic_at:統計更新日更新処理
             '''
             updated_statistic_at=time.strftime('%Y-%m-%d %H:%M:%S')
-            print(updated_statistic_at)
+            # print(updated_statistic_at)
             # db.set_single_normal_data('diaries',row[0],updated_statistic_at)
-            # DB更新
+
+
+
+            '''
+            DB更新
+            '''
 
             #DB代入
             #まだ　meta_info,emotions,flavor,similar_sentences,classification,important_words,cause_effect_sentences,special_people,updated_statistic_at
