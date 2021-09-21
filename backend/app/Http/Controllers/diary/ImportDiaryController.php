@@ -71,7 +71,7 @@ class ImportDiaryController extends Controller
             }else{
                   \Log::debug("$tmpPath.の削除失敗");
               }
-              $today_date=Carbon::today();
+              $today_date=Carbon::now();
             // 登録処理
             foreach($dataList as $row){
                 Diary::insert(['updated_at'=>$today_date,'created_at'=>$today_date,'user_id'=>Auth::Id(),'uuid'=>Str::uuid(), 'date' => $row[0], 'title' => $row[1], 'content' => $row[2]]);
@@ -163,7 +163,7 @@ class ImportDiaryController extends Controller
                  // 登録処理
                  $arrayCounter=0;
 
-                 $today_date=Carbon::today();
+                 $today_date=Carbon::now();
                  
                 foreach($dateTxt as $date){
 

@@ -4,19 +4,23 @@
 
 https://kadodenikki3.usuyuki.net/
 
-![かどでリリースのお知らせ](https://user-images.githubusercontent.com/63891531/124377606-ad6ba080-dce7-11eb-8cf4-af3fc95656ef.png)
-
 # 文章周り
 
 ## **ライセンス**
 
-かどで日記ライセンス: [LICENSE](./LICENSE.md)
+### かどで日記ライセンス
 
-使用しているソフトウェアのライセンス周り: [usedLicense.md](./docs/99_usedLicense.md)
+Copyright (c) 2021 usuyuki
+
+Released under the MIT license
+
+[LICENSE](./LICENSE.md)
+
+### 使用しているソフトウェアのライセンス周り:
+
+[usedLicense.md](./docs/99_usedLicense.md)
 
 ## 弊社の取り組み的なやつ？
-
-セキュリティ周りの取り組み: [usedLicense.md](./docs/99_usedLicense.md)
 
 [プライバシーポリシー](https://kadodenikki3.usuyuki.net/privacyPolicy)
 
@@ -95,6 +99,9 @@ Figma に記載(非公開)
 -   フォント:Google Fonts
 -   CSV インポートライブラリ:Goodby CSV(メモリ使用軽減)
 -   グラフ表示:chart.js
--   形態素解析:janome(mecab ベース)
+-   形態素解析:janome(mecab ベース)、GiNZA
 -   係り受け解析:GiNZA
--   今後の自然言語処理の技術選定はまだ未定です。
+-   アノテーション抽出:GiNZA
+-   コサイン類似度計算:GiNZA
+
+![かどでリリースのお知らせ](https://user-images.githubusercontent.com/63891531/124377606-ad6ba080-dce7-11eb-8cf4-af3fc95656ef.png)
