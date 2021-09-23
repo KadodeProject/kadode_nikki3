@@ -1,17 +1,15 @@
 
-import sys
+
 from base import connectDBClass as database
 
 from nlp import morphological_analysis
 
-def nlpForTotal():
+def nlpForTotal(user_id):
     """
     [id,タイトル,本文,日付]
     [0 ,1     ,2     ,3    ]
     """
-    from_php = sys.argv#php側の引数
-    user_id=from_php[1]
-    # user_id=1
+
 
     #DBインスタンス
     db = database.connectDB()

@@ -1,8 +1,8 @@
 
-import sys
+
 import time
 import json
-import datetime
+from datetime import datetime as dt
 
 from base import connectDBClass as database
 
@@ -16,10 +16,7 @@ from nlp import cosSimilarity_analysis
 
 from nlp.dic import dic_to_trie
 
-def nlpForDiary():
-    # from_php = sys.argv#php側の引数
-    # user_id=from_php[1]
-    user_id=3
+def nlpForDiary(user_id):
 
     #DBインスタンス
     db = database.connectDB()
@@ -36,30 +33,31 @@ def nlpForDiary():
     all_sentences=""
     for row in rows:
         all_sentences+=row[8]
-    
+
     '''
     統計更新してから日記側に変更がないとき(updated_statistic_at<=updated_at)→処理しない分岐
     dbに入っている日付2021-09-20 14:29:16
     '''
     for row in rows:
+        
         #個別日記のループ
-        try:
-            time_updated_at = time.strptime(row[1], '%Y-%m-%d %H:%M:%S')
-        except:
+        if(row[1]!=None):
+             time_updated_at = row[1]#この時点でdatetime型になっている
+        else:
             # データない場合
-            time_updated_at = time.strptime('2001-1-1 11:11:11', '%Y-%m-%d %H:%M:%S')
-
-        try:
-            time_updated_statistic_at = time.strptime(row[2], '%Y-%m-%d %H:%M:%S')
-        except:
+            time_updated_at = time.strptime('1800-1-1 11:11:11', '%Y-%m-%d %H:%M:%S')
+        #統計の更新日取得
+        if(row[2]!=None):
+            time_statistics_updated_at = row[2]
+        else:
             # データない場合
-            time_updated_statistic_at = time.strptime('2000-1-1 11:11:11', '%Y-%m-%d %H:%M:%S')
-
-            
+            time_updated_statistic_at = dt.strptime('1800-1-1 11:11:11','%Y-%m-%d %H:%M:%S')
         if(time_updated_statistic_at>time_updated_at):
             #処理不要 リーダーブルコードに乗ってたやつ
+            print(str(row[0])+"スキップ")
             continue
         else:
+            print(str(row[0])+"Diary処理")
             # nlp関係はNoneがあるので注
             #jsonはdecodeする
             value_id=row[0]
@@ -75,7 +73,7 @@ def nlpForDiary():
             emotions:感情数値化
             '''
             emotions=emotions_analysis.get_emotion(dic_posi,dic_nega,value_content)
-            print(emotions)
+            # print(emotions)
             '''
             flavor:ユーザーの日記らしさ、コサイン類似度?TF-IDF?
             値は出てくるが、激的に遅い上、差が見られない
@@ -112,10 +110,8 @@ def nlpForDiary():
             '''
             updated_statistic_at:統計更新日更新処理
             '''
-            updated_statistic_at=time.strftime('%Y-%m-%d %H:%M:%S')
-            # print(updated_statistic_at)
-            # db.set_single_normal_data('diaries',row[0],updated_statistic_at)
-
+            updated_statistic_at=time.strftime('%Y-%m-%d %H:%M:%S')#現在時刻を文字列でget (timeライブラリ)
+            updated_statistic_at=dt.strptime(updated_statistic_at,'%Y-%m-%d %H:%M:%S')# datetime型に変換(datetimeライブラリ)
 
 
             '''
@@ -124,14 +120,10 @@ def nlpForDiary():
 
             #DB代入
             #まだ　meta_info,emotions,flavor,similar_sentences,classification,important_words,cause_effect_sentences,special_people,updated_statistic_at
-            # db.set_single_json_data('diaries',row[0],chunk=chunk,token=token,sentence=sentence,affiliation=affiliation,cause=cause,effect=effect)
-            # db.set_single_normal_data('diaries',row[0],char_length=char_length)
+            db.set_single_json_data('diaries',row[0],classification=classification,important_words=important_words,special_people=special_people)
+            db.set_single_normal_data('diaries',row[0],emotions=emotions,updated_statistic_at=updated_statistic_at)
 
             db.set_single_progress(row[0],"diaries",100)
-
-
-            # #完了を送る
-            # db.set_single_progress(row[0],"diaries",100)
 
     db.set_multiple_progress(user_id,"statistics",40)
     del db

@@ -1,5 +1,5 @@
 
-import sys
+
 import time
 
 from base import connectDBClass as database
@@ -9,10 +9,8 @@ from nlp import dependency_analysis
 from nlp import cosSimilarity_analysis
 
 
-def nlpForYear():
-    # from_php = sys.argv#php側の引数
-    # user_id=from_php[1]
-    user_id=1
+def nlpForYear(user_id):
+
 
     #DBインスタンス
     db = database.connectDB()

@@ -14,9 +14,24 @@ import nlpForDiary
 import nlpForMonth
 import nlpForYear
 import nlpForTotal
-
-nlpForPre.nlpForPre()
-# nlpForDiary.nlpForDiary()
-# nlpForMonth.nlpForMonth()
-# nlpForYear.nlpForYear()
-nlpForTotal.nlpForTotal()
+import sys
+import time
+# from_php = sys.argv#php側の引数
+# user_id=from_php[1]
+user_id=1
+print("nlpForPre")
+nlpForPre.nlpForPre(user_id)
+time.sleep(2)
+print("nlpForDiary")
+nlpForDiary.nlpForDiary(user_id)
+time.sleep(2)
+print("nlpForMonth")
+# nlpForMonth.nlpForMonth(user_id)
+time.sleep(2)
+print("nlpForYear")
+# nlpForYear.nlpForYear(user_id)
+time.sleep(2)
+print("nlpForTotal")
+nlpForTotal.nlpForTotal(user_id)
+time.sleep(2)
+print("DONE")

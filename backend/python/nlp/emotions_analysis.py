@@ -26,5 +26,5 @@ def get_emotion(dic_posi,dic_nega,text):
     return results_ave
     #0~1で返す
 if __name__ == '__main__':
-    kekka=get_emotion("こんにちは、今日の天気は快晴で最悪です。")
+    kekka=get_emotion("こんにちは、今日の天気は快晴です。")
     print(kekka)
