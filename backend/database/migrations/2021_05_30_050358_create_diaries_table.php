@@ -35,7 +35,7 @@ class CreateDiariesTable extends Migration
             $table->json("similar_sentences")->nullable()->comment("似ている日記の日記ID(5)");
             $table->double("emotions")->nullable()->comment("感情数値化");
             $table->double("flavor")->nullable()->comment("ユーザーの日記らしさ");
-            $table->json("classification")->nullable()->comment("推定分類");
+            $table->string("classification")->nullable()->comment("推定分類");
             $table->json("important_words")->nullable()->comment("重要そうな言葉(top3)");
             $table->json("cause_effect_sentences")->nullable()->comment("原因と結果のjson");
             $table->json("special_people")->nullable()->comment("登場人物");

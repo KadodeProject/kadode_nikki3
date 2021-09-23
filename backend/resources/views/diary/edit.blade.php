@@ -46,45 +46,53 @@
     
     <div class="my-12  border button-border-main-color md:w-2/3 md:mx-auto">
         <h2 class="kiwi-maru text-3xl text-center mt-4">この日記の解析情報</h2>
-        <p class="text-right md:pr-12 px-2 text-sm mt-2 kiwi-maru">統計作成時刻:</p>
+        @if($diary->statistic_progress==100)
+        <p class="text-right md:pr-12 px-2 text-sm mt-2 kiwi-maru">統計作成時刻: {{$diary->updated_statistic_at}}</p>
         <div class="flex flex-wrap mx-4 md:mx-8">
             <div class="w-full md:w-1/2">
+                @php
+                    $emotions=$diary->emotions;
+                    if($emotions>=0.5){
+                        $emotions_chr="ポジティブ";
+                    }else{
+                        $emotions_chr="ネガティブ";
+                    }
+                    
+                @endphp
                 @component('components.statistics.emotionsChar')
-                    {{-- @slot("ended_diaries_count")
-                    {{$ended_diaries_count}}
-                    @endslot --}}
+                    @slot("emotions_chr")
+                    {{$emotions_chr}}
+                    @endslot
+                    @slot("emotions_num")
+                    {{$emotions}}
+                    @endslot
                 @endcomponent
             </div>
-            <div class="w-full md:w-1/2">
+            {{-- <div class="w-full md:w-1/2">
                 @component('components.statistics.flavorChar')
-                    {{-- @slot("ended_diaries_count")
-                    {{$ended_diaries_count}}
-                    @endslot --}}
                 @endcomponent
-            </div>
+            </div> --}}
             <div class="w-full md:w-1/2">
                 @component('components.statistics.classificationsChar')
-                    {{-- @slot("ended_diaries_count")
-                    {{$ended_diaries_count}}
-                    @endslot --}}
+                    @slot("classification")
+                    {{$diary->classification}}
+                    @endslot
                 @endcomponent
             </div>
         </div>
-        @component('components.statistics.importantWordsChar')
-            {{-- @slot("ended_diaries_count")
-            {{$ended_diaries_count}}
-            @endslot --}}
+        @component('components.statistics.importantWordsChar',["important_words"=>$diary->important_words])
+
         @endcomponent
-        @component('components.statistics.causeEffectChar')
-            {{-- @slot("ended_diaries_count")
-            {{$ended_diaries_count}}
-            @endslot --}}
+        {{-- @component('components.statistics.causeEffectChar')
+        @endcomponent --}}
+        @component('components.statistics.specialPeopleChar',["special_people"=>$diary->special_people])
+
         @endcomponent
-        @component('components.statistics.specialPeopleChar')
-            {{-- @slot("ended_diaries_count")
-            {{$ended_diaries_count}}
-            @endslot --}}
-        @endcomponent
+        @elseif($diary->statistic_progress==0)
+        <h3 class="kiwi-maru text-2xl text-center my-6">統計情報が生成されていません</h3>
+        @else
+        <h3 class="kiwi-maru text-2xl text-center my-6">統計情報を生成中です</h3>
+        @endif
     </div>
     @component('components.buttons.editorDiaryButton')
     @slot("delete_uuid")

@@ -16,9 +16,10 @@ import nlpForYear
 import nlpForTotal
 import sys
 import time
-# from_php = sys.argv#php側の引数
-# user_id=from_php[1]
-user_id=1
+from_php = sys.argv#php側の引数
+# print(from_php)
+user_id=from_php[1]
+# user_id=1
 print("nlpForPre")
 nlpForPre.nlpForPre(user_id)
 time.sleep(2)

@@ -26,6 +26,15 @@ class EditDiaryController extends Controller
         }
         $next=Diary::where("date",">",$diary->date)->orderBy("date","asc")->first();
         $previous=Diary::where("date","<",$diary->date)->orderBy("date","desc")->first();
+
+        if($diary->statistic_progress==100){
+            /**
+             * 名詞と形容詞の登場順
+             */
+            //jsonを配列に戻し、連想配列を配列にする
+            $diary->important_words=array_values(json_decode($diary->important_words,true));
+            $diary->special_people=array_values(json_decode($diary->special_people,true));
+        }
         return view('diary/edit',['diary' => $diary,'previous'=>$previous, 'next'=>$next]);
     }
 

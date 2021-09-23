@@ -17,7 +17,7 @@ def make_trie():
                 continue
             polarity_, term_=line_splitted[:2]
             polarity=polarity_[:2]
-            term=term_.replace(' ','')#4
+            term=term_.replace(' ','')#
             if polarity=='ポジ':#
                 dic_positive.add(term)#
             elif polarity=='ネガ':#

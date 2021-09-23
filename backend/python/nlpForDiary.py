@@ -51,8 +51,9 @@ def nlpForDiary(user_id):
             time_statistics_updated_at = row[2]
         else:
             # データない場合
-            time_updated_statistic_at = dt.strptime('1800-1-1 11:11:11','%Y-%m-%d %H:%M:%S')
-        if(time_updated_statistic_at>time_updated_at):
+            time_statistics_updated_at = dt.strptime('1800-1-1 11:11:11','%Y-%m-%d %H:%M:%S')
+
+        if(time_statistics_updated_at>time_updated_at):
             #処理不要 リーダーブルコードに乗ってたやつ
             print(str(row[0])+"スキップ")
             continue
@@ -120,8 +121,8 @@ def nlpForDiary(user_id):
 
             #DB代入
             #まだ　meta_info,emotions,flavor,similar_sentences,classification,important_words,cause_effect_sentences,special_people,updated_statistic_at
-            db.set_single_json_data('diaries',row[0],classification=classification,important_words=important_words,special_people=special_people)
-            db.set_single_normal_data('diaries',row[0],emotions=emotions,updated_statistic_at=updated_statistic_at)
+            db.set_single_json_data('diaries',row[0],important_words=important_words,special_people=special_people)
+            db.set_single_normal_data('diaries',row[0],classification=classification,emotions=emotions,updated_statistic_at=updated_statistic_at)
 
             db.set_single_progress(row[0],"diaries",100)
 

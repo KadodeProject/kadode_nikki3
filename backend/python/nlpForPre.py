@@ -38,10 +38,10 @@ def nlpForPre(user_id):
         else:
             # データない場合
             time_statistics_updated_at = dt.strptime('1800-1-1 11:11:11','%Y-%m-%d %H:%M:%S')
-        print(time_updated_at)
-        print(time_statistics_updated_at)
-        print(type(time_updated_at))
-        print(type(time_statistics_updated_at))
+        # print(time_updated_at)
+        # print(time_statistics_updated_at)
+        # print(type(time_updated_at))
+        # print(type(time_statistics_updated_at))
             
         if(time_statistics_updated_at>time_updated_at):
             #処理不要 リーダーブルコードに乗ってたなんとかかんとかってやつ
