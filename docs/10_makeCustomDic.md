@@ -27,6 +27,10 @@ vim /usr/local/lib/python3.7/dist-packages/sudachipy/resources/sudachi.json
 
 ```
 
+## サーバー
+
+サーバー側はセキュリティ的に notion に記載
+
 ### 参考
 
 https://note.com/npaka/n/n6fa359ac611c
