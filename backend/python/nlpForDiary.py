@@ -27,8 +27,8 @@ def nlpForDiary():
     rows=db.get_all_diariesPre_from_user(user_id)
 
     all_sentences=""
-    # for row in rows:
-    #     all_sentences+=row[2]
+    for row in rows:
+        all_sentences+=row[8]
     
     '''
     統計更新してから日記側に変更がないとき(updated_statistic_at<=updated_at)→処理しない分岐
@@ -69,7 +69,10 @@ def nlpForDiary():
             '''
             '''
             flavor:ユーザーの日記らしさ、コサイン類似度?TF-IDF?
+            値は出てくるが、激的に遅い上、差が見られない
             '''
+            # similar_sentences=cosSimilarity_analysis.get_cos_similarity(all_sentences,row[8])
+            # print(similar_sentences)
             '''
             similar_sentences:上の値を用いて、同じユーザーの似ている日記のidを5つ拾ってくる
             '''
@@ -85,8 +88,10 @@ def nlpForDiary():
             # print(important_words)
             '''
             cause_effect_sentences:原因と結果のjson,場所と文字列保持
+            そもそも日記に原因結果の因果関係が存在しなくない？
+            〇〇は○○に影響を与えたは、歴史や国の説明ではありえても、日記ではありえない。
             '''
-            cause_effect_sentences=causeEffect_analysis.get_causeEffect(value_chunk)
+            # cause_effect_sentences=causeEffect_analysis.get_causeEffect(value_chunk)
 
 
             '''

@@ -18,9 +18,19 @@ GiNZA は transformers モデルを採用されていますが、本サイトで
 
 GiNZA やばすぎません………？？？？
 
+## 形態素解析と辞書
+
+先述の通り GiNZA ですが GiNZA は sudachi を形態素解析に用いています。
+
+ソース:https://megagonlabs.github.io/ginza/developer_reference.html
+
+sudachi の辞書は Sudachi 辞書と呼ばれるものが使われている。これがすごい。
+
+ソース:https://zenn.dev/sorami/articles/c9a506000fd1fbd1cf98
+
 ### コサイン類似度
 
----
+## GiNZA で使える
 
 ### 参考記事など
 

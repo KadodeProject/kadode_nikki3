@@ -1,6 +1,6 @@
 @isset($statistic_progress)
-    <p class="text-center">※ページをリロードすると更新されます</p>
-    <div class="chartWrapper_small">
+    <p class="text-center kiwi-maru mt-12 mb-2">統計全体の解析状況</p>
+    <div class="chartWrapper_small" style="padding-top:0px!important">
     <canvas id="chartNlpAnalyzing" width="400px" height="400px"></canvas>
     </div>
 <!--進行中のときの動作-->

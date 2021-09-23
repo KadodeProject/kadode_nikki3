@@ -44,14 +44,7 @@
         <p class="text-xl text-center my-4">※24時間以内に更新済みの場合、新たに生成はされません。</p>
         @if($statistics->statistic_progress>=1 && $statistics->statistic_progress<=99)
           <h3 class=" ml-2 text-2xl kiwi-maru align-middle text-center"><span class="material-icons hourglass_animation" style="margin-right:0.25em">hourglass_bottom</span>自然言語処理の進行度</h3>
-          @component('components.statistics.progressGraph')
-            @slot("statistic_progress")
-            {{$statistics->statistic_progress}}
-            @endslot
-            @slot("statistic_progress_remain")
-            {{100-($statistics->statistic_progress)}}
-            @endslot
-          @endcomponent
+          <p class="text-center kiwi-maru my-2">※ページをリロードすると更新されます</p>
           @component('components.statistics.progressDiariesCount')
             @slot("ended_diaries_count")
             {{$ended_diaries_count}}
@@ -61,6 +54,14 @@
             @endslot
             @slot("percecntage")
             {{($ended_diaries_count/$number_of_nikki)*100}}
+            @endslot
+          @endcomponent
+          @component('components.statistics.progressGraph')
+            @slot("statistic_progress")
+            {{$statistics->statistic_progress}}
+            @endslot
+            @slot("statistic_progress_remain")
+            {{100-($statistics->statistic_progress)}}
             @endslot
           @endcomponent
         @else
