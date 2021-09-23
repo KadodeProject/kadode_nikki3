@@ -56,6 +56,16 @@ https://github.com/megagonlabs/ginza/blob/master/LICENSE
 
 https://megagonlabs.github.io/ginza/
 
+## ahocorapy
+
+Copyright (c) 2018 Abusix, Inc.
+
+Released under the MIT license
+
+https://github.com/abusix/ahocorapy/blob/master/LICENSE
+
+※T 感情極性辞書での TRIE で利用
+
 # 辞書
 
 ## 日本語評価極性辞書

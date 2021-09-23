@@ -9,9 +9,12 @@ from base import connectDBClass as database
 from nlp import special_people_extract
 from nlp import classification_analysis
 from nlp import importantWords_analysis
+from nlp import emotions_analysis
 from nlp import causeEffect_analysis
 from nlp import dependency_analysis
 from nlp import cosSimilarity_analysis
+
+from nlp.dic import dic_to_trie
 
 def nlpForDiary():
     # from_php = sys.argv#php側の引数
@@ -26,6 +29,10 @@ def nlpForDiary():
     # SELECT id,updated_at,updated_statistic_at,sentence,chunk,token,affiliation,char_length
     rows=db.get_all_diariesPre_from_user(user_id)
 
+    #感情極性辞書のTRIE作成
+    dic_posi,dic_nega=dic_to_trie.make_trie()
+
+    #全日記文字
     all_sentences=""
     for row in rows:
         all_sentences+=row[8]
@@ -67,6 +74,8 @@ def nlpForDiary():
             '''
             emotions:感情数値化
             '''
+            emotions=emotions_analysis.get_emotion(dic_posi,dic_nega,value_content)
+            print(emotions)
             '''
             flavor:ユーザーの日記らしさ、コサイン類似度?TF-IDF?
             値は出てくるが、激的に遅い上、差が見られない
