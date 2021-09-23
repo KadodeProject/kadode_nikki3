@@ -1,15 +1,13 @@
 import time
-import sys
+
+from datetime import datetime as dt
 
 from base import connectDBClass as database
 
 from nlp import meta_generate
 
 
-if __name__ == "__main__":
-    # from_php = sys.argv#php側の引数
-    # user_id=from_php[1]
-    user_id=1
+def nlpForPre(user_id):
 
     #DBインスタンス
     db = database.connectDB()
@@ -28,23 +26,30 @@ if __name__ == "__main__":
     for row in rows:
         #個別日記のループ
         #日記の更新日取得
-        try:
-            time_updated_at = time.strptime(row[4], '%Y-%m-%d %H:%M %S')
-        except:
+       
+        if(row[4]!=None):
+             time_updated_at = row[4]#この時点でdatetime型になっている
+        else:
             # データない場合
-            time_updated_at = time.strptime('2001-1-1 11:11:11', '%Y-%m-%d %H:%M:%S')
+            time_updated_at = time.strptime('1800-1-1 11:11:11', '%Y-%m-%d %H:%M:%S')
         #統計の更新日取得
-        try:
-            time_updated_statistic_at = time.strptime(row[5], '%Y-%m-%d %H:%M:%S')
-        except:
+        if(row[5]!=None):
+            time_statistics_updated_at = row[5]
+        else:
             # データない場合
-            time_updated_statistic_at = time.strptime('2000-1-1 11:11:11', '%Y-%m-%d %H:%M:%S')
-
+            time_statistics_updated_at = dt.strptime('1800-1-1 11:11:11','%Y-%m-%d %H:%M:%S')
+        # print(time_updated_at)
+        # print(time_statistics_updated_at)
+        # print(type(time_updated_at))
+        # print(type(time_statistics_updated_at))
             
-        if(time_updated_statistic_at>time_updated_at):
+        if(time_statistics_updated_at>time_updated_at):
             #処理不要 リーダーブルコードに乗ってたなんとかかんとかってやつ
+            print(str(row[0])+"スキップ")
+
             continue
         else:
+            print(str(row[0])+"pre処理")
             db.set_multiple_progress(row[0],"diaries",10)
 
             '''
@@ -83,7 +88,11 @@ if __name__ == "__main__":
             db.set_single_json_data('diaries',row[0],chunk=chunk,token=token,sentence=sentence,affiliation=affiliation)
             db.set_single_normal_data('diaries',row[0],char_length=char_length)
             db.set_single_progress(row[0],"diaries",50)
+
+    db.set_multiple_progress(user_id,"statistics",20)
     #インスタンス破棄
     del db
 
-    print("pre処理終了")
+    print("nlpForPre処理終了")
+if __name__ == '__main__':
+    nlpForPre()

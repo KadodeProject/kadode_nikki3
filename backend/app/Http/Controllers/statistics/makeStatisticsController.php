@@ -6,7 +6,11 @@ use App\CustomFunction\calculateDiary;
 use App\CustomFunction\throwPython;
 use App\Http\Controllers\Controller;
 use App\Models\Diary;
+use App\Models\Diary_people;
 use App\Models\Statistic;
+use App\Models\Statistic_overall_progress;
+use App\Models\Statistic_per_month;
+use App\Models\Statistic_per_year;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -19,13 +23,20 @@ class makeStatisticsController extends Controller
         $calculateDiary=calculateDiary::calculateDiary($diaries);
 
 
+        #SQLでupdateするために先にdb insertしておく
         $data=[
             "user_id"=>Auth::id(),
             "total_words"=>$calculateDiary["total_words"],
             "total_diaries"=>$calculateDiary["total_diaries"],
         ];
-
         Statistic::create($data);
+        $data=[
+            "user_id"=>Auth::id(),
+        ];
+        // Statistic_per_month::create($data);
+        // Statistic_per_year::create($data);
+        // Diary_people::create($data);
+        Statistic_overall_progress::create($data);
 
         //なぜか初回生成でjson投げると怒られる。
         //すごく汚いコードだが、初回生成して、もう1度データ投げる方式
@@ -55,9 +66,7 @@ class makeStatisticsController extends Controller
         /**
          * ここからPython
          */
-    
-        throwPython::throwPython("nlpForPre",$userId,false,false);
-        throwPython::throwPython("nlpForTotal",$userId,false,false);
+        throwPython::throwNlpToPython($userId,false,false);
 
         return redirect("statistics");
     }

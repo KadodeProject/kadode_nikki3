@@ -23,12 +23,12 @@ class ExportDiaryController extends Controller
         $f = fopen("exportCsv/$uuid.csv", 'w');
         if ($f) {
             // カラムの書き込み SJISがCSVの保存形式なので、SJISで保存。
-            mb_convert_variables('SJIS', 'UTF-8', $head);
+            mb_convert_variables('ANSI', 'UTF-8', $head);
             fputcsv($f, $head);
             // データの書き込み
             foreach ($diaries as $diary) {
              
-                mb_convert_variables('SJIS', 'UTF-8', $diary);
+                mb_convert_variables('ANSI', 'UTF-8', $diary);
                 fputcsv($f, $diary);
             }
         }

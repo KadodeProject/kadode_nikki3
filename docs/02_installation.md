@@ -20,3 +20,9 @@ docker-compose exec app php artisan migrate:fresh --seed
 
 
 ```
+
+# 注意：Windows の場合
+
+infra>mysql>my.cnf を読み取り専用にする(エクスプローラーからプロパティ開いてチェック)
+
+https://yama-weblog.com/why-my-cnf-does-not-work-in-docker/

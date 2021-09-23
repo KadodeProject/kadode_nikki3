@@ -280,12 +280,6 @@ li ol {
     height: 400px;
     overflow: scroll;
 }
-.delete-button {
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    background-color: var(--button-main-color);
-}
 
 /* 
 スクロールバー
@@ -468,3 +462,5 @@ li ol {
         transform: rotateX(360deg);
     }
 }
+
+/* 個別日記の統計箇所 */
