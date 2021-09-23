@@ -10,7 +10,7 @@ https://yama-weblog.com/why-my-cnf-does-not-work-in-docker/
 
 update で動かしてるから、カラムがない場合はそもそも作れない
 
-## MySQLdb.\_exceptions.OperationalError: (2006, '')
+## MySQLdb.\_exceptions.OperationalError: (2006, '') MySQL server has gone away
 
 https://pickles-ochazuke.hatenablog.com/entry/2017/12/09/164921
 

@@ -12,17 +12,27 @@ class connectDB:
     )
     
     def __init__(self):
-        self.conn.ping(True)#mysql2003エラー(サーバー接続切れ防止)
-        print('DB接続処理')
+        self.conn=MySQLdb.connect(
+        user=loadEnv.DB_USERNAME,
+        passwd=loadEnv.DB_PASSWORD,
+        host=loadEnv.DB_HOST,
+        db=loadEnv.DB_DATABASE,
+        charset="utf8"
+        )
+        if not self.conn.open:
+            print("sqlを叩き起こします")
+            self.conn.ping(True)
+        print('DB接続処理開始')
     def __del__(self):
         self.conn.close()
-        print('DB接続解除処理')
+        if not self.conn.open:
+            print('DB接続解除処理完了')
+
 
     """
     データベースに接続して、引数のユーザーIDのすべての日記の基本情報を取得
     """
     def get_all_diaries_from_user(self,user_id):
-        print('日記の取得')
         # カーソルを取得する
         cur= self.conn.cursor()
         # クエリを実行する
