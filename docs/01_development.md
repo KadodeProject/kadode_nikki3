@@ -57,6 +57,16 @@ https://github.com/ucan-lab/docker-laravel
 
 https://www.sejuku.net/blog/82657
 
+## docker に入れてるソフト
+
+### htop
+
+タスクマネージャー的なもの。強化版 top
+
+### vim
+
+そのままだと vim すら入ってないので。
+
 ## seeder で生成されるテストアカウント
 
 ### 氏名:開発者 1
