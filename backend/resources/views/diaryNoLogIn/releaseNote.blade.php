@@ -11,10 +11,22 @@
     
 
 @include('components.noLogIn.releaseNote',
+['title'=>'個別日記ページでのパンくずリストの追加',
+'date'=>'2021年9月24日',
+'genre'=>'Feature',
+'explain'=>'該当するアーカイブページに素早く移動できるよう、個別日記ページにパンくずリストを追加しました。
+'])
+@include('components.noLogIn.releaseNote',
+['title'=>'アーカイブページでの統計情報の表示',
+'date'=>'2021年9月24日',
+'genre'=>'Feature',
+'explain'=>'アーカイブページの各日記に統計情報を表示するようにしました
+'])
+@include('components.noLogIn.releaseNote',
 ['title'=>'【統計】個別の日記での統計表示を追加',
 'date'=>'2021年9月23日',
 'genre'=>'Feature',
-'explain'=>'個々の日記の編集ページで「感情」「推定分類」「重要そうな言葉」「登場人物」の統計データが見れるようになりました。'
+'explain'=>'個々の日記の編集ページで「感情」「推定分類」「重要そうな言葉」「登場人物」の統計データが見れるようになりました。
 '])
 @include('components.noLogIn.releaseNote',
 ['title'=>'【統計】自然言語処理個別日記の進行状況のグラフ化',

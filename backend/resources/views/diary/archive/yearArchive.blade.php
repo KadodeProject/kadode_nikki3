@@ -12,11 +12,11 @@
     年と月の選択バーここから --}}
     <div class="mt-4 mb-12">
         <div class="flex  justify-around archive-year-menu w-full items-center mx-auto" >
-            <p class="mx-2 text-xl sm:block hidden"><a href="{{url("/diary")."/".($year+2)."/".$month}}">{{$year+2}}</a></p>
-            <p class="mx-2 text-xl"><a href="{{url("/diary")."/".($year+1)."/".$month}}">{{$year+1}}</a></p>
+            <p class="mx-2 text-xl sm:block hidden"><a href="{{url("/diary")."/".($year+2)}}">{{$year+2}}</a></p>
+            <p class="mx-2 text-xl"><a href="{{url("/diary")."/".($year+1)}}">{{$year+1}}</a></p>
             <h1 class="text-center text-5xl my-4 mx-4 pb-2 border-b-2 border-border-main-color">{{$year}}<span style="font-size:0.5em">年</span></h1>
-            <p class="mx-2 text-xl"><a href="{{url("/diary")."/".($year-1)."/".$month}}">{{$year-1}}</a></p>
-            <p class="mx-2 text-xl sm:block hidden"><a href="{{url("/diary")."/".($year-2)."/".$month}}">{{$year-2}}</a></p>
+            <p class="mx-2 text-xl"><a href="{{url("/diary")."/".($year-1)}}">{{$year-1}}</a></p>
+            <p class="mx-2 text-xl sm:block hidden"><a href="{{url("/diary")."/".($year-2)}}">{{$year-2}}</a></p>
         </div>
         <div class="mt-4 flex justify-center items-center archive-month-menu  mx-auto sm:flex-nowrap flex-wrap ">
             <p class="mx-2 sm:mb-0 mb-4"><a href="{{url("/diary")."/".($year)."/1"}}">１月</a></p>
@@ -37,7 +37,7 @@
     
             <div class="flex w-full justify-center flex-wrap" >
                 @empty($diaries)
-                    <h3 class="text-center text-3xl my-20">{{$year}}年{{$month}}月の日記はありません！</h3>
+                    <h3 class="text-center text-3xl my-20">{{$year}}年の日記はありません！</h3>
                 @else
                     @foreach($diaries as $diary )
                         @component('components.diary.diaryFrame')
