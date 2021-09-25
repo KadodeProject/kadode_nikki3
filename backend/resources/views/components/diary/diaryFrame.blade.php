@@ -5,9 +5,9 @@
     $content_width="280";
     @endphp
     <section class="flex justify-center items-center " style="height:50px">
-        <p class="flex flex-wrap  p-2 border border-border-main-color kiwi-maru rounded-xl text-sm">{{$important_words}}</p>
+        <p class="flex flex-wrap  p-2  kiwi-maru rounded-xl text-sm"><span class="material-icons transform -rotate-45" style="font-size:20px">key</span>{{$important_words}}</p>
         @if($special_people!="false")
-        <p class="flex items-end  p-2  kiwi-maru rounded-xl text-sm"><span class="material-icons">person</span>{{$special_people}}<span class="text-xs">さん</span></p>
+        <p class="flex items-end  p-2  kiwi-maru rounded-xl text-sm"><span class="material-icons" style="font-size:20px">person</span>{{$special_people}}<span class="text-xs">さん</span></p>
         @endif
         @php
         if($emotions=="arrow_upward"){

@@ -10,8 +10,8 @@
    
     
     @include('components.noLogIn.explain',
-    ['title'=>'技術スタックについて',
-    'explain'=>'詳細はGitHubリポジトリをご覧ください→<a href="https://github.com/Usuyuki/kadode_nikki3">https://github.com/Usuyuki/kadode_nikki3</a>
+    ['title'=>'対応ブラウザについて',
+    'explain'=>'ChromeまたはMicrosoft Edge推奨です。他FirefoxおよびSafariに対応していますが、一部スタイルが適応されない可能性があります。IEは未検証です。
     '])
     @include('components.noLogIn.explain',
     ['title'=>'複数タブでのご利用',
@@ -27,6 +27,11 @@
     ['title'=>'Cookie',
     'explain'=>'本サイトでは、ご利用者様が訪問された際、より快適にご利用いただくため、Cookie を使用しております。Cookie は、本サイトの運用に関連するサーバから、ご利用者さまのブラウザに送信する情報で、ご利用者さまのコンピューターに記録されますが、ご利用者さまのコンピューターへ直接的な悪影響を及ぼすことはございません。
     ご本人の希望で「Cookie」の受け取りを、ブラウザで設定することにより拒否することができますが、ログインや日記の作成が利用できない場合がありますので、予めご了承ください。
+    '])
+
+    @include('components.noLogIn.explain',
+    ['title'=>'技術スタックについて',
+    'explain'=>'詳細はGitHubリポジトリをご覧ください→<a href="https://github.com/Usuyuki/kadode_nikki3">https://github.com/Usuyuki/kadode_nikki3</a>
     '])
     
     @include('components.noLogIn.explain',

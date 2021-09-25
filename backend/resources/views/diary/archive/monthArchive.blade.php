@@ -53,7 +53,7 @@
                             @slot("date")
                             {{$diary->date}}
                             @endslot
-
+                            <!--統計部分の処理ここから-->
                             @if($diary->is_latest_statistic)
                                 @slot("is_latest_statistic")
                                 true
@@ -85,9 +85,8 @@
                                     false
                                     @endif
                                 @endslot
-                            @else
                             @endif
-                         
+                            <!--統計部分の処理ここまで-->
                         @endcomponent
                     @endforeach
                 @endempty

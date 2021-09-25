@@ -79,4 +79,10 @@ https://www.sejuku.net/blog/82657
 
 -   メール:test2@example.com
 -   パス:test1234
--   日記少なめのアカウント
+-   日記 1 つのアカウント
+
+### 氏名:開発者 2
+
+-   メール:test3@example.com
+-   パス:test1234
+-   日記なしのアカウント

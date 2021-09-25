@@ -34,7 +34,7 @@
                 </div>
                 <div class="sm:order-2 order-1">
                     @empty($today)
-                       
+                    <!--今日の日記無いときは、日記フォームを表示-->
                     @component('components.diary.submitForm')
                     @slot("db_method")
                     create
@@ -46,12 +46,13 @@
                     @endslot
                     @slot("original_title")
                     @endslot
-              
+                    
                     @slot("original_content")
                     @endslot
                     @endcomponent
-
+                    
                     @else
+                    <!--今日の日記あるときは、日記枠を表示-->
                         @component('components.diary.latestDiaryContent')
                             @slot("uuid")
                             {{$today->uuid}}
@@ -91,6 +92,40 @@
                             @slot("date")
                             {{$diary->date}}
                             @endslot
+                            <!--統計部分の処理ここから-->
+                                @if($diary->is_latest_statistic)
+                                    @slot("is_latest_statistic")
+                                    true
+                                    @endslot 
+                                    @php
+                                        $emotions=$diary->emotions;
+                                        if($emotions>=0.5){
+                                            $emotions_icon="arrow_upward";
+                                        }else{
+                                            $emotions_icon="arrow_downward";
+                                        }
+                                    @endphp
+                                    @slot("emotions")
+                                    {{$emotions_icon}}
+                                    @endslot 
+                                    @php
+                                    $words=$diary->important_words;
+                                    @endphp
+                                    @slot("important_words")
+                                    {{$words[0]}}
+                                    @endslot
+                                    @php
+                                    $people=$diary->special_people;
+                                    @endphp
+                                    @slot("special_people")
+                                        @if(count($people)>=1)
+                                        {{$people[0]['name']}}
+                                        @else
+                                        false
+                                        @endif
+                                    @endslot
+                                @endif
+                            <!--統計部分の処理ここまで-->
                            
                         @endcomponent
                     @endforeach
@@ -127,6 +162,40 @@
                                 @slot("date")
                                 {{$oldDiary["date"]}}
                                 @endslot
+                                <!--統計部分の処理ここから-->
+                                    @if($oldDiary["is_latest_statistic"])
+                                    @slot("is_latest_statistic")
+                                    true
+                                    @endslot 
+                                    @php
+                                        $emotions=$oldDiary["emotions"];
+                                        if($emotions>=0.5){
+                                            $emotions_icon="arrow_upward";
+                                        }else{
+                                            $emotions_icon="arrow_downward";
+                                        }
+                                    @endphp
+                                    @slot("emotions")
+                                    {{$emotions_icon}}
+                                    @endslot 
+                                    @php
+                                    $words=$oldDiary["important_words"];
+                                    @endphp
+                                    @slot("important_words")
+                                    {{$words[0]}}
+                                    @endslot
+                                    @php
+                                    $people=$oldDiary["special_people"];
+                                    @endphp
+                                    @slot("special_people")
+                                        @if(count($people)>=1)
+                                        {{$people[0]['name']}}
+                                        @else
+                                        false
+                                        @endif
+                                    @endslot
+                                @endif
+                                <!--統計部分の処理ここまで-->
                                 
                             @endcomponent
                         @endempty
