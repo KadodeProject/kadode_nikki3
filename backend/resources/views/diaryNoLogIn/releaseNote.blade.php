@@ -11,16 +11,16 @@
     
 
 @include('components.noLogIn.releaseNote',
+['title'=>'アーカイブ、検索、ホームでのミニ統計情報表示機能',
+'date'=>'2021年9月25日',
+'genre'=>'Feature',
+'explain'=>'日記の編集ページ以外でも簡易的な統計機能を表示できるようになりました。
+'])
+@include('components.noLogIn.releaseNote',
 ['title'=>'個別日記ページでのパンくずリストの追加',
 'date'=>'2021年9月24日',
 'genre'=>'Feature',
 'explain'=>'該当するアーカイブページに素早く移動できるよう、個別日記ページにパンくずリストを追加しました。
-'])
-@include('components.noLogIn.releaseNote',
-['title'=>'アーカイブページでの統計情報の表示',
-'date'=>'2021年9月24日',
-'genre'=>'Feature',
-'explain'=>'アーカイブページの各日記に統計情報を表示するようにしました
 '])
 @include('components.noLogIn.releaseNote',
 ['title'=>'【統計】個別の日記での統計表示を追加',
