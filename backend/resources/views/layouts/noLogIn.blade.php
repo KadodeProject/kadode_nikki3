@@ -54,12 +54,12 @@
             @if (Route::has('login'))
                 <div class="flex justify-center">
                     @auth
-                        <a href="{{ url('/home') }}" class=" kadode-normal-button">ホームへ</a>
+                        <a href="{{ url('/home') }}" class="kiwi-maru kadode-normal-button">ホームへ</a>
                     @else
-                        <a href="{{ route('login') }}" class=" mr-2 kadode-normal-button">ログイン</a>
+                        <a href="{{ route('login') }}" class="kiwi-maru mr-2 kadode-normal-button">ログイン</a>
 
                         @if (Route::has('register'))
-                            <a href="{{ route('register') }}" class="kadode-normal-button">新規登録</a>
+                            <a href="{{ route('register') }}" class="kiwi-maru kadode-normal-button">新規登録</a>
                         @endif
                     @endauth
                 </div>
