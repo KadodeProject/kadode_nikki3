@@ -35,5 +35,4 @@ def get_special_people(affiliation):
 
     #多い順に並び替え
     special_people=sorted(special_people_raw, key=lambda x:x['count'],reverse=True)
-
     return special_people

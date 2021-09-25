@@ -7,6 +7,7 @@
 @endsection
 @section('content')
 <div class="board-main">
+
     <div class="diary-main">
         <nav class="md:order-1 ">
             @isset($next)
@@ -43,6 +44,12 @@
             @endcomponent
         </div>
     </div>
+    
+    @component('components.diary.breadcrumbDate')
+    @slot("date")
+    {{$diary->date}}
+    @endslot
+    @endcomponent
     
     <div class="my-12  border button-border-main-color md:w-2/3 md:mx-auto">
         <h2 class="kiwi-maru text-3xl text-center mt-4">この日記の解析情報</h2>

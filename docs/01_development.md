@@ -57,6 +57,16 @@ https://github.com/ucan-lab/docker-laravel
 
 https://www.sejuku.net/blog/82657
 
+## docker に入れてるソフト
+
+### htop
+
+タスクマネージャー的なもの。強化版 top
+
+### vim
+
+そのままだと vim すら入ってないので。
+
 ## seeder で生成されるテストアカウント
 
 ### 氏名:開発者 1
@@ -69,4 +79,10 @@ https://www.sejuku.net/blog/82657
 
 -   メール:test2@example.com
 -   パス:test1234
--   日記少なめのアカウント
+-   日記 1 つのアカウント
+
+### 氏名:開発者 2
+
+-   メール:test3@example.com
+-   パス:test1234
+-   日記なしのアカウント

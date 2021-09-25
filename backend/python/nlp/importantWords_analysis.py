@@ -1,4 +1,9 @@
 def get_importantWords(affiliation):
+    '''
+    返り値
+    [単語1,単語1,単語1]
+    
+    '''
     # print(affiliation)
     words={}
     #formの種類の数をそれぞれカウント

@@ -26,8 +26,8 @@ class EditDiaryController extends Controller
         }
         $next=Diary::where("date",">",$diary->date)->orderBy("date","asc")->first();
         $previous=Diary::where("date","<",$diary->date)->orderBy("date","desc")->first();
-
         if($diary->statistic_progress==100){
+
             /**
              * 名詞と形容詞の登場順
              */

@@ -53,7 +53,40 @@
                             @slot("date")
                             {{$diary->date}}
                             @endslot
-                         
+                            <!--統計部分の処理ここから-->
+                            @if($diary->is_latest_statistic)
+                                @slot("is_latest_statistic")
+                                true
+                                @endslot 
+                                @php
+                                    $emotions=$diary->emotions;
+                                    if($emotions>=0.5){
+                                        $emotions_icon="arrow_upward";
+                                    }else{
+                                        $emotions_icon="arrow_downward";
+                                    }
+                                @endphp
+                                @slot("emotions")
+                                {{$emotions_icon}}
+                                @endslot 
+                                @php
+                                $words=$diary->important_words;
+                                @endphp
+                                @slot("important_words")
+                                {{$words[0]}}
+                                @endslot
+                                @php
+                                $people=$diary->special_people;
+                                @endphp
+                                @slot("special_people")
+                                    @if(count($people)>=1)
+                                    {{$people[0]['name']}}
+                                    @else
+                                    false
+                                    @endif
+                                @endslot
+                            @endif
+                            <!--統計部分の処理ここまで-->
                         @endcomponent
                     @endforeach
                 @endempty

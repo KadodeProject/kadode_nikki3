@@ -33,6 +33,32 @@ class homeDiaryController extends Controller
         $yesterday=null;
         $diaries=null;
         $latests= Diary::orderby("date","desc")->take(10)->get();
+
+        /**
+         * 直近の統計データの表示処理
+         */
+        $i=0;
+        foreach ($latests as $diary) {
+            $latests[$i]->is_latest_statistic=false;
+            //統計データがあり、その統計データが日記の内容と合致しているかの判断
+            if(isset($latests[$i]->updated_statistic_at)){
+                $diary_update= new Carbon($latests[$i]->updated_at);
+                $stati_update=new Carbon($latests[$i]->updated_statistic_at);
+                //gtでgreater than 日付比較
+                if($latests[$i]->statistic_progress==100 && $stati_update->gt($diary_update)){
+                    $latests[$i]->is_latest_statistic=true;
+                    $latests[$i]->important_words=array_values(json_decode($diary->important_words,true));
+                    $latests[$i]->special_people=array_values(json_decode($diary->special_people,true));
+                }
+            }
+            $i+=1;
+        }
+        //直近の統計データの表示処理ここまで
+
+
+        /**
+         * 今日と昨日の日記があるか調べる
+         */
         foreach($latests as $latest){
             $date=Carbon::parse($latest->date);
             if($today_date->eq($date)){
@@ -84,7 +110,28 @@ class homeDiaryController extends Controller
 
         
         $oldDiaries=[$lastWeekDiary,$lastMonthDiary, $lastTwoMonthDiary,$halfYearDiary, $lastYearDiary, $lastTwoYearDiary,$lastThreeYearDiary];
-
+        /**
+         * oldDiariesの統計データの表示処理
+         */
+        $i=0;
+        foreach ($oldDiaries as $diary) {
+            if($diary['date']!="no"){
+                $oldDiaries[$i]["is_latest_statistic"]=false;
+                //統計データがあり、その統計データが日記の内容と合致しているかの判断
+                if(isset($oldDiaries[$i]["updated_statistic_at"])){
+                    $diary_update= new Carbon($oldDiaries[$i]["updated_at"]);
+                    $stati_update=new Carbon($oldDiaries[$i]["updated_statistic_at"]);
+                    //gtでgreater than 日付比較
+                    if($oldDiaries[$i]["statistic_progress"]==100 && $stati_update->gt($diary_update)){
+                        $oldDiaries[$i]["is_latest_statistic"]=true;
+                        $oldDiaries[$i]["important_words"]=array_values(json_decode($diary["important_words"],true));
+                        $oldDiaries[$i]["special_people"]=array_values(json_decode($diary["special_people"],true));
+                    }
+                }
+            }
+            $i+=1;
+        }
+        //oldDiariesの統計データの表示処理ここまで
 
         //古い日記の取得
 
