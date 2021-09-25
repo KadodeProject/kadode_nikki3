@@ -3,6 +3,7 @@
 import time
 import json
 from datetime import datetime as dt
+from datetime import timezone,timedelta
 
 from base import connectDBClass as database
 
@@ -21,6 +22,8 @@ def nlpForDiary(user_id):
     #DBインスタンス
     db = database.connectDB()
 
+    #タイムゾーン
+    JST = timezone(timedelta(hours=+9), 'JST')
 
 
     # SELECT id,updated_at,updated_statistic_at,sentence,chunk,token,affiliation,char_length
@@ -111,8 +114,9 @@ def nlpForDiary(user_id):
             '''
             updated_statistic_at:統計更新日更新処理
             '''
-            updated_statistic_at=time.strftime('%Y-%m-%d %H:%M:%S')#現在時刻を文字列でget (timeライブラリ)
-            updated_statistic_at=dt.strptime(updated_statistic_at,'%Y-%m-%d %H:%M:%S')# datetime型に変換(datetimeライブラリ)
+            #JSTと予め入れておくと処理が軽くなるらしい
+            #JSTは上で定義
+            updated_statistic_at=dt.now(JST)
 
 
             '''

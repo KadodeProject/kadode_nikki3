@@ -251,7 +251,7 @@ li ol {
 
 .diary_dashboard {
     border: 1px solid var(--button-main-color);
-    padding: 2em;
+    padding: 1em;
     width: 400px;
     height: 450px;
     flex-shrink: 0;
