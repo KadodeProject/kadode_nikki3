@@ -465,3 +465,20 @@ li ol {
 }
 
 /* 個別日記の統計箇所 */
+
+/* 統計のはてなホバー */
+.explain_hatena {
+    position: relative; /* boxを基準にする */
+    top: 0; /* 自由に調整 */
+    left: 30px; /* 自由に調整 */
+    color: #fff; /* 文字色を白にする */
+    font-size: 14px;
+    background: rgba(0, 0, 0, 0.5); /* 黒バックを半透明にするため、rgbaで指定 */
+    padding: 2px 5px; /* 余白を少々 */
+    opacity: 0;
+
+    transition: all 0.3s;
+}
+.hatena_hover:hover + .explain_hatena {
+    opacity: 1;
+}

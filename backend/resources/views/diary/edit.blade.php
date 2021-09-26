@@ -66,7 +66,7 @@
                     }
                     
                 @endphp
-                @component('components.statistics.emotionsChar')
+                @component('components.statistics.char.emotionsChar')
                     @slot("emotions_chr")
                     {{$emotions_chr}}
                     @endslot
@@ -80,19 +80,19 @@
                 @endcomponent
             </div> --}}
             <div class="w-full md:w-1/2">
-                @component('components.statistics.classificationsChar')
+                @component('components.statistics.char.classificationsChar')
                     @slot("classification")
                     {{$diary->classification}}
                     @endslot
                 @endcomponent
             </div>
         </div>
-        @component('components.statistics.importantWordsChar',["important_words"=>$diary->important_words])
+        @component('components.statistics.char.importantWordsChar',["important_words"=>$diary->important_words])
 
         @endcomponent
-        {{-- @component('components.statistics.causeEffectChar')
+        {{-- @component('components.statistics.char.causeEffectChar')
         @endcomponent --}}
-        @component('components.statistics.specialPeopleChar',["special_people"=>$diary->special_people])
+        @component('components.statistics.char.specialPeopleChar',["special_people"=>$diary->special_people])
 
         @endcomponent
         @elseif($diary->statistic_progress==0)

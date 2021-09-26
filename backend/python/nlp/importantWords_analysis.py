@@ -27,6 +27,7 @@ def get_importantWords(affiliation):
 
     #一番多いカテゴリを取得
     important_words=[]
+    # print(sortred_words)
     try:
         important_words.append(sortred_words[0][0])
     except:

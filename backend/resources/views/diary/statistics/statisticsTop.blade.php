@@ -45,7 +45,7 @@
         @if($statistics->statistic_progress>=1 && $statistics->statistic_progress<=99)
           <h3 class=" ml-2 text-2xl kiwi-maru align-middle text-center"><span class="material-icons hourglass_animation" style="margin-right:0.25em">hourglass_bottom</span>自然言語処理の進行度</h3>
           <p class="text-center kiwi-maru my-2">※ページをリロードすると更新されます</p>
-          @component('components.statistics.progressDiariesCount')
+          @component('components.statistics.progress.progressDiariesCount')
             @slot("ended_diaries_count")
             {{$ended_diaries_count}}
             @endslot
@@ -56,7 +56,7 @@
             {{($ended_diaries_count/$number_of_nikki)*100}}
             @endslot
           @endcomponent
-          @component('components.statistics.progressGraph')
+          @component('components.statistics.progress.progressGraph')
             @slot("statistic_progress")
             {{$statistics->statistic_progress}}
             @endslot
@@ -92,11 +92,11 @@
     @include('components.statisticHeading',['icon'=>'bar_chart','title'=>'傾向'])
     <div class="px-2">
       <h3 class="my-4 text-2xl text-center kiwi-maru">月ごとの1日記あたりの平均文字数推移<span style="font-size:0.5em">(月の合計文字数÷日記数)</span></h3>
-        @component('components.statistics.numberOfCharactersGraph',["months"=>$statistics->months,"month_words_per_diaries"=>$statistics->month_words_per_diary])
+        @component('components.statistics.graph.numberOfCharactersGraph',["months"=>$statistics->months,"month_words_per_diaries"=>$statistics->month_words_per_diary])
         @endcomponent
 
       <h3 class="my-4 text-2xl text-center kiwi-maru">月ごとの日記執筆率</h3>
-        @component('components.statistics.writingRateGraph',["months"=>$statistics->months,"monthWritingRates"=>$statistics->monthWritingRate])
+        @component('components.statistics.graph.writingRateGraph',["months"=>$statistics->months,"monthWritingRates"=>$statistics->monthWritingRate])
         @endcomponent
     </div>
   </div>
@@ -109,7 +109,7 @@
     <div class="flex justify-center flex-wrap ">
       <div class="md:w-1/2">
         <h3 class="my-4 text-2xl text-center kiwi-maru">全日記の中でよく使われる名詞Top50</h3>
-        @component('components.statistics.partOfSpeechGraph',["source"=>$statistics->total_noun_asc])
+        @component('components.statistics.graph.partOfSpeechGraph',["source"=>$statistics->total_noun_asc])
           @slot("slug")
           noun
           @endslot
@@ -120,7 +120,7 @@
       </div>
       <div class="md:w-1/2">
         <h3 class="my-4 text-2xl text-center kiwi-maru">全日記の中でよく使われる形容詞Top50</h3>
-        @component('components.statistics.partOfSpeechGraph',["source"=>$statistics->total_adjective_asc])
+        @component('components.statistics.graph.partOfSpeechGraph',["source"=>$statistics->total_adjective_asc])
         @slot("slug")
         adjective
         @endslot
