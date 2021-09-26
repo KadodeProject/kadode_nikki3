@@ -56,7 +56,7 @@ def nlpForDiary(user_id):
             # データない場合
             time_statistics_updated_at = dt.strptime('1800-1-1 11:11:11','%Y-%m-%d %H:%M:%S')
 
-        if(time_statistics_updated_at>time_updated_at):
+        if(0):
             #処理不要 リーダーブルコードに乗ってたやつ
             print(str(row[0])+"スキップ")
             continue
