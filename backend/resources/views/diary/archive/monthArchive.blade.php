@@ -34,7 +34,11 @@
         </div>
     </div>
     {{-- 年と月の選択バーここまで--}}
-
+            {{-- 統計情報 --}}
+            @component('components.statistics.frame.statisticFrameForArchive')
+            @endcomponent
+            {{-- 統計情報ここまで --}}
+            {{-- 日記のループ --}}
             <div class="flex w-full justify-center flex-wrap" >
                 @empty($diaries)
                     <h3 class="text-center text-3xl my-20">{{$year}}年{{$month}}月の日記はありません！</h3>
@@ -73,7 +77,7 @@
                                 $words=$diary->important_words;
                                 @endphp
                                 @slot("important_words")
-                                {{$words[0]}}
+                                {{$words[0]['name']}}
                                 @endslot
                                 @php
                                 $people=$diary->special_people;
@@ -91,6 +95,7 @@
                     @endforeach
                 @endempty
             </div>
+            {{-- 日記のループここまで --}}
     
         
     </div>

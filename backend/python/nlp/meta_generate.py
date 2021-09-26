@@ -37,6 +37,10 @@ def get_tokenChunkSentence_by_ginza(row:list):
 
         '''
         文の区切り情報(sentence)取得
+        {
+            'satrt':0,#開始文字位置
+            'end':0,#終了文字位置
+        }
         '''
         #文章情報
         nlp_sentence[sentence_num]={
@@ -68,6 +72,12 @@ def get_tokenChunkSentence_by_ginza(row:list):
             #係り受け情報は 単語id={}
             '''
             係り受け情報(chunk)取得
+            {
+                'dependencyTxt':token.text,#該当単語(番号だけだときつい)
+                'dependencyTag':token.dep_,#形態論情報
+                'dependencyForId':token.head.i,#係り先
+                'dependencyForTxt':token.head.text,#係り先の単語(本番では、日記の更新かかると引っ張ってこれなくなるので。)
+            }
             ''' 
             nlp_chunk[token.i]={
                 # 'dependencyTag':token.pos_,#形態論情報→品詞は別で持っているので不要
@@ -109,6 +119,12 @@ def get_tokenChunkSentence_by_ginza(row:list):
 
 '''
 アノテーション抽出
+{
+    'start':ent.start_char,#開始文字位置
+    'end':ent.end_char,#終了文字位置z
+    'lemma':ent.text,#基本形
+    'form':ent.label_,#抽象分類
+}
 '''
 def get_affiliation_by_ginza(row:list):
     nlp_affiliation={}
