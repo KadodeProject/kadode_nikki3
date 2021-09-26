@@ -5,7 +5,7 @@
     $content_width="280";
     @endphp
     <section class="flex justify-center items-center " style="height:50px">
-        @if($important_words!="見つけることができませんでした")
+        @if($important_words!="false")
         <p class="flex flex-wrap  p-2  kiwi-maru rounded-xl text-sm"><span class="material-icons transform -rotate-45" style="font-size:20px">key</span>{{$important_words}}</p>
         @endif
         @if($special_people!="false")

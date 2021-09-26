@@ -5,7 +5,7 @@
         </div>
         <div class="w-full md:w-3/4 flex justify-center md:justify-start flex-wrap items-center">
             @foreach ($important_words as $important_word)
-            <p class="flex flex-wrap m-4 p-2 border-bg-main-color kiwi-maru rounded-xl">{{$important_word}}</p>
+            <p class="flex flex-wrap m-4 p-2 border-bg-main-color kiwi-maru rounded-xl">{{$important_word['name']}}</p>
             @endforeach
         </div>
     </div>

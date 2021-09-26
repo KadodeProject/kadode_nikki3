@@ -19,7 +19,7 @@ class CreateStatisticPerMonthsTable extends Migration
             $table->integer("statistic_progress")->nullable()->comment("生成状況(生成まで時間かかるので)");
             $table->integer("year")->comment("年");
             $table->integer("month")->comment("月");
-            $table->double("ave_emotions")->nullable()->comment("感情数値化の平均値？");
+            $table->json("emotions")->nullable()->comment("感情数値化ののグラフと平均用json");
             $table->json("word_counts")->nullable()->comment("文字数推移のグラフ用の数値json");
             $table->json("noun_rank")->nullable()->comment("名詞登場順(top10)");
             $table->json("adjective_rank")->nullable()->comment("形容詞登場順(top10)");
