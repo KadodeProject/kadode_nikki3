@@ -18,7 +18,7 @@ class CreateStatisticPerYearsTable extends Migration
             $table->unsignedBigInteger("user_id")->comment("ユーザーID");
             $table->integer("statistic_progress")->nullable()->comment("生成状況(生成まで時間かかるので)");
             $table->integer("year")->comment("年");
-            $table->double("ave_emotions")->nullable()->comment("感情数値化の平均値？");
+            $table->json("emotions")->nullable()->comment("感情数値化の感情数値化ののグラフと平均用json");
             $table->json("noun_rank")->nullable()->comment("名詞登場順(top20)");
             $table->json("adjective_rank")->nullable()->comment("形容詞登場順(top20)");
             $table->json("important_words")->nullable()->comment("重要な言葉(top10)");

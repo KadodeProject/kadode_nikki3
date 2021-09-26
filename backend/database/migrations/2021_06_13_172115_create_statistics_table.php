@@ -29,7 +29,7 @@ class CreateStatisticsTable extends Migration
             $table->json("total_adjective_asc")->nullable()->comment("トータルの形容詞トップ50");
             $table->json("diary_grass")->nullable()->comment("日記投稿頻度閲覧用");
 
-            $table->double("ave_emotions")->nullable()->comment("感情数値化の平均値？");
+            $table->json("emotions")->nullable()->comment("感情数値化のグラフと平均用json");
             $table->json("classifications")->nullable()->comment("推定分類(top10)");
             $table->json("special_people")->nullable()->comment("登場人物(top10)");
           
