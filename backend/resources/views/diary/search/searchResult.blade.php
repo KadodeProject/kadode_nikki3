@@ -92,7 +92,11 @@
                     $words=$diary->important_words;
                     @endphp
                     @slot("important_words")
-                    {{$words[0]['name']}}
+                        @if(count($words)>=1)
+                        {{$words[0]['name']}}
+                        @else
+                        false
+                        @endif
                     @endslot
                     @php
                     $people=$diary->special_people;
