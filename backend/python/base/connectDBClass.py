@@ -63,8 +63,27 @@ class connectDB:
         self.conn.ping(True)#mysql2003エラー(サーバー接続切れ防止)
         return rows
 
+
     """
-    解析済みのJSONデータを書き込む
+    データベースに接続して、引数のユーザーIDのすべての日記の自然言語完成情報を取得
+    """
+    def get_all_diariesNlpFin_from_user(self,user_id):
+        print('日記の取得')
+        # カーソルを取得する
+        cur= self.conn.cursor()
+        # クエリを実行する
+        #このクエリの順番は他所でrow[2]的な依存をしているので変更は要注意
+        sql = "SELECT id,updated_at,updated_statistic_at,date,char_length,emotions,classification,important_words,special_people FROM diaries WHERE user_id="+str(user_id)+";"
+        cur.execute(sql)
+        # 実行結果をすべて取得する
+        rows = cur.fetchall()
+        # カーソルを閉じる
+        cur.close()
+        self.conn.ping(True)#mysql2003エラー(サーバー接続切れ防止)
+        return rows
+
+    """
+    解析済みのJSONデータを書き込む(user_diのみで決まるもの)
     """
     def set_statistics_json(self,user_id, column_name, value):
         # カーソルを取得する
@@ -79,7 +98,7 @@ class connectDB:
         self.conn.ping(True)#mysql2003エラー(サーバー接続切れ防止)
     
     """
-    解析済みのノーマルデータを書き込む(1ユーザー複数テーブルのもの用)
+    解析済みのノーマルデータを書き込む(idで一意に決まりupdateで対応できる個別日記のもの用)
     """
     def set_single_normal_data(self,column,db_id,**values):
         for (key,value) in values.items():
@@ -95,7 +114,7 @@ class connectDB:
             self.conn.ping(True)#mysql2003エラー(サーバー接続切れ防止)
 
     """
-    解析済みのJSONデータを書き込む(1ユーザー複数テーブルのもの用)
+    解析済みのJSONデータを書き込む(idで一意に決まりupdateで対応できる個別日記のもの用)
     """
     def set_single_json_data(self,column,db_id,**jsons):
         for (key,value) in jsons.items():
@@ -110,11 +129,43 @@ class connectDB:
             # カーソルを閉じる
             cur.close()
             self.conn.ping(True)#mysql2003エラー(サーバー接続切れ防止)
+    """
+    解析済みのノーマルデータを書き込む(user_idと年月で決まり、存在しない場合もあるもの用)
+    """
+    def set_depDate_normal_data(self,column,user_id,date,**values):
+        for (key,value) in values.items():
+            # カーソルを取得する
+            cur= self.conn.cursor()
+            # クエリを実行する ここはsqkインジェクションにならないところなので、そのまま
+            cur.execute(
+                    'UPDATE {0} SET {1} = %s WHERE user_id = %s;'.format(column,key),(value,user_id))
+            # 保存する
+            self.conn.commit()
+            # カーソルを閉じる
+            cur.close()
+            self.conn.ping(True)#mysql2003エラー(サーバー接続切れ防止)
+
+    """
+    解析済みのJSONデータを書き込む(user_idと年月で決まり、存在しない場合もあるもの用)
+    """
+    def set_depDate_json_data(self,column,user_id,date,**jsons):
+        for (key,value) in jsons.items():
+            # カーソルを取得する
+            cur= self.conn.cursor()
+            # クエリを実行する ここはsqkインジェクションにならないところなので、そのまま
+            json_value = json.dumps(value,ensure_ascii=False)
+            cur.execute(
+                    'UPDATE {0} SET {1} = %s WHERE user_id = %s;'.format(column,key),(json_value,user_id))
+            # 保存する
+            self.conn.commit()
+            # カーソルを閉じる
+            cur.close()
+            self.conn.ping(True)#mysql2003エラー(サーバー接続切れ防止)
 
 
 
     """
-    進捗状況--日記テーブルなど1ユーザー複数テーブルのもの用
+    進捗状況--日記テーブルなど1ユーザー複数テーブルでdbid既知のもの用
     """
     def set_single_progress(self,db_id,table_name,value):
         # カーソルを取得する
@@ -133,6 +184,20 @@ class connectDB:
     進捗状況--統計テーブルなど1ユーザー1テーブルのもの用
     """
     def set_multiple_progress(self,user_id, table_name,value):
+        # カーソルを取得する
+        cur= self.conn.cursor()
+        # クエリを実行する
+        cur.execute(
+                'UPDATE {0} SET statistic_progress = %s where user_id = %s;'.format(table_name),(str(value),str(user_id))
+                )
+        # 保存する
+        self.conn.commit()
+        # カーソルを閉じる
+        cur.close()
+    """
+    進捗状況--diary statistic per monthのようにuser_idと年月で決まり、存在しない場合もあるもの用
+    """
+    def set_depDate_progress(self,user_id,table_name,date,value):
         # カーソルを取得する
         cur= self.conn.cursor()
         # クエリを実行する
