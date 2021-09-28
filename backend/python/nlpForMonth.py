@@ -26,7 +26,7 @@ def nlpForMonth(user_id):
     JST = timezone(timedelta(hours=+9), 'JST')
 
 
-    # SELECT id,updated_at,updated_statistic_at,date,sentence,chunk,token,affiliation,char_length
+    # SELECT id,updated_at,updated_statistic_at,date,sentence,chunk,token,affiliation,char_length,token
     rows=db.get_all_diariesNlpFin_from_user(user_id)
 
 
@@ -104,6 +104,7 @@ def nlpForMonth(user_id):
             value_classification=row[6]
             value_important_words=json.loads(row[7])
             value_special_people=json.loads(row[8])
+            value_token=json.loads(row[9])
 
             '''
             年月日に分ける
@@ -111,6 +112,7 @@ def nlpForMonth(user_id):
             date=value_date.split('-')
             # 辞書のラベル用
             date_label=date[0]+"-"+date[1]
+            day=date[2]
 
             '''
             感情まとめ
@@ -121,7 +123,7 @@ def nlpForMonth(user_id):
             }
             '''
             yMonth_dicList[date_label]['emotions'].append({   
-                "day":date[2],
+                "day":day,
                 "value":value_emotions,
             })
             #足すだけなので処理不要
@@ -135,6 +137,10 @@ def nlpForMonth(user_id):
             count:
             }
             '''
+            yMonth_dicList[date_label]['word_counts'].append({   
+                "day":day,
+                "value":value_char_length,
+            })
 
 
             '''
@@ -145,6 +151,20 @@ def nlpForMonth(user_id):
             count:
             }
             '''
+
+            #使わない要素を消す
+            # value_token.pop('NE')
+            value_token.pop('end')
+            value_token.pop('form')
+            value_token.pop('start')
+            value_token.pop('xPOSTag')
+            value_token.pop('isUnknown')
+
+            print(value_token)
+            yMonth_dicList[date_label]['noun_rank'].append({   
+                "day":day,
+                "value":value_token,
+            })
 
 
             '''
@@ -193,7 +213,7 @@ def nlpForMonth(user_id):
         '''
         年月日に分けたものを整形する処理
         '''
-        print( yMonth_dicList)
+        # print( yMonth_dicList)
           
         '''
         DB更新

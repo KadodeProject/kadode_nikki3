@@ -14,14 +14,16 @@ model="ja_ginza" #軽量モデルを使用。本当はtransformer採用型を使
 def get_tokenChunkSentence_by_ginza(row:list):
     # 返す値
     '''
-    {
-       "NE": "B-LOCATION", //Name Entity
-        "POS": "名詞",
-        "POS2": "固有名詞",
-        "begin": 0, //文中の開始位置
-        "end": 6,//文中の終了位置
-        "lemma": "アイスランド"//原型
-    }
+            nlp_token[token.i]={
+                'start':where_chr,#開始文字位置
+                'end':where_chr+len(token.orth_),#終了文字位置
+                'form':token.orth_,#表層形
+                'lemma':token.lemma_,#基本形
+                'uPOSTag':token.pos_,#品詞
+                'xPOSTag':token.tag_,#言語依存の品詞
+                'inflect':token.tag_,#活用形
+                'isUnknown':token.is_oov,#未知語
+            }
     '''
     nlp_token={}
     nlp_chunk={}
@@ -66,7 +68,7 @@ def get_tokenChunkSentence_by_ginza(row:list):
                 'lemma':token.lemma_,#基本形
                 'uPOSTag':token.pos_,#品詞
                 'xPOSTag':token.tag_,#言語依存の品詞
-                'inflect':token.tag_,#活用形
+                'inflect':token._.inf,#活用形
                 'isUnknown':token.is_oov,#未知語
             }
             #係り受け情報は 単語id={}
