@@ -145,7 +145,7 @@ def nlpForMonth(user_id):
 
 
             '''
-            名詞多い順3
+            名詞多い順3 
             noun_rank
             {
             name:
@@ -160,8 +160,6 @@ def nlpForMonth(user_id):
             }
 
             '''
-
-
             #token複数あるので、ループで処理
             for individual_token in value_token.values():
                 #残り
@@ -186,9 +184,11 @@ def nlpForMonth(user_id):
             count:
             }
             '''
-            # for important_word in value_important_words.values():
-            #     #残り
-            #     yMonth_dicList[date_label]['important_words'].append(important_word)
+            for important_word in value_important_words:
+                #残り
+                #同一要素数でカウントするため、count枠の数だけ要素を追加する(この方が計算しやすい)
+                for x in range(important_word['count']):
+                    yMonth_dicList[date_label]['important_words'].append(important_word['name'])
 
             '''
             人物多い順3
@@ -198,16 +198,21 @@ def nlpForMonth(user_id):
             count:
             }
             '''
-
+            for special_person in value_special_people:
+                #残り
+                #同一要素数でカウントするため、count枠の数だけ要素を追加する(この方が計算しやすい)
+                for x in range(special_person['count']):
+                    yMonth_dicList[date_label]['special_people'].append(special_person['name'])
 
             '''
             推定分類3つ
-            special_people
+            classification
             {
             name:
             count:
             }
             '''
+            yMonth_dicList[date_label]['classifications'].append(value_classification)
 
 
                
@@ -221,7 +226,7 @@ def nlpForMonth(user_id):
         名詞
         '''
         noun_rank_raw=collections.Counter(yMonth_dic['noun_rank'])#単語要素別にカウント
-        noun_rank_all = sorted(noun_rank_raw.items(), key=lambda x:x[1])#値の大きい順にソート
+        noun_rank_all = sorted(noun_rank_raw.items(), key=lambda x:x[1],reverse=True)#値の大きい順にソート
         noun_rank=noun_rank_all[0:10]#上位10個まで
         #代入
         # print(noun_rank)    
@@ -230,12 +235,39 @@ def nlpForMonth(user_id):
         形容詞
         '''
         adjective_rank_raw=collections.Counter(yMonth_dic['adjective_rank'])#単語要素別にカウント
-        adjective_rank_all = sorted(adjective_rank_raw.items(), key=lambda x:x[1])#値の大きい順にソート
+        adjective_rank_all = sorted(adjective_rank_raw.items(), key=lambda x:x[1],reverse=True)#値の大きい順にソート
         adjective_rank=adjective_rank_all[0:10]#上位10個まで
         #代入
         # print(adjective_rank)    
         yMonth_dic['adjective_rank']=adjective_rank
-    # print( yMonth_dicList)
+        '''
+        important_words
+        '''
+        important_words_raw=collections.Counter(yMonth_dic['important_words'])#単語要素別にカウント
+        important_words_all = sorted(important_words_raw.items(), key=lambda x:x[1],reverse=True)#値の大きい順にソート
+        important_words=important_words_all[0:10]#上位10個まで
+        #代入
+        # print(noun_rank)    
+        yMonth_dic['important_words']=important_words
+        '''
+        special_people
+        '''
+        special_people_raw=collections.Counter(yMonth_dic['special_people'])#単語要素別にカウント
+        special_people_all = sorted(special_people_raw.items(), key=lambda x:x[1],reverse=True)#値の大きい順にソート
+        special_people=special_people_all[0:10]#上位10個まで
+        #代入
+        # print(noun_rank)    
+        yMonth_dic['special_people']=special_people
+        '''
+        classification
+        '''
+        classification_raw=collections.Counter(yMonth_dic['classifications'])#単語要素別にカウント
+        classification_all = sorted(classification_raw.items(), key=lambda x:x[1],reverse=True)#値の大きい順にソート
+        classification=classification_all[0:10]#上位10個まで
+        yMonth_dic['classifications']=classification
+
+
+    print( yMonth_dicList)
 
 
     # print( yMonth_dicList)
@@ -257,7 +289,7 @@ def nlpForMonth(user_id):
     db.set_multiple_progress(user_id,"statistics",40)
     del db
 
-    print("nlpForDiary終了")
+    print("nlpForMonth終了")
 
 if __name__ == '__main__':
     nlpForMonth(2)
