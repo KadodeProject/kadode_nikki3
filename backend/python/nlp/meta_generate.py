@@ -68,7 +68,8 @@ def get_tokenChunkSentence_by_ginza(row:list):
                 'lemma':token.lemma_,#基本形
                 'uPOSTag':token.pos_,#品詞
                 'xPOSTag':token.tag_,#言語依存の品詞
-                'inflect':token._.inf,#活用形
+                #token._.infはv4から廃止
+                # 'inflect':token._.inf,#活用形
                 'isUnknown':token.is_oov,#未知語
             }
             #係り受け情報は 単語id={}

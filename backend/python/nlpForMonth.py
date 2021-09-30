@@ -2,6 +2,7 @@
 
 import time
 import json
+import collections #配列の要素カウント
 from datetime import datetime as dt
 from datetime import timezone,timedelta
 
@@ -147,51 +148,53 @@ def nlpForMonth(user_id):
             名詞多い順3
             noun_rank
             {
-            day:
+            name:
             count:
             }
-            '''
-
-            #使わない要素を消す
-            # value_token.pop('NE')
-            value_token.pop('end')
-            value_token.pop('form')
-            value_token.pop('start')
-            value_token.pop('xPOSTag')
-            value_token.pop('isUnknown')
-
-            print(value_token)
-            yMonth_dicList[date_label]['noun_rank'].append({   
-                "day":day,
-                "value":value_token,
-            })
-
-
-            '''
+            
             形容詞多い順3
             adjective_rank
             {
-            day:
+            name:
             count:
             }
+
             '''
+
+
+            #token複数あるので、ループで処理
+            for individual_token in value_token.values():
+                #残り
+                '''
+                dict
+                {
+                    'lemma':#基本形
+                    'xPOSTag':#言語依存の品詞(動詞-一般的な)
+                }
+                '''
+                if("名詞" in individual_token['xPOSTag'] ):
+                    yMonth_dicList[date_label]['noun_rank'].append(individual_token['lemma'])
+                elif("形容詞" in individual_token['xPOSTag']):
+                    yMonth_dicList[date_label]['adjective_rank'].append(individual_token['lemma'])
 
 
             '''
             重要そうな単語3
             important_words
             {
-            day:
+            name:
             count:
             }
             '''
-
+            # for important_word in value_important_words.values():
+            #     #残り
+            #     yMonth_dicList[date_label]['important_words'].append(important_word)
 
             '''
             人物多い順3
             special_people
             {
-            day:
+            name:
             count:
             }
             '''
@@ -201,33 +204,55 @@ def nlpForMonth(user_id):
             推定分類3つ
             special_people
             {
-            day:
+            name:
             count:
             }
             '''
 
 
                
-        #forループここまで
+    #forループここまで
 
+    '''
+    年月日に分けたものを整形する処理
+    '''
+    for yMonth_dic in yMonth_dicList.values():
         '''
-        年月日に分けたものを整形する処理
+        名詞
         '''
-        # print( yMonth_dicList)
-          
+        noun_rank_raw=collections.Counter(yMonth_dic['noun_rank'])#単語要素別にカウント
+        noun_rank_all = sorted(noun_rank_raw.items(), key=lambda x:x[1])#値の大きい順にソート
+        noun_rank=noun_rank_all[0:10]#上位10個まで
+        #代入
+        # print(noun_rank)    
+        yMonth_dic['noun_rank']=noun_rank
         '''
-        DB更新
+        形容詞
         '''
+        adjective_rank_raw=collections.Counter(yMonth_dic['adjective_rank'])#単語要素別にカウント
+        adjective_rank_all = sorted(adjective_rank_raw.items(), key=lambda x:x[1])#値の大きい順にソート
+        adjective_rank=adjective_rank_all[0:10]#上位10個まで
+        #代入
+        # print(adjective_rank)    
+        yMonth_dic['adjective_rank']=adjective_rank
+    # print( yMonth_dicList)
 
-        #更新日反映(これは不要→updated_atと統計が同義なので)
-        #進捗反映
-        #月と年生成
-        #DB代入(無い場合insert、あるときupdate)
-        #まだ　meta_info,emotions,flavor,similar_sentences,classification,important_words,cause_effect_sentences,special_people,updated_statistic_at
-        # db.set_single_json_data('diaries',row[0],important_words=important_words,special_people=special_people)
-        # db.set_single_normal_data('diaries',row[0],classification=classification,emotions=emotions,updated_statistic_at=updated_statistic_at)
 
-        # db.set_single_progress(row[0],"diaries",100)
+    # print( yMonth_dicList)
+        
+    '''
+    DB更新
+    '''
+
+    #更新日反映(これは不要→updated_atと統計が同義なので)
+    #進捗反映
+    #月と年生成
+    #DB代入(無い場合insert、あるときupdate)
+    #まだ　meta_info,emotions,flavor,similar_sentences,classification,important_words,cause_effect_sentences,special_people,updated_statistic_at
+    # db.set_single_json_data('diaries',row[0],important_words=important_words,special_people=special_people)
+    # db.set_single_normal_data('diaries',row[0],classification=classification,emotions=emotions,updated_statistic_at=updated_statistic_at)
+
+    # db.set_single_progress(row[0],"diaries",100)
 
     db.set_multiple_progress(user_id,"statistics",40)
     del db
