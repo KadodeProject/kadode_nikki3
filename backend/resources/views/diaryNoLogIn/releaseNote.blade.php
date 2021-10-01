@@ -11,6 +11,12 @@
     
 
 @include('components.noLogIn.releaseNote',
+['title'=>'月別アーカイブでの統計情報表示',
+'date'=>'2021年10月1日',
+'genre'=>'Feature',
+'explain'=>'月ごとの統計情報を表示するようにしました。気持ちの推移や分類、よく使われた言葉などをご確認いただけます。
+'])
+@include('components.noLogIn.releaseNote',
 ['title'=>'アーカイブ、検索、ホームでのミニ統計情報表示機能',
 'date'=>'2021年9月25日',
 'genre'=>'Feature',
