@@ -10,16 +10,16 @@
               type: 'line',
     data: {
         labels: [
-            @foreach( $months as $month)
-            "{{$month}}",
+          @foreach( $word_counts as $word_count)
+            "{{$month_words_per_diary[0]}}",
             @endforeach],
 
         datasets: [
           {
             label: '月ごとの平均文字数推移',
             data:  [
-            @foreach( $month_words_per_diaries as $month_words_per_diary)
-            {{$month_words_per_diary}},
+            @foreach( $word_counts as $word_count)
+            {{$month_words_per_diary[1]}},
             @endforeach],
             borderColor: "rgba(75,137,150,1)",
             backgroundColor: "rgba(0,0,0,0)"

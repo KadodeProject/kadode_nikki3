@@ -23,7 +23,7 @@
                 @endcomponent
             </section>
             <div>
-
+                
             </div>
         </div>
         <div class="md:w-1/4 w-1/2 p-4">
@@ -31,9 +31,11 @@
                 <h3 class="text-2xl float-left text-center">文字数</h3>
                 <div class="cursor-pointer hatena_hover text-sm w-6 h-6 border rounded-full border-border-main-color flex items-center justify-center">?</div>
                 <div class="explain_hatena">日記の本文の文字数推移です。</div>
-                {{-- @php
-                var_dump($statisticPerMonth->category_statistic);
-                @endphp --}}
+                @php
+                var_dump($statisticPerMonth->word_counts);
+                @endphp
+                {{-- @component('components.statistics.graph.numberOfCharactersGraph',['word_counts'=>$statisticPerMonth->word_counts])
+                @endcomponent --}}
             </section>
             <div>
                 
