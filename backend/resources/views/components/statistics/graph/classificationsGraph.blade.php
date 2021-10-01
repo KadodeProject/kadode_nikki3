@@ -1,5 +1,5 @@
 @isset($classifications)
-    <div class="chartWrapper_for_archive md:mx-0 mx-auto" style="padding-top:0px!important">
+    <div class="chartWrapper_small md:mx-0 mx-auto" style="padding-top:0px!important">
     <canvas id="chartNlpClassfications" width="400px" height="400px"></canvas>
     </div>
 <!--進行中のときの動作-->
@@ -36,7 +36,7 @@
                   legend: {
                       display: true,
                       labels: {
-                          color: 'rgb(255, 99, 132)'
+                          color: '#f9fff9'
                       }
                   }
               }

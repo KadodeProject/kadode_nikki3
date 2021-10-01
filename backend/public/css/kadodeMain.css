@@ -12,7 +12,7 @@ main {
     /* カラー定義 */
     --bg-main-color: #2f3437;
     --text-main-color: #f9fff9;
-    --logo-main-color: #624464;
+    --logo-main-color: #050405;
     --button-main-color: #4b8996;
     --border-main-color: #8a8772;
     /* カラー定義その2 */
@@ -363,13 +363,6 @@ li ol {
     height: 600px;
 }
 .chartWrapper_small {
-    margin: 0 auto;
-    padding: 2em;
-    /* overflow-x: scroll; */
-    width: 300px;
-    height: 300px;
-}
-.chartWrapper_for_archive {
     margin: 0 auto;
     padding: 2em;
     /* overflow-x: scroll; */

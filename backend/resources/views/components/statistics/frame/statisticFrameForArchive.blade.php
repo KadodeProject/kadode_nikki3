@@ -59,12 +59,8 @@
                 <div class="cursor-pointer hatena_hover text-sm w-6 h-6 border rounded-full border-border-main-color flex items-center justify-center">?</div>
                 <div class="explain_hatena">日記の本文から形態素解析で抽出した名詞の登場数多い順に3つです</div>
             </section>
-            <div>
-                <p class="text-xl">1.自分(n回)</p>
-                <p class="text-xl">2.猫(n回)</p>
-                <p class="text-xl">3.魚(n回)</p>
-            
-            </div>
+            @component('components.statistics.rank.top3Rank',['ranked_array'=>$statisticPerMonth->noun_rank])
+            @endcomponent
         </div>
         <div class="md:w-1/4 w-full p-4">
             <section class=" kiwi-maru">
@@ -72,11 +68,9 @@
                 <div class="cursor-pointer hatena_hover text-sm w-6 h-6 border rounded-full border-border-main-color flex items-center justify-center">?</div>
                 <div class="explain_hatena">日記の本文から形態素解析で抽出した形容詞の登場数多い順に3つです</div>
             </section>
-            <div>
-                <p class="text-xl">1.すごい(n回)</p>
-                <p class="text-xl">2.やさしい(n回)</p>
-                <p class="text-xl">3.かわいい(n回)</p>
-            </div>
+            @component('components.statistics.rank.top3Rank',['ranked_array'=>$statisticPerMonth->adjective_rank])
+            @endcomponent
+
         </div>
         <!-- した -->
         <div class="md:w-1/4 w-full p-4">
@@ -85,9 +79,8 @@
                 <div class="cursor-pointer hatena_hover text-sm w-6 h-6 border rounded-full border-border-main-color flex items-center justify-center">?</div>
                 <div class="explain_hatena">感情極性辞書を用いた本文の感情推測のこのアーカイブでの平均値です</div>
             </section>
-            <div>
-
-            </div>
+            @component('components.statistics.char.emotionsRateChar',['emotions'=>$statisticPerMonth->emotions])
+            @endcomponent
         </div>
         <div class="md:w-1/4 w-full p-4">
             <section class=" kiwi-maru">
@@ -95,7 +88,7 @@
                 <div class="cursor-pointer hatena_hover text-sm w-6 h-6 border rounded-full border-border-main-color flex items-center justify-center">?</div>
                 <div class="explain_hatena">感情極性辞書を用いた本文の感情推測の推移です</div>
             </section>
-            @component('components.statistics.graph.emotionsGraph',['emotions'=>$statisticPerMonth->emotions])
+            @component('components.statistics.graph.emotionsChangeGraph',['emotions'=>$statisticPerMonth->emotions])
             @endcomponent
         </div>
         <div class="md:w-1/4 w-full p-4">
@@ -104,12 +97,8 @@
                 <div class="cursor-pointer hatena_hover text-sm w-6 h-6 border rounded-full border-border-main-color flex items-center justify-center">?</div>
                 <div class="explain_hatena">アノテーションを用いて本文から抽出した、日記でよく登場する人物です。</div>
             </section>
-            <div>
-                <p class="text-xl">1.あああさん(n回)</p>
-                <p class="text-xl">2.いいいさん(n回)</p>
-                <p class="text-xl">3.うううさん(n回)</p>
-            
-            </div>
+            @component('components.statistics.rank.top3Rank',['ranked_array'=>$statisticPerMonth->special_people])
+            @endcomponent
         </div>
         <div class="md:w-1/4 w-full p-4">
             <section class=" kiwi-maru">
@@ -117,11 +106,8 @@
                 <div class="cursor-pointer hatena_hover text-sm w-6 h-6 border rounded-full border-border-main-color flex items-center justify-center">?</div>
                 <div class="explain_hatena">アノテーションを用いて本文から抽出した、固有表現の登場数の多い単語です。</div>
             </section>
-            <div>
-                <p class="text-xl">1.hogehoge(n回)</p>
-                <p class="text-xl">2.hogehoge(n回)</p>
-                <p class="text-xl">3.hogehoge(n回)</p>
-            </div>
+            @component('components.statistics.rank.top3Rank',['ranked_array'=>$statisticPerMonth->important_words])
+            @endcomponent
         </div>
       
 

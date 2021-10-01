@@ -1,4 +1,4 @@
-<div class="chartWrapper_for_archive md:mx-0 mx-auto">
+<div class="chartWrapper_small md:mx-0 mx-auto">
     <canvas id="chartCharactersPerMonth" width="400px" height="400px"></canvas>
 </div>
 
