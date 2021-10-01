@@ -1,10 +1,15 @@
+
 <details class="text-main-color  kiwi-maru">
     <summary class="text-center m-2 text-xl font-bold">
-        このアーカイブの統計情報[更新日:2021/01/01]
+        このアーカイブの統計情報[更新日:{{$statisticPerMonth->updated_at}}]
     </summary>
 
     <div class="flex itesm-center justify-center flex-wrap">
+
         <!-- うえ -->
+        @php
+            var_dump($statisticPerMonth);
+        @endphp
         <div class="md:w-1/4 w-1/2 p-4">
             <section class=" kiwi-maru">
                 <h3 class="text-2xl float-left text-center">分類</h3>

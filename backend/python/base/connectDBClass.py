@@ -254,14 +254,14 @@ class connectDB:
         if(column=="statistic_per_months"):
             #無ければ新しい列を作る
 
-            print(
-                             'INSERT  INTO {0}(user_id,year,month,statistic_progress) VALUES ({1},{2},{3},1) ;'.format(column,user_id,date[0],date[1]))
+            # print(
+            #                  'INSERT  INTO {0}(user_id,year,month,statistic_progress) VALUES ({1},{2},{3},10) ;'.format(column,user_id,date[0],date[1]))
             cur.execute(
-                    'INSERT  INTO {0}(user_id,year,month,statistic_progress) VALUES ({1},{2},{3},1) ;'.format(column,user_id,date[0],date[1]))
+                    'INSERT  INTO {0}(user_id,year,month,statistic_progress) VALUES ({1},{2},{3},10) ;'.format(column,user_id,date[0],date[1]))
         else:
             #年でwhereする
             cur.execute(
-                  'INSERT  INTO {0}(user_id,year,statistic_progress) VALUES ({1},{2},1) ;'.format(column,user_id,date[0]))
+                  'INSERT  INTO {0}(user_id,year,statistic_progress) VALUES ({1},{2},10) ;'.format(column,user_id,date[0]))
 
         # 保存する
         self.conn.commit()
