@@ -6,6 +6,9 @@ import collections #配列の要素カウント
 from datetime import datetime as dt
 from datetime import timezone,timedelta
 
+from datetime import datetime as dt
+from datetime import timezone,timedelta
+
 from base import connectDBClass as database
 
 from nlp import special_people_extract
@@ -19,7 +22,6 @@ from nlp import cosSimilarity_analysis
 from nlp.dic import dic_to_trie
 
 def nlpForMonth(user_id):
-
     #DBインスタンス
     db = database.connectDB()
 
@@ -291,7 +293,17 @@ def nlpForMonth(user_id):
         set_depDate_json_data
         set_depDate_progress
 
-        set_depDate_normal_data(self,column,user_id,date,**values):
+        ここのメモ
+        なかったらinsertあったらupdateがしたい
+        ↓
+        mergeでできるらしい→ダメ
+        ifでできるらしい→ダメ(普通のsqlでは使えない)
+        caseでできるらしい→構文エラーで上手く行かない
+        ↓
+        一旦ユーザーのものをすべて消してからDB作る
+        その後にupdateする
+        →これだと、idがどんどん増えていってしまうが、やむをえない
+        21億個目でエラーになってしまう
         '''
         #日付取得
         date=yMonthDate.split('-')
@@ -301,16 +313,12 @@ def nlpForMonth(user_id):
         dateForDB=[date[0],date[1]]
 
 
-        #更新日反映(これは不要→updated_atと統計が同義なので)
-        #進捗反映
-        #月と年生成
-        #DB代入(無い場合insert、あるときupdate)
-
-
         #本目的のDB代入処理
         db.set_depDate_json_data('statistic_per_months',user_id,dateForDB,emotions=yMonth_dic['emotions'],word_counts=yMonth_dic['word_counts'],noun_rank=yMonth_dic['noun_rank'],adjective_rank=yMonth_dic['adjective_rank'],important_words=yMonth_dic['important_words'],special_people=yMonth_dic['special_people'],classifications=yMonth_dic['classifications'])
-        #updated_at自動で入る
-        db.set_depDate_progress(user_id,"statistic_per_months",dateForDB,100)
+        #createdatもupdatedadも自動で入らない
+        now_jst=dt.now(JST)
+        db.set_depDate_json_data('statistic_per_months',user_id,dateForDB,emotions=yMonth_dic['emotions'],word_counts=yMonth_dic['word_counts'],noun_rank=yMonth_dic['noun_rank'],adjective_rank=yMonth_dic['adjective_rank'],important_words=yMonth_dic['important_words'],special_people=yMonth_dic['special_people'],classifications=yMonth_dic['classifications'])
+        db.set_depDate_normal_data("statistic_per_months",user_id,dateForDB,created_at=now_jst,updated_at=now_jst)
 
     #ソートと代入のループ終わり
 
