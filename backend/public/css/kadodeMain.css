@@ -369,6 +369,13 @@ li ol {
     width: 300px;
     height: 300px;
 }
+.chartWrapper_for_archive {
+    margin: 0 auto;
+    padding: 2em;
+    /* overflow-x: scroll; */
+    width: 300px;
+    height: 300px;
+}
 
 .chartWrapper_nlp_long {
     margin: 0 auto;

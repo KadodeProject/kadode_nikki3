@@ -44,6 +44,8 @@ https://github.com/chartjs/chartjs-plugin-annotation/blob/master/LICENSE.md
 
 ※Chart.js において、グラフの色を自動付与するプラグイン
 
+↑Chat.js v3 系で動かないため廃止
+
 Copyright (c) 2019 Akihiko Kusanagi
 
 Released under the MIT license
@@ -187,6 +189,14 @@ https://qiita.com/ucan-lab/items/56c9dc3cf2e6762672f4#laravel%E3%82%92%E3%82%A4%
 Copyright (c) 934 紀貫之
 
 https://www.aozora.gr.jp/cards/000155/files/832_16016.html
+
+## README のバッチ shields.io
+
+https://shields.io/
+
+Creative Commons Zero v1.0 Universal license
+
+https://github.com/badges/shields/blob/master/LICENSE
 
 # かどで日記本体
 
