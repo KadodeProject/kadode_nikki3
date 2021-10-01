@@ -8,13 +8,19 @@
           var chartNlpClassfications = new Chart(chartNlpClassfications_id, {
               type: 'pie',
               data: {
-        labels: ['分析済み','未分析'],
+              labels: [
+              @foreach( $classifications as $classification)
+              "{{$classification[0]}}",
+              @endforeach],
     
         datasets: [
           {
-            label: 'NLP進行度',
+            label: '分類',
   
-            data:  [{{$statistic_progress}},{{$statistic_progress_remain}}],
+            data: [
+            @foreach( $classifications as $classification)
+            {{$classification[1]}},
+              @endforeach],
             // backgroundColor: ['#4B8996', '#8A8772'],
             borderColor: "rgba(75,137,150,0)",
             weight: 100,
@@ -25,7 +31,10 @@
     options: {
       responsive: true,
       plugins: {
-        autocolors: false,
+        autocolors: true,
+        colorschemes: {
+        scheme: 'tableau.HueCircle19'
+        },
        
         title: {
           display: false,
