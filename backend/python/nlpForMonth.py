@@ -218,10 +218,14 @@ def nlpForMonth(user_id):
                
     #forループここまで
 
+
     '''
-    年月日に分けたものを整形する処理
+    ソートとDB代入のループ
     '''
-    for yMonth_dic in yMonth_dicList.values():
+    for yMonthDate,yMonth_dic in yMonth_dicList.items():
+        '''
+        年月日に分けたものを整形する処理
+        '''
         '''
         名詞
         '''
@@ -267,24 +271,37 @@ def nlpForMonth(user_id):
         yMonth_dic['classifications']=classification
 
 
+        '''
+        DB更新
+        set_depDate_normal_data
+        set_depDate_json_data
+        set_depDate_progress
+
+        set_depDate_normal_data(self,column,user_id,date,**values):
+        '''
+        #日付取得
+        date=yMonthDate.split('-')
+        # 辞書のラベル用
+        year=date[0]
+        month=date[1]
+        dateForDB=[date[0],date[1]]
+
+
+        #更新日反映(これは不要→updated_atと統計が同義なので)
+        #進捗反映
+        #月と年生成
+        #DB代入(無い場合insert、あるときupdate)
+
+        #DB作成処理
+        db.set_depDate_insertUpdate_data('statistic_per_months',user_id,dateForDB)
+        #本目的のDB代入処理
+        db.set_depDate_json_data('statistic_per_months',user_id,dateForDB,emotions=yMonth_dic['emotions'],word_counts=yMonth_dic['word_counts'],noun_rank=yMonth_dic['noun_rank'],adjective_rank=yMonth_dic['adjective_rank'],important_words=yMonth_dic['important_words'],special_people=yMonth_dic['special_people'],classifications=yMonth_dic['classifications'])
+        #updated_at自動で入る
+        db.set_depDate_progress(user_id,"statistic_per_months",dateForDB,100)
+
+    #ソートと代入のループ終わり
+
     print( yMonth_dicList)
-
-
-    # print( yMonth_dicList)
-        
-    '''
-    DB更新
-    '''
-
-    #更新日反映(これは不要→updated_atと統計が同義なので)
-    #進捗反映
-    #月と年生成
-    #DB代入(無い場合insert、あるときupdate)
-    #まだ　meta_info,emotions,flavor,similar_sentences,classification,important_words,cause_effect_sentences,special_people,updated_statistic_at
-    # db.set_single_json_data('diaries',row[0],important_words=important_words,special_people=special_people)
-    # db.set_single_normal_data('diaries',row[0],classification=classification,emotions=emotions,updated_statistic_at=updated_statistic_at)
-
-    # db.set_single_progress(row[0],"diaries",100)
 
     db.set_multiple_progress(user_id,"statistics",40)
     del db

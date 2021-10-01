@@ -228,8 +228,24 @@ class connectDB:
         cur.close()
 
     """
-    解析済みのノーマルデータを書き込む(user_idと年月で決まり、存在しない場合もあるもの用)
-    dateは配列で date[year,month]
+    月別と年別で一度ユーザーのデータをすべて消す
+    """
+    def delete_depDate_data(self,column,user_id):
+        # カーソルを取得する
+        cur= self.conn.cursor()
+        # クエリを実行する ここはsqkインジェクションにならないところなので、そのまま
+
+        #ユーザーの全削除
+        cur.execute(
+                'DELETE FROM {0} WHERE user_id = {1};'.format(column,user_id))
+       
+        # 保存する
+        self.conn.commit()
+        # カーソルを閉じる
+        cur.close()
+        self.conn.ping(True)#mysql2003エラー(サーバー接続切れ防止)
+    """
+    月別と年別で一度ユーザーのデータをすべて作成する
     """
     def set_depDate_insertUpdate_data(self,column,user_id,date):
         # カーソルを取得する
