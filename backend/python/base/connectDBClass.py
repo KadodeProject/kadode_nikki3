@@ -235,7 +235,7 @@ class connectDB:
         cur= self.conn.cursor()
         # クエリを実行する ここはsqkインジェクションにならないところなので、そのまま
 
-        #ユーザーの全削除
+        #ユーザーの統計全削除
         cur.execute(
                 'DELETE FROM {0} WHERE user_id = {1};'.format(column,user_id))
        
@@ -255,13 +255,13 @@ class connectDB:
             #無ければ新しい列を作る
 
             print(
-                    'SELECT * CASE NOT EXISTS(SELECT * FROM {0} WHERE user_id = {1} AND year = {2} AND month = {3}) THEN INSERT {0} INTO (user_id,year,month,statistic_progress) VALUES ({1},{2},{3},1) END;'.format(column,user_id,date[0],date[1]))
+                             'INSERT  INTO {0}(user_id,year,month,statistic_progress) VALUES ({1},{2},{3},1) ;'.format(column,user_id,date[0],date[1]))
             cur.execute(
-                    'CASE NOT EXISTS(SELECT * FROM {0} WHERE user_id = {1} AND year = {2} AND month = {3}) THEN INSERT {0} INTO (user_id,year,month,statistic_progress) VALUES ({1},{2},{3},1) END;'.format(column,user_id,date[0],date[1]))
+                    'INSERT  INTO {0}(user_id,year,month,statistic_progress) VALUES ({1},{2},{3},1) ;'.format(column,user_id,date[0],date[1]))
         else:
             #年でwhereする
             cur.execute(
-                    'IF EXISTS(SELECT * FROM {0} WHERE user_id = {1} AND year = {2} ) UPDATE {0} SET year = {2}  ELSE {0} INSERT INTO (user_id,year,statistic_progress) VALUES ({1},{2},1);'.format(column,user_id,date[0]))
+                  'INSERT  INTO {0}(user_id,year,statistic_progress) VALUES ({1},{2},1) ;'.format(column,user_id,date[0]))
 
         # 保存する
         self.conn.commit()

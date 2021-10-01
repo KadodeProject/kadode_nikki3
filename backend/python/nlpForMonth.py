@@ -218,6 +218,20 @@ def nlpForMonth(user_id):
                
     #forループここまで
 
+    '''
+    DB代入のための準備
+    '''
+    #月別を一旦消す
+    db.delete_depDate_data('statistic_per_months',user_id)
+    #空の月別を作成
+    for dicKey in yMonth_dicList.keys():
+        print(dicKey)
+        #日付取得
+        date=dicKey.split('-')
+        dateForDB=[date[0],date[1]]
+
+        db.set_depDate_insertUpdate_data('statistic_per_months',user_id,dateForDB)
+
 
     '''
     ソートとDB代入のループ
@@ -292,8 +306,7 @@ def nlpForMonth(user_id):
         #月と年生成
         #DB代入(無い場合insert、あるときupdate)
 
-        #DB作成処理
-        db.set_depDate_insertUpdate_data('statistic_per_months',user_id,dateForDB)
+
         #本目的のDB代入処理
         db.set_depDate_json_data('statistic_per_months',user_id,dateForDB,emotions=yMonth_dic['emotions'],word_counts=yMonth_dic['word_counts'],noun_rank=yMonth_dic['noun_rank'],adjective_rank=yMonth_dic['adjective_rank'],important_words=yMonth_dic['important_words'],special_people=yMonth_dic['special_people'],classifications=yMonth_dic['classifications'])
         #updated_at自動で入る
