@@ -24,10 +24,8 @@
                 <div class="mx-auto">
 
                     <h3 class="text-2xl float-left text-center">分類</h3>
-                    <div style="overflow:hidden">
-                    <div class="cursor-pointer hatena_hover text-sm w-6 h-6 border rounded-full border-border-main-color flex items-center justify-center"><span>?</span>
-                    </div>
-                    </div>
+    
+                    <div class="cursor-pointer hatena_hover text-sm w-6 h-6 border rounded-full border-border-main-color flex items-center justify-center">?</div>
                 </div>
                 <div class="explain_hatena">固有値表現がらそれぞれの日記で抽出した分類をまとめたグラフです</div>
 

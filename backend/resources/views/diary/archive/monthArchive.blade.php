@@ -49,7 +49,7 @@
             {{-- 統計情報ここまで --}}
             {{-- 日記のループ --}}
             <div class="flex w-full justify-center flex-wrap" >
-                @empty($diaries)
+                @isset($diaries)
                     <h3 class="text-center text-3xl my-20">{{$year}}年{{$month}}月の日記はありません！</h3>
                 @else
                     @foreach($diaries as $diary )
@@ -106,7 +106,7 @@
                             <!--統計部分の処理ここまで-->
                         @endcomponent
                     @endforeach
-                @endempty
+                @endisset
             </div>
             {{-- 日記のループここまで --}}
     
