@@ -1,6 +1,6 @@
 # ライセンス周りのまとめ
 
-# PHP
+# PHP フレームワーク、ライブラリ
 
 ## Laravel
 
@@ -19,6 +19,38 @@ Copyright (c) 2018 Craftsman Software, Inc.
 Released under the MIT license
 
 https://github.com/goodby/csv/blob/master/LICENSE
+
+# JavaScript ライブラリ
+
+## Chart.js
+
+Copyright (c) 2014-2021 Chart.js Contributors
+
+Released under the MIT license
+
+https://github.com/chartjs/Chart.js/blob/master/LICENSE.md
+
+## chartjs-plugin-annotation
+
+※Chart.js において、補助線を表示するプラグイン
+
+Copyright (c) 2016-2021 chartjs-plugin-annotation Contributors
+
+Released under the MIT license
+
+https://github.com/chartjs/chartjs-plugin-annotation/blob/master/LICENSE.md
+
+## chartjs-plugin-colorschemes
+
+※Chart.js において、グラフの色を自動付与するプラグイン
+
+↑Chat.js v3 系で動かないため廃止
+
+Copyright (c) 2019 Akihiko Kusanagi
+
+Released under the MIT license
+
+https://github.com/nagix/chartjs-plugin-colorschemes/blob/master/LICENSE.md
 
 # Python ライブラリ
 
@@ -58,13 +90,31 @@ https://megagonlabs.github.io/ginza/
 
 ## ahocorapy
 
+※ 感情極性辞書での TRIE で利用(木構造のデータ利用のため)
+
 Copyright (c) 2018 Abusix, Inc.
 
 Released under the MIT license
 
 https://github.com/abusix/ahocorapy/blob/master/LICENSE
 
-※T 感情極性辞書での TRIE で利用
+# HTML,CSS,JavaScript ソースコード
+
+## トップページの動く図形
+
+Copyright (c) June 1, 2015 Tuomas Pöyry
+
+Released under the MIT license
+
+http://opensource.org/licenses/mit-license.php
+
+## ヘッダーの日記検索のアニメーション
+
+Copyright (c) August 14, 2015 Charlyn G
+
+Released under the MIT license
+
+http://opensource.org/licenses/mit-license.php
 
 # 辞書
 
@@ -83,24 +133,6 @@ http://www.cl.ecei.tohoku.ac.jp/Open_Resources-Japanese_Sentiment_Polarity_Dicti
 東北大学 乾・岡崎研究室 / Author(s): Inui-Okazaki Laboratory, Tohoku University
 
 東山昌彦, 乾健太郎, 松本裕治, 述語の選択選好性に着目した名詞評価極性の獲得, 言語処理学会第 14 回年次大会論文集, pp.584-587, 2008. / Masahiko Higashiyama, Kentaro Inui, Yuji Matsumoto. Learning Sentiment of Nouns from Selectional Preferences of Verbs and Adjectives, Proceedings of the 14th Annual Meeting of the Association for Natural Language Processing, pp.584-587, 2008.
-
-# HTML,CSS,JS
-
-## トップページの動く図形
-
-Copyright (c) June 1, 2015 Tuomas Pöyry
-
-Released under the MIT license
-
-http://opensource.org/licenses/mit-license.php
-
-## ヘッダーの日記検索のアニメーション
-
-Copyright (c) August 14, 2015 Charlyn G
-
-Released under the MIT license
-
-http://opensource.org/licenses/mit-license.php
 
 # イラスト、画像、アイコン
 
@@ -157,6 +189,14 @@ https://qiita.com/ucan-lab/items/56c9dc3cf2e6762672f4#laravel%E3%82%92%E3%82%A4%
 Copyright (c) 934 紀貫之
 
 https://www.aozora.gr.jp/cards/000155/files/832_16016.html
+
+## README のバッチ shields.io
+
+https://shields.io/
+
+Creative Commons Zero v1.0 Universal license
+
+https://github.com/badges/shields/blob/master/LICENSE
 
 # かどで日記本体
 

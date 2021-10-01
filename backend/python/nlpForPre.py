@@ -95,4 +95,4 @@ def nlpForPre(user_id):
 
     print("nlpForPre処理終了")
 if __name__ == '__main__':
-    nlpForPre()
+    nlpForPre(2)

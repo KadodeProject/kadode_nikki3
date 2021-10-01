@@ -136,4 +136,4 @@ def nlpForDiary(user_id):
     print("nlpForDiary終了")
 
 if __name__ == '__main__':
-    nlpForDiary()
+    nlpForDiary(2)

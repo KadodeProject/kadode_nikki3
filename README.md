@@ -1,6 +1,18 @@
+### meta
+
+![image](https://img.shields.io/github/stars/Usuyuki/kadode_nikki3.svg)
+
+### language
+
+![image](https://img.shields.io/badge/-Python-3776AB.svg?logo=python&style=plastic)
+![image](https://img.shields.io/badge/-Php-777BB4.svg?logo=php&style=plastic)
+![image](https://img.shields.io/badge/-Javascript-F7DF1E.svg?logo=javascript&style=plastic)
+![image](https://img.shields.io/badge/-Html5-E34F26.svg?logo=html5&style=plastic)
+![image](https://img.shields.io/badge/-Css3-1572B6.svg?logo=css3&style=plastic)
+
 # この web アプリについて
 
-個人的に欲しかった日記管理 web アプリを作っています。
+個人的に欲しかった統計付き日記管理 web アプリを作っています。
 
 https://kadodenikki3.usuyuki.net/
 
