@@ -11,7 +11,7 @@
         data: {
             labels: [
             @foreach( $emotions as $emotion)
-                "{{$emotion['day']}}",
+                "{{$emotion['date']}}",
                 @endforeach],
 
             datasets: [

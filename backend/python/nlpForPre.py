@@ -23,7 +23,9 @@ def nlpForPre(user_id):
     統計更新してから日記側に変更がないとき(updated_statistic_at<=udpated_at)→処理しない分岐
     dbに入っている日付2021-09-20 14:29:16
     '''
+    number_of_diaries=0
     for row in rows:
+        number_of_diaries+=1
         #個別日記のループ
         #日記の更新日取得
        
@@ -94,5 +96,7 @@ def nlpForPre(user_id):
     del db
 
     print("nlpForPre処理終了")
+    #日記数を返す(トータルの条件分岐で使用)
+    return number_of_diaries
 if __name__ == '__main__':
     nlpForPre(2)

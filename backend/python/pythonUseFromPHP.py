@@ -11,11 +11,9 @@ pre終わる前に次の実行行ってエラーでる
 
 import nlpForPre
 import nlpForDiary
-import nlpForMonth
-import nlpForYear
+import nlpForMonthAndYear
 import nlpForTotal
 import sys
-import time
 
 
 if __name__ == '__main__':
@@ -23,13 +21,12 @@ if __name__ == '__main__':
     user_id=from_php[1]
 
     print("nlpForPre")
-    nlpForPre.nlpForPre(user_id)
+    number_of_diaries=nlpForPre.nlpForPre(user_id)
+    print("日記数"+str(number_of_diaries))
     print("nlpForDiary")
     nlpForDiary.nlpForDiary(user_id)
-    print("nlpForMonth")
-    nlpForMonth.nlpForMonth(user_id)
-    print("nlpForYear")
-    # nlpForYear.nlpForYear(user_id)
+    print("nlpForMonth&year")
+    nlpForMonthAndYear.nlpForMonthAndYear(user_id)
     print("nlpForTotal")
     nlpForTotal.nlpForTotal(user_id)
     print("DONE")

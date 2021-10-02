@@ -11,7 +11,7 @@
       data: {
           labels: [
             @foreach( $word_counts as $word_count)
-              "{{$word_count['day']}}",
+              "{{$word_count['date']}}",
               @endforeach],
 
           datasets: [
