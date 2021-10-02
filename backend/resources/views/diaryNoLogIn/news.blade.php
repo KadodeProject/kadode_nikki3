@@ -11,6 +11,11 @@
     
 
 @include('components.noLogIn.news',
+['title'=>'統計の解析時間について',
+'date'=>'2021年10月2日',
+'explain'=>'統計機能の解析にはかなり所要時間を要します。1000日記(約40万字)ですと混雑なしの状態で解析終了までおよそ2時間程度です。一度解析をすると次回以降は多少早くなります。解析中でも日記の閲覧などご利用いただけます。
+'])
+@include('components.noLogIn.news',
 ['title'=>'Google Analyticsの部分導入',
 'date'=>'2021年9月16日',
 'explain'=>'より快適なサイト運用を行うため、ログインを伴わないページに限りGoogle Analyticsを導入いたしました。ログイン後のページはGoogle Analyticsが作用しませんので、安心してご利用ください。
