@@ -8,22 +8,24 @@
 */
 const input = document.getElementById("keywordLabel");
 const label = document.getElementById("moveLabelJs");
-input.addEventListener(
-    "focus",
-    (event) => {
-        event.target.classList.add("active-input");
-        label.classList.add("active");
-    },
-    true
-);
-input.addEventListener(
-    "blur",
-    (event) => {
-        event.target.classList.remove("active-input");
-        label.classList.remove("active");
-    },
-    true
-);
+if (input != null) {
+    input.addEventListener(
+        "focus",
+        (event) => {
+            event.target.classList.add("active-input");
+            label.classList.add("active");
+        },
+        true
+    );
+    input.addEventListener(
+        "blur",
+        (event) => {
+            event.target.classList.remove("active-input");
+            label.classList.remove("active");
+        },
+        true
+    );
+}
 
 //sp本文でバーチャルキーボードの上にfooterメニューでてしまうの防止
 if (document.getElementById("diary-content") != null) {
