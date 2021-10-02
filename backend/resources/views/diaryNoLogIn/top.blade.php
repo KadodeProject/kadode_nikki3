@@ -31,12 +31,28 @@
    </div>
    <div class="flex justify-center imtes-center flex-wrap my-8">
        <div class="md:w-1/2 w-full ">
-            <img src="/img/topDiscribe/kadodeImageNlp.jpg" class="object-contain border-2 button-border-main-color">
+            <img src="/img/topDiscribe/kadodeImageNlpTotal.jpg" class="object-contain border-2 button-border-main-color">
        </div>
        <div class="md:w-1/2 w-full flex items-center justify-center">
-            <p class="text-3xl kiwi-maru">統計</p>
+            <p class="text-3xl kiwi-maru">統計(全体)</p>
        </div>
    </div>
+   <div class="flex justify-center imtes-center flex-wrap my-8">
+        <div class="md:w-1/2 w-full md:order-2">
+        <img src="/img/topDiscribe/kadodeImageNlpYear.jpg" class="object-contain border-2 button-border-main-color">
+        </div>
+        <div class="md:w-1/2 w-full md:order-1 flex items-center justify-center">
+        <p class="text-3xl kiwi-maru">統計(年別・月別)</p>
+        </div>
+    </div>
+    <div class="flex justify-center imtes-center flex-wrap my-8">
+        <div class="md:w-1/2 w-full ">
+             <img src="/img/topDiscribe/kadodeImageNlpDiary.jpg" class="object-contain border-2 button-border-main-color">
+        </div>
+        <div class="md:w-1/2 w-full flex items-center justify-center">
+             <p class="text-3xl kiwi-maru">統計(個別)</p>
+        </div>
+    </div>
    <div class="flex justify-center imtes-center flex-wrap my-8">
        <div class="md:w-1/2 w-full md:order-2">
            <img src="/img/topDiscribe/kadodeImageExport.jpg" class="object-contain border-2 button-border-main-color">
