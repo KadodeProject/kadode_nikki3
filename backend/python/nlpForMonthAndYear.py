@@ -138,12 +138,12 @@ def nlpForMonthAndYear(user_id):
             感情まとめ
             emotions
             {
-            day:
+            date:
             value:
             }
             '''
             yMonth_dicList[date_label]['emotions'].append({   
-                "day":day,
+                "date":day,
                 "value":value_emotions,
             })
             #年別用　無ければ作成、あれば足す
@@ -161,12 +161,12 @@ def nlpForMonthAndYear(user_id):
             文字数まとめ
             word_counts
             {
-            day:
+            date:
             count:
             }
             '''
             yMonth_dicList[date_label]['word_counts'].append({   
-                "day":day,
+                "date":day,
                 "value":value_char_length,
             })
             #年別用　無ければ作成、あれば足す
@@ -382,14 +382,14 @@ def nlpForMonthAndYear(user_id):
         for y_m, value in year_dic['emotions_raw'].items():
             this_diary=year_dic['emotions_counter_for_raw'][y_m]
             year_dic['emotions'].append({   
-                "year_month":y_m,
+                "date":y_m,
                 "value":value/this_diary,
         })
         # print( year_dic['emotions'])
         #文字数
         for y_m, value in year_dic['word_counts_raw'].items():
             year_dic['word_counts'].append({   
-                "year_month":y_m,
+                "date":y_m,
                 "value":value,
         })
         # print( year_dic['word_counts'])

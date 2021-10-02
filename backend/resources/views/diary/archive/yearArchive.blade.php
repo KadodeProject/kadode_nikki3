@@ -34,6 +34,18 @@
         </div>
     </div>
     {{-- 年と月の選択バーここまで--}}
+                {{-- 統計情報 --}}
+                @isset($statisticPerYear->statistic_progress)
+                @if($statisticPerYear->statistic_progress==100)
+                    @component('components.statistics.frame.statisticFrameForArchive',['ArchiveData'=>$statisticPerYear])
+                    @endcomponent
+                @elseif($statisticPerYear->statistic_progress==1)
+                    <p class="text-center text-2xl my-4 kiwi-maru">この月のまとめ統計データを生成中です</p> 
+                @endif
+            @else
+                <p class="text-center text-xl my-4 kiwi-maru">この月のまとめ統計データはありません</p>
+            @endisset
+            {{-- 統計情報ここまで --}}
     
             <div class="flex w-full justify-center flex-wrap" >
                 @empty($diaries)

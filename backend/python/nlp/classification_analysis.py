@@ -119,6 +119,9 @@ def get_mostGuess_classification(affiliation):
         elif value[0]=="Event_Other":#3アマなど
             category="催し"
             break
+        elif value[0]=="Music":#3アマなど
+            category="音楽"
+            break
         elif value[0]=="N_Event":#3アマなど
             category="催し"
             break
