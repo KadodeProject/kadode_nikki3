@@ -26,7 +26,7 @@
         <p class="text-xl sm:text-left text-center kiwi-maru">キーワード検索</p>
         <div>
             <input  autocomplete="off"class="search-keyword" type="search" name="keyword" placeholder="キーワード(2~20字)">
-            <input type="submit" class="h-full kiwi-maru"value="検索">
+            <input type="submit" class="h-full kiwi-maru" style="border-radius:4px;"value="検索">
         </div>
         
     </form>
@@ -48,7 +48,7 @@
         <p class="text-xl sm:text-left text-center kiwi-maru">キーワード検索</p>
         <div>
             <input  autocomplete="off"class="search-keyword" type="search" name="keyword" value="{{$keyword}}" placeholder="キーワード(2~20字)">
-            <input type="submit" class="h-full kiwi-maru"value="検索">
+            <input type="submit" class="h-full kiwi-maru" style="border-radius:4px;"value="検索">
         </div>
         
     </form>

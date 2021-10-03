@@ -95,7 +95,7 @@
                         <label id="moveLabelJs"class="move-label text-main-color text-sm kiwi-maru" for="keywordLabel">日記検索</label>
                         <input id="keywordLabel" autocomplete="off"class="search-keyword " type="search" name="keyword" placeholder="キーワード(2~20字)">
                     </div>
-                    <input type="submit" style="border-radius: 0px" class="kiwi-maru"value="検索">
+                    <input type="submit" style=" border-radius: 0 3px 3px 0" class="kiwi-maru"value="検索">
                     
                 </form>
             </div>

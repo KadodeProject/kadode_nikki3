@@ -11,17 +11,17 @@
     <div class="diary-main">
         <nav class="md:order-1 ">
             @isset($next)
-            <p class="md:mr-12 md:mt-12 p-2 text-xl borer-2 border-border-main-color" ><a style="vertical-align: middle;" href="{{url('/edit')}}/{{$next->uuid}}"><span class="material-icons">arrow_back</span> {{$next->date}}</a></p>
+            <p class="md:mr-12 md:mt-12 p-2 text-xl borer-2 border-border-main-color kiwi-maru" ><a style="vertical-align: middle;" href="{{url('/edit')}}/{{$next->uuid}}"><span class="material-icons">arrow_back</span> {{$next->date}}</a></p>
             @else
-            <p class="md:mr-12 md:mt-12 p-2 text-xl borer-2 border-border-main-color" ><span class="material-icons ">arrow_back</span><span class="material-icons">remove_circle_outline</span> 日記なし</p>
+            <p class="md:mr-12 md:mt-12 p-2 text-xl borer-2 border-border-main-color kiwi-maru" ><span class="material-icons ">arrow_back</span><span class="material-icons">remove_circle_outline</span> 日記なし</p>
             @endisset
         
         </nav>
         <nav class="order-2 md:order-3">
             @isset($previous)
-            <p class="md:ml-12 md:mt-12 p-2 text-xl borer-2 border-border-main-color" ><a style="vertical-align: middle;" href="{{url('/edit')}}/{{$previous->uuid}}"> {{$previous->date}} <span class="material-icons">arrow_forward</span></a></p>
+            <p class="md:ml-12 md:mt-12 p-2 text-xl borer-2 border-border-main-color kiwi-maru" ><a style="vertical-align: middle;" href="{{url('/edit')}}/{{$previous->uuid}}"> {{$previous->date}} <span class="material-icons">arrow_forward</span></a></p>
             @else
-            <p class="md:mr-12 md:mt-12 p-2 text-xl borer-2 border-border-main-color" >日記なし <span class="material-icons">remove_circle_outline</span><span class="material-icons">arrow_forward</span></p> 
+            <p class="md:mr-12 md:mt-12 p-2 text-xl borer-2 border-border-main-color kiwi-maru" >日記なし <span class="material-icons">remove_circle_outline</span><span class="material-icons">arrow_forward</span></p> 
             @endisset
         </nav>
         <div class="order-3 md:order-2 ">
