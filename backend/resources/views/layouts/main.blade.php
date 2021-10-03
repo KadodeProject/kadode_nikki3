@@ -110,12 +110,12 @@
         </div>
     </header>
    
-    <main>
+    <div>
 
         @yield('content')
         
         
-    </main>
+    </div>
     @component('components.footer')
     @endcomponent
     <div class="sm:hidden" style="height: 60px" >
