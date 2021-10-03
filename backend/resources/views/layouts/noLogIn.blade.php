@@ -72,12 +72,12 @@
       
     </header>
    
-    <main>
+    <div>
 
         @yield('content')
         
         
-    </main>
+    </div>
     @component('components.footer')
     @endcomponent
     

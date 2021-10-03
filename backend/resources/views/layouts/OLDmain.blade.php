@@ -63,12 +63,12 @@
 
     </header>
    
-    <main>
+    <div>
 
         @yield('content')
         
         
-    </main>
+    </div>
     <footer>
      <p class="text-center">{{"@"}}usuyuki2021</p>
     </footer>
