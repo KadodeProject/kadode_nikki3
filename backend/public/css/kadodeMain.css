@@ -127,6 +127,7 @@ textarea {
 }
 textarea::placeholder {
     color: var(--border-main-color);
+    font-family: "Kiwi Maru", serif;
 }
 input[type="submit"] {
     background-color: var(--button-main-color);
@@ -141,6 +142,7 @@ input[type="text"] {
     color: var(--text-main-color);
 }
 input[type="text"]::placeholder {
+    font-family: "Kiwi Maru", serif;
     color: var(--border-main-color);
 }
 input[type="date"] {
@@ -239,9 +241,11 @@ li ol {
     border: 1px solid var(--button-main-color); /*枠線*/
 }
 .search-keyword::placeholder {
+    font-family: "Kiwi Maru", serif;
     color: var(--bg-main-color);
 }
 .active-input::placeholder {
+    font-family: "Kiwi Maru", serif;
     color: var(--border-main-color);
 }
 .search-keyword:focus {
@@ -289,7 +293,7 @@ li ol {
 /*スクロールバー全体*/
 ::-webkit-scrollbar {
     width: 8px;
-    height: 8px;
+    height: 6px;
 }
 
 /*スクロールバーの軌道*/
@@ -301,7 +305,7 @@ li ol {
 
 /*スクロールバーの動く部分*/
 ::-webkit-scrollbar-thumb {
-    background-color: var(--button-main-color);
+    background-color: rgba(75, 137, 150, 0.5);
     border-radius: 10px;
     /* box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.3); */
 }

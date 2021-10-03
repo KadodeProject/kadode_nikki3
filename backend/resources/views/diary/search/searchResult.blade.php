@@ -10,11 +10,11 @@
 
 
 @empty($keyword)
-<h1 class="text-center text-3xl my-4">検索ページ</h1>
+<h1 class="text-center text-3xl my-4 kiwi-maru">検索ページ</h1>
 <div style="min-height:100vh">
     @if(count($errors)>0)
     {{-- エラーの表示 --}}
-    <ul class="text-red-500 text-center">
+    <ul class="text-red-500 kiwi-maru text-center">
         @foreach($errors->all() as $error)
         <li>{{$error}}</li>
         @endforeach
@@ -23,20 +23,20 @@
     <div class="search-form my-12 flex justify-center">
         <form class="move-label-wrapper flex items-center flex-col flex-wrap "method="POST" action="/search">
             @csrf
-        <p class="text-xl sm:text-left text-center">キーワード検索</p>
+        <p class="text-xl sm:text-left text-center kiwi-maru">キーワード検索</p>
         <div>
             <input  autocomplete="off"class="search-keyword" type="search" name="keyword" placeholder="キーワード(2~20字)">
-            <input type="submit" class="h-full"value="検索">
+            <input type="submit" class="h-full kiwi-maru"value="検索">
         </div>
         
     </form>
     </div>
 </div>
 @else
-<h1 class="text-center text-3xl my-4">「{{$keyword}}」の検索結果 <span class="text-sm">[{{$counter}}件(最大200件)]</span><span class="text-xs">[クエリ時間:{{$queryTime}}ミリ秒]</span></h1>
+<h1 class="text-center text-3xl my-4 kiwi-maru">「{{$keyword}}」の検索結果 <span class="text-sm">[{{$counter}}件(最大200件)]</span><span class="text-xs">[クエリ時間:{{$queryTime}}ミリ秒]</span></h1>
     @if(count($errors)>0)
     {{-- エラーの表示 --}}
-    <ul class="text-red-500 text-center">
+    <ul class="text-red-500 kiwi-maru text-center">
         @foreach($errors->all() as $error)
         <li>{{$error}}</li>
         @endforeach
@@ -45,10 +45,10 @@
 <div class="search-form my-12 flex justify-center">
     <form class="move-label-wrapper flex items-center flex-col flex-wrap "method="POST" action="/search">
             @csrf
-        <p class="text-xl sm:text-left text-center">キーワード検索</p>
+        <p class="text-xl sm:text-left text-center kiwi-maru">キーワード検索</p>
         <div>
             <input  autocomplete="off"class="search-keyword" type="search" name="keyword" value="{{$keyword}}" placeholder="キーワード(2~20字)">
-            <input type="submit" class="h-full"value="検索">
+            <input type="submit" class="h-full kiwi-maru"value="検索">
         </div>
         
     </form>
@@ -56,7 +56,7 @@
 
 <div class="flex w-full justify-center flex-wrap" >
     @empty($diaries)
-        <h3 class="text-center text-3xl my-20">「{{$keyword}}」を含む日記はありません！</h3>
+        <h3 class="text-center text-3xl my-20 kiwi-maru">「{{$keyword}}」を含む日記はありません！</h3>
     @else
         @foreach($diaries as $diary )
             @component('components.diary.diaryFrame')

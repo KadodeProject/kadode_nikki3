@@ -70,7 +70,7 @@
             </div> -->
         </div>
 
-        <div class="sm:flex hidden  justify-between items-end header-links h-full" style="height:var(--header-height)">
+        <div class="sm:flex hidden  justify-between items-end header-links h-full kiwi-maru" style="height:var(--header-height)">
             <p><a href="{{url("/home")}}">ホーム</a></p>
             <p><a href="{{url("/edit")}}">日記作成</a></p>   
             <p><a href="{{url("/diary").date("/Y/n")}}">アーカイブ</a></p>
@@ -84,7 +84,7 @@
                 <form class="move-label-wrapper flex"method="POST" action="/search">
                     @if(count($errors)>0)
                 {{-- エラーの表示 --}}
-                <ul class="text-red-500">
+                <ul class="text-red-500 kiwi-maru">
                     @foreach($errors->all() as $error)
                     <li>{{$error}}</li>
                     @endforeach
@@ -92,10 +92,10 @@
                 @endif
                     @csrf
                     <div>
-                        <label id="moveLabelJs"class="move-label text-main-color text-sm" for="keywordLabel">日記検索</label>
-                        <input id="keywordLabel" autocomplete="off"class="search-keyword" type="search" name="keyword" placeholder="キーワード(2~20字)">
+                        <label id="moveLabelJs"class="move-label text-main-color text-sm kiwi-maru" for="keywordLabel">日記検索</label>
+                        <input id="keywordLabel" autocomplete="off"class="search-keyword " type="search" name="keyword" placeholder="キーワード(2~20字)">
                     </div>
-                    <input type="submit" style="border-radius: 0px" value="検索">
+                    <input type="submit" style="border-radius: 0px" class="kiwi-maru"value="検索">
                     
                 </form>
             </div>
@@ -104,7 +104,7 @@
 
             
             <div class="flex items-center justify-center mr-4">          
-                <p class="sm:block hidden">{{ Auth::user()->name }}</p>
+                <p class="sm:block hidden kiwi-maru">{{ Auth::user()->name }}</p>
                 <p class="sm:hidden block ml-4 mt-2"><a href="{{url("/settings")}}"><span class="material-icons">settings</span></a></p>  
             </div>
         </div>

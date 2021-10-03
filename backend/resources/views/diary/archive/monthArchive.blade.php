@@ -10,7 +10,7 @@
 
     {{-- コンポーネントにするとエラーができるので切り出さずそのまま
     年と月の選択バーここから --}}
-    <div class="mt-4 mb-12">
+    <div class="mt-4 mb-12 kiwi-maru">
         <div class="flex  justify-around archive-year-menu w-full items-center mx-auto" >
             <p class="mx-2 text-xl sm:block hidden"><a href="{{url("/diary")."/".($year+2)."/".$month}}">{{$year+2}}</a></p>
             <p class="mx-2 text-xl"><a href="{{url("/diary")."/".($year+1)."/".$month}}">{{$year+1}}</a></p>
@@ -50,7 +50,7 @@
             {{-- 日記のループ --}}
             <div class="flex w-full justify-center flex-wrap" >
                 @empty($diaries)
-                    <h3 class="text-center text-3xl my-20">{{$year}}年{{$month}}月の日記はありません！</h3>
+                    <h3 class="text-center text-3xl my-20 kiwi-maru">{{$year}}年{{$month}}月の日記はありません！</h3>
                 @else
                     @foreach($diaries as $diary )
                         @component('components.diary.diaryFrame')

@@ -11,6 +11,12 @@
     
 
 @include('components.noLogIn.releaseNote',
+['title'=>'アーカイブページでの編集ボタン消失問題解消',
+'date'=>'2021年10月3日',
+'genre'=>'Fix',
+'explain'=>'携帯端末などでアーカイブページを閲覧した際に、タイトル文字数が多いとき編集ボタンが消失する問題を解決しました。
+'])
+@include('components.noLogIn.releaseNote',
 ['title'=>'年別アーカイブでの統計情報表示',
 'date'=>'2021年10月2日',
 'genre'=>'Feature',
