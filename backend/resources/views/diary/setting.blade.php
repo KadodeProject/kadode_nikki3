@@ -19,7 +19,7 @@
                 <form class="flex justify-center flex-wrap flex-col " method="POST"  action="/updateEmail">
                     @if(count($errors)>0)
                     {{-- エラーの表示 --}}
-                    <ul class="text-red-500">
+                    <ul class="text-red-500 kiwi-maru">
                         @foreach($errors->all() as $error)
                         <li>{{$error}}</li>
                         @endforeach
@@ -37,7 +37,7 @@
                 <form class="flex justify-center flex-wrap flex-col " method="POST"  action="/updatePassWord">
                     @if(count($errors)>0)
                     {{-- エラーの表示 --}}
-                    <ul class="text-red-500">
+                    <ul class="text-red-500 kiwi-maru">
                         @foreach($errors->all() as $error)
                         <li>{{$error}}</li>
                         @endforeach
@@ -65,7 +65,7 @@
                 <form class="text-center flex justify-center flex-wrap flex-col " method="POST" enctype="multipart/form-data" action="/import/kadode">
                     @if(count($errors)>0)
                     {{-- エラーの表示 --}}
-                    <ul class="text-red-500">
+                    <ul class="text-red-500 kiwi-maru">
                         @foreach($errors->all() as $error)
                         <li>{{$error}}</li>
                         @endforeach
@@ -87,7 +87,7 @@
                 <form class="text-center flex justify-center flex-wrap flex-col " method="POST" enctype="multipart/form-data" action="/import/tukini">
                     @if(count($errors)>0)
                     {{-- エラーの表示 --}}
-                    <ul class="text-red-500">
+                    <ul class="text-red-500 kiwi-maru">
                         @foreach($errors->all() as $error)
                         <li>{{$error}}</li>
                         @endforeach
@@ -128,7 +128,7 @@
     
      <div class="setting">
         @include('components.settingHeading',['title'=>'Danger Zone'])
-        <p class="text-xl text-red-500 text-center">！！一度削除すると復元できません。日記も統計データも全て削除されます。ご注意ください！！</p>
+        <p class="text-xl text-red-500 kiwi-maru text-center">！！一度削除すると復元できません。日記も統計データも全て削除されます。ご注意ください！！</p>
         <form class="flex justify-center flex-wrap flex-col" method="POST"  action="/deleteUser">
             @csrf
             <input type="submit" class="text-black bg-status-poor md:w-1/2 w-full mx-auto" value="アカウント削除">

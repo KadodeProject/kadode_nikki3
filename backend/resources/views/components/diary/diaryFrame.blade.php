@@ -19,26 +19,30 @@
         }
         @endphp
         <p class="flex  items-center m-2 justify-center   {{$bg_color}} kiwi-maru rounded-full w-6 h-6 text-sm"><span class="material-icons"style="font-size:0.75em">{{$emotions}}</span></p>
-        <p class="text-sm">[{{mb_strlen($content)}}文字]</p>
+        <p class="text-sm kiwi-maru">[{{mb_strlen($content)}}文字]</p>
     </section>
     @else
+    <section class="flex justify-center items-center " style="height:50px">
+        <p class='text-gray-300 text-sm kiwi-maru text-center'>統計情報なし</p>
+    </section>
     @php
-    $content_width="320";
+    //$content_width="320";
+    $content_width="280";
     @endphp
     @endif
     <section>
-        <p class=" text-center text-xl">{{$date}}
+        <p class=" text-center text-xl kiwi-maru">{{$date}}
             @if(!isset($is_latest_statistic))
             <span class=" text-sm ">[{{mb_strlen($content)}}文字]</span>
             @endif
         </p>
-        <p class=" text-center text-2xl">
+        <p class=" text-center text-2xl overflow-x-scroll whitespace-nowrap overflow-y-hidden  kiwi-maru" style="height:1.8em">
             @php
             echo ((mb_strlen($title)>=1) ? $title:"<span class='text-gray-300'>タイトルなし</span>");
             @endphp
         </p>
     </section>
-    <article class="p-2 text-sm overflow-y-scroll" style="height: {{$content_width}}px!important">
+    <article class="p-2 text-sm overflow-x-scroll" style="height: {{$content_width}}px!important">
         <p class="">
             @component('customFunctions.omitContent')
             @slot("content")

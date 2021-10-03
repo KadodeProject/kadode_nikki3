@@ -127,12 +127,13 @@ textarea {
 }
 textarea::placeholder {
     color: var(--border-main-color);
+    font-family: "Kiwi Maru", serif;
 }
 input[type="submit"] {
     background-color: var(--button-main-color);
     color: var(--text-main-color);
     cursor: pointer;
-    border-radius: 4px;
+    border-radius: 0 0 4px 4px;
     padding: 0.25em 0.5em;
 }
 input[type="text"] {
@@ -141,12 +142,20 @@ input[type="text"] {
     color: var(--text-main-color);
 }
 input[type="text"]::placeholder {
+    font-family: "Kiwi Maru", serif;
     color: var(--border-main-color);
 }
 input[type="date"] {
     color: var(--text-main-color);
     background-color: var(--bg-main-color);
     border-color: var(--button-main-color);
+}
+.submit-button {
+    background-color: var(--button-main-color);
+    color: var(--text-main-color);
+    cursor: pointer;
+    border-radius: 4px 4px 0 0;
+    padding: 0.25em 0.5em;
 }
 select {
     color: var(--text-main-color);
@@ -234,14 +243,16 @@ li ol {
 
 .search-keyword {
     background-color: var(--bg-main-color);
-    border-radius: 3px; /*ボックス角の丸み*/
+    border-radius: 3px 0 0 3px; /*ボックス角の丸み*/
     color: var(--text-main-color);
     border: 1px solid var(--button-main-color); /*枠線*/
 }
 .search-keyword::placeholder {
+    font-family: "Kiwi Maru", serif;
     color: var(--bg-main-color);
 }
 .active-input::placeholder {
+    font-family: "Kiwi Maru", serif;
     color: var(--border-main-color);
 }
 .search-keyword:focus {
@@ -289,7 +300,11 @@ li ol {
 /*スクロールバー全体*/
 ::-webkit-scrollbar {
     width: 8px;
-    height: 8px;
+    height: 12x;
+}
+p::-webkit-scrollbar {
+    width: 8px;
+    height: 6px;
 }
 
 /*スクロールバーの軌道*/
@@ -301,7 +316,7 @@ li ol {
 
 /*スクロールバーの動く部分*/
 ::-webkit-scrollbar-thumb {
-    background-color: var(--button-main-color);
+    background-color: rgba(75, 137, 150, 0.5);
     border-radius: 10px;
     /* box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.3); */
 }

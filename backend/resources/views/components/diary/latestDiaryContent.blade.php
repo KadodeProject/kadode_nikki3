@@ -1,8 +1,9 @@
 
 
     <section>
-        <p class=" text-center text-2xl">{{$date}} <span class="text-sm">[{{mb_strlen($content)}}文字]</span></p>
-        <p class=" text-center text-2xl mt-4">
+        <p class=" text-center text-2xl kiwi-maru">{{$date}} <span class="text-sm">[{{mb_strlen($content)}}文字]</span></p>
+
+        <p class=" text-center text-2xl mt-4 overflow-x-scroll whitespace-nowrap overflow-y-hidden  kiwi-maru" style="height:1.8em">
             @php
             echo ((mb_strlen($title)>=1) ? $title:"<span class='text-gray-300'>タイトルなし</span>");
             @endphp   

@@ -36,7 +36,7 @@
         <div class="">
             @if(count($errors)>0)
             {{-- エラーの表示 --}}
-            <ul class="text-red-500">
+            <ul class="text-red-500 kiwi-maru">
                 @foreach($errors->all() as $error)
                 <li>{{$error}}</li>
                 @endforeach
