@@ -110,7 +110,7 @@
         </div>
     </header>
    
-    <div>
+    <div class="main-wrapper">
 
         @yield('content')
         
