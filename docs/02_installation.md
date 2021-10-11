@@ -26,3 +26,5 @@ docker-compose exec app php artisan migrate:fresh --seed
 infra>mysql>my.cnf を読み取り専用にする(エクスプローラーからプロパティ開いてチェック)
 
 https://yama-weblog.com/why-my-cnf-does-not-work-in-docker/
+
+あと、Docker 使うならファイルを ubuntu など WSL 内に置くべき。誇張なしで 10 倍くらい早くなりますので。
