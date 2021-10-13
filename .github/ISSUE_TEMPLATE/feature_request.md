@@ -1,20 +1,16 @@
 ---
-name: Feature request
-about: Suggest an idea for this project
-title: ''
-labels: ''
-assignees: ''
-
+name: 機能要望
+about: 追加を要望する機能などのissue
+title: "[Feature]:"
+labels: "feature"
+assignees: ""
 ---
 
-**Is your feature request related to a problem? Please describe.**
-A clear and concise description of what the problem is. Ex. I'm always frustrated when [...]
+**どのような機能か**
+[例:「朝」みたいな時間情報ある位置を内部リンクで目次作って表示する機能]
 
-**Describe the solution you'd like**
-A clear and concise description of what you want to happen.
+**その機能が必要な理由**
+[例:日記の文章量が多いときに可読性に欠けるため]
 
-**Describe alternatives you've considered**
-A clear and concise description of any alternative solutions or features you've considered.
-
-**Additional context**
-Add any other context or screenshots about the feature request here.
+**追記事項**
+(なにかあればご記入ください)

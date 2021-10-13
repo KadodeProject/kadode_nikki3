@@ -1,38 +1,31 @@
 ---
-name: Bug report
-about: Create a report to help us improve
-title: ''
-labels: ''
-assignees: ''
-
+name: バグレポート
+about: バグに関するissue
+title: "[BUG]:"
+labels: "bug"
+assignees: ""
 ---
 
-**Describe the bug**
-A clear and concise description of what the bug is.
+**簡単な説明**
+[例:モバイルで閲覧時にタイトル文字数の多い日記の編集ボタンが消える]
 
-**To Reproduce**
-Steps to reproduce the behavior:
-1. Go to '...'
-2. Click on '....'
-3. Scroll down to '....'
-4. See error
+**発生したバグの再現手順**
 
-**Expected behavior**
-A clear and concise description of what you expected to happen.
+1. [例:モバイル端末でかどで日記にアクセス]
+2. [例:アーカイブページに遷移]
+3. [例:タイトル文字数の多い日記を閲覧]
+4. [例:編集ボタンが無くなる]
 
-**Screenshots**
-If applicable, add screenshots to help explain your problem.
+**本来の動き**
+[例:どの日記でも同じ位置に日記の編集ボタンが出現]
 
-**Desktop (please complete the following information):**
- - OS: [e.g. iOS]
- - Browser [e.g. chrome, safari]
- - Version [e.g. 22]
+**スクリーンショット**
+(任意)
 
-**Smartphone (please complete the following information):**
- - Device: [e.g. iPhone6]
- - OS: [e.g. iOS8.1]
- - Browser [e.g. stock browser, safari]
- - Version [e.g. 22]
+**発生環境**
 
-**Additional context**
-Add any other context about the problem here.
+-   OS: [例: Android 10]
+-   ブラウザ: [例 Google Chrome]
+
+**追記事項**
+(なにかあればご記入ください)
