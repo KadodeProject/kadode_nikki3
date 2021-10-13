@@ -4,9 +4,20 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-
+use App\Scopes\ScopeDiary;
 class Statistic extends Model
 {
+    /**
+     * 日記を自動でログインユーザーのみに絞り込むグローバルスコープの呼び出し関数
+     *
+     * @return void
+     */
+    protected static function boot()
+    {
+        parent::boot();
+        static::addGlobalScope(new ScopeDiary);
+    }
+
     use HasFactory;
 
 
