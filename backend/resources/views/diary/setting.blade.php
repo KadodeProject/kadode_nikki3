@@ -134,6 +134,11 @@
             <input type="submit" class="text-black bg-status-poor md:w-1/2 w-full mx-auto" value="アカウント削除">
         </form>
     </div>
+
+    <div class="setting">
+        @include('components.settingHeading',['title'=>'全体情報'])
+      <p class="ml-4 kiwi-maru">現在の総ユーザー数:{{$userCounter}}人</p>
+    </div>
     
  
        

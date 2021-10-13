@@ -11,10 +11,13 @@ class SettingDiaryController extends Controller
 {
     public function __invoke()
     {
+
+        // ここはグローバルスコープ適応外
         $user=Auth::user();
+        $userCounter=User::count();
+        
         $userDB=User::where("id",$user->id)->first();
 
-        $userCounter=User::count();
         return view('diary/setting',["user"=>$user,"userDB"=>$userDB,'userCounter'=>$userCounter]);
 
     }
