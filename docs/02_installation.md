@@ -21,6 +21,10 @@ docker-compose exec app php artisan migrate:fresh --seed
 
 ```
 
+## カスタム辞書の追加も行うと良い(オブション)
+
+10_makeCustomDic.md 参考
+
 # 注意：Windows の場合
 
 infra>mysql>my.cnf を読み取り専用にする(エクスプローラーからプロパティ開いてチェック)
