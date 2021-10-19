@@ -41,7 +41,7 @@
   <div>
     <div class="statistic-content">
         @include('components.statisticHeading',['icon'=>'update','title'=>'統計データ更新'])
-        <p class="text-xl text-center my-4">※24時間以内に更新済みの場合、新たに生成はされません。</p>
+        <p class="text-xl text-center my-4 kiwi-maru">※24時間以内に更新済みの場合、新たに生成はされません。</p>
         @if($statistics->statistic_progress>=1 && $statistics->statistic_progress<=99)
           <h3 class=" ml-2 text-2xl kiwi-maru align-middle text-center"><span class="material-icons hourglass_animation" style="margin-right:0.25em">hourglass_bottom</span>自然言語処理の進行度</h3>
           <p class="text-center kiwi-maru my-2">※ページをリロードすると更新されます</p>
@@ -74,7 +74,7 @@
         </form>
         @endif
         @endif
-        <p class="text-lg my-2 ml-4 text-center">前回データ更新日 : {{$statistics->updated_at}}</p>
+        <p class="text-lg my-2 ml-4 text-center kiwi-maru">前回データ更新日 : {{$statistics->updated_at}}</p>
     </div>
   </div>
   <div class="statistic-content">

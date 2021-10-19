@@ -15,6 +15,12 @@ sudachipy ubuild \
 
 ```
 
+## 権限付与
+
+```
+chmod 777 /usr/local/lib/python3.7/dist-packages/sudachidict_core/resources
+```
+
 ## 追加
 
 ```
@@ -34,3 +40,4 @@ vim /usr/local/lib/python3.7/dist-packages/sudachipy/resources/sudachi.json
 ### 参考
 
 https://note.com/npaka/n/n6fa359ac611c
+"

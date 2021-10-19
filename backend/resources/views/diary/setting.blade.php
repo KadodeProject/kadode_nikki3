@@ -107,6 +107,7 @@
     </div>
     <div class="setting">
         @include('components.settingHeading',['title'=>'日記のエクスポート'])
+        <p class="text-sm text-center kiwi-maru">※エクスポート時に文字コードをutf-8からWindows-31J(拡張Shift-JIS)に変換してCSVを作成します</p>
         <div class="settingContentWrapper">
             <form class="flex justify-center flex-wrap flex-col " method="POST"  action="/export">
                 @csrf

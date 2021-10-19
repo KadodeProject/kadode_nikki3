@@ -25,6 +25,8 @@ pass:secret
 show databases;show tables from laravel_local;USE laravel_local;
 SHOW COLUMNS FROM users;
 SELECT * FROM users;
+
+select updated_statistic_at from diaries where user_id=2;
 ```
 
 ## 認証
