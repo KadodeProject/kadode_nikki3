@@ -19,7 +19,7 @@
     {{-- マテリアルアイコン --}}
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     {{-- CSS読み込み --}}
-    <link rel="stylesheet" href="{{ asset('css/kadodeMain.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/kadodeMain.css') }}?ver=19.1">
 
 </head>
 <body>
@@ -130,6 +130,6 @@
         </div>    
 
 
-    <script type="text/javascript" src="{{ asset('js/kadodeMain.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('js/kadodeMain.js') }}?ver=19.1"></script>
 </body>
 </html>

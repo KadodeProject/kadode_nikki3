@@ -8,6 +8,8 @@ https://qiita.com/ucan-lab/items/56c9dc3cf2e6762672f4
 
 .env.example から.env を作成(backend 内で)
 
+storage/json/に GCP Google Cloud Storage の鍵を入れる
+
 ```
 
 docker-compose up -d --build

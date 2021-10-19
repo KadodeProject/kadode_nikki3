@@ -2,6 +2,10 @@ http://localhost
 
 https://fonts.google.com/icons
 
+## CSS,JS キャッシュ問題解消バージョン指定
+
+現在:?ver=19.1
+
 ## docker
 
 ### よく使う
