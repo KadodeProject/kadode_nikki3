@@ -55,8 +55,7 @@ root で
 crontab -e
 
 ```
-* * * * * cd /work/backed && php artisan schedule:run >> /dev/null 2>&1
-0 5 * * * cd /work/backend/app/CustomFunction && /usr/local/bin/php backupGCS.php
+* * * * * cd /work/backed && /usr/local/bin/php artisan schedule:run >> /dev/null 2>&1
 ```
 
 設定後に下記コマンド実行
