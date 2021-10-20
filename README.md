@@ -101,7 +101,9 @@ Figma に記載(非公開)
 
 -   ローカル開発:Docker
 -   コード管理:GitHub
--   デザイン:Figma
+-   タスク管理:Asana+Instagantt+Notion
+-   UMl 作成:Diagrams
+-   デザイン作成:Figma+MSPowerPoint
 -   バックエンドフレームワーク:Laravel
 -   バックエンド認証:Laravel Jetstream Livewire
 -   バックエンドソーシャル認証:Laravel socialite(現在不使用)
@@ -113,7 +115,7 @@ Figma に記載(非公開)
 -   グラフ表示:chart.js
 -   形態素解析:janome(mecab ベース)、GiNZA
 -   係り受け解析:GiNZA
--   アノテーション抽出:GiNZA
+-   アノテーション(固有表現)抽出:GiNZA
 -   コサイン類似度計算:GiNZA
 
 ![かどでリリースのお知らせ](https://user-images.githubusercontent.com/63891531/124377606-ad6ba080-dce7-11eb-8cf4-af3fc95656ef.png)

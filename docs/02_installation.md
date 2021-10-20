@@ -8,8 +8,6 @@ https://qiita.com/ucan-lab/items/56c9dc3cf2e6762672f4
 
 .env.example から.env を作成(backend 内で)
 
-storage/json/に GCP Google Cloud Storage の鍵を入れる
-
 ```
 
 docker-compose up -d --build
@@ -22,6 +20,10 @@ docker-compose exec app php artisan migrate:fresh --seed
 
 
 ```
+
+## バックアップ周りの設定
+
+13_Backup.md 参考
 
 ## カスタム辞書の追加も行うと良い(オブション)
 
