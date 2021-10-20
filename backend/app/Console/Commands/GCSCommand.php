@@ -4,7 +4,7 @@ namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
 use Google\Cloud\Storage\StorageClient;
-
+use Carbon\Carbon;
 class GCSCommand extends Command
 {
     /**
@@ -48,11 +48,11 @@ class GCSCommand extends Command
         closedir( $dirH ) ;
         
         //最新ファイルの探索
-        $timer = 0;
+        $timer = date_create_from_format("Y-m-d-H-i-s","2021-10-20-07-16-00");
         foreach ($fileList as $newFile) {
-            $dateFromName=substr($newFile,0,-4);//時刻抽出
-            var_dump($dateFromName);
-            $timeDate = date( 'Y-m-d-H-i-s' ,strtotime($dateFromName));//ファイルの更新日時を取得
+            $dateFromName=substr($newFile,0,-4);//時刻抽出(ファイル名から)
+            $timeDate = date_create_from_format("Y-m-d-H-i-s",$dateFromName);//ファイルの更新日時を取得
+            // var_dump($timeDate);
             if($timeDate > $timer)
             {
                 $recentFile = $newFile;//最新のCSVファイル

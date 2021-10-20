@@ -1,3 +1,14 @@
+# 全体
+
+古いバックアップデータが溜まっている場合は削除
+↓
+laravel-backup でバックアップを作成
+↓
+GCP の Google Cloud Storage へ送信
+(ここはライブラリと artisan 自作コマンドで)
+
+これらを laravel cron で定期実行
+
 ## 使うストレージ
 
 GCP の Google Cloud Storage 無料枠

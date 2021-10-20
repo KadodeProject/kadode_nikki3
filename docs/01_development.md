@@ -98,3 +98,9 @@ https://www.sejuku.net/blog/82657
 ```
 php artisan kadode:gcsBackup
 ```
+
+# laravel cron の設定
+
+kadode_nikki3\backend\app\Console\Kernel.php
+
+にて。

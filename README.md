@@ -117,5 +117,6 @@ Figma に記載(非公開)
 -   係り受け解析:GiNZA
 -   アノテーション(固有表現)抽出:GiNZA
 -   コサイン類似度計算:GiNZA
+-   DB バックアップ:Laravel-backup,GCP Google Cloud Storage
 
 ![かどでリリースのお知らせ](https://user-images.githubusercontent.com/63891531/124377606-ad6ba080-dce7-11eb-8cf4-af3fc95656ef.png)
