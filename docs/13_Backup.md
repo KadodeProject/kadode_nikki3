@@ -23,8 +23,65 @@ https://helog.jp/laravel/db-backup/
 -   composer install 必要
 -   メール送信先を env に追記(それ以外の手順は git 管理なので問題なし)
 
-### laravel cron を cron に登録(docker の例)
+コマンド
+
+```
+php artisan backup:run --only-db
+```
+
+mysql コマンドないエラー →apt install default-mysql-client する(この docker には導入済み)
+
+mysql-client はインストールできなくなっている……
+
+RSA がどうこうってエラー →php artisan migrate:fresh --seed してから行う(mysql のバージョンで認証方式の変更あったらしい)
+
+### laravel-backup を行うための laravel cron と バックアップした dump データを gcp に送るために cron に登録(docker の例)
+
+### cron 追加
+
+root で
 
 crontab -e
 
--   -   -   -   -   cd /work/backed && php artisan schedule:run >> /dev/null 2>&1
+```
+* * * * * cd /work/backed && php artisan schedule:run >> /dev/null 2>&1
+0 5 * * * /usr/bin/php
+```
+
+設定後に下記コマンド実行
+
+```
+service cron restart
+service cron status
+```
+
+cron の確認は
+
+crontab -l
+
+laravel cron の確認は
+
+php artisan schedule:list
+
+laravel cron のテスト実行は
+
+php artisan schedule:work
+
+※全タスクを 1 分ごとに cron してくれる
+
+```
+php artisan cache:clear
+```
+
+をお忘れなく
+
+# 復元方法
+
+GCS からダウンロードして、sql のあるところに送る
+
+↓
+mysql -u root -p < dump.sql
+
+こういう感じで行けるらしい。
+
+https://qiita.com/mikakane/items/6857a4ae25ceaed4ee4e

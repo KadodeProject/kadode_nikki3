@@ -22,7 +22,7 @@ dc exec app php artisan make:model Book --migration
 ### DB 閲覧
 
 ```
-dc exec db mysql -u root -p
+docker-compose exec db mysql -u root -p
 pass:secret
 
 

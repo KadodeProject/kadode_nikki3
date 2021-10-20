@@ -25,8 +25,8 @@ class Kernel extends ConsoleKernel
     protected function schedule(Schedule $schedule)
     {
         // $schedule->command('inspire')->hourly();
-        $schedule->command('backup:run --only-db')->dailyAt('04:00');
-        $schedule->command('backup:run --only-db')->everyTenMinutes();
+        $schedule->command('backup:clean --disable-notifications')->dailyAt('10:26');//バックアップ削除
+        $schedule->command('backup:run --only-db')->dailyAt('10:26')->emailOutputTo(env('BACKUP_NOTIFICATION_EMAIL_TO'));//バックアップ作成
     }
 
     /**
