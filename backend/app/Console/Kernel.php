@@ -13,7 +13,7 @@ class Kernel extends ConsoleKernel
      * @var array
      */
     protected $commands = [
-        //
+        Commands\GCSCommand::class
     ];
 
     /**
@@ -27,6 +27,7 @@ class Kernel extends ConsoleKernel
         // $schedule->command('inspire')->hourly();
         $schedule->command('backup:clean --disable-notifications')->dailyAt('04:00');//バックアップ削除
         $schedule->command('backup:run --only-db')->dailyAt('04:00')->emailOutputTo(env('BACKUP_NOTIFICATION_EMAIL_TO'));//バックアップ作成
+        $schedule->command('kadode:gcsBackup')->dailyAt('04:00')->emailOutputTo(env('BACKUP_NOTIFICATION_EMAIL_TO'));//バックアップ作成
     }
 
     /**

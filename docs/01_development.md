@@ -92,3 +92,9 @@ https://www.sejuku.net/blog/82657
 -   メール:test3@example.com
 -   パス:test1234
 -   日記なしのアカウント
+
+# 利用可能な追加コマンド
+
+```
+php artisan kadode:gcsBackup
+```
