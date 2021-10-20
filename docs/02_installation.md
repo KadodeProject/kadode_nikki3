@@ -21,6 +21,10 @@ docker-compose exec app php artisan migrate:fresh --seed
 
 ```
 
+## バックアップ周りの設定
+
+13_Backup.md 参考
+
 ## カスタム辞書の追加も行うと良い(オブション)
 
 10_makeCustomDic.md 参考

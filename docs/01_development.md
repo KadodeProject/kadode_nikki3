@@ -2,6 +2,10 @@ http://localhost
 
 https://fonts.google.com/icons
 
+## CSS,JS キャッシュ問題解消バージョン指定
+
+現在:?ver=19.1
+
 ## docker
 
 ### よく使う
@@ -18,7 +22,7 @@ dc exec app php artisan make:model Book --migration
 ### DB 閲覧
 
 ```
-dc exec db mysql -u root -p
+docker-compose exec db mysql -u root -p
 pass:secret
 
 
@@ -88,3 +92,15 @@ https://www.sejuku.net/blog/82657
 -   メール:test3@example.com
 -   パス:test1234
 -   日記なしのアカウント
+
+# 利用可能な追加コマンド
+
+```
+php artisan kadode:gcsBackup
+```
+
+# laravel cron の設定
+
+kadode_nikki3\backend\app\Console\Kernel.php
+
+にて。
