@@ -120,10 +120,12 @@ Figma に記載(非公開)
 -   フォント:Google Fonts
 -   CSV インポートライブラリ:Goodby CSV(メモリ使用軽減)
 -   グラフ表示:chart.js
--   形態素解析:janome(mecab ベース)、GiNZA
--   係り受け解析:GiNZA
--   アノテーション(固有表現)抽出:GiNZA
--   コサイン類似度計算:GiNZA
+-   形態素解析:janome(mecab ベース)、GiNZAv5
+-   GiNZA 形態素解析の辞書:SudachiDict(https://github.com/WorksApplications/SudachiDict)にカスタム辞書として一部単語を追加
+-   係り受け解析:GiNZAv5
+-   固有表現抽出(Named Entity Recognition; NER):GiNZAv5
+-   GiNZA 固有表現抽出ラベル体系、訓練コーパスなど:GiNZA(https://megagonlabs.github.io/ginza/)に一部固有表現抽出ラベルを追加
+-   コサイン類似度計算:GiNZAv5
 -   DB バックアップ:Laravel-backup,GCP Google Cloud Storage
 
 ![かどでリリースのお知らせ](https://user-images.githubusercontent.com/63891531/124377606-ad6ba080-dce7-11eb-8cf4-af3fc95656ef.png)

@@ -6,7 +6,7 @@ https://mocobeta.github.io/janome/
 
 ※GiNZA の形態素解析を使っていないのは深い理由がるわけではなく、歴史的経緯によるものです。
 
-## 形態素解析、係り受け解析、アノテーション解析、コサイン類似度抽出
+## 形態素解析、係り受け解析、固有表現抽出解析、コサイン類似度抽出
 
 GiNZA を利用
 
@@ -41,3 +41,7 @@ https://www.ogis-ri.co.jp/otc/hiroba/technical/similar-document-search/part4.htm
 何もない所から一瞬で、自然言語処理と係り受け解析をライブコーディングする手品を、LT でやってみた話
 
 https://qiita.com/youwht/items/b047225a6fc356fd56ee
+
+# ラベル
+
+http://liat-aip.sakura.ne.jp/ene/ene8/definition_jp/html/enedetail.html

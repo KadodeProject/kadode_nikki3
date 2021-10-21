@@ -170,9 +170,6 @@ def get_mostGuess_classification(affiliation):
         elif value[0]=="Company":#佐川急便
             category="企業"
             break
-        elif value[0]=="Movie":#東京オリンピック
-            category="映画"
-            break
         elif value[0]=="Flora":#justで出たけど、意味的には植物相
             category="植物"
             break
@@ -181,9 +178,6 @@ def get_mostGuess_classification(affiliation):
             break
         elif value[0]=="Nature_Color":
             category="色"
-            break
-        elif value[0]=="Book":#コロナ
-            category="本"
             break
         elif value[0]=="Culture":#GHQ占領
             category="社会の行動様式"
@@ -298,6 +292,15 @@ def get_mostGuess_classification(affiliation):
             break
         elif value[0]=="Broadcast_Program":#Laravel
             category="コンテンツ"
+            break
+        elif value[0]=="Animation":#Laravel
+            category="アニメ"
+            break
+        elif value[0]=="Movie":#東京オリンピック
+            category="映画"
+            break
+        elif value[0]=="Book":#コロナ
+            category="本"
             break
         elif value[0]=="Occasion_Other":#新入生セミナー
             category="催し物"

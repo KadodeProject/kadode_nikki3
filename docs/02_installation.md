@@ -25,9 +25,9 @@ docker-compose exec app php artisan migrate:fresh --seed
 
 13_Backup.md 参考
 
-## カスタム辞書の追加も行うと良い(オブション)
+## カスタム辞書の追加、固有表現抽出ルール追加(オブション)
 
-10_makeCustomDic.md 参考
+10_makeCustomDic_CustomRule.md 参考
 
 # 注意：Windows の場合
 
