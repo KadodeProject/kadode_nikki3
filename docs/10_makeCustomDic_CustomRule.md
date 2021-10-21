@@ -16,6 +16,12 @@ https://github.com/WorksApplications/Sudachi/blob/develop/docs/user_dict.md
 
 カスタム辞書の位置：/work/backend/python/nlp/dic/sudachi_custom_dic.csv
 
+### 権限付与
+
+```
+chmod 777 -R /usr/local/lib/python3.7/dist-packages/sudachidict_core/resources/
+```
+
 ### コンパイル
 
 ```
@@ -23,12 +29,6 @@ sudachipy ubuild \
 -s /usr/local/lib/python3.7/dist-packages/sudachidict_core/resources/system.dic \
 /work/backend/python/nlp/dic/sudachi_custom_dic.csv
 
-```
-
-### 権限付与
-
-```
-chmod 777 /usr/local/lib/python3.7/dist-packages/sudachidict_core/resources
 ```
 
 ### 追加
