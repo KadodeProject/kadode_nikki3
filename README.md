@@ -18,6 +18,10 @@ https://kadodenikki3.usuyuki.net/
 
 # 文章周り
 
+## かどで日記 wiki を御覧ください
+
+https://github.com/Usuyuki/kadode_nikki3/wiki
+
 ## **ライセンス**
 
 ### かどで日記ライセンス
