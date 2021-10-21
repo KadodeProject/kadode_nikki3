@@ -121,7 +121,7 @@ def get_tokenChunkSentence_by_ginza(row:list):
     # token{'日記id':{},'日記id':{}……}
 
 '''
-アノテーション抽出
+固有表現抽出抽出
 {
     'start':ent.start_char,#開始文字位置
     'end':ent.end_char,#終了文字位置z

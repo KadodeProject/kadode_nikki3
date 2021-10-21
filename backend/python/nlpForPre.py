@@ -77,7 +77,7 @@ def nlpForPre(user_id):
             # print(chunk
 
             '''
-            affiliation:アノテーション
+            affiliation:固有表現抽出
             annotationは注釈、affiliationは所属という意味
             ↑誤字っているわけではない。
             '''
