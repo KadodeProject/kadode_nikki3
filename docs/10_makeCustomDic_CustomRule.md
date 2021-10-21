@@ -2,6 +2,13 @@
 
 本体データは git 管理していません。.example をコピーして利用してください。
 
+```
+cd /work/backend/python/nlp/dic
+
+vim sudachi_custom_dic.csv
+
+```
+
 # GiNZA(sudachi)でカスタム辞書を作る
 
 sudachi_custom_dic.csv.example をコピーして sudachi_custom_dic.csv を作成する
@@ -55,6 +62,15 @@ https://note.com/npaka/n/n6fa359ac611c
 # GiNZA で固有表現抽出のルール追加
 
 RegisterEntityRule.py.example をコピーして RegisterEntityRule.py を作成
+
+```
+cd /work/backend/python/nlp/dic/EntityRule
+
+vim RegisterEntityRule.py
+
+python3 RegisterEntityRule.py
+
+```
 
 ## ラベル名
 
