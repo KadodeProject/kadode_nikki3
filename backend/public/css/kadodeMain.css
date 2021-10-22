@@ -300,7 +300,7 @@ li ol {
 /*スクロールバー全体*/
 ::-webkit-scrollbar {
     width: 8px;
-    height: 12x;
+    height: 12px;
 }
 p::-webkit-scrollbar {
     width: 8px;
@@ -496,4 +496,140 @@ p::-webkit-scrollbar {
 }
 .hatena_hover:hover + .explain_hatena {
     opacity: 1;
+}
+
+/* 自然言語処理パイプ図 */
+.statisticOverallViewWrapper {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+}
+.statisticOverallViewWrapper > div {
+    margin-top: 12px;
+}
+.statisticOverallViewHierarchy-asc {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    align-items: center;
+}
+.statisticOverallViewHierarchy-desc {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-around;
+    flex-direction: row-reverse;
+}
+.statisticOverallViewHierarchy-only-bottom {
+    width: 100%;
+    height: 65px;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    flex-direction: row-reverse;
+}
+.statisticOverallViewHierarchy-desc {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-around;
+    flex-direction: row-reverse;
+}
+.statisticOverallViewHierarchy-desc .sov-arrow {
+    /* 全部右矢印使用、反対にする */
+    transform: rotate(180deg);
+}
+.statisticOverallViewHierarchy-desc .sov-pipe p {
+    /* 全部右矢印使用、反対にする */
+    clip-path: polygon(100% 0%, 89% 51%, 100% 100%, 25% 100%, 0% 50%, 25% 0%);
+}
+.sov-arrow-always-bottom {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 40px;
+    height: 40px;
+    color: var(--status-good);
+    transform: rotate(90deg);
+}
+.sov-arrow {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 40px;
+    height: 40px;
+    color: var(--status-good);
+}
+.sov-arrow-raw {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 40px;
+    height: 40px;
+    color: var(--status-good);
+}
+
+.sov-pipe {
+    padding: 4px 12px;
+    margin: 4px;
+    border-radius: 12px;
+    border: 2px solid var(--status-good);
+    display: flex;
+    align-items: center;
+}
+.sov-pipe-wrapper section {
+    text-align: center;
+    font-size: 0.75em;
+    color: var(--text-main-color);
+}
+.sov-pipe p {
+    width: 130px;
+    height: 80px;
+    clip-path: polygon(75% 0%, 93% 50%, 75% 100%, 0% 100%, 14% 50%, 0% 0%);
+    background-color: var(--border-main-color);
+    margin: 4px 0px;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* padding-right: 1em; */
+}
+
+.sov-square {
+    border-radius: 4px;
+    padding: 4px 1em;
+    margin: 4px;
+    height: 2em;
+    border: 1px solid var(--border-main-color);
+}
+.sov-square p {
+    text-align: center;
+}
+
+@media screen and (max-width: 640px) {
+    /* スマホの時 */
+    .sov-arrow {
+        /* 矢印を下向きにする */
+        transform: rotate(90deg) !important;
+        width: 100%;
+    }
+    .sov-pipe {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .sov-pipe p {
+        float: initial;
+        width: 100px;
+        height: 100px;
+        clip-path: polygon(100% 0, 100% 79%, 53% 100%, 0 79%, 0 0, 52% 14%);
+    }
+    .statisticOverallViewHierarchy-only-bottom {
+        /* 追加style無効化 */
+        justify-content: center !important;
+        margin: 0 !important;
+    }
 }

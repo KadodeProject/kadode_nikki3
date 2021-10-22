@@ -12,6 +12,11 @@
            <p class="">かどで日記はweb上で日記を作成、管理できるサービスです。日記の検索機能だけでなく、形態素解析などを用いた統計機能の実装も準備中です。</p>
        </div>
    </div>
+   <h2 class="mt-24 mb-12 text-center text-3xl kiwi-maru">日記解析の流れ</h2>
+   <div>
+    @component('components.statistics.statisticOverallView')
+    @endcomponent
+   </div>
    <h2 class="mt-24 mb-12 text-center text-3xl kiwi-maru">できること</h2>
    <div class="flex justify-center imtes-center flex-wrap my-8">
        <div class="md:w-1/2 w-full ">

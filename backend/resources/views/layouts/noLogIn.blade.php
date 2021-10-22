@@ -15,7 +15,6 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <title>@yield('title') | かどで日記</title>
-    <link href="https://use.fontawesome.com/releases/v5.15.1/css/all.css" rel="stylesheet">
 
     {{-- favicon --}}
     <link rel="apple-touch-icon" type="image/png" href="/img/favicon/apple-touch-icon-180x180.png">
@@ -27,6 +26,8 @@
     <link href="https://fonts.googleapis.com/css2?family=Kiwi+Maru&display=swap" rel="stylesheet">
     {{-- 検索インデックスさせない --}}
     <meta name=”robots” content=”noindex,nofollow”>
+    {{-- マテリアルアイコン --}}
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
     {{-- OGP --}}
     <meta property="og:title" content="@yield('title') | かどで日記">
@@ -36,8 +37,7 @@
     <meta property="og:site_name" content="かどで日記">
     <meta property="og:description" content="かどで日記は日記を管理できるwebアプリです">
     <meta name="twitter:card" content="summary">
-    {{-- マテリアルアイコン --}}
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    
     {{-- CSS読み込み --}}
     <link rel="stylesheet" href="{{ asset('css/kadodeMain.css') }}?ver=19.1">
 </head>
