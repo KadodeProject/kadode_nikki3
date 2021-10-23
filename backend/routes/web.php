@@ -8,9 +8,12 @@ use App\Http\Controllers\diary\SearchDiaryController;
 use App\Http\Controllers\diary\SettingDiaryController;
 use App\Http\Controllers\diary\ShowDiaryController;
 use App\Http\Controllers\diary\UserController;
-use App\Http\Controllers\statistics\showStatisticsController;
-use App\Http\Controllers\statistics\makeStatisticsController;
-use App\Http\Controllers\statistics\updateStatisticsController;
+use App\Http\Controllers\statistics\ShowStatisticsController;
+use App\Http\Controllers\statistics\MakeStatisticsController;
+use App\Http\Controllers\statistics\UpdateStatisticsController;
+use App\Http\Controllers\statistics\SettingsStatisticsController;
+use App\Http\Controllers\statistics\ImportStatisticsController;
+use App\Http\Controllers\statistics\ExportStatisticsController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -85,16 +88,16 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     Route::post('/import/diary/tukini', [ImportDiaryController::class,"tukini"])->name('importTukini');
     Route::post('/export/diary', ExportDiaryController::class)->name('export');
     //統計
-    Route::get('/statistics/home', showStatisticsController::class)->name('showStatics');
-    Route::get('/statistics/custom', customStatisticsController::class)->name('customStatics');
+    Route::get('/statistics/home', ShowStatisticsController::class)->name('showStatics');
+    Route::get('/statistics/settings', SettingsStatisticsController::class)->name('customStatics');
     //統計更新
-    Route::post('/makeStatistics', makeStatisticsController::class)->name('makeStatics');
-    Route::post('/updateStatistics', updateStatisticsController::class)->name('updateStatics');
+    Route::post('/makeStatistics', MakeStatisticsController::class)->name('makeStatics');
+    Route::post('/updateStatistics', UpdateStatisticsController::class)->name('updateStatics');
     //統計設定更新
-    Route::post('/statistics/settings/named_entity', settingsStatisticsController::class)->name('updateNamedEntity');
-    //固有表現の入出力
-    Route::post('/import/statistics/named_entity', [ImportStatisticsController::class,"named_entity"])->name('importNE');
-    Route::post('/export/statistics/named_entity', [ExportStatisticsController::class,"named_entity"])->name('exportNE');
+    Route::post('/statistics/settings/named_entity', SettingsStatisticsController::class)->name('updateNamedEntity');
+    // //固有表現の入出力
+    Route::post('/import/statistics/namedEntity', [ImportStatisticsController::class,"namedEntity"])->name('importNE');
+    Route::post('/export/statistics/namedEntity', [ExportStatisticsController::class,"namedEntity"])->name('exportNE');
 
 
 });
