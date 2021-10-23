@@ -80,15 +80,21 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     Route::post('/search', [SearchDiaryController::class,"post"])->name('search');
     Route::get('/search', [SearchDiaryController::class,"showSearch"])->name('searchConsole');
     // Route::get('/search',[ SearchDiaryController::class,"showSearch"])->name('search');
-    //入出力
-    Route::post('/import/kadode', [ImportDiaryController::class,"kadode"])->name('importKadode');
-    Route::post('/import/tukini', [ImportDiaryController::class,"tukini"])->name('importTukini');
-    Route::post('/export', ExportDiaryController::class)->name('export');
+    //日記の入出力
+    Route::post('/import/diary/kadode', [ImportDiaryController::class,"kadode"])->name('importKadode');
+    Route::post('/import/diary/tukini', [ImportDiaryController::class,"tukini"])->name('importTukini');
+    Route::post('/export/diary', ExportDiaryController::class)->name('export');
     //統計
-    Route::get('/statistics', showStatisticsController::class)->name('showStatics');
+    Route::get('/statistics/home', showStatisticsController::class)->name('showStatics');
+    Route::get('/statistics/custom', customStatisticsController::class)->name('customStatics');
+    //統計更新
     Route::post('/makeStatistics', makeStatisticsController::class)->name('makeStatics');
     Route::post('/updateStatistics', updateStatisticsController::class)->name('updateStatics');
-
+    //統計設定更新
+    Route::post('/statistics/settings/named_entity', settingsStatisticsController::class)->name('updateNamedEntity');
+    //固有表現の入出力
+    Route::post('/import/statistics/named_entity', [ImportStatisticsController::class,"named_entity"])->name('importNE');
+    Route::post('/export/statistics/named_entity', [ExportStatisticsController::class,"named_entity"])->name('exportNE');
 
 
 });

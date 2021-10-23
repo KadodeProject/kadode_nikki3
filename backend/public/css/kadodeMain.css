@@ -585,6 +585,28 @@ p::-webkit-scrollbar {
     font-size: 0.75em;
     color: var(--text-main-color);
 }
+.sov-pipe-wrapper nav {
+    position: absolute;
+    z-index: 2;
+    text-align: center;
+    font-size: 0.75em;
+    width: 300px;
+    height: 250px;
+    color: var(--text-main-color);
+    background-color: var(--border-main-color);
+    clip-path: polygon(
+        67% 12%,
+        100% 14%,
+        100% 66%,
+        0 66%,
+        0 14%,
+        49% 12%,
+        55% 3%
+    );
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
 .sov-pipe p {
     width: 130px;
     height: 80px;
@@ -627,9 +649,18 @@ p::-webkit-scrollbar {
         height: 100px;
         clip-path: polygon(100% 0, 100% 79%, 53% 100%, 0 79%, 0 0, 52% 14%);
     }
+    .statisticOverallViewHierarchy-desc .sov-pipe p {
+        float: initial;
+        width: 100px;
+        height: 100px;
+        clip-path: polygon(100% 0, 100% 79%, 53% 100%, 0 79%, 0 0, 52% 14%);
+    }
     .statisticOverallViewHierarchy-only-bottom {
         /* 追加style無効化 */
         justify-content: center !important;
         margin: 0 !important;
+    }
+    .hidden {
+        display: none !important;
     }
 }

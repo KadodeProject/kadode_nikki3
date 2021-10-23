@@ -62,7 +62,7 @@
             <div class="settingContent md:w-1/2 w-full">
                 <h4 class="text-xl text-center mt-4">かどで日記形式の<br class="md:hidden">CSVファイル</h4>
                 <p class="text-sm text-center mb-4">かどで日記からエクスポートしていないものは動作保証外です</p>
-                <form class="text-center flex justify-center flex-wrap flex-col " method="POST" enctype="multipart/form-data" action="/import/kadode">
+                <form class="text-center flex justify-center flex-wrap flex-col " method="POST" enctype="multipart/form-data" action="/import/diary/kadode">
                     @if(count($errors)>0)
                     {{-- エラーの表示 --}}
                     <ul class="text-red-500 kiwi-maru">
@@ -84,7 +84,7 @@
             <div class="settingContent md:w-1/2 w-full">
                 <h4 class="text-xl text-center mt-4">月に書く日記形式の<br class="md:hidden">txtファイル</h4>
                 <p class="text-sm text-center mb-4">月に書く日記からエクスポートしていないものは動作保証外です</p>
-                <form class="text-center flex justify-center flex-wrap flex-col " method="POST" enctype="multipart/form-data" action="/import/tukini">
+                <form class="text-center flex justify-center flex-wrap flex-col " method="POST" enctype="multipart/form-data" action="/import/diary/tukini">
                     @if(count($errors)>0)
                     {{-- エラーの表示 --}}
                     <ul class="text-red-500 kiwi-maru">
@@ -109,11 +109,11 @@
         @include('components.settingHeading',['title'=>'日記のエクスポート'])
         <p class="text-sm text-center kiwi-maru">※エクスポート時に文字コードをutf-8からWindows-31J(拡張Shift-JIS)に変換してCSVを作成します</p>
         <div class="settingContentWrapper">
-            <form class="flex justify-center flex-wrap flex-col " method="POST"  action="/export">
+            <form class="flex justify-center flex-wrap flex-col " method="POST"  action="/export/diary">
                 @csrf
                 <input type="submit" class="text-black px-2 md:w-1/2 w-full mx-auto" value="csv形式でエクスポート">
             </form>
-            {{-- <div class="settingContent"><a href="/export">CSVエクスポート</a></div> --}}
+            {{-- <div class="settingContent"><a href="/export/diary">CSVエクスポート</a></div> --}}
         </div>
     </div>
     <div class="setting">

@@ -11,6 +11,9 @@
                     <p>……</p>
             </div>
             <section>GiNZA v5 with spaCy and SudachiPy </section>
+            {{-- <nav>
+                <p>にっきのしんこうど</p>
+            </nav> --}}
         </div>
         
         <div class="sov-arrow"><span class="material-icons">arrow_forward</span></div>
@@ -18,7 +21,7 @@
     </div>
     
     <div class="statisticOverallViewHierarchy-only-bottom " style="justify-content:flex-start;margin-right:70px" >
-        <div class="sov-arrow-always-bottom" ><span  class="material-icons">arrow_forward</span></div>
+        <div class="sov-arrow-always-bottom  " ><span  class="material-icons hidden md:block">arrow_forward</span></div>
     </div>
 
     <div class="statisticOverallViewHierarchy-desc ">

@@ -121,6 +121,6 @@ class showStatisticsController extends Controller
             $oldest_diary_date="なし";
         }   
 
-        return view("diary/statistics/statisticsTop",["statistics"=>$statistic,'oldest_diary_date'=>$oldest_diary_date,'number_of_nikki'=>$number_of_nikki,'ended_diaries_count'=>$ended_diaries_count]);
+        return view("diary/statistics/home/statistics/homeTop",["statistics"=>$statistic,'oldest_diary_date'=>$oldest_diary_date,'number_of_nikki'=>$number_of_nikki,'ended_diaries_count'=>$ended_diaries_count]);
     }
 }
