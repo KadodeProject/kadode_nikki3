@@ -55,6 +55,6 @@ class UpdateStatisticsController extends Controller
 
             $static->update($data);
         }
-        return redirect("statistics");
+        return redirect("statistics/home");
     }
 }

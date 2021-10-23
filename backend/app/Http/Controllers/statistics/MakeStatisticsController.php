@@ -68,6 +68,6 @@ class MakeStatisticsController extends Controller
          */
         throwPython::throwNlpToPython($userId,false,true);
 
-        return redirect("statistics");
+        return redirect("statistics/home");
     }
 }

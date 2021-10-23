@@ -78,13 +78,27 @@
     </div>
   </div>
   <div class="statistic-content">
-    @include('components.statisticHeading',['icon'=>'info','title'=>'基本情報'])
-      <div class="md:ml-24 ml-4">
-        <p class="text-xl ml-4">総文字数 : {{$statistics->total_words}}字</p>
-        <p class="text-xl ml-4">総日記数 : {{$statistics->total_diaries}}日記</p>
-        <p class="text-xl ml-4">平均文字数 : {{$statistics->total_words/$statistics->total_diaries}}字</p>
-        <p class="text-xl ml-4">最古の日記 : {{$oldest_diary_date}}</p>
+    <div class="flex justify-center flex-wrap ">
+      <div class="md:w-1/2">
+        @include('components.statisticHeading',['icon'=>'info','title'=>'基本情報'])
+        <div class="md:ml-24 ml-4">
+          <p class="text-xl ml-4">総文字数 : {{$statistics->total_words}}字</p>
+          <p class="text-xl ml-4">総日記数 : {{$statistics->total_diaries}}日記</p>
+          <p class="text-xl ml-4">平均文字数 : {{$statistics->total_words/$statistics->total_diaries}}字</p>
+          <p class="text-xl ml-4">最古の日記 : {{$oldest_diary_date}}</p>
+        </div>
       </div>
+      <div class="md:w-1/2 my-12 md:mt-0">
+        @include('components.statisticHeading',['icon'=>'settings','title'=>'統計設定'])
+        <div class="md:ml-24 ml-4">
+          <a href="/statistics/settings" class="mt-12" >
+            <div class="w-60 h-30 rounded-2xl button-border-main-color border-2 flex items-center justify-center py-12">
+              <p class="kiwi-maru ">統計設定を開く</p><p class="material-icons">open_in_new</p>
+            </div>
+          </a>
+        </div>
+      </div>
+    </div>
   </div>
 
 

@@ -664,3 +664,33 @@ p::-webkit-scrollbar {
         display: none !important;
     }
 }
+
+.nlp-normal-table {
+    color: var(--text-main-color);
+    border: 2px solid var(--button-main-color);
+    text-align: center;
+}
+.nlp-normal-table th,
+td {
+    padding: 0.5em;
+    border: 1px solid var(--button-main-color);
+}
+
+.nlp-normal-table th {
+    color: var(--bg-main-color);
+    background-color: var(--button-main-color);
+}
+
+.nlp-normal-package {
+    width: 200px;
+    height: 200px;
+    color: var(--text-main-color);
+    border: 1px solid var(--button-main-color);
+    border-radius: 3px;
+    margin: 4px 12px;
+    padding: 1em 1em;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    flex-direction: column;
+}
