@@ -49,7 +49,7 @@
         .header-links p:nth-of-type(4){
             color: var(--button-main-color);
         }
-        @elseif(Request::is('statistics'))
+        @elseif(Request::is('statistics/*'))
         .header-links p:nth-of-type(5){
             color: var(--button-main-color);
         }
