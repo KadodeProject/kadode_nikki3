@@ -11,6 +11,6 @@ class NERLabel extends Model
 
     use HasFactory;
     protected $fillable = [
-        "name","label",
+        "name","label","parent"
     ];
 }

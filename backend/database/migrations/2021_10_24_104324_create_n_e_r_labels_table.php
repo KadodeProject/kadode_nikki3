@@ -17,6 +17,7 @@ class CreateNERLabelsTable extends Migration
             $table->id();
             $table->string("label")->comment("ラベル(正式英名)");
             $table->string("name")->comment("ラベル(日本語名)");
+            $table->string("parent")->nullable()->comment("大分類名");//本当は正規化しなきゃいけないところだけど、許してください……
 
         });
     }
