@@ -15,6 +15,6 @@ class NlpPackageName extends Model
     }
     use HasFactory;
     protected $fillable = [
-        "name","genre_id","description","created_at","updated_at"
+        "name","user_id","genre_id","description","created_at","updated_at"
     ];
 }

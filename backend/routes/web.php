@@ -14,15 +14,14 @@ use App\Http\Controllers\statistics\ShowStatisticsController;
 use App\Http\Controllers\statistics\SettingsStatisticsController;
 use App\Http\Controllers\statistics\ImportStatisticsController;
 use App\Http\Controllers\statistics\ExportStatisticsController;
-use App\Http\Controllers\statistics\PackagesStatisticsController;
 use App\Http\Controllers\statistics\GenerateStatisticsController;
 use App\Http\Controllers\statistics\NamedEntityStatisticsController;
 
 use App\Http\Controllers\admin\HomeAdminController;
 
-use App\Http\Controllers\admin\GenrePackagesController;
-use App\Http\Controllers\admin\ManagePackagesController;
-use App\Http\Controllers\admin\OwnPackagesController;
+use App\Http\Controllers\packages\GenrePackagesController;
+use App\Http\Controllers\packages\ManagePackagesController;
+use App\Http\Controllers\packages\OwnPackagesController;
 
 use Illuminate\Support\Facades\Route;
 

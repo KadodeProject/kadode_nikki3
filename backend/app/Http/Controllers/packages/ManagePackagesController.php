@@ -24,7 +24,7 @@ class ManagePackagesController extends Controller
         //中身作成
         $form=[
             "user_id"=>Auth::id(),
-            "genre_id"=>$request->genre_id,
+            "genre_id"=>$request->NlpPackageGenre_id,
             "description"=>$request->description,
             "name"=>$request->name,
         ];
@@ -48,7 +48,7 @@ class ManagePackagesController extends Controller
         // $this->validate($request,NlpPackageName::$rules);
         
         $updateContent=[
-            "genre_id"=>$request->genre_id,
+            "NlpPackageGenre_id"=>$request->genre_id,
             "description"=>$request->description,
             "name"=>$request->name,
         ];

@@ -14,7 +14,7 @@ class HomeAdminController extends Controller
     {
         //パッケージ表示
         $NlpPackageName=NlpPackageName::get();
-        //パッケージ表示
+        //パッケージジャンル表示
         $NlpPackageGenre=NlpPackageGenre::get();
 
         //固有表現ラベル取得
