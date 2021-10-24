@@ -13,7 +13,7 @@
 @include('components.noLogIn.news',
 ['title'=>'かどで日記wikiの作成について',
 'date'=>'2021年10月21日',
-'explain'=>'従来docsディレクトリ下にあった文書周りをGitHub wikiに移動しました。'
+'explain'=>'従来docsディレクトリ下にあった文書周りをGitHub wikiに移動しました。
 '])
 @include('components.noLogIn.news',
 ['title'=>'内部バックアップについて',
