@@ -1,12 +1,10 @@
 <?php
-
 namespace App\Http\Controllers\statistics;
 
-use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
 
-class SettingsStatisticsController extends Controller
+class PackagesStatisticsController extends Controller
 {
     /**
      * Undocumented function
@@ -43,9 +41,7 @@ class SettingsStatisticsController extends Controller
         return view('diary/edit',['diary' => $diary,'previous'=>$previous, 'next'=>$next]);
     }
 
-    public function newPage(){
-        return view('diary/newDiary');
-    }
+
     /**
      * Undocumented function
      *
@@ -91,6 +87,28 @@ class SettingsStatisticsController extends Controller
         Diary::where('uuid',$request->uuid)->update($updateContent);
         return redirect('home');
     }
+
+    /**
+     * Undocumented function
+     *
+     * @param Request $request
+     * @return void
+     */
+    public function use(Request $request){
+        Diary::where('uuid',$request->uuid)->delete();
+        return redirect('home');
+    }   
+
+    /**
+     * Undocumented function
+     *
+     * @param Request $request
+     * @return void
+     */
+    public function remove(Request $request){
+        Diary::where('uuid',$request->uuid)->delete();
+        return redirect('home');
+    }   
 
     /**
      * Undocumented function
