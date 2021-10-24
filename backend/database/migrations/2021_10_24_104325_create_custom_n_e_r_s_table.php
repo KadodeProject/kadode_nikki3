@@ -16,7 +16,7 @@ class CreateCustomNERSTable extends Migration
         Schema::create('custom_n_e_r_s', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger("user_id")->comment("登録しているユーザーID");
-            $table->string("label")->comment("ラベル名");
+            $table->unsignedBigInteger("label_id")->comment("ラベルのID");
             $table->string("name")->comment("名前");
             $table->timestamps();
 
@@ -26,6 +26,11 @@ class CreateCustomNERSTable extends Migration
             ->references('id')
             ->on('users')
             ->onDelete('cascade');//cascadeでユーザー消えたら統計データも消せる
+            //他テーブルとの関連付け
+            $table->foreign('label_id')
+            ->references('id')
+            ->on('n_e_r_labels')
+            ->onDelete('cascade');//cascadeでラベル消えたら統計データも消せる
         });
     }
 
