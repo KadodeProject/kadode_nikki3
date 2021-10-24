@@ -5,6 +5,8 @@ namespace App\Http\Controllers\statistics;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\CustomNER;
+use App\Models\NERLabel;
+use Illuminate\Support\Facades\Auth;
 use Carbon\Carbon;
 
 class NamedEntityStatisticsController extends Controller
@@ -16,17 +18,17 @@ class NamedEntityStatisticsController extends Controller
      * @return void
      */
     public function customCreate(Request $request){
-        $request->date=$request->date ?? Carbon::today()->format("y-m-d");
         
         // バリデーション
         $this->validate($request,CustomNER::$rules);
         
+        //ラベルidの取得
+        $label_id=NERLabel::where('label',$request->label)->first();
+        //中身作成
         $form=[
             "user_id"=>Auth::id(),
-            "title"=>$request->title,
-            "content"=>$request->content,
-            "date"=>$request->date,
-            "uuid"=>Str::uuid(),
+            "label_id"=>$label_id,
+            "name"=>$request->name,
         ];
 
         CustomNER::create($form);
@@ -39,19 +41,22 @@ class NamedEntityStatisticsController extends Controller
      * @param Request $request
      * @return void
      */
+
     public function customUpdate(Request $request){
 
 
         // 日付のバリデーション→既に存在する日付ならエラー返す
         // バリデーション
         $this->validate($request,CustomNER::$rules);
+
+        //ラベルidの取得
+        $label_id=NERLabel::where($request->label,'label')->first();
         
         $updateContent=[
-            "title"=>$request->title,
-            "content"=>$request->content,
-            "date"=>$request->date,
+            "label_id"=>$label_id,
+            "name"=>$request->name,
         ];
-        CustomNER::where('uuid',$request->uuid)->update($updateContent);
+        CustomNER::where('id',$request->customNER_id)->update($updateContent);
         return redirect('statistics/settings');
     }
 
@@ -62,7 +67,7 @@ class NamedEntityStatisticsController extends Controller
      * @return void
      */
     public function customDelete(Request $request){
-        CustomNER::where('uuid',$request->uuid)->delete();
+        CustomNER::where('id',$request->customNER_id)->delete();
         return redirect('statistics/settings');
     }
 

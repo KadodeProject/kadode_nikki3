@@ -6,6 +6,9 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
 use App\Models\CustomNER;
+use App\Models\NERLabel;
+use Illuminate\Support\Facades\Auth;
+
 class SettingsStatisticsController extends Controller
 {
     /**
@@ -40,7 +43,16 @@ class SettingsStatisticsController extends Controller
         //     $diary->special_people=array_values(json_decode($diary->special_people,true));
         // }
 
-        return view('diary/statistics/settingsStatistics');
+        //ユーザー定義固有表現ルール
+        $CustomNER=CustomNER::where('user_id',Auth::id())->get();
+        
+        //ラベルIDからラベル名を取得
+        foreach($CustomNER as $CustomNER_single){
+            $CustomNER_single->label_ja=NERLabel::where('id',$CustomNER_single->label_id)->get(['name']);
+        }
+        //ユーザー有効化パッケージ
+
+        return view('diary/statistics/settingsStatistics',['CustomNER' => $CustomNER,]);
     }
 
 }

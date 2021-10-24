@@ -39,17 +39,34 @@
 
     <div class="statistic-content">
         @include('components.statisticHeading',['icon'=>'category','title'=>'ユーザー固有表現ルール追加'])
+
+        {{-- 表示 --}}
         <table class="nlp-normal-table mx-auto"border="1" >
+        @isset($CustomNER)
             <tr>
-              <th>番号</th><th>ラベル</th><th>単語</th>
+                <th>番号</th><th>ラベル(日本語)</th><th>単語</th><th>追加変更</th>
             </tr>
+            @php
+            $i=1;
+            @endphp
+            @foreach($CustomNER as $NER)
             <tr>
-              <td>1</td><td>Person</td><td>うすゆき</td>
+                <td>{{$i}}</td><td>{{$NER->label_ja}}</td><td>{{$NER->Name}}</td><td>変更</td>
             </tr>
+                @php
+                $i+=1;
+                @endphp
+            @endforeach
+        @endisset
+            {{-- 追加 --}}
             <tr>
-              <td>2</td><td>Product_Other</td><td>ぶいちゃ</td>
+                <th>{{$i}}</th>
+                <th>ラベル(日本語)</th>
+                <th>単語</th>
+                <td>追加</td>
             </tr>
-          </table>
+        </table>
+
     </div>
 
     <div class="statistic-content">
