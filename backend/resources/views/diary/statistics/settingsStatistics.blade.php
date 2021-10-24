@@ -42,28 +42,90 @@
 
         {{-- 表示 --}}
         <table class="nlp-normal-table mx-auto"border="1" >
-        @isset($CustomNER)
             <tr>
-                <th>番号</th><th>ラベル(日本語)</th><th>単語</th><th>追加変更</th>
+                <th>番号</th><th>ラベル(日本語)</th><th>単語</th><th>追加変更</th><th>削除</th>
             </tr>
+
+            {{-- エラー --}}
+            @if(count($errors)>0)
+            {{-- エラーの表示 --}}
+            <tr class="text-red-500 kiwi-maru">
+                @foreach($errors->all() as $error)
+                <td>エラー</td><td>エラー</td><td>{{$error}}</td><td>--</td>
+                @endforeach
+            </tr>
+            @endif
             @php
             $i=1;
             @endphp
+
+        {{-- 登録済みデータ表示 --}}
+        @isset($CustomNER)
             @foreach($CustomNER as $NER)
             <tr>
-                <td>{{$i}}</td><td>{{$NER->label_ja}}</td><td>{{$NER->Name}}</td><td>変更</td>
+                <form class="" method="POST"  action="/statistics/settings/named_entity/custom/update">
+                    @csrf
+                    <input type="hidden" name="customNER_id" value="{{$NER->id}}">
+                    <td>
+                        {{$i}}
+                    </td>
+                    <td>
+                        <select name="label_id">
+                            @foreach($NERLabel as $NERLabel_single)
+                                @if($NERLabel_single->id==$NER->label_id)
+                                    <option selected value="{{$NERLabel_single->id}}">{{$NERLabel_single->name}}</option>
+                                @else
+                                    <option value="{{$NERLabel_single->label}}">{{$NERLabel_single->name}}</option>
+                                @endif
+                            @endforeach
+                        </select>
+                    </td>
+                    <td>
+                        <input type="text" name="name" autocomplete="off" value="{{$NER->name}}" onkeydown="if((event.ctrlKey || event.metaKey)&&event.keyCode==13){document.getElementById('submitCustomNER_{{$i}}').click();return false};">
+                    </td>
+                    <td>
+                        <input type="submit" id="submitCustomNER_{{$i}}" class="text-black" value="変更">
+                    </td>
+                </form>
+                <form class="" method="POST"  action="/statistics/settings/named_entity/custom/delete">
+                    @csrf
+                    <td>
+                        <input type="hidden" name="customNER_id" value="{{$NER->id}}">
+                        <input type="submit" class="text-black" value="削除">
+                    </td>
+                </form>
             </tr>
                 @php
                 $i+=1;
                 @endphp
             @endforeach
         @endisset
+
             {{-- 追加 --}}
             <tr>
-                <th>{{$i}}</th>
-                <th>ラベル(日本語)</th>
-                <th>単語</th>
-                <td>追加</td>
+                <form class="" method="POST"  action="/statistics/settings/named_entity/custom/create">
+                    @csrf
+                    <td>
+                        {{$i}}
+                    </td>
+                    <td>
+                        <select name="label_id">
+                            <option disabled selected value>ラベルを選ぶ</option>
+                            @foreach($NERLabel as $NERLabel_single)
+                                <option value="{{$NERLabel_single->id}}">{{$NERLabel_single->name}}</option>
+                            @endforeach
+                        </select>
+                    </td>
+                    <td>
+                        <input type="text" name="name" autocomplete="off" placeholder="単語名"  onkeydown="if((event.ctrlKey || event.metaKey)&&event.keyCode==13){document.getElementById('submitCustomNER_{{$i}}').click();return false};">
+                    </td>
+                    <td>
+                        <input type="submit"  id="submitCustomNER_{{$i}}" class="text-black" value="追加">
+                    </td>
+                    <td>
+                        --
+                    </td>
+                </form>
             </tr>
         </table>
 

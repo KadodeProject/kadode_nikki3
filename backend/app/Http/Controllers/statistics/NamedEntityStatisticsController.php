@@ -22,12 +22,10 @@ class NamedEntityStatisticsController extends Controller
         // バリデーション
         $this->validate($request,CustomNER::$rules);
         
-        //ラベルidの取得
-        $label_id=NERLabel::where('label',$request->label)->first();
         //中身作成
         $form=[
             "user_id"=>Auth::id(),
-            "label_id"=>$label_id,
+            "label_id"=>$request->label_id,
             "name"=>$request->name,
         ];
 
@@ -48,14 +46,12 @@ class NamedEntityStatisticsController extends Controller
         // 日付のバリデーション→既に存在する日付ならエラー返す
         // バリデーション
         $this->validate($request,CustomNER::$rules);
-
-        //ラベルidの取得
-        $label_id=NERLabel::where($request->label,'label')->first();
         
         $updateContent=[
-            "label_id"=>$label_id,
+            "label_id"=>$request->label_id,
             "name"=>$request->name,
         ];
+        
         CustomNER::where('id',$request->customNER_id)->update($updateContent);
         return redirect('statistics/settings');
     }

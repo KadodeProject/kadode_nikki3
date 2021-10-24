@@ -24,7 +24,7 @@ class NERLabelSeeder extends Seeder
            'parent'=>'かどで日記独自'],
 
            ['label'=>'Animation',
-           'name'=>'アニメ名',
+           'name'=>'アニメタイトル',
            'parent'=>'かどで日記独自'],
 
            ['label'=>'Name_Other',
@@ -653,11 +653,11 @@ class NERLabelSeeder extends Seeder
              */
             
             ['label'=>'Disease_Other',
-            'name'=>'',
+            'name'=>'病気名_その他',
             'parent'=>'病気名_その他'],
             
             ['label'=>'Animal_Disease',
-            'name'=>'',
+            'name'=>'動物病気名',
             'parent'=>'動物病気名'],
 
             /**

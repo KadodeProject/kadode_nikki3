@@ -43,16 +43,17 @@ class SettingsStatisticsController extends Controller
         //     $diary->special_people=array_values(json_decode($diary->special_people,true));
         // }
 
-        //ユーザー定義固有表現ルール
+        //ユーザー定義固有表現ルール→ラベル名はbladeのif文で表示させるのでここではidのままでよい。
         $CustomNER=CustomNER::where('user_id',Auth::id())->get();
         
-        //ラベルIDからラベル名を取得
-        foreach($CustomNER as $CustomNER_single){
-            $CustomNER_single->label_ja=NERLabel::where('id',$CustomNER_single->label_id)->get(['name']);
-        }
+        //固有表現ラベル取得
+        $NERLabel=NERLabel::where('id','>',0)->get()->all();
+        \Log::debug($NERLabel);
+        //ラベルIDからラベル名を取得→不要
+
         //ユーザー有効化パッケージ
 
-        return view('diary/statistics/settingsStatistics',['CustomNER' => $CustomNER,]);
+        return view('diary/statistics/settingsStatistics',['CustomNER' => $CustomNER,'NERLabel' =>$NERLabel]);
     }
 
 }
