@@ -16,5 +16,6 @@ class DatabaseSeeder extends Seeder
         $this->call(UserTableSeeder::class);
         $this->call(DiaryTableSeeder::class);
         $this->call(NERLabelSeeder::class);
+        $this->call(NlpPackageGenreTableSeeder::class);
     }
 }

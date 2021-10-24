@@ -110,7 +110,7 @@
                     </td>
                     <td>
                         <select name="label_id">
-                            <option disabled selected value>ラベルを選ぶ</option>
+                            <option disabled  value>ラベルを選ぶ</option>
                             @foreach($NERLabel as $NERLabel_single)
                                 <option value="{{$NERLabel_single->id}}">{{$NERLabel_single->name}}</option>
                             @endforeach
