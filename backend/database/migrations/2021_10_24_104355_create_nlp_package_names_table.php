@@ -16,6 +16,7 @@ class CreateNlpPackageNamesTable extends Migration
         Schema::create('nlp_package_names', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger("genre_id")->comment("パッケージのジャンルID");
+            $table->unsignedBigInteger("user_id")->nullable()->comment("作成ユーザーID");
             $table->string("name")->comment("パッケージ名");
             $table->string("description")->nullable()->comment("説明");
             $table->timestamps();
@@ -26,6 +27,10 @@ class CreateNlpPackageNamesTable extends Migration
             ->references('id')
             ->on('nlp_package_genres')
             ->onDelete('cascade');//ジャンル消えたらパッケージも消す
+            //他テーブルとの関連付け
+            $table->foreign('user_id')
+            ->references('id')
+            ->on('users');//
         });
     }
 

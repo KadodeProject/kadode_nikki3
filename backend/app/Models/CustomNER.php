@@ -17,4 +17,9 @@ class PackageNER extends Model
     protected $fillable = [
         "user_id","label","name","created_at","updated_at"
     ];
+
+    public static $rules=array(
+        "label"=>"required|",
+        "name"=>"required|max:50",
+        );
 }

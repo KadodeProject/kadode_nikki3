@@ -16,6 +16,7 @@ use App\Http\Controllers\statistics\ImportStatisticsController;
 use App\Http\Controllers\statistics\ExportStatisticsController;
 use App\Http\Controllers\statistics\PackagesStatisticsController;
 use App\Http\Controllers\statistics\GenerateStatisticsController;
+use App\Http\Controllers\statistics\NamedEntityStatisticsController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -95,16 +96,20 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     //統計自体の更新
     Route::post('/makeStatistics', [GenerateStatisticsController::class,"create"])->name('makeStatics');
     Route::post('/updateStatistics',[GenerateStatisticsController::class,"update"])->name('updateStatics');
-    //NEユーザー定義設定更新
-    Route::post('/statistics/settings/named_entity/create',  [SettingsStatisticsController::class,"create"])->name('createNamedEntity');
-    Route::post('/statistics/settings/named_entity/update',  [SettingsStatisticsController::class,"update"])->name('updateNamedEntity');
-    Route::post('/statistics/settings/named_entity/delete',  [SettingsStatisticsController::class,"delete"])->name('deleteNamedEntity');
+    //customNERまわり
+    Route::post('/statistics/settings/named_entity/custom/create',  [NamedEntityStatisticsController::class,"customCreate"])->name('createCustomNamedEntity');
+    Route::post('/statistics/settings/named_entity/custom/update',  [NamedEntityStatisticsController::class,"customUpdate"])->name('updateCustomNamedEntity');
+    Route::post('/statistics/settings/named_entity/custom/delete',  [NamedEntityStatisticsController::class,"customDelete"])->name('deleteCustomNamedEntity');
+    //packageNERまわり
+    Route::post('/statistics/settings/named_entity/packages/create',  [NamedEntityStatisticsController::class,"packagesCreate"])->name('createPackageNamedEntity');
+    Route::post('/statistics/settings/named_entity/packages/update',  [NamedEntityStatisticsController::class,"packagesUpdate"])->name('updatePackageNamedEntity');
+    Route::post('/statistics/settings/named_entity/packages/delete',  [NamedEntityStatisticsController::class,"packagesDelete"])->name('deletePackageNamedEntity');
     //パッケージ周り
-    Route::post('/statistics/settings/package/create',  [PackagesStatisticsController::class,"create"])->name('createPackages');
-    Route::post('/statistics/settings/package/update',  [PackagesStatisticsController::class,"update"])->name('updatePackages');
-    Route::post('/statistics/settings/package/delete',  [PackagesStatisticsController::class,"delete"])->name('deletePackages');
-    Route::post('/statistics/settings/package/use',  [PackagesStatisticsController::class,"use"])->name('usePackages');
-    Route::post('/statistics/settings/package/release',  [PackagesStatisticsController::class,"release"])->name('releasePackages');
+    Route::post('/statistics/settings/packages/create',  [PackagesStatisticsController::class,"create"])->name('createPackages');
+    Route::post('/statistics/settings/packages/update',  [PackagesStatisticsController::class,"update"])->name('updatePackages');
+    Route::post('/statistics/settings/packages/delete',  [PackagesStatisticsController::class,"delete"])->name('deletePackages');
+    Route::post('/statistics/settings/packages/use',  [PackagesStatisticsController::class,"use"])->name('usePackages');
+    Route::post('/statistics/settings/packages/release',  [PackagesStatisticsController::class,"release"])->name('releasePackages');
     // //固有表現の入出力
     Route::post('/import/statistics/namedEntity', [ImportStatisticsController::class,"namedEntity"])->name('importNE');
     Route::post('/export/statistics/namedEntity', [ExportStatisticsController::class,"namedEntity"])->name('exportNE');
