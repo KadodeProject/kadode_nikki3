@@ -49,12 +49,20 @@
         .header-links p:nth-of-type(4){
             color: var(--button-main-color);
         }
-        @elseif(Request::is('statistics/*'))
+        @elseif(Request::is('statistics/home'))
         .header-links p:nth-of-type(5){
             color: var(--button-main-color);
         }
-        @elseif(Request::is('settings'))
+        @elseif(Request::is('statistics/settings'))
         .header-links p:nth-of-type(6){
+            color: var(--button-main-color);
+        }
+        @elseif(Request::is('settings'))
+        .header-links p:nth-of-type(7){
+            color: var(--button-main-color);
+        }
+        @elseif(Request::is('administrator'))
+        .header-links p:nth-of-type(8){
             color: var(--button-main-color);
         }
         @endif
@@ -79,7 +87,11 @@
             <p><a href="{{url("/diary").date("/Y/n")}}">アーカイブ</a></p>
             <p><a href="{{url("/search")}}">検索</a></p>
             <p><a href="{{url("/statistics/home")}}">統計</a></p>
-            <p><a href="{{url("/settings")}}">設定</a></p>   
+            <p><a href="{{url("/statistics/settings")}}">統計設定</a></p>   
+            <p><a href="{{url("/settings")}}">設定</a></p>
+            @if( Auth::user()->id==1)
+            <p><a href="{{url("/administrator")}}">管理者</a></p>
+            @endif
         </div>
         <div class="flex justify-center ">
             <div class="flex justify-end items-end sm:mb-4 sm:mr-8 mb-2">

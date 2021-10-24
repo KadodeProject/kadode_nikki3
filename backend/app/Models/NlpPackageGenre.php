@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 
-class NlpPackageName extends Model
+class NlpPackageGenre extends Model
 {
     //グローバールスコープ不要！！
 

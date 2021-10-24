@@ -48,7 +48,6 @@ class SettingsStatisticsController extends Controller
         
         //固有表現ラベル取得
         $NERLabel=NERLabel::where('id','>',0)->get()->all();
-        \Log::debug($NERLabel);
         //ラベルIDからラベル名を取得→不要
 
         //ユーザー有効化パッケージ

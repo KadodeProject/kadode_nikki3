@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Scopes\ScopeDiary;
 
-class NlpPackageGenre extends Model
+class NlpPackageName extends Model
 {
     protected static function boot()
     {
