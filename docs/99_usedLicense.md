@@ -138,6 +138,14 @@ Released under the MIT license
 
 http://opensource.org/licenses/mit-license.php
 
+# その他ソフトウェア
+
+## Schema Spy
+
+https://github.com/schemaspy/schemaspy
+
+こちらは LGPL ライセンスですが、中に組み込んでつかていないため、ライセンス適応外です。
+
 # 辞書
 
 ## 日本語評価極性辞書
