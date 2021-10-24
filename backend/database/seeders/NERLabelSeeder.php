@@ -15,9 +15,10 @@ class NERLabelSeeder extends Seeder
     {
 
         $param=[
-            'label'=>'Animation',
-            'name'=>'アニメ名',
-
+           ['label'=>'Animation','name'=>'アニメ名',],
+           ['label'=>'Animation','name'=>'アニメ名',],
+           ['label'=>'Animation','name'=>'アニメ名',],
+           ['label'=>'Animation','name'=>'アニメ名',],
         ];
         DB::table("n_e_r_labels")->insert($param);
 

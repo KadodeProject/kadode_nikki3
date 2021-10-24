@@ -7,9 +7,13 @@
 @section('content')
 <h1 class="text-center my-8 text-3xl kiwi-maru">リリースノート</h1>
 <div class="mx-auto px-4 mb-12" style="max-width: 1200px">
-   
-    
 
+@include('components.noLogIn.releaseNote',
+['title'=>'日記の本文でのショートカット',
+'date'=>'2021年10月24日',
+'genre'=>'Feature',
+'explain'=>'日記の本文入力で「Ctrl+Enter」(Macの方は「Cmd+Enter」)を押した際にクリックせず日記の書き込みを行えるようになりました。
+'])
 @include('components.noLogIn.releaseNote',
 ['title'=>'アーカイブページでの編集ボタン消失問題解消',
 'date'=>'2021年10月3日',
