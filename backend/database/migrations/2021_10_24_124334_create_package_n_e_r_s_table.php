@@ -24,7 +24,7 @@ class CreatePackageNERSTable extends Migration
             //他テーブルとの関連付け
             $table->foreign('package_id')
             ->references('id')
-            ->on('custom_n_e_r_s')
+            ->on('nlp_package_names')
             ->onDelete('cascade');//cascadeでパッケージ消えたらNEデータも消せる
 
             $table->foreign('label_id')

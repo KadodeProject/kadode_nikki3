@@ -19,23 +19,15 @@ class HomeAdminController extends Controller
         $NlpPackageGenre=NlpPackageGenre::get();
         
         //固有表現ルールの中身取得
-        $packageNERWrapper=[];
         foreach($NlpPackageName as $NlpPackageObj){
             if( $NlpPackageObj->genre_id==1){
                 //固有表現パッケージだったら
-                $packageNER=PackageNER::where('package_id',$NlpPackageObj->id)->get();
-                $packageNERWrapper={
-                    "packageNER"->"$packageNER,
-                    "packageNER"->"$packageNER,
+                $NlpPackageObj->packageNER=PackageNER::where('package_id',$NlpPackageObj->id)->get();
                 }
-
             }
-
-        }
-
         //固有表現ラベル取得
         $NERLabel=NERLabel::where('id','>',0)->get();
         return view('diary/admin/homeAdmin',['NlpPackageName' => $NlpPackageName,'NlpPackageGenre' =>$NlpPackageGenre,'NERLabel' =>$NERLabel,]);
-
     }
+
 }

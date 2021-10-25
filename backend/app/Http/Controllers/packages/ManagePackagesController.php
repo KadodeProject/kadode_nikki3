@@ -17,22 +17,22 @@ class ManagePackagesController extends Controller
      * @return void
      */
     public function create(Request $request){
-        
+
         // バリデーション
         // $this->validate($request,NlpPackageName::$rules);
-        
+
         //中身作成
         $form=[
             "user_id"=>Auth::id(),
             "genre_id"=>$request->NlpPackageGenre_id,
-            "description"=>$request->description,
             "name"=>$request->name,
+            "description"=>$request->description,
         ];
 
         NlpPackageName::create($form);
         return redirect('administrator');
     }
-    
+
     /**
      * Undocumented function
      *
@@ -46,13 +46,13 @@ class ManagePackagesController extends Controller
         // 日付のバリデーション→既に存在する日付ならエラー返す
         // バリデーション
         // $this->validate($request,NlpPackageName::$rules);
-        
+
         $updateContent=[
-            "NlpPackageGenre_id"=>$request->genre_id,
-            "description"=>$request->description,
+            "genre_id"=>$request->NlpPackageGenre_id,
             "name"=>$request->name,
+            "description"=>$request->description,
         ];
-        
+
         NlpPackageName::where('id',$request->NlpPackageName_id)->update($updateContent);
         return redirect('administrator');
     }

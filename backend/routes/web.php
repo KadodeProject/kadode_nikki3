@@ -82,7 +82,7 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     Route::post('/updatePassWord', [UserController::class,"updatePassWord"])->name('updatePassWord');
     Route::post('/deleteUser', [UserController::class,"deleteUser"])->name('deleteUser');
 
-    
+
     /**
      * 日記関連
      */
@@ -108,7 +108,7 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     Route::post('/import/diary/tukini', [ImportDiaryController::class,"tukini"])->name('importTukini');
     Route::post('/export/diary', ExportDiaryController::class)->name('export');
 
-    
+
     /**
      * 統計関連
      */
@@ -133,7 +133,7 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     Route::post('/statistics/settings/packages/release',  [OwnPackagesController::class,"release"])->name('releasePackages');
 
 
-    
+
 });
 
 Route::middleware(['administrator'])->group(function () {
@@ -142,7 +142,7 @@ Route::middleware(['administrator'])->group(function () {
      */
     //管理者ページ
     Route::get('/administrator', HomeAdminController::class)->name('home');
-    
+
     //パッケージ名前系
     Route::post('/administrator/settings/packages/create',  [ManagePackagesController::class,"create"])->name('createPackages');
     Route::post('/administrator/settings/packages/update',  [ManagePackagesController::class,"update"])->name('updatePackages');
@@ -153,8 +153,8 @@ Route::middleware(['administrator'])->group(function () {
     Route::post('/administrator/settings/packages/genre/delete',  [GenrePackagesController::class,"delete"])->name('deletePackagesGenre');
 
     //packageNERまわり
-    Route::post('/administrator/settings/packages/named_entity/create',  [NamedEntityStatisticsController::class,"create"])->name('createPackageNamedEntity');
-    Route::post('/administrator/settings/packages/named_entity/update',  [NamedEntityStatisticsController::class,"update"])->name('updatePackageNamedEntity');
-    Route::post('/administrator/settings/packages/named_entity/delete',  [NamedEntityStatisticsController::class,"delete"])->name('deletePackageNamedEntity');
+    Route::post('/statistics/settings/named_entity/package/create',  [NamedEntityStatisticsController::class,"packagesCreate"])->name('createPackageNamedEntity');
+    Route::post('/statistics/settings/named_entity/package/update',  [NamedEntityStatisticsController::class,"packagesUpdate"])->name('updatePackageNamedEntity');
+    Route::post('/statistics/settings/named_entity/package/delete',  [NamedEntityStatisticsController::class,"packagesDelete"])->name('deletePackageNamedEntity');
 
 });
