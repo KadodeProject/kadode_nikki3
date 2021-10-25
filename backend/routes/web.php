@@ -63,6 +63,9 @@ Route::get('/terms', function () {
 Route::get('/aboutThisSite', function () {
     return view('diaryNoLogIn/aboutThisSite');
 });
+Route::get('/teapot', function () {
+    abort(418);
+});
 
 
 /**
