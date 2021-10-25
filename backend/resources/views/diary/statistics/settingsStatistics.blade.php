@@ -24,22 +24,48 @@
     <div class="statistic-content">
         @include('components.statisticHeading',['icon'=>'category','title'=>'固有表現パッケージの追加'])
         <div class="flex justify-center items-center flex-wrap">
-            <div class="nlp-normal-package kiwi-maru text-center">
-                <p class="material-icons">inventory</p>
-                <p class="text-lg my-2">日本のアニメ名</p>
-                <p class="text-sm my-2">うすゆきが見たことあるアニメに限ります</p>
+            @isset($NlpPackageName)
+            @foreach ($NlpPackageName as $packageObj)
+            <div>
+                @if (in_array($packageObj->id,$havingPackageList))
+                {{-- 削除のボタン表示 --}}
+
+                <form class=" text-right" method="POST" action="/statistics/settings/packages/release">
+                    @csrf
+                    <td>
+                        <input type="hidden" name="package_id" value="{{$packageObj->id}}">
+                        <input type="submit" class="text-black user-package-select-button bg-logo-main-color"
+                            value="解除">
+                    </td>
+                </form>
+
+                @else
+                {{-- 登録のボタン表示 --}}
+                <form class=" text-right" method="POST" action="/statistics/settings/packages/use">
+                    @csrf
+                    <td>
+                        <input type="hidden" name="package_id" value="{{$packageObj->id}}">
+                        <input type="submit" class="user-package-select-button bg-status-good " value="登録">
+                    </td>
+                </form>
+
+
+                @endif
+                <div class="nlp-normal-package kiwi-maru text-center">
+                    <p class="text-sm my-2">[{{$packageObj->genre}}]</p>
+                    <p class="material-icons">inventory</p>
+                    <p class="text-lg my-2">{{$packageObj->name}}</p>
+                    <p class="text-sm my-2">{{$packageObj->description}}</p>
+                </div>
             </div>
-            <div class="nlp-normal-package kiwi-maru text-center">
-                <p class="material-icons">inventory</p>
-                <p class="text-lg my-2">web周りの技術用語</p>
-                <p class="text-sm my-2">うすゆきが使う技術に限ります</p>
-            </div>
+            @endforeach
+            @endisset
         </div>
     </div>
 
     <div class="statistic-content">
         @include('components.statisticHeading',['icon'=>'category','title'=>'ユーザー固有表現ルール追加'])
-
+        <p class="text-center my-4 mx-2 kiwi-maru text-sm">ラベルについては関根の拡張固有表現階層 ver7.1.2をベースとしております。ご覧ください。</p>
         {{-- 表示 --}}
         <table class="nlp-normal-table mx-auto" border="1">
             <tr>
@@ -169,7 +195,8 @@
     <div class="statistic-content">
         @include('components.statisticHeading',['icon'=>'category','title'=>'登録した固有表現のエクスポート'])
         <div class="mt-12 mb-4">
-            <p class="text-sm text-center kiwi-maru">※エクスポート時に文字コードをutf-8からWindows-31J(拡張Shift-JIS)に変換してCSVを作成します</p>
+            <p class="text-sm text-center kiwi-maru">※エクスポート時に文字コードをutf-8からWindows-31J(拡張Shift-JIS)に変換してCSVを作成します
+            </p>
             <form class="flex justify-center flex-wrap flex-col " method="POST" action="/export/statistics/namedEntity">
                 @csrf
                 <input type="submit" class="text-black px-2 md:w-1/2 w-full mx-auto" value="csv形式でエクスポート">

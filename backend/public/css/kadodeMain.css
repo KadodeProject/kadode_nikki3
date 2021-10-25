@@ -68,7 +68,9 @@ body {
 .text-status-excellent {
     color: var(--status-excellent);
 }
-
+.bg-logo-main-color {
+    background-color: var(--logo-main-color) !important;
+}
 .copyright {
     color: var(--logo-main-color);
 }
@@ -293,9 +295,9 @@ li ol {
     overflow: scroll;
 }
 
-/* 
+/*
 スクロールバー
-ここから 
+ここから
 */
 /*スクロールバー全体*/
 ::-webkit-scrollbar {
@@ -334,8 +336,8 @@ p::-webkit-scrollbar {
     height: 800px;
 }
 
-/* 
-ここまで 
+/*
+ここまで
 スクロールバー
 */
 
@@ -682,7 +684,7 @@ td {
 }
 
 .nlp-normal-package {
-    width: 200px;
+    width: 250px;
     height: 200px;
     color: var(--text-main-color);
     border: 1px solid var(--button-main-color);
@@ -693,4 +695,13 @@ td {
     align-items: center;
     justify-content: flex-start;
     flex-direction: column;
+}
+
+.user-package-select-button {
+    position: relative;
+    top: 40px;
+    right: -5px;
+    width: 50px;
+    height: 50px;
+    border-radius: 50% !important;
 }

@@ -4,16 +4,16 @@ def get_mostGuess_classification(affiliation):
     #formの種類の数をそれぞれカウント
     for value in affiliation.values():#辞書型なのでvalues必要
         try:
-            categories[value['form']]+=1                 
+            categories[value['form']]+=1
         except:
             categories[value['form']]=1
-    
+
     #多い順に並び変え
     sortred_categories = sorted(categories.items(), key=lambda x:x[1],reverse=True)#タプル型になる
 
     #でるやつ
-    
-    
+
+
     #多いやつからそれっぽいやつが出たら終了、なかったら「不明」にする
     category="不明"
     for value in sortred_categories:
@@ -293,9 +293,6 @@ def get_mostGuess_classification(affiliation):
         elif value[0]=="Broadcast_Program":#Laravel
             category="コンテンツ"
             break
-        elif value[0]=="Animation":#Laravel
-            category="アニメ"
-            break
         elif value[0]=="Movie":#東京オリンピック
             category="映画"
             break
@@ -316,6 +313,16 @@ def get_mostGuess_classification(affiliation):
             break
         elif value[0]=="Reptile":#people でも意味は爬虫類
             category=value[0]
+            break
+        #かどで日記独自固有表現
+        elif value[0]=="Animation":
+            category="アニメ"
+            break
+        elif value[0]=="Library_Framework":
+            category="プログラミング"
+            break
+        elif value[0]=="Programming_Lang":
+            category="プログラミング"
             break
         else:
             # print("未確認"+value[0])
