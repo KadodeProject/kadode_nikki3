@@ -27,6 +27,7 @@ class ManagePackagesController extends Controller
             "genre_id"=>$request->NlpPackageGenre_id,
             "name"=>$request->name,
             "description"=>$request->description,
+            "is_publish"=>$request->is_publish,
         ];
 
         NlpPackageName::create($form);
@@ -51,6 +52,7 @@ class ManagePackagesController extends Controller
             "genre_id"=>$request->NlpPackageGenre_id,
             "name"=>$request->name,
             "description"=>$request->description,
+            "is_publish"=>$request->is_publish,
         ];
 
         NlpPackageName::where('id',$request->NlpPackageName_id)->update($updateContent);

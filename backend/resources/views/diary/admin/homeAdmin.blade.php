@@ -16,6 +16,7 @@
                 <th>パッケージ名</th>
                 <th>ジャンル</th>
                 <th>説明</th>
+                <th>公開設定</th>
                 <th>追加変更</th>
                 <th>削除</th>
             </tr>
@@ -69,6 +70,17 @@
                             onkeydown="if((event.ctrlKey || event.metaKey)&&event.keyCode==13){document.getElementById('submitNlpPackageName_{{$i}}').click();return false};">
                     </td>
                     <td>
+                        <select name="is_publish">
+                            @if($PackageObj->is_publish=="公開")
+                            <option selected value="公開">公開</option>
+                            <option value="非公開">非公開</option>
+                            @elseif($PackageObj->is_publish=="非公開")
+                            <option value="公開">公開</option>
+                            <option selected value="非公開">非公開</option>
+                            @endif
+                        </select>
+                    </td>
+                    <td>
                         <input type="submit" id="submitNlpPackageName_{{$i}}" class="text-black" value="変更">
                     </td>
                 </form>
@@ -108,6 +120,12 @@
                     <td>
                         <input type="text" name="description" autocomplete="off" placeholder="説明"
                             onkeydown="if((event.ctrlKey || event.metaKey)&&event.keyCode==13){document.getElementById('submitNlpPackageName_{{$i}}').click();return false};">
+                    </td>
+                    <td>
+                        <select name="is_publish">
+                            <option value="公開">公開</option>
+                            <option value="非公開">非公開</option>
+                        </select>
                     </td>
                     <td>
                         <input type="submit" id="submitNlpPackageName_{{$i}}" class="text-black" value="追加">

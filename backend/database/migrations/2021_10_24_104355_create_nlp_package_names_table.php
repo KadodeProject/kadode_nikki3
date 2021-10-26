@@ -16,8 +16,9 @@ class CreateNlpPackageNamesTable extends Migration
         Schema::create('nlp_package_names', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger("genre_id")->comment("パッケージのジャンルID");
-            $table->unsignedBigInteger("user_id")->nullable()->comment("作成ユーザーID");
+            $table->unsignedBigInteger("user_id")->comment("作成ユーザーID");
             $table->string("name")->comment("パッケージ名");
+            $table->string("is_publish")->comment("公開設定");
             $table->string("description")->nullable()->comment("説明");
             $table->timestamps();
 

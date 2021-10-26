@@ -26,6 +26,7 @@
         <div class="flex justify-center items-center flex-wrap">
             @isset($NlpPackageName)
             @foreach ($NlpPackageName as $packageObj)
+            @if($packageObj->is_publish == "公開")
             <div>
                 @if (in_array($packageObj->id,$havingPackageList))
                 {{-- 削除のボタン表示 --}}
@@ -51,6 +52,7 @@
 
 
                 @endif
+                {{-- ユーザー保持のif--}}
                 <div class="nlp-normal-package kiwi-maru text-center">
                     <p class="text-sm my-2">[{{$packageObj->genre}}]</p>
                     <p class="material-icons">inventory</p>
@@ -58,6 +60,8 @@
                     <p class="text-sm my-2">{{$packageObj->description}}</p>
                 </div>
             </div>
+            @endif
+            {{-- 公開かのif --}}
             @endforeach
             @endisset
         </div>
