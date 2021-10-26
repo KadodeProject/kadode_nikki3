@@ -5,7 +5,7 @@
 @parent
 @endsection
 @section('content')
-<div class="board-main mb-12 mt-12">
+<div class="board-main pb-12 mt-12">
     {{-- <div class="my-12 flex justify-center ">
         <a href="/statistics/home" class="mt-12 ">
             <div class="w-60 h-30 rounded-2xl button-border-main-color border-2 flex items-center justify-center py-12">
@@ -14,11 +14,12 @@
             </div>
         </a>
     </div> --}}
+    <p class="text-center mt-8 mb-2 mx-2 kiwi-maru text-sm">設定は設定後に更新した日記で統計更新を行った際に反映されます。</p>
 
 
     <div class="statistic-content">
         @include('components.statisticHeading',['icon'=>'category','title'=>'固有表現パッケージの追加'])
-        <div class="flex justify-center items-center flex-wrap">
+        <div class="flex items-center overflow-x-auto">
             @isset($NlpPackageName)
             @foreach ($NlpPackageName as $packageObj)
             @if($packageObj->is_publish == "公開")
@@ -72,110 +73,113 @@
     <div class="statistic-content">
         @include('components.statisticHeading',['icon'=>'category','title'=>'ユーザー固有表現ルール追加'])
         <p class="text-center my-4 mx-2 kiwi-maru text-sm">ラベルについては関根の拡張固有表現階層 ver7.1.2をベースとしております。下記をご覧ください。</p>
-
         <p class="text-center my-4 mx-2 kiwi-maru text-sm hover:text-button-main-color">
             <a rel="norefferrer" target="_blank"
                 href="https://github.com/Usuyuki/kadode_nikki3/wiki/21_%E5%9B%BA%E6%9C%89%E8%A1%A8%E7%8F%BE%E3%83%AB%E3%83%BC%E3%83%AB%E3%81%AE%E3%83%A9%E3%83%99%E3%83%AB%E5%90%8D">
                 かどで日記wiki_固有表現ルールのラベル名
             </a>
         </p>
+        <p class="text-center mt-8 mb-2 mx-2 kiwi-maru text-sm">Ajax通信非対応のため、1件ずつ追加や変更を行うようお願い申し上げます。</p>
+
         {{-- 表示 --}}
-        <table class="nlp-normal-table mx-auto" border="1">
-            <tr>
-                <th>番号</th>
-                <th>ラベル(日本語)</th>
-                <th>単語</th>
-                <th>追加変更</th>
-                <th>削除</th>
-            </tr>
+        <div class="overflow-x-auto">
+            <table class="nlp-normal-table mx-auto " border="1">
+                <tr>
+                    <th>番号</th>
+                    <th>ラベル(日本語)</th>
+                    <th>単語</th>
+                    <th>追加変更</th>
+                    <th>削除</th>
+                </tr>
 
-            {{-- エラー --}}
-            @if(count($errors)>0)
-            {{-- エラーの表示 --}}
-            <tr class="text-red-500 kiwi-maru">
-                @foreach($errors->all() as $error)
-                <td>エラー</td>
-                <td>エラー</td>
-                <td>{{$error}}</td>
-                <td>--</td>
-                @endforeach
-            </tr>
-            @endif
-            @php
-            $i=1;
-            @endphp
+                {{-- エラー --}}
+                @if(count($errors)>0)
+                {{-- エラーの表示 --}}
+                <tr class="text-red-500 kiwi-maru">
+                    @foreach($errors->all() as $error)
+                    <td>エラー</td>
+                    <td>エラー</td>
+                    <td>{{$error}}</td>
+                    <td>--</td>
+                    @endforeach
+                </tr>
+                @endif
+                @php
+                $i=1;
+                @endphp
 
-            {{-- 登録済みデータ表示 --}}
-            @isset($CustomNER)
-            @foreach($CustomNER as $NER)
-            <tr>
-                <form class="" method="POST" action="/statistics/settings/named_entity/custom/update">
-                    @csrf
-                    <input type="hidden" name="customNER_id" value="{{$NER->id}}">
-                    <td>
-                        {{$i}}
-                    </td>
-                    <td>
-                        <select name="label_id">
-                            @foreach($NERLabel as $NERLabel_single)
-                            @if($NERLabel_single->id==$NER->label_id)
-                            <option selected value="{{$NERLabel_single->id}}">{{$NERLabel_single->name}}</option>
-                            @else
-                            <option value="{{$NERLabel_single->id}}">{{$NERLabel_single->name}}</option>
-                            @endif
-                            @endforeach
-                        </select>
-                    </td>
-                    <td>
-                        <input type="text" name="name" autocomplete="off" value="{{$NER->name}}"
-                            onkeydown="if((event.ctrlKey || event.metaKey)&&event.keyCode==13){document.getElementById('submitCustomNER_{{$i}}').click();return false};">
-                    </td>
-                    <td>
-                        <input type="submit" id="submitCustomNER_{{$i}}" class="text-black" value="変更">
-                    </td>
-                </form>
-                <form class="" method="POST" action="/statistics/settings/named_entity/custom/delete">
-                    @csrf
-                    <td>
+                {{-- 登録済みデータ表示 --}}
+                @isset($CustomNER)
+                @foreach($CustomNER as $NER)
+                <tr>
+                    <form class="" method="POST" action="/statistics/settings/named_entity/custom/update">
+                        @csrf
                         <input type="hidden" name="customNER_id" value="{{$NER->id}}">
-                        <input type="submit" class="text-black" value="削除">
-                    </td>
-                </form>
-            </tr>
-            @php
-            $i+=1;
-            @endphp
-            @endforeach
-            @endisset
+                        <td>
+                            {{$i}}
+                        </td>
+                        <td>
+                            <select name="label_id">
+                                @foreach($NERLabel as $NERLabel_single)
+                                @if($NERLabel_single->id==$NER->label_id)
+                                <option selected value="{{$NERLabel_single->id}}">{{$NERLabel_single->name}}</option>
+                                @else
+                                <option value="{{$NERLabel_single->id}}">{{$NERLabel_single->name}}</option>
+                                @endif
+                                @endforeach
+                            </select>
+                        </td>
+                        <td>
+                            <input type="text" name="name" autocomplete="off" value="{{$NER->name}}"
+                                onkeydown="if((event.ctrlKey || event.metaKey)&&event.keyCode==13){document.getElementById('submitCustomNER_{{$i}}').click();return false};">
+                        </td>
+                        <td>
+                            <input type="submit" id="submitCustomNER_{{$i}}" class="text-black" value="変更">
+                        </td>
+                    </form>
+                    <form class="" method="POST" action="/statistics/settings/named_entity/custom/delete">
+                        @csrf
+                        <td>
+                            <input type="hidden" name="customNER_id" value="{{$NER->id}}">
+                            <input type="submit" class="text-black" value="削除">
+                        </td>
+                    </form>
+                </tr>
+                @php
+                $i+=1;
+                @endphp
+                @endforeach
+                @endisset
 
-            {{-- 追加 --}}
-            <tr>
-                <form class="" method="POST" action="/statistics/settings/named_entity/custom/create">
-                    @csrf
-                    <td>
-                        {{$i}}
-                    </td>
-                    <td>
-                        <select name="label_id">
-                            <option disabled value>ラベルを選ぶ</option>
-                            @foreach($NERLabel as $NERLabel_single)
-                            <option value="{{$NERLabel_single->id}}">{{$NERLabel_single->name}}</option>
-                            @endforeach
-                        </select>
-                    </td>
-                    <td>
-                        <input type="text" name="name" autocomplete="off" placeholder="単語名"
-                            onkeydown="if((event.ctrlKey || event.metaKey)&&event.keyCode==13){document.getElementById('submitCustomNER_{{$i}}').click();return false};">
-                    </td>
-                    <td>
-                        <input type="submit" id="submitCustomNER_{{$i}}" class="text-black" value="追加">
-                    </td>
-                    <td>
-                        --
-                    </td>
-                </form>
-            </tr>
-        </table>
+                {{-- 追加 --}}
+                <tr>
+                    <form class="" method="POST" action="/statistics/settings/named_entity/custom/create">
+                        @csrf
+                        <td>
+                            {{$i}}
+                        </td>
+                        <td>
+                            <select name="label_id">
+                                <option disabled value>ラベルを選ぶ</option>
+                                @foreach($NERLabel as $NERLabel_single)
+                                <option value="{{$NERLabel_single->id}}">{{$NERLabel_single->name}}</option>
+                                @endforeach
+                            </select>
+                        </td>
+                        <td>
+                            <input type="text" name="name" autocomplete="off" placeholder="単語名"
+                                onkeydown="if((event.ctrlKey || event.metaKey)&&event.keyCode==13){document.getElementById('submitCustomNER_{{$i}}').click();return false};">
+                        </td>
+                        <td>
+                            <input type="submit" id="submitCustomNER_{{$i}}" class="text-black" value="追加">
+                        </td>
+                        <td>
+                            --
+                        </td>
+                    </form>
+                </tr>
+            </table>
+        </div>
     </div>
 
 
