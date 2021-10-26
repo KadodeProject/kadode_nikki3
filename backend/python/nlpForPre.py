@@ -7,9 +7,15 @@ from base import connectDBClass as database
 from nlp import meta_generate
 
 
+import spacy
+
+#固有表現ルール追加用
+from spacy.pipeline import EntityRuler
+
 
 
 def nlpForPre(user_id):
+    model="ja_ginza" #軽量モデルを使用。本当はtransformer採用型を使いたいけど、メモリが足りない。
 
     #DBインスタンス
     db = database.connectDB()
@@ -34,6 +40,17 @@ def nlpForPre(user_id):
         NERList.append({'label':singleNER[0],'pattern':singleNER[1]})
     for singleNER in packageNER:
         NERList.append({'label':singleNER[0],'pattern':singleNER[1]})
+    '''
+    固有表現追加の処理が激重なのでループ外で先に行っておく
+    '''
+    nlp = spacy.load(model)
+    ruler = EntityRuler(nlp)
+    config = {
+    'overwrite_ents': True
+    }
+    ruler = nlp.add_pipe('entity_ruler', config=config)
+    ruler.add_patterns(NERList)
+
 
     '''
     統計更新してから日記側に変更がないとき(updated_statistic_at<=udpated_at)→処理しない分岐
@@ -86,7 +103,7 @@ def nlpForPre(user_id):
             sentence:一文ごとの位置(係り受けで使う)
             '''
 
-            token,chunk,sentence=meta_generate.get_tokenChunkSentence_by_ginza(row)
+            token,chunk,sentence=meta_generate.get_tokenChunkSentence_by_ginza(row,nlp)
             # print(sentence)
             # print(token)
             # print(chunk
@@ -96,7 +113,7 @@ def nlpForPre(user_id):
             annotationは注釈、affiliationは所属という意味
             ↑誤字っているわけではない。
             '''
-            affiliation=meta_generate.get_affiliation_by_ginza(row,NERList)
+            affiliation=meta_generate.get_affiliation_by_ginza(row,nlp)
             # print(affiliation)
 
 
