@@ -78,6 +78,10 @@ body {
     color: var(--border-main-color);
 }
 
+.text-button-main-color {
+    color: var(--button-main-color);
+}
+
 body {
     background-color: var(--bg-main-color);
     overflow-x: hidden;

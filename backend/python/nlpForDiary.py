@@ -42,7 +42,7 @@ def nlpForDiary(user_id):
     dbに入っている日付2021-09-20 14:29:16
     '''
     for row in rows:
-        
+
         #個別日記のループ
         if(row[1]!=None):
              time_updated_at = row[1]#この時点でdatetime型になっている
@@ -56,7 +56,7 @@ def nlpForDiary(user_id):
             # データない場合
             time_statistics_updated_at = dt.strptime('1800-1-1 11:11:11','%Y-%m-%d %H:%M:%S')
 
-        logic_updated_at = dt.strptime('2021-10-21 21:00:22','%Y-%m-%d %H:%M:%S')
+        logic_updated_at = dt.strptime('2021-10-26 21:00:22','%Y-%m-%d %H:%M:%S')
         #統計の更新がロジック更新後に更新入っているか統計更新してから日記側に変更xがないときは変更しない
         #falseで実行なので、andに違和感覚えるが、これでいい。
         if(time_statistics_updated_at > logic_updated_at and time_statistics_updated_at>time_updated_at):

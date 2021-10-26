@@ -6,14 +6,14 @@
 @endsection
 @section('content')
 <div class="board-main mb-12 mt-12">
-    <div class="my-12 flex justify-center ">
+    {{-- <div class="my-12 flex justify-center ">
         <a href="/statistics/home" class="mt-12 ">
             <div class="w-60 h-30 rounded-2xl button-border-main-color border-2 flex items-center justify-center py-12">
                 <p class="kiwi-maru ">統計ホームに戻る</p>
                 <p class="material-icons">open_in_new</p>
             </div>
         </a>
-    </div>
+    </div> --}}
 
     <div class="statistic-content">
         @include('components.statisticHeading',['icon'=>'category','title'=>'パイプライン'])
@@ -65,7 +65,14 @@
 
     <div class="statistic-content">
         @include('components.statisticHeading',['icon'=>'category','title'=>'ユーザー固有表現ルール追加'])
-        <p class="text-center my-4 mx-2 kiwi-maru text-sm">ラベルについては関根の拡張固有表現階層 ver7.1.2をベースとしております。ご覧ください。</p>
+        <p class="text-center my-4 mx-2 kiwi-maru text-sm">ラベルについては関根の拡張固有表現階層 ver7.1.2をベースとしております。下記をご覧ください。</p>
+
+        <p class="text-center my-4 mx-2 kiwi-maru text-sm hover:text-button-main-color">
+            <a rel="norefferrer" target="_blank"
+                href="https://github.com/Usuyuki/kadode_nikki3/wiki/21_%E5%9B%BA%E6%9C%89%E8%A1%A8%E7%8F%BE%E3%83%AB%E3%83%BC%E3%83%AB%E3%81%AE%E3%83%A9%E3%83%99%E3%83%AB%E5%90%8D">
+                かどで日記wiki_固有表現ルールのラベル名
+            </a>
+        </p>
         {{-- 表示 --}}
         <table class="nlp-normal-table mx-auto" border="1">
             <tr>
@@ -164,7 +171,7 @@
             </tr>
         </table>
     </div>
-
+    <!--
     <div class="statistic-content">
         @include('components.statisticHeading',['icon'=>'category','title'=>'登録した固有表現のインポート'])
         <div class="mt-12 mb-4">
@@ -205,6 +212,7 @@
 
         </div>
     </div>
+-->
 
 
 </div>

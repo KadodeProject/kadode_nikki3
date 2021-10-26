@@ -17,7 +17,7 @@ patterns = [
 ruler.add_patterns(patterns)
 
 # 固有表現抽出の実行
-doc = nlp('ちょいまち')
+doc = nlp('JSを使った')
 for ent in doc.ents:
     print(
         ent.text+','+ # テキスト
