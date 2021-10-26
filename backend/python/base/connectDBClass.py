@@ -10,7 +10,7 @@ class connectDB:
     db=loadEnv.DB_DATABASE,
     charset="utf8"
     )
-    
+
     def __init__(self):
         self.conn=MySQLdb.connect(
         user=loadEnv.DB_USERNAME,
@@ -83,6 +83,42 @@ class connectDB:
         return rows
 
     """
+    データベースに接続して、ユーザーのカスタム固有表現取得
+    """
+    def get_customNER(self,user_id):
+        print('NERの取得')
+        # カーソルを取得する
+        cur= self.conn.cursor()
+        # クエリを実行する
+        #このクエリの順番は他所でrow[2]的な依存をしているので変更は要注意
+        sql = "SELECT l.label,n.name FROM custom_n_e_r_s n INNER JOIN n_e_r_labels l ON n.label_id=l.id WHERE n.user_id="+str(user_id)+";"
+        cur.execute(sql)
+        # 実行結果をすべて取得する
+        rows = cur.fetchall()
+        # カーソルを閉じる
+        cur.close()
+        self.conn.ping(True)#mysql2003エラー(サーバー接続切れ防止)
+        return rows
+
+    """
+    データベースに接続して、ユーザーの使用してるNLPパッケージを取得し、そのパッケージから固有表現のパッケージを探し出し、パッケージ固有表現を取得
+    """
+    def get_packageNER(self,user_id):
+        print('NERの取得')
+        # カーソルを取得する
+        cur= self.conn.cursor()
+        # クエリを実行する
+        #このクエリの順番は他所でrow[2]的な依存をしているので変更は要注意
+        sql = "SELECT l.label,n.name FROM nlp_package_users u INNER JOIN nlp_package_names p ON u.package_id=p.id AND p.genre_id=1 INNER JOIN package_n_e_r_s n ON p.id=n.package_id INNER JOIN n_e_r_labels l ON n.label_id=l.id WHERE u.user_id="+str(user_id)+";"
+        cur.execute(sql)
+        # 実行結果をすべて取得する
+        rows = cur.fetchall()
+        # カーソルを閉じる
+        cur.close()
+        self.conn.ping(True)#mysql2003エラー(サーバー接続切れ防止)
+        return rows
+
+    """
     解析済みのJSONデータを書き込む(user_diのみで決まるもの)
     """
     def set_statistics_json(self,user_id, column_name, value):
@@ -96,7 +132,7 @@ class connectDB:
         # カーソルを閉じる
         cur.close()
         self.conn.ping(True)#mysql2003エラー(サーバー接続切れ防止)
-    
+
     """
     解析済みのノーマルデータを書き込む(idで一意に決まりupdateで対応できる個別日記のもの用)
     """
@@ -191,7 +227,7 @@ class connectDB:
         self.conn.commit()
         # カーソルを閉じる
         cur.close()
-        
+
 
     """
     進捗状況--統計テーブルなど1ユーザー1テーブルのもの用
@@ -238,7 +274,7 @@ class connectDB:
         #ユーザーの統計全削除
         cur.execute(
                 'DELETE FROM {0} WHERE user_id = {1};'.format(column,user_id))
-       
+
         # 保存する
         self.conn.commit()
         # カーソルを閉じる
@@ -421,7 +457,7 @@ class connectDB:
 #     # カーソルを閉じる
 #     cur.close()
 #     conn.close()
-    
+
 
 # """
 # 進捗状況--統計テーブルなど1ユーザー1テーブルのもの用

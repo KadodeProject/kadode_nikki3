@@ -69,3 +69,27 @@ services:
       - MYSQL_USER=${DB_USER:-phper}
       - MYSQL_PASSWORD=${DB_PASS:-secret}
       - MYSQL_ROOT_PASSWORD=${DB_PASS:-secret}
+
+  schemaspy:
+    image: schemaspy/schemaspy
+    volumes:
+      - ./infra/docker/schemaspy/output:/output
+      - ./infra/docker/schemaspy/drivers:/drivers
+    command: >
+      java -jar schemaspy.jar
+      -t mysql
+      -dp /drivers
+      -host db
+      -port 3306
+      -db ${DB_NAME:-laravel_local}
+      -u ${DB_USER:-phper}
+      -p ${DB_PASS:-secret}
+      -s ${DB_NAME:-laravel_local}
+      -connprops allowPublicKeyRetrieval\\=false useSSL\\=false
+
+  schemaspy_web:
+    image: nginx:1.18-alpine
+    volumes:
+      - ./infra/docker/schemaspy/output:/usr/share/nginx/html
+    ports:
+      - ${SCHEMASPY_WEB_PORT:-8080}:80

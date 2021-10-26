@@ -11,7 +11,7 @@ use Illuminate\Support\Facades\Auth;
 
 use function PHPUnit\Framework\isEmpty;
 
-class showStatisticsController extends Controller
+class ShowStatisticsController extends Controller
 {
     /**
      * Undocumented function
@@ -121,6 +121,6 @@ class showStatisticsController extends Controller
             $oldest_diary_date="なし";
         }   
 
-        return view("diary/statistics/statisticsTop",["statistics"=>$statistic,'oldest_diary_date'=>$oldest_diary_date,'number_of_nikki'=>$number_of_nikki,'ended_diaries_count'=>$ended_diaries_count]);
+        return view("diary/statistics/topStatistics",["statistics"=>$statistic,'oldest_diary_date'=>$oldest_diary_date,'number_of_nikki'=>$number_of_nikki,'ended_diaries_count'=>$ended_diaries_count]);
     }
 }
