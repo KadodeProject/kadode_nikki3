@@ -64,6 +64,7 @@ def nlpForMonthAndYear(user_id):
             'emotions_raw':{},
             'emotions_counter_for_raw':{},
             'word_counts_raw':{},
+            'diary_counter':{},
             'noun_rank':[],
             'adjective_rank':[],
             'important_words':[],
@@ -75,16 +76,16 @@ def nlpForMonthAndYear(user_id):
 
 
 
-    
+
     #その月のデータが既にあったら更新しない
-    
+
 
 
     '''
     配列を先に作る
     nullの処理が面倒すぎるので。
     '''
-    
+
     '''
     統計更新してから日記側に変更がないとき(updated_statistic_at<=updated_at)→処理しない分岐
     dbに入っている日付2021-09-20 14:29:16
@@ -92,7 +93,7 @@ def nlpForMonthAndYear(user_id):
     id,updated_at,updated_statistic_at,date,char_length,emotions,classification,important_words,special_people
     '''
     for row in rows:
-        
+
         #個別日記のループ
         # if(row[1]!=None):
         #      time_updated_at = row[1]#この時点でdatetime型になっている
@@ -142,7 +143,7 @@ def nlpForMonthAndYear(user_id):
             value:
             }
             '''
-            yMonth_dicList[date_label]['emotions'].append({   
+            yMonth_dicList[date_label]['emotions'].append({
                 "date":day,
                 "value":value_emotions,
             })
@@ -165,25 +166,27 @@ def nlpForMonthAndYear(user_id):
             count:
             }
             '''
-            yMonth_dicList[date_label]['word_counts'].append({   
+            yMonth_dicList[date_label]['word_counts'].append({
                 "date":day,
                 "value":value_char_length,
             })
             #年別用　無ければ作成、あれば足す
             if date_label in year_dicList[year]['word_counts_raw'].keys():
                 year_dicList[year]['word_counts_raw'][date_label]+=value_char_length
+                year_dicList[year]['diary_counter'][date_label]+=1
             else:
                 year_dicList[year]['word_counts_raw'][date_label]=value_char_length
+                year_dicList[year]['diary_counter'][date_label]=1
 
 
             '''
-            名詞多い順3 
+            名詞多い順3
             noun_rank
             {
             name:
             count:
             }
-            
+
             形容詞多い順3
             adjective_rank
             {
@@ -252,7 +255,7 @@ def nlpForMonthAndYear(user_id):
             year_dicList[year]['classifications'].append(value_classification)
 
 
-               
+
     #forループここまで
 
     '''
@@ -292,7 +295,7 @@ def nlpForMonthAndYear(user_id):
         noun_rank_all = sorted(noun_rank_raw.items(), key=lambda x:x[1],reverse=True)#値の大きい順にソート
         noun_rank=noun_rank_all[0:10]#上位10個まで
         #代入
-        # print(noun_rank)    
+        # print(noun_rank)
         yMonth_dic['noun_rank']=noun_rank
         '''
         形容詞
@@ -301,7 +304,7 @@ def nlpForMonthAndYear(user_id):
         adjective_rank_all = sorted(adjective_rank_raw.items(), key=lambda x:x[1],reverse=True)#値の大きい順にソート
         adjective_rank=adjective_rank_all[0:10]#上位10個まで
         #代入
-        # print(adjective_rank)    
+        # print(adjective_rank)
         yMonth_dic['adjective_rank']=adjective_rank
         '''
         important_words
@@ -310,7 +313,7 @@ def nlpForMonthAndYear(user_id):
         important_words_all = sorted(important_words_raw.items(), key=lambda x:x[1],reverse=True)#値の大きい順にソート
         important_words=important_words_all[0:10]#上位10個まで
         #代入
-        # print(noun_rank)    
+        # print(noun_rank)
         yMonth_dic['important_words']=important_words
         '''
         special_people
@@ -319,7 +322,7 @@ def nlpForMonthAndYear(user_id):
         special_people_all = sorted(special_people_raw.items(), key=lambda x:x[1],reverse=True)#値の大きい順にソート
         special_people=special_people_all[0:10]#上位10個まで
         #代入
-        # print(noun_rank)    
+        # print(noun_rank)
         yMonth_dic['special_people']=special_people
         '''
         classification
@@ -381,18 +384,18 @@ def nlpForMonthAndYear(user_id):
         #感情を整形
         for y_m, value in year_dic['emotions_raw'].items():
             this_diary=year_dic['emotions_counter_for_raw'][y_m]
-            year_dic['emotions'].append({   
+            year_dic['emotions'].append({
                 "date":y_m,
                 "value":value/this_diary,
         })
-        # print( year_dic['emotions'])
-        #文字数
+        #文字数 配列から辞書型への整形
         for y_m, value in year_dic['word_counts_raw'].items():
-            year_dic['word_counts'].append({   
+            print()
+            year_dic['word_counts'].append({
                 "date":y_m,
-                "value":value,
+                "value":round(value/year_dic['diary_counter'][y_m],2),#平均文字数に変換
         })
-        # print( year_dic['word_counts'])
+        print( year_dic['word_counts'])
         '''
         ソートして多いものだけ取り出す処理
         '''
@@ -403,7 +406,7 @@ def nlpForMonthAndYear(user_id):
         noun_rank_all = sorted(noun_rank_raw.items(), key=lambda x:x[1],reverse=True)#値の大きい順にソート
         noun_rank=noun_rank_all[0:20]#上位20個まで
         #代入
-        # print(noun_rank)    
+        # print(noun_rank)
         year_dic['noun_rank']=noun_rank
         '''
         形容詞
@@ -412,7 +415,7 @@ def nlpForMonthAndYear(user_id):
         adjective_rank_all = sorted(adjective_rank_raw.items(), key=lambda x:x[1],reverse=True)#値の大きい順にソート
         adjective_rank=adjective_rank_all[0:20]#上位20個まで
         #代入
-        # print(adjective_rank)    
+        # print(adjective_rank)
         year_dic['adjective_rank']=adjective_rank
         '''
         important_words
@@ -421,7 +424,7 @@ def nlpForMonthAndYear(user_id):
         important_words_all = sorted(important_words_raw.items(), key=lambda x:x[1],reverse=True)#値の大きい順にソート
         important_words=important_words_all[0:20]#上位20個まで
         #代入
-        # print(noun_rank)    
+        # print(noun_rank)
         year_dic['important_words']=important_words
         '''
         special_people
@@ -430,7 +433,7 @@ def nlpForMonthAndYear(user_id):
         special_people_all = sorted(special_people_raw.items(), key=lambda x:x[1],reverse=True)#値の大きい順にソート
         special_people=special_people_all[0:20]#上位20個まで
         #代入
-        # print(noun_rank)    
+        # print(noun_rank)
         year_dic['special_people']=special_people
         '''
         classification
@@ -442,7 +445,7 @@ def nlpForMonthAndYear(user_id):
 
 
 
-        
+
 
         '''
         DB更新
@@ -481,4 +484,4 @@ def nlpForMonthAndYear(user_id):
     print("nlpForMonth終了")
 
 if __name__ == '__main__':
-    nlpForMonthAndYear(2)
+    nlpForMonthAndYear(1)

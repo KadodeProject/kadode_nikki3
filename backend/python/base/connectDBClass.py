@@ -49,7 +49,6 @@ class connectDB:
     データベースに接続して、引数のユーザーIDのすべての日記の自然言語Pre情報を取得
     """
     def get_all_diariesPre_from_user(self,user_id):
-        print('日記の取得')
         # カーソルを取得する
         cur= self.conn.cursor()
         # クエリを実行する
@@ -68,7 +67,6 @@ class connectDB:
     データベースに接続して、引数のユーザーIDのすべての日記の自然言語完成情報を取得
     """
     def get_all_diariesNlpFin_from_user(self,user_id):
-        print('日記の取得')
         # カーソルを取得する
         cur= self.conn.cursor()
         # クエリを実行する
@@ -81,12 +79,27 @@ class connectDB:
         cur.close()
         self.conn.ping(True)#mysql2003エラー(サーバー接続切れ防止)
         return rows
+    """
+    データベースに接続して、年の統計データを取得する
+    """
+    def get_all_yearStatistics_from_user(self,user_id):
+        # カーソルを取得する
+        cur= self.conn.cursor()
+        # クエリを実行する
+        #このクエリの順番は他所でrow[2]的な依存をしているので変更は要注意
+        sql = "SELECT year,emotions,noun_rank,adjective_rank,importants_words,special_people,classifications FROM diaries WHERE user_id="+str(user_id)+";"
+        cur.execute(sql)
+        # 実行結果をすべて取得する
+        rows = cur.fetchall()
+        # カーソルを閉じる
+        cur.close()
+        self.conn.ping(True)#mysql2003エラー(サーバー接続切れ防止)
+        return rows
 
     """
     データベースに接続して、ユーザーのカスタム固有表現取得
     """
     def get_customNER(self,user_id):
-        print('NERの取得')
         # カーソルを取得する
         cur= self.conn.cursor()
         # クエリを実行する
@@ -104,7 +117,6 @@ class connectDB:
     データベースに接続して、ユーザーの使用してるNLPパッケージを取得し、そのパッケージから固有表現のパッケージを探し出し、パッケージ固有表現を取得
     """
     def get_packageNER(self,user_id):
-        print('NERの取得')
         # カーソルを取得する
         cur= self.conn.cursor()
         # クエリを実行する
@@ -316,7 +328,7 @@ class connectDB:
 #     charset="utf8"
 #     )
 #     conn.ping(True)
-#     print('日記の取得')
+#
 #     # カーソルを取得する
 #     cur= conn.cursor()
 #     # クエリを実行する
@@ -342,7 +354,7 @@ class connectDB:
 #     charset="utf8"
 #     )
 #     conn.ping(True)
-#     print('日記の取得')
+#
 #     # カーソルを取得する
 #     cur= conn.cursor()
 #     # クエリを実行する
