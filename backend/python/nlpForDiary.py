@@ -45,7 +45,7 @@ def nlpForDiary(user_id):
 
         #個別日記のループ
         if(row[1]!=None):
-             time_updated_at = row[1]#この時点でdatetime型になっている
+            time_updated_at = row[1]#この時点でdatetime型になっている
         else:
             # データない場合
             time_updated_at = time.strptime('1800-1-1 11:11:11', '%Y-%m-%d %H:%M:%S')

@@ -9,6 +9,12 @@
 <div class="mx-auto px-4 mb-12" style="max-width: 1200px">
 
     @include('components.noLogIn.releaseNote',
+    ['title'=>'統計更新での全日記進捗リセットに関するバグ',
+    'date'=>'2021年10月26日',
+    'genre'=>'Fix',
+    'explain'=>'任意のユーザーが統計更新を行った際に、全ユーザーの日記の進捗がリセットされ統計情報が表示されなくなるバグを修正しました。
+    '])
+    @include('components.noLogIn.releaseNote',
     ['title'=>'固有表現ルールをまとめたパッケージを追加',
     'date'=>'2021年10月26日',
     'genre'=>'Feature',

@@ -72,7 +72,7 @@ def nlpForPre(user_id):
             continue
         else:
             print(str(row[0])+"pre処理")
-            db.set_multiple_progress(row[0],"diaries",10)
+            db.set_single_progress(row[0],"diaries",10)
 
             '''
             char_length:日記の文字数
