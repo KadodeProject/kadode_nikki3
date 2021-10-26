@@ -37,6 +37,9 @@ body {
 .border-border-main-color {
     border-color: var(--border-main-color);
 }
+.border-button-main-color {
+    border-color: var(--button-main-color);
+}
 .button-bg-main-color {
     background-color: var(--button-main-color);
 }
@@ -689,7 +692,7 @@ td {
 
 .nlp-normal-package {
     width: 250px;
-    height: 200px;
+    height: 300px;
     color: var(--text-main-color);
     border: 1px solid var(--button-main-color);
     border-radius: 3px;

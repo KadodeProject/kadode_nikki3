@@ -4,3 +4,4 @@ RegisterEntityRule.py
 user.dic
 mysql-connector-java-8.0.27.jar
 infra/docker/schemaspy/output/*
+tmp

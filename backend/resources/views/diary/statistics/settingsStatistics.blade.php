@@ -15,11 +15,6 @@
         </a>
     </div> --}}
 
-    <div class="statistic-content">
-        @include('components.statisticHeading',['icon'=>'category','title'=>'パイプライン'])
-        @component('components.statistics.statisticOverallView')
-        @endcomponent
-    </div>
 
     <div class="statistic-content">
         @include('components.statisticHeading',['icon'=>'category','title'=>'固有表現パッケージの追加'])
@@ -54,6 +49,11 @@
                 @endif
                 {{-- ユーザー保持のif--}}
                 <div class="nlp-normal-package kiwi-maru text-center">
+                    @if (in_array($packageObj->id,$havingPackageList))
+                    <p class="text-sm my-2 p-2 border-2 button-bg-main-color">使用中</p>
+                    @else
+                    <p class="text-sm my-2 p-2 border-2 bg-logo-main-color">未使用</p>
+                    @endif
                     <p class="text-sm my-2">[{{$packageObj->genre}}]</p>
                     <p class="material-icons">inventory</p>
                     <p class="text-lg my-2">{{$packageObj->name}}</p>
@@ -66,6 +66,8 @@
             @endisset
         </div>
     </div>
+
+
 
     <div class="statistic-content">
         @include('components.statisticHeading',['icon'=>'category','title'=>'ユーザー固有表現ルール追加'])
@@ -174,6 +176,13 @@
                 </form>
             </tr>
         </table>
+    </div>
+
+
+    <div class="statistic-content">
+        @include('components.statisticHeading',['icon'=>'category','title'=>'パイプライン'])
+        @component('components.statistics.statisticOverallView')
+        @endcomponent
     </div>
     <!--
     <div class="statistic-content">

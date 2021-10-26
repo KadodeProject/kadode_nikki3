@@ -30,7 +30,7 @@ class SettingsStatisticsController extends Controller
         //ラベルIDからラベル名を取得→不要
 
         //パッケージ取得
-        $NlpPackageName=NlpPackageName::get()->all();
+        $NlpPackageName=NlpPackageName::withoutGlobalScopes()->get()->all();
 
         //パッケージジャンル取得
         foreach($NlpPackageName as $packageObj){
