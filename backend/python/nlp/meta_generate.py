@@ -3,18 +3,12 @@
 # from janome.tokenfilter import *
 # from janome.tokenizer import Tokenizer
 # from janome.charfilter import *
-import spacy
-
-#固有表現ルール追加用
-from spacy.pipeline import EntityRuler
-
-model="ja_ginza" #軽量モデルを使用。本当はtransformer採用型を使いたいけど、メモリが足りない。
 
 
 """
 個別に日記の分析(diaryテーブルのtokenカラム生成用)
 """
-def get_tokenChunkSentence_by_ginza(row:list):
+def get_tokenChunkSentence_by_ginza(row:list,nlp):
     # 返す値
     '''
             nlp_token[token.i]={
@@ -35,7 +29,6 @@ def get_tokenChunkSentence_by_ginza(row:list):
     sentence_num=0#文の番号
 
 
-    nlp = spacy.load(model)
     doc = nlp(row[2])
 
     for sent in doc.sents:
@@ -132,24 +125,9 @@ def get_tokenChunkSentence_by_ginza(row:list):
     'form':ent.label_,#抽象分類
 }
 '''
-def get_affiliation_by_ginza(row:list,NERList):
+def get_affiliation_by_ginza(row:list,nlp):
     nlp_affiliation={}
     affiliation_num=0#文の番号
-    nlp = spacy.load(model)
-
-
-
-    """
-    固有表現ルール追加
-    """
-    ruler = EntityRuler(nlp)
-    config = {
-    'overwrite_ents': True
-    }
-    ruler = nlp.add_pipe('entity_ruler', config=config)
-    ruler.add_patterns(NERList)
-
-
 
     doc = nlp(row[2])
     for ent in doc.ents:

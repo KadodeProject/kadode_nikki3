@@ -44,8 +44,6 @@ class SettingsStatisticsController extends Controller
         foreach($havingPackageList as $havingPackageObj){
             $havingPackage[]=$havingPackageObj->package_id;
         }
-        \Log::debug($havingPackage);
-
         return view('diary/statistics/settingsStatistics',['CustomNER' => $CustomNER,'NERLabel' =>$NERLabel,'NlpPackageName' =>$NlpPackageName,'havingPackageList' =>$havingPackage]);
     }
 
