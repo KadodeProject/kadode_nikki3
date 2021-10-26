@@ -5,6 +5,9 @@
 # from janome.charfilter import *
 import spacy
 
+#固有表現ルール追加用
+from spacy.pipeline import EntityRuler
+
 model="ja_ginza" #軽量モデルを使用。本当はtransformer採用型を使いたいけど、メモリが足りない。
 
 
@@ -34,7 +37,7 @@ def get_tokenChunkSentence_by_ginza(row:list):
 
     nlp = spacy.load(model)
     doc = nlp(row[2])
-    
+
     for sent in doc.sents:
 
         '''
@@ -81,7 +84,7 @@ def get_tokenChunkSentence_by_ginza(row:list):
                 'dependencyForId':token.head.i,#係り先
                 'dependencyForTxt':token.head.text,#係り先の単語(本番では、日記の更新かかると引っ張ってこれなくなるので。)
             }
-            ''' 
+            '''
             nlp_chunk[token.i]={
                 # 'dependencyTag':token.pos_,#形態論情報→品詞は別で持っているので不要
                 #場所の情報無いのは、形態素解析のidと共通なので、そこから取ってこれるから
@@ -90,7 +93,7 @@ def get_tokenChunkSentence_by_ginza(row:list):
                 'dependencyForId':token.head.i,#係り先
                 'dependencyForTxt':token.head.text,#係り先の単語(本番では、日記の更新かかると引っ張ってこれなくなるので。)
             }
-            
+
             where_chr+=len(token.orth_)
     return nlp_token,nlp_chunk,nlp_sentence
 
@@ -121,7 +124,7 @@ def get_tokenChunkSentence_by_ginza(row:list):
     # token{'日記id':{},'日記id':{}……}
 
 '''
-アノテーション抽出
+固有表現抽出抽出
 {
     'start':ent.start_char,#開始文字位置
     'end':ent.end_char,#終了文字位置z
@@ -129,10 +132,25 @@ def get_tokenChunkSentence_by_ginza(row:list):
     'form':ent.label_,#抽象分類
 }
 '''
-def get_affiliation_by_ginza(row:list):
+def get_affiliation_by_ginza(row:list,NERList):
     nlp_affiliation={}
     affiliation_num=0#文の番号
     nlp = spacy.load(model)
+
+
+
+    """
+    固有表現ルール追加
+    """
+    ruler = EntityRuler(nlp)
+    config = {
+    'overwrite_ents': True
+    }
+    ruler = nlp.add_pipe('entity_ruler', config=config)
+    ruler.add_patterns(NERList)
+
+
+
     doc = nlp(row[2])
     for ent in doc.ents:
         # print('ent.text, ent.start_char, ent.end_char, ent.label_')
@@ -144,5 +162,5 @@ def get_affiliation_by_ginza(row:list):
             'form':ent.label_,#抽象分類
         }
         affiliation_num+=1
-    
+
     return nlp_affiliation

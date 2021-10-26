@@ -1,4 +1,4 @@
-FROM php:8.0-fpm-buster
+FROM php:7.4-fpm-buster
 LABEL maintainer="ucan-lab <yes@u-can.pro>"
 SHELL ["/bin/bash", "-oeux", "pipefail", "-c"]
 
@@ -15,7 +15,7 @@ ENV TZ=UTC \
 COPY --from=composer:2.0 /usr/bin/composer /usr/bin/composer
 
 RUN apt-get update && \
-  apt-get -y install git libicu-dev libonig-dev libzip-dev unzip locales python3-pip libmariadb-dev vim cpulimit htop&& \
+  apt-get -y install git libicu-dev libonig-dev libzip-dev unzip locales python3-pip libmariadb-dev vim cpulimit htop cron default-mysql-client && \
   apt-get clean && \
   rm -rf /var/lib/apt/lists/* && \
   locale-gen en_US.UTF-8 && \
@@ -27,6 +27,7 @@ RUN apt-get update && \
   pip3 install --upgrade pip && \
   pip3 install janome python-dotenv mysqlclient ahocorapy && \
   pip3 install -U ginza ja-ginza 
+
 
 COPY ./infra/docker/php/php-fpm.d/zzz-www.conf /usr/local/etc/php-fpm.d/zzz-www.conf
 COPY ./infra/docker/php/php.ini /usr/local/etc/php/php.ini

@@ -1,5 +1,6 @@
 @isset($ended_diaries_count)
     <p class="text-center kiwi-maru mt-12 mb-2">個別日記解析状況</p>
+    <p class="text-center text-xs kiwi-maru my-2">※初回や統計システム更新時は処理の大きい個別日記の基礎解析を行うため、時間を要します。</p>
     <div style="max-width:70%" class="mx-auto">
         <div class="relative pt-1">
             <div class="flex mb-2 items-center justify-between">

@@ -14,15 +14,29 @@ https://laravel.com/
 
 ## Goodby CSV
 
+※csv 周りで使用
+
 Copyright (c) 2018 Craftsman Software, Inc.
 
 Released under the MIT license
 
 https://github.com/goodby/csv/blob/master/LICENSE
 
+## laravel-backup
+
+※DB バックアップで使用
+
+Copyright (c) Spatie bvba info@spatie.be
+
+Released under the MIT license
+
+https://github.com/spatie/laravel-backup/blob/main/LICENSE.md
+
 # JavaScript ライブラリ
 
 ## Chart.js
+
+※グラフ描画ライブラリ
 
 Copyright (c) 2014-2021 Chart.js Contributors
 
@@ -56,11 +70,15 @@ https://github.com/nagix/chartjs-plugin-colorschemes/blob/master/LICENSE.md
 
 ## python-dotenv
 
+※.env から値を読み取るライブラリ
+
 Copyright (c) 2014, Saurabh Kumar
 
 https://github.com/theskumar/python-dotenv/blob/master/LICENSE
 
 ## mysqlclient
+
+※Python で mysql を操作するライブラリ
 
 © Copyright 2012, Andy Dustman Revision 6c67620b.
 
@@ -69,6 +87,8 @@ GNU General Public License v2.0
 https://github.com/PyMySQL/mysqlclient/blob/main/LICENSE
 
 ## janome
+
+※Mecab ベース形態素解析のライブラリ
 
 Copyright(C) 2020, Tomoko Uchida. All rights reserved.
 
@@ -79,6 +99,8 @@ https://github.com/mocobeta/janome/blob/master/LICENSE.txt
 https://mocobeta.github.io/janome/
 
 ## GiNZA
+
+※自然言語処理ライブラリ
 
 Copyright (c) 2019 Megagon Labs
 
@@ -115,6 +137,14 @@ Copyright (c) August 14, 2015 Charlyn G
 Released under the MIT license
 
 http://opensource.org/licenses/mit-license.php
+
+# その他ソフトウェア
+
+## Schema Spy
+
+https://github.com/schemaspy/schemaspy
+
+こちらは LGPL ライセンスですが、中に組み込んでつかていないため、ライセンス適応外です。
 
 # 辞書
 

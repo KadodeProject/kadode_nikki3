@@ -27,7 +27,7 @@ class CreateDiariesTable extends Migration
             $table->json("sentence")->nullable()->comment("一文ごとの位置(係り受けで使う)");
             $table->json("chunk")->nullable()->comment("係り受け構造");
             $table->json("token")->nullable()->comment("形態素分析された中身を格納 品詞(POS)、原形(lemma)などが存在");
-            $table->json("affiliation")->nullable()->comment("アノテーション");
+            $table->json("affiliation")->nullable()->comment("固有表現抽出");
             $table->unsignedBigInteger("char_length")->nullable()->comment("文字数");
             
             //nlp表示系

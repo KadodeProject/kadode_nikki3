@@ -93,7 +93,7 @@
             <section class=" kiwi-maru">
                 <h3 class="text-2xl float-left text-center">人物</h3>
                 <div class="cursor-pointer hatena_hover text-sm w-6 h-6 border rounded-full border-border-main-color flex items-center justify-center">?</div>
-                <div class="explain_hatena">アノテーションを用いて本文から抽出した、日記でよく登場する人物です。</div>
+                <div class="explain_hatena">固有表現抽出を用いて本文から抽出した、日記でよく登場する人物です。</div>
             </section>
             @component('components.statistics.rank.top3Rank',['ranked_array'=>$ArchiveData->special_people])
             @endcomponent
@@ -102,7 +102,7 @@
             <section class=" kiwi-maru">
                 <h3 class="text-2xl float-left text-center">重要そうな単語</h3>
                 <div class="cursor-pointer hatena_hover text-sm w-6 h-6 border rounded-full border-border-main-color flex items-center justify-center">?</div>
-                <div class="explain_hatena">アノテーションを用いて本文から抽出した、固有表現の登場数の多い単語です。</div>
+                <div class="explain_hatena">固有表現抽出を用いて本文から抽出した、固有表現の登場数の多い単語です。</div>
             </section>
             @component('components.statistics.rank.top3Rank',['ranked_array'=>$ArchiveData->important_words])
             @endcomponent
