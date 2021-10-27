@@ -80,6 +80,7 @@
                     <p class="text-lg my-2 ml-4 text-center kiwi-maru">前回データ更新日 : {{$statistics->updated_at}}</p>
         </div>
     </div>
+    @if($statistics->statistic_progress==100)
     <div class="statistic-content">
         <div class="flex justify-center flex-wrap ">
             <div class="md:w-1/2">
@@ -128,7 +129,6 @@
     <div class="statistic-content">
         <!-- ここより自然言語処理の部 -->
         @include('components.statisticHeading',['icon'=>'manage_search','title'=>'テキストマイニング'])
-        @if($statistics->statistic_progress==100)
         <div class="flex justify-center flex-wrap ">
             <div class="md:w-1/2">
                 <h3 class="my-4 text-2xl text-center kiwi-maru">全日記の中でよく使われる名詞Top50</h3>
@@ -159,8 +159,8 @@
                 style="margin-left:0.25em">hourglass_bottom</span></p>
         @else
         <p class="text-center my-12 text-3xl">自然言語処理が機能していません</p>
-        @endif
     </div>
+    @endif
     @endempty
     <div>
     </div>
