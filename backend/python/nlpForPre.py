@@ -1,4 +1,5 @@
 import time
+import sys
 
 from datetime import datetime as dt
 
@@ -77,7 +78,7 @@ def nlpForPre(user_id):
         # print(type(time_updated_at))
         # print(type(time_statistics_updated_at))
 
-        logic_updated_at = dt.strptime('2021-10-26 21:00:22','%Y-%m-%d %H:%M:%S')
+        logic_updated_at = dt.strptime('2021-10-27 21:00:22','%Y-%m-%d %H:%M:%S')
         # print(logic_updated_at)
         # print(time_statistics_updated_at)
         #統計の更新がロジック更新後に更新入っているか統計更新してから日記側に変更xがないときは変更しない
@@ -136,4 +137,6 @@ def nlpForPre(user_id):
     #日記数を返す(トータルの条件分岐で使用)
     return number_of_diaries
 if __name__ == '__main__':
-    nlpForPre(1)
+    from_php = sys.argv#php側の引数
+    user_id=from_php[1]
+    nlpForPre(user_id)

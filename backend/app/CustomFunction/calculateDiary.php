@@ -1,5 +1,9 @@
 <?php
 
+/**
+ * これは現在使っていない関数
+ * 統計情報をPHP側で処理していた時代の遺構(日記の文字数推移や執筆率で使用していた)
+ */
 namespace App\CustomFunction;
 
 use Carbon\Carbon;
@@ -30,7 +34,7 @@ class calculateDiary
         $keyName=$diaryDate->year.($diaryDate->month >=10?$diaryDate->month:"0".$diaryDate->month );
         $month_diaries[$keyName]=isSet( $month_diaries[$keyName])? $month_diaries[$keyName]+1:1;
         $month_words[$keyName]=isSet( $month_words[$keyName])?$month_words[$keyName]+$diaryCharacters:$diaryCharacters;
-        
+
     }
     //配列ソート(普通にやると2019年9月の次が2020年1月になり、2桁目の日付が全部ずれる)
     //→どう頑張っても正しくソートされないので諦め
