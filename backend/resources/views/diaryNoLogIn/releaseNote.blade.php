@@ -9,6 +9,12 @@
 <div class="mx-auto px-4 mb-12" style="max-width: 1200px">
 
     @include('components.noLogIn.releaseNote',
+    ['title'=>'自然言語処理結果を総統計でも表示',
+    'date'=>'2021年10月27日',
+    'genre'=>'Feature',
+    'explain'=>'これまで年別、月別、個別にのみ表示されていた「重要そうな言葉」や「人物」などの自然言語処理情報の総計版が統計ページよりご覧いただけるようになりました。それに伴いリファクタリングを行い、若干の処理速度向上も図りました。
+    '])
+    @include('components.noLogIn.releaseNote',
     ['title'=>'統計更新での全日記進捗リセットに関するバグ',
     'date'=>'2021年10月26日',
     'genre'=>'Fix',
