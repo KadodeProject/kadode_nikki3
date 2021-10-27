@@ -1,9 +1,7 @@
 
 
-
-import time
+import sys
 import json
-import collections #配列の要素カウント
 from datetime import datetime as dt
 from datetime import timezone,timedelta
 
@@ -12,15 +10,6 @@ from datetime import timezone,timedelta
 
 from base import connectDBClass as database
 
-from nlp import special_people_extract
-from nlp import classification_analysis
-from nlp import importantWords_analysis
-from nlp import emotions_analysis
-from nlp import causeEffect_analysis
-from nlp import dependency_analysis
-from nlp import cosSimilarity_analysis
-
-from nlp.dic import dic_to_trie
 
 def nlpForTotal(user_id):
     #DBインスタンス
@@ -40,385 +29,126 @@ def nlpForTotal(user_id):
 
 
     '''
-    year,emotions,noun_rank,adjective_rank,importants_words,special_people,classifications
+    year,emotions,word_counts,noun_asc,adjective_asc,important_words,special_people,classifications
     '''
-    total_noun_rank={}
-    total_noun_rank={}
-    total_noun_rank={}
-    total_noun_rank={}
-    total_noun_rank={}
+    total_month_words={}
+    total_month_diaries={}
+    total_emotions={}
+
+    total_classifications={}
+    total_important_words={}
+    total_special_people={}
+    total_noun_asc={}
+    total_adjective_asc={}
     for yearData in yearDataList:
-        if(0):
-            #処理不要 リーダーブルコードに乗ってたやつ
-            print(str(yearData[0])+"スキップ")
-            continue
-        else:
-            print(str(yearData[0])+"Diary処理")
-            # nlp関係はNoneがあるので注
-            #jsonはdecodeする
-            value_year=yearData[0]
-            value_emotions=json.loads(yearData[1])
-            value_noun_rank=json.loads(yearData[2])
-            value_adjective_rank=json.loads(yearData[3])
-            value_importants_words=json.loads(yearData[4])
-            value_special_people=json.loads(yearData[5])
-            value_classifications=json.loads(yearData[6])
+        print(str(yearData[0])+"年処理")
+        # nlp関係はNoneがあるので注
+        #jsonはdecodeする
+        value_year=yearData[0]
+        value_emotions=json.loads(yearData[1])
+        value_word_counts=json.loads(yearData[2])
+        value_noun_asc=json.loads(yearData[3])
+        value_adjective_asc=json.loads(yearData[4])
+        value_important_words=json.loads(yearData[5])
+        value_special_people=json.loads(yearData[6])
+        value_classifications=json.loads(yearData[7])
 
 
-            '''
-            年月日に分ける
-            '''
-            date=value_date.split('-')
-            # 辞書のラベル用
-            date_label=date[0]+"-"+date[1]
-            year=date[0]
-            day=date[2]
 
-            '''
-            感情まとめ
-            emotions
-            {
-            date:
-            value:
-            }
-            '''
-            yMonth_dicList[date_label]['emotions'].append({
-                "date":day,
-                "value":value_emotions,
-            })
-            #年別用　無ければ作成、あれば足す
-            if date_label in year_dicList[year]['emotions_raw'].keys():
-                year_dicList[year]['emotions_raw'][date_label]+=value_emotions
-                year_dicList[year]['emotions_counter_for_raw'][date_label]+=1
+        #月別の文字数と日記数
+        total_words=0
+        total_diaries=0
+        for word_count in value_word_counts:
+            total_month_words[word_count["date"]]=word_count["words"]
+            total_month_diaries[word_count["date"]]=word_count["diary"]
+            total_words+=word_count["words"]
+            total_diaries+=word_count["diary"]
+        #月別の感情数推移
+        for emotion in value_emotions:
+            total_emotions[emotion["date"]]=emotion["value"]
+
+        #NLP情報足していく、そのままだと[名前,数]で順位並び替え難しいので、名前:数の辞書型にする
+        for classification in value_classifications:
+            #すでに存在したら加算、なかったら代入
+            if(classification[0] in total_classifications):
+                total_classifications[classification[0]]+=classification[1]
             else:
-                year_dicList[year]['emotions_raw'][date_label]=value_emotions
-                year_dicList[year]['emotions_counter_for_raw'][date_label]=1
+                total_classifications[classification[0]]=classification[1]
 
-            #足すだけなので処理不要
-
-
-            '''
-            文字数まとめ
-            word_counts
-            {
-            date:
-            count:
-            }
-            '''
-            yMonth_dicList[date_label]['word_counts'].append({
-                "date":day,
-                "value":value_char_length,
-            })
-            #年別用　無ければ作成、あれば足す
-            if date_label in year_dicList[year]['word_counts_raw'].keys():
-                year_dicList[year]['word_counts_raw'][date_label]+=value_char_length
+        for important_word in value_important_words:
+            #すでに存在したら加算、なかったら代入
+            if(important_word[0] in total_important_words):
+                total_important_words[important_word[0]]+=important_word[1]
             else:
-                year_dicList[year]['word_counts_raw'][date_label]=value_char_length
+                total_important_words[important_word[0]]=important_word[1]
 
+        for special_person in value_special_people:
+            #すでに存在したら加算、なかったら代入
+            if(special_person[0] in total_special_people):
+                total_special_people[special_person[0]]+=special_person[1]
+            else:
+                total_special_people[special_person[0]]=special_person[1]
 
-            '''
-            名詞多い順3
-            noun_rank
-            {
-            name:
-            count:
-            }
+        for noun_asc in value_noun_asc:
+            #すでに存在したら加算、なかったら代入
+            if(noun_asc[0] in total_noun_asc):
+                total_noun_asc[noun_asc[0]]+=noun_asc[1]
+            else:
+                total_noun_asc[noun_asc[0]]=noun_asc[1]
 
-            形容詞多い順3
-            adjective_rank
-            {
-            name:
-            count:
-            }
-
-            '''
-            #token複数あるので、ループで処理
-            for individual_token in value_token.values():
-                #残り
-                '''
-                dict
-                {
-                    'lemma':#基本形
-                    'xPOSTag':#言語依存の品詞(動詞-一般的な)
-                }
-                '''
-                if("名詞" in individual_token['xPOSTag'] ):
-                    yMonth_dicList[date_label]['noun_rank'].append(individual_token['lemma'])
-                    year_dicList[year]['noun_rank'].append(individual_token['lemma'])
-                elif("形容詞" in individual_token['xPOSTag']):
-                    yMonth_dicList[date_label]['adjective_rank'].append(individual_token['lemma'])
-                    year_dicList[year]['adjective_rank'].append(individual_token['lemma'])
-
-
-            '''
-            重要そうな単語3
-            important_words
-            {
-            name:
-            count:
-            }
-            '''
-            for important_word in value_important_words:
-                #残り
-                #同一要素数でカウントするため、count枠の数だけ要素を追加する(この方が計算しやすい)
-                for x in range(important_word['count']):
-                    yMonth_dicList[date_label]['important_words'].append(important_word['name'])
-                    year_dicList[year]['important_words'].append(important_word['name'])
-
-            '''
-            人物多い順3
-            special_people
-            {
-            name:
-            count:
-            }
-            '''
-            for special_person in value_special_people:
-                #残り
-                #同一要素数でカウントするため、count枠の数だけ要素を追加する(この方が計算しやすい)
-                for x in range(special_person['count']):
-                    yMonth_dicList[date_label]['special_people'].append(special_person['name'])
-                    year_dicList[year]['special_people'].append(special_person['name'])
-
-            '''
-            推定分類
-            classification
-            {
-            name:
-            count:
-            }
-            '''
-            yMonth_dicList[date_label]['classifications'].append(value_classification)
-            year_dicList[year]['classifications'].append(value_classification)
+        for adjective_asc in value_adjective_asc:
+            #すでに存在したら加算、なかったら代入
+            if(adjective_asc[0] in total_adjective_asc):
+                total_adjective_asc[adjective_asc[0]]+=adjective_asc[1]
+            else:
+                total_adjective_asc[adjective_asc[0]]=adjective_asc[1]
 
 
 
-    #forループここまで
+    #多い順に並び替え
+    total_classifications = sorted(total_classifications.items(), key=lambda x:x[1], reverse=True)
+    total_important_words = sorted(total_important_words.items(), key=lambda x:x[1], reverse=True)
+    total_special_people = sorted(total_special_people.items(), key=lambda x:x[1], reverse=True)
+    total_noun_asc = sorted(total_noun_asc.items(), key=lambda x:x[1], reverse=True)
+    total_adjective_asc = sorted(total_adjective_asc.items(), key=lambda x:x[1], reverse=True)
 
-    '''
-    DB代入のための準備
-    '''
-    yearList=[]#年別で使う
-    #空の月別を再生成
-    db.delete_depDate_data('statistic_per_months',user_id)
-    for dicKey in yMonth_dicList.keys():
-        #日付取得
-        date=dicKey.split('-')
-        dateForDB=[date[0],date[1]]
+    #辞書型に変換
+    # total_classifications=dict(total_classifications)
+    # total_important_words=dict(total_important_words)
+    # total_special_people=dict(total_special_people)
+    # total_noun_asc=dict(total_noun_asc)
+    # total_adjective_asc=dict(total_adjective_asc)
+    #配列
+    # total_month_diaries=list(total_month_diaries)
+    # total_emotions=list(total_emotions)
+    # total_classifications=list(total_classifications)
 
-        db.set_depDate_insertUpdate_data('statistic_per_months',user_id,dateForDB)
-        #年情報を収集(あとで重複消す)
-        yearList.append(date[0])
+    # print(total_important_words)
+    # print(total_month_words)
+    # print(total_month_diaries)
+    # print(total_emotions)
+    # print(total_classifications)
+    # print(total_special_people)
+    # print(total_noun_asc)
+    # print(total_adjective_asc)
 
-    #空の年別を作成
-    db.delete_depDate_data('statistic_per_years',user_id)
-    yearListUnique=set(yearList)#重複消す
-    for year in yearListUnique:
-        db.set_depDate_insertUpdate_data('statistic_per_years',user_id,[year])
-
-
-
-    '''
-    ソートとDB代入のループ(月別)
-    '''
-    for yMonthDate,yMonth_dic in yMonth_dicList.items():
-        '''
-        年月日に分けたものを整形する処理
-        '''
-        '''
-        名詞
-        '''
-        noun_rank_raw=collections.Counter(yMonth_dic['noun_rank'])#単語要素別にカウント
-        noun_rank_all = sorted(noun_rank_raw.items(), key=lambda x:x[1],reverse=True)#値の大きい順にソート
-        noun_rank=noun_rank_all[0:10]#上位10個まで
-        #代入
-        # print(noun_rank)
-        yMonth_dic['noun_rank']=noun_rank
-        '''
-        形容詞
-        '''
-        adjective_rank_raw=collections.Counter(yMonth_dic['adjective_rank'])#単語要素別にカウント
-        adjective_rank_all = sorted(adjective_rank_raw.items(), key=lambda x:x[1],reverse=True)#値の大きい順にソート
-        adjective_rank=adjective_rank_all[0:10]#上位10個まで
-        #代入
-        # print(adjective_rank)
-        yMonth_dic['adjective_rank']=adjective_rank
-        '''
-        important_words
-        '''
-        important_words_raw=collections.Counter(yMonth_dic['important_words'])#単語要素別にカウント
-        important_words_all = sorted(important_words_raw.items(), key=lambda x:x[1],reverse=True)#値の大きい順にソート
-        important_words=important_words_all[0:10]#上位10個まで
-        #代入
-        # print(noun_rank)
-        yMonth_dic['important_words']=important_words
-        '''
-        special_people
-        '''
-        special_people_raw=collections.Counter(yMonth_dic['special_people'])#単語要素別にカウント
-        special_people_all = sorted(special_people_raw.items(), key=lambda x:x[1],reverse=True)#値の大きい順にソート
-        special_people=special_people_all[0:10]#上位10個まで
-        #代入
-        # print(noun_rank)
-        yMonth_dic['special_people']=special_people
-        '''
-        classification
-        '''
-        classification_raw=collections.Counter(yMonth_dic['classifications'])#単語要素別にカウント
-        classification_all = sorted(classification_raw.items(), key=lambda x:x[1],reverse=True)#値の大きい順にソート
-        classification=classification_all[0:10]#上位10個まで
-        yMonth_dic['classifications']=classification
+    # print(total_words)
+    # print(total_diaries)
 
 
-        '''
-        DB更新
-        set_depDate_normal_data
-        set_depDate_json_data
-        set_depDate_progress
-
-        ここのメモ
-        なかったらinsertあったらupdateがしたい
-        ↓
-        mergeでできるらしい→ダメ
-        ifでできるらしい→ダメ(普通のsqlでは使えない)
-        caseでできるらしい→構文エラーで上手く行かない
-        ↓
-        一旦ユーザーのものをすべて消してからDB作る
-        その後にupdateする
-        →これだと、idがどんどん増えていってしまうが、やむをえない
-        21億個目でエラーになってしまう
-        '''
-        #日付取得
-        date=yMonthDate.split('-')
-        # 辞書のラベル用
-        year=date[0]
-        month=date[1]
-        dateForDB=[date[0],date[1]]
-
-
-        #本目的のDB代入処理
-        db.set_depDate_json_data('statistic_per_months',user_id,dateForDB,emotions=yMonth_dic['emotions'],word_counts=yMonth_dic['word_counts'],noun_rank=yMonth_dic['noun_rank'],adjective_rank=yMonth_dic['adjective_rank'],important_words=yMonth_dic['important_words'],special_people=yMonth_dic['special_people'],classifications=yMonth_dic['classifications'])
-        #createdatもupdatedadも自動で入らない
-        now_jst=dt.now(JST)
-        db.set_depDate_normal_data("statistic_per_months",user_id,dateForDB,created_at=now_jst,updated_at=now_jst,statistic_progress=100)
-
-    #ソートと代入のループ終わり
-
-    # print( yMonth_dicList)
-
-    db.set_multiple_progress(user_id,"statistics",40)
-
-
-    '''
-    ソートとDB代入のループ(年別)
-                'emotions_raw':{},
-            'word_counts_raw':{},
-    '''
-    for yearDate,year_dic in year_dicList.items():
-        '''
-        年別のみにまとめる処理
-        '''
-        #感情を整形
-        for y_m, value in year_dic['emotions_raw'].items():
-            this_diary=year_dic['emotions_counter_for_raw'][y_m]
-            year_dic['emotions'].append({
-                "date":y_m,
-                "value":value/this_diary,
-        })
-        # print( year_dic['emotions'])
-        #文字数
-        for y_m, value in year_dic['word_counts_raw'].items():
-            year_dic['word_counts'].append({
-                "date":y_m,
-                "value":value,
-        })
-        # print( year_dic['word_counts'])
-        '''
-        ソートして多いものだけ取り出す処理
-        '''
-        '''
-        名詞
-        '''
-        noun_rank_raw=collections.Counter(year_dic['noun_rank'])#単語要素別にカウント
-        noun_rank_all = sorted(noun_rank_raw.items(), key=lambda x:x[1],reverse=True)#値の大きい順にソート
-        noun_rank=noun_rank_all[0:20]#上位20個まで
-        #代入
-        # print(noun_rank)
-        year_dic['noun_rank']=noun_rank
-        '''
-        形容詞
-        '''
-        adjective_rank_raw=collections.Counter(year_dic['adjective_rank'])#単語要素別にカウント
-        adjective_rank_all = sorted(adjective_rank_raw.items(), key=lambda x:x[1],reverse=True)#値の大きい順にソート
-        adjective_rank=adjective_rank_all[0:20]#上位20個まで
-        #代入
-        # print(adjective_rank)
-        year_dic['adjective_rank']=adjective_rank
-        '''
-        important_words
-        '''
-        important_words_raw=collections.Counter(year_dic['important_words'])#単語要素別にカウント
-        important_words_all = sorted(important_words_raw.items(), key=lambda x:x[1],reverse=True)#値の大きい順にソート
-        important_words=important_words_all[0:20]#上位20個まで
-        #代入
-        # print(noun_rank)
-        year_dic['important_words']=important_words
-        '''
-        special_people
-        '''
-        special_people_raw=collections.Counter(year_dic['special_people'])#単語要素別にカウント
-        special_people_all = sorted(special_people_raw.items(), key=lambda x:x[1],reverse=True)#値の大きい順にソート
-        special_people=special_people_all[0:20]#上位20個まで
-        #代入
-        # print(noun_rank)
-        year_dic['special_people']=special_people
-        '''
-        classification
-        '''
-        classification_raw=collections.Counter(year_dic['classifications'])#単語要素別にカウント
-        classification_all = sorted(classification_raw.items(), key=lambda x:x[1],reverse=True)#値の大きい順にソート
-        classification=classification_all[0:20]#上位20個まで
-        year_dic['classifications']=classification
-
-
-
-
-
-        '''
-        DB更新
-        set_depDate_normal_data
-        set_depDate_json_data
-        set_depDate_progress
-
-        ここのメモ
-        なかったらinsertあったらupdateがしたい
-        ↓
-        mergeでできるらしい→ダメ
-        ifでできるらしい→ダメ(普通のsqlでは使えない)
-        caseでできるらしい→構文エラーで上手く行かない
-        ↓
-        一旦ユーザーのものをすべて消してからDB作る
-        その後にupdateする
-        →これだと、idがどんどん増えていってしまうが、やむをえない
-        21億個目でエラーになってしまう
-        '''
-        #日付取得
-        year=yearDate
-        dateForDB=[year]
-
-
-        #本目的のDB代入処理
-        db.set_depDate_json_data('statistic_per_years',user_id,dateForDB,emotions=year_dic['emotions'],word_counts=year_dic['word_counts'],noun_rank=year_dic['noun_rank'],adjective_rank=year_dic['adjective_rank'],important_words=year_dic['important_words'],special_people=year_dic['special_people'],classifications=year_dic['classifications'])
-        #createdatもupdatedadも自動で入らない
-        now_jst=dt.now(JST)
-        db.set_depDate_normal_data("statistic_per_years",user_id,dateForDB,created_at=now_jst,updated_at=now_jst,statistic_progress=100)
-
-
-    db.set_multiple_progress(user_id,"statistics",60)
+    # print(total_month_words)
+    # print(total_month_diaries)
+    # print(total_emotions)
+    #本目的のDB代入処理
+    db.set_statistics_json(user_id,important_words=total_important_words,month_words=total_month_words,month_diaries=total_month_diaries,emotions=total_emotions,classifications=total_classifications,special_people=total_special_people,total_noun_asc=total_noun_asc,total_adjective_asc=total_adjective_asc)
+    db.set_statistics_value(user_id,total_words=total_words,total_diaries=total_diaries)
+    db.set_multiple_progress(user_id,"statistics",100)
 
     del db
 
     print("nlpForMonth終了")
 
 if __name__ == '__main__':
-    nlpForTotal(2)
+    from_php = sys.argv#php側の引数
+    user_id=from_php[1]
+    nlpForTotal(user_id)

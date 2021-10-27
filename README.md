@@ -1,14 +1,21 @@
-### meta
+### Meta
 
 ![image](https://img.shields.io/github/stars/Usuyuki/kadode_nikki3.svg)
 
-### language
+### Language
 
 ![image](https://img.shields.io/badge/-Python-3776AB.svg?logo=python&style=plastic)
 ![image](https://img.shields.io/badge/-Php-777BB4.svg?logo=php&style=plastic)
 ![image](https://img.shields.io/badge/-Javascript-F7DF1E.svg?logo=javascript&style=plastic)
 ![image](https://img.shields.io/badge/-Html5-E34F26.svg?logo=html5&style=plastic)
 ![image](https://img.shields.io/badge/-Css3-1572B6.svg?logo=css3&style=plastic)
+
+![image](https://img.shields.io/badge/Framework-Laravel-F4655F)
+![image](https://img.shields.io/badge/Library-TailwindCSS-06B6D4)
+![image](https://img.shields.io/badge/Library-Chart.js-FF6384)
+![image](https://img.shields.io/badge/Library-GiNZA-5A3B1D)
+
+![image](https://img.shields.io/badge/App-%E3%81%8B%E3%81%A9%E3%81%A7%E6%97%A5%E8%A8%98-624466)
 
 # この web アプリについて
 

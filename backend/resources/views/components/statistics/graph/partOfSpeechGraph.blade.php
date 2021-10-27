@@ -1,9 +1,9 @@
 @isset($source)
 <div class="chartWrapper_nlp_long">
-  <canvas id="chartTotal{{$slug}}Asc" width="400px" height="1200px"></canvas>
+    <canvas id="chartTotal{{$slug}}Asc" width="400px" height="1200px"></canvas>
 </div>
-    <script>
-        //ここからNLP周り
+<script>
+    //ここからNLP周り
       // {{$pof_name}}登場順
              const chartTotal{{$slug}}Asc_id = document.getElementById('chartTotal{{$slug}}Asc');
               var chartTotal{{$slug}}Asc = new Chart(chartTotal{{$slug}}Asc_id, {
@@ -11,18 +11,18 @@
                 data: {
                 labels: [
                         @foreach( $source as $value)
-                        "{{$value['word']}}",
+                        "{{$value[0]}}",
                         @endforeach
                 ],
                 yAxisID: "{{$slug}}_name",
-      
+
                 datasets: [
                     {
                       xAxisID: "{{$slug}}_count",
                       label: "{{$pof_name}}登場順",
                       data:  [
                         @foreach( $source as $value)
-                        {{$value['count']}},
+                        {{$value[1]}},
                       @endforeach
                       ],
                       borderColor: "rgba(75,137,150,1)",
@@ -32,12 +32,12 @@
                   ],
                 },
                 options: {
-                  
+
                   indexAxis: 'y',
                   categoryPercentage: 1.0,
                   barPercentage: 1.0,
                   scales: {
-               
+
                     // "{{$slug}}_name":[{
                     //   categoryPercentage: 1.0,
                     //   barPercentage: 1.0
@@ -60,10 +60,10 @@
                     decimation:{
                       enabled: false,
                     },
-                    
+
                   }
                 },
               });
-        </script>
+</script>
 
 @endisset

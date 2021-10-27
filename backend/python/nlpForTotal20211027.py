@@ -1,7 +1,7 @@
 
 
 from base import connectDBClass as database
-
+import sys
 from nlp import morphological_analysis
 
 def nlpForTotal(user_id):
@@ -18,7 +18,7 @@ def nlpForTotal(user_id):
 
     # # データ取得
     # rows=db.get_all_diaries_from_user(user_id)
-    
+
     rows=db.get_all_diaries_from_user(user_id)
 
 
@@ -26,8 +26,8 @@ def nlpForTotal(user_id):
     total_noun_asc,total_adjective_asc=morphological_analysis.get_morphological_for_total(rows)
 
     #DB代入
-    db.set_statistics_json(user_id,"total_noun_asc",total_noun_asc)   
-    db.set_statistics_json(user_id,"total_adjective_asc",total_adjective_asc)   
+    db.set_statistics_json(user_id,"total_noun_asc",total_noun_asc)
+    db.set_statistics_json(user_id,"total_adjective_asc",total_adjective_asc)
 
 
     #完了を送る
@@ -39,4 +39,6 @@ def nlpForTotal(user_id):
     print("nlpForTotal処理終了")
 
 if __name__ == '__main__':
-    nlpForTotal()
+    from_php = sys.argv#php側の引数
+    user_id=from_php[1]
+    nlpForTotal(user_id)

@@ -37,13 +37,14 @@ class ShowStatisticsController extends Controller
 
             $statistic->total_noun_asc=array_values(json_decode($statistic->total_noun_asc,true));
             $statistic->total_adjective_asc=array_values(json_decode($statistic->total_adjective_asc,true));
+            \Log::debug($statistic->total_noun_asc);
             }
 
             /**
              * 個別日記処理の進捗を取得する処理
              */
             $ended_diaries_count=Diary::sum('statistic_progress') /100; #終わっている日記数の推定値(本当は50で全部通してから次行くので、実際の値とは違う)
-                
+
             /**
              * 月ごとの1日記あたりの平均文字数算出
              */
@@ -81,7 +82,7 @@ class ShowStatisticsController extends Controller
                 //閏年などの対応のため、毎度月の長さをcarbonで作る
                 //mbの必要ないので。ただのsubstr 202101みたいな形式なっているので。
                 $year=substr($date,0,3);
-                $month=substr($date,4);
+                $month=substr($date,5);
                 $start=Carbon::create($year,$month);
                 $end=Carbon::create($year,$month)->endOfMonth();
 
@@ -91,13 +92,13 @@ class ShowStatisticsController extends Controller
                 //執筆率の計算
                 $writingRate=($statistic_month_diaries[$i]/$lengthThisMonth)*100;
 
-                
+
                 array_push($monthWritingRate,$writingRate);
                 $i++;
-                
+
             }
             $statistic->monthWritingRate=$monthWritingRate;
-            
+
             //         month_words
             // month_diaries
             // year_words
@@ -119,7 +120,7 @@ class ShowStatisticsController extends Controller
         }else{
             // 統計データないとき
             $oldest_diary_date="なし";
-        }   
+        }
 
         return view("diary/statistics/topStatistics",["statistics"=>$statistic,'oldest_diary_date'=>$oldest_diary_date,'number_of_nikki'=>$number_of_nikki,'ended_diaries_count'=>$ended_diaries_count]);
     }

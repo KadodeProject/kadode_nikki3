@@ -1,7 +1,6 @@
 
-
-import time
 import json
+import sys
 import collections #配列の要素カウント
 from datetime import datetime as dt
 from datetime import timezone,timedelta
@@ -11,15 +10,6 @@ from datetime import timezone,timedelta
 
 from base import connectDBClass as database
 
-from nlp import special_people_extract
-from nlp import classification_analysis
-from nlp import importantWords_analysis
-from nlp import emotions_analysis
-from nlp import causeEffect_analysis
-from nlp import dependency_analysis
-from nlp import cosSimilarity_analysis
-
-from nlp.dic import dic_to_trie
 
 def nlpForMonthAndYear(user_id):
     #DBインスタンス
@@ -390,12 +380,11 @@ def nlpForMonthAndYear(user_id):
         })
         #文字数 配列から辞書型への整形
         for y_m, value in year_dic['word_counts_raw'].items():
-            print()
             year_dic['word_counts'].append({
                 "date":y_m,
-                "value":round(value/year_dic['diary_counter'][y_m],2),#平均文字数に変換
+                "words":value,#平均文字数に変換
+                "diary":year_dic['diary_counter'][y_m],#平均文字数に変換
         })
-        print( year_dic['word_counts'])
         '''
         ソートして多いものだけ取り出す処理
         '''
@@ -484,4 +473,6 @@ def nlpForMonthAndYear(user_id):
     print("nlpForMonth終了")
 
 if __name__ == '__main__':
-    nlpForMonthAndYear(1)
+    from_php = sys.argv#php側の引数
+    user_id=from_php[1]
+    nlpForMonthAndYear(user_id)

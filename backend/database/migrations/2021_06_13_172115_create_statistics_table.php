@@ -32,8 +32,8 @@ class CreateStatisticsTable extends Migration
             $table->json("emotions")->nullable()->comment("感情数値化のグラフと平均用json");
             $table->json("classifications")->nullable()->comment("推定分類(top10)");
             $table->json("special_people")->nullable()->comment("登場人物(top10)");
-          
-        
+
+
             $table->timestamps();
 
              //他テーブルとの関連付け

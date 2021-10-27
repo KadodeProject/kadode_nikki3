@@ -147,7 +147,7 @@ input[type="submit"] {
 }
 input[type="text"] {
     background-color: var(--bg-main-color);
-    border-color: var(--button-main-color);
+    border: 1px solid var(--button-main-color);
     color: var(--text-main-color);
 }
 input[type="text"]::placeholder {
