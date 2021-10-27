@@ -33,7 +33,7 @@ def nlpForTotal(user_id):
     '''
     total_month_words={}
     total_month_diaries={}
-    total_emotions={}
+    total_emotions=[]
 
     total_classifications={}
     total_important_words={}
@@ -65,7 +65,10 @@ def nlpForTotal(user_id):
             total_diaries+=word_count["diary"]
         #月別の感情数推移
         for emotion in value_emotions:
-            total_emotions[emotion["date"]]=emotion["value"]
+            total_emotions.append({
+                "date":emotion["date"],
+                "value":emotion["value"],
+                })
 
         #NLP情報足していく、そのままだと[名前,数]で順位並び替え難しいので、名前:数の辞書型にする
         for classification in value_classifications:

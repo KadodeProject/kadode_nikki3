@@ -110,9 +110,63 @@
         </div>
     </div>
 
+    <div class="statistic-content">
+        <!-- ここより自然言語処理の部 -->
+        @include('components.statisticHeading',['icon'=>'manage_search','title'=>'全体のテキストマイニング'])
+        <div class="flex justify-center flex-wrap ">
+            <div class="w-full">
+                <h3 class="my-4 text-2xl text-center kiwi-maru">分類</h3>
+                @component('components.statistics.graph.classificationsGraph',['classifications'=>$statistics->classifications])
+                @endcomponent
+            </div>
+            <div class="md:w-1/2 mb-6 ">
+                <h3 class="my-4 text-2xl text-center kiwi-maru">お気持ち</h3>
+                @component('components.statistics.char.emotionsRateChar',['emotions'=>$statistics->emotions])
+                @endcomponent
+            </div>
+            <div class="md:w-1/2 mb-6 ">
+                <h3 class="my-4 text-2xl text-center kiwi-maru">お気持ち推移</h3>
+                @component('components.statistics.graph.emotionsChangeGraph',['emotions'=>$statistics->emotions])
+                @endcomponent
+            </div>
+            <div class="md:w-1/2 mb-6 ">
+                <h3 class="my-4 text-2xl text-center kiwi-maru">人物</h3>
+                @component('components.statistics.rank.topRank',['count'=>31,'ranked_array'=>$statistics->special_people])
+                @endcomponent
+            </div>
+            <div class="md:w-1/2 mb-6 ">
+                <h3 class="my-4 text-2xl text-center kiwi-maru">重要そうな単語</h3>
+                @component('components.statistics.rank.topRank',['count'=>31,'ranked_array'=>$statistics->important_words])
+                @endcomponent
+            </div>
+
+            <div class="md:w-1/2 mb-6 ">
+                <h3 class="my-4 text-2xl text-center kiwi-maru">全日記の中でよく使われる名詞Top50</h3>
+                @component('components.statistics.graph.partOfSpeechGraph',["source"=>$statistics->total_noun_asc])
+                @slot("slug")
+                noun
+                @endslot
+                @slot("pof_name")
+                名詞
+                @endslot
+                @endcomponent
+            </div>
+            <div class="md:w-1/2 mb-6 ">
+                <h3 class="my-4 text-2xl text-center kiwi-maru">全日記の中でよく使われる形容詞Top50</h3>
+                @component('components.statistics.graph.partOfSpeechGraph',["source"=>$statistics->total_adjective_asc])
+                @slot("slug")
+                adjective
+                @endslot
+                @slot("pof_name")
+                形容詞
+                @endslot
+                @endcomponent
+            </div>
+        </div>
+    </div>
 
     <div class="statistic-content">
-        @include('components.statisticHeading',['icon'=>'bar_chart','title'=>'傾向'])
+        @include('components.statisticHeading',['icon'=>'bar_chart','title'=>'全体の傾向'])
         <div class="px-2">
             <h3 class="my-4 text-2xl text-center kiwi-maru">月ごとの1日記あたりの平均文字数推移<span
                     style="font-size:0.5em">(月の合計文字数÷日記数)</span></h3>
@@ -125,44 +179,15 @@
         </div>
     </div>
 
-
-    <div class="statistic-content">
-        <!-- ここより自然言語処理の部 -->
-        @include('components.statisticHeading',['icon'=>'manage_search','title'=>'テキストマイニング'])
-        <div class="flex justify-center flex-wrap ">
-            <div class="md:w-1/2">
-                <h3 class="my-4 text-2xl text-center kiwi-maru">全日記の中でよく使われる名詞Top50</h3>
-                @component('components.statistics.graph.partOfSpeechGraph',["source"=>$statistics->total_noun_asc])
-                @slot("slug")
-                noun
-                @endslot
-                @slot("pof_name")
-                名詞
-                @endslot
-                @endcomponent
-            </div>
-            <div class="md:w-1/2">
-                <h3 class="my-4 text-2xl text-center kiwi-maru">全日記の中でよく使われる形容詞Top50</h3>
-                @component('components.statistics.graph.partOfSpeechGraph',["source"=>$statistics->total_adjective_asc])
-                @slot("slug")
-                adjective
-                @endslot
-                @slot("pof_name")
-                形容詞
-                @endslot
-                @endcomponent
-            </div>
-        </div>
-        @elseif($statistics->statistic_progress>=1)
-        <p class="text-center my-12 text-3xl kiwi-maru align-middle"><span class="material-icons"
-                style="margin-right:0.25em">hourglass_bottom</span>データ生成中<span class="material-icons"
-                style="margin-left:0.25em">hourglass_bottom</span></p>
-        @else
-        <p class="text-center my-12 text-3xl">自然言語処理が機能していません</p>
-    </div>
+    @elseif($statistics->statistic_progress>=1)
+    <p class="text-center my-12 text-3xl kiwi-maru align-middle"><span class="material-icons"
+            style="margin-right:0.25em">hourglass_bottom</span>データ生成中<span class="material-icons"
+            style="margin-left:0.25em">hourglass_bottom</span></p>
+    @else
+    <p class="text-center my-12 text-3xl">自然言語処理が機能していません</p>
     @endif
     @endempty
-    <div>
-    </div>
 
-    @endsection
+</div>
+
+@endsection

@@ -70,8 +70,7 @@
 
         @endif
     </style>
-
-    @section('header')
+    <!---ヘッダーここから--->
     <header class="px-4 relative w-screen flex justify-between " style="box-shadow: 0px 8px 8px -5px rgba(0,0,0,0.5);">
         <div class="flex justify-center items-center"
             style="height:var(--header-height);filter:drop-shadow(0px 8px 8px -5px rgba(0,0,0,0.5));">
@@ -131,15 +130,17 @@
             </div>
         </div>
     </header>
-
+    <!---ヘッダーここまで--->
+    <!---コンテンツここから--->
     <div class="main-wrapper">
-
         @yield('content')
-
-
     </div>
+    <!----コンテンツここまで--->
+    <!---PCフッターここから--->
     @component('components.footer')
     @endcomponent
+    <!---PCフッターここまで--->
+    <!---SMフッターここから--->
     <div class="sm:hidden" style="height: 60px">
         <!-- smフッターメニューのための余白 -->
     </div>
@@ -156,6 +157,7 @@
         <p><a class="flex justify-center flex-col" href="{{url("/statistics/home")}}"><span
                     class="material-icons mx-auto">poll</span><span class="text-xs">統計</span></a></p>
     </div>
+    <!---SMフッターここまで--->
 
 
     <script type="text/javascript" src="{{ asset('js/kadodeMain.js') }}?ver=19.2"></script>

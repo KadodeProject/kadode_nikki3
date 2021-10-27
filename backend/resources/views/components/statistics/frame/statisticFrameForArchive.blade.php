@@ -64,7 +64,7 @@
                     ?</div>
                 <div class="explain_hatena">日記の本文から形態素解析で抽出した名詞の登場数多い順に5つです</div>
             </section>
-            @component('components.statistics.rank.top3Rank',['ranked_array'=>$ArchiveData->noun_rank])
+            @component('components.statistics.rank.topRank',['count'=>6,'ranked_array'=>$ArchiveData->noun_rank])
             @endcomponent
         </div>
         <div class="md:w-1/4 w-full p-4">
@@ -75,7 +75,7 @@
                     ?</div>
                 <div class="explain_hatena">日記の本文から形態素解析で抽出した形容詞の登場数多い順に5つです</div>
             </section>
-            @component('components.statistics.rank.top3Rank',['ranked_array'=>$ArchiveData->adjective_rank])
+            @component('components.statistics.rank.topRank',['count'=>6,'ranked_array'=>$ArchiveData->adjective_rank])
             @endcomponent
 
         </div>
@@ -110,7 +110,7 @@
                     ?</div>
                 <div class="explain_hatena">固有表現抽出を用いて本文から抽出した、日記でよく登場する人物です。</div>
             </section>
-            @component('components.statistics.rank.top3Rank',['ranked_array'=>$ArchiveData->special_people])
+            @component('components.statistics.rank.topRank',['count'=>6,'ranked_array'=>$ArchiveData->special_people])
             @endcomponent
         </div>
         <div class="md:w-1/4 w-full p-4">
@@ -121,7 +121,7 @@
                     ?</div>
                 <div class="explain_hatena">固有表現抽出を用いて本文から抽出した、固有表現の登場数の多い単語です。</div>
             </section>
-            @component('components.statistics.rank.top3Rank',['ranked_array'=>$ArchiveData->important_words])
+            @component('components.statistics.rank.topRank',['count'=>6,'ranked_array'=>$ArchiveData->important_words])
             @endcomponent
         </div>
 
