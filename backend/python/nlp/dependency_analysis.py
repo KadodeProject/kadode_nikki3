@@ -3,7 +3,7 @@ import ginza
 
 if __name__ == '__main__':
     nlp = spacy.load('ja_ginza')
-    doc = nlp('ぶいちゃでイチャイチャ、頭の中全部ぐちゃぐちゃ')
+    doc = nlp('うすゆきです')
 
     # 文節間の係り受け解析
     for sent in doc.sents:
