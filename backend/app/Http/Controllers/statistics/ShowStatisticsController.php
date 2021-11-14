@@ -29,6 +29,7 @@ class ShowStatisticsController extends Controller
          * これは統計表示前にも使うので1統計テーブルからのデータは使えない
          */
         $number_of_nikki=Diary::where("user_id",Auth::id())->count();
+        $wordCloud_json="";
 
         $ended_diaries_count="";//undefinedエラー防止用
         if(!empty($statistic)){
@@ -50,6 +51,8 @@ class ShowStatisticsController extends Controller
                  */
                 //配列のキーから月を取得
                 $statistic->months=array_keys(json_decode($statistic->month_words,true));
+                \Log::debug('$statistic->months');
+                \Log::debug($statistic->months);
                 //jsonを配列に戻し、連想配列を配列にする
                 $statistic->month_words=array_values(json_decode($statistic->month_words,true));
                 $statistic->month_diaries=array_values(json_decode($statistic->month_diaries,true));

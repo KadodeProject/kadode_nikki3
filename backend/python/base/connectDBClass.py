@@ -87,7 +87,7 @@ class connectDB:
         cur= self.conn.cursor()
         # クエリを実行する
         #このクエリの順番は他所でrow[2]的な依存をしているので変更は要注意
-        sql = "SELECT year,emotions,word_counts,noun_rank,adjective_rank,important_words,special_people,classifications FROM statistic_per_years WHERE user_id="+str(user_id)+";"
+        sql = "SELECT year,emotions,word_counts,noun_rank,adjective_rank,important_words,special_people,classifications FROM statistic_per_years WHERE user_id="+str(user_id)+" ORDER BY year ASC;"
         cur.execute(sql)
         # 実行結果をすべて取得する
         rows = cur.fetchall()
