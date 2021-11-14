@@ -140,6 +140,7 @@
                 @endcomponent
             </div>
 
+
             <div class="md:w-1/2 mb-6 ">
                 <h3 class="my-4 text-2xl text-center kiwi-maru">全日記の中でよく使われる名詞Top50</h3>
                 @component('components.statistics.graph.partOfSpeechGraph',["source"=>$statistics->total_noun_asc])
@@ -165,18 +166,30 @@
         </div>
     </div>
 
+
     <div class="statistic-content">
         @include('components.statisticHeading',['icon'=>'bar_chart','title'=>'全体の傾向'])
-        <div class="px-2">
-            <h3 class="my-4 text-2xl text-center kiwi-maru">月ごとの1日記あたりの平均文字数推移<span
-                    style="font-size:0.5em">(月の合計文字数÷日記数)</span></h3>
-            @component('components.statistics.graph.numberOfCharactersGraph',["months"=>$statistics->months,"month_words_per_diaries"=>$statistics->month_words_per_diary])
-            @endcomponent
-
-            <h3 class="my-4 text-2xl text-center kiwi-maru">月ごとの日記執筆率</h3>
-            @component('components.statistics.graph.writingRateGraph',["months"=>$statistics->months,"monthWritingRates"=>$statistics->monthWritingRate])
-            @endcomponent
+        <div class="flex justify-center flex-wrap ">
+            <div class="md:w-1/2 mb-6 ">
+                <h3 class="my-4 text-2xl text-center kiwi-maru">月ごとの1日記あたりの平均文字数推移<span
+                        style="font-size:0.5em">(月の合計文字数÷日記数)</span></h3>
+                @component('components.statistics.graph.numberOfCharactersGraph',["months"=>$statistics->months,"month_words_per_diaries"=>$statistics->month_words_per_diary])
+                @endcomponent
+            </div>
+            <div class="md:w-1/2 mb-6 ">
+                <h3 class="my-4 text-2xl text-center kiwi-maru">月ごとの日記執筆率</h3>
+                @component('components.statistics.graph.writingRateGraph',["months"=>$statistics->months,"monthWritingRates"=>$statistics->monthWritingRate])
+                @endcomponent
+            </div>
         </div>
+    </div>
+
+    <div class="statistic-content">
+        @include('components.statisticHeading',['icon'=>'bar_chart','title'=>'WordCloud'])
+
+        @component('components.statistics.wordCloud.wordCloud',['wordCloud_json'=>$wordCloud_json])
+        @endcomponent
+
     </div>
 
     @elseif($statistics->statistic_progress>=1)
@@ -187,6 +200,8 @@
     <p class="text-center my-12 text-3xl">自然言語処理が機能していません</p>
     @endif
     @endempty
+
+
 
 </div>
 

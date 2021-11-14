@@ -9,6 +9,13 @@
 <div class="mx-auto px-4 mb-12" style="max-width: 1200px">
 
     @include('components.noLogIn.releaseNote',
+    ['title'=>'統計ページで重要そうな単語のWordCloud生成',
+    'date'=>'2021年11月14日',
+    'genre'=>'Feature',
+    'explain'=>'統計ページにて、重要そうな単語を可視化するwordCloudが表示できるようになりました。
+    '])
+
+    @include('components.noLogIn.releaseNote',
     ['title'=>'自然言語処理結果を総統計でも表示',
     'date'=>'2021年10月27日',
     'genre'=>'Feature',

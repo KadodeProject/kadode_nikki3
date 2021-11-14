@@ -66,6 +66,14 @@ Released under the MIT license
 
 https://github.com/nagix/chartjs-plugin-colorschemes/blob/master/LICENSE.md
 
+## d3-cloud
+
+※wordCloud を js で canvas で描画するライブラリ
+
+Copyright (c) 2013, Jason Davies.
+
+https://github.com/jasondavies/d3-cloud/blob/master/LICENSE
+
 # Python ライブラリ
 
 ## python-dotenv

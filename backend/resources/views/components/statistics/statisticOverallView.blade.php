@@ -6,12 +6,13 @@
         <div class="sov-arrow"><span class="material-icons">arrow_forward</span></div>
         <div class="sov-pipe-wrapper">
             <div class="sov-pipe">
-                <p>かどで日記<br>前処理</p>
-                <p>Tokenizer</p>
-                <p>Tagger</p>
-                <p>Parser</p>
-                <p>Ner</p>
-                <p>……</p>
+                <p>tok2vec</p>
+                <p>parser</p>
+                <p>mer</p>
+                <p>morphologizer</p>
+                <p>compound_<br>splitter</p>
+                <p>bunsetu_<br>recognizer</p>
+                <p>entity_<br>ruler</p>
             </div>
             <section>GiNZA v5 with spaCy and SudachiPy </section>
             {{-- <nav>

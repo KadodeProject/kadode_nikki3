@@ -19,6 +19,8 @@ class ShowStatisticsController extends Controller
      * @param [type] $request
      * @return void
      */
+
+
     public function __invoke()
     {
         $statistic=Statistic::where("user_id",Auth::id())->first();
@@ -86,6 +88,21 @@ class ShowStatisticsController extends Controller
                     $i++;
                 }
                 $statistic->monthWritingRate=$monthWritingRate;
+
+
+                //wordCloud描画用
+                /**必要なデータ形式
+                 * [
+                    {"word":"あああ","count":9},
+                    {"word":"いいい","count":3},
+                    {"word":"ううう","count":4},
+                    {"word":"えええ","count":3},]
+                 */
+                $wordCloud_array=array();
+                foreach ($statistic->important_words as $value){
+                    $wordCloud_array[]=array("word"=>$value[0],"count"=>$value[1]);
+                }
+                $wordCloud_json=json_encode($wordCloud_array,JSON_UNESCAPED_UNICODE);//JSON_UNESCAPED_UNICODEで日本語文字化け防止
             }
 
             /**
@@ -102,6 +119,6 @@ class ShowStatisticsController extends Controller
             $oldest_diary_date="なし";
         }
 
-        return view("diary/statistics/topStatistics",["statistics"=>$statistic,'oldest_diary_date'=>$oldest_diary_date,'number_of_nikki'=>$number_of_nikki,'ended_diaries_count'=>$ended_diaries_count]);
+        return view("diary/statistics/topStatistics",["statistics"=>$statistic,'oldest_diary_date'=>$oldest_diary_date,'number_of_nikki'=>$number_of_nikki,'ended_diaries_count'=>$ended_diaries_count,"wordCloud_json"=>$wordCloud_json]);
     }
 }
