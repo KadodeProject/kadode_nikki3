@@ -100,10 +100,9 @@ class ShowStatisticsController extends Controller
                  */
                 $wordCloud_array=array();
                 foreach ($statistic->important_words as $value){
-                    $wordCloud_array[$value[0]]=$value[1];
+                    $wordCloud_array[]=array("word"=>$value[0],"count"=>$value[1]);
                 }
-                $wordCloud_json=json_encode($wordCloud_array);
-
+                $wordCloud_json=json_encode($wordCloud_array,JSON_UNESCAPED_UNICODE);//JSON_UNESCAPED_UNICODEで日本語文字化け防止
             }
 
             /**

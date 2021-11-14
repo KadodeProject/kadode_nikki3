@@ -20,7 +20,5 @@
         "postcss-import": "^14.0.1",
         "tailwindcss": "^2.2.17"
     },
-    "dependencies": {
-        "d3-cloud": "^1.2.5"
-    }
+    "dependencies": {}
 }
