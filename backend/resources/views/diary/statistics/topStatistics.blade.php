@@ -139,6 +139,11 @@
                 @component('components.statistics.rank.topRank',['count'=>31,'ranked_array'=>$statistics->important_words])
                 @endcomponent
             </div>
+            <div class="md:w-1/2 mb-6 ">
+                <h3 class="my-4 text-2xl text-center kiwi-maru">WordCloud</h3>
+                @component('components.statistics.wordCloud.wordCloud',['wordCloud_json'=>$wordCloud_json])
+                @endcomponent
+            </div>
 
             <div class="md:w-1/2 mb-6 ">
                 <h3 class="my-4 text-2xl text-center kiwi-maru">全日記の中でよく使われる名詞Top50</h3>
@@ -187,6 +192,8 @@
     <p class="text-center my-12 text-3xl">自然言語処理が機能していません</p>
     @endif
     @endempty
+
+
 
 </div>
 
