@@ -40,6 +40,7 @@ class EditDiaryController extends Controller
             //jsonを配列に戻し、連想配列を配列にする
             $diary->is_latest_statistic=true;
             $diary->important_words=array_values(json_decode($diary->important_words,true));
+            // \Log::debug($diary->affiliation);
             $diary->special_people=array_values(json_decode($diary->special_people,true));
         }
 
@@ -57,10 +58,10 @@ class EditDiaryController extends Controller
      */
     public function create(Request $request){
         $request->date=$request->date ?? Carbon::today()->format("y-m-d");
-        
+
         // バリデーション
         $this->validate($request,Diary::$rules);
-        
+
         $form=[
             "user_id"=>Auth::id(),
             "title"=>$request->title,
@@ -72,7 +73,7 @@ class EditDiaryController extends Controller
         Diary::create($form);
         return redirect('home');
     }
-    
+
     /**
      * Undocumented function
      *
@@ -85,7 +86,7 @@ class EditDiaryController extends Controller
         // 日付のバリデーション→既に存在する日付ならエラー返す
         // バリデーション
         $this->validate($request,Diary::$rules);
-        
+
         $updateContent=[
             "title"=>$request->title,
             "content"=>$request->content,
@@ -106,5 +107,5 @@ class EditDiaryController extends Controller
         return redirect('home');
     }
 
-   
+
 }

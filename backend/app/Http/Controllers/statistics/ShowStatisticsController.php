@@ -51,8 +51,6 @@ class ShowStatisticsController extends Controller
                  */
                 //配列のキーから月を取得
                 $statistic->months=array_keys(json_decode($statistic->month_words,true));
-                \Log::debug('$statistic->months');
-                \Log::debug($statistic->months);
                 //jsonを配列に戻し、連想配列を配列にする
                 $statistic->month_words=array_values(json_decode($statistic->month_words,true));
                 $statistic->month_diaries=array_values(json_decode($statistic->month_diaries,true));
