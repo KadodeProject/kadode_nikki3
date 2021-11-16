@@ -187,7 +187,7 @@
     <div class="statistic-content">
         @include('components.statisticHeading',['icon'=>'bar_chart','title'=>'WordCloud'])
 
-        @component('components.statistics.wordCloud.wordCloud',['wordCloud_json'=>$wordCloud_json])
+        @component('components.statistics.visualize.wordCloud',['wordCloud_json'=>$wordCloud_json])
         @endcomponent
 
     </div>

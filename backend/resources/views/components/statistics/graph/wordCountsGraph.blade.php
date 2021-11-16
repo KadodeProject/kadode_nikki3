@@ -19,7 +19,7 @@
               label: '文字数推移',
               data:  [
               @foreach( $word_counts as $word_count)
-              {{$word_count['value']}},
+              {{$word_count['words']}},
               @endforeach],
               borderColor: "rgba(75,137,150,1)",
               backgroundColor: "rgba(0,0,0,0)"
@@ -29,14 +29,14 @@
       options:{
           responsive: true,
           plugins:{
-      
-      
+
+
           legend: {
               display: false,
 
           }
-      
-        }, 
+
+        },
       }
     });
 </script>

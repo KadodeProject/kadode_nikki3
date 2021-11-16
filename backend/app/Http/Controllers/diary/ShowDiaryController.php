@@ -38,7 +38,7 @@ class ShowDiaryController extends Controller
                 $statisticPerMonth->classifications=array_values(json_decode($statisticPerMonth->classifications,true));
             }
         }
-    
+
          //個別→配列の配列
         $i=0;
         foreach ($diaries as $diary) {
@@ -63,7 +63,7 @@ class ShowDiaryController extends Controller
     public function getYearArchive($year)
     {
 
-        //特定の月だけ取ってくる
+        //特定の年だけ取ってくる
         $startYear=Carbon::create($year,1,1,1,1,1)->startOfYear()->format("Y-m-d");
         $endYear=Carbon::create($year,1,1,1,1,1)->endOfYear()->format("Y-m-d");
         $diaries=Diary::where("date",">=", $startYear)->where("date","<=", $endYear)->get();
@@ -71,7 +71,7 @@ class ShowDiaryController extends Controller
         /**
          * 統計データの表示処理
          */
-        //月別の統計→配列
+        //年別の統計→配列
         $statisticPerYear=Statistic_per_year::where("year",$year)->first();
         if($statisticPerYear!=null){
             if($statisticPerYear->statistic_progress==100 ){

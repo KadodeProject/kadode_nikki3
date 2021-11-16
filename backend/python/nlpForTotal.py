@@ -40,6 +40,8 @@ def nlpForTotal(user_id):
     total_special_people={}
     total_noun_asc={}
     total_adjective_asc={}
+    total_words=0
+    total_diaries=0
     for yearData in yearDataList:
         print(str(yearData[0])+"年処理")
         # nlp関係はNoneがあるので注
@@ -56,8 +58,7 @@ def nlpForTotal(user_id):
 
 
         #月別の文字数と日記数
-        total_words=0
-        total_diaries=0
+
         for word_count in value_word_counts:
             total_month_words[word_count["date"]]=word_count["words"]
             total_month_diaries[word_count["date"]]=word_count["diary"]
