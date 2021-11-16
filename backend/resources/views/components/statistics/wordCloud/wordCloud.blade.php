@@ -52,12 +52,4 @@
                     .style("fill", function(d, i) { return d3.schemeCategory10[i % 10]; })
                     .attr("text-anchor", "middle")
                     .attr("transform", function(d) {
-                    return "translate(" + [d.x, d.y] + ")rotate(" + d.rotate + ")";
-                    })
-                    .text(function(d) { return d.text; });
-            }
-
-        </script>
-    </div>
-
-</div>
+                    return "translate(" + [d.x, d.y] + ")rotate(" + d.r

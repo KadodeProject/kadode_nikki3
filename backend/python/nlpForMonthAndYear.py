@@ -158,7 +158,7 @@ def nlpForMonthAndYear(user_id):
             '''
             yMonth_dicList[date_label]['word_counts'].append({
                 "date":day,
-                "value":value_char_length,
+                "words":value_char_length,
             })
             #年別用　無ければ作成、あれば足す
             if date_label in year_dicList[year]['word_counts_raw'].keys():
