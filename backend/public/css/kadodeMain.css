@@ -8,6 +8,11 @@ body {
     margin: 0 auto;
     min-height: 100vh;
 }
+@media screen and (max-width: 640px) {
+    .main-wrapper {
+        max-width: 100%;
+    }
+}
 :root {
     /* カラー定義 */
     --bg-main-color: #2f3437;
