@@ -21,7 +21,7 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"> --}}
     {{-- CSS読み込み --}}
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-    <link rel="stylesheet" href="{{ asset('css/kadodeMain.css') }}?ver=19.3">
+    <link rel="stylesheet" href="{{ asset('css/kadodeMain.css') }}?ver=20.0">
 
 </head>
 
@@ -158,7 +158,7 @@
     <!---SMフッターここまで--->
 
 
-    <script type="text/javascript" src="{{ asset('js/kadodeMain.js') }}?ver=19.3"></script>
+    <script type="text/javascript" src="{{ asset('js/kadodeMain.js') }}?ver=20.0"></script>
 </body>
 
 </html>
