@@ -23,12 +23,14 @@
 
     {{-- GoogleFonts --}}
     {{-- kiwi maru --}}
+    {{--
     <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css2?family=Kiwi+Maru&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Kiwi+Maru&display=swap" rel="stylesheet"> --}}
     {{-- 検索インデックスさせない --}}
     <meta name=”robots” content=”noindex,nofollow”>
     {{-- マテリアルアイコン --}}
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    {{--
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"> --}}
 
     {{-- OGP --}}
     <meta property="og:title" content="@yield('title') | かどで日記">
@@ -40,7 +42,7 @@
     <meta name="twitter:card" content="summary">
 
     {{-- CSS読み込み --}}
-    <link rel="stylesheet" href="{{ asset('css/kadodeMain.css') }}?ver=19.2">
+    <link rel="stylesheet" href="{{ asset('css/kadodeMain.css') }}?ver=19.3">
 </head>
 
 <body>
@@ -87,7 +89,7 @@
     @endcomponent
 
 
-    <script type="text/javascript" src="{{ asset('js/kadodeMain.js') }}?ver=19.2"></script>
+    <script type="text/javascript" src="{{ asset('js/kadodeMain.js') }}?ver=19.3"></script>
 </body>
 
 </html>
