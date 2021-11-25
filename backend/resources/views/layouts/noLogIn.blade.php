@@ -8,19 +8,15 @@
         window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
-
     gtag('config', 'G-P6MDK8XCEE');
     </script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <title>@yield('title') | かどで日記</title>
-
     {{-- favicon --}}
     <link rel="apple-touch-icon" type="image/png" href="/img/favicon/apple-touch-icon-180x180.png">
     <link rel="icon" type="image/png" href="/img/favicon/icon-192x192.png">
-
     {{-- GoogleFonts --}}
     {{-- kiwi maru --}}
     {{--
@@ -31,7 +27,6 @@
     {{-- マテリアルアイコン --}}
     {{--
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"> --}}
-
     {{-- OGP --}}
     <meta property="og:title" content="@yield('title') | かどで日記">
     <meta property="og:type" content="website">
@@ -40,9 +35,9 @@
     <meta property="og:site_name" content="かどで日記">
     <meta property="og:description" content="かどで日記は日記を管理できるwebアプリです">
     <meta name="twitter:card" content="summary">
-
     {{-- CSS読み込み --}}
-    <link rel="stylesheet" href="{{ asset('css/kadodeMain.css') }}?ver=19.3">
+    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link rel="stylesheet" href="{{ asset('css/kadodeMain.css') }}?ver=20.0">
 </head>
 
 <body>
@@ -89,7 +84,7 @@
     @endcomponent
 
 
-    <script type="text/javascript" src="{{ asset('js/kadodeMain.js') }}?ver=19.3"></script>
+    <script type="text/javascript" src="{{ asset('js/kadodeMain.js') }}?ver=20.0"></script>
 </body>
 
 </html>
