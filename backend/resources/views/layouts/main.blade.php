@@ -121,7 +121,7 @@
 
 
 
-            <div class="flex items-center justify-center mr-4">
+            <div class="flex items-center justify-center">
                 <p class="sm:block hidden kiwi-maru">{{ Auth::user()->name }}</p>
                 <p class="sm:hidden block ml-4 mt-2"><a href="{{url("/settings")}}"><span
                             class="material-icons">settings</span></a></p>
