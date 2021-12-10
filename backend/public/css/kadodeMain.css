@@ -10,7 +10,7 @@
     font-weight: 400;
     font-style: normal;
     font-family: "Kiwi Maru";
-    src: url("/fonts/KiwiMaru-Regular.ttf") format("ttf");
+    src: url("/fonts/KiwiMaru-Medium.ttf") format("ttf");
 }
 
 .material-icons {
