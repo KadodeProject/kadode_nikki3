@@ -10,7 +10,7 @@ use Laravel\Fortify\TwoFactorAuthenticatable;
 use Laravel\Jetstream\HasProfilePhoto;
 use Laravel\Sanctum\HasApiTokens;
 use App\Scopes\ScopeDiary;
-class User extends Authenticatable implements MustVerifyEmail 
+class User extends Authenticatable implements MustVerifyEmail
 {
     use HasApiTokens;
     use HasFactory;
@@ -24,9 +24,17 @@ class User extends Authenticatable implements MustVerifyEmail
     ];
     public static $updateEmailRules=[
         "email"=>"email"
-        
-    ];
 
+    ];
+     // 初期値設定
+     protected $attributes = [
+        "is_showed_update_user_rank" =>0,
+        "is_showed_update_system_info" =>0,
+        "is_showed_service_info" =>0,
+        "user_rank" =>1,
+        "user_role" =>1,
+        "appearance" =>1,
+    ];
 
 
     // public function diaries(){
@@ -41,6 +49,12 @@ class User extends Authenticatable implements MustVerifyEmail
         'name',
         'email',
         'password',
+        'is_showed_update_user_rank',
+        'is_showed_update_system_info',
+        'is_showed_service_info',
+        'user_rank',
+        'user_role',
+        'appearance',
     ];
 
     /**

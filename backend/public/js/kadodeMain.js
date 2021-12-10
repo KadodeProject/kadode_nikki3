@@ -6,6 +6,12 @@
     Released under the MIT license
     http://opensource.org/licenses/mit-license.php
 */
+
+// 遊びゴコロ
+console.log(
+    "袖ひちて むすびし水の 凍れるを 春立つ今日の 風や解くらむ\n 紀貫之"
+);
+
 const input = document.getElementById("keywordLabel");
 const label = document.getElementById("moveLabelJs");
 if (input != null) {
