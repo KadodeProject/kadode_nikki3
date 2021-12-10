@@ -37,7 +37,7 @@
     <meta name="twitter:card" content="summary">
     {{-- CSS読み込み --}}
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-    <link rel="stylesheet" href="{{ asset('css/kadodeMain.css') }}?ver=20.0">
+    <link rel="stylesheet" href="{{ asset('css/kadodeMain.css') }}?ver=20.1">
 </head>
 
 <body>
@@ -84,7 +84,7 @@
     @endcomponent
 
 
-    <script type="text/javascript" src="{{ asset('js/kadodeMain.js') }}?ver=20.0"></script>
+    <script type="text/javascript" src="{{ asset('js/kadodeMain.js') }}?ver=20.1"></script>
 </body>
 
 </html>
