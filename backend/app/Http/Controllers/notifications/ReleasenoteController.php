@@ -57,10 +57,8 @@ class ReleasenoteController extends Controller
 
     public function update(Request $request){
 
-
-        // 日付のバリデーション→既に存在する日付ならエラー返す
         // バリデーション
-        // $this->validate($request,NlpPackageGenre::$rules);
+        $this->validate($request,Releasenote::$rules);
 
         $updateContent=[
             "title"=>$request->title,
@@ -69,7 +67,7 @@ class ReleasenoteController extends Controller
             "date"=>$request->date,
         ];
 
-        Releasenote::where('id',$request->osirase_id)->update($updateContent);
+        Releasenote::where('id',$request->releasenote_id)->update($updateContent);
         return redirect('administrator/notification');
     }
 
@@ -80,7 +78,7 @@ class ReleasenoteController extends Controller
      * @return void
      */
     public function delete(Request $request){
-        Releasenote::where('id',$request->osirase_id)->delete();
+        Releasenote::where('id',$request->releasenote_id)->delete();
         return redirect('administrator/notification');
     }
 }

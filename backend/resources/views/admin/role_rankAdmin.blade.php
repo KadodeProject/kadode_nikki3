@@ -1,5 +1,5 @@
 @extends("layouts.main")
-@section("title","管理者ページ")
+@section("title","権限ランクセンター")
 
 @section('header')
 @parent

@@ -9,7 +9,7 @@ use App\Models\NlpPackageName;
 use App\Models\PackageNER;
 
 
-class RoleAdminController extends Controller
+class Role_rankAdminController extends Controller
 {
     public function __invoke()
     {
@@ -27,7 +27,7 @@ class RoleAdminController extends Controller
             }
         //固有表現ラベル取得
         $NERLabel=NERLabel::where('id','>',0)->get();
-        return view('admin/roleAdmin',['NlpPackageName' => $NlpPackageName,'NlpPackageGenre' =>$NlpPackageGenre,'NERLabel' =>$NERLabel,]);
+        return view('admin/role_rankAdmin',['NlpPackageName' => $NlpPackageName,'NlpPackageGenre' =>$NlpPackageGenre,'NERLabel' =>$NERLabel,]);
     }
 
 }

@@ -12,4 +12,9 @@ class User_role extends Model
         "name","description","created_at","updated_at"
     ];
 
+    //バリデーション
+    public static $rules=array(
+        "name"=>"required",
+    );
+
 }

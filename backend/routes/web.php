@@ -23,8 +23,8 @@ use App\Http\Controllers\statistics\NamedEntityStatisticsController;
 
 use App\Http\Controllers\admin\HomeAdminController;
 use App\Http\Controllers\admin\NotificationBroadcasterAdminController;
-use App\Http\Controllers\admin\packageAdminController;
-use App\Http\Controllers\admin\roleAdminController;
+use App\Http\Controllers\admin\PackageAdminController;
+use App\Http\Controllers\admin\Role_rankAdminController;
 
 use App\Http\Controllers\packages\GenrePackagesController;
 use App\Http\Controllers\packages\ManagePackagesController;
@@ -155,7 +155,7 @@ Route::middleware(['administrator'])->group(function () {
     Route::get('/administrator', HomeAdminController::class)->name('home');
     Route::get('/administrator/notification', NotificationBroadcasterAdminController::class)->name('notification');
     Route::get('/administrator/package',PackageAdminController::class)->name('package');
-    Route::get('/administrator/role', RoleAdminController::class)->name('role');
+    Route::get('/administrator/role_rank', Role_rankAdminController::class)->name('role');
 
     //パッケージ名前系
     Route::post('/administrator/settings/packages/create',  [ManagePackagesController::class,"create"])->name('createPackages');
@@ -180,5 +180,15 @@ Route::middleware(['administrator'])->group(function () {
     Route::post('/administrator/settings/releasenote/create',  [ReleasenoteController::class,"create"])->name('createReleasenote');
     Route::post('/administrator/settings/releasenote/update',  [ReleasenoteController::class,"update"])->name('updateReleasenote');
     Route::post('/administrator/settings/releasenote/delete',  [ReleasenoteController::class,"delete"])->name('deleteReleasenote');
+
+    //ユーザーロールまわり
+    Route::post('/administrator/settings/user/role/create',  [User_roleController::class,"create"])->name('createUser_role');
+    Route::post('/administrator/settings/user/role/update',  [User_roleController::class,"update"])->name('updateUser_role');
+    Route::post('/administrator/settings/user/role/delete',  [User_roleController::class,"delete"])->name('deleteUser_role');
+
+    //ユーザーランクまわり
+    Route::post('/administrator/settings/user/rank/create',  [User_rankController::class,"create"])->name('createRUser_rank');
+    Route::post('/administrator/settings/user/rank/update',  [User_rankController::class,"update"])->name('updateRUser_rank');
+    Route::post('/administrator/settings/user/rank/delete',  [User_rankController::class,"delete"])->name('deleteRUser_rank');
 
 });

@@ -1,13 +1,13 @@
 <?php
 
-namespace App\Http\Controllers\notifications;
+namespace App\Http\Controllers\user;
 
 use App\Http\Controllers\Controller;
-use App\Models\Osirase_genre;
-use App\Models\Osirase;
+use App\Models\Releasenote_genre;
+use App\Models\Releasenote;
 use Illuminate\Http\Request;
 
-class OsiraseController extends Controller
+class User_rankController extends Controller
 {
 
     /**
@@ -19,7 +19,7 @@ class OsiraseController extends Controller
     public function create(Request $request){
 
         // バリデーション
-        $this->validate($request,Osirase::$rules);
+        $this->validate($request,Releasenote::$rules);
 
         //中身作成
         $form=[
@@ -29,8 +29,8 @@ class OsiraseController extends Controller
             "date"=>$request->date,
         ];
 
-        Osirase::create($form);
-        return redirect('administrator/notification');
+        Releasenote::create($form);
+        return redirect('administrator/role_rank');
     }
 
     /**
@@ -39,13 +39,12 @@ class OsiraseController extends Controller
      * @return void
      */
     public function read(){
-        $osirases=Osirase::orderBy('date', 'desc')->get(['title','date','genre_id','description']);
-        $osiraseGenres=Osirase_genre::get(['id','name']);
-        foreach($osirases as $osirase){
-            $osirase->genre=$osiraseGenres[$osirase->genre_id-1]->name;
+        $releasenotes=Releasenote::orderBy('date', 'desc')->get(['title','date','genre_id','description']);
+        $releasenoteGenres=Releasenote_genre::get(['id','name']);
+        foreach($releasenotes as $releasenote){
+            $releasenote->genre=$releasenoteGenres[$releasenote->genre_id-1]->name;
         }
-
-        return view('diaryNoLogIn/news',['osirases' => $osirases,]);
+        return view('diaryNoLogIn/releaseNote',['releasenotes' => $releasenotes,]);
     }
 
 
@@ -59,8 +58,9 @@ class OsiraseController extends Controller
     public function update(Request $request){
 
 
+        // 日付のバリデーション→既に存在する日付ならエラー返す
         // バリデーション
-        $this->validate($request,Osirase::$rules);
+        // $this->validate($request,NlpPackageGenre::$rules);
 
         $updateContent=[
             "title"=>$request->title,
@@ -69,8 +69,8 @@ class OsiraseController extends Controller
             "date"=>$request->date,
         ];
 
-        Osirase::where('id',$request->osirase_id)->update($updateContent);
-        return redirect('administrator/notification');
+        Releasenote::where('id',$request->osirase_id)->update($updateContent);
+        return redirect('administrator/role_rank');
     }
 
     /**
@@ -80,7 +80,7 @@ class OsiraseController extends Controller
      * @return void
      */
     public function delete(Request $request){
-        Osirase::where('id',$request->osirase_id)->delete();
-        return redirect('administrator/notification');
+        Releasenote::where('id',$request->osirase_id)->delete();
+        return redirect('administrator/role_rank');
     }
 }

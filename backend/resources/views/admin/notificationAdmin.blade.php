@@ -1,5 +1,5 @@
 @extends("layouts.main")
-@section("title","管理者ページ")
+@section("title","通知センター")
 
 @section('header')
 @parent
@@ -50,7 +50,7 @@
                                 onkeydown="if((event.ctrlKey || event.metaKey)&&event.keyCode==13){document.getElementById('submitosirase_{{$i}}').click();return false};">
                         </td>
                         <td>
-                            <select name="osirase_genre_id">
+                            <select name="releasenote_id">
                                 <option disabled value>ジャンルを選ぶ</option>
                                 @foreach($releasenoteGenres as $releasenoteGenre)
                                 @if($releasenoteGenre->id==$releasenote->genre_id)
@@ -101,7 +101,7 @@
                                 onkeydown="if((event.ctrlKey || event.metaKey)&&event.keyCode==13){document.getElementById('submitosirase_{{$i}}').click();return false};">
                         </td>
                         <td>
-                            <select name="osirase_genre_id">
+                            <select name="releasenote_id">
                                 <option disabled value>ジャンルを選ぶ</option>
                                 @foreach($releasenoteGenres as $packageGenre)
                                 <option value="{{$packageGenre->id}}">{{$packageGenre->name}}</option>
