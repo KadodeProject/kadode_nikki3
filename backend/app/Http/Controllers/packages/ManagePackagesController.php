@@ -19,7 +19,7 @@ class ManagePackagesController extends Controller
     public function create(Request $request){
 
         // バリデーション
-        // $this->validate($request,NlpPackageName::$rules);
+        $this->validate($request,NlpPackageName::$rules);
 
         //中身作成
         $form=[
@@ -46,7 +46,7 @@ class ManagePackagesController extends Controller
 
         // 日付のバリデーション→既に存在する日付ならエラー返す
         // バリデーション
-        // $this->validate($request,NlpPackageName::$rules);
+        $this->validate($request,NlpPackageName::$rules);
 
         $updateContent=[
             "genre_id"=>$request->NlpPackageGenre_id,
