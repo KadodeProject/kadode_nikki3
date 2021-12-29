@@ -36,15 +36,58 @@ class JudgeUser_rankCommand extends Command
      *
      * @return int
      */
-    public function handle()
-    {
 
+    public function updateUserRank ($user_id,$currentUserRank){
         /**
          * ユーザーランクアップ対象の場合の処理
          */
-        //ユーザー通知のフラグをオンにする
-        $applicableUserId=0;
-        User::where('id',$applicableUserId)->update(["is_showed_update_user_rank"=>0,"user_rank_updated_at"=>Carbon::now()]);
+        //ユーザー通知のフラグをオン、idを上げる、日付更新
+        User::where('id',$user_id)->update(["user_rank_id"=>$currentUserRank+1,"is_showed_update_user_rank"=>0,"user_rank_updated_at"=>Carbon::now()]);
+
+    }
+    public function handle()
+    {
+        $users=User::all();
+        foreach($users as $user){
+            $rank_id=$user->user_rank_id;
+            $user_id=$user->id;
+            switch($rank_id){
+                case 1:
+                    if(0){
+                        $this->updateUserRank($user_id,$rank_id);
+                    }
+                    break;
+
+                case 2:
+                    if(0){
+                        $this->updateUserRank($user_id,$rank_id);
+                    }
+                    break;
+                case 3:
+                    if(0){
+                        $this->updateUserRank($user_id,$rank_id);
+                    }
+                    break;
+                case 4:
+                    if(0){
+                        $this->updateUserRank($user_id,$rank_id);
+                    }
+                    break;
+                case 5:
+                    if(0){
+                        $this->updateUserRank($user_id,$rank_id);
+                    }
+                    break;
+                case 6:
+                    if(0){
+                        $this->updateUserRank($user_id,$rank_id);
+                    }
+                    break;
+
+            }
+        }
+
+
 
         echo('id:'.$applicableUserId.'のランクが上がりました');
         return Command::SUCCESS;

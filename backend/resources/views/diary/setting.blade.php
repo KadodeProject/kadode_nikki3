@@ -29,7 +29,7 @@
                     }
 
                     a[id$="route"] {
-                        display: none;
+                        opacity: 0 !important;
                     }
 
                     text[id$="pname"] {
@@ -124,36 +124,31 @@
                         opacity: 1 !important;
                     }
 
-                    /* ユーザーランクの数だけ表示する */
-                    /* ルート→-1する */
-                    a[id^="1harbor"] circle {
-                        fill: #4B8996 !important;
-                    }
-
-                    text[id^="1pname"] {
-                        opacity: 1 !important;
-                    }
-
-                    a[id^="1route"] {
-                        opacity: 1 !important;
-                    }
-
-                    a[id^="2harbor"] circle {
-                        fill: #4B8996 !important;
-                    }
-
-                    text[id^="2pname"] {
-                        opacity: 1 !important;
-                    }
-
-
                     a[id$="harbor"] circle:hover {
                         /* content: "blog"; */
                         fill: wheat !important;
                         transition: 1.0s;
                     }
                 </style>
-                <p class="text-center text-3xl">「〇〇」です。</p>
+                @for ($i=$user_rank->id; $i >0; $i--)
+                <style>
+                    /* ユーザーランクの数だけ表示する */
+                    /* ルート→-1する */
+                    a[id^="{{$i}}harbor"] circle {
+                        fill: #4B8996 !important;
+                    }
+
+                    text[id^="{{$i}}pname"] {
+                        opacity: 1 !important;
+                    }
+
+                    a[id^="{{$i-1}}route"] {
+                        opacity: 1 !important;
+                    }
+                </style>
+                @endfor
+                <p class="text-center text-3xl">「{{$user_rank->name}}」です。</p>
+                <p class="text-center text-xl mt-2 mb-4">{{$user_rank->description}}</p>
 
                 <svg width="1920" height="1080" viewBox="0 0 308 285.75" version="1.1" id="svg5"
                     inkscape:version="1.1.1 (3bf5ae0d25, 2021-09-20)" sodipodi:docname="userRankMap.svg"
