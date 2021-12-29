@@ -8,8 +8,8 @@ use App\Http\Controllers\diary\SearchDiaryController;
 use App\Http\Controllers\diary\SettingDiaryController;
 use App\Http\Controllers\diary\ShowDiaryController;
 
-use App\Http\Controllers\others\ShowNewsController;
-use App\Http\Controllers\others\ShowReleaseNoteController;
+use App\Http\Controllers\notifications\OsiraseController;
+use App\Http\Controllers\notifications\ReleasenoteController;
 
 
 use App\Http\Controllers\diary\UserController;
@@ -62,8 +62,8 @@ Route::get('/contact', function () {
 
 
 
-Route::get('/news', ShowNewsController::class)->name('releaseNote');
-Route::get('/releaseNote', ShowReleaseNoteController::class)->name('releaseNote');
+Route::get('/news', [OsiraseController::class,"read"])->name('releaseNote');
+Route::get('/releaseNote', [ReleasenoteController::class,"read"])->name('releaseNote');
 
 Route::get('/terms', function () {
     return view('diaryNoLogIn/terms');
@@ -170,5 +170,10 @@ Route::middleware(['administrator'])->group(function () {
     Route::post('/statistics/settings/named_entity/package/create',  [NamedEntityStatisticsController::class,"packagesCreate"])->name('createPackageNamedEntity');
     Route::post('/statistics/settings/named_entity/package/update',  [NamedEntityStatisticsController::class,"packagesUpdate"])->name('updatePackageNamedEntity');
     Route::post('/statistics/settings/named_entity/package/delete',  [NamedEntityStatisticsController::class,"packagesDelete"])->name('deletePackageNamedEntity');
+
+    //お知らせまわり
+    Route::post('/administrator/settings/osirase/create',  [OsiraseController::class,"create"])->name('createOsirase');
+    Route::post('/administrator/settings/osirase/update',  [OsiraseController::class,"update"])->name('updateOsirase');
+    Route::post('/administrator/settings/osirase/delete',  [OsiraseController::class,"delete"])->name('deleteOsirase');
 
 });

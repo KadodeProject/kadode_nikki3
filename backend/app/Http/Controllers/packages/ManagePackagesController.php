@@ -31,7 +31,7 @@ class ManagePackagesController extends Controller
         ];
 
         NlpPackageName::create($form);
-        return redirect('administrator');
+        return redirect('administrator/package');
     }
 
     /**
@@ -56,7 +56,7 @@ class ManagePackagesController extends Controller
         ];
 
         NlpPackageName::where('id',$request->NlpPackageName_id)->update($updateContent);
-        return redirect('administrator');
+        return redirect('administrator/package');
     }
 
     /**
@@ -67,6 +67,6 @@ class ManagePackagesController extends Controller
      */
     public function delete(Request $request){
         NlpPackageName::where('id',$request->NlpPackageName_id)->delete();
-        return redirect('administrator');
+        return redirect('administrator/package');
     }
 }

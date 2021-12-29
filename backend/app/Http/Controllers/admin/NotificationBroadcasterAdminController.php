@@ -3,31 +3,33 @@
 namespace App\Http\Controllers\admin;
 
 use App\Http\Controllers\Controller;
-use App\Models\NERLabel;
-use App\Models\NlpPackageGenre;
-use App\Models\NlpPackageName;
-use App\Models\PackageNER;
+use App\Models\Osirase;
+use App\Models\Osirase_genre;
+use App\Models\Releasenote;
+use App\Models\Releasenote_genre;
 use Illuminate\Http\Request;
 
 class NotificationBroadcasterAdminController extends Controller
 {
     public function __invoke()
     {
-        //パッケージ表示
-        $NlpPackageName=NlpPackageName::get();
-        //パッケージジャンル表示
-        $NlpPackageGenre=NlpPackageGenre::get();
+        //お知らせ
+        $osirases=Osirase::orderBy('date', 'desc')->get();
+        $osiraseGenres=Osirase_genre::get(['id','name']);
+        foreach($osirases as $osirase){
+            //ジャンルidから名前取得
+            $osirase->genre=$osiraseGenres[$osirase->genre_id-1]->name;
+        }
 
-        //固有表現ルールの中身取得
-        foreach($NlpPackageName as $NlpPackageObj){
-            if( $NlpPackageObj->genre_id==1){
-                //固有表現パッケージだったら
-                $NlpPackageObj->packageNER=PackageNER::where('package_id',$NlpPackageObj->id)->get();
-                }
-            }
-        //固有表現ラベル取得
-        $NERLabel=NERLabel::where('id','>',0)->get();
-        return view('diary/admin/notificationAdmin',['NlpPackageName' => $NlpPackageName,'NlpPackageGenre' =>$NlpPackageGenre,'NERLabel' =>$NERLabel,]);
+        //リリースノート
+        $releasenotes=Releasenote::orderBy('date', 'desc')->get();
+        $releasenoteGenres=Releasenote_genre::get(['id','name']);
+        foreach($releasenotes as $releasenote){
+            //ジャンルidから名前取得
+            $releasenote->genre=$releasenoteGenres[$releasenote->genre_id-1]->name;
+        }
+
+        return view('admin/notificationAdmin',['osirases' => $osirases,'osiraseGenres'=>$osiraseGenres,'releasenoteGenres'=>$releasenoteGenres,'releasenotes' => $releasenotes,]);
     }
 
 }

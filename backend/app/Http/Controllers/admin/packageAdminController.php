@@ -27,7 +27,7 @@ class PackageAdminController extends Controller
             }
         //固有表現ラベル取得
         $NERLabel=NERLabel::where('id','>',0)->get();
-        return view('diary/admin/packageAdmin',['NlpPackageName' => $NlpPackageName,'NlpPackageGenre' =>$NlpPackageGenre,'NERLabel' =>$NERLabel,]);
+        return view('admin/packageAdmin',['NlpPackageName' => $NlpPackageName,'NlpPackageGenre' =>$NlpPackageGenre,'NERLabel' =>$NERLabel,]);
     }
 
 }

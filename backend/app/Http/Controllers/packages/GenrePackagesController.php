@@ -27,7 +27,7 @@ class GenrePackagesController extends Controller
         ];
 
         NlpPackageGenre::create($form);
-        return redirect('administrator');
+        return redirect('administrator/package');
     }
 
     /**
@@ -50,7 +50,7 @@ class GenrePackagesController extends Controller
         ];
 
         NlpPackageGenre::where('id',$request->NlpPackageGenre_id)->update($updateContent);
-        return redirect('administrator');
+        return redirect('administrator/package');
     }
 
     /**
@@ -61,6 +61,6 @@ class GenrePackagesController extends Controller
      */
     public function delete(Request $request){
         NlpPackageGenre::where('id',$request->NlpPackageGenre_id)->delete();
-        return redirect('administrator');
+        return redirect('administrator/package');
     }
 }

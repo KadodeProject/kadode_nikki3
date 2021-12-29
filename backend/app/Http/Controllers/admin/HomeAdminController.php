@@ -13,7 +13,7 @@ class HomeAdminController extends Controller
 {
     public function __invoke()
     {
-        return view('diary.admin.homeAdmin');
+        return view('admin/homeAdmin');
     }
 
 }

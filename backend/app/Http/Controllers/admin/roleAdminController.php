@@ -27,7 +27,7 @@ class RoleAdminController extends Controller
             }
         //固有表現ラベル取得
         $NERLabel=NERLabel::where('id','>',0)->get();
-        return view('diary/admin/roleAdmin',['NlpPackageName' => $NlpPackageName,'NlpPackageGenre' =>$NlpPackageGenre,'NERLabel' =>$NERLabel,]);
+        return view('admin/roleAdmin',['NlpPackageName' => $NlpPackageName,'NlpPackageGenre' =>$NlpPackageGenre,'NERLabel' =>$NERLabel,]);
     }
 
 }

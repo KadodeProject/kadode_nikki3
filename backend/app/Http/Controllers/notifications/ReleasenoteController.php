@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\others;
+namespace App\Http\Controllers\notifications;
 
 use App\Http\Controllers\Controller;
 use App\Models\Releasenote_genre;
@@ -9,7 +9,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
 
-class ShowReleaseNoteController extends Controller
+class ReleasenoteController extends Controller
 {
     public function __invoke()
     {
