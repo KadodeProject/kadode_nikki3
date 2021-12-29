@@ -31,12 +31,13 @@ class UserTableSeeder extends Seeder
                 "is_showed_update_user_rank" =>0,
                 "is_showed_update_system_info" =>0,
                 "is_showed_service_info" =>0,
-                "user_rank_id" =>2,
-                "user_role_id" =>1,
+                "user_rank_id" =>1,
+                "user_role_id" =>2,
                 "appearance_id" =>1,
                 "profile_photo_path"=>null,
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now(),
+                'user_rank_updated_at' => Carbon::now(),
             ],
 
             [
@@ -57,6 +58,7 @@ class UserTableSeeder extends Seeder
                 "profile_photo_path"=>null,
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now(),
+                'user_rank_updated_at' => Carbon::now(),
             ],
             [
                 'name'=>"開発者3",
@@ -76,6 +78,7 @@ class UserTableSeeder extends Seeder
                 "profile_photo_path"=>null,
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now(),
+                'user_rank_updated_at' => Carbon::now(),
             ],
         ];
         DB::table("users")->insert($param);

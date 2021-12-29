@@ -6,17 +6,28 @@
 @endsection
 @section('content')
 <div class="board-main">
-    @component('components.notification.notification')
-    @slot("bg_color")
-    status-excellent
-    @endslot
-    @slot("date")
-    2021-12-25
-    @endslot
-    @slot("title")
-    かどで日記ユーザー昨日がリリースされました！
-    @endslot
-    @endcomponent
+    @empty($new_infos)
+    <!--新着通知なし-->
+    @else
+    <div class="fixed  top-10 right-4 lg:w-1/6 ">
+        <!--通知センター-->
+        @foreach($new_infos as $new_info)
+        @component('components.notification.notification')
+        @slot("bg_color")
+        {{$new_info["bg_color"]}}
+        @endslot
+        @slot("date")
+        {{$new_info["date"]->format('Y年n月j日')}}
+        @endslot
+        @slot("title")
+        {{$new_info["title"]}}
+        @endslot
+        @endcomponent
+        @endforeach
+    </div>
+    @endempty
+
+
     <div class="diary-main">
         <div class="sm:order-1 order-2">
             @empty($yesterday)

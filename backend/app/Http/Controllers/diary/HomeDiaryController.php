@@ -4,6 +4,9 @@ namespace App\Http\Controllers\diary;
 
 use App\Http\Controllers\Controller;
 use App\Models\Diary;
+use App\Models\Osirase;
+use App\Models\Releasenote;
+use App\Models\User_rank;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -26,7 +29,7 @@ class homeDiaryController extends Controller
         /**
          * 最新10件を取って、今日と昨日があるか調べる
          * →あったら代入、
-         * 
+         *
          * さらに、下で挿入するようのデータは特定文字数超えたら切って「…」にする。
          */
         $today=null;
@@ -70,7 +73,7 @@ class homeDiaryController extends Controller
             }
         }
 
-        
+
         $this_day=Carbon::today()->format("Y-m-d");
 
 
@@ -81,7 +84,7 @@ class homeDiaryController extends Controller
         $lastWeek=new Carbon("-1 weeks");
         $lastWeekDiary=Diary::where("date",$lastWeek->format("Y-m-d"))->first();
         $lastWeekDiary=["explain"=>"先週"]+($lastWeekDiary ?$lastWeekDiary->toArray() :["date"=>"no"]);
-   
+
         $lastMonth=new Carbon("-1 months");
         $lastMonthDiary=Diary::where("date",$lastMonth->format("Y-m-d"))->first();
         $lastMonthDiary=["explain"=>"先月"]+($lastMonthDiary ? $lastMonthDiary->toArray() : ["date"=>"no"]);
@@ -99,7 +102,7 @@ class homeDiaryController extends Controller
         $lastYearDiary=Diary::where("date",$lastYear->format("Y-m-d"))->first();
         $lastYearDiary=["explain"=>"1年前"]+($lastYearDiary ?$lastYearDiary->toArray() : ["date"=>"no"]);
 
-        
+
         $lastTwoYear=new Carbon("-2 years");
         $lastTwoYearDiary=Diary::where("date",$lastTwoYear->format("Y-m-d"))->first();
         $lastTwoYearDiary=["explain"=>"2年前"]+($lastTwoYearDiary ?$lastTwoYearDiary->toArray() : ["date"=>"no"]);
@@ -108,7 +111,7 @@ class homeDiaryController extends Controller
         $lastThreeYearDiary=Diary::where("date",$lastThreeYear->format("Y-m-d"))->first();
         $lastThreeYearDiary=["explain"=>"3年前"]+($lastThreeYearDiary ?$lastThreeYearDiary->toArray() : ["date"=>"no"]);
 
-        
+
         $oldDiaries=[$lastWeekDiary,$lastMonthDiary, $lastTwoMonthDiary,$halfYearDiary, $lastYearDiary, $lastTwoYearDiary,$lastThreeYearDiary];
         /**
          * oldDiariesの統計データの表示処理
@@ -135,6 +138,29 @@ class homeDiaryController extends Controller
 
         //古い日記の取得
 
-        return view('diary/home',['user' => $user,'yesterday'=>$yesterday,'today'=>$today,'diaries'=>$diaries,'this_day'=>$this_day,'oldDiaries'=>$oldDiaries]);
+
+        /**
+         * ユーザーのお知らせ取得
+         */
+        $new_infos=[];
+
+
+        if(!$user->is_showed_service_info){
+            //お知らせ取得
+            $osirase=Osirase::where("id","!=",0)->orderBy('date','desc')->first(['title','date']);
+            $new_infos[]=["bg_color"=>"status-excellent","title"=>$osirase->title,"date"=>$osirase->date];
+        }
+        if(!$user->is_showed_update_system_info){
+            // リリースノート取得
+            $releasenote=Releasenote::where("id","!=",0)->orderBy('date','desc')->first(['title','date']);
+            $new_infos[]=["bg_color"=>"status-good","title"=>$releasenote->title,"date"=>$releasenote->date];
+        }
+        if(!$user->is_showed_update_user_rank){
+            // ユーザーランク取得
+            $user_rank=User_rank::where("id",$user->user_rank_id)->first(['name']);
+            $new_infos[]=["bg_color"=>"status-poor","title"=>"ユーザーランクが「".$user_rank->name."」になりました！","date"=>$user->user_rank_updated_at];
+        }
+
+        return view('diary/home',['user' => $user,'new_infos'=>$new_infos,'yesterday'=>$yesterday,'today'=>$today,'diaries'=>$diaries,'this_day'=>$this_day,'oldDiaries'=>$oldDiaries]);
     }
 }

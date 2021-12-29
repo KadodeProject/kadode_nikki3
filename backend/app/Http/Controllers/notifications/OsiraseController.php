@@ -5,6 +5,7 @@ namespace App\Http\Controllers\notifications;
 use App\Http\Controllers\Controller;
 use App\Models\Osirase_genre;
 use App\Models\Osirase;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class OsiraseController extends Controller
@@ -30,6 +31,10 @@ class OsiraseController extends Controller
         ];
 
         Osirase::create($form);
+
+        //ユーザー通知のフラグをオンにする
+        User::where('id','!=','null')->update(["is_showed_service_info"=>1]);
+
         return redirect('administrator/notification');
     }
 

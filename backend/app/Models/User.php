@@ -10,6 +10,8 @@ use Laravel\Fortify\TwoFactorAuthenticatable;
 use Laravel\Jetstream\HasProfilePhoto;
 use Laravel\Sanctum\HasApiTokens;
 use App\Scopes\ScopeDiary;
+use Carbon\Carbon;
+
 class User extends Authenticatable implements MustVerifyEmail
 {
     use HasApiTokens;
@@ -27,13 +29,14 @@ class User extends Authenticatable implements MustVerifyEmail
 
     ];
      // 初期値設定
-     protected $attributes = [
+    protected $attributes = [
         "is_showed_update_user_rank" =>0,
         "is_showed_update_system_info" =>0,
         "is_showed_service_info" =>0,
         "user_rank_id" =>1,
         "user_role_id" =>1,
         "appearance_id" =>1,
+        "user_rank_updated_at"=>"2021-12-28",
     ];
 
 
@@ -86,4 +89,8 @@ class User extends Authenticatable implements MustVerifyEmail
     protected $appends = [
         'profile_photo_url',
     ];
+
+
+    //format(年月日)するために
+    protected $dates = ['user_rank_updated_at'];
 }

@@ -5,6 +5,7 @@ namespace App\Http\Controllers\notifications;
 use App\Http\Controllers\Controller;
 use App\Models\Releasenote_genre;
 use App\Models\Releasenote;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class ReleasenoteController extends Controller
@@ -30,6 +31,10 @@ class ReleasenoteController extends Controller
         ];
 
         Releasenote::create($form);
+
+        //ユーザー通知のフラグをオンにする
+        User::where('id','!=','null')->update(["is_showed_update_system_info"=>1]);
+
         return redirect('administrator/notification');
     }
 

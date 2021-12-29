@@ -20,6 +20,7 @@ class AddFlagsAndRolesToUsersTable extends Migration
             $table->unsignedBigInteger("user_rank_id")->nullable()->comment("ユーザーランク")->default(1);
             $table->unsignedBigInteger("user_role_id")->nullable()->comment("ユーザーロール(一般、管理者etc)")->default(1);
             $table->unsignedBigInteger("appearance_id")->nullable()->comment("ページの見た目")->default(1);
+            $table->date("user_rank_updated_at")->nullable()->comment("ユーザーランクアップデート日");
 
 
 
