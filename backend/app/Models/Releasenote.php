@@ -12,4 +12,10 @@ class Releasenote extends Model
         "title","genre_id","description","date","created_at","updated_at"
     ];
     protected $dates = ['date'];
+
+    public static $rules=array(
+        "date"=>"required",
+        "title"=>"required|max:50",
+        "description"=>"required",
+        );
 }

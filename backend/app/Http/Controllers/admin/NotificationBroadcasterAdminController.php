@@ -7,7 +7,7 @@ use App\Models\Osirase;
 use App\Models\Osirase_genre;
 use App\Models\Releasenote;
 use App\Models\Releasenote_genre;
-use Illuminate\Http\Request;
+
 
 class NotificationBroadcasterAdminController extends Controller
 {

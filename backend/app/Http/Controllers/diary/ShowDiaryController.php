@@ -7,9 +7,6 @@ use App\Models\Diary;
 use App\Models\Statistic_per_month;
 use App\Models\Statistic_per_year;
 use Carbon\Carbon;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Log;
-
 class ShowDiaryController extends Controller
 {
     public function getMonthArchive($year,$month)

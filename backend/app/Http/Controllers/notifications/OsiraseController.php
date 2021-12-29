@@ -6,8 +6,6 @@ use App\Http\Controllers\Controller;
 use App\Models\Osirase_genre;
 use App\Models\Osirase;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Str;
 
 class OsiraseController extends Controller
 {
@@ -21,7 +19,7 @@ class OsiraseController extends Controller
     public function create(Request $request){
 
         // バリデーション
-        // $this->validate($request,NlpPackageGenre::$rules);
+        $this->validate($request,Osirase::$rules);
 
         //中身作成
         $form=[

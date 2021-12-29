@@ -176,4 +176,9 @@ Route::middleware(['administrator'])->group(function () {
     Route::post('/administrator/settings/osirase/update',  [OsiraseController::class,"update"])->name('updateOsirase');
     Route::post('/administrator/settings/osirase/delete',  [OsiraseController::class,"delete"])->name('deleteOsirase');
 
+    //リリースノートまわり
+    Route::post('/administrator/settings/releasenote/create',  [ReleasenoteController::class,"create"])->name('createReleasenote');
+    Route::post('/administrator/settings/releasenote/update',  [ReleasenoteController::class,"update"])->name('updateReleasenote');
+    Route::post('/administrator/settings/releasenote/delete',  [ReleasenoteController::class,"delete"])->name('deleteReleasenote');
+
 });
