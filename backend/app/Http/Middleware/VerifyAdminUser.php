@@ -19,8 +19,7 @@ class VerifyAdminUser
         /** @var User $user */
         $user = $request->user();
 
-        if ($user->id!=1) {
-            \Log::debug("管理者ログイン");
+        if ($user->user_rank_id!=2) {
             //管理者ユーザーじゃなかったら403エラー返す
             abort(403);
         }
