@@ -10,6 +10,7 @@ use App\Http\Controllers\diary\ShowDiaryController;
 
 use App\Http\Controllers\notifications\OsiraseController;
 use App\Http\Controllers\notifications\ReleasenoteController;
+use App\Http\Controllers\notifications\ShowNotificationController;
 
 use App\Http\Controllers\user\User_roleController;
 use App\Http\Controllers\user\User_rankController;
@@ -146,6 +147,12 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     Route::post('/statistics/settings/packages/use',  [OwnPackagesController::class,"use"])->name('usePackages');
     Route::post('/statistics/settings/packages/release',  [OwnPackagesController::class,"release"])->name('releasePackages');
 
+    //ユーザー通知周り
+    Route::post('/notification/user_rank/delete',  [ShowNotificationController::class,"user_rank"])->name('removeUser_rankInfo');
+    Route::post('/notification/osirase/delete',  [ShowNotificationController::class,"osirase"])->name('removeOsiraseInfo');
+    Route::post('/notification/releasenote/delete',  [ShowNotificationController::class,"releasenote"])->name('removeReleasenoteInfo');
+
+
 
 
 });
@@ -193,5 +200,6 @@ Route::middleware(['administrator'])->group(function () {
     Route::post('/administrator/settings/user/rank/create',  [User_rankController::class,"create"])->name('createRUser_rank');
     Route::post('/administrator/settings/user/rank/update',  [User_rankController::class,"update"])->name('updateRUser_rank');
     Route::post('/administrator/settings/user/rank/delete',  [User_rankController::class,"delete"])->name('deleteRUser_rank');
+
 
 });

@@ -16,6 +16,9 @@
         @slot("bg_color")
         {{$new_info["bg_color"]}}
         @endslot
+        @slot("type")
+        {{$new_info["type"]}}
+        @endslot
         @slot("date")
         {{$new_info["date"]->format('Y年n月j日')}}
         @endslot
