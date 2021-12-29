@@ -11,7 +11,7 @@
     @foreach($releasenotes as $releasenote)
     @include('components.noLogIn.releaseNote',
     ['title'=>$releasenote->title,
-    'date'=>$releasenote->date->format('Y年m月d日'),
+    'date'=>$releasenote->date->format('Y年n月j日'),
     'genre'=>$releasenote->genre,
     'explain'=>$releasenote->description,
     ])

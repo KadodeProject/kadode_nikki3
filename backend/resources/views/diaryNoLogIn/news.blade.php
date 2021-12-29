@@ -11,7 +11,7 @@
     @foreach($osirases as $osirase)
     @include('components.noLogIn.news',
     ['title'=>$osirase->title,
-    'date'=>$osirase->date->format('Y年m月d日'),
+    'date'=>$osirase->date->format('Y年n月j日'),
     'genre'=>$osirase->genre,
     'explain'=>$osirase->description,
     ])
