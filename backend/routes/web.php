@@ -8,6 +8,10 @@ use App\Http\Controllers\diary\SearchDiaryController;
 use App\Http\Controllers\diary\SettingDiaryController;
 use App\Http\Controllers\diary\ShowDiaryController;
 
+use App\Http\Controllers\others\ShowNewsController;
+use App\Http\Controllers\others\ShowReleaseNoteController;
+
+
 use App\Http\Controllers\diary\UserController;
 
 use App\Http\Controllers\statistics\ShowStatisticsController;
@@ -54,12 +58,13 @@ Route::get('/privacyPolicy', function () {
 Route::get('/contact', function () {
     return view('diaryNoLogIn/contact');
 });
-Route::get('/news', function () {
-    return view('diaryNoLogIn/news');
-});
-Route::get('/releaseNote', function () {
-    return view('diaryNoLogIn/releaseNote');
-});
+
+
+
+
+Route::get('/news', ShowNewsController::class)->name('releaseNote');
+Route::get('/releaseNote', ShowReleaseNoteController::class)->name('releaseNote');
+
 Route::get('/terms', function () {
     return view('diaryNoLogIn/terms');
 });

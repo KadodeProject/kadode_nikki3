@@ -11,4 +11,5 @@ class Osirase extends Model
     protected $fillable = [
         "title","genre_id","description","date","created_at","updated_at"
     ];
+    protected $dates = ['date'];
 }
