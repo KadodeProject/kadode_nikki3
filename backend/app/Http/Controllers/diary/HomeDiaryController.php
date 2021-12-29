@@ -161,6 +161,9 @@ class homeDiaryController extends Controller
             $new_infos[]=["type"=>"user_rank","bg_color"=>"status-poor","title"=>"ユーザーランクが「".$user_rank->name."」になりました！","date"=>$user->user_rank_updated_at];
         }
 
+
+
+
         return view('diary/home',['user' => $user,'new_infos'=>$new_infos,'yesterday'=>$yesterday,'today'=>$today,'diaries'=>$diaries,'this_day'=>$this_day,'oldDiaries'=>$oldDiaries]);
     }
 }

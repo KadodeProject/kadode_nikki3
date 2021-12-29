@@ -54,15 +54,23 @@ class JudgeUser_rankCommand extends Command
     public function handle()
     {
         $users=User::all();
+        $diaries=Statistic::all();
+        \Log::debug("message");
+        echo(gettype($diaries)."|\n");
+        foreach($diaries as $diary){
+            echo(gettype($diary)."|\n");
+            echo($diary->id."|\n");
+        }
+
         foreach($users as $user){
             $rank_id=$user->user_rank_id;
             $user_id=$user->id;
-
+            echo($user->name."\n");
             switch($rank_id){
                 case 1:
-                    echo("aaa"."\n");
-                    echo(Diary::first()->title."\n");
-                    echo($user_id."\n");
+
+
+
 
                     if(Diary::where('user_id',$user_id)->count()>=1){
 

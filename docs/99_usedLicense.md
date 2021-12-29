@@ -32,6 +32,16 @@ Released under the MIT license
 
 https://github.com/spatie/laravel-backup/blob/main/LICENSE.md
 
+## laravel-debugbar
+
+※ローカルのデバッグに使用
+
+Copyright (C) 2013-present Barry vd. Heuvel
+
+Released under the MIT license
+
+https://github.com/barryvdh/laravel-debugbar/blob/master/LICENSE
+
 # JavaScript ライブラリ
 
 ## Chart.js
