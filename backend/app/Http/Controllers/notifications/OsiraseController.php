@@ -33,7 +33,7 @@ class OsiraseController extends Controller
         Osirase::create($form);
 
         //ユーザー通知のフラグをオンにする
-        User::where('id','!=','null')->update(["is_showed_service_info"=>1]);
+        User::where('id','!=',0)->update(["is_showed_service_info"=>0]);
 
         return redirect('administrator/notification');
     }

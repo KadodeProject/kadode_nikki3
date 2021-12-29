@@ -44,7 +44,7 @@ class JudgeUser_rankCommand extends Command
          */
         //ユーザー通知のフラグをオンにする
         $applicableUserId=0;
-        User::where('id',$applicableUserId)->update(["is_showed_update_user_rank"=>1,"user_rank_updated_at"=>Carbon::now()]);
+        User::where('id',$applicableUserId)->update(["is_showed_update_user_rank"=>0,"user_rank_updated_at"=>Carbon::now()]);
 
         echo('id:'.$applicableUserId.'のランクが上がりました');
         return Command::SUCCESS;

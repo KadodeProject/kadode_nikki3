@@ -8,7 +8,7 @@
 
     <form class="relative top-1 right-2" method="POST" action="/notification/{{$type}}/delete">
         @csrf
-        <input type="submit" class="text-black material-icons" value="highlight_off">
+        <input type="submit" class="text-black material-icons " style="background-color:inherit" value="highlight_off">
 
     </form>
 </div>

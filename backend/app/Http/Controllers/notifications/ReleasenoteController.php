@@ -25,7 +25,7 @@ class ReleasenoteController extends Controller
         //中身作成
         $form=[
             "title"=>$request->title,
-            "genre_id"=>$request->osirase_genre_id,
+            "genre_id"=>$request->releasenote_genre_id,
             "description"=>$request->description,
             "date"=>$request->date,
         ];
@@ -33,7 +33,7 @@ class ReleasenoteController extends Controller
         Releasenote::create($form);
 
         //ユーザー通知のフラグをオンにする
-        User::where('id','!=','null')->update(["is_showed_update_system_info"=>1]);
+        User::where('id','!=',0)->update(["is_showed_update_system_info"=>0]);
 
         return redirect('administrator/notification');
     }
@@ -67,7 +67,7 @@ class ReleasenoteController extends Controller
 
         $updateContent=[
             "title"=>$request->title,
-            "genre_id"=>$request->osirase_genre_id,
+            "genre_id"=>$request->releasenote_genre_id,
             "description"=>$request->description,
             "date"=>$request->date,
         ];

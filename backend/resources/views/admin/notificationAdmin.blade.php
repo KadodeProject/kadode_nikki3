@@ -35,6 +35,40 @@
                 $i=1;
                 @endphp
 
+                {{-- 追加 --}}
+                <tr>
+                    <form class="" method="POST" action="/administrator/settings/releasenote/create">
+                        @csrf
+                        <td>
+                            {{$i}}
+                        </td>
+                        <td>
+                            <input requreid type="text" name="title" autocomplete="off" placeholder="タイトル"
+                                onkeydown="if((event.ctrlKey || event.metaKey)&&event.keyCode==13){document.getElementById('submitosirase_{{$i}}').click();return false};">
+                        </td>
+                        <td>
+                            <select name="releasenote_genre_id">
+                                <option disabled value>ジャンルを選ぶ</option>
+                                @foreach($releasenoteGenres as $packageGenre)
+                                <option value="{{$packageGenre->id}}">{{$packageGenre->name}}</option>
+                                @endforeach
+                            </select>
+                        </td>
+                        <td>
+                            <input requreid type="text" name="description" autocomplete="off" placeholder="説明"
+                                onkeydown="if((event.ctrlKey || event.metaKey)&&event.keyCode==13){document.getElementById('submitosirase_{{$i}}').click();return false};">
+                        </td>
+                        <td>
+                            <input requreid type="date" class="text-xl mx-auto mb-4  kiwi-maru" name="date">
+                        </td>
+                        <td>
+                            <input type="submit" id="submitosirase_{{$i}}" class="text-black" value="追加">
+                        </td>
+                        <td>
+                            --
+                        </td>
+                    </form>
+                </tr>
                 {{-- 登録済みデータ表示 --}}
                 @isset($releasenotes)
                 @foreach($releasenotes as $releasenote)
@@ -89,40 +123,7 @@
                 @endforeach
                 @endisset
 
-                {{-- 追加 --}}
-                <tr>
-                    <form class="" method="POST" action="/administrator/settings/releasenote/create">
-                        @csrf
-                        <td>
-                            {{$i}}
-                        </td>
-                        <td>
-                            <input requreid type="text" name="title" autocomplete="off" placeholder="タイトル"
-                                onkeydown="if((event.ctrlKey || event.metaKey)&&event.keyCode==13){document.getElementById('submitosirase_{{$i}}').click();return false};">
-                        </td>
-                        <td>
-                            <select name="releasenote_genre_id">
-                                <option disabled value>ジャンルを選ぶ</option>
-                                @foreach($releasenoteGenres as $packageGenre)
-                                <option value="{{$packageGenre->id}}">{{$packageGenre->name}}</option>
-                                @endforeach
-                            </select>
-                        </td>
-                        <td>
-                            <input requreid type="text" name="description" autocomplete="off" placeholder="説明"
-                                onkeydown="if((event.ctrlKey || event.metaKey)&&event.keyCode==13){document.getElementById('submitosirase_{{$i}}').click();return false};">
-                        </td>
-                        <td>
-                            <input requreid type="date" class="text-xl mx-auto mb-4  kiwi-maru" name="date">
-                        </td>
-                        <td>
-                            <input type="submit" id="submitosirase_{{$i}}" class="text-black" value="追加">
-                        </td>
-                        <td>
-                            --
-                        </td>
-                    </form>
-                </tr>
+
             </table>
         </div>
     </div>
@@ -156,6 +157,41 @@
                 @php
                 $i=1;
                 @endphp
+
+                {{-- 追加 --}}
+                <tr>
+                    <form class="" method="POST" action="/administrator/settings/osirase/create">
+                        @csrf
+                        <td>
+                            {{$i}}
+                        </td>
+                        <td>
+                            <input requreid type="text" name="title" autocomplete="off" placeholder="タイトル"
+                                onkeydown="if((event.ctrlKey || event.metaKey)&&event.keyCode==13){document.getElementById('submitosirase_{{$i}}').click();return false};">
+                        </td>
+                        <td>
+                            <select name="osirase_genre_id">
+                                <option disabled value>ジャンルを選ぶ</option>
+                                @foreach($osiraseGenres as $packageGenre)
+                                <option value="{{$packageGenre->id}}">{{$packageGenre->name}}</option>
+                                @endforeach
+                            </select>
+                        </td>
+                        <td>
+                            <input requreid type="text" name="description" autocomplete="off" placeholder="説明"
+                                onkeydown="if((event.ctrlKey || event.metaKey)&&event.keyCode==13){document.getElementById('submitosirase_{{$i}}').click();return false};">
+                        </td>
+                        <td>
+                            <input requreid type="date" class="text-xl mx-auto mb-4  kiwi-maru" name="date">
+                        </td>
+                        <td>
+                            <input type="submit" id="submitosirase_{{$i}}" class="text-black" value="追加">
+                        </td>
+                        <td>
+                            --
+                        </td>
+                    </form>
+                </tr>
 
                 {{-- 登録済みデータ表示 --}}
                 @isset($osirases)
@@ -211,40 +247,7 @@
                 @endforeach
                 @endisset
 
-                {{-- 追加 --}}
-                <tr>
-                    <form class="" method="POST" action="/administrator/settings/osirase/create">
-                        @csrf
-                        <td>
-                            {{$i}}
-                        </td>
-                        <td>
-                            <input requreid type="text" name="title" autocomplete="off" placeholder="タイトル"
-                                onkeydown="if((event.ctrlKey || event.metaKey)&&event.keyCode==13){document.getElementById('submitosirase_{{$i}}').click();return false};">
-                        </td>
-                        <td>
-                            <select name="osirase_genre_id">
-                                <option disabled value>ジャンルを選ぶ</option>
-                                @foreach($osiraseGenres as $packageGenre)
-                                <option value="{{$packageGenre->id}}">{{$packageGenre->name}}</option>
-                                @endforeach
-                            </select>
-                        </td>
-                        <td>
-                            <input requreid type="text" name="description" autocomplete="off" placeholder="説明"
-                                onkeydown="if((event.ctrlKey || event.metaKey)&&event.keyCode==13){document.getElementById('submitosirase_{{$i}}').click();return false};">
-                        </td>
-                        <td>
-                            <input requreid type="date" class="text-xl mx-auto mb-4  kiwi-maru" name="date">
-                        </td>
-                        <td>
-                            <input type="submit" id="submitosirase_{{$i}}" class="text-black" value="追加">
-                        </td>
-                        <td>
-                            --
-                        </td>
-                    </form>
-                </tr>
+
             </table>
         </div>
     </div>
