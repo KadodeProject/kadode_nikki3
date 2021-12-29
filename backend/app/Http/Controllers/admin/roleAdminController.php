@@ -9,7 +9,7 @@ use App\Models\NlpPackageName;
 use App\Models\PackageNER;
 use Illuminate\Http\Request;
 
-class NotificationBroadcasterAdminController extends Controller
+class RoleAdminController extends Controller
 {
     public function __invoke()
     {
@@ -27,7 +27,7 @@ class NotificationBroadcasterAdminController extends Controller
             }
         //固有表現ラベル取得
         $NERLabel=NERLabel::where('id','>',0)->get();
-        return view('diary/admin/notificationAdmin',['NlpPackageName' => $NlpPackageName,'NlpPackageGenre' =>$NlpPackageGenre,'NERLabel' =>$NERLabel,]);
+        return view('diary/admin/roleAdmin',['NlpPackageName' => $NlpPackageName,'NlpPackageGenre' =>$NlpPackageGenre,'NERLabel' =>$NERLabel,]);
     }
 
 }

@@ -18,6 +18,9 @@ use App\Http\Controllers\statistics\GenerateStatisticsController;
 use App\Http\Controllers\statistics\NamedEntityStatisticsController;
 
 use App\Http\Controllers\admin\HomeAdminController;
+use App\Http\Controllers\admin\NotificationBroadcasterAdminController;
+use App\Http\Controllers\admin\packageAdminController;
+use App\Http\Controllers\admin\roleAdminController;
 
 use App\Http\Controllers\packages\GenrePackagesController;
 use App\Http\Controllers\packages\ManagePackagesController;
@@ -145,6 +148,9 @@ Route::middleware(['administrator'])->group(function () {
      */
     //管理者ページ
     Route::get('/administrator', HomeAdminController::class)->name('home');
+    Route::get('/administrator/notification', NotificationBroadcasterAdminController::class)->name('notification');
+    Route::get('/administrator/package',PackageAdminController::class)->name('package');
+    Route::get('/administrator/role', RoleAdminController::class)->name('role');
 
     //パッケージ名前系
     Route::post('/administrator/settings/packages/create',  [ManagePackagesController::class,"create"])->name('createPackages');

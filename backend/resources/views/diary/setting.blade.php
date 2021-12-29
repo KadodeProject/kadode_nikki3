@@ -33,9 +33,9 @@
                     }
 
                     text[id$="pname"] {
-                        display: none !important;
+                        opacity: 0 !important;
                         pointer-events: none !important;
-                        transition: 1.0s;
+                        transition: 0.5s;
                         /* 文字かぶりで丸がホバーできないの防止 */
 
                     }
@@ -44,84 +44,84 @@
 
 
                     a[id^="1harbor"]:hover~text[id^="1pname"] {
-                        display: inline-block !important;
+                        opacity: 1 !important;
 
                     }
 
                     a[id^="2harbor"]:hover~text[id^="2pname"] {
-                        display: inline-block !important;
+                        opacity: 1 !important;
                     }
 
                     a[id^="3harbor"]:hover~text[id^="3pname"] {
-                        display: inline-block !important;
+                        opacity: 1 !important;
                     }
 
                     a[id^="4harbor"]:hover~text[id^="4pname"] {
-                        display: inline-block !important;
+                        opacity: 1 !important;
                     }
 
                     a[id^="5harbor"]:hover~text[id^="5pname"] {
-                        display: inline-block !important;
+                        opacity: 1 !important;
                     }
 
                     a[id^="6harbor"]:hover~text[id^="6pname"] {
-                        display: inline-block !important;
+                        opacity: 1 !important;
                     }
 
                     a[id^="7harbor"]:hover~text[id^="7pname"] {
-                        display: inline-block !important;
+                        opacity: 1 !important;
                     }
 
                     a[id^="8harbor"]:hover~text[id^="8pname"] {
-                        display: inline-block !important;
+                        opacity: 1 !important;
                     }
 
                     a[id^="9harbor"]:hover~text[id^="9pname"] {
-                        display: inline-block !important;
+                        opacity: 1 !important;
                     }
 
                     a[id^="10harbor"]:hover~text[id^="10pname"] {
-                        display: inline-block !important;
+                        opacity: 1 !important;
                     }
 
                     a[id^="11harbor"]:hover~text[id^="11pname"] {
-                        display: inline-block !important;
+                        opacity: 1 !important;
                     }
 
                     a[id^="12harbor"]:hover~text[id^="12pname"] {
-                        display: inline-block !important;
+                        opacity: 1 !important;
                     }
 
                     a[id^="13harbor"]:hover~text[id^="13pname"] {
-                        display: inline-block !important;
+                        opacity: 1 !important;
                     }
 
                     a[id^="14harbor"]:hover~text[id^="14pname"] {
-                        display: inline-block !important;
+                        opacity: 1 !important;
                     }
 
                     a[id^="15harbor"]:hover~text[id^="15pname"] {
-                        display: inline-block !important;
+                        opacity: 1 !important;
                     }
 
                     a[id^="16harbor"]:hover~text[id^="16pname"] {
-                        display: inline-block !important;
+                        opacity: 1 !important;
                     }
 
                     a[id^="17harbor"]:hover~text[id^="17pname"] {
-                        display: inline-block !important;
+                        opacity: 1 !important;
                     }
 
                     a[id^="18harbor"]:hover~text[id^="18pname"] {
-                        display: inline-block !important;
+                        opacity: 1 !important;
                     }
 
                     a[id^="19harbor"]:hover~text[id^="19pname"] {
-                        display: inline-block !important;
+                        opacity: 1 !important;
                     }
 
                     a[id^="20harbor"]:hover~text[id^="20pname"] {
-                        display: inline-block !important;
+                        opacity: 1 !important;
                     }
 
                     /* ユーザーランクの数だけ表示する */
@@ -131,11 +131,11 @@
                     }
 
                     text[id^="1pname"] {
-                        display: inline-block !important;
+                        opacity: 1 !important;
                     }
 
                     a[id^="1route"] {
-                        display: inline-block !important;
+                        opacity: 1 !important;
                     }
 
                     a[id^="2harbor"] circle {
@@ -143,7 +143,7 @@
                     }
 
                     text[id^="2pname"] {
-                        display: inline-block !important;
+                        opacity: 1 !important;
                     }
 
 
@@ -153,9 +153,9 @@
                         transition: 1.0s;
                     }
                 </style>
-                <p class="text-center text-3xl">あなたのランクは〇〇です。</p>
+                <p class="text-center text-3xl">「〇〇」です。</p>
 
-                <svg width="1920" height="1080" viewBox="0 0 508 285.75" version="1.1" id="svg5"
+                <svg width="1920" height="1080" viewBox="0 0 308 285.75" version="1.1" id="svg5"
                     inkscape:version="1.1.1 (3bf5ae0d25, 2021-09-20)" sodipodi:docname="userRankMap.svg"
                     xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
                     xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
