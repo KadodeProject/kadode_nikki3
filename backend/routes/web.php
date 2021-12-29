@@ -11,6 +11,9 @@ use App\Http\Controllers\diary\ShowDiaryController;
 use App\Http\Controllers\notifications\OsiraseController;
 use App\Http\Controllers\notifications\ReleasenoteController;
 
+use App\Http\Controllers\user\User_roleController;
+use App\Http\Controllers\user\User_rankController;
+
 
 use App\Http\Controllers\diary\UserController;
 

@@ -9,11 +9,15 @@ class User_rank extends Model
 {
     use HasFactory;
     protected $fillable = [
-        "name","description","created_at","updated_at"
+        "name","description",
     ];
 
     //バリデーション
     public static $rules=array(
         "name"=>"required",
     );
+
+    //時間カラムの自動挿入無効化
+    const CREATED_AT = NULL;
+    const UPDATED_AT = NULL;
 }

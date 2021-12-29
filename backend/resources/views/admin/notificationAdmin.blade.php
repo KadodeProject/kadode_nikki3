@@ -41,7 +41,7 @@
                 <tr>
                     <form class="" method="POST" action="/administrator/settings/releasenote/update">
                         @csrf
-                        <input type="hidden" name="osirase_id" value="{{$releasenote->id}}">
+                        <input type="hidden" name="releasenote_id" value="{{$releasenote->id}}">
                         <td>
                             {{$i}}
                         </td>
@@ -50,7 +50,7 @@
                                 onkeydown="if((event.ctrlKey || event.metaKey)&&event.keyCode==13){document.getElementById('submitosirase_{{$i}}').click();return false};">
                         </td>
                         <td>
-                            <select name="releasenote_id">
+                            <select name="releasenote_genre_id">
                                 <option disabled value>ジャンルを選ぶ</option>
                                 @foreach($releasenoteGenres as $releasenoteGenre)
                                 @if($releasenoteGenre->id==$releasenote->genre_id)
@@ -78,7 +78,7 @@
                     <form class="" method="POST" action="/administrator/settings/releasenote/delete">
                         @csrf
                         <td>
-                            <input type="hidden" name="osirase_id" value="{{$releasenote->id}}">
+                            <input type="hidden" name="releasenote_id" value="{{$releasenote->id}}">
                             <input type="submit" class="text-black" value="削除">
                         </td>
                     </form>
@@ -101,7 +101,7 @@
                                 onkeydown="if((event.ctrlKey || event.metaKey)&&event.keyCode==13){document.getElementById('submitosirase_{{$i}}').click();return false};">
                         </td>
                         <td>
-                            <select name="releasenote_id">
+                            <select name="releasenote_genre_id">
                                 <option disabled value>ジャンルを選ぶ</option>
                                 @foreach($releasenoteGenres as $packageGenre)
                                 <option value="{{$packageGenre->id}}">{{$packageGenre->name}}</option>
