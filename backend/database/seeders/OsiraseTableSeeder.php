@@ -18,6 +18,14 @@ class OsiraseTableSeeder extends Seeder
 
         $param=[
             [
+                'title'=>"ユーザーランクについて" ,
+                'genre_id'=>3 ,
+                'description'=>'本日より実装されましたユーザーランクは「かどで日記」の停泊地を元に作成しています。判別のつきにくいランク名称のため、設定ページにて地図付きで現在のランクを表示する機能も実装致しました。' ,
+                'date' => Carbon::create(2021,12,30),
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now(),
+            ],
+            [
                 'title'=>"イースターエッグについて" ,
                 'genre_id'=>3 ,
                 'description'=>'かどで日記にもイースターエッグを導入しました。ヒントはI`m a "teapot"です。' ,

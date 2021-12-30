@@ -18,6 +18,30 @@ class ReleasenoteTableSeeder extends Seeder
 
         $param=[
             [
+                'title'=>"お知らせ表示機能実装" ,
+                'genre_id'=>1 ,
+                'description'=>"トップページにお知らせ表示がされるようになりました。新しいお知らせ、リリースノート及びユーザーランクアップの際に表示されます。バツ印より消せます。" ,
+                'date' => Carbon::create(2021,12,30),
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now(),
+            ],
+            [
+                'title'=>"ユーザーランク機能実装" ,
+                'genre_id'=>1 ,
+                'description'=>"使えば使うほどランクが上がるユーザーランク機能が実装されました。設定ページから現在のランクをご確認いただけます。現在ベータ版です。" ,
+                'date' => Carbon::create(2021,12,30),
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now(),
+            ],
+            [
+                'title'=>"ユーザーロール機能実装" ,
+                'genre_id'=>1 ,
+                'description'=>"管理者ユーザーを追加しました。" ,
+                'date' => Carbon::create(2021,12,30),
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now(),
+            ],
+            [
                 'title'=>"モバイル端末での閲覧時不具合修正" ,
                 'genre_id'=>1 ,
                 'description'=>"モバイル端末での閲覧時に画面が若干拡大されて表示されるミスの修正を行いました。" ,

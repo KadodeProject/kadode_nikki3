@@ -49,7 +49,7 @@ class ReleasenoteController extends Controller
         foreach($releasenotes as $releasenote){
             $releasenote->genre=$releasenoteGenres[$releasenote->genre_id-1]->name;
         }
-        return view('diaryNoLogIn/releaseNote',['releasenotes' => $releasenotes,]);
+        return view('diaryNoLogIn/releasenote',['releasenotes' => $releasenotes,]);
     }
 
 

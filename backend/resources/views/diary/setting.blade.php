@@ -147,8 +147,8 @@
                     }
                 </style>
                 @endfor
-                <p class="text-center text-3xl">「{{$user_rank->name}}」です。</p>
-                <p class="text-center text-xl mt-2 mb-4">{{$user_rank->description}}</p>
+                <p class="text-center text-3xl kiwi-maru">あなたのユーザーランクは「{{$user_rank->name}}」です。</p>
+                <p class="text-center text-xl mt-2 mb-4 kiwi-maru">{{$user_rank->description}}</p>
 
                 <svg width="1920" height="1080" viewBox="0 0 308 285.75" version="1.1" id="svg5"
                     inkscape:version="1.1.1 (3bf5ae0d25, 2021-09-20)" sodipodi:docname="userRankMap.svg"

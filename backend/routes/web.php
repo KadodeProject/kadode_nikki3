@@ -66,8 +66,8 @@ Route::get('/contact', function () {
 
 
 
-Route::get('/news', [OsiraseController::class,"read"])->name('releaseNote');
-Route::get('/releaseNote', [ReleasenoteController::class,"read"])->name('releaseNote');
+Route::get('/news', [OsiraseController::class,"read"])->name('releasenote');
+Route::get('/releasenote', [ReleasenoteController::class,"read"])->name('releasenote');
 
 Route::get('/terms', function () {
     return view('diaryNoLogIn/terms');

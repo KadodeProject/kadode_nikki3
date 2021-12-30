@@ -55,6 +55,6 @@ https://kadodenikki3.usuyuki.net/
 
 [お知らせ](https://kadodenikki3.usuyuki.net/news)
 
-[リリースノート](https://kadodenikki3.usuyuki.net/releaseNote)
+[リリースノート](https://kadodenikki3.usuyuki.net/releasenote)
 
 ![かどでリリースのお知らせ](https://user-images.githubusercontent.com/63891531/124377606-ad6ba080-dce7-11eb-8cf4-af3fc95656ef.png)
