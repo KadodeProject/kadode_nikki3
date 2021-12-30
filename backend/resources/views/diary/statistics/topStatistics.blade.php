@@ -181,6 +181,19 @@
                 @component('components.statistics.graph.writingRateGraph',["months"=>$statistics->months,"monthWritingRates"=>$statistics->monthWritingRate])
                 @endcomponent
             </div>
+            <div class="md:w-1/2 mb-6 ">
+                <h3 class="my-4 text-2xl text-center kiwi-maru">文字数ヒストグラム</h3>
+
+                {{--
+                @component('components.statistics.graph.charLengthHistogram',["months"=>$statistics->months,"monthWritingRates"=>$statistics->monthWritingRate])
+                --}}
+                {{-- @endcomponent --}}
+            </div>
+            <div class="md:w-1/2 mb-6 ">
+                <h3 class="my-4 text-2xl text-center kiwi-maru">文字数の多い日記トップ10</h3>
+                @component('components.statistics.char.charLengthRank',["biggerDiaries"=>$biggerDiaries])
+                @endcomponent
+            </div>
         </div>
     </div>
 
