@@ -23,12 +23,13 @@ class ShowStatisticsController extends Controller
 
     public function __invoke()
     {
-        $statistic=Statistic::where("user_id",Auth::id())->first();
+        $user_id=Auth::id();
+        $statistic=Statistic::where("user_id",$user_id)->first();
         /**
          * 日記数少なすぎるときは警告出したいので
          * これは統計表示前にも使うので1統計テーブルからのデータは使えない
          */
-        $number_of_nikki=Diary::where("user_id",Auth::id())->count();
+        $number_of_nikki=Diary::where("user_id",$user_id)->count();
         $wordCloud_json="";
 
         $ended_diaries_count="";//undefinedエラー防止用
@@ -104,7 +105,54 @@ class ShowStatisticsController extends Controller
                     $wordCloud_array[]=array("word"=>$value[0],"count"=>$value[1]);
                 }
                 $wordCloud_json=json_encode($wordCloud_array,JSON_UNESCAPED_UNICODE);//JSON_UNESCAPED_UNICODEで日本語文字化け防止
+
+            /**
+             * ヒストグラム用のやつ
+             */
+            $char_length_obj=Diary::where("user_id",$user_id)->get(['char_length']);
+
+
+            //array_valuesだと何故か事故るので
+            //文字数の配列取得
+            $char_length_list=[];
+            foreach($char_length_obj as $value){
+                $char_length_list[]=$value->char_length;
             }
+            //からの要素削除(nullがあるとmin()で盛大に壊れる))
+            $char_length_list=array_filter($char_length_list);
+
+
+            /**
+             * 度数分布表の作成
+             */
+            $char_length_frequency_distribution=[];//配列の1つ目に度数、2つ目に度数の値
+            $frequencies=[];//度数の最小値を入れる
+            $max=max($char_length_list);
+            $min=min($char_length_list);
+            $width=ceil(($max-$min)/20);//20分割、切り上げ,20個生成するので、どう転んでも入り切るように切り上げ
+            $i=$min;
+            for($n=1;$n<=20;$n++){
+                $char_length_frequency_distribution[$i."-".($i+$width)]=0;//707-708みたいな感じ xx以上-xx未満
+                $frequencies[]=$i;
+                $i+=$width;
+            }
+            /**
+             * 度数分布表への代入
+             */
+            foreach($char_length_list as $value){
+                foreach($frequencies as $frequency){
+                    if($value<=$frequency ){
+                        $char_length_frequency_distribution[($frequency)."-".($frequency+$width)]+=1;
+                        // \Log::debug($value."は".($frequency)."-".($frequency+$width)."に入る");
+                        break;
+                    }
+                }
+            }
+
+            $biggerDiaries=Diary::where("user_id",$user_id)->orderBy("char_length","desc")->limit(10)->get(['date','title','uuid','char_length']);
+
+            }
+            // 統計100じゃないとだめ系ここまで
 
             /**
              * 個別日記処理の進捗を取得する処理
@@ -113,13 +161,13 @@ class ShowStatisticsController extends Controller
 
             // 基本情報の追加
             //最古の日記
-            $oldest_diary=Diary::where("user_id",Auth::id())->orderBy("date","asc")->first();
+            $oldest_diary=Diary::where("user_id",$user_id)->orderBy("date","asc")->first(['date']);
             $oldest_diary_date=$oldest_diary->date;
         }else{
             // 統計データないとき
             $oldest_diary_date="なし";
         }
 
-        return view("diary/statistics/topStatistics",["statistics"=>$statistic,'oldest_diary_date'=>$oldest_diary_date,'number_of_nikki'=>$number_of_nikki,'ended_diaries_count'=>$ended_diaries_count,"wordCloud_json"=>$wordCloud_json]);
+        return view("diary/statistics/topStatistics",["statistics"=>$statistic,"char_length_frequency_distribution"=>$char_length_frequency_distribution,"biggerDiaries"=>$biggerDiaries,'oldest_diary_date'=>$oldest_diary_date,'number_of_nikki'=>$number_of_nikki,'ended_diaries_count'=>$ended_diaries_count,"wordCloud_json"=>$wordCloud_json]);
     }
 }

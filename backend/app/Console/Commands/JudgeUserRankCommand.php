@@ -61,7 +61,7 @@ class JudgeUserRankCommand extends Command
 
     public function handle()
     {
-        $users=User::with("diary")->get();
+        $users=User::get();
 
         /**
          * User以外の情報がeloquentで引っ張れないので注意！！
@@ -102,6 +102,7 @@ class JudgeUserRankCommand extends Command
                     }
                     break;
                 case 6:
+                    // 日記テーブル内に文字数用のカラムあるが、あれは統計処理走らせた後じゃないと存在しないため、ここでは別で計測してる
                     $diaries=DB::select(DB::raw("select content from diaries where user_id=".$user_id));
                     $counter=0;
                     foreach($diaries as $diary){
