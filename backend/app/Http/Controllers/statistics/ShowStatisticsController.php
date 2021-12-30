@@ -33,6 +33,8 @@ class ShowStatisticsController extends Controller
         $wordCloud_json="";
 
         $ended_diaries_count="";//undefinedエラー防止用
+        $char_length_frequency_distribution=[];//undefinedエラー防止用
+        $biggerDiaries=[];//undefinedエラー防止用
         if(!empty($statistic)){
             if($statistic->statistic_progress==100){
 
