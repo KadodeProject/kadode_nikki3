@@ -19,7 +19,20 @@
     </div>
     <h2 class="mt-24 mb-12 text-center text-3xl kiwi-maru">ユーザーランク制度</h2>
     <div>
-        <object type="image/svg+xml" data="/img/userRank/userRankMap.svg" width="1280" height="1280"></object>
+        <style>
+            object {
+                margin: 5px auto;
+                width: 900px;
+                height: auto;
+            }
+
+            @media screen and (max-width: 640px) {
+                object {
+                    width: 100%;
+                }
+            }
+        </style>
+        <object type="image/svg+xml" data="/img/userRank/userRankMap.svg" viewBox="0 0 446.16847 309.23255"></object>
     </div>
 
     <h2 class="mt-24 mb-12 text-center text-3xl kiwi-maru">できること</h2>
