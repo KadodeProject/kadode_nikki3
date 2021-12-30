@@ -144,9 +144,6 @@ class ShowStatisticsController extends Controller
              */
             foreach($char_length_list as $value){
                 foreach(array_reverse($frequencies) as $frequency){
-                    if($value==4100){
-                        \Log::debug("4100!!");
-                    }
                     if($value>=$frequency ){
                         $char_length_frequency_distribution[($frequency)."-".($frequency+$width)]+=1;
                         // \Log::debug($value."は".($frequency)."-".($frequency+$width)."に入る");

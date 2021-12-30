@@ -20,5 +20,9 @@
         "postcss-import": "^14.0.1",
         "tailwindcss": "^2.2.19"
     },
-    "dependencies": {}
+    "dependencies": {
+        "graphology": "^0.23.2",
+        "graphology-types": "^0.23.0",
+        "sigma": "^2.1.3"
+    }
 }
