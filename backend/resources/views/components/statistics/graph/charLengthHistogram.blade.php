@@ -16,7 +16,7 @@
 
         datasets: [
           {
-            label: '文字数の分布',
+            label: '度数',
             data:  [
                 @foreach( array_values($char_length_frequency_distribution) as $value)
             {{$value}},
