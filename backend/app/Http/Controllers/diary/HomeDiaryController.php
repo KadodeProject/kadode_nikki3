@@ -148,17 +148,17 @@ class homeDiaryController extends Controller
         if(!$user->is_showed_service_info){
             //お知らせ取得
             $osirase=Osirase::where("id","!=",0)->orderBy('date','desc')->first(['title','date']);
-            $new_infos[]=["type"=>"osirase","bg_color"=>"status-excellent","title"=>$osirase->title,"date"=>$osirase->date];
+            $new_infos[]=["type"=>"osirase","bg_color"=>"51, 118, 156","title"=>$osirase->title,"date"=>$osirase->date];
         }
         if(!$user->is_showed_update_system_info){
             // リリースノート取得
             $releasenote=Releasenote::where("id","!=",0)->orderBy('date','desc')->first(['title','date']);
-            $new_infos[]=["type"=>"releasenote","bg_color"=>"status-good","title"=>$releasenote->title,"date"=>$releasenote->date];
+            $new_infos[]=["type"=>"releasenote","bg_color"=>"51, 156, 118","title"=>$releasenote->title,"date"=>$releasenote->date];
         }
         if(!$user->is_showed_update_user_rank){
             // ユーザーランク取得
             $user_rank=User_rank::where("id",$user->user_rank_id)->first(['name']);
-            $new_infos[]=["type"=>"user_rank","bg_color"=>"status-poor","title"=>"ユーザーランクが「".$user_rank->name."」になりました！","date"=>$user->user_rank_updated_at];
+            $new_infos[]=["type"=>"user_rank","bg_color"=>"226, 83, 74","title"=>"ユーザーランクが「".$user_rank->name."」になりました！","date"=>$user->user_rank_updated_at];
         }
 
 

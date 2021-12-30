@@ -1,4 +1,5 @@
-<div class="bg-{{$bg_color}} opacity-50 rounded-2xl px-4 py-4 my-4">
+<div style="background-color:rgba({{$bg_color}},.5)"
+    class="border-button-main-color border-2 rounded-xl px-4 py-4 my-4">
     {{-- status-excellent
     status-good
     status-poor --}}

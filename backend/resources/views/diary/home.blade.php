@@ -9,7 +9,7 @@
     @empty($new_infos)
     <!--新着通知なし-->
     @else
-    <div class="fixed  top-10 right-4 lg:w-1/6 ">
+    <div class="fixed top-over-header right-4 lg:w-1/6 ">
         <!--通知センター-->
         @foreach($new_infos as $new_info)
         @component('components.notification.notification')
