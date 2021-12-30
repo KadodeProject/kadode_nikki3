@@ -2,7 +2,7 @@
 namespace App\Http\Controllers\statistics;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use Carbon\Carbon;
+use Illuminate\Support\Carbon
 
 class PackagesStatisticsController extends Controller
 {
@@ -50,10 +50,10 @@ class PackagesStatisticsController extends Controller
      */
     public function create(Request $request){
         $request->date=$request->date ?? Carbon::today()->format("y-m-d");
-        
+
         // バリデーション
         $this->validate($request,Diary::$rules);
-        
+
         $form=[
             "user_id"=>Auth::id(),
             "title"=>$request->title,
@@ -65,7 +65,7 @@ class PackagesStatisticsController extends Controller
         Diary::create($form);
         return redirect('home');
     }
-    
+
     /**
      * Undocumented function
      *
@@ -78,7 +78,7 @@ class PackagesStatisticsController extends Controller
         // 日付のバリデーション→既に存在する日付ならエラー返す
         // バリデーション
         $this->validate($request,Diary::$rules);
-        
+
         $updateContent=[
             "title"=>$request->title,
             "content"=>$request->content,
@@ -97,7 +97,7 @@ class PackagesStatisticsController extends Controller
     public function use(Request $request){
         Diary::where('uuid',$request->uuid)->delete();
         return redirect('home');
-    }   
+    }
 
     /**
      * Undocumented function
@@ -108,7 +108,7 @@ class PackagesStatisticsController extends Controller
     public function remove(Request $request){
         Diary::where('uuid',$request->uuid)->delete();
         return redirect('home');
-    }   
+    }
 
     /**
      * Undocumented function
@@ -119,5 +119,5 @@ class PackagesStatisticsController extends Controller
     public function delete(Request $request){
         Diary::where('uuid',$request->uuid)->delete();
         return redirect('home');
-    }   
+    }
 }

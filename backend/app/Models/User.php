@@ -10,7 +10,7 @@ use Laravel\Fortify\TwoFactorAuthenticatable;
 use Laravel\Jetstream\HasProfilePhoto;
 use Laravel\Sanctum\HasApiTokens;
 use App\Scopes\ScopeDiary;
-use Carbon\Carbon;
+use Illuminate\Support\Carbon
 
 class User extends Authenticatable implements MustVerifyEmail
 {

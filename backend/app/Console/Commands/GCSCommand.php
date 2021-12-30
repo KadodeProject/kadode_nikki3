@@ -4,7 +4,7 @@ namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
 use Google\Cloud\Storage\StorageClient;
-use Carbon\Carbon;
+use Illuminate\Support\Carbon
 class GCSCommand extends Command
 {
     /**
@@ -41,12 +41,12 @@ class GCSCommand extends Command
         $client = new StorageClient();
         $bucket = $client->bucket(env('GCS_PACKET')); // 作成したバケット
 
-        
+
         // ディレクトリハンドルの取得
         $dirH = opendir( storage_path('app/laravel-backup/')) ;
         while (false !== ($fileList[] = readdir($dirH))) ;
         closedir( $dirH ) ;
-        
+
         //最新ファイルの探索
         $timer = date_create_from_format("Y-m-d-H-i-s","2021-10-20-07-16-00");
         foreach ($fileList as $newFile) {

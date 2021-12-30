@@ -4,8 +4,8 @@ namespace App\Http\Controllers\diary;
 
 use App\Http\Controllers\Controller;
 use App\Models\Diary;
-use Carbon\Carbon;
-use Illuminate\Http\Request;    
+use Illuminate\Support\Carbon
+use Illuminate\Http\Request;
 
 class SearchDiaryController extends Controller
 {
@@ -19,7 +19,7 @@ class SearchDiaryController extends Controller
             );
         $this->validate($request,$rules);
 
-        
+
         //DB叩く 最近の日記から直近50個
         \DB::enableQueryLog();
         $diaries=Diary::where("content","like","%$request->keyword%")->orderby("date","desc")->take(200)->get();
@@ -70,10 +70,10 @@ class SearchDiaryController extends Controller
             $placeStart=($placeOfWord -100 >=0) ?($placeOfWord -100 ):0 ;
             //検索したキーワード含めずに後ろ100字 日記の文字数オーバーしない範囲で
             $placeEnd=($placeOfWord+$keywordLength+100 <=$contentLength)?($placeOfWord+$keywordLength+100):$contentLength;
-            
+
             //前後100字含めた切り出し
             $diary->content=mb_substr($diary->content,$placeStart,$placeEnd-$placeStart);
-            
+
             /*
              * キーワードハイライトのための代入
              */
@@ -90,9 +90,9 @@ class SearchDiaryController extends Controller
 
 
             $proceedDiary[]=$diary;
-            
+
             }
-            
+
         }
         return view('diary/search/searchResult',['counter'=>$counter,'keyword' => $request->keyword,'diaries'=>$proceedDiary,'queryTime'=>$queryTime]);
     }

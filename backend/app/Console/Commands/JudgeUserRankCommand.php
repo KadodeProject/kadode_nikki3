@@ -5,7 +5,7 @@ namespace App\Console\Commands;
 use App\Models\Diary;
 use App\Models\Statistic;
 use App\Models\User;
-use Carbon\Carbon;
+use Illuminate\Support\Carbon
 use Illuminate\Console\Command;
 class JudgeUserRankCommand extends Command
 {

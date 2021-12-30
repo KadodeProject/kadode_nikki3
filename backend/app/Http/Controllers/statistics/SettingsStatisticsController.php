@@ -4,7 +4,7 @@ namespace App\Http\Controllers\statistics;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use Carbon\Carbon;
+use Illuminate\Support\Carbon
 use App\Models\CustomNER;
 use App\Models\NERLabel;
 use App\Models\NlpPackageGenre;

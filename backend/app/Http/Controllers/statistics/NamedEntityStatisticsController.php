@@ -8,7 +8,7 @@ use App\Models\CustomNER;
 use App\Models\NERLabel;
 use App\Models\PackageNER;
 use Illuminate\Support\Facades\Auth;
-use Carbon\Carbon;
+use Illuminate\Support\Carbon
 
 class NamedEntityStatisticsController extends Controller
 {
