@@ -97,7 +97,7 @@
         <p class="text-center">
             <a class="border-2 border-border-main-color p-2 text-3xl  kiwi-maru" href="{{url("register")}}">新規登録</a>
         </p>
-        <p class="text-center mt-4">あくまで個人が作った趣味の遊びサービスです。<br>ご理解の上、ご利用ください。</p>
+        <p class="text-center mt-4">あくまで個人が作った<br class="md:hidden">趣味の遊びサービスです。<br>ご理解の上、ご利用ください。</p>
     </div>
     <div class="mt-4 mb-12">
         <h2 class="text-center text-3xl my-4 kiwi-maru">開発者より</h2>

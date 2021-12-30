@@ -112,7 +112,7 @@
 
     <div class="statistic-content">
         <!-- ここより自然言語処理の部 -->
-        @include('components.statisticHeading',['icon'=>'manage_search','title'=>'全体のテキストマイニング'])
+        @include('components.statisticHeading',['icon'=>'clear_all','title'=>'全体のテキストマイニング'])
         <div class="flex justify-center flex-wrap ">
             <div class="w-full">
                 <h3 class="my-4 text-2xl text-center kiwi-maru">分類</h3>
@@ -142,7 +142,7 @@
 
 
             <div class="md:w-1/2 mb-6 ">
-                <h3 class="my-4 text-2xl text-center kiwi-maru">全日記の中でよく使われる名詞Top50</h3>
+                <h3 class="my-4 text-2xl text-center kiwi-maru">全日記の中でよく使われる<br class="md:hidden">名詞Top50</h3>
                 @component('components.statistics.graph.partOfSpeechGraph',["source"=>$statistics->total_noun_asc])
                 @slot("slug")
                 noun
@@ -153,7 +153,7 @@
                 @endcomponent
             </div>
             <div class="md:w-1/2 mb-6 ">
-                <h3 class="my-4 text-2xl text-center kiwi-maru">全日記の中でよく使われる形容詞Top50</h3>
+                <h3 class="my-4 text-2xl text-center kiwi-maru">全日記の中でよく使われる<br class="md:hidden">形容詞Top50</h3>
                 @component('components.statistics.graph.partOfSpeechGraph',["source"=>$statistics->total_adjective_asc])
                 @slot("slug")
                 adjective
@@ -171,8 +171,8 @@
         @include('components.statisticHeading',['icon'=>'bar_chart','title'=>'全体の傾向'])
         <div class="flex justify-center flex-wrap ">
             <div class="md:w-1/2 mb-6 ">
-                <h3 class="my-4 text-2xl text-center kiwi-maru">月ごとの1日記あたりの平均文字数推移<span
-                        style="font-size:0.5em">(月の合計文字数÷日記数)</span></h3>
+                <h3 class="my-4 text-2xl text-center kiwi-maru">月ごとの1日記あたりの<br class="md:hidden">平均文字数推移<br
+                        class="md:hidden"><span style="font-size:0.5em">(月の合計文字数÷日記数)</span></h3>
                 @component('components.statistics.graph.numberOfCharactersGraph',["months"=>$statistics->months,"month_words_per_diaries"=>$statistics->month_words_per_diary])
                 @endcomponent
             </div>
@@ -184,13 +184,13 @@
             <div class="md:w-1/2 mb-6 ">
                 <h3 class="my-4 text-2xl text-center kiwi-maru">文字数ヒストグラム</h3>
 
-                {{--
-                @component('components.statistics.graph.charLengthHistogram',["months"=>$statistics->months,"monthWritingRates"=>$statistics->monthWritingRate])
-                --}}
-                {{-- @endcomponent --}}
+
+                @component('components.statistics.graph.charLengthHistogram',["char_length_frequency_distribution"=>$char_length_frequency_distribution])
+
+                @endcomponent
             </div>
             <div class="md:w-1/2 mb-6 ">
-                <h3 class="my-4 text-2xl text-center kiwi-maru">文字数の多い日記トップ10</h3>
+                <h3 class="my-4 text-2xl text-center kiwi-maru">文字数の多い日記<br class="md:hidden">トップ10</h3>
                 @component('components.statistics.char.charLengthRank',["biggerDiaries"=>$biggerDiaries])
                 @endcomponent
             </div>
