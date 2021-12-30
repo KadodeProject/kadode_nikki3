@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Diary;
 use App\Models\Osirase;
 use App\Models\Releasenote;
+use App\Models\User;
 use App\Models\User_rank;
 use Illuminate\Support\Carbon;
 use Illuminate\Http\Request;
@@ -160,8 +161,6 @@ class homeDiaryController extends Controller
             $user_rank=User_rank::where("id",$user->user_rank_id)->first(['name']);
             $new_infos[]=["url"=>"/settings","type"=>"user_rank","bg_color"=>"226, 83, 74","title"=>"ユーザーランクが「".$user_rank->name."」になりました！","date"=>$user->user_rank_updated_at];
         }
-
-
 
 
         return view('diary/home',['user' => $user,'new_infos'=>$new_infos,'yesterday'=>$yesterday,'today'=>$today,'diaries'=>$diaries,'this_day'=>$this_day,'oldDiaries'=>$oldDiaries]);

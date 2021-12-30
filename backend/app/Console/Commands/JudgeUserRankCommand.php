@@ -7,6 +7,8 @@ use App\Models\Statistic;
 use App\Models\User;
 use Illuminate\Support\Carbon;
 use Illuminate\Console\Command;
+use Illuminate\Support\Facades\DB;
+
 class JudgeUserRankCommand extends Command
 {
     /**
@@ -45,7 +47,13 @@ class JudgeUserRankCommand extends Command
          */
         //ユーザー通知のフラグをオン、idを上げる、日付更新
         User::where('id',$user_id)->update(["user_rank_id"=>$currentUserRank+1,"is_showed_update_user_rank"=>0,"user_rank_updated_at"=>Carbon::now()]);
-        echo('id:'.$user_id.'/ランクアップ'.$currentUserRank."→".$currentUserRank+1);
+        echo('id:'.$user_id.'/ランクアップ'.$currentUserRank."→".($currentUserRank+1)."\n");
+    }
+
+    public function countTables($user_id,$table){
+        //なぜかuser以外のeloquent取れないため、rawで取得
+        $counter=DB::select(DB::raw("select count(*) as counter from ".$table." where user_id=".$user_id));
+        return $counter[0]->counter;
     }
 
 
@@ -53,25 +61,20 @@ class JudgeUserRankCommand extends Command
 
     public function handle()
     {
-        $users=User::all();
-        $diaries=Diary::all();
-        /**
-         * User以外の情報がeloquentで引っ張れない
-         */
+        $users=User::with("diary")->get();
 
+        /**
+         * User以外の情報がeloquentで引っ張れないので注意！！
+         */
 
 
         foreach($users as $user){
             $rank_id=$user->user_rank_id;
             $user_id=$user->id;
-
-            echo("aaa"."\n");
-            echo($user_id."\n");
-            echo($rank_id."\n");
             switch($rank_id){
                 case 1:
 
-                    if(Diary::where('user_id',$user_id)->count()>=1){
+                    if($this->countTables($user_id,"diaries")>=1){
 
 
                         $this->updateUserRank($user_id,$rank_id);
@@ -79,7 +82,7 @@ class JudgeUserRankCommand extends Command
                     break;
 
                 case 2:
-                    if(Diary::where('user_id',$user_id)->count()>=15){
+                    if($this->countTables($user_id,"diaries")>=15){
                         $this->updateUserRank($user_id,$rank_id);
                     }
                     break;
@@ -89,20 +92,20 @@ class JudgeUserRankCommand extends Command
                     }
                     break;
                 case 4:
-                    if(Statistic::where('user_id',$user_id)->count()>=1){
+                    if($this->countTables($user_id,"statistics")>=1){
                         $this->updateUserRank($user_id,$rank_id);
                     }
                     break;
                 case 5:
-                    if(Diary::where('user_id',$user_id)->count()>=30){
+                    if($this->countTables($user_id,"diaries")>=30){
                         $this->updateUserRank($user_id,$rank_id);
                     }
                     break;
                 case 6:
-                    $diaries=Diary::where('user_id',$user_id)->get(['content']);
+                    $diaries=DB::select(DB::raw("select content from diaries where user_id=".$user_id));
                     $counter=0;
                     foreach($diaries as $diary){
-                        $counter=mb_strlen($diary->content);
+                        $counter+=mb_strlen($diary->content);
                     }
                     if($counter>=15000){
                         $this->updateUserRank($user_id,$rank_id);

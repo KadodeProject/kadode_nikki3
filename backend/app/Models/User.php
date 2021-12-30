@@ -93,4 +93,15 @@ class User extends Authenticatable implements MustVerifyEmail
 
     //format(年月日)するために
     protected $dates = ['user_rank_updated_at'];
+
+    public function diary() {
+        return $this->hasMany(Diary::class);
+    }
+    public function user_rank(){
+        return $this->belongsTo(User_rank::class);
+    }
+    public function user_role(){
+        return $this->belongsTo(User_role::class);
+    }
+
 }
