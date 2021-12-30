@@ -2,7 +2,7 @@
 namespace App\Http\Controllers\statistics;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use Illuminate\Support\Carbon
+use Illuminate\Support\Carbon;
 
 class PackagesStatisticsController extends Controller
 {

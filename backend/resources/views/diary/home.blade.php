@@ -16,6 +16,9 @@
         @slot("bg_color")
         {{$new_info["bg_color"]}}
         @endslot
+        @slot("url")
+        {{$new_info["url"]}}
+        @endslot
         @slot("type")
         {{$new_info["type"]}}
         @endslot

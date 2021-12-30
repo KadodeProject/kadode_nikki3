@@ -12,9 +12,15 @@
             <div>
                 <style>
                     svg {
-                        margin: 10px auto;
-                        width: max(50%, 1000px);
+                        margin: 5px auto;
+                        width: 900px;
                         height: auto;
+                    }
+
+                    @media screen and (max-width: 640px) {
+                        svg {
+                            width: 100%;
+                        }
                     }
 
                     svg a {
@@ -23,15 +29,18 @@
                         /* これ付けないと円の中に判定なくなる */
                     }
 
+                    /* ゆっくりホバーできるようにする */
                     a[id$="harbor"] {
                         z-index: 2;
                         transition: 1.0s;
                     }
 
+                    /* 経路はデフォルトで表示しない */
                     a[id$="route"] {
                         opacity: 0 !important;
                     }
 
+                    /* 停泊地名デフォルトで表示しない */
                     text[id$="pname"] {
                         opacity: 0 !important;
                         pointer-events: none !important;
@@ -40,9 +49,7 @@
 
                     }
 
-
-
-
+                    /* ホバー時の動作ここから */
                     a[id^="1harbor"]:hover~text[id^="1pname"] {
                         opacity: 1 !important;
 
@@ -129,8 +136,10 @@
                         fill: wheat !important;
                         transition: 1.0s;
                     }
+
+                    /* ホバー時の動作ここまで */
                 </style>
-                @for ($i=$user_rank->id; $i >0; $i--)
+                @for ($i=11; $i >0; $i--)
                 <style>
                     /* ユーザーランクの数だけ表示する */
                     /* ルート→-1する */
@@ -147,10 +156,12 @@
                     }
                 </style>
                 @endfor
-                <p class="text-center text-3xl kiwi-maru">あなたのユーザーランクは「{{$user_rank->name}}」です。</p>
-                <p class="text-center text-xl mt-2 mb-4 kiwi-maru">{{$user_rank->description}}</p>
+                <p class="text-center text-3xl kiwi-maru">{{$user->name}}さんの<br class="md:hidden">ユーザーランクは<br
+                        class="md:hidden">「{{$user_rank->name}}」です。</p>
+                <p class="text-center text-xl mt-2 mb-4 kiwi-maru text-button-main-color">{{$user_rank->description}}
+                </p>
 
-                <svg width="1920" height="1080" viewBox="0 0 308 285.75" version="1.1" id="svg5"
+                <svg viewBox="0 0 446.16847 309.23255" version="1.1" id="svg5"
                     inkscape:version="1.1.1 (3bf5ae0d25, 2021-09-20)" sodipodi:docname="userRankMap.svg"
                     xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
                     xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
@@ -158,29 +169,27 @@
                     xmlns:svg="http://www.w3.org/2000/svg">
                     <sodipodi:namedview id="namedview7" pagecolor="#ffffff" bordercolor="#666666" borderopacity="1.0"
                         inkscape:pageshadow="2" inkscape:pageopacity="0.0" inkscape:pagecheckerboard="0"
-                        inkscape:document-units="mm" showgrid="false" inkscape:zoom="0.77771464" inkscape:cx="873.07087"
-                        inkscape:cy="506.61255" inkscape:window-width="3840" inkscape:window-height="2054"
+                        inkscape:document-units="mm" showgrid="false" inkscape:zoom="0.5499273" inkscape:cx="780.10312"
+                        inkscape:cy="367.32128" inkscape:window-width="3840" inkscape:window-height="2054"
                         inkscape:window-x="-11" inkscape:window-y="-11" inkscape:window-maximized="1"
-                        inkscape:current-layer="layer5" units="px" />
+                        inkscape:current-layer="layer5" units="px" fit-margin-top="0" fit-margin-left="0"
+                        fit-margin-right="0" fit-margin-bottom="0" />
                     <defs id="defs2">
-                        <rect x="-56.576021" y="-150.44078" width="79.720757" height="187.72953" id="rect29813" />
+                        <rect x="-56.576019" y="-150.44078" width="79.720757" height="187.72952" id="rect29813" />
                         <linearGradient id="linearGradient3156" inkscape:swatch="solid">
                             <stop style="stop-color:#000000;stop-opacity:1;" offset="0" id="stop3154" />
                         </linearGradient>
                     </defs>
-                    <g inkscape:groupmode="layer" id="layer5" inkscape:label="線地図" style="display:inline">
-                        <circle id="path1063" style="fill:#000000;stroke:#4b899f;stroke-width:0.264583" cx="31.809277"
-                            cy="184.05154" r="0.2137661" />
-                        <circle id="path1065" style="fill:#000000;stroke:#4b899f;stroke-width:0.264583" cx="31.809277"
-                            cy="184.05154" r="0.2137661" />
+                    <g inkscape:groupmode="layer" id="layer5" inkscape:label="線地図" style="display:inline"
+                        transform="translate(-28.753738,-0.17792205)">
                         <path
                             style="fill:none;stroke:#000000;stroke-width:0;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
                             d="m 203.9536,57.835051 24.83506,15.479381 -60.3866,65.999998 h -1.36082 l -2.55155,0.51031"
                             id="path1314" />
                         <path
                             style="fill:#624466;fill-opacity:0.5;stroke:#624466;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-                            d="m 31.128866,183.37113 21.823259,0.14213 23.25406,1.3888 9.015463,9.35567 5.443299,1.53093 9.695873,11.2268 5.1031,12.07732 1.19072,12.24742 4.59278,12.58763 4.42268,15.81959 28.57732,-34.02062 9.37197,-6.62797 14.78267,-6.29987 9.86598,-7.82474 19.08483,0.37271 12.72445,-6.66652 h 23.81443 l -4.76289,-4.08247 4.25258,-2.04124 -10.20619,-8.50516 12.92784,0.51031 -2.89175,-19.73195 -9.01547,-4.59279 17.52062,-21.26289 3.57217,-6.80412 -11.56701,-11.2268 -11.73712,-1.53093 -6.97422,-9.18557 2.21134,-2.38144 -15.98969,-11.907217 4.25257,-9.355669 -5.4433,-5.273196 -8.33505,1.70103 5.1031,-10.716496 -7.99485,-1.530926 -8.16495,3.061856 L 165,61.917524 l -15.13918,1.360826 -0.3402,-3.402063 -30.78866,11.226805 v -3.061856 l -11.56701,-10.376289 4.59278,17.010309 -10.71649,19.73196 -25.855675,6.123714 -20.072164,-12.247426 -24.664948,1.871133 -1.190723,92.536083 0.340207,0.1701"
-                            id="path1320" />
+                            d="m 29.25773,182.69072 23.694395,0.82254 23.25406,1.3888 9.015463,9.35567 5.443299,1.53093 9.695873,11.2268 5.1031,12.07732 1.19072,12.24742 4.59278,12.58763 4.42268,15.81959 28.57732,-34.02062 9.37197,-6.62797 14.78267,-6.29987 9.86598,-7.82474 19.08483,0.37271 12.72445,-6.66652 h 23.81443 l -4.76289,-4.08247 4.25258,-2.04124 -10.20619,-8.50516 12.92784,0.51031 -2.89175,-19.73195 -9.01547,-4.59279 17.52062,-21.26289 3.57217,-6.80412 -11.56701,-11.2268 -11.73712,-1.53093 -6.97422,-9.18557 2.21134,-2.38144 -15.98969,-11.907217 4.25257,-9.355669 -5.4433,-5.273196 -8.33505,1.70103 5.1031,-10.716496 -7.99485,-1.530926 -8.16495,3.061856 L 165,61.917524 l -15.13918,1.360826 -0.3402,-3.402063 -30.78866,11.226805 v -3.061856 l -11.56701,-10.376289 4.59278,17.010309 -10.71649,19.73196 -25.855675,6.123714 -20.072164,-12.247426 -24.664948,1.871133 -1.190723,92.536083 0.340207,0.1701"
+                            id="path1320" sodipodi:nodetypes="ccccccccccccccccccccccccccccccccccccccccccccccccc" />
                         <path
                             style="fill:#624466;fill-opacity:0.5;stroke:#624466;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
                             d="m 324.7268,85.221648 c -5.4433,0.850516 -36.91237,15.819592 -36.91237,15.819592 l -17.35052,12.75773 -9.86597,-1.53093 c 0,0 -6.29382,15.98969 -5.4433,15.81959 0.85051,-0.17011 6.97422,1.87113 6.97422,1.87113 l -2.38144,9.69588 33.85051,-2.21134 2.21134,-25.34536 31.97939,-20.582477 z"
@@ -191,7 +200,7 @@
                             id="path1923" />
                         <path
                             style="fill:#624466;fill-opacity:0.5;stroke:#624466;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-                            d="m 333.23196,308.9072 c 0,0 -27.04639,-30.78866 -26.19589,-32.65979 0.85053,-1.87114 5.95363,-13.09793 4.7629,-13.43814 -1.19073,-0.3402 -7.82474,-4.93298 -7.82474,-4.93298 l 14.11854,-2.21135 -24.32473,-31.12886 -3.57217,-15.64949 -8.33504,-1.53092 c 0,0 11.7371,-10.20619 11.0567,-10.54639 -0.68043,-0.34021 -2.72166,-4.42268 -2.72166,-4.42268 l 15.30927,-3.91238 -7.14431,-10.20618 22.4536,-6.97423 -5.9536,-9.52577 -4.25259,-15.81959 11.90722,-6.46392 h 21.6031 l 21.9433,-10.03608 18.54123,-13.94845 2.89174,-14.28866 -10.71647,-15.479383 -23.30413,1.190721 -20.07217,-1.70103 -26.53609,-28.407217 -14.96907,-19.051545 -23.13403,-6.63402 -16.67009,2.72165 -4.08247,-5.103093 -13.94846,-1.701032 -6.97422,-6.974226 -2.38145,1.701031 5.61341,5.273195 -21.433,4.252579 9.69588,6.293813 -19.56185,-1.190721 -11.90722,-10.036083 -8.50516,-0.340206 v 7.484537 l 10.7165,-2.041237 5.6134,4.762886 -12.41752,5.6134 -5.95361,-0.340204 -5.6134,7.484536 -12.75774,-8.335052 -5.4433,6.463916 -14.37371,-12.16237 0.25516,-10.46134 -25.46779,3.334036 -10.92756,-2.745577 -12.934548,1.112572 -6.292322,9.19823 -7.017369,-4.611868 -8.015154,-4.242121 2.975194,-7.776241 -19.498285,2.158804 -20.667526,-8.335051 2.381443,5.443298 4.252576,5.953609 -5.103092,14.28866 7.144329,6.974226 -9.015463,2.041236 L 30.618557,2.8917527 471.52575,0.68041236 474.41752,306.86597 Z"
+                            d="m 333.23196,308.9072 c 0,0 -27.04639,-30.78866 -26.19589,-32.65979 0.85053,-1.87114 5.95363,-13.09793 4.7629,-13.43814 -1.19073,-0.3402 -7.82474,-4.93298 -7.82474,-4.93298 l 14.11854,-2.21135 -24.32473,-31.12886 -3.57217,-15.64949 -8.33504,-1.53092 c 0,0 11.7371,-10.20619 11.0567,-10.54639 -0.68043,-0.34021 -2.72166,-4.42268 -2.72166,-4.42268 l 15.30927,-3.91238 -7.14431,-10.20618 22.4536,-6.97423 -5.9536,-9.52577 -4.25259,-15.81959 11.90722,-6.46392 h 21.6031 l 21.9433,-10.03608 18.54123,-13.94845 2.89174,-14.28866 -10.71647,-15.479383 -23.30413,1.190721 -20.07217,-1.70103 -26.53609,-28.407217 -14.96907,-19.051545 -23.13403,-6.63402 -16.67009,2.72165 -4.08247,-5.103093 -13.94846,-1.701032 -6.97422,-6.974226 -2.38145,1.701031 5.61341,5.273195 -21.433,4.252579 9.69588,6.293813 -19.56185,-1.190721 -11.90722,-10.036083 -8.50516,-0.340206 v 7.484537 l 10.7165,-2.041237 5.6134,4.762886 -12.41752,5.6134 -5.95361,-0.340204 -5.6134,7.484536 -12.75774,-8.335052 -5.4433,6.463916 -14.37371,-12.16237 0.25516,-10.46134 -25.46779,3.334036 -10.92756,-2.745577 -12.934548,1.112572 -6.292322,9.19823 -7.017369,-4.611868 -8.015154,-4.242121 2.975194,-7.776241 -19.498285,2.158804 -20.667526,-8.335051 2.381443,5.443298 4.252576,5.953609 -5.103092,14.28866 7.144329,6.974226 -10.188203,2.191588 0.04982,-46.80252702 445.102594,0.0439294 0.0796,308.32054762 z"
                             id="path2098"
                             sodipodi:nodetypes="csscccccscccccccccccccccccccccccccccccccccccccccccccccccccccccccc" />
                         <path
@@ -278,7 +287,8 @@
                             d="m 67.169458,28.768685 0.106315,2.827965 2.019974,-1.148197 -2.168816,-1.552191 z"
                             id="path5967" />
                     </g>
-                    <g inkscape:groupmode="layer" id="layer4" inkscape:label="経路" style="display:inline">
+                    <g inkscape:groupmode="layer" id="layer4" inkscape:label="経路" style="display:inline"
+                        transform="translate(-28.753738,-0.17792205)">
                         <a id="1route"
                             transform="matrix(2.1252939,1.8952844,-0.1390028,0.11264285,-106.69293,-26.275623)"
                             xlink:href="">
@@ -394,7 +404,8 @@
                                 id="path48706" />
                         </a>
                     </g>
-                    <g inkscape:groupmode="layer" id="layer3" inkscape:label="点" style="display:inline">
+                    <g inkscape:groupmode="layer" id="layer3" inkscape:label="点" style="display:inline"
+                        transform="translate(-28.753738,-0.17792205)">
                         <a id="1harbor" target="" xlink:href="" transform="translate(1.0206186,2.0412371)">
                             <circle
                                 style="fill:none;fill-opacity:1;stroke:#4b8996;stroke-width:1.32057;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
@@ -653,6 +664,8 @@
                         </text>
                     </g>
                 </svg>
+                <p class="text-center kiwi-maru">{{$user->name}}さんの現在の位置</p>
+
 
 
 

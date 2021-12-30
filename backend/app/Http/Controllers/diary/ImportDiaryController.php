@@ -4,7 +4,7 @@ namespace App\Http\Controllers\diary;
 
 use App\Http\Controllers\Controller;
 use App\Models\Diary;
-use Illuminate\Support\Carbon
+use Illuminate\Support\Carbon;
 use Illuminate\Http\Request;
 
 //csvインポート用

@@ -7,7 +7,7 @@ use App\Models\Diary;
 use App\Models\Osirase;
 use App\Models\Releasenote;
 use App\Models\User_rank;
-use Illuminate\Support\Carbon
+use Illuminate\Support\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 class homeDiaryController extends Controller

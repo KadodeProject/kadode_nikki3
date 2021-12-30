@@ -2,7 +2,7 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Support\Carbon
+use Illuminate\Support\Carbon;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
@@ -29,7 +29,7 @@ class ReleasenoteTableSeeder extends Seeder
                 'title'=>"ユーザーランク機能実装" ,
                 'genre_id'=>1 ,
                 'description'=>"使えば使うほどランクが上がるユーザーランク機能が実装されました。設定ページから現在のランクをご確認いただけます。現在ベータ版です。" ,
-                'date' => Carbon::create(2021,12,30),
+                'date' => Carbon::create(2021,12,29),
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now(),
             ],
@@ -37,7 +37,7 @@ class ReleasenoteTableSeeder extends Seeder
                 'title'=>"ユーザーロール機能実装" ,
                 'genre_id'=>1 ,
                 'description'=>"管理者ユーザーを追加しました。" ,
-                'date' => Carbon::create(2021,12,30),
+                'date' => Carbon::create(2021,12,29),
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now(),
             ],

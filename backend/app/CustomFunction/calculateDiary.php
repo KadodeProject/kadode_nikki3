@@ -6,7 +6,7 @@
  */
 namespace App\CustomFunction;
 
-use Illuminate\Support\Carbon
+use Illuminate\Support\Carbon;
 
 use function PHPUnit\Framework\isEmpty;
 use function PHPUnit\Framework\isNan;

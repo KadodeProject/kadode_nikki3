@@ -2,7 +2,7 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Support\Carbon
+use Illuminate\Support\Carbon;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
@@ -19,23 +19,23 @@ class User_rankTableSeeder extends Seeder
         $param=[
             [
             'name'=>"国府" ,
-            'description'=>"" ,
+            'description'=>"かどで日記、はじめの一歩" ,
             ],
             [
             'name'=>"大津" ,
-            'description'=>"" ,
+            'description'=>"はじめての日記を書いた" ,
             ],
             [
             'name'=>"浦戸" ,
-            'description'=>"" ,
+            'description'=>"15枚の日記を書いた" ,
             ],
             [
             'name'=>"大湊" ,
-            'description'=>"" ,
+            'description'=>"かどで日記への登録1ヶ月が経った" ,
             ],
             [
             'name'=>"奈半" ,
-            'description'=>"" ,
+            'description'=>"統計を利用した" ,
             ],
             [
             'name'=>"室津" ,
