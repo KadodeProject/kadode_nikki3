@@ -14,7 +14,7 @@ class Kernel extends ConsoleKernel
      */
     protected $commands = [
         Commands\GCSCommand::class,
-        Commands\JudgeUser_rankCommand::class
+        Commands\JudgeUserRankCommand::class
     ];
 
     /**

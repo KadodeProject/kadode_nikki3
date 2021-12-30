@@ -7,7 +7,7 @@ use App\Models\Statistic;
 use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Console\Command;
-class JudgeUser_rankCommand extends Command
+class JudgeUserRankCommand extends Command
 {
     /**
      * The name and signature of the console command.
@@ -54,23 +54,22 @@ class JudgeUser_rankCommand extends Command
     public function handle()
     {
         $users=User::all();
-        $diaries=Statistic::all();
-        \Log::debug("message");
-        echo(gettype($diaries)."|\n");
-        foreach($diaries as $diary){
-            echo(gettype($diary)."|\n");
-            echo($diary->id."|\n");
-        }
+        $diaries=Diary::all();
+        /**
+         * User以外の情報がeloquentで引っ張れない
+         */
+
+
 
         foreach($users as $user){
             $rank_id=$user->user_rank_id;
             $user_id=$user->id;
-            echo($user->name."\n");
+
+            echo("aaa"."\n");
+            echo($user_id."\n");
+            echo($rank_id."\n");
             switch($rank_id){
                 case 1:
-
-
-
 
                     if(Diary::where('user_id',$user_id)->count()>=1){
 
