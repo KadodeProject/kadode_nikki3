@@ -131,6 +131,7 @@ class ShowStatisticsController extends Controller
             $frequencies=[];//度数の最小値を入れる
             $max=max($char_length_list);
             $min=min($char_length_list);
+
             $width=ceil(($max-$min)/20);//20分割、切り上げ,20個生成するので、どう転んでも入り切るように切り上げ
             $i=$min;
             for($n=1;$n<=20;$n++){
@@ -142,8 +143,11 @@ class ShowStatisticsController extends Controller
              * 度数分布表への代入
              */
             foreach($char_length_list as $value){
-                foreach($frequencies as $frequency){
-                    if($value<=$frequency ){
+                foreach(array_reverse($frequencies) as $frequency){
+                    if($value==4100){
+                        \Log::debug("4100!!");
+                    }
+                    if($value>=$frequency ){
                         $char_length_frequency_distribution[($frequency)."-".($frequency+$width)]+=1;
                         // \Log::debug($value."は".($frequency)."-".($frequency+$width)."に入る");
                         break;
