@@ -9,8 +9,21 @@
 
     <div class="statistic-content ">
         @include('components.statisticHeading',['icon'=>'category','title'=>'アップデート情報更新通知'])
+        @php
+        $original_title="";
+        $original_date="";
+        $original_genre="";
+        $original_description="";
+        @endphp
         {{-- エラー --}}
         @if(count($errors)>0)
+        {{-- 以前入力した内容を打ち込む --}}
+        @php
+        $original_title=old("title");
+        $original_date=old("date");
+        $original_genre=old("releasenote_genre_id");
+        $original_description=old("description");
+        @endphp
         {{-- エラーの表示 --}}
         @foreach($errors->all() as $error)
         <p class="text-red-500 kiwi-maru text-center">{{$error}}</p>
@@ -43,11 +56,12 @@
                             {{$i}}
                         </td>
                         <td>
-                            <input requreid type="text" name="title" autocomplete="off" placeholder="タイトル"
+                            <input requreid value="{{$original_title}}" type="text" name="title" autocomplete="off"
+                                placeholder="タイトル"
                                 onkeydown="if((event.ctrlKey || event.metaKey)&&event.keyCode==13){document.getElementById('submitosirase_{{$i}}').click();return false};">
                         </td>
                         <td>
-                            <select name="releasenote_genre_id">
+                            <select name="releasenote_genre_id" value="{{$original_genre}}">
                                 <option disabled value>ジャンルを選ぶ</option>
                                 @foreach($releasenoteGenres as $packageGenre)
                                 <option value="{{$packageGenre->id}}">{{$packageGenre->name}}</option>
@@ -55,11 +69,13 @@
                             </select>
                         </td>
                         <td>
-                            <input requreid type="text" name="description" autocomplete="off" placeholder="説明"
+                            <input requreid type="text" value="{{$original_description}}" name="description"
+                                autocomplete="off" placeholder="説明"
                                 onkeydown="if((event.ctrlKey || event.metaKey)&&event.keyCode==13){document.getElementById('submitosirase_{{$i}}').click();return false};">
                         </td>
                         <td>
-                            <input requreid type="date" class="text-xl mx-auto mb-4  kiwi-maru" name="date">
+                            <input requreid type="date" value="{{$original_date}}"
+                                class="text-xl mx-auto mb-4  kiwi-maru" name="date">
                         </td>
                         <td>
                             <input type="submit" id="submitosirase_{{$i}}" class="text-black" value="追加">
@@ -132,8 +148,21 @@
 
     <div class="statistic-content ">
         @include('components.statisticHeading',['icon'=>'category','title'=>'お知らせ'])
+        @php
+        $original_title="";
+        $original_date="";
+        $original_genre="";
+        $original_description="";
+        @endphp
         {{-- エラー --}}
         @if(count($errors)>0)
+        {{-- 以前入力した内容を打ち込む --}}
+        @php
+        $original_title=old("title");
+        $original_date=old("date");
+        $original_genre=old("osirase_genre_id");
+        $original_description=old("description");
+        @endphp
         {{-- エラーの表示 --}}
         @foreach($errors->all() as $error)
         <p class="text-red-500 kiwi-maru text-center">{{$error}}</p>
@@ -167,10 +196,11 @@
                         </td>
                         <td>
                             <input requreid type="text" name="title" autocomplete="off" placeholder="タイトル"
+                                value="{{$original_title}}"
                                 onkeydown="if((event.ctrlKey || event.metaKey)&&event.keyCode==13){document.getElementById('submitosirase_{{$i}}').click();return false};">
                         </td>
                         <td>
-                            <select name="osirase_genre_id">
+                            <select name="osirase_genre_id" value="{{$original_genre}}">
                                 <option disabled value>ジャンルを選ぶ</option>
                                 @foreach($osiraseGenres as $packageGenre)
                                 <option value="{{$packageGenre->id}}">{{$packageGenre->name}}</option>
@@ -178,11 +208,13 @@
                             </select>
                         </td>
                         <td>
-                            <input requreid type="text" name="description" autocomplete="off" placeholder="説明"
+                            <input requreid type="text" value="{{$original_description}}" name="description"
+                                autocomplete="off" placeholder="説明"
                                 onkeydown="if((event.ctrlKey || event.metaKey)&&event.keyCode==13){document.getElementById('submitosirase_{{$i}}').click();return false};">
                         </td>
                         <td>
-                            <input requreid type="date" class="text-xl mx-auto mb-4  kiwi-maru" name="date">
+                            <input requreid type="date" value="{{$original_date}}"
+                                class="text-xl mx-auto mb-4  kiwi-maru" name="date" value="{{$original_date}}">
                         </td>
                         <td>
                             <input type="submit" id="submitosirase_{{$i}}" class="text-black" value="追加">
