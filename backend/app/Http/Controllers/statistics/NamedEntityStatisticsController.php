@@ -8,7 +8,7 @@ use App\Models\CustomNER;
 use App\Models\NERLabel;
 use App\Models\PackageNER;
 use Illuminate\Support\Facades\Auth;
-use Carbon\Carbon;
+use Illuminate\Support\Carbon;
 
 class NamedEntityStatisticsController extends Controller
 {
@@ -75,7 +75,7 @@ class NamedEntityStatisticsController extends Controller
     public function packagesCreate(Request $request){
 
         // バリデーション
-        // $this->validate($request,PackageNER::$rules);
+        $this->validate($request,PackageNER::$rules);
 
         //中身作成
         $form=[
@@ -90,7 +90,7 @@ class NamedEntityStatisticsController extends Controller
     public function packagesUpdate(Request $request){
           // 日付のバリデーション→既に存在する日付ならエラー返す
         // バリデーション
-        // $this->validate($request,PackageNER::$rules);
+        $this->validate($request,PackageNER::$rules);
 
         $updateContent=[
             "label_id"=>$request->label_id,

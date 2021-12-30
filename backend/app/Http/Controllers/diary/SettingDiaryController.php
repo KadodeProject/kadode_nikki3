@@ -4,7 +4,7 @@ namespace App\Http\Controllers\diary;
 
 use App\Http\Controllers\Controller;
 use App\Models\User;
-use Illuminate\Http\Request;
+use App\Models\User_rank;
 use Illuminate\Support\Facades\Auth;
 
 class SettingDiaryController extends Controller
@@ -15,10 +15,10 @@ class SettingDiaryController extends Controller
         // ここはグローバルスコープ適応外
         $user=Auth::user();
         $userCounter=User::count();
-        
+        $user_rank=User_rank::where("id",$user->user_rank_id)->first();
         $userDB=User::where("id",$user->id)->first();
 
-        return view('diary/setting',["user"=>$user,"userDB"=>$userDB,'userCounter'=>$userCounter]);
+        return view('diary/setting',["user_rank"=>$user_rank,"user"=>$user,"userDB"=>$userDB,'userCounter'=>$userCounter]);
 
     }
 

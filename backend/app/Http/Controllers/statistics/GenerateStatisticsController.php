@@ -6,7 +6,7 @@ use App\CustomFunction\throwPython;
 use App\Http\Controllers\Controller;
 use App\Models\Statistic;
 use App\Models\Statistic_overall_progress;
-use Carbon\Carbon;
+use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Auth;
 
 class GenerateStatisticsController extends Controller

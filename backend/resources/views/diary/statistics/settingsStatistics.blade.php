@@ -80,6 +80,13 @@
             </a>
         </p>
         <p class="text-center mt-8 mb-2 mx-2 kiwi-maru text-sm">Ajax通信非対応のため、1件ずつ追加や変更を行うようお願い申し上げます。</p>
+        {{-- エラー --}}
+        @if(count($errors)>0)
+        {{-- エラーの表示 --}}
+        @foreach($errors->all() as $error)
+        <p class="text-red-500 kiwi-maru text-center">{{$error}}</p>
+        @endforeach
+        @endif
 
         {{-- 表示 --}}
         <div class="overflow-x-auto">
@@ -92,18 +99,7 @@
                     <th>削除</th>
                 </tr>
 
-                {{-- エラー --}}
-                @if(count($errors)>0)
-                {{-- エラーの表示 --}}
-                <tr class="text-red-500 kiwi-maru">
-                    @foreach($errors->all() as $error)
-                    <td>エラー</td>
-                    <td>エラー</td>
-                    <td>{{$error}}</td>
-                    <td>--</td>
-                    @endforeach
-                </tr>
-                @endif
+
                 @php
                 $i=1;
                 @endphp

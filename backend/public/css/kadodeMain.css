@@ -127,6 +127,9 @@ body {
     color: var(--button-main-color);
 }
 
+.top-over-header {
+    top: var(--header-height);
+}
 body {
     background-color: var(--bg-main-color);
     overflow-x: hidden;

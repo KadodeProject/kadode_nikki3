@@ -1,5 +1,5 @@
 @extends("layouts.main")
-@section("title","管理者ページ")
+@section("title","パッケージセンター")
 
 @section('header')
 @parent
@@ -9,6 +9,15 @@
 
     <div class="statistic-content">
         @include('components.statisticHeading',['icon'=>'category','title'=>'パッケージ管理'])
+
+        {{-- エラー --}}
+        @if(count($errors)>0)
+        {{-- エラーの表示 --}}
+        @foreach($errors->all() as $error)
+        <p class="text-red-500 kiwi-maru text-center">{{$error}}</p>
+        @endforeach
+        @endif
+
         {{-- 表示 --}}
         <div class="overflow-x-auto">
             <table class="nlp-normal-table mx-auto" border="1">
@@ -22,19 +31,7 @@
                     <th>削除</th>
                 </tr>
 
-                {{-- エラー --}}
-                @if(count($errors)>0)
-                {{-- エラーの表示 --}}
-                <tr class="text-red-500 kiwi-maru">
-                    @foreach($errors->all() as $error)
-                    <td>エラー</td>
-                    <td>エラー</td>
-                    <td>{{$error}}</td>
-                    <td>--</td>
-                    <td>--</td>
-                    @endforeach
-                </tr>
-                @endif
+
                 @php
                 $i=1;
                 @endphp

@@ -10,7 +10,9 @@ use Laravel\Fortify\TwoFactorAuthenticatable;
 use Laravel\Jetstream\HasProfilePhoto;
 use Laravel\Sanctum\HasApiTokens;
 use App\Scopes\ScopeDiary;
-class User extends Authenticatable implements MustVerifyEmail 
+use Illuminate\Support\Carbon;
+
+class User extends Authenticatable implements MustVerifyEmail
 {
     use HasApiTokens;
     use HasFactory;
@@ -20,13 +22,22 @@ class User extends Authenticatable implements MustVerifyEmail
 
 
     public static $updatePassWordRules=[
-        "password"=>"min:8"
+        "password"=>"min:8|max:100"
     ];
     public static $updateEmailRules=[
         "email"=>"email"
-        
-    ];
 
+    ];
+     // 初期値設定
+    protected $attributes = [
+        "is_showed_update_user_rank" =>0,
+        "is_showed_update_system_info" =>0,
+        "is_showed_service_info" =>0,
+        "user_rank_id" =>1,
+        "user_role_id" =>1,
+        "appearance_id" =>1,
+        "user_rank_updated_at"=>"2021-12-28",
+    ];
 
 
     // public function diaries(){
@@ -41,6 +52,12 @@ class User extends Authenticatable implements MustVerifyEmail
         'name',
         'email',
         'password',
+        'is_showed_update_user_rank',
+        'is_showed_update_system_info',
+        'is_showed_service_info',
+        'user_rank_id',
+        'user_role_id',
+        'appearance_id',
     ];
 
     /**
@@ -72,4 +89,19 @@ class User extends Authenticatable implements MustVerifyEmail
     protected $appends = [
         'profile_photo_url',
     ];
+
+
+    //format(年月日)するために
+    protected $dates = ['user_rank_updated_at'];
+
+    public function diary() {
+        return $this->hasMany(Diary::class);
+    }
+    public function user_rank(){
+        return $this->belongsTo(User_rank::class);
+    }
+    public function user_role(){
+        return $this->belongsTo(User_role::class);
+    }
+
 }

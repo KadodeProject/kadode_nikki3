@@ -5,7 +5,7 @@ namespace App\Http\Controllers\statistics;
 use App\Http\Controllers\Controller;
 use App\Models\Diary;
 use App\Models\Statistic;
-use Carbon\Carbon;
+use Illuminate\Support\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 

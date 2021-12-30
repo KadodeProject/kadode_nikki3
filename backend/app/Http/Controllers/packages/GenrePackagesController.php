@@ -18,7 +18,7 @@ class GenrePackagesController extends Controller
     public function create(Request $request){
 
         // バリデーション
-        // $this->validate($request,NlpPackageGenre::$rules);
+        $this->validate($request,NlpPackageGenre::$rules);
 
         //中身作成
         $form=[
@@ -27,7 +27,7 @@ class GenrePackagesController extends Controller
         ];
 
         NlpPackageGenre::create($form);
-        return redirect('administrator');
+        return redirect('administrator/package');
     }
 
     /**
@@ -42,7 +42,7 @@ class GenrePackagesController extends Controller
 
         // 日付のバリデーション→既に存在する日付ならエラー返す
         // バリデーション
-        // $this->validate($request,NlpPackageGenre::$rules);
+        $this->validate($request,NlpPackageGenre::$rules);
 
         $updateContent=[
             "description"=>$request->description,
@@ -50,7 +50,7 @@ class GenrePackagesController extends Controller
         ];
 
         NlpPackageGenre::where('id',$request->NlpPackageGenre_id)->update($updateContent);
-        return redirect('administrator');
+        return redirect('administrator/package');
     }
 
     /**
@@ -61,6 +61,6 @@ class GenrePackagesController extends Controller
      */
     public function delete(Request $request){
         NlpPackageGenre::where('id',$request->NlpPackageGenre_id)->delete();
-        return redirect('administrator');
+        return redirect('administrator/package');
     }
 }

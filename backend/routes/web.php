@@ -8,6 +8,14 @@ use App\Http\Controllers\diary\SearchDiaryController;
 use App\Http\Controllers\diary\SettingDiaryController;
 use App\Http\Controllers\diary\ShowDiaryController;
 
+use App\Http\Controllers\notifications\OsiraseController;
+use App\Http\Controllers\notifications\ReleasenoteController;
+use App\Http\Controllers\notifications\ManageNotificationController;
+
+use App\Http\Controllers\user\User_roleController;
+use App\Http\Controllers\user\User_rankController;
+
+
 use App\Http\Controllers\diary\UserController;
 
 use App\Http\Controllers\statistics\ShowStatisticsController;
@@ -18,6 +26,9 @@ use App\Http\Controllers\statistics\GenerateStatisticsController;
 use App\Http\Controllers\statistics\NamedEntityStatisticsController;
 
 use App\Http\Controllers\admin\HomeAdminController;
+use App\Http\Controllers\admin\NotificationBroadcasterAdminController;
+use App\Http\Controllers\admin\PackageAdminController;
+use App\Http\Controllers\admin\Role_rankAdminController;
 
 use App\Http\Controllers\packages\GenrePackagesController;
 use App\Http\Controllers\packages\ManagePackagesController;
@@ -51,12 +62,13 @@ Route::get('/privacyPolicy', function () {
 Route::get('/contact', function () {
     return view('diaryNoLogIn/contact');
 });
-Route::get('/news', function () {
-    return view('diaryNoLogIn/news');
-});
-Route::get('/releaseNote', function () {
-    return view('diaryNoLogIn/releaseNote');
-});
+
+
+
+
+Route::get('/news', [OsiraseController::class,"read"])->name('releasenote');
+Route::get('/releasenote', [ReleasenoteController::class,"read"])->name('releasenote');
+
 Route::get('/terms', function () {
     return view('diaryNoLogIn/terms');
 });
@@ -135,6 +147,12 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     Route::post('/statistics/settings/packages/use',  [OwnPackagesController::class,"use"])->name('usePackages');
     Route::post('/statistics/settings/packages/release',  [OwnPackagesController::class,"release"])->name('releasePackages');
 
+    //ユーザー通知周り
+    Route::post('/notification/user_rank/delete',  [ManageNotificationController::class,"user_rank"])->name('removeUser_rankInfo');
+    Route::post('/notification/osirase/delete',  [ManageNotificationController::class,"osirase"])->name('removeOsiraseInfo');
+    Route::post('/notification/releasenote/delete',  [ManageNotificationController::class,"releasenote"])->name('removeReleasenoteInfo');
+
+
 
 
 });
@@ -145,6 +163,9 @@ Route::middleware(['administrator'])->group(function () {
      */
     //管理者ページ
     Route::get('/administrator', HomeAdminController::class)->name('home');
+    Route::get('/administrator/notification', NotificationBroadcasterAdminController::class)->name('notification');
+    Route::get('/administrator/package',PackageAdminController::class)->name('package');
+    Route::get('/administrator/role_rank', Role_rankAdminController::class)->name('role');
 
     //パッケージ名前系
     Route::post('/administrator/settings/packages/create',  [ManagePackagesController::class,"create"])->name('createPackages');
@@ -159,5 +180,26 @@ Route::middleware(['administrator'])->group(function () {
     Route::post('/statistics/settings/named_entity/package/create',  [NamedEntityStatisticsController::class,"packagesCreate"])->name('createPackageNamedEntity');
     Route::post('/statistics/settings/named_entity/package/update',  [NamedEntityStatisticsController::class,"packagesUpdate"])->name('updatePackageNamedEntity');
     Route::post('/statistics/settings/named_entity/package/delete',  [NamedEntityStatisticsController::class,"packagesDelete"])->name('deletePackageNamedEntity');
+
+    //お知らせまわり
+    Route::post('/administrator/settings/osirase/create',  [OsiraseController::class,"create"])->name('createOsirase');
+    Route::post('/administrator/settings/osirase/update',  [OsiraseController::class,"update"])->name('updateOsirase');
+    Route::post('/administrator/settings/osirase/delete',  [OsiraseController::class,"delete"])->name('deleteOsirase');
+
+    //リリースノートまわり
+    Route::post('/administrator/settings/releasenote/create',  [ReleasenoteController::class,"create"])->name('createReleasenote');
+    Route::post('/administrator/settings/releasenote/update',  [ReleasenoteController::class,"update"])->name('updateReleasenote');
+    Route::post('/administrator/settings/releasenote/delete',  [ReleasenoteController::class,"delete"])->name('deleteReleasenote');
+
+    //ユーザーロールまわり
+    Route::post('/administrator/settings/user/role/create',  [User_roleController::class,"create"])->name('createUser_role');
+    Route::post('/administrator/settings/user/role/update',  [User_roleController::class,"update"])->name('updateUser_role');
+    Route::post('/administrator/settings/user/role/delete',  [User_roleController::class,"delete"])->name('deleteUser_role');
+
+    //ユーザーランクまわり
+    Route::post('/administrator/settings/user/rank/create',  [User_rankController::class,"create"])->name('createRUser_rank');
+    Route::post('/administrator/settings/user/rank/update',  [User_rankController::class,"update"])->name('updateRUser_rank');
+    Route::post('/administrator/settings/user/rank/delete',  [User_rankController::class,"delete"])->name('deleteRUser_rank');
+
 
 });

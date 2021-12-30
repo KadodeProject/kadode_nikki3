@@ -1,5 +1,5 @@
 @extends("layouts.main")
-@section("title","アーカイブ")
+@section("title","年別アーカイブ")
 
 @section('header')
 @parent

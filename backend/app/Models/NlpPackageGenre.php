@@ -15,4 +15,10 @@ class NlpPackageGenre extends Model
         "name","description","created_at","updated_at"
     ];
 
+    //バリデーション
+    public static $rules=array(
+        "name"=>"required",
+        "description"=>"required",
+        );
+
 }

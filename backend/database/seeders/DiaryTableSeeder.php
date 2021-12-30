@@ -2,7 +2,7 @@
 
 namespace Database\Seeders;
 
-use Carbon\Carbon;
+use Illuminate\Support\Carbon;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
@@ -42,6 +42,6 @@ class DiaryTableSeeder extends Seeder
             ];
             DB::table("diaries")->insert($param);
         }
-        
+
     }
 }

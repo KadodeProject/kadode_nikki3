@@ -5,6 +5,7 @@ namespace App\Http\Middleware;
 use App\Models\User;
 use Closure;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class VerifyAdminUser
 {
@@ -17,10 +18,8 @@ class VerifyAdminUser
     public function handle($request, Closure $next, $guard = null)
     {
         /** @var User $user */
-        $user = $request->user();
-
-        if ($user->id!=1) {
-            \Log::debug("管理者ログイン");
+        $user =Auth::user();
+        if ($user->user_role_id!=2) {
             //管理者ユーザーじゃなかったら403エラー返す
             abort(403);
         }
