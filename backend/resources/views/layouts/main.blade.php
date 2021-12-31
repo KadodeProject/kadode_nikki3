@@ -98,13 +98,13 @@
             <div class="flex justify-end items-end sm:mb-4 sm:mr-8 mb-2">
 
                 <form class="move-label-wrapper flex" method="POST" action="/search">
-                    @if(count($errors)>0)
+
+                    @if($errors->has('keyword'))
                     {{-- エラーの表示 --}}
-                    <ul class="text-red-500 kiwi-maru">
-                        @foreach($errors->all() as $error)
-                        <li>{{$error}}</li>
-                        @endforeach
-                    </ul>
+                    <p class="text-red-500 kiwi-maru">
+                        {{$errors->first('keyword')}}
+                    </p>
+
                     @endif
                     @csrf
                     <div>

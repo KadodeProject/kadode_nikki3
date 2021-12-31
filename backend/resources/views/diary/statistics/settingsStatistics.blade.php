@@ -80,13 +80,19 @@
             </a>
         </p>
         <p class="text-center mt-8 mb-2 mx-2 kiwi-maru text-sm">Ajax通信非対応のため、1件ずつ追加や変更を行うようお願い申し上げます。</p>
-        {{-- エラー --}}
-        @if(count($errors)>0)
         {{-- エラーの表示 --}}
-        @foreach($errors->all() as $error)
-        <p class="text-red-500 kiwi-maru text-center">{{$error}}</p>
-        @endforeach
-        @endif
+        <ul class="text-red-500 kiwi-maru text-center">
+            @if($errors->has('label_id'))
+            <li class="text-red-500 kiwi-maru">
+                {{$errors->first('label_id')}}
+            </li>
+            @endif
+            @if($errors->has('name'))
+            <li class="text-red-500 kiwi-maru">
+                {{$errors->first('name')}}
+            </li>
+            @endif
+        </ul>
 
         {{-- 表示 --}}
         <div class="overflow-x-auto">
@@ -191,14 +197,14 @@
             <p class="text-sm text-center mb-4 kiwi-maru">かどで日記からエクスポートしていないものは動作保証外です</p>
             <form class="text-center flex justify-center flex-wrap flex-col " method="POST"
                 enctype="multipart/form-data" action="/import/diary/kadode">
-                @if(count($errors)>0)
-                {{-- エラーの表示 --}}
-                <ul class="text-red-500 kiwi-maru">
-                    @foreach($errors->all() as $error)
-                    <li>{{$error}}</li>
-                    @endforeach
-                </ul>
-                @endif
+                       {{-- エラーの表示 --}}
+        <ul class="text-red-500 kiwi-maru text-center">
+            @if($errors->has('kadodeCsv'))
+            <li class="text-red-500 kiwi-maru">
+                {{$errors->first('kadodeCsv')}}
+            </li>
+            @endif
+        </ul>
                 @csrf
                 <label class="flex md:justify-center flex-wrap text-main-color" for="kadode-csv">
                     <div class="md:w-full mt-4 mb-2">
