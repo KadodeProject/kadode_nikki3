@@ -22,6 +22,9 @@
     {{-- CSS読み込み --}}
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('css/kadodeMain.css') }}?ver=20.2">
+    {{-- タイムライン用 --}}
+    <link href="https://unpkg.com/vis-timeline@latest/styles/vis-timeline-graph2d.min.css" rel="stylesheet"
+        type="text/css" />
 
 </head>
 

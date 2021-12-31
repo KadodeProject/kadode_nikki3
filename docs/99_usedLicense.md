@@ -82,7 +82,19 @@ https://github.com/nagix/chartjs-plugin-colorschemes/blob/master/LICENSE.md
 
 Copyright (c) 2013, Jason Davies.
 
+Released under the Original license
+
 https://github.com/jasondavies/d3-cloud/blob/master/LICENSE
+
+## vis-timeline
+
+※タイムライン描画ライブラリ
+
+Copyright (c) 2014-2017 Almende B.V. and contributors Copyright (c) 2017-2019 vis.js contributors
+
+Released under the MIT license
+
+https://github.com/visjs/vis-timeline/blob/master/LICENSE.md
 
 # Python ライブラリ
 
