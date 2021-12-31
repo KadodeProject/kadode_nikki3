@@ -48,6 +48,7 @@
                     class="material-icons hourglass_animation"
                     style="margin-right:0.25em">hourglass_bottom</span>自然言語処理の進行度</h3>
                 <p class="text-center kiwi-maru my-2">※ページをリロードすると更新されます</p>
+                <p class="text-center kiwi-maru my-2">※ページを閉じたり他のページに移動しても問題ありません。</p>
                 @component('components.statistics.progress.progressDiariesCount')
                 @slot("ended_diaries_count")
                 {{$ended_diaries_count}}

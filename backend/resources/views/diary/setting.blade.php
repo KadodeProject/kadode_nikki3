@@ -680,13 +680,11 @@
             <div class="flex justify-start items-center mt-12  flex-wrap ">
                 <p class="text-xl mr-4">メールアドレス変更</p>
                 <form class="flex justify-center flex-wrap flex-col " method="POST" action="/updateEmail">
-                    @if(count($errors)>0)
-                    {{-- エラーの表示 --}}
-                    <ul class="text-red-500 kiwi-maru">
-                        @foreach($errors->all() as $error)
-                        <li>{{$error}}</li>
-                        @endforeach
-                    </ul>
+                    {{-- エラー --}}
+                    @if($errors->has('email'))
+                    <p class="text-red-500 kiwi-maru">
+                        {{$errors->first('email')}}
+                    </p>
                     @endif
                     @csrf
                     <div class="flex justify-start items-center flex-wrap">
@@ -698,13 +696,11 @@
             <div class="flex justify-start items-center my-4 flex-wrap">
                 <p class="text-xl mr-4">パスワード変更　　</p>
                 <form class="flex justify-center flex-wrap flex-col " method="POST" action="/updatePassWord">
-                    @if(count($errors)>0)
-                    {{-- エラーの表示 --}}
-                    <ul class="text-red-500 kiwi-maru">
-                        @foreach($errors->all() as $error)
-                        <li>{{$error}}</li>
-                        @endforeach
-                    </ul>
+                    {{-- エラー --}}
+                    @if($errors->has('password'))
+                    <p class="text-red-500 kiwi-maru">
+                        {{$errors->first('password')}}
+                    </p>
                     @endif
                     @csrf
                     <div class="flex justify-start items-center flex-wrap">
@@ -712,6 +708,7 @@
                         <input type="submit" class="text-black" value="パスワードを変更する">
                     </div>
                 </form>
+                <p class="kiwi-maru text-sm">※8文字以上100字未満</p>
             </div>
 
         </div>
@@ -727,13 +724,11 @@
                 <p class="text-sm text-center mb-4">かどで日記からエクスポートしていないものは動作保証外です</p>
                 <form class="text-center flex justify-center flex-wrap flex-col " method="POST"
                     enctype="multipart/form-data" action="/import/diary/kadode">
-                    @if(count($errors)>0)
-                    {{-- エラーの表示 --}}
-                    <ul class="text-red-500 kiwi-maru">
-                        @foreach($errors->all() as $error)
-                        <li>{{$error}}</li>
-                        @endforeach
-                    </ul>
+                    {{-- エラー --}}
+                    @if($errors->has('kadodeCsv'))
+                    <p class="text-red-500 kiwi-maru">
+                        {{$errors->first('kadodeCsv')}}
+                    </p>
                     @endif
                     @csrf
                     <label class="flex md:justify-center flex-wrap" for="kadode-csv">
@@ -751,13 +746,11 @@
                 <p class="text-sm text-center mb-4">月に書く日記からエクスポートしていないものは動作保証外です</p>
                 <form class="text-center flex justify-center flex-wrap flex-col " method="POST"
                     enctype="multipart/form-data" action="/import/diary/tukini">
-                    @if(count($errors)>0)
-                    {{-- エラーの表示 --}}
-                    <ul class="text-red-500 kiwi-maru">
-                        @foreach($errors->all() as $error)
-                        <li>{{$error}}</li>
-                        @endforeach
-                    </ul>
+                    {{-- エラー --}}
+                    @if($errors->has('tukiniTxt'))
+                    <p class="text-red-500 kiwi-maru">
+                        {{$errors->first('tukiniTxt')}}
+                    </p>
                     @endif
                     @csrf
                     <label class="flex md:justify-center flex-wrap" for="tuki-txt">
