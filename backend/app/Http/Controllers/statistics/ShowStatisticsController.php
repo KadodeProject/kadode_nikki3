@@ -160,7 +160,7 @@ class ShowStatisticsController extends Controller
              * アニメのタイムライン描画
              */
             //id content start(end)
-            $anime_data=Diary::where("user_id",$user_id)->orderBy('date','desc')->get(['date','affiliation']);
+            $anime_data=Diary::where("user_id",$user_id)->whereNotNull('affiliation')->orderBy('date','desc')->get(['date','affiliation']);
             $anime_count=[];
             $anime_name=[];
             $anime_date=[];
