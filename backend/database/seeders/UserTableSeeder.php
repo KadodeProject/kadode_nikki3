@@ -53,7 +53,7 @@ class UserTableSeeder extends Seeder
                 "is_showed_update_system_info" =>0,
                 "is_showed_service_info" =>0,
                 "user_rank_id" =>1,
-                "user_role_id" =>1,
+                "user_role_id" =>2,
                 "appearance_id" =>1,
                 "profile_photo_path"=>null,
                 'created_at' => Carbon::now(),
