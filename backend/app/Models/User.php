@@ -22,10 +22,10 @@ class User extends Authenticatable implements MustVerifyEmail
 
 
     public static $updatePassWordRules=[
-        "password"=>"min:8|max:100"
+        "password"=>"required|min:8|max:100"
     ];
     public static $updateEmailRules=[
-        "email"=>"email"
+        "email"=>"required|email|unique:users,email"
 
     ];
      // 初期値設定

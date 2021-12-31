@@ -14,7 +14,7 @@ class PackageAdminController extends Controller
     public function __invoke()
     {
         //パッケージ表示
-        $NlpPackageName=NlpPackageName::get();
+        $NlpPackageName=NlpPackageName::withoutGlobalScopes()->get();
         //パッケージジャンル表示
         $NlpPackageGenre=NlpPackageGenre::get();
 
