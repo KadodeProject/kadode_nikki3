@@ -195,10 +195,11 @@
                 @component('components.statistics.char.charLengthRank',["biggerDiaries"=>$biggerDiaries])
                 @endcomponent
             </div>
-            >
         </div>
     </div>
 
+    @empty($anime_timeline)
+    @else
     <div class="statistic-content">
         @include('components.statisticHeading',['icon'=>'pets','title'=>'アニメの登場タイムライン'])
 
@@ -206,6 +207,8 @@
         @endcomponent
 
     </div>
+    @endempty
+
 
     <div class="statistic-content">
         @include('components.statisticHeading',['icon'=>'bar_chart','title'=>'WordCloud'])
