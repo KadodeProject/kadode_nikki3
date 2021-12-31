@@ -19,7 +19,7 @@ class ReleasenoteTableSeeder extends Seeder
         $param=[
             [
                 'title'=>"お知らせ表示機能実装" ,
-                'genre_id'=>1 ,
+                'genre_id'=>2 ,
                 'description'=>"トップページにお知らせ表示がされるようになりました。新しいお知らせ、リリースノート及びユーザーランクアップの際に表示されます。バツ印より消せます。" ,
                 'date' => Carbon::create(2021,12,30),
                 'created_at' => Carbon::now(),
@@ -27,7 +27,7 @@ class ReleasenoteTableSeeder extends Seeder
             ],
             [
                 'title'=>"ユーザーランク機能実装" ,
-                'genre_id'=>1 ,
+                'genre_id'=>2 ,
                 'description'=>"使えば使うほどランクが上がるユーザーランク機能が実装されました。設定ページから現在のランクをご確認いただけます。現在ベータ版です。" ,
                 'date' => Carbon::create(2021,12,29),
                 'created_at' => Carbon::now(),
@@ -35,7 +35,7 @@ class ReleasenoteTableSeeder extends Seeder
             ],
             [
                 'title'=>"ユーザーロール機能実装" ,
-                'genre_id'=>1 ,
+                'genre_id'=>2 ,
                 'description'=>"管理者ユーザーを追加しました。" ,
                 'date' => Carbon::create(2021,12,29),
                 'created_at' => Carbon::now(),
