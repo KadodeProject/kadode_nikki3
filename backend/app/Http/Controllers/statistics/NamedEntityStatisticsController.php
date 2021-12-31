@@ -85,7 +85,7 @@ class NamedEntityStatisticsController extends Controller
         ];
 
         PackageNER::create($form);
-        return redirect('administrator');
+        return redirect('administrator/package');
     }
     public function packagesUpdate(Request $request){
           // 日付のバリデーション→既に存在する日付ならエラー返す
@@ -98,10 +98,10 @@ class NamedEntityStatisticsController extends Controller
         ];
 
         PackageNER::where('id',$request->PackageNER_id)->update($updateContent);
-        return redirect('administrator');
+        return redirect('administrator/package');
     }
     public function packagesDelete(Request $request){
         PackageNER::where('id',$request->PackageNER_id)->delete();
-        return redirect('administrator');
+        return redirect('administrator/package');
     }
 }

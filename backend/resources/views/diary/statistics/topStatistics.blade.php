@@ -195,7 +195,16 @@
                 @component('components.statistics.char.charLengthRank',["biggerDiaries"=>$biggerDiaries])
                 @endcomponent
             </div>
+            >
         </div>
+    </div>
+
+    <div class="statistic-content">
+        @include('components.statisticHeading',['icon'=>'pets','title'=>'アニメの登場タイムライン'])
+
+        @component('components.statistics.graph.animeTimeline',["anime_timeline"=>$anime_timeline])
+        @endcomponent
+
     </div>
 
     <div class="statistic-content">

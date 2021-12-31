@@ -35,6 +35,7 @@ class ShowStatisticsController extends Controller
         $ended_diaries_count="";//undefinedエラー防止用
         $char_length_frequency_distribution=[];//undefinedエラー防止用
         $biggerDiaries=[];//undefinedエラー防止用
+        $anime_timeline=[];//undefinedエラー防止用
         if(!empty($statistic)){
             if($statistic->statistic_progress==100){
 
@@ -144,9 +145,6 @@ class ShowStatisticsController extends Controller
              */
             foreach($char_length_list as $value){
                 foreach(array_reverse($frequencies) as $frequency){
-                    if($value==4100){
-                        \Log::debug("4100!!");
-                    }
                     if($value>=$frequency ){
                         $char_length_frequency_distribution[($frequency)."-".($frequency+$width)]+=1;
                         // \Log::debug($value."は".($frequency)."-".($frequency+$width)."に入る");
@@ -155,8 +153,28 @@ class ShowStatisticsController extends Controller
                 }
             }
 
+            //文字数多いのトップ10
             $biggerDiaries=Diary::where("user_id",$user_id)->orderBy("char_length","desc")->limit(10)->get(['date','title','uuid','char_length']);
 
+            /**
+             * アニメのタイムライン描画
+             */
+            //id content start(end)
+            $anime_data=Diary::where("user_id",$user_id)->orderBy('date','desc')->get(['date','affiliation']);
+            $anime_count=[];
+            $anime_name=[];
+            $anime_date=[];
+            $i=0;
+            //アニメ名と日付を取得
+            foreach($anime_data as $value){
+                $affiliation=json_decode($value->affiliation,true);
+                foreach($affiliation as $words){
+                    if($words['form']=="Animation"){
+                        $i+=1;
+                        $anime_timeline[]=[$i,$words['lemma'],$value->date];
+                    }
+                }
+            }
             }
             // 統計100じゃないとだめ系ここまで
 
@@ -174,6 +192,6 @@ class ShowStatisticsController extends Controller
             $oldest_diary_date="なし";
         }
 
-        return view("diary/statistics/topStatistics",["statistics"=>$statistic,"char_length_frequency_distribution"=>$char_length_frequency_distribution,"biggerDiaries"=>$biggerDiaries,'oldest_diary_date'=>$oldest_diary_date,'number_of_nikki'=>$number_of_nikki,'ended_diaries_count'=>$ended_diaries_count,"wordCloud_json"=>$wordCloud_json]);
+        return view("diary/statistics/topStatistics",["statistics"=>$statistic,"anime_timeline"=>$anime_timeline,"char_length_frequency_distribution"=>$char_length_frequency_distribution,"biggerDiaries"=>$biggerDiaries,'oldest_diary_date'=>$oldest_diary_date,'number_of_nikki'=>$number_of_nikki,'ended_diaries_count'=>$ended_diaries_count,"wordCloud_json"=>$wordCloud_json]);
     }
 }
