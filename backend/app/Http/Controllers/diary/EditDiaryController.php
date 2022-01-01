@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\diary;
 
+use App\CustomFunction\diaryDisplayPreProcessing;
 use App\Http\Controllers\Controller;
 use App\Models\Diary;
 use Illuminate\Support\Carbon;
@@ -59,26 +60,7 @@ class EditDiaryController extends Controller
             // \Log::debug($diary->special_people[0]['name']);//一番の人の名前抽出
             if(!empty($diary->special_people)){
                 $resembleDiaries=Diary::where(DB::raw('json_extract(`special_people`, "$[0].name")'), $diary->special_people[0]['name'])->inRandomOrder()->limit(3)->get();
-                /**
-                 * 該当日記の統計データの表示処理
-                 */
-                $i=0;
-                foreach ($resembleDiaries as $diary) {
-                    $resembleDiaries[$i]->is_latest_statistic=false;
-                    //統計データがあり、その統計データが日記の内容と合致しているかの判断
-                    if(isset($resembleDiaries[$i]->updated_statistic_at)){
-                        $diary_update= new Carbon($resembleDiaries[$i]->updated_at);
-                        $stati_update=new Carbon($resembleDiaries[$i]->updated_statistic_at);
-                        //gtでgreater than 日付比較
-                        if($resembleDiaries[$i]->statistic_progress==100 && $stati_update->gt($diary_update)){
-                            $resembleDiaries[$i]->is_latest_statistic=true;
-                            $resembleDiaries[$i]->important_words=array_values(json_decode($diary->important_words,true));
-                            $resembleDiaries[$i]->special_people=array_values(json_decode($diary->special_people,true));
-                        }
-                    }
-                    $i+=1;
-                }
-                //統計データの表示処理ここまで
+                $resembleDiaries=diaryDisplayPreProcessing::shapeStatisticFromDiaries($resembleDiaries);
             }
 
 
