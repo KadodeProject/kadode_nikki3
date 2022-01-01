@@ -79,6 +79,17 @@ class User extends Authenticatable implements MustVerifyEmail
      */
     protected $casts = [
         'email_verified_at' => 'datetime',
+        'sentence' => 'json',
+        'chunk' => 'json',
+        'token' => 'json',
+        'affiliation' => 'json',
+        'meta_info' => 'json',
+        'emotions' => 'json',
+        'flavor' => 'json',
+        'similar_sentences' => 'json',
+        'important_words' => 'json',
+        'cause_effect_sentences' => 'json',
+        'special_people' => 'json',
     ];
 
     /**
