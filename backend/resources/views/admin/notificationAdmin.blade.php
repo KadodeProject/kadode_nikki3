@@ -69,9 +69,8 @@
                             </select>
                         </td>
                         <td>
-                            <input requreid type="text" value="{{$original_description}}" name="description"
-                                autocomplete="off" placeholder="説明"
-                                onkeydown="if((event.ctrlKey || event.metaKey)&&event.keyCode==13){document.getElementById('submitosirase_{{$i}}').click();return false};">
+                            <textarea name="description" autocomplete="off" placeholder="説明"
+                                onkeydown="if((event.ctrlKey || event.metaKey)&&event.keyCode==13){document.getElementById('submitosirase_{{$i}}').click();return false};">{{$original_description}}</textarea>
                         </td>
                         <td>
                             <input requreid type="date" value="{{$original_date}}"
@@ -113,9 +112,8 @@
 
                         </td>
                         <td>
-                            <input requreid type="text" name="description" autocomplete="off"
-                                value="{{$releasenote->description}}"
-                                onkeydown="if((event.ctrlKey || event.metaKey)&&event.keyCode==13){document.getElementById('submitosirase_{{$i}}').click();return false};">
+                            <textarea name="description" autocomplete="off"
+                                onkeydown="if((event.ctrlKey || event.metaKey)&&event.keyCode==13){document.getElementById('submitosirase_{{$i}}').click();return false};">{{$releasenote->description}}</textarea>
                         </td>
                         <td>
                             <input requreid type="date" class="text-xl mx-auto mb-4  kiwi-maru" name="date"
@@ -208,9 +206,8 @@
                             </select>
                         </td>
                         <td>
-                            <input requreid type="text" value="{{$original_description}}" name="description"
-                                autocomplete="off" placeholder="説明"
-                                onkeydown="if((event.ctrlKey || event.metaKey)&&event.keyCode==13){document.getElementById('submitosirase_{{$i}}').click();return false};">
+                            <textarea name="description" autocomplete="off" placeholder="説明"
+                                onkeydown="if((event.ctrlKey || event.metaKey)&&event.keyCode==13){document.getElementById('submitosirase_{{$i}}').click();return false};">{{$original_description}}</textarea>
                         </td>
                         <td>
                             <input requreid type="date" value="{{$original_date}}"
@@ -253,9 +250,8 @@
 
                         </td>
                         <td>
-                            <input requreid type="text" name="description" autocomplete="off"
-                                value="{{$osirase->description}}"
-                                onkeydown="if((event.ctrlKey || event.metaKey)&&event.keyCode==13){document.getElementById('submitosirase_{{$i}}').click();return false};">
+                            <textarea name="description" autocomplete="off"
+                                onkeydown="if((event.ctrlKey || event.metaKey)&&event.keyCode==13){document.getElementById('submitosirase_{{$i}}').click();return false};">{{$osirase->description}}</textarea>
                         </td>
                         <td>
                             <input requreid type="date" class="text-xl mx-auto mb-4  kiwi-maru" name="date"
