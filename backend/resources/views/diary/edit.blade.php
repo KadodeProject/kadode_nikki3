@@ -58,11 +58,11 @@
     @endslot
     @endcomponent
 
-    <div class="my-12   md:mx-auto">
+    <div class="my-4   md:mx-auto">
         @empty($resembleDiaries)
-        <h3 class="text-center text-sm my-20 kiwi-maru">関連日記が見つかりませんでした。</h3>
+        <h3 class="text-center text-sm my-20 kiwi-maru">関連日記は見つかりませんでした。</h3>
         @else
-        <h2 class="kiwi-maru text-3xl text-center mt-4 mb-4">関連日記</h2>
+        <h2 class="kiwi-maru text-3xl text-center mt-4 mb-4"><span class="material-icons">groups</span>関連日記</h2>
         <div class="flex justify-center items-center flex-wrap">
             @foreach($resembleDiaries as $diary )
             @component('components.diary.diaryFrame')
@@ -122,7 +122,7 @@
     </div>
     @endempty
     <div class="my-12  border button-border-main-color md:w-2/3 md:mx-auto">
-        <h2 class="kiwi-maru text-3xl text-center mt-4">この日記の解析情報</h2>
+        <h2 class="kiwi-maru text-3xl text-center mt-4"><span class="material-icons">science</span>解析情報</h2>
         @if($diary->statistic_progress==100)
         @if($diary->is_latest_statistic==true)
         <p class="text-right md:pr-12 px-2 text-sm mt-2 kiwi-maru">統計作成時刻: {{$diary->updated_statistic_at}}</p>
