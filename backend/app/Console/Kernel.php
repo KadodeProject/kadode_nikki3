@@ -30,6 +30,7 @@ class Kernel extends ConsoleKernel
         $schedule->command('backup:clean --disable-notifications')->dailyAt('04:10');//バックアップ削除
         $schedule->command('backup:clean --disable-notifications')->dailyAt('04:10');//バックアップ削除
         $schedule->command('backup:run --only-db')->dailyAt('04:10');//バックアップ作成
+        $schedule->command('kadode:gcsBackup')->dailyAt('04:10');//バックアップをgcsに
     }
 
     /**
