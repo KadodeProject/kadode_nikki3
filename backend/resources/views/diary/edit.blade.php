@@ -63,6 +63,9 @@
         <h3 class="text-center text-sm my-20 kiwi-maru">関連日記は見つかりませんでした。</h3>
         @else
         <h2 class="kiwi-maru text-3xl text-center mt-4 mb-4"><span class="material-icons">groups</span>関連日記</h2>
+        <p class="kiwi-maru text-sm text-center mt-4 mb-4 mx-2">※この機能はベータ版です。<br class="md:hidden">日記内に登場する人物から
+            <br class="md:hidden">関連付けしています。
+        </p>
         <div class="flex justify-center items-center flex-wrap">
             @foreach($resembleDiaries as $diary )
             @component('components.diary.diaryFrame')
