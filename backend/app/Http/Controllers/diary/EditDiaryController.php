@@ -58,8 +58,9 @@ class EditDiaryController extends Controller
              * 日記内で一番多く登場した人物がかぶる日記をランダムに3つ取得
              */
             // \Log::debug($diary->special_people[0]['name']);//一番の人の名前抽出
+            //where('id', '<>',$diary->id)で自分自身を除く
             if(!empty($diary->special_people)){
-                $resembleDiaries=Diary::where(DB::raw('json_extract(`special_people`, "$[0].name")'), $diary->special_people[0]['name'])->inRandomOrder()->limit(3)->get();
+                $resembleDiaries=Diary::where('id', '<>',$diary->id)->where(DB::raw('json_extract(`special_people`, "$[0].name")'), $diary->special_people[0]['name'])->inRandomOrder()->limit(3)->get();
                 $resembleDiaries=diaryDisplayPreProcessing::shapeStatisticFromDiaries($resembleDiaries);
             }
 
