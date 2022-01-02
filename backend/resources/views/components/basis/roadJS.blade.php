@@ -1,0 +1,1 @@
+<script type="text/javascript" src="{{ asset('js/kadodeMain.js') }}?ver=20.2"></script>
