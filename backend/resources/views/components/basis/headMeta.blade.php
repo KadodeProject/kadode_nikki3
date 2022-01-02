@@ -9,8 +9,6 @@
 {{--
 <link rel="preconnect" href="https://fonts.gstatic.com">
 <link href="https://fonts.googleapis.com/css2?family=Kiwi+Maru&display=swap" rel="stylesheet"> --}}
-{{-- 検索インデックスさせない --}}
-<meta name="robots" content="noindex,nofollow">
 {{-- マテリアルアイコン --}}
 {{--
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"> --}}
