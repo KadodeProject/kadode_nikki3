@@ -57,7 +57,7 @@
     {{$diary->date}}
     @endslot
     @endcomponent
-
+    @if($diary->is_latest_statistic==true)
     <div class="my-4   md:mx-auto">
         @empty($resembleDiaries)
         <h3 class="text-center text-sm my-20 kiwi-maru">関連日記は見つかりませんでした。</h3>
@@ -124,6 +124,11 @@
         </div>
     </div>
     @endempty
+    @else
+    {{-- <h3 class="text-center text-sm my-20 kiwi-maru">統計情報が最新でないため、関連日記も表示していません。</h3> --}}
+    @endif
+
+
     <div class="my-12  border button-border-main-color md:w-2/3 md:mx-auto">
         <h2 class="kiwi-maru text-3xl text-center mt-4"><span class="material-icons">science</span>解析情報</h2>
         @if($diary->statistic_progress==100)
