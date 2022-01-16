@@ -5,11 +5,11 @@
         </div>
         <div class="sov-arrow"><span class="material-icons">arrow_forward</span></div>
         <div class="sov-pipe-wrapper">
-            <div class="sov-pipe">
+            <div class="sov-pipe" id="ginzaPipe">
                 <p>tok2vec</p>
                 <p>parser</p>
                 <p>mer</p>
-                <p>morphologizer</p>
+                <p>mor-phologizer</p>
                 <p>compound_<br>splitter</p>
                 <p>bunsetu_<br>recognizer</p>
                 <p>entity_<br>ruler</p>
@@ -34,7 +34,7 @@
         {{-- <div class="sov-arrow-raw"><span class="material-icons">subdirectory_arrow_left</span></div> --}}
         <div class="sov-arrow"><span class="material-icons">arrow_forward</span></div>
         <div class="sov-pipe-wrapper">
-            <div class="sov-pipe">
+            <div class="sov-pipe" id="kadodePipe">
                 <p>人物抽出</p>
                 <p>分類推定</p>
                 <p>感情数値化</p>

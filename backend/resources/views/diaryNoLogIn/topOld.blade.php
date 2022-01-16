@@ -7,19 +7,12 @@
 @section('content')
 <div class="board-main py-4 mx-auto" style="max-width: 1200px">
     <div class="mb-4 mt-12">
-        <h2 class="text-center text-3xl my-4 kiwi-maru">かどで日記</h2>
+        <h2 class="text-center text-3xl my-4 kiwi-maru">かどで日記とは？</h2>
         <div class="flex justify-start md:w-1/2 px-4 mx-auto">
-            <p class="">かどで日記では日記の作成・管理だけでなく、日記の分析もできます。</p>
+            <p class="">かどで日記はweb上で日記を作成、管理できるサービスです。日記の検索機能だけでなく、形態素解析などを用いた統計機能の実装も準備中です。</p>
         </div>
-        <h2 class="pt-12 text-3xl md:text-5xl text-center h-auto norepeact kiwi-maru" id="kadodeCatchphrase">
-            <span>自分で</span><span>作る</span><span>統計データ</span>
-        </h2>
     </div>
-    <h2 class="mt-24 mb-12 text-center text-4xl kiwi-maru">流れ</h2>
-    <div>
-        <h3 class="text-center my-4 kiwi-maru text-3xl"><span class="material-icons">history_edu</span>日記を書く</h3>
-        <img src="/img/topDiscribe/kadodeImageMain.jpg" class="object-contain border-2 button-border-main-color">
-    </div>
+    <h2 class="mt-24 mb-12 text-center text-3xl kiwi-maru">日記解析の流れ</h2>
     <div>
         @component('components.statistics.statisticOverallView')
         @endcomponent
@@ -43,7 +36,14 @@
     </div>
 
     <h2 class="mt-24 mb-12 text-center text-3xl kiwi-maru">できること</h2>
-
+    <div class="flex justify-center imtes-center flex-wrap my-8">
+        <div class="md:w-1/2 w-full ">
+            <img src="/img/topDiscribe/kadodeImageMain.jpg" class="object-contain border-2 button-border-main-color">
+        </div>
+        <div class="md:w-1/2 w-full flex items-center justify-center">
+            <p class="text-3xl kiwi-maru">日記作成</p>
+        </div>
+    </div>
     <div class="flex justify-center imtes-center flex-wrap my-8">
         <div class="md:w-1/2 w-full md:order-2">
             <img src="/img/topDiscribe/kadodeImageArchive.jpg" class="object-contain border-2 button-border-main-color">

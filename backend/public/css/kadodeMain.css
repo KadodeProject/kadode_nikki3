@@ -382,7 +382,6 @@ p::-webkit-scrollbar {
 }
 
 .inner {
-    background-image: url("http://lorempixel.com/800/800/");
     background-repeat: no-repeat;
     width: 100%;
     height: 800px;
@@ -634,6 +633,7 @@ p::-webkit-scrollbar {
     display: flex;
     align-items: center;
 }
+
 .sov-pipe-wrapper section {
     text-align: center;
     font-size: 0.75em;
@@ -673,7 +673,65 @@ p::-webkit-scrollbar {
     justify-content: center;
     /* padding-right: 1em; */
 }
+/* パイプの動きアニメーション */
 
+#kadodePipe p:nth-of-type(1) {
+    animation: slideIn 1s cubic-bezier(0.25, 1, 0.5, 1) 1 forwards;
+}
+#kadodePipe p:nth-of-type(2) {
+    animation: slideIn 1.5s cubic-bezier(0.25, 1, 0.5, 1) 1 forwards;
+}
+#kadodePipe p:nth-of-type(3) {
+    animation: slideIn 2s cubic-bezier(0.25, 1, 0.5, 1) 1 forwards;
+}
+
+#ginzaPipe p:nth-of-type(1) {
+    animation: slideInReverse 1s cubic-bezier(0.25, 1, 0.5, 1) 1 forwards;
+}
+#ginzaPipe p:nth-of-type(2) {
+    animation: slideInReverse 1.5s cubic-bezier(0.25, 1, 0.5, 1) 1 forwards;
+}
+#ginzaPipe p:nth-of-type(3) {
+    animation: slideInReverse 2s cubic-bezier(0.25, 1, 0.5, 1) 1 forwards;
+}
+#ginzaPipe p:nth-of-type(4) {
+    animation: slideInReverse 2.5s cubic-bezier(0.25, 1, 0.5, 1) 1 forwards;
+}
+#ginzaPipe p:nth-of-type(5) {
+    animation: slideInReverse 3s cubic-bezier(0.25, 1, 0.5, 1) 1 forwards;
+}
+#ginzaPipe p:nth-of-type(6) {
+    animation: slideInReverse 4.5s cubic-bezier(0.25, 1, 0.5, 1) 1 forwards;
+}
+#ginzaPipe p:nth-of-type(7) {
+    animation: slideInReverse 5s cubic-bezier(0.25, 1, 0.5, 1) 1 forwards;
+}
+@keyframes slideIn {
+    0% {
+        transform: translateX(180px);
+        opacity: 0;
+    }
+    100% {
+        transform: translateX(0);
+    }
+    40%,
+    100% {
+        opacity: 1;
+    }
+}
+@keyframes slideInReverse {
+    0% {
+        transform: translateX(-180px);
+        opacity: 0;
+    }
+    100% {
+        transform: translateX(0);
+    }
+    40%,
+    100% {
+        opacity: 1;
+    }
+}
 .sov-square {
     border-radius: 4px;
     padding: 4px 1em;
@@ -756,4 +814,18 @@ td {
     width: 50px;
     height: 50px;
     border-radius: 50% !important;
+}
+
+#kadodeCatchphrase span {
+    /* transformを効かせるため */
+    display: inline-block;
+}
+#kadodeCatchphrase span:nth-of-type(1) {
+    transform: translateX(-20px) rotate(-9deg);
+}
+#kadodeCatchphrase span:nth-of-type(2) {
+    transform: translateY(15px) rotate(-20deg);
+}
+#kadodeCatchphrase span:nth-of-type(3) {
+    transform: translateX(20px) translateY(15px) rotate(20deg);
 }
