@@ -2,7 +2,7 @@
 name: 機能要望
 about: 追加を要望する機能などのissue
 title: "[Feature]:"
-labels: "feature"
+labels: "featureReq"
 assignees: ""
 ---
 
