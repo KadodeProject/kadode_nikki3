@@ -67,27 +67,27 @@
                 class="md:hidden">関連付けしています。
         </p>
         <div class="flex justify-center items-center flex-wrap">
-            @foreach($resembleDiaries as $diary )
+            @foreach($resembleDiaries as $resembleDiary )
             @component('components.diary.diaryFrame')
             @slot("uuid")
-            {{$diary->uuid}}
+            {{$resembleDiary->uuid}}
             @endslot
             @slot("title")
-            {{$diary->title}}
+            {{$resembleDiary->title}}
             @endslot
             @slot("content")
-            {{$diary->content}}
+            {{$resembleDiary->content}}
             @endslot
             @slot("date")
-            {{$diary->date}}
+            {{$resembleDiary->date}}
             @endslot
             <!--統計部分の処理ここから-->
-            @if($diary->is_latest_statistic)
+            @if($resembleDiary->is_latest_statistic)
             @slot("is_latest_statistic")
             true
             @endslot
             @php
-            $emotions=$diary->emotions;
+            $emotions=$resembleDiary->emotions;
             if($emotions>=0.5){
             $emotions_icon="arrow_upward";
             }else{
@@ -98,7 +98,7 @@
             {{$emotions_icon}}
             @endslot
             @php
-            $words=$diary->important_words;
+            $words=$resembleDiary->important_words;
             @endphp
             @slot("important_words")
             @if(count($words)>=1)
@@ -108,7 +108,7 @@
             @endif
             @endslot
             @php
-            $people=$diary->special_people;
+            $people=$resembleDiary->special_people;
             @endphp
             @slot("special_people")
             @if(count($people)>=1)
