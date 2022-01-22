@@ -22,7 +22,7 @@
             </div>
 
             <div class="mt-4">
-                <x-jet-label for="password" value="{{ __('Password') }}（8文字以上100字未満）" />
+                <x-jet-label for="password" value="{{ __('Password') }}（8文字以上100文字未満）" />
                 <x-jet-input id="password" class="block mt-1 w-full" type="password" name="password" required
                     autocomplete="new-password" />
             </div>

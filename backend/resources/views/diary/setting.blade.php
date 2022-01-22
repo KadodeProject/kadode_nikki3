@@ -708,7 +708,7 @@
                         <input type="submit" class="text-black" value="パスワードを変更する">
                     </div>
                 </form>
-                <p class="kiwi-maru text-sm">※8文字以上100字未満</p>
+                <p class="kiwi-maru text-sm">※8文字以上100文字未満</p>
             </div>
 
         </div>
