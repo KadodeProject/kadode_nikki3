@@ -24,6 +24,23 @@
     @include('components.settingHeading',['title'=>'アカウント情報変更',])
     <div class="md:ml-12 ml-4 my-4">
 
+        <div class="flex justify-start items-center my-4 flex-wrap">
+            <p class="text-xl mr-4">ユーザー名変更</p>
+            <form class="flex justify-center flex-wrap flex-col " method="POST" action="/updateUserName">
+                {{-- エラー --}}
+                @if($errors->has('name'))
+                <p class="text-red-500 kiwi-maru">
+                    {{$errors->first('name')}}
+                </p>
+                @endif
+                @csrf
+                <div class="flex justify-start items-center flex-wrap">
+                    <input type="text" name="name" class="mr-2" autocomplete="off" placeholder="新しいユーザー名"
+                        value="{{$user->name}}">
+                    <input type="submit" class="text-black" value="ユーザー名を変更する">
+                </div>
+            </form>
+        </div>
         <div class="flex justify-start items-center mt-12  flex-wrap ">
             <p class="text-xl mr-4">メールアドレス変更</p>
             <form class="flex justify-center flex-wrap flex-col " method="POST" action="/updateEmail">
@@ -35,7 +52,8 @@
                 @endif
                 @csrf
                 <div class="flex justify-start items-center flex-wrap">
-                    <input type="email" name="email" class="mr-2" autocomplete="off" placeholder="新しいメールアドレス">
+                    <input type="email" name="email" class="mr-2" autocomplete="off" placeholder="新しいメールアドレス"
+                        value="{{$user->email}}">
                     <input type="submit" class="text-black" value="メールアドレスを変更する">
                 </div>
             </form>

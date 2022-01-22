@@ -96,6 +96,7 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     Route::get('/settings', SettingDiaryController::class)->name('setting');
     Route::post('/updateEmail', [UpdateUserInfoController::class,"updateEmail"])->name('updateEmail');
     Route::post('/updatePassWord', [UpdateUserInfoController::class,"updatePassWord"])->name('updatePassWord');
+    Route::post('/updateUserName', [UpdateUserInfoController::class,"updateUserName"])->name('updateUserName');
     Route::post('/deleteUser', [UpdateUserInfoController::class,"deleteUser"])->name('deleteUser');
 
 

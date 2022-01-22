@@ -190,12 +190,16 @@ input[type="submit"] {
     border-radius: 0 0 4px 4px;
     padding: 0.25em 0.5em;
 }
-input[type="text"] {
+input[type="text"],
+input[type="password"],
+input[type="email"] {
     background-color: var(--bg-main-color);
     border: 1px solid var(--button-main-color);
     color: var(--text-main-color);
 }
-input[type="text"]::placeholder {
+input[type="text"]::placeholder,
+input[type="password"]::placeholder,
+input[type="email"]::placeholder {
     font-family: "Kiwi Maru", serif;
     color: var(--border-main-color);
 }
