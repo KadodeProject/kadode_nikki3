@@ -61,6 +61,7 @@
         <p><a href="{{url("/statistics/home")}}">統計</a></p>
         <p><a href="{{url("/statistics/settings")}}">統計設定</a></p>
         <p><a href="{{url("/settings")}}">設定</a></p>
+        <p><a href="{{url("/security")}}">セキュリティ</a></p>
         @if( Auth::user()->user_role_id==2)
         <p><a href="{{url("/administrator")}}">管理者</a></p>
         @endif

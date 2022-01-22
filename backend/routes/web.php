@@ -16,7 +16,8 @@ use App\Http\Controllers\user\User_roleController;
 use App\Http\Controllers\user\User_rankController;
 
 
-use App\Http\Controllers\diary\UserController;
+use App\Http\Controllers\security\UpdateUserController;
+use App\Http\Controllers\security\ShowSecurityPageController;
 
 use App\Http\Controllers\statistics\ShowStatisticsController;
 use App\Http\Controllers\statistics\SettingsStatisticsController;
@@ -33,8 +34,10 @@ use App\Http\Controllers\admin\Role_rankAdminController;
 use App\Http\Controllers\packages\GenrePackagesController;
 use App\Http\Controllers\packages\ManagePackagesController;
 use App\Http\Controllers\packages\OwnPackagesController;
-
+use App\Models\User_ip;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Http\Request;
 
 /*
 |--------------------------------------------------------------------------
@@ -83,7 +86,16 @@ Route::get('/teapot', function () {
 /**
  * ログイン時閲覧できるリンク
  */
-Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
+Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function (Request $request) {
+    $ip=$request->ip();
+    $geo=geoip()->getLocation($ip);
+    $data=[
+        "user_id"=>Auth::id(),
+        "ip"=>$ip,
+        "ua"=>$request->header('User-Agent'),
+        "geo"=>$geo->country."_".$geo->city,
+    ];
+    User_ip::create($data);
     return redirect('/home ');
 })->name('home_redirect');
 
@@ -93,9 +105,10 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
      */
     //ユーザー操作
     Route::get('/settings', SettingDiaryController::class)->name('setting');
-    Route::post('/updateEmail', [UserController::class,"updateEmail"])->name('updateEmail');
-    Route::post('/updatePassWord', [UserController::class,"updatePassWord"])->name('updatePassWord');
-    Route::post('/deleteUser', [UserController::class,"deleteUser"])->name('deleteUser');
+    Route::post('/updateEmail', [UpdateUserController::class,"updateEmail"])->name('updateEmail');
+    Route::post('/updatePassWord', [UpdateUserController::class,"updatePassWord"])->name('updatePassWord');
+    Route::post('/updateUserName', [UpdateUserController::class,"updateUserName"])->name('updateUserName');
+    Route::post('/deleteUser', [UpdateUserController::class,"deleteUser"])->name('deleteUser');
 
 
     /**
@@ -122,6 +135,8 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     Route::post('/import/diary/kadode', [ImportDiaryController::class,"kadode"])->name('importKadode');
     Route::post('/import/diary/tukini', [ImportDiaryController::class,"tukini"])->name('importTukini');
     Route::post('/export/diary', ExportDiaryController::class)->name('export');
+    //セキュリティ
+    Route::get('/security', ShowSecurityPageController::class)->name('security');
 
 
     /**
