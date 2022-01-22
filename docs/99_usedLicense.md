@@ -42,6 +42,16 @@ Released under the MIT license
 
 https://github.com/barryvdh/laravel-debugbar/blob/master/LICENSE
 
+## laravel-geoip
+
+※IP アドレスから地域を取得するロジックで使用
+
+Copyright (c) 2013-2020, Daniel Stainback
+
+Released under BSD 2-Clause "Simplified" License
+
+https://github.com/Torann/laravel-geoip/blob/master/LICENSE
+
 # JavaScript ライブラリ
 
 ## Chart.js
