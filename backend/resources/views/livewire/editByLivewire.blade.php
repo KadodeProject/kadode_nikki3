@@ -1,5 +1,5 @@
 @extends("layouts.main")
-@section("title","編集&閲覧")
+@section("title","編集")
 
 @section('header')
 @parent

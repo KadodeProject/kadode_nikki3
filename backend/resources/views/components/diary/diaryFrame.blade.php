@@ -45,7 +45,7 @@
             @endphp
         </p>
     </section>
-    <article class="p-2 text-sm overflow-x-scroll" style="height: {{$content_width}}px!important">
+    <article class="p-2 text-sm overflow-x-hidden overflow-y-scroll" style="height: {{$content_width}}px!important">
         <p class="">
             @component('customFunctions.omitContent')
             @slot("content")

@@ -26,7 +26,9 @@ class User extends Authenticatable implements MustVerifyEmail
     ];
     public static $updateEmailRules=[
         "email"=>"required|email|unique:users,email"
-
+    ];
+    public static $updateUserNameRules=[
+        "name"=>"required"
     ];
      // 初期値設定
     protected $attributes = [

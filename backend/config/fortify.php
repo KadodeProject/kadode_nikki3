@@ -103,7 +103,7 @@ return [
     */
 
     'limiters' => [
-        'login' => 'login',
+        'login' => 10,
         'two-factor' => 'two-factor',
     ],
 

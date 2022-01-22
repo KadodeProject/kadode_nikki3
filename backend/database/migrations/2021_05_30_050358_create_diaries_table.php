@@ -22,14 +22,14 @@ class CreateDiariesTable extends Migration
             $table->text("content")->comment("本文");
             $table->date("date")->comment("日記の日付");
             // $table->integer("feel")->comment("気持ち"); 2021-9-4削除
-        
+
             //nlp演算系
             $table->json("sentence")->nullable()->comment("一文ごとの位置(係り受けで使う)");
             $table->json("chunk")->nullable()->comment("係り受け構造");
             $table->json("token")->nullable()->comment("形態素分析された中身を格納 品詞(POS)、原形(lemma)などが存在");
             $table->json("affiliation")->nullable()->comment("固有表現抽出");
             $table->unsignedBigInteger("char_length")->nullable()->comment("文字数");
-            
+
             //nlp表示系
             $table->json("meta_info")->nullable()->comment("事実上予備領域");
             $table->json("similar_sentences")->nullable()->comment("似ている日記の日記ID(5)");
@@ -40,7 +40,7 @@ class CreateDiariesTable extends Migration
             $table->json("cause_effect_sentences")->nullable()->comment("原因と結果のjson");
             $table->json("special_people")->nullable()->comment("登場人物");
             $table->dateTime("updated_statistic_at")->nullable()->comment("統計更新日時");
-            
+
             $table->timestamps();
 
             //インデックスを作る

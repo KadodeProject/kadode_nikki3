@@ -16,9 +16,8 @@ class SettingDiaryController extends Controller
         $user=Auth::user();
         $userCounter=User::count();
         $user_rank=User_rank::where("id",$user->user_rank_id)->first();
-        $userDB=User::where("id",$user->id)->first();
 
-        return view('diary/setting',["user_rank"=>$user_rank,"user"=>$user,"userDB"=>$userDB,'userCounter'=>$userCounter]);
+        return view('diary/setting',["user_rank"=>$user_rank,"user"=>$user,'userCounter'=>$userCounter]);
 
     }
 
