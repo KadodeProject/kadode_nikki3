@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
-class updateUserInfoController extends Controller
+class UpdateUserController extends Controller
 {
     /**
      * ユーザー削除
@@ -41,6 +41,18 @@ class updateUserInfoController extends Controller
        $user_id= Auth::user()->id;
        User::where("id",$user_id)->update([
            "password"=>Hash::make($request->password),
+       ]);
+       return redirect("/security");
+    }
+    public function updateUserName(Request $request){
+
+        // バリデーション
+        $this->validate($request,User::$updateUserNameRules);
+
+
+       $user_id= Auth::user()->id;
+       User::where("id",$user_id)->update([
+        "name"=>$request->name,
        ]);
        return redirect("/security");
     }

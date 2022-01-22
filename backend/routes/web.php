@@ -16,7 +16,7 @@ use App\Http\Controllers\user\User_roleController;
 use App\Http\Controllers\user\User_rankController;
 
 
-use App\Http\Controllers\security\UpdateUserInfoController;
+use App\Http\Controllers\security\UpdateUserController;
 use App\Http\Controllers\security\ShowSecurityPageController;
 
 use App\Http\Controllers\statistics\ShowStatisticsController;
@@ -94,10 +94,10 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
      */
     //ユーザー操作
     Route::get('/settings', SettingDiaryController::class)->name('setting');
-    Route::post('/updateEmail', [UpdateUserInfoController::class,"updateEmail"])->name('updateEmail');
-    Route::post('/updatePassWord', [UpdateUserInfoController::class,"updatePassWord"])->name('updatePassWord');
-    Route::post('/updateUserName', [UpdateUserInfoController::class,"updateUserName"])->name('updateUserName');
-    Route::post('/deleteUser', [UpdateUserInfoController::class,"deleteUser"])->name('deleteUser');
+    Route::post('/updateEmail', [UpdateUserController::class,"updateEmail"])->name('updateEmail');
+    Route::post('/updatePassWord', [UpdateUserController::class,"updatePassWord"])->name('updatePassWord');
+    Route::post('/updateUserName', [UpdateUserController::class,"updateUserName"])->name('updateUserName');
+    Route::post('/deleteUser', [UpdateUserController::class,"deleteUser"])->name('deleteUser');
 
 
     /**
