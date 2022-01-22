@@ -34,8 +34,10 @@ use App\Http\Controllers\admin\Role_rankAdminController;
 use App\Http\Controllers\packages\GenrePackagesController;
 use App\Http\Controllers\packages\ManagePackagesController;
 use App\Http\Controllers\packages\OwnPackagesController;
-
+use App\Models\User_ip;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Http\Request;
 
 /*
 |--------------------------------------------------------------------------
@@ -84,7 +86,16 @@ Route::get('/teapot', function () {
 /**
  * ログイン時閲覧できるリンク
  */
-Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
+Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function (Request $request) {
+    $ip=$request->ip();
+    $geo=geoip()->getLocation($ip);
+    $data=[
+        "user_id"=>Auth::id(),
+        "ip"=>$ip,
+        "ua"=>$request->header('User-Agent'),
+        "geo"=>$geo->country."_".$geo->city,
+    ];
+    User_ip::create($data);
     return redirect('/home ');
 })->name('home_redirect');
 

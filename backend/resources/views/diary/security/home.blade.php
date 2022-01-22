@@ -87,13 +87,47 @@
     </div>
     @include('components.settingHeading',['title'=>'ログイン情報',])
     @isset($user_ips)
-    <div class="flex flex-wrap mb-4">
+    <div class="flex flex-wrap mb-4 items-center">
+        @php
+        $i=1;
+        @endphp
         @foreach ($user_ips as $user_ip)
-        <div class="flex border-2 border-dotted p-4 m-4">
-            <p>ip:{{$user_ip->ip}}</p>
-            <p>推定地域:{{$user_ip->geo}}</p>
-            <p>ユーザーエージェント:{{$user_ip->ua}}</p>
-            <p>時刻:{{$user_ip->created_at}}</p>
+        <div>
+            <div
+                class="relative top-10 left-2    text-xl bg-main-color w-10 h-10 rounded-full border-2 flex justify-center items-center kiwi-maru">
+                <p> {{$i++}}</p>
+            </div>
+            <div class="flex border-2 border-dotted p-4 m-4 rounded-2xl">
+                <div class="flex items-center flex-col md:w-1/4">
+                    <p class="kiwi-maru text-xl">時刻</p>
+                    <p class="material-icons mb-2">
+                        schedule
+                    </p>
+                    <p>{{$user_ip->created_at}}</p>
+                </div>
+                <div class="flex items-center flex-col md:w-1/4">
+                    <p class="kiwi-maru text-xl">IP</p>
+                    <p class="material-icons mb-2">
+                        language
+                    </p>
+                    <p>{{$user_ip->ip}}</p>
+                </div>
+                <div class="flex items-center flex-col md:w-1/4">
+                    <p class="kiwi-maru text-xl">推定地域</p>
+                    <p class="material-icons mb-2">
+                        place
+                    </p>
+                    <p>{{$user_ip->geo}}</p>
+                </div>
+                <div class="flex items-center flex-col md:w-1/4">
+                    <p class="kiwi-maru text-xl">UA</p>
+                    <p class="material-icons mb-2">
+                        devices
+                    </p>
+                    <p>{{$user_ip->ua}}</p>
+                </div>
+            </div>
+
         </div>
         @endforeach
     </div>
