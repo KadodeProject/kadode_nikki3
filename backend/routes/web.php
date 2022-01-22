@@ -16,7 +16,8 @@ use App\Http\Controllers\user\User_roleController;
 use App\Http\Controllers\user\User_rankController;
 
 
-use App\Http\Controllers\diary\UserController;
+use App\Http\Controllers\security\UpdateUserInfoController;
+use App\Http\Controllers\security\ShowSecurityPageController;
 
 use App\Http\Controllers\statistics\ShowStatisticsController;
 use App\Http\Controllers\statistics\SettingsStatisticsController;
@@ -93,9 +94,9 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
      */
     //ユーザー操作
     Route::get('/settings', SettingDiaryController::class)->name('setting');
-    Route::post('/updateEmail', [UserController::class,"updateEmail"])->name('updateEmail');
-    Route::post('/updatePassWord', [UserController::class,"updatePassWord"])->name('updatePassWord');
-    Route::post('/deleteUser', [UserController::class,"deleteUser"])->name('deleteUser');
+    Route::post('/updateEmail', [UpdateUserInfoController::class,"updateEmail"])->name('updateEmail');
+    Route::post('/updatePassWord', [UpdateUserInfoController::class,"updatePassWord"])->name('updatePassWord');
+    Route::post('/deleteUser', [UpdateUserInfoController::class,"deleteUser"])->name('deleteUser');
 
 
     /**
@@ -122,6 +123,8 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     Route::post('/import/diary/kadode', [ImportDiaryController::class,"kadode"])->name('importKadode');
     Route::post('/import/diary/tukini', [ImportDiaryController::class,"tukini"])->name('importTukini');
     Route::post('/export/diary', ExportDiaryController::class)->name('export');
+    //セキュリティ
+    Route::get('/security', ShowSecurityPageController::class)->name('security');
 
 
     /**
