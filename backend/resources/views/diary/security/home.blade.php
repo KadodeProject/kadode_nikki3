@@ -6,7 +6,7 @@
 @endsection
 @section('content')
 <div class=" my-8" id="">
-    @include('components.settingHeading',['title'=>'ログイン情報',])
+
     @include('components.settingHeading',['title'=>'アカウント情報',])
     <div class="md:ml-12 ml-4 my-4">
         <p class="text-xl mt-4 mb-2"><span class="material-icons">bubble_chart</span>基本情報</p>
@@ -85,5 +85,20 @@
         </div>
 
     </div>
+    @include('components.settingHeading',['title'=>'ログイン情報',])
+    @isset($user_ips)
+    <div class="flex flex-wrap mb-4">
+        @foreach ($user_ips as $user_ip)
+        <div class="flex border-2 border-dotted p-4 m-4">
+            <p>ip:{{$user_ip->ip}}</p>
+            <p>推定地域:{{$user_ip->geo}}</p>
+            <p>ユーザーエージェント:{{$user_ip->ua}}</p>
+            <p>時刻:{{$user_ip->created_at}}</p>
+        </div>
+        @endforeach
+    </div>
+    @else
+    <p class="kiwi-maru text-center">ログイン情報なし</p>
+    @endisset
 </div>
 @endsection
