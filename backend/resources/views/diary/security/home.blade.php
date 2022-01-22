@@ -85,7 +85,7 @@
         </div>
 
     </div>
-    @include('components.settingHeading',['title'=>'ログイン情報',])
+    @include('components.settingHeading',['title'=>'ログイン履歴',])
     @isset($user_ips)
     <div class="flex flex-wrap mb-4 items-center">
         @php
@@ -94,32 +94,32 @@
         @foreach ($user_ips as $user_ip)
         <div>
             <div
-                class="relative top-10 left-2    text-xl bg-main-color w-10 h-10 rounded-full border-2 flex justify-center items-center kiwi-maru">
+                class="relative top-10 left-2 text-xl bg-main-color w-10 h-10 rounded-full border-2 flex justify-center items-center kiwi-maru">
                 <p> {{$i++}}</p>
             </div>
-            <div class="flex border-2 border-dotted p-4 m-4 rounded-2xl">
-                <div class="flex items-center flex-col md:w-1/4">
+            <div class="flex flex-wrap border-2 border-dotted p-4 m-4 rounded-2xl">
+                <div class="flex items-center flex-col w-1/2 md:w-1/4 p-6 md:p-0">
                     <p class="kiwi-maru text-xl">時刻</p>
                     <p class="material-icons mb-2">
                         schedule
                     </p>
                     <p>{{$user_ip->created_at}}</p>
                 </div>
-                <div class="flex items-center flex-col md:w-1/4">
+                <div class="flex items-center flex-col w-1/2 md:w-1/4 p-6 md:p-0">
                     <p class="kiwi-maru text-xl">IP</p>
                     <p class="material-icons mb-2">
                         language
                     </p>
                     <p>{{$user_ip->ip}}</p>
                 </div>
-                <div class="flex items-center flex-col md:w-1/4">
+                <div class="flex items-center flex-col w-1/2 md:w-1/4 p-6 md:p-0">
                     <p class="kiwi-maru text-xl">推定地域</p>
                     <p class="material-icons mb-2">
                         place
                     </p>
                     <p>{{$user_ip->geo}}</p>
                 </div>
-                <div class="flex items-center flex-col md:w-1/4">
+                <div class="flex items-center flex-col w-1/2 md:w-1/4 p-6 md:p-0">
                     <p class="kiwi-maru text-xl">UA</p>
                     <p class="material-icons mb-2">
                         devices

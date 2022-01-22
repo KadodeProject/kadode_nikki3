@@ -7,6 +7,12 @@
 @section('content')
 <div class=" my-8" id="">
     <div class="setting">
+        @include('components.settingHeading',['title'=>'セキュリティ',])
+        <p class="text-center">※セキュリティ関連は下記へ移動しました。</p>
+        <p class="text-3xl text-center mx-4 my-4 kiwi-maru"><a href="{{url("/security")}}"><span
+                    class="material-icons">vpn_key</span>セキュリティ</a></p>
+    </div>
+    <div class="setting">
         @include('components.settingHeading',['title'=>'ユーザーランク',])
         <div class="md:ml-12 ml-4 my-4">
             <div>
