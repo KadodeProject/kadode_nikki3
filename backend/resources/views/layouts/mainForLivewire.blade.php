@@ -7,6 +7,8 @@
     <title>@yield('title') | かどで日記</title>
     @component('components.basis.headMeta')
     @endcomponent
+
+    @livewireStyles
     {{-- @component('components.basis.ogp')
     @endcomponent --}}
     {{-- 検索インデックスさせない --}}
@@ -35,6 +37,7 @@
     @component('components.basis.roadJS')
     @endcomponent
 
+    @livewireScripts
 </body>
 
 </html>
