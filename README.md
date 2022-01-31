@@ -35,7 +35,7 @@ https://kadodenikki3.usuyuki.net/
 
 [LICENSE](./LICENSE.md)
 
-    Copyright (c) 2021 usuyuki
+    Copyright (c) 2021-2022 usuyuki
 
     Released under the MIT license
 
