@@ -136,7 +136,9 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     Route::post('/import/diary/tukini', [ImportDiaryController::class,"tukini"])->name('importTukini');
     Route::post('/export/diary', ExportDiaryController::class)->name('export');
     //セキュリティ
-    Route::get('/security', ShowSecurityPageController::class)->name('security');
+    Route::middleware(['password.confirm'])->group(function () {
+        Route::get('/security', ShowSecurityPageController::class)->name('security');
+    });
 
 
     /**
