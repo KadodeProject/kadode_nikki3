@@ -85,6 +85,23 @@
         </div>
 
     </div>
+    @include('components.settingHeading',['title'=>'2段階認証',])
+    <div class="md:ml-12 ml-4 my-4">
+        @if (session('status') == 'two-factor-authentication-enabled')
+        <h2 class="text-4xl text-cenbter kiwi-maru ">
+            2段階認証は有効になっています。
+        </h2>
+        <div>
+            <p class="text-xl kiwi-maru ">リカバリーコード</p>
+            {{$request->user()->recoveryCodes()}}
+        </div>
+        @else
+        <h2 class="text-4xl text-cenbter kiwi-maru ">
+            2段階認証は有効になっていません。
+        </h2>
+        {{$request->user()->twoFactorQrCodeSvg()}}
+        @endif
+    </div>
     @include('components.settingHeading',['title'=>'ログイン履歴',])
     @isset($user_ips)
     <div class="flex flex-wrap mb-4 items-center">
