@@ -126,12 +126,11 @@ class ImportDiaryController extends Controller
                 //日付とタイトル
                 preg_match_all ("@(?<date>\d{4}\.\d{1,2}\.\d{1,2})\s\D+\s\d{2}\:\d{2}\s(?<title>.*)\s\s-\s@",$rawTxt,$extractionResult,PREG_PATTERN_ORDER);
                 $dateTxt=$extractionResult['date'];
-                // array_pop($dateTxt);// ダミーデータの2000.99.99消す 指定した配列の末尾から要素を取り除くarray pop使う
                 $titleTxt=$extractionResult['title'];
-                //本文
+
+                //本文(ここも上のpreg_matchを使いたかったが元のtxtファイルの構造上、終わりが検知できないので、ここでもう一度正規表現)
                 preg_match_all ("@\s-\s\s(?<content>[\s\S]*?)\d{4}\.\d{1,2}\.\d{1,2}\s\D+\s\d{2}\:\d{2}\s@",$rawTxt,$extractionResult,PREG_PATTERN_ORDER);
                 $contentTxt=$extractionResult['content'];
-                var_dumP($contentTxt);
 
 
                 //各配列をまとめて1つの配列とする
