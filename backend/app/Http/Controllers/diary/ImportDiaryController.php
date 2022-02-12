@@ -121,43 +121,26 @@ class ImportDiaryController extends Controller
 
             if ($rawTxt) {
                 //文章 終わり検知のためのダミーデータ追加
-                $rawTxt=$rawTxt."\n2000.99.99";
-                $dateTxt=[];
-                $titleTxt=[];
-                $contentTxt=[];
-
+                $rawTxt=$rawTxt."\n2000.99.99 午前 12:58\n";
 
                 //日付とタイトル
                 preg_match_all ("@(?<date>\d{4}\.\d{1,2}\.\d{1,2})\s\D+\s\d{2}\:\d{2}\s(?<title>.*)\s\s-\s@",$rawTxt,$extractionResult,PREG_PATTERN_ORDER);
                 $dateTxt=$extractionResult['date'];
-                array_pop($dateTxt);// ダミーデータの2000.99.99消す 指定した配列の末尾から要素を取り除くarray pop使う
+                // array_pop($dateTxt);// ダミーデータの2000.99.99消す 指定した配列の末尾から要素を取り除くarray pop使う
                 $titleTxt=$extractionResult['title'];
-
-
-
-
                 //本文
-                preg_match_all ("@\s-\s[\s\S]*?\d{4}\.\d{1,2}\.\d{1,2}@",$rawTxt,$contentTxt,PREG_PATTERN_ORDER);
-                $contentTxt=$contentTxt[0];
-
-                // 正規表現で出てしまった不要な「-」と日付を除く
-                foreach($contentTxt as $rawContent){
-                    $proceeded1Content=preg_replace("@\n\d{4}\.\d{1,2}\.\d{1,2}@","",$rawContent);// 後ろの日付取り除く
-                    $proceeded2Content=preg_replace("@\s-\s\n@","",$proceeded1Content);//先頭の「 - 」取り除く
-                    $proceededContentTxt[]= $proceeded2Content;
-                }
+                preg_match_all ("@\s-\s\s(?<content>[\s\S]*?)\d{4}\.\d{1,2}\.\d{1,2}\s\D+\s\d{2}\:\d{2}\s@",$rawTxt,$extractionResult,PREG_PATTERN_ORDER);
+                $contentTxt=$extractionResult['content'];
+                var_dumP($contentTxt);
 
 
                 //各配列をまとめて1つの配列とする
 
                  // 登録処理
-                 $arrayCounter=0;
-
-                 $today_date=Carbon::now();
-
+                $arrayCounter=0;
+                $today_date=Carbon::now();
                 foreach($dateTxt as $date){
-
-                    Diary::insert(['updated_at'=>$today_date,'created_at'=>$today_date,'user_id'=>Auth::Id(),'uuid'=>Str::uuid(), 'date' => $date, 'title' => $titleTxt[$arrayCounter], 'content' =>$proceededContentTxt[$arrayCounter]]);
+                    Diary::insert(['updated_at'=>$today_date,'created_at'=>$today_date,'user_id'=>Auth::Id(),'uuid'=>Str::uuid(), 'date' => $date, 'title' => $titleTxt[$arrayCounter], 'content' =>$contentTxt[$arrayCounter]]);
                     $count++;
                     $arrayCounter++;
                 }
