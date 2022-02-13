@@ -13,12 +13,10 @@ class SettingDiaryController extends Controller
     {
 
         // ここはグローバルスコープ適応外
-        $user=Auth::user();
-        $userCounter=User::count();
-        $user_rank=User_rank::where("id",$user->user_rank_id)->first();
+        $user = Auth::user();
+        $userCounter = User::count();
+        $user_rank = User_rank::where("id", $user->user_rank_id)->first();
 
-        return view('diary/setting',["user_rank"=>$user_rank,"user"=>$user,'userCounter'=>$userCounter]);
-
+        return view('diary/setting', ["user_rank" => $user_rank, "user" => $user, 'userCounter' => $userCounter]);
     }
-
 }

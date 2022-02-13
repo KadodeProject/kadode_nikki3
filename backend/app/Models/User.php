@@ -21,24 +21,24 @@ class User extends Authenticatable implements MustVerifyEmail
     use TwoFactorAuthenticatable;
 
 
-    public static $updatePassWordRules=[
-        "password"=>"required|min:8|max:100"
+    public static $updatePassWordRules = [
+        "password" => "required|min:8|max:100"
     ];
-    public static $updateEmailRules=[
-        "email"=>"required|email|unique:users,email"
+    public static $updateEmailRules = [
+        "email" => "required|email|unique:users,email"
     ];
-    public static $updateUserNameRules=[
-        "name"=>"required"
+    public static $updateUserNameRules = [
+        "name" => "required"
     ];
-     // 初期値設定
+    // 初期値設定
     protected $attributes = [
-        "is_showed_update_user_rank" =>0,
-        "is_showed_update_system_info" =>0,
-        "is_showed_service_info" =>0,
-        "user_rank_id" =>1,
-        "user_role_id" =>1,
-        "appearance_id" =>1,
-        "user_rank_updated_at"=>"2021-12-28",
+        "is_showed_update_user_rank" => 0,
+        "is_showed_update_system_info" => 0,
+        "is_showed_service_info" => 0,
+        "user_rank_id" => 1,
+        "user_role_id" => 1,
+        "appearance_id" => 1,
+        "user_rank_updated_at" => "2021-12-28",
     ];
 
 
@@ -107,14 +107,16 @@ class User extends Authenticatable implements MustVerifyEmail
     //format(年月日)するために
     protected $dates = ['user_rank_updated_at'];
 
-    public function diary() {
+    public function diary()
+    {
         return $this->hasMany(Diary::class);
     }
-    public function user_rank(){
+    public function user_rank()
+    {
         return $this->belongsTo(User_rank::class);
     }
-    public function user_role(){
+    public function user_role()
+    {
         return $this->belongsTo(User_role::class);
     }
-
 }

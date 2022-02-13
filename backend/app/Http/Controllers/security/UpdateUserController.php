@@ -15,45 +15,49 @@ class UpdateUserController extends Controller
      *
      * @return void
      */
-    public function deleteUser(){
+    public function deleteUser()
+    {
         User::destroy(Auth::id());
         return redirect("/");
     }
 
-    public function updateEmail(Request $request){
-
-       // バリデーション
-       $this->validate($request,User::$updateEmailRules);
-
-
-       $user_id= Auth::user()->id;
-       User::where("id",$user_id)->update([
-           "email"=>$request->email,
-       ]);
-       return redirect("/security");
-    }
-    public function updatePassWord(Request $request){
+    public function updateEmail(Request $request)
+    {
 
         // バリデーション
-        $this->validate($request,User::$updatePassWordRules);
+        $this->validate($request, User::$updateEmailRules);
 
 
-       $user_id= Auth::user()->id;
-       User::where("id",$user_id)->update([
-           "password"=>Hash::make($request->password),
-       ]);
-       return redirect("/security");
+        $user_id = Auth::user()->id;
+        User::where("id", $user_id)->update([
+            "email" => $request->email,
+        ]);
+        return redirect("/security");
     }
-    public function updateUserName(Request $request){
+    public function updatePassWord(Request $request)
+    {
 
         // バリデーション
-        $this->validate($request,User::$updateUserNameRules);
+        $this->validate($request, User::$updatePassWordRules);
 
 
-       $user_id= Auth::user()->id;
-       User::where("id",$user_id)->update([
-        "name"=>$request->name,
-       ]);
-       return redirect("/security");
+        $user_id = Auth::user()->id;
+        User::where("id", $user_id)->update([
+            "password" => Hash::make($request->password),
+        ]);
+        return redirect("/security");
+    }
+    public function updateUserName(Request $request)
+    {
+
+        // バリデーション
+        $this->validate($request, User::$updateUserNameRules);
+
+
+        $user_id = Auth::user()->id;
+        User::where("id", $user_id)->update([
+            "name" => $request->name,
+        ]);
+        return redirect("/security");
     }
 }

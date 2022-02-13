@@ -11,12 +11,11 @@ class Role_rankAdminController extends Controller
     public function __invoke()
     {
         //ユーザーランク
-        $user_ranks=User_rank::get();
+        $user_ranks = User_rank::get();
 
         //ユーザーロール
-        $user_roles=User_role::get();
+        $user_roles = User_role::get();
 
-        return view('admin/role_rankAdmin',['user_ranks' => $user_ranks,'user_roles' => $user_roles,]);
+        return view('admin/role_rankAdmin', ['user_ranks' => $user_ranks, 'user_roles' => $user_roles,]);
     }
-
 }

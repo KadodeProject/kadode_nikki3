@@ -15,15 +15,16 @@ class GenrePackagesController extends Controller
      * @param Request $request
      * @return void
      */
-    public function create(Request $request){
+    public function create(Request $request)
+    {
 
         // バリデーション
-        $this->validate($request,NlpPackageGenre::$rules);
+        $this->validate($request, NlpPackageGenre::$rules);
 
         //中身作成
-        $form=[
-            "description"=>$request->description,
-            "name"=>$request->name,
+        $form = [
+            "description" => $request->description,
+            "name" => $request->name,
         ];
 
         NlpPackageGenre::create($form);
@@ -37,19 +38,20 @@ class GenrePackagesController extends Controller
      * @return void
      */
 
-    public function update(Request $request){
+    public function update(Request $request)
+    {
 
 
         // 日付のバリデーション→既に存在する日付ならエラー返す
         // バリデーション
-        $this->validate($request,NlpPackageGenre::$rules);
+        $this->validate($request, NlpPackageGenre::$rules);
 
-        $updateContent=[
-            "description"=>$request->description,
-            "name"=>$request->name,
+        $updateContent = [
+            "description" => $request->description,
+            "name" => $request->name,
         ];
 
-        NlpPackageGenre::where('id',$request->NlpPackageGenre_id)->update($updateContent);
+        NlpPackageGenre::where('id', $request->NlpPackageGenre_id)->update($updateContent);
         return redirect('administrator/package');
     }
 
@@ -59,8 +61,9 @@ class GenrePackagesController extends Controller
      * @param Request $request
      * @return void
      */
-    public function delete(Request $request){
-        NlpPackageGenre::where('id',$request->NlpPackageGenre_id)->delete();
+    public function delete(Request $request)
+    {
+        NlpPackageGenre::where('id', $request->NlpPackageGenre_id)->delete();
         return redirect('administrator/package');
     }
 }

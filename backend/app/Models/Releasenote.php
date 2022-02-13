@@ -9,13 +9,13 @@ class Releasenote extends Model
 {
     use HasFactory;
     protected $fillable = [
-        "title","genre_id","description","date","created_at","updated_at"
+        "title", "genre_id", "description", "date", "created_at", "updated_at"
     ];
     protected $dates = ['date'];
 
-    public static $rules=array(
-        "date"=>"required",
-        "title"=>"required|max:50",
-        "description"=>"required",
-        );
+    public static $rules = array(
+        "date" => "required",
+        "title" => "required|max:50",
+        "description" => "required",
+    );
 }
