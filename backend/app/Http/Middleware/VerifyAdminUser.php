@@ -15,53 +15,16 @@ class VerifyAdminUser
      * @param null $guard
      * @return mixed
      */
-    public function representative($request, Closure $next, $guard = null)
+    public function handle($request, Closure $next, $guard = null)
     {
         /** @var User $user */
-        $user = Auth::user();
-        $user->user_role_id != 1 ? abort(403) : '';
-        return $next($request);
-    }
-    public function systemAdministrator($request, Closure $next, $guard = null)
-    {
-        /** @var User $user */
-        $user = Auth::user();
-        $user->user_role_id != 10 ? abort(403) : '';
-        return $next($request);
-    }
-    public function management($request, Closure $next, $guard = null)
-    {
-        /** @var User $user */
-        $user = Auth::user();
-        $user->user_role_id != 20 ? abort(403) : '';
-        return $next($request);
-    }
-    public function mainEntrance($request, Closure $next, $guard = null)
-    {
-        /** @var User $user */
-        $user = Auth::user();
-        $user->user_role_id != 30 ? abort(403) : '';
-        return $next($request);
-    }
-    public function temporaryEntrance($request, Closure $next, $guard = null)
-    {
-        /** @var User $user */
-        $user = Auth::user();
-        $user->user_role_id != 40 ? abort(403) : '';
-        return $next($request);
-    }
-    public function graduates($request, Closure $next, $guard = null)
-    {
-        /** @var User $user */
-        $user = Auth::user();
-        $user->user_role_id != 50 ? abort(403) : '';
-        return $next($request);
-    }
-    public function outside($request, Closure $next, $guard = null)
-    {
-        /** @var User $user */
-        $user = Auth::user();
-        $user->user_role_id != 60 ? abort(403) : '';
+
+        $user =Auth::user();
+        if ($user->user_role_id!=2) {
+            //管理者ユーザーじゃなかったら403エラー返す
+            abort(403);
+        }
+
         return $next($request);
     }
 }
