@@ -93,3 +93,17 @@ services:
       - ./infra/docker/schemaspy/output:/usr/share/nginx/html
     ports:
       - ${SCHEMASPY_WEB_PORT:-8080}:80
+
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    environment:
+      - PMA_ARBITRARY=1
+      - PMA_HOST=db:${DB_PORT:-3306}
+      - PMA_USER=${DB_USER:-phper}
+      - PMA_PASSWORD=${DB_PASS:-secret}
+    depends_on:
+      - db
+    ports:
+      - 8081:80
+    volumes:
+      - ./infra/docker/phpmyadmin/sessions:/sessions
