@@ -17,23 +17,24 @@ class OsiraseController extends Controller
      * @param Request $request
      * @return void
      */
-    public function create(Request $request){
+    public function create(Request $request)
+    {
 
         // バリデーション
-        $this->validate($request,Osirase::$rules);
+        $this->validate($request, Osirase::$rules);
 
         //中身作成
-        $form=[
-            "title"=>$request->title,
-            "genre_id"=>$request->osirase_genre_id,
-            "description"=>$request->description,
-            "date"=>$request->date,
+        $form = [
+            "title" => $request->title,
+            "genre_id" => $request->osirase_genre_id,
+            "description" => $request->description,
+            "date" => $request->date,
         ];
 
         Osirase::create($form);
 
         //ユーザー通知のフラグをオンにする
-        User::where('id','!=',0)->update(["is_showed_service_info"=>0]);
+        User::where('id', '!=', 0)->update(["is_showed_service_info" => 0]);
 
         return redirect('administrator/notification');
     }
@@ -43,14 +44,15 @@ class OsiraseController extends Controller
      *
      * @return void
      */
-    public function read(){
-        $osirases=Osirase::orderBy('date', 'desc')->get(['title','date','genre_id','description']);
-        $osiraseGenres=Osirase_genre::get(['id','name']);
-        foreach($osirases as $osirase){
-            $osirase->genre=$osiraseGenres[$osirase->genre_id-1]->name;
+    public function read()
+    {
+        $osirases = Osirase::orderBy('date', 'desc')->get(['title', 'date', 'genre_id', 'description']);
+        $osiraseGenres = Osirase_genre::get(['id', 'name']);
+        foreach ($osirases as $osirase) {
+            $osirase->genre = $osiraseGenres[$osirase->genre_id - 1]->name;
         }
 
-        return view('diaryNoLogIn/news',['osirases' => $osirases,]);
+        return view('diaryNoLogIn/news', ['osirases' => $osirases,]);
     }
 
 
@@ -61,20 +63,21 @@ class OsiraseController extends Controller
      * @return void
      */
 
-    public function update(Request $request){
+    public function update(Request $request)
+    {
 
 
         // バリデーション
-        $this->validate($request,Osirase::$rules);
+        $this->validate($request, Osirase::$rules);
 
-        $updateContent=[
-            "title"=>$request->title,
-            "genre_id"=>$request->osirase_genre_id,
-            "description"=>$request->description,
-            "date"=>$request->date,
+        $updateContent = [
+            "title" => $request->title,
+            "genre_id" => $request->osirase_genre_id,
+            "description" => $request->description,
+            "date" => $request->date,
         ];
 
-        Osirase::where('id',$request->osirase_id)->update($updateContent);
+        Osirase::where('id', $request->osirase_id)->update($updateContent);
         return redirect('administrator/notification');
     }
 
@@ -84,8 +87,9 @@ class OsiraseController extends Controller
      * @param Request $request
      * @return void
      */
-    public function delete(Request $request){
-        Osirase::where('id',$request->osirase_id)->delete();
+    public function delete(Request $request)
+    {
+        Osirase::where('id', $request->osirase_id)->delete();
         return redirect('administrator/notification');
     }
 }

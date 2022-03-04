@@ -28,20 +28,20 @@ class ImportDiaryController extends Controller
 
         //バリデーション、CSV形式、1M以内のファイル
         //csvだけだと何故かエラー出るので、やむをえず、txtも。 .csv認識できてないっぽい
-        $rules=array(
-            "kadodeCsv"=>"file|max:1000|mimes:csv,txt",
-            );
-        $this->validate($request,$rules);
+        $rules = array(
+            "kadodeCsv" => "file|max:1000|mimes:csv,txt",
+        );
+        $this->validate($request, $rules);
 
 
         // CSV ファイル保存
         $count = 0;
-        if($rawfile=$request->kadodeCsv){
+        if ($rawfile = $request->kadodeCsv) {
             \Log::debug("csvインポート処理開始");
 
-            $tmpName = mt_rand().".".$request->kadodeCsv->guessExtension(); //TMPファイル名
-            $request->kadodeCsv->move(public_path()."/importCsv",$tmpName);
-            $tmpPath = public_path()."/importCsv/".$tmpName;
+            $tmpName = mt_rand() . "." . $request->kadodeCsv->guessExtension(); //TMPファイル名
+            $request->kadodeCsv->move(public_path() . "/importCsv", $tmpName);
+            $tmpPath = public_path() . "/importCsv/" . $tmpName;
 
             //Goodby CSVのconfig設定
             $config = new LexerConfig();
@@ -56,7 +56,7 @@ class ImportDiaryController extends Controller
             $dataList = [];
 
             // 新規Observerとして、$dataList配列に値を代入
-            $interpreter->addObserver(function (array $row) use (&$dataList){
+            $interpreter->addObserver(function (array $row) use (&$dataList) {
                 // 各列のデータを取得
                 $dataList[] = $row;
             });
@@ -65,22 +65,22 @@ class ImportDiaryController extends Controller
             $lexer->parse($tmpPath, $interpreter);
 
             // TMPファイル削除
-            if (unlink($tmpPath)){
+            if (unlink($tmpPath)) {
                 // echo $file.'の削除に成功しました。';
                 \Log::debug("$tmpPath.の削除成功");
-            }else{
-                  \Log::debug("$tmpPath.の削除失敗");
-              }
-              $today_date=Carbon::now();
+            } else {
+                \Log::debug("$tmpPath.の削除失敗");
+            }
+            $today_date = Carbon::now();
             // 登録処理
-            foreach($dataList as $row){
-                Diary::insert(['updated_at'=>$today_date,'created_at'=>$today_date,'user_id'=>Auth::Id(),'uuid'=>Str::uuid(), 'date' => $row[0], 'title' => $row[1], 'content' => $row[2]]);
+            foreach ($dataList as $row) {
+                Diary::insert(['updated_at' => $today_date, 'created_at' => $today_date, 'user_id' => Auth::Id(), 'uuid' => Str::uuid(), 'date' => $row[0], 'title' => $row[1], 'content' => $row[2]]);
                 $count++;
             }
         }
 
-        $importResult=$count."件が正しくインポートされました";
-        return view("diary/io/afterImport",["importResult"=>$importResult]);
+        $importResult = $count . "件が正しくインポートされました";
+        return view("diary/io/afterImport", ["importResult" => $importResult]);
     }
 
 
@@ -94,18 +94,18 @@ class ImportDiaryController extends Controller
     {
         // $request->tukiniTxt;
         //バリデーション、txt形式、1M以内のファイル
-        $rules=array(
-            "tukiniTxt"=>"file|max:1000|mimes:txt",
-            );
-        $this->validate($request,$rules);
+        $rules = array(
+            "tukiniTxt" => "file|max:1000|mimes:txt",
+        );
+        $this->validate($request, $rules);
 
-        $count=0;
-        if($rawfile=$request->tukiniTxt){
+        $count = 0;
+        if ($rawfile = $request->tukiniTxt) {
             \Log::debug("txtインポート処理開始");
 
-            $tmpName = mt_rand().".".$request->tukiniTxt->guessExtension(); //TMPファイル名
-            $request->tukiniTxt->move(public_path()."/importTxt",$tmpName);
-            $tmpPath = public_path()."/importTxt/".$tmpName;
+            $tmpName = mt_rand() . "." . $request->tukiniTxt->guessExtension(); //TMPファイル名
+            $request->tukiniTxt->move(public_path() . "/importTxt", $tmpName);
+            $tmpPath = public_path() . "/importTxt/" . $tmpName;
 
 
 
@@ -117,7 +117,7 @@ class ImportDiaryController extends Controller
              * 本文→\s-\s[\s\S]*?\d{4}\.\d{1,2}\.\d{1,2}
              */
 
-            $rawTxt = file_get_contents("importTxt/".$tmpName);//txt読み込み、改行までちゃんとイケてる
+            $rawTxt = file_get_contents("importTxt/" . $tmpName); //txt読み込み、改行までちゃんとイケてる
 
             if ($rawTxt) {
                 //文章 終わり検知のためのダミーデータ追加
@@ -147,17 +147,16 @@ class ImportDiaryController extends Controller
 
 
             // TMPファイル削除
-            if (unlink($tmpPath)){
+            if (unlink($tmpPath)) {
                 // echo $file.'の削除に成功しました。';
                 \Log::debug("$tmpPath.の削除成功");
-            }else{
-                    \Log::debug("$tmpPath.の削除失敗");
-                }
-
+            } else {
+                \Log::debug("$tmpPath.の削除失敗");
+            }
         }
 
 
-        $importResult=$count."件が正しくインポートされました";
-        return view("diary/io/afterImport",["importResult"=>$importResult]);
+        $importResult = $count . "件が正しくインポートされました";
+        return view("diary/io/afterImport", ["importResult" => $importResult]);
     }
 }

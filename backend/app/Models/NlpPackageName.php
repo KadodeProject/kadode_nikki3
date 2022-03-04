@@ -15,12 +15,12 @@ class NlpPackageName extends Model
     }
     use HasFactory;
     protected $fillable = [
-        "name","user_id","is_publish","genre_id","description","created_at","updated_at"
+        "name", "user_id", "is_publish", "genre_id", "description", "created_at", "updated_at"
     ];
 
     //バリデーション
-    public static $rules=array(
-        "name"=>"required",
-        "description"=>"required",
-        );
+    public static $rules = array(
+        "name" => "required",
+        "description" => "required",
+    );
 }

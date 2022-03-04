@@ -534,7 +534,7 @@
     "This device": "この端末",
     "This file field is read-only.": "This file field is read-only.",
     "This image": "This image",
-    "This is a secure area of the application. Please confirm your password before continuing.": "This is a secure area of the application. Please confirm your password before continuing.",
+    "This is a secure area of the application. Please confirm your password before continuing.": "セキュリティページへのアクセスにはパスワード認証が必要です。",
     "This password does not match our records.": "パスワードが違います。",
     "This password reset link will expire in :count minutes.": "This password reset link will expire in :count minutes.",
     "This payment was already successfully confirmed.": "This payment was already successfully confirmed.",

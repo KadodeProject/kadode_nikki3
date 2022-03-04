@@ -17,23 +17,24 @@ class ReleasenoteController extends Controller
      * @param Request $request
      * @return void
      */
-    public function create(Request $request){
+    public function create(Request $request)
+    {
 
         // バリデーション
-        $this->validate($request,Releasenote::$rules);
+        $this->validate($request, Releasenote::$rules);
 
         //中身作成
-        $form=[
-            "title"=>$request->title,
-            "genre_id"=>$request->releasenote_genre_id,
-            "description"=>$request->description,
-            "date"=>$request->date,
+        $form = [
+            "title" => $request->title,
+            "genre_id" => $request->releasenote_genre_id,
+            "description" => $request->description,
+            "date" => $request->date,
         ];
 
         Releasenote::create($form);
 
         //ユーザー通知のフラグをオンにする
-        User::where('id','!=',0)->update(["is_showed_update_system_info"=>0]);
+        User::where('id', '!=', 0)->update(["is_showed_update_system_info" => 0]);
 
         return redirect('administrator/notification');
     }
@@ -43,13 +44,14 @@ class ReleasenoteController extends Controller
      *
      * @return void
      */
-    public function read(){
-        $releasenotes=Releasenote::orderBy('date', 'desc')->get(['title','date','genre_id','description']);
-        $releasenoteGenres=Releasenote_genre::get(['id','name']);
-        foreach($releasenotes as $releasenote){
-            $releasenote->genre=$releasenoteGenres[$releasenote->genre_id-1]->name;
+    public function read()
+    {
+        $releasenotes = Releasenote::orderBy('date', 'desc')->get(['title', 'date', 'genre_id', 'description']);
+        $releasenoteGenres = Releasenote_genre::get(['id', 'name']);
+        foreach ($releasenotes as $releasenote) {
+            $releasenote->genre = $releasenoteGenres[$releasenote->genre_id - 1]->name;
         }
-        return view('diaryNoLogIn/releasenote',['releasenotes' => $releasenotes,]);
+        return view('diaryNoLogIn/releasenote', ['releasenotes' => $releasenotes,]);
     }
 
 
@@ -60,19 +62,20 @@ class ReleasenoteController extends Controller
      * @return void
      */
 
-    public function update(Request $request){
+    public function update(Request $request)
+    {
 
         // バリデーション
-        $this->validate($request,Releasenote::$rules);
+        $this->validate($request, Releasenote::$rules);
 
-        $updateContent=[
-            "title"=>$request->title,
-            "genre_id"=>$request->releasenote_genre_id,
-            "description"=>$request->description,
-            "date"=>$request->date,
+        $updateContent = [
+            "title" => $request->title,
+            "genre_id" => $request->releasenote_genre_id,
+            "description" => $request->description,
+            "date" => $request->date,
         ];
 
-        Releasenote::where('id',$request->releasenote_id)->update($updateContent);
+        Releasenote::where('id', $request->releasenote_id)->update($updateContent);
         return redirect('administrator/notification');
     }
 
@@ -82,8 +85,9 @@ class ReleasenoteController extends Controller
      * @param Request $request
      * @return void
      */
-    public function delete(Request $request){
-        Releasenote::where('id',$request->releasenote_id)->delete();
+    public function delete(Request $request)
+    {
+        Releasenote::where('id', $request->releasenote_id)->delete();
         return redirect('administrator/notification');
     }
 }

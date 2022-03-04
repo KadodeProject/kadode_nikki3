@@ -15,15 +15,16 @@ class User_roleController extends Controller
      * @param Request $request
      * @return void
      */
-    public function create(Request $request){
+    public function create(Request $request)
+    {
 
         // バリデーション
-        $this->validate($request,User_role::$rules);
+        $this->validate($request, User_role::$rules);
 
         //中身作成
-        $form=[
-            "name"=>$request->name,
-            "description"=>$request->description,
+        $form = [
+            "name" => $request->name,
+            "description" => $request->description,
         ];
 
         User_role::create($form);
@@ -38,17 +39,18 @@ class User_roleController extends Controller
      * @return void
      */
 
-    public function update(Request $request){
+    public function update(Request $request)
+    {
 
         // バリデーション
-        $this->validate($request,User_role::$rules);
+        $this->validate($request, User_role::$rules);
 
-        $updateContent=[
-            "name"=>$request->name,
-            "description"=>$request->description,
+        $updateContent = [
+            "name" => $request->name,
+            "description" => $request->description,
         ];
 
-        User_role::where('id',$request->user_role_id)->update($updateContent);
+        User_role::where('id', $request->user_role_id)->update($updateContent);
         return redirect('administrator/role_rank');
     }
 
@@ -58,8 +60,9 @@ class User_roleController extends Controller
      * @param Request $request
      * @return void
      */
-    public function delete(Request $request){
-        User_role::where('id',$request->user_role_id)->delete();
+    public function delete(Request $request)
+    {
+        User_role::where('id', $request->user_role_id)->delete();
         return redirect('administrator/role_rank');
     }
 }

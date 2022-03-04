@@ -19,6 +19,6 @@
         <p class="md:py-0 py-4 mx-2 border-main-color"><a target="_blank" rel="norefferrer"
                 href="https://github.com/Usuyuki/kadode_nikki3">GitHub</a></p>
     </div>
-    <p class="text-center mt-2 copyright">Copyright (c) {{date("Y")}} usuyuki</p>
+    <p class="text-center mt-2 copyright">Copyright (c) 2021-{{date("Y")}} usuyuki</p>
 </footer>
 <!---PCフッターここまで--->

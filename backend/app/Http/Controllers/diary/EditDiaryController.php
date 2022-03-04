@@ -19,33 +19,34 @@ class EditDiaryController extends Controller
      * @param [type] $uuid
      * @return void
      */
-    public function get($uuid){
+    public function get($uuid)
+    {
 
-        $diary=Diary::where("uuid",$uuid)->first();
-        if($diary==null){
+        $diary = Diary::where("uuid", $uuid)->first();
+        if ($diary == null) {
             //日記無かったらリダイレクトさせる
             return redirect("home");
         }
-        $next=Diary::where("date",">",$diary->date)->orderBy("date","asc")->first(['date','uuid']);
-        $previous=Diary::where("date","<",$diary->date)->orderBy("date","desc")->first(['date','uuid']);
+        $next = Diary::where("date", ">", $diary->date)->orderBy("date", "asc")->first(['date', 'uuid']);
+        $previous = Diary::where("date", "<", $diary->date)->orderBy("date", "desc")->first(['date', 'uuid']);
 
         //日記の統計情報取得
-        $diary->is_latest_statistic=false;
-        $diary_update= new Carbon($diary->updated_at);
-        $stati_update=new Carbon($diary->updated_statistic_at);
+        $diary->is_latest_statistic = false;
+        $diary_update = new Carbon($diary->updated_at);
+        $stati_update = new Carbon($diary->updated_statistic_at);
 
         //undefined防止
-        $resembleDiaries=[];
+        $resembleDiaries = [];
 
         //最新の情報のときのみ
-        if($diary->statistic_progress==100 && $stati_update->gt($diary_update)){
+        if ($diary->statistic_progress == 100 && $stati_update->gt($diary_update)) {
             /**
              * 名詞と形容詞の登場順
              */
             //jsonを配列に戻し、連想配列を配列にする
-            $diary->is_latest_statistic=true;
-            $diary->important_words=array_values(json_decode($diary->important_words,true));
-            $diary->special_people=array_values(json_decode($diary->special_people,true));
+            $diary->is_latest_statistic = true;
+            $diary->important_words = array_values(json_decode($diary->important_words, true));
+            $diary->special_people = array_values(json_decode($diary->special_people, true));
 
 
             /**
@@ -59,18 +60,17 @@ class EditDiaryController extends Controller
              */
             // \Log::debug($diary->special_people[0]['name']);//一番の人の名前抽出
             //where('id', '<>',$diary->id)で自分自身を除く
-            if(!empty($diary->special_people)){
-                $resembleDiaries=Diary::where('id', '<>',$diary->id)->where(DB::raw('json_extract(`special_people`, "$[0].name")'), $diary->special_people[0]['name'])->inRandomOrder()->limit(3)->get();
-                $resembleDiaries=diaryDisplayPreProcessing::shapeStatisticFromDiaries($resembleDiaries);
+            if (!empty($diary->special_people)) {
+                $resembleDiaries = Diary::where('id', '<>', $diary->id)->where(DB::raw('json_extract(`special_people`, "$[0].name")'), $diary->special_people[0]['name'])->inRandomOrder()->limit(3)->get();
+                $resembleDiaries = diaryDisplayPreProcessing::shapeStatisticFromDiaries($resembleDiaries);
             }
-
-
         }
 
-        return view('diary/edit',['diary' => $diary,'previous'=>$previous, 'next'=>$next,'resembleDiaries'=>$resembleDiaries,]);
+        return view('diary/edit', ['diary' => $diary, 'previous' => $previous, 'next' => $next, 'resembleDiaries' => $resembleDiaries,]);
     }
 
-    public function newPage(){
+    public function newPage()
+    {
         return view('diary/newDiary');
     }
     /**
@@ -79,18 +79,19 @@ class EditDiaryController extends Controller
      * @param Request $request
      * @return void
      */
-    public function create(Request $request){
-        $request->date=$request->date ?? Carbon::today()->format("y-m-d");
+    public function create(Request $request)
+    {
+        $request->date = $request->date ?? Carbon::today()->format("y-m-d");
 
         // バリデーション
-        $this->validate($request,Diary::$rules);
+        $this->validate($request, Diary::$rules);
 
-        $form=[
-            "user_id"=>Auth::id(),
-            "title"=>$request->title,
-            "content"=>$request->content,
-            "date"=>$request->date,
-            "uuid"=>Str::uuid(),
+        $form = [
+            "user_id" => Auth::id(),
+            "title" => $request->title,
+            "content" => $request->content,
+            "date" => $request->date,
+            "uuid" => Str::uuid(),
         ];
 
         Diary::create($form);
@@ -103,19 +104,20 @@ class EditDiaryController extends Controller
      * @param Request $request
      * @return void
      */
-    public function update(Request $request){
+    public function update(Request $request)
+    {
 
 
         // 日付のバリデーション→既に存在する日付ならエラー返す
         // バリデーション
-        $this->validate($request,Diary::$rules);
+        $this->validate($request, Diary::$rules);
 
-        $updateContent=[
-            "title"=>$request->title,
-            "content"=>$request->content,
-            "date"=>$request->date,
+        $updateContent = [
+            "title" => $request->title,
+            "content" => $request->content,
+            "date" => $request->date,
         ];
-        Diary::where('uuid',$request->uuid)->update($updateContent);
+        Diary::where('uuid', $request->uuid)->update($updateContent);
         return redirect('home');
     }
 
@@ -125,10 +127,9 @@ class EditDiaryController extends Controller
      * @param Request $request
      * @return void
      */
-    public function delete(Request $request){
-        Diary::where('uuid',$request->uuid)->delete();
+    public function delete(Request $request)
+    {
+        Diary::where('uuid', $request->uuid)->delete();
         return redirect('home');
     }
-
-
 }

@@ -6,5 +6,9 @@
         "releasenotes",
         "kadode",
         "nikki"
-    ]
+    ],
+    "intelephense.environment.documentRoot": "backend/public/",
+    "[php]": {
+        "editor.defaultFormatter": "bmewburn.vscode-intelephense-client"
+    }
 }

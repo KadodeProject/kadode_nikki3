@@ -18,6 +18,6 @@ class User_ip extends Model
     }
 
     protected $fillable = [
-         "user_id","ip","ua","geo" ,"created_at","updated_at"
-     ];
+        "user_id", "ip", "ua", "geo", "created_at", "updated_at"
+    ];
 }

@@ -9,6 +9,5 @@ class ExportStatisticsController extends Controller
 {
     public function namedEntity(Request $request)
     {
-
     }
 }

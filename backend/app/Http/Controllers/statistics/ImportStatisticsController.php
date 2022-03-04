@@ -9,6 +9,5 @@ class ImportStatisticsController extends Controller
 {
     public function namedEntity(Request $request)
     {
-
     }
 }

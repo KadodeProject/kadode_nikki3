@@ -85,6 +85,7 @@
         </div>
 
     </div>
+
     @include('components.settingHeading',['title'=>'ログイン履歴',])
     @isset($user_ips)
     <div class="flex flex-wrap mb-4 items-center">
