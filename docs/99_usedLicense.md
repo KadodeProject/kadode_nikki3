@@ -182,6 +182,14 @@ https://github.com/abusix/ahocorapy/blob/master/LICENSE
 
 # HTML,CSS,JavaScript ソースコード
 
+## TailwindCSS
+
+Copyright (c) Tailwind Labs, Inc.
+
+Released under the MIT license
+
+https://github.com/tailwindlabs/tailwindcss/blob/master/LICENSE
+
 ## トップページの動く図形
 
 Copyright (c) June 1, 2015 Tuomas Pöyry
