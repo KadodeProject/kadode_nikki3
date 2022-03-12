@@ -21,15 +21,17 @@ class DatabaseSeeder extends Seeder
         $this->call(ReleasenoteTableSeeder::class);
         $this->call(Osirase_genreTableSeeder::class);
         $this->call(OsiraseTableSeeder::class);
-
-        $this->call(UserTableSeeder::class);
-        $this->call(DiaryTableSeeder::class);
-
+        if (app()->isLocal() || app()->runningUnitTests()) {
+            $this->call(UserTableSeeder::class);
+            $this->call(DiaryTableSeeder::class);
+        }
         $this->call(NERLabelSeeder::class);
-        $this->call(NlpPackageGenreTableSeeder::class);
-        $this->call(NlpPackageNameTableSeeder::class);
-        $this->call(PackageNERTableSeeder::class);
-        $this->call(NlpPackageUserTableSeeder::class);
-        $this->call(CustomNERTableSeeder::class);
+        if (app()->isLocal() || app()->runningUnitTests()) {
+            $this->call(NlpPackageGenreTableSeeder::class);
+            $this->call(NlpPackageNameTableSeeder::class);
+            $this->call(PackageNERTableSeeder::class);
+            $this->call(NlpPackageUserTableSeeder::class);
+            $this->call(CustomNERTableSeeder::class);
+        }
     }
 }
