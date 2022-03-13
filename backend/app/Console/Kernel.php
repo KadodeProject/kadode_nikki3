@@ -26,11 +26,11 @@ class Kernel extends ConsoleKernel
     protected function schedule(Schedule $schedule)
     {
         // $schedule->command('inspire')->hourly();
-        $schedule->command('user:judgeUser_rank')->dailyAt('02:10');//ユーザーランク審査
-        $schedule->command('backup:clean --disable-notifications')->dailyAt('04:10');//バックアップ削除
-        $schedule->command('backup:clean --disable-notifications')->dailyAt('04:10');//バックアップ削除
-        $schedule->command('backup:run --only-db')->dailyAt('04:10');//バックアップ作成
-        $schedule->command('kadode:gcsBackup')->dailyAt('04:10');//バックアップをgcsに
+        $schedule->command('user:judgeUser_rank')->dailyAt('02:10'); //ユーザーランク審査
+        $schedule->command('backup:clean --disable-notifications')->dailyAt('04:10'); //バックアップ削除
+        $schedule->command('backup:clean --disable-notifications')->dailyAt('04:10'); //バックアップ削除
+        $schedule->command('backup:run --only-db')->dailyAt('04:10'); //バックアップ作成
+        $schedule->command('gcs:backup')->dailyAt('04:10'); //バックアップをgcsに
     }
 
     /**
@@ -40,7 +40,7 @@ class Kernel extends ConsoleKernel
      */
     protected function commands()
     {
-        $this->load(__DIR__.'/Commands');
+        $this->load(__DIR__ . '/Commands');
 
         require base_path('routes/console.php');
     }
