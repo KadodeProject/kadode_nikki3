@@ -104,6 +104,6 @@ services:
     depends_on:
       - db
     ports:
-      - 8081:80
+      - 81:80
     volumes:
       - ./infra/docker/phpmyadmin/sessions:/sessions

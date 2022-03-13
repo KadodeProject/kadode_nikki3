@@ -32,7 +32,7 @@ class GenerateStatisticsController extends Controller
         /**
          * ここからPython
          */
-        throwPython::throwNlpToPython($userId, false, true);
+        throwPython::throwNlpToPython($userId, false, false);
 
         return redirect("statistics/home");
     }
