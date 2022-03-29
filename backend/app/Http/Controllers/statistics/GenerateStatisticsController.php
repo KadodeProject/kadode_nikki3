@@ -48,14 +48,14 @@ class GenerateStatisticsController extends Controller
         if (($yesterday->diffInHours($static->updated_at)) >= 0) {
             // $diaries=Diary::orderby("date","asc")->get();
             // $calculateDiary=calculateDiary::calculateDiary($diaries);
-            //自然言語処理↓
-            throwPython::throwNlpToPython($userId, false, false);
 
             $data = [
                 'statistic_progress' => 1,
                 'updated_at' => $dt->addHour(24),
             ];
             $static->update($data);
+            //自然言語処理↓
+            throwPython::throwNlpToPython($userId, false, false);
         }
         return redirect("statistics/home");
     }
