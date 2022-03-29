@@ -70,7 +70,7 @@
 
 
 
-    <div class="statistic-content">
+    <div class="statistic-content" id="customNERTable">
         @include('components.statisticHeading',['icon'=>'category','title'=>'ユーザー固有表現ルール追加'])
         <p class="text-center my-4 mx-2 kiwi-maru text-sm">ラベルについては関根の拡張固有表現階層 ver7.1.2をベースとしております。下記をご覧ください。</p>
         <p class="text-center my-4 mx-2 kiwi-maru text-sm hover:text-button-main-color">
@@ -107,12 +107,41 @@
 
 
                 @php
-                $i=1;
+                $i=0;
                 @endphp
-
+                {{-- 追加 --}}
+                <tr>
+                    <form class="" method="POST" action="/statistics/settings/named_entity/custom/create">
+                        @csrf
+                        <td>
+                            -
+                        </td>
+                        <td>
+                            <select name="label_id">
+                                <option disabled value>ラベルを選ぶ</option>
+                                @foreach($NERLabel as $NERLabel_single)
+                                <option value="{{$NERLabel_single->id}}">{{$NERLabel_single->name}}</option>
+                                @endforeach
+                            </select>
+                        </td>
+                        <td>
+                            <input type="text" name="name" autocomplete="off" placeholder="単語名"
+                                onkeydown="if((event.ctrlKey || event.metaKey)&&event.keyCode==13){document.getElementById('submitCustomNER_{{$i}}').click();return false};">
+                        </td>
+                        <td>
+                            <input type="submit" id="submitCustomNER_{{$i}}" class="text-black" value="追加">
+                        </td>
+                        <td>
+                            --
+                        </td>
+                    </form>
+                </tr>
                 {{-- 登録済みデータ表示 --}}
                 @isset($CustomNER)
                 @foreach($CustomNER as $NER)
+                @php
+                $i+=1;
+                @endphp
                 <tr>
                     <form class="" method="POST" action="/statistics/settings/named_entity/custom/update">
                         @csrf
@@ -147,39 +176,11 @@
                         </td>
                     </form>
                 </tr>
-                @php
-                $i+=1;
-                @endphp
+
                 @endforeach
                 @endisset
 
-                {{-- 追加 --}}
-                <tr>
-                    <form class="" method="POST" action="/statistics/settings/named_entity/custom/create">
-                        @csrf
-                        <td>
-                            {{$i}}
-                        </td>
-                        <td>
-                            <select name="label_id">
-                                <option disabled value>ラベルを選ぶ</option>
-                                @foreach($NERLabel as $NERLabel_single)
-                                <option value="{{$NERLabel_single->id}}">{{$NERLabel_single->name}}</option>
-                                @endforeach
-                            </select>
-                        </td>
-                        <td>
-                            <input type="text" name="name" autocomplete="off" placeholder="単語名"
-                                onkeydown="if((event.ctrlKey || event.metaKey)&&event.keyCode==13){document.getElementById('submitCustomNER_{{$i}}').click();return false};">
-                        </td>
-                        <td>
-                            <input type="submit" id="submitCustomNER_{{$i}}" class="text-black" value="追加">
-                        </td>
-                        <td>
-                            --
-                        </td>
-                    </form>
-                </tr>
+
             </table>
         </div>
     </div>

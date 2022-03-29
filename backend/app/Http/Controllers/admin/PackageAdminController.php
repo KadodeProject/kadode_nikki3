@@ -13,8 +13,8 @@ class PackageAdminController extends Controller
 {
     public function __invoke()
     {
-        //パッケージ表示
-        $NlpPackageName = NlpPackageName::withoutGlobalScopes()->get();
+        //パッケージ表示(最近更新のあったものから取り出す)
+        $NlpPackageName = NlpPackageName::withoutGlobalScopes()->orderBy('updated_at', 'desc')->get();
         //パッケージジャンル表示
         $NlpPackageGenre = NlpPackageGenre::get();
 

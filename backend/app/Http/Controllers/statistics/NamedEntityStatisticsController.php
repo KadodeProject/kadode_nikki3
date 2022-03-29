@@ -32,7 +32,7 @@ class NamedEntityStatisticsController extends Controller
         ];
 
         CustomNER::create($form);
-        return redirect('statistics/settings');
+        return redirect('statistics/settings#customNERTable');
     }
 
     /**
@@ -56,7 +56,7 @@ class NamedEntityStatisticsController extends Controller
         ];
 
         CustomNER::where('id', $request->customNER_id)->update($updateContent);
-        return redirect('statistics/settings');
+        return redirect('statistics/settings#customNERTable');
     }
 
     /**
@@ -68,7 +68,7 @@ class NamedEntityStatisticsController extends Controller
     public function customDelete(Request $request)
     {
         CustomNER::where('id', $request->customNER_id)->delete();
-        return redirect('statistics/settings');
+        return redirect('statistics/settings#customNERTable');
     }
 
 
@@ -89,7 +89,7 @@ class NamedEntityStatisticsController extends Controller
         ];
 
         PackageNER::create($form);
-        return redirect('administrator/package');
+        return redirect('administrator/package#nerTable');
     }
     public function packagesUpdate(Request $request)
     {
@@ -103,11 +103,11 @@ class NamedEntityStatisticsController extends Controller
         ];
 
         PackageNER::where('id', $request->PackageNER_id)->update($updateContent);
-        return redirect('administrator/package');
+        return redirect('administrator/package#nerTable');
     }
     public function packagesDelete(Request $request)
     {
         PackageNER::where('id', $request->PackageNER_id)->delete();
-        return redirect('administrator/package');
+        return redirect('administrator/package#nerTable');
     }
 }
