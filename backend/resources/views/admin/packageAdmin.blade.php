@@ -30,15 +30,55 @@
                     <th>追加変更</th>
                     <th>削除</th>
                 </tr>
-
-
                 @php
-                $i=1;
+                $i=0;
                 @endphp
+                {{-- 追加 --}}
+                <tr>
+                    <form class="" method="POST" action="/administrator/settings/packages/create">
+                        @csrf
+                        <td>
+                            -
+                        </td>
+                        <td>
+                            <input type="text" name="name" autocomplete="off" placeholder="パッケージ名"
+                                onkeydown="if((event.ctrlKey || event.metaKey)&&event.keyCode==13){document.getElementById('submitNlpPackageName_{{$i}}').click();return false};">
+                        </td>
+                        <td>
+                            <select name="NlpPackageGenre_id">
+                                <option disabled value>ジャンルを選ぶ</option>
+                                @foreach($NlpPackageGenre as $packageGenre)
+                                <option value="{{$packageGenre->id}}">{{$packageGenre->name}}</option>
+                                @endforeach
+                            </select>
+                        </td>
+                        <td>
+                            <input type="text" name="description" autocomplete="off" placeholder="説明"
+                                onkeydown="if((event.ctrlKey || event.metaKey)&&event.keyCode==13){document.getElementById('submitNlpPackageName_{{$i}}').click();return false};">
+                        </td>
+                        <td>
+                            <select name="is_publish">
+                                <option value="公開">公開</option>
+                                <option value="非公開">非公開</option>
+                            </select>
+                        </td>
+                        <td>
+                            <input type="submit" id="submitNlpPackageName_{{$i}}" class="text-black" value="追加">
+                        </td>
+                        <td>
+                            --
+                        </td>
+                    </form>
+                </tr>
+
+
 
                 {{-- 登録済みデータ表示 --}}
                 @isset($NlpPackageName)
                 @foreach($NlpPackageName as $PackageObj)
+                @php
+                $i+=1;
+                @endphp
                 <tr>
                     <form class="" method="POST" action="/administrator/settings/packages/update">
                         @csrf
@@ -91,49 +131,10 @@
                         </td>
                     </form>
                 </tr>
-                @php
-                $i+=1;
-                @endphp
                 @endforeach
                 @endisset
 
-                {{-- 追加 --}}
-                <tr>
-                    <form class="" method="POST" action="/administrator/settings/packages/create">
-                        @csrf
-                        <td>
-                            {{$i}}
-                        </td>
-                        <td>
-                            <input type="text" name="name" autocomplete="off" placeholder="パッケージ名"
-                                onkeydown="if((event.ctrlKey || event.metaKey)&&event.keyCode==13){document.getElementById('submitNlpPackageName_{{$i}}').click();return false};">
-                        </td>
-                        <td>
-                            <select name="NlpPackageGenre_id">
-                                <option disabled value>ジャンルを選ぶ</option>
-                                @foreach($NlpPackageGenre as $packageGenre)
-                                <option value="{{$packageGenre->id}}">{{$packageGenre->name}}</option>
-                                @endforeach
-                            </select>
-                        </td>
-                        <td>
-                            <input type="text" name="description" autocomplete="off" placeholder="説明"
-                                onkeydown="if((event.ctrlKey || event.metaKey)&&event.keyCode==13){document.getElementById('submitNlpPackageName_{{$i}}').click();return false};">
-                        </td>
-                        <td>
-                            <select name="is_publish">
-                                <option value="公開">公開</option>
-                                <option value="非公開">非公開</option>
-                            </select>
-                        </td>
-                        <td>
-                            <input type="submit" id="submitNlpPackageName_{{$i}}" class="text-black" value="追加">
-                        </td>
-                        <td>
-                            --
-                        </td>
-                    </form>
-                </tr>
+
             </table>
         </div>
     </div>
@@ -147,7 +148,7 @@
 
 
 
-    <div class="statistic-content">
+    <div class="statistic-content" id="packageGenreTable">
         @include('components.statisticHeading',['icon'=>'category','title'=>'パッケージジャンル管理'])
         {{-- 表示 --}}
         <div class="overflow-x-auto">
@@ -174,12 +175,38 @@
                 </tr>
                 @endif
                 @php
-                $i=1;
+                $i=0;
                 @endphp
+                {{-- 追加 --}}
+                <tr>
+                    <form class="" method="POST" action="/administrator/settings/packages/genre/create">
+                        @csrf
+                        <td>
+                            -
+                        </td>
+                        <td>
+                            <input type="text" name="name" autocomplete="off" placeholder="パッケージ名"
+                                onkeydown="if((event.ctrlKey || event.metaKey)&&event.keyCode==13){document.getElementById('submitNlpPackageName_{{$i}}').click();return false};">
+                        </td>
 
+                        <td>
+                            <input type="text" name="description" autocomplete="off" placeholder="説明"
+                                onkeydown="if((event.ctrlKey || event.metaKey)&&event.keyCode==13){document.getElementById('submitNlpPackageName_{{$i}}').click();return false};">
+                        </td>
+                        <td>
+                            <input type="submit" id="submitNlpPackageName_{{$i}}" class="text-black" value="追加">
+                        </td>
+                        <td>
+                            --
+                        </td>
+                    </form>
+                </tr>
                 {{-- 登録済みデータ表示 --}}
                 @isset($NlpPackageGenre)
                 @foreach($NlpPackageGenre as $PackageGenre)
+                @php
+                $i+=1;
+                @endphp
                 <tr>
                     <form class="" method="POST" action="/administrator/settings/packages/genre/update">
                         @csrf
@@ -209,36 +236,11 @@
                         </td>
                     </form>
                 </tr>
-                @php
-                $i+=1;
-                @endphp
+
                 @endforeach
                 @endisset
 
-                {{-- 追加 --}}
-                <tr>
-                    <form class="" method="POST" action="/administrator/settings/packages/genre/create">
-                        @csrf
-                        <td>
-                            {{$i}}
-                        </td>
-                        <td>
-                            <input type="text" name="name" autocomplete="off" placeholder="パッケージ名"
-                                onkeydown="if((event.ctrlKey || event.metaKey)&&event.keyCode==13){document.getElementById('submitNlpPackageName_{{$i}}').click();return false};">
-                        </td>
 
-                        <td>
-                            <input type="text" name="description" autocomplete="off" placeholder="説明"
-                                onkeydown="if((event.ctrlKey || event.metaKey)&&event.keyCode==13){document.getElementById('submitNlpPackageName_{{$i}}').click();return false};">
-                        </td>
-                        <td>
-                            <input type="submit" id="submitNlpPackageName_{{$i}}" class="text-black" value="追加">
-                        </td>
-                        <td>
-                            --
-                        </td>
-                    </form>
-                </tr>
             </table>
         </div>
     </div>
@@ -264,7 +266,7 @@
         </p>
         <p class="text-center mt-8 mb-2 mx-2 kiwi-maru text-sm">Ajax通信非対応のため、1件ずつ追加や変更を行うようお願い申し上げます。</p>
 
-        <div class="border-button-color border-2 mx-2 my-4 py-4 px-6 border-dotted">
+        <div class="border-button-color border-2 mx-2 my-4 py-4 px-6 border-dotted" id="nerTable">
             @isset($NlpPackageName)
             @foreach($NlpPackageName as $PackageObj)
             @if($PackageObj->genre_id==1)
@@ -295,12 +297,42 @@
                     </tr>
                     @endif
                     @php
-                    $i=1;
+                    $i=0;
                     @endphp
-
+                    {{-- 追加 --}}
+                    <tr>
+                        <form class="" method="POST" action="/statistics/settings/named_entity/package/create">
+                            @csrf
+                            <input type="hidden" name="package_id" value="{{$PackageObj->id}}">
+                            <td>
+                                -
+                            </td>
+                            <td>
+                                <select name="label_id">
+                                    <option disabled value>ラベルを選ぶ</option>
+                                    @foreach($NERLabel as $NERLabel_single)
+                                    <option value="{{$NERLabel_single->id}}">{{$NERLabel_single->name}}</option>
+                                    @endforeach
+                                </select>
+                            </td>
+                            <td>
+                                <input type="text" name="name" autocomplete="off" placeholder="単語名"
+                                    onkeydown="if((event.ctrlKey || event.metaKey)&&event.keyCode==13){document.getElementById('submitPackageNER_{{$i}}').click();return false};">
+                            </td>
+                            <td>
+                                <input type="submit" id="submitPackageNER_{{$i}}" class="text-black" value="追加">
+                            </td>
+                            <td>
+                                --
+                            </td>
+                        </form>
+                    </tr>
                     {{-- 登録済みデータ表示 --}}
                     @isset($PackageObj->packageNER)
                     @foreach($PackageObj->packageNER as $NER)
+                    @php
+                    $i+=1;
+                    @endphp
                     <tr>
                         <form class="" method="POST" action="/statistics/settings/named_entity/package/update">
                             @csrf
@@ -336,40 +368,11 @@
                             </td>
                         </form>
                     </tr>
-                    @php
-                    $i+=1;
-                    @endphp
+
                     @endforeach
                     @endisset
 
-                    {{-- 追加 --}}
-                    <tr>
-                        <form class="" method="POST" action="/statistics/settings/named_entity/package/create">
-                            @csrf
-                            <input type="hidden" name="package_id" value="{{$PackageObj->id}}">
-                            <td>
-                                {{$i}}
-                            </td>
-                            <td>
-                                <select name="label_id">
-                                    <option disabled value>ラベルを選ぶ</option>
-                                    @foreach($NERLabel as $NERLabel_single)
-                                    <option value="{{$NERLabel_single->id}}">{{$NERLabel_single->name}}</option>
-                                    @endforeach
-                                </select>
-                            </td>
-                            <td>
-                                <input type="text" name="name" autocomplete="off" placeholder="単語名"
-                                    onkeydown="if((event.ctrlKey || event.metaKey)&&event.keyCode==13){document.getElementById('submitPackageNER_{{$i}}').click();return false};">
-                            </td>
-                            <td>
-                                <input type="submit" id="submitPackageNER_{{$i}}" class="text-black" value="追加">
-                            </td>
-                            <td>
-                                --
-                            </td>
-                        </form>
-                    </tr>
+
                 </table>
             </div>
             @endif
