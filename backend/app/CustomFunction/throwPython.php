@@ -23,11 +23,10 @@ class throwPython
 
         if ($error_check) {
             //2>&1でエラーメッセージ出せる
-            // sourceコマンドは.←これ
-            //> /dev/null & すると非同期で実行できる
-            $path = "export LANG=ja_JP.UTF-8;. " . env('PYTHON_VENV_DIR') . "kadode_py/bin/activate &&" . env('PYTHON_PRO_DIR') . " " . env('PYTHON_FOLDER_DIR') . "pythonUseFromPHP.py " . $user_id . " && deactivate 2>&1";
+            $path = "export LANG=ja_JP.UTF-8; " . env('PYTHON_PRO_DIR') . " " . env('PYTHON_FOLDER_DIR') . "pythonUseFromPHP.py " . $user_id . " 2>&1";
         } else {
-            $path = "export LANG=ja_JP.UTF-8;. " . env('PYTHON_VENV_DIR') . "kadode_py/bin/activate &&" . env('PYTHON_PRO_DIR') . " " . env('PYTHON_FOLDER_DIR') . "pythonUseFromPHP.py" . " " . $user_id . " && deactivate > /dev/null &";
+            //> /dev/null & すると非同期で実行できる
+            $path = "export LANG=ja_JP.UTF-8; " . env('PYTHON_PRO_DIR') . " " . env('PYTHON_FOLDER_DIR') . "pythonUseFromPHP.py" . " " . $user_id . " > /dev/null &";
         }
         $output = null;
         // $path = "export LANG=ja_JP.UTF-8;python3 " . env('PYTHON_PRO_DIR') . " " . env('PYTHON_FOLDER_DIR') . "pythonUseFromPHP.py" . " " . $user_id . " > /dev/null &";
