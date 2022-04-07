@@ -6,7 +6,7 @@
     //月ごとの合計文字数
     // 月ごとの1日記あたりの平均文字数
     const charLengthHistogram_id = document.getElementById('charLengthHistogram');
-    var charLengthHistogram = new Chart(charLengthHistogram_id, {
+    let charLengthHistogram = new Chart(charLengthHistogram_id, {
               type: 'bar',
     data: {
         labels: [

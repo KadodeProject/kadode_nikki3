@@ -26,7 +26,9 @@ class Kernel extends ConsoleKernel
     protected function schedule(Schedule $schedule)
     {
         // $schedule->command('inspire')->hourly();
-        $schedule->command('user:judgeUser_rank')->dailyAt('02:10'); //ユーザーランク審査
+        $schedule->command('user:judgeUser_rank')->dailyAt('01:00'); //ユーザーランク審査
+        //2時台にos関連の処理実行
+        //3時台にNLP周りの処理実行
         $schedule->command('backup:clean --disable-notifications')->dailyAt('04:10'); //バックアップ削除
         $schedule->command('backup:clean --disable-notifications')->dailyAt('04:10'); //バックアップ削除
         $schedule->command('backup:run --only-db')->dailyAt('04:10'); //バックアップ作成

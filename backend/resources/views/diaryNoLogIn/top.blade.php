@@ -166,6 +166,6 @@
 
 
 </div>
-<script type="text/javascript" src="{{ asset('js/topPerticle.js') }}"></script>
+<script type="text/javascript" src="{{ asset('js/topParticle.js') }}"></script>
 
 @endsection

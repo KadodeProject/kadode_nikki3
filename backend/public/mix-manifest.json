@@ -1,4 +1,7 @@
 {
     "/js/app.js": "/js/app.js",
+    "/js/useChartJs.js": "/js/useChartJs.js",
+    "/js/kadodeMain.js": "/js/kadodeMain.js",
+    "/js/topParticle.js": "/js/topParticle.js",
     "/css/app.css": "/css/app.css"
 }

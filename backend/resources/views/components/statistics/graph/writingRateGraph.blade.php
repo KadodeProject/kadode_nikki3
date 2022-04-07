@@ -35,7 +35,7 @@ barPercentage: 1.0,
 //             yAxes : [{
 //               id:"RateYZiku",
 //                 ticks : {
-//                     max : 100,    
+//                     max : 100,
 //                     min : 0,
 //                 }
 //             }],

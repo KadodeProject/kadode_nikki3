@@ -1,4 +1,10 @@
+/******/ (() => { // webpackBootstrap
+var __webpack_exports__ = {};
+/*!************************************!*\
+  !*** ./resources/js/kadodeMain.js ***!
+  \************************************/
 //検索フォーカス
+
 /*
     https://codepen.io/charlyn/pen/MwRBBo
 
@@ -6,46 +12,33 @@
     Released under the MIT license
     http://opensource.org/licenses/mit-license.php
 */
-
 // 遊びゴコロ
-console.log(
-    "袖ひちて むすびし水の 凍れるを 春立つ今日の 風や解くらむ\n 紀貫之"
-);
+console.log("袖ひちて むすびし水の 凍れるを 春立つ今日の 風や解くらむ\n 紀貫之");
+var input = document.getElementById("keywordLabel");
+var label = document.getElementById("moveLabelJs");
 
-const input = document.getElementById("keywordLabel");
-const label = document.getElementById("moveLabelJs");
 if (input != null) {
-    input.addEventListener(
-        "focus",
-        (event) => {
-            event.target.classList.add("active-input");
-            label.classList.add("active");
-        },
-        true
-    );
-    input.addEventListener(
-        "blur",
-        (event) => {
-            event.target.classList.remove("active-input");
-            label.classList.remove("active");
-        },
-        true
-    );
-}
+  input.addEventListener("focus", function (event) {
+    event.target.classList.add("active-input");
+    label.classList.add("active");
+  }, true);
+  input.addEventListener("blur", function (event) {
+    event.target.classList.remove("active-input");
+    label.classList.remove("active");
+  }, true);
+} //sp本文でバーチャルキーボードの上にfooterメニューでてしまうの防止
 
-//sp本文でバーチャルキーボードの上にfooterメニューでてしまうの防止
+
 if (document.getElementById("diary-content") != null) {
-    let textarea = document.getElementById("diary-content");
-    let removeFooter = document.getElementById("smFooter");
-    textarea.addEventListener("focusin", (e) => {
-        removeFooter.classList.add("hidden");
-    });
-    textarea.addEventListener("focusout", (e) => {
-        removeFooter.classList.remove("hidden");
-    });
-}
-
-//ヘッダー時計用桁数調整
+  var textarea = document.getElementById("diary-content");
+  var removeFooter = document.getElementById("smFooter");
+  textarea.addEventListener("focusin", function (e) {
+    removeFooter.classList.add("hidden");
+  });
+  textarea.addEventListener("focusout", function (e) {
+    removeFooter.classList.remove("hidden");
+  });
+} //ヘッダー時計用桁数調整
 // function set2fig(num) {
 //     // 桁数が1桁だったら先頭に0を加えて2桁に調整する
 //     var ret;
@@ -56,11 +49,9 @@ if (document.getElementById("diary-content") != null) {
 //     }
 //     return ret;
 // }
-
 // function showClock() {
 //     var nowTime = new Date();
 //     // var nowUnixTime = nowTime.getTime();
-
 //     var nowYear = nowTime.getFullYear();
 //     // getYearは2000年問題の関係で4桁返してくれないのでgetFullYearを使用
 //     var nowMonth = nowTime.getMonth() + 1;
@@ -100,8 +91,9 @@ if (document.getElementById("diary-content") != null) {
 //     // set2fig(nowDate) +
 //     // "</span><span class='main-hour'>" ;
 //     // if(document.URL.match("/home")) {
-
 //     //     diaryDate.innerHTML = date;
 //     // }
 // }
 // setInterval("showClock()", 1000);
+/******/ })()
+;
