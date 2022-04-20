@@ -14,12 +14,11 @@ use Illuminate\Support\Str;
 class EditDiaryController extends Controller
 {
     /**
-     * Undocumented function
+     * 日記の編集ページを取得する関数
      *
      * @param [type] $uuid
-     * @return void
      */
-    public function get($uuid)
+    public function get($uuid): \Illuminate\Routing\Redirector|\Illuminate\Http\RedirectResponse|\Illuminate\Contracts\View\View|\Illuminate\Contracts\View\Factory
     {
 
         $diary = Diary::where("uuid", $uuid)->first();
@@ -69,17 +68,18 @@ class EditDiaryController extends Controller
         return view('diary/edit', ['diary' => $diary, 'previous' => $previous, 'next' => $next, 'resembleDiaries' => $resembleDiaries,]);
     }
 
-    public function newPage()
+    /**
+     * 新規作成ページを表示するメソッド
+     *
+     */
+    public function newPage(): \Illuminate\Contracts\View\View|\Illuminate\Contracts\View\Factory
     {
         return view('diary/newDiary');
     }
     /**
-     * Undocumented function
-     *
-     * @param Request $request
-     * @return void
+     * 新しく日記を作成するメソッド
      */
-    public function create(Request $request)
+    public function create(Request $request): \Illuminate\Routing\Redirector|\Illuminate\Http\RedirectResponse
     {
         $request->date = $request->date ?? Carbon::today()->format("y-m-d");
 
@@ -99,12 +99,9 @@ class EditDiaryController extends Controller
     }
 
     /**
-     * Undocumented function
-     *
-     * @param Request $request
-     * @return void
+     * 日記を更新するメソッド
      */
-    public function update(Request $request)
+    public function update(Request $request): \Illuminate\Routing\Redirector|\Illuminate\Http\RedirectResponse
     {
 
 
@@ -122,12 +119,10 @@ class EditDiaryController extends Controller
     }
 
     /**
-     * Undocumented function
+     * 日記を削除するメソッド
      *
-     * @param Request $request
-     * @return void
      */
-    public function delete(Request $request)
+    public function delete(Request $request): \Illuminate\Routing\Redirector|\Illuminate\Http\RedirectResponse
     {
         Diary::where('uuid', $request->uuid)->delete();
         return redirect('home');
