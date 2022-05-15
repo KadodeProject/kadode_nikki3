@@ -14,7 +14,8 @@ class DeleteUser implements DeletesUsers
      */
     public function delete($user)
     {
-        $user->deleteProfilePhoto();
+        /** @todo テストで事故るのでコメントアウトしている、もしプロフィール画像導入したら有効にする */
+        // $user->deleteProfilePhoto();
         $user->tokens->each->delete();
         $user->delete();
     }
