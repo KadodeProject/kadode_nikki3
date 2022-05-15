@@ -104,3 +104,7 @@ services:
       - 81:80
     volumes:
       - ./infra/docker/phpmyadmin/sessions:/sessions
+  mail:
+    image: mailhog/mailhog
+    ports:
+      - 82:8025
