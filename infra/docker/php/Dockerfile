@@ -25,7 +25,7 @@ RUN apt-get update && \
   composer config -g process-timeout 3600 && \
   composer config -g repos.packagist composer https://packagist.org && \
   pip3 install --upgrade pip && \
-  pip3 install janome python-dotenv mysqlclient ahocorapy && \
+  pip3 install python-dotenv mysqlclient ahocorapy && \
   pip3 install -U ginza ja-ginza
 
 

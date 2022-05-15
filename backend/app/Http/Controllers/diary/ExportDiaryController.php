@@ -12,7 +12,6 @@ class ExportDiaryController extends Controller
 {
     public function __invoke()
     {
-        $user = Auth::user();
         $diaries = Diary::orderby("date", "asc")->select(['date', 'title', 'content'])->get()->toArray();
         // \Log::debug("message".$diary);
         //CSVカラムの生成
@@ -23,6 +22,7 @@ class ExportDiaryController extends Controller
         $f = fopen("exportCsv/$uuid.csv", 'w');
         if ($f) {
             // カラムの書き込み SJISがCSVの保存形式なので、SJISで保存。
+            /** mb_convert_variables('SJIS-win', 'UTF-8', $head);を以前は使用していたが文字化けする */
             mb_convert_variables('SJIS-win', 'UTF-8', $head);
             fputcsv($f, $head);
             // データの書き込み
@@ -35,6 +35,7 @@ class ExportDiaryController extends Controller
         // ファイルを閉じる
         fclose($f);
         // HTTPヘッダ
+        /** @todo ここにheaderは責務分割的によろしくない */
         header("Content-Type: application/octet-stream");
         header('Content-Length: ' . filesize("exportCsv/$uuid.csv"));
         header("Content-Disposition: attachment; filename=exportCsv/$uuid.csv");

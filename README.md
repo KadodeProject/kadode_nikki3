@@ -1,5 +1,6 @@
 ### Meta
 
+
 ![image](https://img.shields.io/github/stars/Usuyuki/kadode_nikki3.svg)
 
 ### Language
