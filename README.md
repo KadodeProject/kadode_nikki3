@@ -1,9 +1,26 @@
-### Meta
+# この web アプリについて
+
+個人的に欲しかった統計付き日記管理 web アプリを作っています。
+
+https://kadodenikki3.usuyuki.net/
+
+# Operation
+## CI
+[![LaravelPHPテスト](https://github.com/Usuyuki/kadode_nikki3/actions/workflows/laravelTester.yml/badge.svg)](https://github.com/Usuyuki/kadode_nikki3/actions/workflows/laravelTester.yml)
+
+[![自動デプロイ](https://github.com/Usuyuki/kadode_nikki3/actions/workflows/automatic_deploy.yml/badge.svg)](https://github.com/Usuyuki/kadode_nikki3/actions/workflows/automatic_deploy.yml)
+
+※現在上記は手動にて対応中
+## Site
 
 
-![image](https://img.shields.io/github/stars/Usuyuki/kadode_nikki3.svg)
+![image](https://badgen.net/uptime-robot/status/m791749575-72b5e08236c6f4fb0d2235a7)
+![image](https://badgen.net/uptime-robot/day/m791749575-72b5e08236c6f4fb0d2235a7)
+![image](https://badgen.net/uptime-robot/week/m791749575-72b5e08236c6f4fb0d2235a7)
+![image](https://badgen.net/uptime-robot/month/m791749575-72b5e08236c6f4fb0d2235a7)
+![image](https://badgen.net/uptime-robot/response/m791749575-72b5e08236c6f4fb0d2235a7)
 
-### Language
+## Language
 
 ![image](https://img.shields.io/badge/-Python-3776AB.svg?logo=python&style=plastic)
 ![image](https://img.shields.io/badge/-Php-777BB4.svg?logo=php&style=plastic)
@@ -17,12 +34,6 @@
 ![image](https://img.shields.io/badge/Library-GiNZA-5A3B1D)
 
 ![image](https://img.shields.io/badge/App-%E3%81%8B%E3%81%A9%E3%81%A7%E6%97%A5%E8%A8%98-624466)
-
-# この web アプリについて
-
-個人的に欲しかった統計付き日記管理 web アプリを作っています。
-
-https://kadodenikki3.usuyuki.net/
 
 # 文章周り
 
