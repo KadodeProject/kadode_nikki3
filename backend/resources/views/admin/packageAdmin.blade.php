@@ -310,9 +310,7 @@
                             <td>
                                 <select name="label_id">
                                     <option disabled value>ラベルを選ぶ</option>
-                                    @foreach($NERLabel as $NERLabel_single)
-                                    <option value="{{$NERLabel_single->id}}">{{$NERLabel_single->name}}</option>
-                                    @endforeach
+                                    {!! $NERLabelsInOptionTabFormat !!}
                                 </select>
                             </td>
                             <td>
@@ -342,14 +340,21 @@
                             </td>
                             <td>
                                 <select name="label_id">
-                                    @foreach($NERLabel as $NERLabel_single)
-                                    @if($NERLabel_single->id==$NER->label_id)
-                                    <option selected value="{{$NERLabel_single->id}}">{{$NERLabel_single->name}}
-                                    </option>
-                                    @else
-                                    <option value="{{$NERLabel_single->id}}">{{$NERLabel_single->name}}</option>
-                                    @endif
-                                    @endforeach
+                                    @php
+                                    /**
+                                    * 正規表現で該当するところにselectedをつける
+                                    * mb_ereg_replaceはセパレータ不要
+                                    */
+                                    $willSelect="<option value='".$NER->label_id."'>";
+                                        $selected="
+                                    <option selected value='".$NER->label_id."'>";
+
+                                        $NERLabelsInOptionTabFormatWithSelected=mb_ereg_replace($willSelect,$selected,$NERLabelsInOptionTabFormat);
+                                        @endphp
+                                        {{"ああ"}}
+                                        {!!$willSelect!!}
+                                        {!!$selected!!}
+                                        {!! $NERLabelsInOptionTabFormatWithSelected !!}
                                 </select>
                             </td>
                             <td>
