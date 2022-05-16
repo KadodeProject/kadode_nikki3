@@ -28,11 +28,9 @@ class PackageAdminController extends Controller
                 $NlpPackageObj->packageNER = PackageNER::where('package_id', $NlpPackageObj->id)->get();
             }
         }
-        //固有表現ラベル取得
-        /** @todo ここで203回呼ばれて、これが繰り返しフィールドで適応されるので激重になります。 */
-        $NERLabel = NERLabel::all();
 
-        $NERLabelsInOptionTabFormat = $this->getAllNERLabelInOptionTabFormat->invoke();
+        //固有表現ラベル取得
+        $NERLabelsInOptionTabFormat = $this->getAllNERLabelInOptionTabFormat->invoke(NERLabel::all()->toArray());
         return view('admin/packageAdmin', ['NlpPackageName' => $NlpPackageName, 'NlpPackageGenre' => $NlpPackageGenre, 'NERLabelsInOptionTabFormat' => $NERLabelsInOptionTabFormat,]);
     }
 }

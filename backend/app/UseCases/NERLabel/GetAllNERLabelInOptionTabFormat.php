@@ -4,24 +4,21 @@ declare(strict_types=1);
 
 namespace App\UseCases\NERLabel;
 
-use App\Models\NERLabel;
-use Illuminate\Database\Eloquent\Collection;
-
 /**
  * Undocumented class
  */
 final class GetAllNERLabelInOptionTabFormat
 {
-    public function invoke(): string
+    /**
+     * @phpstan-param array<array{id:int,name:string}> $NERLabels
+     */
+    public function invoke(array $NERLabels): string
     {
-        /** @property Collection */
-        $NERLabels = NERLabel::all();
-
-        /** @property string */
+        /** @var string */
         $NERLabelsInOptionTabFormat = "";
 
         foreach ($NERLabels as $NERLabel) {
-            $NERLabelsInOptionTabFormat = $NERLabelsInOptionTabFormat . " <option value='" . $NERLabel->id . "'>" . $NERLabel->name . "</option>";
+            $NERLabelsInOptionTabFormat = $NERLabelsInOptionTabFormat . ' <option value="' . $NERLabel['id'] . '">' . $NERLabel['name'] . '</option>';
         }
 
         return $NERLabelsInOptionTabFormat;
