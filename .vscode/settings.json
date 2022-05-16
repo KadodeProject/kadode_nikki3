@@ -7,8 +7,17 @@
         "kadode",
         "nikki"
     ],
-    "intelephense.environment.documentRoot": "backend/public/",
+    //psr12の自動整形のための設定↓
     "[php]": {
         "editor.defaultFormatter": "bmewburn.vscode-intelephense-client"
-    }
+    },
+    "[blade]": {
+        "editor.defaultFormatter": "onecentlin.laravel-blade"
+    },
+    "laravel_goto_view.folders": {
+        "default": "/backend/resources/views"
+    },
+    "laravel_goto_view.extensions": [".blade.php"],
+    "laravel_goto_controller.pathController": "/backend/app/Http/Controllers",
+    "editor.formatOnSave": true
 }

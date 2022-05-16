@@ -1,0 +1,9 @@
+{
+    "recommendations": [
+        // "shufo.vscode-blade-formatter",
+        // "bmewburn.vscode-intelephense-client",
+        // "onecentlin.laravel5-snippets",
+        // "codingyu.laravel-goto-view",
+        "onecentlin.laravel-extension-pack"
+    ]
+}
