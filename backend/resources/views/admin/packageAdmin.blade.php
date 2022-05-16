@@ -351,9 +351,6 @@
 
                                         $NERLabelsInOptionTabFormatWithSelected=mb_ereg_replace($willSelect,$selected,$NERLabelsInOptionTabFormat);
                                         @endphp
-                                        {{"ああ"}}
-                                        {!!$willSelect!!}
-                                        {!!$selected!!}
                                         {!! $NERLabelsInOptionTabFormatWithSelected !!}
                                 </select>
                             </td>
