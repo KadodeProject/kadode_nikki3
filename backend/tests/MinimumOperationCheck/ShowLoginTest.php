@@ -1,6 +1,8 @@
 <?php
 
-namespace Tests\Feature\Simple;
+declare(strict_types=1);
+
+namespace Tests\MinimumOperationCheck;
 
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
@@ -10,7 +12,7 @@ use Tests\TestCase;
 class ShowLoginTest extends TestCase
 {
     /**
-     * A basic feature test example.
+     * A basic Integration test example.
      *
      * @return void
      */
