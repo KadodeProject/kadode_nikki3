@@ -47,9 +47,7 @@
                         <td>
                             <select name="NlpPackageGenre_id">
                                 <option disabled value>ジャンルを選ぶ</option>
-                                @foreach($NlpPackageGenre as $packageGenre)
-                                <option value="{{$packageGenre->id}}">{{$packageGenre->name}}</option>
-                                @endforeach
+                                {{!! $NERLabelsInOptionTabFormat !!}}
                             </select>
                         </td>
                         <td>
