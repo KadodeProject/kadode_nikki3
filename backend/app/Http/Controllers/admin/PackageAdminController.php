@@ -33,6 +33,6 @@ class PackageAdminController extends Controller
         $NERLabel = NERLabel::all();
 
         $NERLabelsInOptionTabFormat = $this->getAllNERLabelInOptionTabFormat->invoke();
-        return view('admin/packageAdmin', ['NlpPackageName' => $NlpPackageName, 'NlpPackageGenre' => $NlpPackageGenre, 'NERLabel' => $NERLabel, 'NERLabelsInOptionTabFormat' => $NERLabelsInOptionTabFormat,]);
+        return view('admin/packageAdmin', ['NlpPackageName' => $NlpPackageName, 'NlpPackageGenre' => $NlpPackageGenre, 'NERLabelsInOptionTabFormat' => $NERLabelsInOptionTabFormat,]);
     }
 }
