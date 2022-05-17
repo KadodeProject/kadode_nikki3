@@ -25,11 +25,11 @@ class ThrowPythonNLP
         $output = [];
         exec($path, $output); //python実行
 
-        if ($debug) {
-            \Log::debug($path);
-            \Log::debug("file_name:" . env('PYTHON_VENV_DIR') . "pythonUseFromPHP.py");
-            \Log::debug("python_output:");
-            \Log::debug($output);
+        if (true) {
+            var_dump($path);
+            var_dump("file_name:" . env('PYTHON_VENV_DIR') . "pythonUseFromPHP.py");
+            var_dump("python_output:");
+            var_dump($output);
             // \Log::debug("command_output:");
             // \Log::debug($return_var);
         }
