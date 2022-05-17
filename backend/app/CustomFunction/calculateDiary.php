@@ -9,10 +9,6 @@ namespace App\CustomFunction;
 
 use Illuminate\Support\Carbon;
 
-use function PHPUnit\Framework\isEmpty;
-use function PHPUnit\Framework\isNan;
-use function PHPUnit\Framework\isNull;
-
 class calculateDiary
 {
     public static function calculateDiary($diaries)
