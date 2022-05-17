@@ -5,7 +5,7 @@ namespace App\Http\Controllers\statistics;
 use App\Http\Controllers\Controller;
 use App\Models\Statistic;
 use App\Models\Statistic_overall_progress;
-use App\UseCases\Statistic\throwPythonNLP;
+use App\UseCases\Statistic\ThrowPythonNLP;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Auth;
 
