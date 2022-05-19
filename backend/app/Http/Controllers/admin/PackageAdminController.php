@@ -12,7 +12,7 @@ use App\UseCases\NERLabel\GetAllNERLabelInOptionTabFormat;
 class PackageAdminController extends Controller
 {
     public function __construct(
-        public GetAllNERLabelInOptionTabFormat $getAllNERLabelInOptionTabFormat
+        private GetAllNERLabelInOptionTabFormat $getAllNERLabelInOptionTabFormat
     ) {
     }
     public function __invoke()

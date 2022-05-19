@@ -7,10 +7,14 @@ use App\Models\Diary;
 use App\Models\Statistic_per_month;
 use App\Models\Statistic_per_year;
 use Illuminate\Support\Carbon;
-use App\CustomFunction\diaryDisplayPreProcessing;
+use App\UseCases\Diary\ShapeStatisticFromDiaries;
 
 class ShowDiaryController extends Controller
 {
+    public function __construct(
+        private ShapeStatisticFromDiaries $shapeStatisticFromDiaries
+    ) {
+    }
     public function getMonthArchive($year, $month)
     {
 
@@ -39,7 +43,7 @@ class ShowDiaryController extends Controller
         }
 
         //個別→配列の配列
-        $diaries = diaryDisplayPreProcessing::shapeStatisticFromDiaries($diaries);
+        $diaries = $this->shapeStatisticFromDiaries->invoke($diaries);
 
         return view('diary/archive/monthArchive', ['diaries' => $diaries, 'month' => $month, 'year' => $year, 'statisticPerMonth' => $statisticPerMonth]);
     }
@@ -68,7 +72,7 @@ class ShowDiaryController extends Controller
             }
         }
         //個別
-        $diaries = diaryDisplayPreProcessing::shapeStatisticFromDiaries($diaries);
+        $diaries = $this->shapeStatisticFromDiaries->invoke($diaries);
 
         return view('diary/archive/yearArchive', ['diaries' => $diaries, 'year' => $year, 'statisticPerYear' => $statisticPerYear]);
     }

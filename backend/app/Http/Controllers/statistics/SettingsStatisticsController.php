@@ -3,8 +3,6 @@
 namespace App\Http\Controllers\statistics;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
-use Illuminate\Support\Carbon;
 use App\Models\CustomNER;
 use App\Models\NERLabel;
 use App\Models\NlpPackageGenre;
@@ -15,12 +13,9 @@ use Illuminate\Support\Facades\Auth;
 class SettingsStatisticsController extends Controller
 {
     /**
-     * Undocumented function
-     *
-     * @param [type] $uuid
-     * @return void
+     * 統計設定を表示するメソッド
      */
-    public function get()
+    public function get(): \Illuminate\Contracts\View\View|\Illuminate\Contracts\View\Factory
     {
 
         //ユーザー定義固有表現ルール→ラベル名はbladeのif文で表示させるのでここではidのままでよい。
@@ -31,6 +26,7 @@ class SettingsStatisticsController extends Controller
         //ラベルIDからラベル名を取得→不要
 
         //パッケージ取得
+        /** ここ->get()->を外すと処理できなくなるので注意(不要に見えて必要) */
         $NlpPackageName = NlpPackageName::withoutGlobalScopes()->get()->all();
 
         //パッケージジャンル取得

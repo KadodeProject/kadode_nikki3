@@ -6,21 +6,10 @@ use App\Http\Controllers\Controller;
 use App\Models\Diary;
 use App\Models\Statistic;
 use Illuminate\Support\Carbon;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-
-use function PHPUnit\Framework\isEmpty;
 
 class ShowStatisticsController extends Controller
 {
-    /**
-     * Undocumented function
-     *
-     * @param [type] $request
-     * @return void
-     */
-
-
     public function __invoke()
     {
         $user_id = Auth::id();

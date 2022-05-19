@@ -260,7 +260,7 @@
         <p class="text-center my-4 mx-2 kiwi-maru text-sm">ラベルについては関根の拡張固有表現階層 ver7.1.2をベースとしております。下記をご覧ください。</p>
         <p class="text-center my-4 mx-2 kiwi-maru text-sm hover:text-button-main-color">
             <a rel="norefferrer" target="_blank"
-                href="https://github.com/Usuyuki/kadode_nikki3/wiki/21_%E5%9B%BA%E6%9C%89%E8%A1%A8%E7%8F%BE%E3%83%AB%E3%83%BC%E3%83%AB%E3%81%AE%E3%83%A9%E3%83%99%E3%83%AB%E5%90%8D">
+                href="https://github.com/Usuyuki/kadode_nikki3/wiki/12_%E5%9B%BA%E6%9C%89%E8%A1%A8%E7%8F%BE%E3%83%AB%E3%83%BC%E3%83%AB%E3%81%AE%E3%83%A9%E3%83%99%E3%83%AB%E5%90%8D">
                 かどで日記wiki_固有表現ルールのラベル名
             </a>
         </p>

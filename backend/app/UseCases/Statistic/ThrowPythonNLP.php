@@ -4,6 +4,9 @@ declare(strict_types=1);
 
 namespace App\UseCases\Statistic;
 
+/**
+ * exec経由でpythonに自然言語処理を投げるクラス
+ */
 class ThrowPythonNLP
 {
     /**

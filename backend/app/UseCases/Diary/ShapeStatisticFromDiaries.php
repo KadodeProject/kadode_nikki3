@@ -1,24 +1,17 @@
 <?php
-
-/**
- * これは現在使っていない関数
- * 統計情報をPHP側で処理していた時代の遺構(日記の文字数推移や執筆率で使用していた)
- */
-
-namespace App\CustomFunction;
+namespace App\UseCases\Diary;
 
 use Illuminate\Support\Carbon;
+use Illuminate\Support\Collection;
 
-class diaryDisplayPreProcessing
+class ShapeStatisticFromDiaries
 {
     /**
      * アーカイブなどで日記の統計情報を表示するための前処理
      * 最新かの判定、jsonの変換など
      *
-     * @param [type] $diaries
-     * @return void
      */
-    public static function shapeStatisticFromDiaries($diaries)
+    public function invoke(Collection $diaries): Collection
     {
         /**
          * 該当日記の統計データの表示処理
