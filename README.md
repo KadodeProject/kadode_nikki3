@@ -6,8 +6,8 @@ https://kadodenikki3.usuyuki.net/
 
 # Operation
 ## CI
-[![LaravelPHPテスト](https://github.com/Usuyuki/kadode_nikki3/actions/workflows/laravelTester.yml/badge.svg)](https://github.com/Usuyuki/kadode_nikki3/actions/workflows/laravelTester.yml)
-
+[![LaravelPHPテスト](https://github.com/Usuyuki/kadode_nikki3/actions/workflows/laravelTester.yml/badge.svg)](https://github.com/Usuyuki/kadode_nikki3/actions/workflows/laravelTester.yml)  
+[![larastanでの静的解析とreviewdogコメント生成](https://github.com/Usuyuki/kadode_nikki3/actions/workflows/larastanReviewdog.yml/badge.svg)](https://github.com/Usuyuki/kadode_nikki3/actions/workflows/larastanReviewdog.yml)  
 [![自動デプロイ](https://github.com/Usuyuki/kadode_nikki3/actions/workflows/automatic_deploy.yml/badge.svg)](https://github.com/Usuyuki/kadode_nikki3/actions/workflows/automatic_deploy.yml)
 
 ※現在上記は手動にて対応中
