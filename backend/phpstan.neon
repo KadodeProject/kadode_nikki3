@@ -7,7 +7,7 @@ parameters:
         - app
 
     # The level 9 is the highest level
-    level: 1
+    level: 0
 
     excludePaths:
         - ./*/*/FileToBeExcluded.php
@@ -15,4 +15,3 @@ parameters:
     checkMissingIterableValueType: false
     checkGenericClassInNonGenericObjectType: false
     ignoreErrors:
-        - '#supplied for foreach, only iterables are supported#'
