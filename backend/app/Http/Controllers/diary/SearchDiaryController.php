@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Diary;
 use Illuminate\Http\Request;
 use App\UseCases\Diary\ShapeStatisticFromDiaries;
+use Illuminate\Support\Collection;
 
 class SearchDiaryController extends Controller
 {
@@ -26,6 +27,7 @@ class SearchDiaryController extends Controller
 
         //DB叩く 最近の日記から直近50個
         \DB::enableQueryLog();
+        /** @var Collection|null */
         $diaries = Diary::where("content", "like", "%$request->keyword%")->orderby("date", "desc")->take(200)->get();
         //クエリ時間取得
         $queryLog = \DB::getQueryLog();
