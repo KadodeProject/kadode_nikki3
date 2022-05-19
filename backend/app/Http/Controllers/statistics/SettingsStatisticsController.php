@@ -31,7 +31,7 @@ class SettingsStatisticsController extends Controller
 
         //パッケージジャンル取得
         foreach ($NlpPackageName as $packageObj) {
-            $packageObj->genre = NlpPackageGenre::where('id', $packageObj->genre_id)->get()->first()->name;
+            $packageObj->genre = NlpPackageGenre::where('id', $packageObj->genre_id)->first()->name;
         }
 
 

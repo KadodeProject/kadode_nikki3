@@ -15,4 +15,3 @@ parameters:
     checkMissingIterableValueType: false
     checkGenericClassInNonGenericObjectType: false
     ignoreErrors:
-        - '#supplied for foreach, only iterables are supported#'
