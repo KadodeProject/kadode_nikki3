@@ -4,12 +4,15 @@ namespace App\Http\Controllers\diary;
 
 use App\Http\Controllers\Controller;
 use App\Models\Diary;
-use Illuminate\Support\Carbon;
 use Illuminate\Http\Request;
-use App\CustomFunction\diaryDisplayPreProcessing;
+use App\UseCases\Diary\ShapeStatisticFromDiaries;
 
 class SearchDiaryController extends Controller
 {
+    public function __construct(
+        private ShapeStatisticFromDiaries $shapeStatisticFromDiaries
+    ) {
+    }
     public function post(Request $request)
     {
         //効果あるか分からないけれど、危険な変数のエスケープをする
@@ -34,7 +37,7 @@ class SearchDiaryController extends Controller
         $counter = 0;
         if (!empty($diaries)) {
 
-            $diaries = diaryDisplayPreProcessing::shapeStatisticFromDiaries($diaries);
+            $diaries = $this->shapeStatisticFromDiaries->invoke($diaries);
 
             /**
              * 日記文字ハイライト処理

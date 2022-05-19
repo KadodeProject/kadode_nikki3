@@ -3,18 +3,20 @@
 namespace App\Http\Controllers\diary;
 
 use App\Http\Controllers\Controller;
-use App\CustomFunction\diaryDisplayPreProcessing;
 use App\Models\Diary;
 use App\Models\Osirase;
 use App\Models\Releasenote;
-use App\Models\User;
 use App\Models\User_rank;
+use App\UseCases\Diary\ShapeStatisticFromDiaries;
 use Illuminate\Support\Carbon;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class homeDiaryController extends Controller
 {
+    public function __construct(
+        private ShapeStatisticFromDiaries $shapeStatisticFromDiaries
+    ) {
+    }
     /**
      * Undocumented function
      *
@@ -39,7 +41,7 @@ class homeDiaryController extends Controller
         $yesterday = null;
         $diaries = null;
         $latests = Diary::orderby("date", "desc")->take(10)->get();
-        $latests = diaryDisplayPreProcessing::shapeStatisticFromDiaries($latests);
+        $latests = $this->shapeStatisticFromDiaries->invoke($latests);
 
 
         /**

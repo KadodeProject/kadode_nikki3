@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers\diary;
 
-use App\CustomFunction\diaryDisplayPreProcessing;
 use App\Http\Controllers\Controller;
 use App\Models\Diary;
+use App\UseCases\Diary\ShapeStatisticFromDiaries;
 use Illuminate\Support\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -13,11 +13,13 @@ use Illuminate\Support\Str;
 
 class EditDiaryController extends Controller
 {
+    public function __construct(
+        private ShapeStatisticFromDiaries $shapeStatisticFromDiaries
+    ) {
+    }
     /**
      * Undocumented function
      *
-     * @param [type] $uuid
-     * @return void
      */
     public function get($uuid)
     {
@@ -62,7 +64,7 @@ class EditDiaryController extends Controller
             //where('id', '<>',$diary->id)で自分自身を除く
             if (!empty($diary->special_people)) {
                 $resembleDiaries = Diary::where('id', '<>', $diary->id)->where(DB::raw('json_extract(`special_people`, "$[0].name")'), $diary->special_people[0]['name'])->inRandomOrder()->limit(3)->get();
-                $resembleDiaries = diaryDisplayPreProcessing::shapeStatisticFromDiaries($resembleDiaries);
+                $resembleDiaries = $this->shapeStatisticFromDiaries->invoke($resembleDiaries);
             }
         }
 
