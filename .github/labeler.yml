@@ -3,11 +3,11 @@ backend:
   - any: ["backend/*", "!backend/public/*", "!backend/resources/*"]
 frontend:
   - any: ["backend/public/*", "backend/resources/*"]
-.ci:
+ci:
   - .github/*
-.infra:
+infra:
   - infra/*
-.docs:
+docs:
   - docs/*
 # 細かいもの
 tests:
