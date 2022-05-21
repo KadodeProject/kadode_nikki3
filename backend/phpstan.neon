@@ -7,7 +7,7 @@ parameters:
         - app
 
     # The level 9 is the highest level
-    level: 0
+    level: 1
 
     excludePaths:
         - ./*/*/FileToBeExcluded.php
