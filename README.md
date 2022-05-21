@@ -6,11 +6,16 @@ https://kadodenikki3.usuyuki.net/
 
 # Operation
 ## CI
-[![LaravelPHPテスト](https://github.com/Usuyuki/kadode_nikki3/actions/workflows/laravelTester.yml/badge.svg)](https://github.com/Usuyuki/kadode_nikki3/actions/workflows/laravelTester.yml)  
+[![LaravelPHPテスト](https://github.com/Usuyuki/kadode_nikki3/actions/workflows/laravelTester.yml/badge.svg)](https://github.com/Usuyuki/kadode_nikki3/actions/workflows/laravelTester.yml)
 [![larastanでの静的解析とreviewdogコメント生成](https://github.com/Usuyuki/kadode_nikki3/actions/workflows/larastanReviewdog.yml/badge.svg)](https://github.com/Usuyuki/kadode_nikki3/actions/workflows/larastanReviewdog.yml)  
-[![自動デプロイ](https://github.com/Usuyuki/kadode_nikki3/actions/workflows/automatic_deploy.yml/badge.svg)](https://github.com/Usuyuki/kadode_nikki3/actions/workflows/automatic_deploy.yml)
+[![自動デプロイ](https://github.com/Usuyuki/kadode_nikki3/actions/workflows/automatic_deploy.yml/badge.svg)](https://github.com/Usuyuki/kadode_nikki3/actions/workflows/automatic_deploy.yml)※現在デプロイは手動にて対応中
 
-※現在上記は手動にて対応中
+## LGTM
+[![Total alerts](https://img.shields.io/lgtm/alerts/g/Usuyuki/kadode_nikki3.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/Usuyuki/kadode_nikki3/alerts/)
+[![Language grade: JavaScript](https://img.shields.io/lgtm/grade/javascript/g/Usuyuki/kadode_nikki3.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/Usuyuki/kadode_nikki3/context:javascript)
+[![Language grade: Python](https://img.shields.io/lgtm/grade/python/g/Usuyuki/kadode_nikki3.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/Usuyuki/kadode_nikki3/context:python)
+
+
 ## Site
 
 
