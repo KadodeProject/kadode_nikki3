@@ -1,0 +1,21 @@
+# 大枠
+backend:
+  - any: ["backend/*", "!backend/public/*", "!backend/resources/*"]
+frontend:
+  - any: ["backend/public/*", "backend/resources/*"]
+.ci:
+  - .github/*
+.infra:
+  - infra/*
+.docs:
+  - docs/*
+# 細かいもの
+tests:
+  - backend/tests/*
+nlp:
+  - backend/python/*
+database-core:
+  - backend/database/migrations/*
+router:
+  - backend/routes/*
+env: -*.env*
