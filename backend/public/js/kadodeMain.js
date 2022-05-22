@@ -45,6 +45,13 @@ if (document.getElementById("diary-content") != null) {
     });
 }
 
+function diaryContentChange() {
+    window.addEventListener("beforeunload", function (event) {
+        event.preventDefault();
+        event.returnValue = "";
+    });
+}
+
 //ヘッダー時計用桁数調整
 // function set2fig(num) {
 //     // 桁数が1桁だったら先頭に0を加えて2桁に調整する

@@ -40,7 +40,7 @@
 
 
         <textarea placeholder="本文(20000字以内)" class="sm:p-4 w-full diary-content-edit  " type="text" name="content"
-            autocomplete="off" id="diary-content"
+            autocomplete="off" id="diary-content" oninput="diaryContentChange()"
             onkeydown="if((event.ctrlKey || event.metaKey)&&event.keyCode==13){document.getElementById('submitDiary').click();return false};">{{$original_content}}</textarea>
 
         <input style="height:2em" type="submit" class="kiwi-maru" id="submitDiary" value="日記を書き込む">
