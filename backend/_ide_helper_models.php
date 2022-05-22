@@ -60,7 +60,7 @@ namespace App\Models{
  * @property int|null $statistic_progress 生成状況(生成まで時間かかるので)
  * @property string|null $title タイトル
  * @property string $content 本文
- * @property string $date 日記の日付
+ * @property \Illuminate\Support\Carbon $date 日記の日付
  * @property mixed|null $sentence 一文ごとの位置(係り受けで使う)
  * @property mixed|null $chunk 係り受け構造
  * @property mixed|null $token 形態素分析された中身を格納 品詞(POS)、原形(lemma)などが存在

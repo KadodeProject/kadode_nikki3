@@ -45,6 +45,44 @@ if (document.getElementById("diary-content") != null) {
     });
 }
 
+// /**
+//  * 日記の変更あった時にページ遷移で警告だす←除外処理が手間なので一旦保留
+//  */
+// function diaryContentChange() {
+//     window.addEventListener("beforeunload", function (event) {
+//         event.preventDefault();
+//         event.returnValue = "";
+//     });
+// }
+// /**提出フォームの時は上のものを除外する */
+// let submitButton = document.getElementsByTagName("button");
+// $("input[type=submit]").on("click", function () {
+//     $(window).off("beforeunload");
+// });
+
+/*
+    送信時のボタンをかっこよくする
+    https://codepen.io/nourabusoud/pen/ypZzMM
+
+    Copyright (c) 2022 by Nour Saud (https://codepen.io/nourabusoud/pen/ypZzMM)
+    Released under the MIT license
+    http://opensource.org/licenses/mit-license.php
+*/
+if (document.getElementById("submitDiary") != null) {
+    let submitDiaryAnimation = function (e) {
+        e.preventDefault;
+        e.target.classList.remove("animate");
+
+        e.target.classList.add("animate");
+        setTimeout(function () {
+            e.target.classList.remove("animate");
+        }, 400);
+    };
+
+    let submitDiaryButton = document.getElementById("submitDiary");
+
+    submitDiaryButton.addEventListener("click", submitDiaryAnimation, false);
+}
 //ヘッダー時計用桁数調整
 // function set2fig(num) {
 //     // 桁数が1桁だったら先頭に0を加えて2桁に調整する

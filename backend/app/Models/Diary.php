@@ -55,7 +55,10 @@ class Diary extends Model
     protected $attributes = [
         "statistic_progress" => 0,
     ];
-
-    //日付設定
-    protected $dates = ['user_rank_updated_at'];
+    /**
+     * 日付の登録(format使えるように)
+     *
+     * @var array
+     */
+    protected $dates = ['date', 'created_at', 'updated_at'];
 }

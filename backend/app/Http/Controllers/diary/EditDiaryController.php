@@ -4,6 +4,7 @@ namespace App\Http\Controllers\diary;
 
 use App\Http\Controllers\Controller;
 use App\Models\Diary;
+use App\UseCases\Diary\ShapeContentWithNlp;
 use App\UseCases\Diary\ShapeStatisticFromDiaries;
 use Illuminate\Support\Carbon;
 use Illuminate\Http\Request;
@@ -14,7 +15,8 @@ use Illuminate\Support\Str;
 class EditDiaryController extends Controller
 {
     public function __construct(
-        private ShapeStatisticFromDiaries $shapeStatisticFromDiaries
+        private ShapeStatisticFromDiaries $shapeStatisticFromDiaries,
+        private ShapeContentWithNlp $shapeContentWithNlp,
     ) {
     }
     /**
@@ -39,6 +41,7 @@ class EditDiaryController extends Controller
 
         //undefined防止
         $resembleDiaries = [];
+        $contentWithNlp = [];
 
         //最新の情報のときのみ
         if ($diary->statistic_progress == 100 && $stati_update->gt($diary_update)) {
@@ -50,6 +53,8 @@ class EditDiaryController extends Controller
             $diary->important_words = array_values(json_decode($diary->important_words, true));
             $diary->special_people = array_values(json_decode($diary->special_people, true));
 
+            /** NLP付き表示を生成する */
+            $contentWithNlp = $this->shapeContentWithNlp->invoke($diary);
 
             /**
              * modelでの型定義とwhere("hoge->fuga")でjsonの中身引っ張ってこれる
@@ -68,7 +73,7 @@ class EditDiaryController extends Controller
             }
         }
 
-        return view('diary/edit', ['diary' => $diary, 'previous' => $previous, 'next' => $next, 'resembleDiaries' => $resembleDiaries,]);
+        return view('diary/edit', ['diary' => $diary, 'contentWithNlp' => $contentWithNlp, 'previous' => $previous, 'next' => $next, 'resembleDiaries' => $resembleDiaries,]);
     }
 
     public function newPage()

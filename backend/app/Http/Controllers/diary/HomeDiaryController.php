@@ -8,6 +8,7 @@ use App\Models\Osirase;
 use App\Models\Releasenote;
 use App\Models\User_rank;
 use App\UseCases\Diary\ShapeStatisticFromDiaries;
+use DateTime;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Auth;
 
@@ -108,6 +109,8 @@ class homeDiaryController extends Controller
         $i = 0;
         foreach ($oldDiaries as $diary) {
             if ($diary['date'] != "no") {
+                $oldDiariesDate = new DateTime($oldDiaries[$i]["date"]);
+                $oldDiaries[$i]["date"] = $oldDiariesDate->format("Y年n月j日");
                 $oldDiaries[$i]["is_latest_statistic"] = false;
                 //統計データがあり、その統計データが日記の内容と合致しているかの判断
                 if (isset($oldDiaries[$i]["updated_statistic_at"])) {

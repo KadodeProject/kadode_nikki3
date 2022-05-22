@@ -10,7 +10,6 @@ use Tests\TestCase;
 
 class ShapeStatisticFromDiariesTest extends TestCase
 {
-
     /** @test */
     public function コレクションを与えて、コレクションが帰ってくる()
     {

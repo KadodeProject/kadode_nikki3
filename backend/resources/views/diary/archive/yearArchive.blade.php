@@ -63,7 +63,7 @@
         {{$diary->content}}
         @endslot
         @slot("date")
-        {{$diary->date}}
+        {{$diary->date->format("Y年n月j日")}}
         @endslot
         <!--統計部分の処理ここから-->
         @if($diary->is_latest_statistic)
