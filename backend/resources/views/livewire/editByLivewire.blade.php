@@ -12,7 +12,7 @@
             @isset($next)
             <p class="md:mr-12 md:mt-12 p-2 text-xl borer-2 border-border-main-color kiwi-maru"><a
                     style="vertical-align: middle;" href="{{url('/edit')}}/{{$next->uuid}}"><span
-                        class="material-icons">arrow_back</span> {{$next->date}}</a></p>
+                        class="material-icons">arrow_back</span> {{$next->date->format("Y年n月j日")}}</a></p>
             @else
             <p class="md:mr-12 md:mt-12 p-2 text-xl borer-2 border-border-main-color kiwi-maru"><span
                     class="material-icons ">arrow_back</span><span class="material-icons">remove_circle_outline</span>
@@ -23,7 +23,7 @@
         <nav class="order-2 md:order-3">
             @isset($previous)
             <p class="md:ml-12 md:mt-12 p-2 text-xl borer-2 border-border-main-color kiwi-maru"><a
-                    style="vertical-align: middle;" href="{{url('/edit')}}/{{$previous->uuid}}"> {{$previous->date}}
+                    style="vertical-align: middle;" href="{{url('/edit')}}/{{$previous->uuid}}"> {{$previous->date->format("Y年n月j日")}}
                     <span class="material-icons">arrow_forward</span></a></p>
             @else
             <p class="md:mr-12 md:mt-12 p-2 text-xl borer-2 border-border-main-color kiwi-maru">日記なし <span
@@ -40,7 +40,7 @@
             {{$diary->uuid}}
             @endslot
             @slot("original_date")
-            {{$diary->date}}
+            {{$diary->date->format("Y年n月j日")}}
             @endslot
             @slot("original_title")
             {{$diary->title}}
@@ -54,7 +54,7 @@
 
     @component('components.diary.breadcrumbDate')
     @slot("date")
-    {{$diary->date}}
+    {{$diary->date->format("Y年n月j日")}}
     @endslot
     @endcomponent
     @if($diary->is_latest_statistic==true)
@@ -79,7 +79,7 @@
             {{$resembleDiary->content}}
             @endslot
             @slot("date")
-            {{$resembleDiary->date}}
+            {{$resembleDiary->date->format("Y年n月j日")}}
             @endslot
             <!--統計部分の処理ここから-->
             @if($resembleDiary->is_latest_statistic)

@@ -50,7 +50,7 @@
             {{$yesterday->content}}
             @endslot
             @slot("date")
-            {{$yesterday->date}}
+            {{$yesterday->date->format("Y年n月j日")}}
             @endslot
             @endcomponent
             @endempty
@@ -87,7 +87,7 @@
             {{$today->content}}
             @endslot
             @slot("date")
-            {{$today->date}}
+            {{$today->date->format("Y年n月j日")}}
             @endslot
 
             @endcomponent
@@ -112,7 +112,7 @@
         {{$diary->content}}
         @endslot
         @slot("date")
-        {{$diary->date}}
+        {{$diary->date->format("Y年n月j日")}}
         @endslot
         <!--統計部分の処理ここから-->
         @if($diary->is_latest_statistic)
