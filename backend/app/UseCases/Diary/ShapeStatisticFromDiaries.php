@@ -1,16 +1,18 @@
 <?php
+
 namespace App\UseCases\Diary;
 
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Collection;
 
+/**
+ * アーカイブなどで日記の統計情報を表示するための前処理
+ * 最新かの判定、jsonの変換など
+ *
+ */
 class ShapeStatisticFromDiaries
 {
-    /**
-     * アーカイブなどで日記の統計情報を表示するための前処理
-     * 最新かの判定、jsonの変換など
-     *
-     */
+
     public function invoke(Collection $diaries): Collection
     {
         /**
