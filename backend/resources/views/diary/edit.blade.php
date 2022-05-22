@@ -80,6 +80,9 @@
     <div class="tab_content" id="viewDiaryContent">
         @if($diary->statistic_progress==100)
         @if($diary->is_latest_statistic==true)
+        @php
+        var_dump($contentWithNlp);
+        @endphp
         <p class="kiwi-maru diaryContentWrapper">{{$diary->content}}</p>
         @else
         <h3 class="kiwi-maru text-sm text-status-poor text-center my-6 mx-2">統計情報が最新でないため、<br

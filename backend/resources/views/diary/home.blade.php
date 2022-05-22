@@ -39,18 +39,21 @@
             @empty($yesterday)
             <h3 class="text-center text-3xl my-20 kiwi-maru">昨日の日記なし</h3>
             @else
-            @component('components.diary.latestDiaryContent')
-            @slot("uuid")
+            @component('components.diary.submitForm')
+            @slot("db_method")
+            update
+            @endslot
+            @slot("original_uuid")
             {{$yesterday->uuid}}
             @endslot
-            @slot("title")
+            @slot("original_date")
+            {{$yesterday->date->format("Y-m-d")}}
+            @endslot
+            @slot("original_title")
             {{$yesterday->title}}
             @endslot
-            @slot("content")
+            @slot("original_content")
             {{$yesterday->content}}
-            @endslot
-            @slot("date")
-            {{$yesterday->date->format("Y年n月j日")}}
             @endslot
             @endcomponent
             @endempty
@@ -75,22 +78,25 @@
             @endcomponent
 
             @else
-            <!--今日の日記あるときは、日記枠を表示-->
-            @component('components.diary.latestDiaryContent')
-            @slot("uuid")
+            <!--今日の日記あるときも、日記枠を表示-->
+            @component('components.diary.submitForm')
+            @slot("db_method")
+            update
+            @endslot
+            @slot("original_uuid")
             {{$today->uuid}}
             @endslot
-            @slot("title")
+            @slot("original_date")
+            {{$today->date->format("Y-m-d")}}
+            @endslot
+            @slot("original_title")
             {{$today->title}}
             @endslot
-            @slot("content")
+            @slot("original_content")
             {{$today->content}}
             @endslot
-            @slot("date")
-            {{$today->date->format("Y年n月j日")}}
-            @endslot
-
             @endcomponent
+
             @endempty
         </div>
 
@@ -112,7 +118,7 @@
         {{$diary->content}}
         @endslot
         @slot("date")
-        {{$diary->date->format("Y年n月j日")}}
+        {{$diary->date->format('Y年n月j日')}}
         @endslot
         <!--統計部分の処理ここから-->
         @if($diary->is_latest_statistic)
