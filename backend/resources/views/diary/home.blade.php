@@ -37,7 +37,23 @@
     <div class="diary-main">
         <div class="sm:order-1 order-2">
             @empty($yesterday)
-            <h3 class="text-center text-3xl my-20 kiwi-maru">昨日の日記なし</h3>
+
+            @component('components.diary.submitForm')
+            @slot("db_method")
+            create
+            @slot("original_uuid")
+            @endslot
+            @endslot
+            @slot("original_date")
+            {{date("Y-m-d", strtotime("-1 day"))}}
+            @endslot
+            @slot("original_title")
+            @endslot
+
+            @slot("original_content")
+            @endslot
+            @endcomponent
+
             @else
             @component('components.diary.submitForm')
             @slot("db_method")
@@ -68,7 +84,7 @@
             @endslot
             @endslot
             @slot("original_date")
-            {{$this_day}}
+            {{date("Y-m-d")}}
             @endslot
             @slot("original_title")
             @endslot
