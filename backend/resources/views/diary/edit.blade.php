@@ -81,8 +81,11 @@
         @if($diary->statistic_progress==100)
         @if($diary->is_latest_statistic==true)
         <p class="kiwi-maru diaryContentWrapper">
-            @foreach($contentWithNlp as $word)<span class="" style="color:{{$word['color']}}"
-                title="{{$word['xPOSTag']}}">{{$word['form']}}</span>@endforeach
+            @php
+            //改行と半角スペースを作り直す処理
+            @endphp
+            @foreach($contentWithNlp as $word)@if($word['form']=="\r\n\r\n")<br>@endif<span class=""
+                style="color:{{$word['color']}}" title="{{$word['xPOSTag']}}">{{$word['form']}}</span>@endforeach
         </p>
         @else
         <h3 class="kiwi-maru text-sm text-status-poor text-center my-6 mx-2">統計情報が最新でないため、<br
