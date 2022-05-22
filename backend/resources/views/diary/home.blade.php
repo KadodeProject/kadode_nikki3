@@ -56,7 +56,7 @@
             {{$yesterday->content}}
             @endslot
             @slot("date")
-            {{$yesterday->date}}
+            {{$yesterday->date->format("Y年n月j日")}}
             @endslot
             @endcomponent
             @endempty

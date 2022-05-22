@@ -83,9 +83,19 @@
         <p class="kiwi-maru diaryContentWrapper">
             @php
             //改行と半角スペースを作り直す処理
+            //ctype_alnumは半角英数字のみを判定する関数
+            $previous="";
+            /**
+            * 半角スペース判定→半角英数が続いているか？
+            * 改行判定\r\n\r\があるか？
+            *
+            * 下で改行をしていないのはspanタグの中に改行を入れないため（分かち書きになってしまう）
+            */
             @endphp
-            @foreach($contentWithNlp as $word)@if($word['form']=="\r\n\r\n")<br>@endif<span class=""
-                style="color:{{$word['color']}}" title="{{$word['xPOSTag']}}">{{$word['form']}}</span>@endforeach
+            @foreach($contentWithNlp as
+            $word)@if($word['form']=="\r\n\r\n")<br>@elseif(ctype_alnum($previous)&&$word['form'])&nbsp;@endif<span
+                class="wakati" @php $previous=$word['form']; @endphp style="color:{{$word['color']}}"
+                title="{{$word['xPOSTag']}}">{{$word['form']}}</span>@endforeach
         </p>
         @else
         <h3 class="kiwi-maru text-sm text-status-poor text-center my-6 mx-2">統計情報が最新でないため、<br
@@ -101,7 +111,6 @@
                 class="md:hidden">ハイライトはありません</h3>
         <p class="kiwi-maru diaryContentWrapper">{{$diary->content}}</p>
         @endif
-
     </div>
     <div class="tab_content" id="viewStatisticContent">
         <div class="mb-12  md:w-2/3 md:mx-auto">
