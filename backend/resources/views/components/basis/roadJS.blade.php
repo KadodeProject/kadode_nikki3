@@ -1,1 +1,1 @@
-<script type="text/javascript" src="{{ asset('js/kadodeMain.js') }}?ver=20.2"></script>
+<script type="text/javascript" src="{{ asset('js/kadodeMain.js') }}?ver=21.3"></script>
