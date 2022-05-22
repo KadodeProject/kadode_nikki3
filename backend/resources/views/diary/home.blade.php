@@ -36,40 +36,27 @@
 
     <div class="diary-main">
         <div class="sm:order-1 order-2">
+            @php
+            /**
+            * 昨日の日記も同一ページで編集したいが、JSの切り替えが手間なため一旦この機能はリバートした。
+            * id被りによるJSの意図しない動作（保存時のアニメーションと、ショートカットキーで別日の日記保存)はidかぶらせずすれば治るので、応急処置はできるがコード汚くなるので。
+            */
+            @endphp
             @empty($yesterday)
-
-            @component('components.diary.submitForm')
-            @slot("db_method")
-            create
-            @slot("original_uuid")
-            @endslot
-            @endslot
-            @slot("original_date")
-            {{date("Y-m-d", strtotime("-1 day"))}}
-            @endslot
-            @slot("original_title")
-            @endslot
-
-            @slot("original_content")
-            @endslot
-            @endcomponent
-
+            <h3 class="text-center text-3xl my-20 kiwi-maru">昨日の日記なし</h3>
             @else
-            @component('components.diary.submitForm')
-            @slot("db_method")
-            update
-            @endslot
-            @slot("original_uuid")
+            @component('components.diary.latestDiaryContent')
+            @slot("uuid")
             {{$yesterday->uuid}}
             @endslot
-            @slot("original_date")
-            {{$yesterday->date->format("Y-m-d")}}
-            @endslot
-            @slot("original_title")
+            @slot("title")
             {{$yesterday->title}}
             @endslot
-            @slot("original_content")
+            @slot("content")
             {{$yesterday->content}}
+            @endslot
+            @slot("date")
+            {{$yesterday->date}}
             @endslot
             @endcomponent
             @endempty
