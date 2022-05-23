@@ -1040,3 +1040,19 @@ input[name="tab_item"] {
     background-color: var(--button-main-color);
     color: var(--text-main-color);
 }
+
+input[name="do_wakati"] {
+    display: none;
+}
+.wakati-button {
+    color: var(--text-main-color);
+    cursor: pointer;
+    user-select: none;
+}
+#doWakati:checked + .wakati-button {
+    color: var(--logo-main-color);
+}
+#doWakati:checked ~ .diaryContentWrapper > .wakati::after {
+    content: "/";
+    color: var(--button-main-color);
+}

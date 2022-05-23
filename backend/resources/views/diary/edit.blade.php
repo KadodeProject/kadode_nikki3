@@ -80,6 +80,9 @@
     <div class="tab_content" id="viewDiaryContent">
         @if($diary->statistic_progress==100)
         @if($diary->is_latest_statistic==true)
+        <input id="doWakati" type="checkbox" name="do_wakati">
+        <label class="wakati-button md:mx-auto mx-4 mt-2 mb-4 inline-block" for="doWakati"><span
+                class="material-icons">content_cut</span>分かち書きモード</label>
         <p class="kiwi-maru diaryContentWrapper">
             @php
             //改行と半角スペースを作り直す処理
@@ -236,11 +239,11 @@
                 @endcomponent
                 @endforeach
             </div>
+            @endempty
+            @else
+            {{-- <h3 class="text-center text-sm my-20 kiwi-maru">統計情報が最新でないため、関連日記も表示していません。</h3> --}}
+            @endif
         </div>
-        @endempty
-        @else
-        {{-- <h3 class="text-center text-sm my-20 kiwi-maru">統計情報が最新でないため、関連日記も表示していません。</h3> --}}
-        @endif
     </div>
 </div>
 <div class="my-12">
