@@ -9,7 +9,7 @@ use App\Models\NlpPackageGenre;
 use App\Models\NlpPackageName;
 use App\UseCases\NERLabel\GetAllNERLabelInOptionTabFormat;
 
-class PackageAdminController extends Controller
+class ShowPackageAdminController extends Controller
 {
     public function __construct(
         private GetAllNERLabelInOptionTabFormat $getAllNERLabelInOptionTabFormat
@@ -18,10 +18,10 @@ class PackageAdminController extends Controller
     public function __invoke()
     {
         //パッケージ表示(最近更新のあったものから取り出す)
-        $NlpPackageName = NlpPackageName::withoutGlobalScopes()->orderBy('updated_at', 'desc')->get();
+        $nlpPackageName = NlpPackageName::withoutGlobalScopes()->orderBy('updated_at', 'desc')->get();
         //パッケージジャンル表示
-        $NlpPackageGenre = NlpPackageGenre::get();
+        $nlpPackageGenre = NlpPackageGenre::get();
 
-        return view('admin/packages/index', ['NlpPackageName' => $NlpPackageName, 'NlpPackageGenre' => $NlpPackageGenre,]);
+        return view('admin/packages/index', ['nlpPackageName' => $nlpPackageName, 'nlpPackageGenre' => $nlpPackageGenre,]);
     }
 }

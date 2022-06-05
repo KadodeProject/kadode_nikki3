@@ -20,7 +20,6 @@
 
 
         <div class="statistic-content">
-            @include('components.statisticHeading',['icon'=>'category','title'=>'パッケージ中身'])
 
             <h2 class="text-center kiwi-maru mt-12 mb-2 text-2xl ">固有表現ルール</h2>
             <p class="text-center my-4 mx-2 kiwi-maru text-sm">ラベルについては関根の拡張固有表現階層 ver7.1.2をベースとしております。下記をご覧ください。</p>
