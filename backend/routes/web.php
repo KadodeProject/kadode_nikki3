@@ -28,7 +28,8 @@ use App\Http\Controllers\statistics\NamedEntityStatisticsController;
 
 use App\Http\Controllers\admin\HomeAdminController;
 use App\Http\Controllers\admin\NotificationBroadcasterAdminController;
-use App\Http\Controllers\admin\PackageAdminController;
+use App\Http\Controllers\admin\packages\PackageAdminController;
+use App\Http\Controllers\admin\packages\ShowIndividualPackage;
 use App\Http\Controllers\admin\Role_rankAdminController;
 
 use App\Http\Controllers\packages\GenrePackagesController;
@@ -178,6 +179,7 @@ Route::middleware(['administrator'])->group(function () {
     Route::get('/administrator', HomeAdminController::class)->name('home');
     Route::get('/administrator/notification', NotificationBroadcasterAdminController::class)->name('notification');
     Route::get('/administrator/package', PackageAdminController::class)->name('package');
+    Route::get('/administrator/package/{packageId}', ShowIndividualPackage::class)->name('packageIndividual');
     Route::get('/administrator/role_rank', Role_rankAdminController::class)->name('role');
 
     //パッケージ名前系
