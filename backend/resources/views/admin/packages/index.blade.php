@@ -48,7 +48,7 @@
                         <td>
                             <select name="NlpPackageGenre_id">
                                 <option disabled value>ジャンルを選ぶ</option>
-                                @foreach($NlpPackageGenre as $packageGenre)
+                                @foreach($nlpPackageGenre as $packageGenre)
                                 <option value="{{$packageGenre->id}}">{{$packageGenre->name}}</option>
                                 @endforeach
                             </select>
@@ -78,27 +78,27 @@
 
 
                 {{-- 登録済みデータ表示 --}}
-                @isset($NlpPackageName)
-                @foreach($NlpPackageName as $PackageObj)
+                @isset($nlpPackageName)
+                @foreach($nlpPackageName as $packageObj)
                 @php
                 $i+=1;
                 @endphp
                 <tr>
                     <form class="" method="POST" action="/administrator/settings/packages/update">
                         @csrf
-                        <input type="hidden" name="NlpPackageName_id" value="{{$PackageObj->id}}">
+                        <input type="hidden" name="NlpPackageName_id" value="{{$packageObj->id}}">
                         <td>
                             {{$i}}
                         </td>
                         <td>
-                            <input type="text" name="name" autocomplete="off" value="{{$PackageObj->name}}"
+                            <input type="text" name="name" autocomplete="off" value="{{$packageObj->name}}"
                                 onkeydown="if((event.ctrlKey || event.metaKey)&&event.keyCode==13){document.getElementById('submitNlpPackageName_{{$i}}').click();return false};">
                         </td>
                         <td>
                             <select name="NlpPackageGenre_id">
                                 <option disabled value>ジャンルを選ぶ</option>
-                                @foreach($NlpPackageGenre as $packageGenre)
-                                @if($packageGenre->id==$PackageObj->genre_id)
+                                @foreach($nlpPackageGenre as $packageGenre)
+                                @if($packageGenre->id==$packageObj->genre_id)
                                 <option selected value="{{$packageGenre->id}}">{{$packageGenre->name}}</option>
                                 @else
                                 <option value="{{$packageGenre->id}}">{{$packageGenre->name}}</option>
@@ -109,22 +109,22 @@
                         </td>
                         <td>
                             <input type="text" name="description" autocomplete="off"
-                                value="{{$PackageObj->description}}"
+                                value="{{$packageObj->description}}"
                                 onkeydown="if((event.ctrlKey || event.metaKey)&&event.keyCode==13){document.getElementById('submitNlpPackageName_{{$i}}').click();return false};">
                         </td>
                         <td>
                             <select name="is_publish">
-                                @if($PackageObj->is_publish=="公開")
+                                @if($packageObj->is_publish=="公開")
                                 <option selected value="公開">公開</option>
                                 <option value="非公開">非公開</option>
-                                @elseif($PackageObj->is_publish=="非公開")
+                                @elseif($packageObj->is_publish=="非公開")
                                 <option value="公開">公開</option>
                                 <option selected value="非公開">非公開</option>
                                 @endif
                             </select>
                         </td>
                         <td>
-                            <a class="button-bg-main-color p-2 rounded-2xl" href="{{url("/administrator/package/".$packageGenre->id)}}">編集</a>
+                            <a class="button-bg-main-color p-2 rounded-2xl" href="{{url("/administrator/package/".$packageObj->id)}}">編集</a>
                         </td>
                         <td>
                             <input type="submit" id="submitNlpPackageName_{{$i}}" class="text-black" value="変更">
@@ -133,7 +133,7 @@
                     <form class="" method="POST" action="/administrator/settings/packages/delete">
                         @csrf
                         <td>
-                            <input type="hidden" name="NlpPackageName_id" value="{{$PackageObj->id}}">
+                            <input type="hidden" name="NlpPackageName_id" value="{{$packageObj->id}}">
                             <input type="submit" class="text-black" value="削除">
                         </td>
                     </form>
@@ -209,8 +209,8 @@
                     </form>
                 </tr>
                 {{-- 登録済みデータ表示 --}}
-                @isset($NlpPackageGenre)
-                @foreach($NlpPackageGenre as $PackageGenre)
+                @isset($nlpPackageGenre)
+                @foreach($nlpPackageGenre as $PackageGenre)
                 @php
                 $i+=1;
                 @endphp
