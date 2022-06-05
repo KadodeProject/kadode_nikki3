@@ -345,9 +345,9 @@
                                     * 正規表現で該当するところにselectedをつける
                                     * mb_ereg_replaceはセパレータ不要
                                     */
-                                    $willSelect="<option value='".$NER->label_id."'>";
-                                        $selected="
-                                    <option selected value='".$NER->label_id."'>";
+                                    $willSelect='<option value="'.$NER->label_id.'">';
+                                        $selected='
+                                    <option selected value="'.$NER->label_id.'">';
 
                                         $NERLabelsInOptionTabFormatWithSelected=mb_ereg_replace($willSelect,$selected,$NERLabelsInOptionTabFormat);
                                         @endphp
