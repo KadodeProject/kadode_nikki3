@@ -30,7 +30,7 @@ class ShowIndividualPackage extends Controller
 
         if ($packageObj->genre_id == 1) {
             //固有表現パッケージだったら
-            $packageObj->packageNER = PackageNER::where('package_id', $packageObj->id)->get();
+            $packageObj->packageNER = PackageNER::where('package_id', $packageObj->id)->orderBy('updated_at', 'desc')->get();
         }
 
         //固有表現ラベル取得
