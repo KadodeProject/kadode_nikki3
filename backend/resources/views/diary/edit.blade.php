@@ -78,43 +78,7 @@
         @endcomponent
     </div>
     <div class="tab_content" id="viewDiaryContent">
-        @if($diary->statistic_progress==100)
-        @if($diary->is_latest_statistic==true)
-        <input id="doWakati" type="checkbox" name="do_wakati">
-        <label class="wakati-button md:mx-auto mx-4 mt-2 mb-4 inline-block" for="doWakati"><span
-                class="material-icons">content_cut</span>分かち書きモード</label>
-        <p class="kiwi-maru diaryContentWrapper">
-            @php
-            //改行と半角スペースを作り直す処理
-            //ctype_alnumは半角英数字のみを判定する関数
-            $previous="";
-            /**
-            * 半角スペース判定→半角英数が続いているか？
-            * 改行判定は不要→改行コード\r\nをエスケープしないようにした
-            * XSS攻撃対策のため{!! nl2br(e($diary->content)) !!}をしている。
-            *
-            * 下で改行をしていないのはspanタグの中に改行を入れないため（分かち書きになってしまう）
-            */
-            @endphp
-            @foreach($contentWithNlp as
-            $word)@if(ctype_alnum($previous)&&ctype_alnum($word['form']))&nbsp;@endif<span class="wakati" @php
-                $previous=$word['form']; @endphp style="color:{{$word['color']}}" title="{{$word['xPOSTag']}}">{!!
-                nl2br(e($word['form'])) !!}</span>@endforeach
-        </p>
-        @else
-        <h3 class="kiwi-maru text-sm text-status-poor text-center my-6 mx-2">統計情報が最新でないため、<br
-                class="md:hidden">ハイライトはありません</h3>
         <p class="kiwi-maru diaryContentWrapper">{!! nl2br(e($diary->content)) !!}</p>
-        @endif
-        @elseif($diary->statistic_progress==0)
-        <h3 class="kiwi-maru text-sm text-status-poor text-center my-6 mx-2">統計情報が生成されていないため、<br
-                class="md:hidden">ハイライトはありません</h3>
-        <p class="kiwi-maru diaryContentWrapper">{!! nl2br(e($diary->content)) !!}</p>
-        @else
-        <h3 class="kiwi-maru text-sm text-status-poor text-center my-6 mx-2">統計情報を生成中のため、<br
-                class="md:hidden">ハイライトはありません</h3>
-        <p class="kiwi-maru diaryContentWrapper">{!! nl2br(e($diary->content)) !!}</p>
-        @endif
     </div>
     <div class="tab_content" id="viewStatisticContent">
         <div class="mb-12  md:w-2/3 md:mx-auto">
