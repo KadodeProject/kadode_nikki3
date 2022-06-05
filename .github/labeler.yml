@@ -1,28 +1,28 @@
 # 大枠
-backend:
+⚙backend:
   - any: ["backend/*", "!backend/public/*", "!backend/resources/*"]
-frontend:
-  - all: ["backend/public/*", "backend/resources/*"]
-ci:
+💻frontend:
+  - any: ["backend/public/*", "backend/resources/*"]
+✈ci:
   - .github/*
   - backend/env.ci
-infra:
+⚡infra:
   - backend/composer.json
   - backend/composer.lock
   - backend/package.json
   - backend/package-lock.json
   - backend/env.example
-localInfra:
+🏠localInfra:
   - infra/*
   - docker-compose.yml
-docs:
+📄docs:
   - docs/*
 # 細かいもの
-tests:
+🧪tests:
   - backend/tests/*
-nlp:
+🍃nlp:
   - backend/python/*
-database-core:
+📦database-core:
   - backend/database/migrations/*
-router:
+🔗router:
   - backend/routes/*
