@@ -4,7 +4,7 @@
 </div>
 
 <div id="smFooter"
-    class="bg-main-color w-full border-border-main-color border-t-2  fixed bottom-0 right-0 sm:hidden flex  justify-around items-center "
+    class="bg-main-color w-full border-border-main-color border-t-2  fixed bottom-0 right-0 sm:hidden flex  justify-around items-center z-10"
     style="height: 60px">
     <p><a class="flex justify-center flex-col" href="{{url("/home")}}"><span
                 class="material-icons mx-auto">home</span><span class="text-xs">ホーム</span></a></p>
