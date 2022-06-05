@@ -1,11 +1,8 @@
 # 大枠
 backend:
-  - backend/*
-  - !backend/public/*
-  - !backend/resources/*
+  - any: ["backend/*", "!backend/public/*", "!backend/resources/*"]
 frontend:
-  - backend/public/*
-  - backend/resources/*
+  - all: ["backend/public/*", "backend/resources/*"]
 ci:
   - .github/*
   - backend/env.ci
