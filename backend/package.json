@@ -26,7 +26,7 @@
         "chart.js": "^3.8.0",
         "chartjs-plugin-annotation": "^1.4.0",
         "d3": "^7.4.4",
-        "d3.layout.cloud": "^1.2.0",
+        "d3-cloud": "^1.2.5",
         "vis-timeline": "^7.5.1"
     }
 }

@@ -17,6 +17,7 @@ mix.js("resources/js/app.js", "public/js")
     .js("resources/js/statistics/totalStatistics.js", "public/js")
     .js("resources/js/statistics/shortStatistics.js", "public/js")
     .js("resources/js/statistics/drawWordCloud.js", "public/js")
+    .js("resources/js/statistics/drawTimeline.js", "public/js")
     .postCss("resources/css/app.css", "public/css", [
         require("postcss-import"),
         require("tailwindcss"),

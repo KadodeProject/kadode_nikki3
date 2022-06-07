@@ -3,7 +3,7 @@
 <script>
     // 月ごとの日記執筆率
     const chartWritingRatePerMonth_id = document.getElementById('chartWritingRatePerMonth');
-    var chartWritingRatePerMonth = new Chart(chartWritingRatePerMonth_id, {
+    let chartWritingRatePerMonth = new Chart(chartWritingRatePerMonth_id, {
         type: 'bar',
         data: {
             labels: [

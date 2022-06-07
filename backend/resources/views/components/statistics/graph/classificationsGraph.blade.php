@@ -5,7 +5,7 @@
 <!--進行中のときの動作-->
 <script>
     const chartNlpClassfications_id = document.getElementById('chartNlpClassfications');
-          var chartNlpClassfications = new Chart(chartNlpClassfications_id, {
+          let chartNlpClassfications = new Chart(chartNlpClassfications_id, {
             type: 'pie',
             data: {
               labels: [

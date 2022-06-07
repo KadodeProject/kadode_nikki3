@@ -6,7 +6,7 @@
     //ここからNLP周り
       // {{$pof_name}}登場順
              const chartTotal{{$slug}}Asc_id = document.getElementById('chartTotal{{$slug}}Asc');
-              var chartTotal{{$slug}}Asc = new Chart(chartTotal{{$slug}}Asc_id, {
+              let chartTotal{{$slug}}Asc = new Chart(chartTotal{{$slug}}Asc_id, {
                 type: 'bar',
                 data: {
                 labels: [

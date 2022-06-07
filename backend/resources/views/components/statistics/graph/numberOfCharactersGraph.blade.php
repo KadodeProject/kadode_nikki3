@@ -4,7 +4,7 @@
     //月ごとの合計文字数
   // 月ごとの1日記あたりの平均文字数
   const chartCharactersPerMonth_id = document.getElementById('chartCharactersPerMonth');
-  var chartCharactersPerMonth = new Chart(chartCharactersPerMonth_id, {
+  let chartCharactersPerMonth = new Chart(chartCharactersPerMonth_id, {
             type: 'line',
   data: {
       labels: [

@@ -6,7 +6,7 @@
 <!--進行中のときの動作-->
 <script>
     const chartNlpAnalyzing_id = document.getElementById('chartNlpAnalyzing');
-          var chartNlpAnalyzing = new Chart(chartNlpAnalyzing_id, {
+          let chartNlpAnalyzing = new Chart(chartNlpAnalyzing_id, {
               type: 'pie',
               data: {
         labels: ['分析済み','未分析'],

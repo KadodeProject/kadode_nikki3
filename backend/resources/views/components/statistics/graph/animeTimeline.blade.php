@@ -7,12 +7,10 @@
     }
 </style>
 <div id="animeTimeline"></div>
-<script>
-    // DOM element where the Timeline will be attached
-        var container = document.getElementById('animeTimeline');
+<script src="{{ mix('js/drawTimeline.js') }}"></script>
 
-        // Create a DataSet (allows two way data-binding)
-        var items = new vis.DataSet([
+<script>
+    let timeline_data=[
             @foreach($anime_timeline as $anime)
             {
                 id: {{$anime[0]}},
@@ -21,13 +19,6 @@
             },
             @endforeach
 
-        ]);
-
-        // Configuration for the Timeline
-        var options = {
-            // height: '200px',
-        };
-
-        // Create a Timeline
-        var timeline = new vis.Timeline(container, items, options);
+        ];
+        drawTimeline('animeTimeline',timeline_data);
 </script>
