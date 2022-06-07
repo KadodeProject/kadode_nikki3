@@ -1,0 +1,163 @@
+input[type="text"],
+input[type="password"],
+input[type="email"] {
+    background-color: var(--bg-main-color);
+    border: 1px solid var(--button-main-color);
+    color: var(--text-main-color);
+}
+input[type="text"]::placeholder,
+input[type="password"]::placeholder,
+input[type="email"]::placeholder {
+    font-family: "Kiwi Maru", serif;
+    color: var(--border-main-color);
+}
+input[type="date"] {
+    color: var(--text-main-color);
+    background-color: var(--bg-main-color);
+    border-color: var(--button-main-color);
+}
+.submit-button {
+    background-color: var(--button-main-color);
+    color: var(--text-main-color);
+    cursor: pointer;
+    border-radius: 4px 4px 0 0;
+    padding: 0.25em 0.5em;
+}
+select {
+    color: var(--text-main-color);
+    background-color: var(--bg-main-color);
+    border-color: var(--button-main-color);
+}
+
+header {
+    border-bottom: 1px solid var(--border-main-color);
+}
+footer {
+    border-top: 1px solid var(--border-main-color);
+}
+p a {
+    transition: 1s;
+}
+p a:hover {
+    color: var(--button-main-color);
+}
+.list-decimal li {
+    margin-left: 1em;
+}
+li ol {
+    margin-left: 1em;
+}
+.logo-header {
+    object-fit: contain;
+    width: auto;
+    height: 64px;
+    filter: drop-shadow(5px 5px 5px black);
+}
+.kadode-normal-button {
+    background-color: var(--button-main-color);
+    color: var(--text-main-color);
+    padding: 0.7em 0.6em;
+    border-radius: 6px;
+}
+#top-animation {
+    width: 80%;
+    height: 400px;
+    margin: 0 auto;
+    /* background: #04bbd3; */
+}
+.kaihatusya {
+    position: relative;
+    transition: 1s;
+}
+.kaihatusya:hover:after {
+    position: relative;
+    top: -30px;
+    left: 40px;
+    content: "こんばんは。";
+    font-size: 20px;
+    color: var(--text-main-color);
+}
+/* 動く検索フォーム用ここから */
+/*
+    https://codepen.io/charlyn/pen/MwRBBo
+
+    Copyright (c) August 14, 2015 Charlyn G
+    Released under the MIT license
+    http://opensource.org/licenses/mit-license.php
+*/
+.move-label-wrapper div {
+    position: relative;
+}
+
+.error-page {
+    min-height: 100vh;
+}
+.move-label {
+    position: absolute;
+    top: 0;
+    font-size: 20px;
+    margin: 10px;
+    padding: 0 10px;
+    background-color: var(--bg-main-color);
+    -webkit-transition: top 0.2s ease-in-out, font-size 0.2s ease-in-out;
+    transition: top 0.2s ease-in-out, font-size 0.2s ease-in-out;
+}
+.active {
+    top: -25px;
+    font-size: 16px;
+}
+
+.search-keyword {
+    background-color: var(--bg-main-color);
+    border-radius: 3px 0 0 3px; /*ボックス角の丸み*/
+    color: var(--text-main-color);
+    border: 1px solid var(--button-main-color); /*枠線*/
+}
+.search-keyword::placeholder {
+    font-family: "Kiwi Maru", serif;
+    color: var(--bg-main-color);
+}
+.active-input::placeholder {
+    font-family: "Kiwi Maru", serif;
+    color: var(--border-main-color);
+}
+.search-keyword:focus {
+    border: 2px solid var(--button-main-color); /*枠線*/
+    outline: none;
+}
+/* 動く検索フォーム用ここまで*/
+
+.setting {
+    /* border: 1px solid var(--button-main-color); */
+    border-radius: 12px;
+    margin: 1em;
+    padding: 1em;
+}
+.settingContentWrapper {
+    padding: 1em;
+}
+
+.settingContent {
+    color: white;
+
+    padding: 1em;
+    /* overflow: hidden; */
+}
+
+.archive-month-menu {
+    max-width: 1200px;
+    cursor: pointer;
+    /* -ms-writing-mode: tb-rl;
+    writing-mode: vertical-rl;
+    -webkit-text-combine: horizontal;
+    -ms-text-combine-horizontal: all;
+    text-combine-upright: all; */
+}
+.archive-year-menu {
+    max-width: 1200px;
+    cursor: pointer;
+}
+
+/* ログインの背景 */
+
+/* 個別日記の統計箇所 */

@@ -1,4 +1,9 @@
 {
     "/js/app.js": "/js/app.js",
+    "/js/common.js": "/js/common.js",
+    "/js/topView.js": "/js/topView.js",
+    "/js/totalStatistics.js": "/js/totalStatistics.js",
+    "/js/shortStatistics.js": "/js/shortStatistics.js",
+    "/js/drawWordCloud.js": "/js/drawWordCloud.js",
     "/css/app.css": "/css/app.css"
 }

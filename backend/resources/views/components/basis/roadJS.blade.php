@@ -1,1 +1,1 @@
-<script type="text/javascript" src="{{ asset('js/kadodeMain.js') }}?ver=21.3"></script>
+<script src="{{ mix('js/common.js') }}"></script>

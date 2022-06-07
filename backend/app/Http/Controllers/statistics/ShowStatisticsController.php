@@ -19,7 +19,7 @@ class ShowStatisticsController extends Controller
          * これは統計表示前にも使うので1統計テーブルからのデータは使えない
          */
         $number_of_nikki = Diary::where("user_id", $user_id)->count();
-        $wordCloud_json = "";
+        $wordCloud_array = [];
 
         $ended_diaries_count = ""; //undefinedエラー防止用
         $char_length_frequency_distribution = []; //undefinedエラー防止用
@@ -92,11 +92,9 @@ class ShowStatisticsController extends Controller
                     {"word":"ううう","count":4},
                     {"word":"えええ","count":3},]
                  */
-                $wordCloud_array = array();
                 foreach ($statistic->important_words as $value) {
                     $wordCloud_array[] = array("word" => $value[0], "count" => $value[1]);
                 }
-                $wordCloud_json = json_encode($wordCloud_array, JSON_UNESCAPED_UNICODE); //JSON_UNESCAPED_UNICODEで日本語文字化け防止
 
                 /**
                  * ヒストグラム用のやつ
@@ -181,6 +179,6 @@ class ShowStatisticsController extends Controller
             $oldest_diary_date = "なし";
         }
 
-        return view("diary/statistics/topStatistics", ["statistics" => $statistic, "anime_timeline" => $anime_timeline, "char_length_frequency_distribution" => $char_length_frequency_distribution, "biggerDiaries" => $biggerDiaries, 'oldest_diary_date' => $oldest_diary_date, 'number_of_nikki' => $number_of_nikki, 'ended_diaries_count' => $ended_diaries_count, "wordCloud_json" => $wordCloud_json]);
+        return view("diary/statistics/topStatistics", ["statistics" => $statistic, "anime_timeline" => $anime_timeline, "char_length_frequency_distribution" => $char_length_frequency_distribution, "biggerDiaries" => $biggerDiaries, 'oldest_diary_date' => $oldest_diary_date, 'number_of_nikki' => $number_of_nikki, 'ended_diaries_count' => $ended_diaries_count, "wordCloud_array" => $wordCloud_array]);
     }
 }

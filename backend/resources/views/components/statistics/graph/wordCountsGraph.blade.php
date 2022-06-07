@@ -1,6 +1,4 @@
-<div class="chartWrapper_small md:mx-0 mx-auto">
-    <canvas id="chartCharactersPerMonth" width="400px" height="400px"></canvas>
-</div>
+<canvas id="chartCharactersPerMonth" width="400px" height="400px"></canvas>
 
 <script>
     //月ごとの合計文字数

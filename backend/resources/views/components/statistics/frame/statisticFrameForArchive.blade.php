@@ -1,15 +1,4 @@
-<!-- ここに置かないとコンポーネントでchar.js使えないので -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.5.1/chart.min.js"></script>
-
-<!--色自動付与プラグイン
-→Chart.jsのver2系でないと動かないため廃止
--->
-{{-- <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/chartjs-plugin-colorschemes"></script> --}}
-{{-- 補助線引くためのプラグイン↓ --}}
-<script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-annotation@1.0.2/dist/chartjs-plugin-annotation.min.js"
-    integrity="sha512-FuXN8O36qmtA+vRJyRoAxPcThh/1KJJp7WSRnjCpqA+13HYGrSWiyzrCHalCWi42L5qH1jt88lX5wy5JyFxhfQ=="
-    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-
+<script src="{{ mix('js/shortStatistics.js') }}"></script>
 
 <details class="text-main-color  kiwi-maru">
     <summary class="text-center m-2 text-xl font-bold">
@@ -31,9 +20,10 @@
                         ?</div>
                     <div class="explain_hatena">固有値表現がらそれぞれの日記で抽出した分類をまとめたグラフです</div>
                 </div>
-
-                @component('components.statistics.graph.classificationsGraph',['classifications'=>$ArchiveData->classifications])
-                @endcomponent
+                <div class="chartWrapper_small mx-auto block">
+                    @component('components.statistics.graph.classificationsGraph',['classifications'=>$ArchiveData->classifications])
+                    @endcomponent
+                </div>
             </section>
             <div>
 
@@ -49,8 +39,10 @@
                 {{-- @php
                 var_dump($ArchiveData->word_counts);
                 @endphp --}}
-                @component('components.statistics.graph.wordCountsGraph',['word_counts'=>$ArchiveData->word_counts])
-                @endcomponent
+                <div class="chartWrapper_small mx-auto block">
+                    @component('components.statistics.graph.wordCountsGraph',['word_counts'=>$ArchiveData->word_counts])
+                    @endcomponent
+                </div>
             </section>
             <div>
 
@@ -64,8 +56,10 @@
                     ?</div>
                 <div class="explain_hatena">日記の本文から形態素解析で抽出した名詞の登場数多い順に5つです</div>
             </section>
-            @component('components.statistics.rank.topRank',['count'=>6,'ranked_array'=>$ArchiveData->noun_rank])
-            @endcomponent
+            <div>
+                @component('components.statistics.rank.topRank',['count'=>6,'ranked_array'=>$ArchiveData->noun_rank])
+                @endcomponent
+            </div>
         </div>
         <div class="md:w-1/4 w-full p-4">
             <section class=" kiwi-maru">
@@ -75,9 +69,10 @@
                     ?</div>
                 <div class="explain_hatena">日記の本文から形態素解析で抽出した形容詞の登場数多い順に5つです</div>
             </section>
-            @component('components.statistics.rank.topRank',['count'=>6,'ranked_array'=>$ArchiveData->adjective_rank])
-            @endcomponent
-
+            <div>
+                @component('components.statistics.rank.topRank',['count'=>6,'ranked_array'=>$ArchiveData->adjective_rank])
+                @endcomponent
+            </div>
         </div>
         <!-- した -->
         <div class="md:w-1/4 w-full p-4">
@@ -88,8 +83,10 @@
                     ?</div>
                 <div class="explain_hatena">感情極性辞書を用いた本文の感情推測のこのアーカイブでの平均値です</div>
             </section>
-            @component('components.statistics.char.emotionsRateChar',['emotions'=>$ArchiveData->emotions])
-            @endcomponent
+            <div>
+                @component('components.statistics.char.emotionsRateChar',['emotions'=>$ArchiveData->emotions])
+                @endcomponent
+            </div>
         </div>
         <div class="md:w-1/4 w-full p-4">
             <section class=" kiwi-maru">
@@ -99,8 +96,10 @@
                     ?</div>
                 <div class="explain_hatena">感情極性辞書を用いた本文の感情推測の推移です</div>
             </section>
-            @component('components.statistics.graph.emotionsChangeGraph',['emotions'=>$ArchiveData->emotions])
-            @endcomponent
+            <div class="chartWrapper_small mx-auto block">
+                @component('components.statistics.graph.emotionsChangeGraph',['emotions'=>$ArchiveData->emotions])
+                @endcomponent
+            </div>
         </div>
         <div class="md:w-1/4 w-full p-4">
             <section class=" kiwi-maru">
@@ -110,8 +109,10 @@
                     ?</div>
                 <div class="explain_hatena">固有表現抽出を用いて本文から抽出した、日記でよく登場する人物です。</div>
             </section>
-            @component('components.statistics.rank.topRank',['count'=>6,'ranked_array'=>$ArchiveData->special_people])
-            @endcomponent
+            <div>
+                @component('components.statistics.rank.topRank',['count'=>6,'ranked_array'=>$ArchiveData->special_people])
+                @endcomponent
+            </div>
         </div>
         <div class="md:w-1/4 w-full p-4">
             <section class=" kiwi-maru">
@@ -121,10 +122,10 @@
                     ?</div>
                 <div class="explain_hatena">固有表現抽出を用いて本文から抽出した、固有表現の登場数の多い単語です。</div>
             </section>
-            @component('components.statistics.rank.topRank',['count'=>6,'ranked_array'=>$ArchiveData->important_words])
-            @endcomponent
+            <div>
+                @component('components.statistics.rank.topRank',['count'=>6,'ranked_array'=>$ArchiveData->important_words])
+                @endcomponent
+            </div>
         </div>
-
-
     </div>
 </details>

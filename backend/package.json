@@ -14,11 +14,19 @@
         "@tailwindcss/typography": "^0.5.2",
         "alpinejs": "^3.10.2",
         "axios": "^0.27.2",
+        "browser-sync": "^2.27.10",
+        "browser-sync-webpack-plugin": "^2.3.0",
         "laravel-mix": "^6.0.43",
         "lodash": "^4.17.21",
         "postcss": "^8.4.13",
         "postcss-import": "^14.1.0",
         "tailwindcss": "^3.0.24"
     },
-    "dependencies": {}
+    "dependencies": {
+        "chart.js": "^3.8.0",
+        "chartjs-plugin-annotation": "^1.4.0",
+        "d3": "^7.4.4",
+        "d3.layout.cloud": "^1.2.0",
+        "vis-timeline": "^7.5.1"
+    }
 }

@@ -33,11 +33,8 @@
 
     @else
     <!-- ここに置かないとコンポーネントでchar.js使えないので -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.5.1/chart.min.js"></script>
-    {{-- 補助線引くためのプラグイン↓ --}}
-    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-annotation@1.0.2/dist/chartjs-plugin-annotation.min.js"
-        integrity="sha512-FuXN8O36qmtA+vRJyRoAxPcThh/1KJJp7WSRnjCpqA+13HYGrSWiyzrCHalCWi42L5qH1jt88lX5wy5JyFxhfQ=="
-        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="{{ mix('js/totalStatistics.js') }}"></script>
+
 
     <div>
         <div class="statistic-content">
@@ -118,52 +115,66 @@
         <div class="flex justify-center flex-wrap ">
             <div class="w-full">
                 <h3 class="my-4 text-2xl text-center kiwi-maru">分類</h3>
-                @component('components.statistics.graph.classificationsGraph',['classifications'=>$statistics->classifications])
-                @endcomponent
+                <div class="chartWrapper mx-auto block" style="padding-top:0px!important">
+                    @component('components.statistics.graph.classificationsGraph',['classifications'=>$statistics->classifications])
+                    @endcomponent
+                </div>
             </div>
             <div class="md:w-1/2 mb-6 ">
                 <h3 class="my-4 text-2xl text-center kiwi-maru">お気持ち</h3>
-                @component('components.statistics.char.emotionsRateChar',['emotions'=>$statistics->emotions])
-                @endcomponent
+                <div class="p-4 flex items-center justify-center flex-wrap">
+                    @component('components.statistics.char.emotionsRateChar',['emotions'=>$statistics->emotions])
+                    @endcomponent
+                </div>
             </div>
             <div class="md:w-1/2 mb-6 ">
                 <h3 class="my-4 text-2xl text-center kiwi-maru">お気持ち推移</h3>
-                @component('components.statistics.graph.emotionsChangeGraph',['emotions'=>$statistics->emotions])
-                @endcomponent
+                <div class="chartWrapper_small mx-auto block">
+                    @component('components.statistics.graph.emotionsChangeGraph',['emotions'=>$statistics->emotions])
+                    @endcomponent
+                </div>
             </div>
             <div class="md:w-1/2 mb-6 ">
                 <h3 class="my-4 text-2xl text-center kiwi-maru">人物</h3>
-                @component('components.statistics.rank.topRank',['count'=>31,'ranked_array'=>$statistics->special_people])
-                @endcomponent
+                <div>
+                    @component('components.statistics.rank.topRank',['count'=>31,'ranked_array'=>$statistics->special_people])
+                    @endcomponent
+                </div>
             </div>
             <div class="md:w-1/2 mb-6 ">
                 <h3 class="my-4 text-2xl text-center kiwi-maru">重要そうな単語</h3>
-                @component('components.statistics.rank.topRank',['count'=>31,'ranked_array'=>$statistics->important_words])
-                @endcomponent
+                <div class="flex justify-center">
+                    @component('components.statistics.rank.topRank',['count'=>31,'ranked_array'=>$statistics->important_words])
+                    @endcomponent
+                </div>
             </div>
 
 
             <div class="md:w-1/2 mb-6 ">
                 <h3 class="my-4 text-2xl text-center kiwi-maru">全日記の中でよく使われる<br class="md:hidden">名詞Top50</h3>
-                @component('components.statistics.graph.partOfSpeechGraph',["source"=>$statistics->total_noun_asc])
-                @slot("slug")
-                noun
-                @endslot
-                @slot("pof_name")
-                名詞
-                @endslot
-                @endcomponent
+                <div class="chartWrapper_nlp_long">
+                    @component('components.statistics.graph.partOfSpeechGraph',["source"=>$statistics->total_noun_asc])
+                    @slot("slug")
+                    noun
+                    @endslot
+                    @slot("pof_name")
+                    名詞
+                    @endslot
+                    @endcomponent
+                </div>
             </div>
             <div class="md:w-1/2 mb-6 ">
                 <h3 class="my-4 text-2xl text-center kiwi-maru">全日記の中でよく使われる<br class="md:hidden">形容詞Top50</h3>
-                @component('components.statistics.graph.partOfSpeechGraph',["source"=>$statistics->total_adjective_asc])
-                @slot("slug")
-                adjective
-                @endslot
-                @slot("pof_name")
-                形容詞
-                @endslot
-                @endcomponent
+                <div class="chartWrapper_nlp_long">
+                    @component('components.statistics.graph.partOfSpeechGraph',["source"=>$statistics->total_adjective_asc])
+                    @slot("slug")
+                    adjective
+                    @endslot
+                    @slot("pof_name")
+                    形容詞
+                    @endslot
+                    @endcomponent
+                </div>
             </div>
         </div>
     </div>
@@ -175,26 +186,32 @@
             <div class="md:w-1/2 mb-6 ">
                 <h3 class="my-4 text-2xl text-center kiwi-maru">月ごとの1日記あたりの<br class="md:hidden">平均文字数推移<br
                         class="md:hidden"><span style="font-size:0.5em">(月の合計文字数÷日記数)</span></h3>
-                @component('components.statistics.graph.numberOfCharactersGraph',["months"=>$statistics->months,"month_words_per_diaries"=>$statistics->month_words_per_diary])
-                @endcomponent
+                <div class="chartWrapper">
+                    @component('components.statistics.graph.numberOfCharactersGraph',["months"=>$statistics->months,"month_words_per_diaries"=>$statistics->month_words_per_diary])
+                    @endcomponent
+                </div>
             </div>
             <div class="md:w-1/2 mb-6 ">
                 <h3 class="my-4 text-2xl text-center kiwi-maru">月ごとの日記執筆率</h3>
-                @component('components.statistics.graph.writingRateGraph',["months"=>$statistics->months,"monthWritingRates"=>$statistics->monthWritingRate])
-                @endcomponent
+                <div class="chartWrapper">
+                    @component('components.statistics.graph.writingRateGraph',["months"=>$statistics->months,"monthWritingRates"=>$statistics->monthWritingRate])
+                    @endcomponent
+                </div>
             </div>
             <div class="md:w-1/2 mb-6 ">
                 <h3 class="my-4 text-2xl text-center kiwi-maru">文字数ヒストグラム</h3>
 
-
-                @component('components.statistics.graph.charLengthHistogram',["char_length_frequency_distribution"=>$char_length_frequency_distribution])
-
-                @endcomponent
+                <div class="chartWrapper">
+                    @component('components.statistics.graph.charLengthHistogram',["char_length_frequency_distribution"=>$char_length_frequency_distribution])
+                    @endcomponent
+                </div>
             </div>
             <div class="md:w-1/2 mb-6 ">
                 <h3 class="my-4 text-2xl text-center kiwi-maru">文字数の多い日記<br class="md:hidden">トップ10</h3>
-                @component('components.statistics.char.charLengthRank',["biggerDiaries"=>$biggerDiaries])
-                @endcomponent
+                <div>
+                    @component('components.statistics.char.charLengthRank',["biggerDiaries"=>$biggerDiaries])
+                    @endcomponent
+                </div>
             </div>
         </div>
     </div>
@@ -203,9 +220,10 @@
     @else
     <div class="statistic-content">
         @include('components.statisticHeading',['icon'=>'pets','title'=>'アニメの登場タイムライン'])
-
-        @component('components.statistics.graph.animeTimeline',["anime_timeline"=>$anime_timeline])
-        @endcomponent
+        <div>
+            @component('components.statistics.graph.animeTimeline',["anime_timeline"=>$anime_timeline])
+            @endcomponent
+        </div>
 
     </div>
     @endempty
@@ -213,12 +231,12 @@
 
     <div class="statistic-content">
         @include('components.statisticHeading',['icon'=>'bar_chart','title'=>'WordCloud'])
-
-        @component('components.statistics.visualize.wordCloud',['wordCloud_json'=>$wordCloud_json])
-        @endcomponent
+        <div>
+            @component('components.statistics.visualize.wordCloud',['wordCloud_array'=>$wordCloud_array])
+            @endcomponent
+        </div>
 
     </div>
-
     @elseif($statistics->statistic_progress>=1)
     <p class="text-center my-12 text-3xl kiwi-maru align-middle"><span class="material-icons"
             style="margin-right:0.25em">hourglass_bottom</span>データ生成中<span class="material-icons"
@@ -227,9 +245,6 @@
     <p class="text-center my-12 text-3xl">自然言語処理が機能していません</p>
     @endif
     @endempty
-
-
-
 </div>
 
 @endsection

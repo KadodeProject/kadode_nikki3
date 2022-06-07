@@ -1,9 +1,9 @@
 @isset($classifications)
-    <div class="chartWrapper_small md:mx-0 mx-auto" style="padding-top:0px!important">
-    <canvas id="chartNlpClassfications" width="400px" height="400px"></canvas>
-    </div>
+
+<canvas id="chartNlpClassfications" width="400px" height="400px"></canvas>
+
 <!--進行中のときの動作-->
-    <script>
+<script>
     const chartNlpClassfications_id = document.getElementById('chartNlpClassfications');
           var chartNlpClassfications = new Chart(chartNlpClassfications_id, {
             type: 'pie',
@@ -12,11 +12,11 @@
               @foreach( $classifications as $classification)
               "{{$classification[0]}}",
               @endforeach],
-    
+
               datasets: [
                 {
                     label: '分類',
-          
+
                     data: [
                     @foreach( $classifications as $classification)
                     {{$classification[1]}},
@@ -25,7 +25,7 @@
                     //↑tableau.HueCircle19:を基に色の設定しています
                     borderColor: "rgba(75,137,150,0)",
                     weight: 100,
-            
+
                   },
                 ],
             },
@@ -44,7 +44,7 @@
 
             },
           });
-    
-    </script>
+
+</script>
 
 @endisset
