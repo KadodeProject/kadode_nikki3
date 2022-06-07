@@ -1,5 +1,3 @@
-<script type="text/javascript" src="https://unpkg.com/vis-timeline@latest/standalone/umd/vis-timeline-graph2d.min.js">
-</script>
 <style>
     .vis-item {
         border-color: var(--button-main-color);
@@ -9,7 +7,7 @@
     }
 </style>
 <div id="animeTimeline"></div>
-<script type="text/javascript">
+<script>
     // DOM element where the Timeline will be attached
         var container = document.getElementById('animeTimeline');
 

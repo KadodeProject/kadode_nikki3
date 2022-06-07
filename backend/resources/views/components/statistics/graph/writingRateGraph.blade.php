@@ -1,7 +1,4 @@
-<div class="chartWrapper">
-    <canvas id="chartWritingRatePerMonth" width="400px" height="400px"></canvas>
-</div>
-
+<canvas id="chartWritingRatePerMonth" width="400px" height="400px"></canvas>
 
 <script>
     // 月ごとの日記執筆率

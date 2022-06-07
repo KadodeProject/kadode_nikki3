@@ -1,6 +1,4 @@
-<div class="chartWrapper_small mx-auto block">
-    <canvas id="chartEmotionsGraph" width="400px" height="400px"></canvas>
-</div>
+<canvas id="chartEmotionsGraph" width="400px" height="400px"></canvas>
 
 <script>
     //月ごとの合計文字数

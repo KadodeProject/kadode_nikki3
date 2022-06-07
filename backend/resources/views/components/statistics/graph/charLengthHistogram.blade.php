@@ -1,6 +1,4 @@
-<div class="chartWrapper">
-    <canvas id="charLengthHistogram" width="400px" height="400px"></canvas>
-</div>
+<canvas id="charLengthHistogram" width="400px" height="400px"></canvas>
 
 <script>
     //月ごとの合計文字数

@@ -1,7 +1,7 @@
 @isset($source)
-<div class="chartWrapper_nlp_long">
-    <canvas id="chartTotal{{$slug}}Asc" width="400px" height="1200px"></canvas>
-</div>
+
+<canvas id="chartTotal{{$slug}}Asc" width="400px" height="1200px"></canvas>
+
 <script>
     //ここからNLP周り
       // {{$pof_name}}登場順

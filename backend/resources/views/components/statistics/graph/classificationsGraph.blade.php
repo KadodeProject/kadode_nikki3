@@ -1,7 +1,7 @@
 @isset($classifications)
-<div class="chartWrapper mx-auto block" style="padding-top:0px!important">
-    <canvas id="chartNlpClassfications" width="400px" height="400px"></canvas>
-</div>
+
+<canvas id="chartNlpClassfications" width="400px" height="400px"></canvas>
+
 <!--進行中のときの動作-->
 <script>
     const chartNlpClassfications_id = document.getElementById('chartNlpClassfications');
