@@ -1,4 +1,4 @@
-<div class="chartWrapper_small md:mx-0 mx-auto">
+<div class="chartWrapper_small mx-auto block">
     <canvas id="chartEmotionsGraph" width="400px" height="400px"></canvas>
 </div>
 
@@ -110,12 +110,12 @@
                 }
                 },
                 // ここまで補助線用
-      
-    
+
+
             legend: {
                 display: false,
             },
-                   
+
         }      }
     });
 </script>

@@ -1,0 +1,135 @@
+/* tailwindで謎に当てられるフォントの修正 */
+body {
+    font-family: "Helvetica Neue", Arial, "Hiragino Kaku Gothic ProN",
+        "Hiragino Sans", Meiryo, sans-serif;
+}
+.main-wrapper {
+    max-width: min(90vw, 1600px);
+    margin: 0 auto;
+    padding-top: 30px;
+    min-height: 100vh;
+}
+@media screen and (max-width: 640px) {
+    .main-wrapper {
+        max-width: 100%;
+    }
+}
+
+.copyright {
+    color: var(--logo-main-color);
+}
+.footer-menu {
+    color: var(--border-main-color);
+}
+
+.text-button-main-color {
+    color: var(--button-main-color);
+}
+
+.top-over-header {
+    top: var(--header-height);
+}
+body {
+    background-color: var(--bg-main-color);
+    overflow-x: hidden;
+}
+
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+ol {
+    color: var(--text-main-color);
+}
+
+.kiwi-maru {
+    font-family: "Kiwi Maru", serif;
+}
+input[type="file"] {
+    position: relative;
+    margin: 8px 0 0 -14px;
+}
+input[type="file"]:focus {
+    outline: none;
+}
+input[type="file"]::before {
+    content: "添付ファイル：";
+    position: absolute;
+    background: var(--bg-main-color);
+    width: 130px;
+    height: 32px;
+    line-height: 1.8;
+    text-align: right;
+}
+.file-input-wrapper {
+    font-size: 16px;
+    border: 1px solid var(--button-main-color);
+    border-radius: 4px;
+    padding: 0.5em;
+    margin: 0.5em auto;
+}
+textarea {
+    resize: none;
+    width: 300px;
+    height: 200px;
+    background-color: var(--bg-main-color) !important;
+    border-color: var(--button-main-color) !important;
+    color: var(--text-main-color);
+}
+textarea::placeholder {
+    color: var(--border-main-color);
+    font-family: "Kiwi Maru", serif;
+}
+input[type="submit"] {
+    background-color: var(--button-main-color);
+    color: var(--text-main-color);
+    cursor: pointer;
+    border-radius: 0 0 4px 4px;
+    padding: 0.25em 0.5em;
+}
+/*
+スクロールバー
+ここから
+*/
+/*スクロールバー全体*/
+::-webkit-scrollbar {
+    width: 8px;
+    height: 12px;
+}
+p::-webkit-scrollbar {
+    width: 8px;
+    height: 6px;
+}
+
+/*スクロールバーの軌道*/
+::-webkit-scrollbar-track {
+    border-radius: 10px;
+    /* background-color: var(--border-main-color); */
+    /* box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.1); */
+}
+
+/*スクロールバーの動く部分*/
+::-webkit-scrollbar-thumb {
+    background-color: rgba(75, 137, 150, 0.5);
+    border-radius: 10px;
+    /* box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.3); */
+}
+
+.container {
+    width: 100%;
+    height: 400px;
+    overflow: auto;
+}
+
+.inner {
+    background-repeat: no-repeat;
+    width: 100%;
+    height: 800px;
+}
+
+/*
+ここまで
+スクロールバー
+*/

@@ -1,4 +1,4 @@
-const mix = require('laravel-mix');
+const mix = require("laravel-mix");
 
 /*
  |--------------------------------------------------------------------------
@@ -11,11 +11,26 @@ const mix = require('laravel-mix');
  |
  */
 
-mix.js('resources/js/app.js', 'public/js')
-    .postCss('resources/css/app.css', 'public/css', [
-        require('postcss-import'),
-        require('tailwindcss'),
+mix.js("resources/js/app.js", "public/js")
+    .js("resources/js/common.js", "public/js")
+    .js("resources/js/topView.js", "public/js")
+    .js("resources/js/statistics/totalStatistics.js", "public/js")
+    .js("resources/js/statistics/shortStatistics.js", "public/js")
+    .js("resources/js/statistics/drawWordCloud.js", "public/js")
+    .postCss("resources/css/app.css", "public/css", [
+        require("postcss-import"),
+        require("tailwindcss"),
     ]);
+mix.browserSync({
+    proxy: "localhost:80",
+    files: [
+        "resources/views/**/*.blade.php",
+        "public/css/*.css",
+        "public/js/*.js",
+    ],
+    open: true,
+    reloadOnRestart: true,
+});
 
 if (mix.inProduction()) {
     mix.version();

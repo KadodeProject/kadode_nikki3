@@ -1,15 +1,4 @@
-<!-- ここに置かないとコンポーネントでchar.js使えないので -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.5.1/chart.min.js"></script>
-
-<!--色自動付与プラグイン
-→Chart.jsのver2系でないと動かないため廃止
--->
-{{-- <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/chartjs-plugin-colorschemes"></script> --}}
-{{-- 補助線引くためのプラグイン↓ --}}
-<script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-annotation@1.0.2/dist/chartjs-plugin-annotation.min.js"
-    integrity="sha512-FuXN8O36qmtA+vRJyRoAxPcThh/1KJJp7WSRnjCpqA+13HYGrSWiyzrCHalCWi42L5qH1jt88lX5wy5JyFxhfQ=="
-    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-
+<script src="{{ mix('js/shortStatistics.js') }}"></script>
 
 <details class="text-main-color  kiwi-maru">
     <summary class="text-center m-2 text-xl font-bold">

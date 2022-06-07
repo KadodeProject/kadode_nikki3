@@ -33,11 +33,8 @@
 
     @else
     <!-- ここに置かないとコンポーネントでchar.js使えないので -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.5.1/chart.min.js"></script>
-    {{-- 補助線引くためのプラグイン↓ --}}
-    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-annotation@1.0.2/dist/chartjs-plugin-annotation.min.js"
-        integrity="sha512-FuXN8O36qmtA+vRJyRoAxPcThh/1KJJp7WSRnjCpqA+13HYGrSWiyzrCHalCWi42L5qH1jt88lX5wy5JyFxhfQ=="
-        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="{{ mix('js/totalStatistics.js') }}"></script>
+
 
     <div>
         <div class="statistic-content">
@@ -214,7 +211,7 @@
     <div class="statistic-content">
         @include('components.statisticHeading',['icon'=>'bar_chart','title'=>'WordCloud'])
 
-        @component('components.statistics.visualize.wordCloud',['wordCloud_json'=>$wordCloud_json])
+        @component('components.statistics.visualize.wordCloud',['wordCloud_array'=>$wordCloud_array])
         @endcomponent
 
     </div>

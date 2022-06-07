@@ -166,6 +166,6 @@
 
 
 </div>
-<script type="text/javascript" src="{{ asset('js/topPerticle.js') }}"></script>
+<script src="{{ mix('js/topView.js') }}"></script>
 
 @endsection

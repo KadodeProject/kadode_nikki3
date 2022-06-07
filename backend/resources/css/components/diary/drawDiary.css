@@ -1,0 +1,109 @@
+.diary_dashboard {
+    border: 1px solid var(--button-main-color);
+    padding: 1em;
+    width: 400px;
+    height: 450px;
+    flex-shrink: 0;
+    overflow: hidden;
+}
+.diary-main {
+    max-width: 1120px;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin: 0 auto 3em;
+}
+.diary-main > div {
+    width: 50%;
+    border: 2px solid var(--button-main-color);
+    height: 600px;
+    padding: 1.5em;
+}
+
+.diary-main article {
+    height: 400px;
+    overflow-y: scroll;
+    overflow-x: hidden;
+}
+.diary-content-edit {
+    height: 400px;
+    overflow: scroll;
+}
+
+/* 日記編集ページ */
+.dateWrapper {
+    max-width: 1120px;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin: 3em auto;
+}
+.diaryContentWrapper {
+    margin: 0 auto 4em;
+    padding: 0 0.5em;
+    width: 600px;
+    font-size: 18px;
+}
+@media screen and (max-width: 640px) {
+    .diaryContentWrapper {
+        width: 90%;
+    }
+}
+
+/* 日記編集ページのタブ */
+.tab_item {
+    width: calc(100% / 3);
+    height: 50px;
+    border-bottom: 3px solid var(--button-main-color);
+    font-size: 16px;
+    text-align: center;
+    display: block;
+    line-height: 50px;
+    float: left;
+    text-align: center;
+    transition: all 0.2s ease;
+    color: var(--text-main-color);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.tab_item:hover {
+    opacity: 0.75;
+}
+
+input[name="tab_item"] {
+    display: none;
+}
+.tab_content {
+    display: none;
+    padding-top: 70px;
+    min-height: 80vh;
+}
+
+#editDiary:checked ~ #editDiaryContent,
+#viewDiary:checked ~ #viewDiaryContent,
+#viewStatistic:checked ~ #viewStatisticContent {
+    display: block;
+}
+
+.board-main input:checked + .tab_item {
+    background-color: var(--button-main-color);
+    color: var(--text-main-color);
+}
+
+input[name="do_wakati"] {
+    display: none;
+}
+.wakati-button {
+    color: var(--text-main-color);
+    cursor: pointer;
+    user-select: none;
+}
+#doWakati:checked + .wakati-button {
+    color: var(--logo-main-color);
+}
+#doWakati:checked ~ .diaryContentWrapper > .wakati::after {
+    content: "/";
+    color: var(--button-main-color);
+}
