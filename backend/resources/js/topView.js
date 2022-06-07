@@ -7,18 +7,18 @@
     http://opensource.org/licenses/mit-license.php
     */
 
-var Canvas = document.getElementById("top-animation");
-var ctx = Canvas.getContext("2d");
+let Canvas = document.getElementById("top-animation");
+let ctx = Canvas.getContext("2d");
 
-var resize = function () {
+let resize = function () {
     Canvas.width = Canvas.clientWidth;
     Canvas.height = Canvas.clientHeight;
 };
 window.addEventListener("resize", resize);
 resize();
 
-var elements = [];
-var presets = {};
+let elements = [];
+let presets = {};
 
 presets.o = function (x, y, s, dx, dy) {
     return {
@@ -64,8 +64,8 @@ presets.x = function (x, y, s, dx, dy, dr, r) {
             this.y += this.dy;
             this.r += this.dr;
 
-            var _this = this;
-            var line = function (x, y, tx, ty, c, o) {
+            let _this = this;
+            let line = function (x, y, tx, ty, c, o) {
                 o = o || 0;
                 ctx.beginPath();
                 ctx.moveTo(-o + (_this.s / 2) * x, o + (_this.s / 2) * y);
@@ -91,10 +91,10 @@ presets.x = function (x, y, s, dx, dy, dr, r) {
     };
 };
 
-for (var x = 0; x < Canvas.width; x++) {
-    for (var y = 0; y < Canvas.height; y++) {
+for (let x = 0; x < Canvas.width; x++) {
+    for (let y = 0; y < Canvas.height; y++) {
         if (Math.round(Math.random() * 8000) == 1) {
-            var s = (Math.random() * 5 + 1) / 10;
+            let s = (Math.random() * 5 + 1) / 10;
             if (Math.round(Math.random()) == 1)
                 elements.push(presets.o(x, y, s, 0, 0));
             else
@@ -116,6 +116,6 @@ for (var x = 0; x < Canvas.width; x++) {
 setInterval(function () {
     ctx.clearRect(0, 0, Canvas.width, Canvas.height);
 
-    var time = new Date().getTime();
-    for (var e in elements) elements[e].draw(ctx, time);
+    let time = new Date().getTime();
+    for (let e in elements) elements[e].draw(ctx, time);
 }, 10);
