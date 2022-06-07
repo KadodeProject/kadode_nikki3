@@ -31,6 +31,8 @@ def get_mostGuess_classification(affiliation):
             continue
         elif value[0]=="Doctrine_Method_Other":#LINEで反応
             continue
+        elif value[0]=="Periodx_Other":#期間その他
+            continue
         elif value[0]=="Period_Week":#２週間など
             continue
         elif value[0]=="Numex_Other":#二(漢数字)など
