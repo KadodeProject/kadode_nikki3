@@ -1,4 +1,5 @@
-<header class="px-4 relative w-screen flex justify-center sm:justify-between flex-wrap ">
+<header class="px-4 relative w-screen flex justify-center sm:justify-between flex-wrap "
+    style="box-shadow: 0px 8px 8px -5px rgba(0,0,0,0.5);">
     <a href="{{url("/home")}}"><img class="logo-header" src="/img/kadode_logo.png"></a>
 
     </div>

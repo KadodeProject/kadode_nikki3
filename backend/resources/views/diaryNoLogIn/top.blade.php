@@ -8,12 +8,10 @@
 <div class="board-main py-4 mx-auto" style="max-width: 1200px">
     <div class="mb-4 mt-12">
         <h2 class="text-center text-3xl my-4 kiwi-maru">かどで日記</h2>
-        <div class="flex justify-center md:w-1/2 px-4 mx-auto">
+        <div class="flex justify-center md:w-1/2 px-4 mx-auto flex-col kiwi-maru">
             <p class="">かどで日記では日記の作成・管理だけでなく、<br class="md:hidden">日記の分析もできます。</p>
+            <p class="">振り返りを楽しむ、<br class="md:hidden">日記Webアプリです。</p>
         </div>
-        <h2 class="pt-12 text-3xl md:text-5xl text-center h-auto norepeact kiwi-maru" id="kadodeCatchphrase">
-            <span>自分で</span><span>作る</span><span>統計データ</span>
-        </h2>
     </div>
     <h2 class="mt-24 mb-12 text-center text-4xl kiwi-maru">--流れ--</h2>
     <!--区切り-->
