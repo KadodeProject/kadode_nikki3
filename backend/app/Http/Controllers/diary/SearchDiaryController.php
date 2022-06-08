@@ -73,7 +73,8 @@ class SearchDiaryController extends Controller
                 //ハイライト追加に際して、シーケンスせずhtml解釈させるので、その前に攻撃防止のためにタグを防ぐ
                 $diary->content = htmlspecialchars($diary->content, ENT_QUOTES);
                 //ハイライト追加
-                $diary->content = mb_substr($diary->content, 0, $placeOfWord) . "<span class='bg-yellow-200' style='color:var(--bg-main-color)'>" . mb_substr($diary->content, $placeOfWord, $keywordLength) . "</span>" . mb_substr($diary->content, $placeOfWord + $keywordLength);
+                //webpackでビルドに変更したため、ここでTailwindのCSS指定しても生成されないため、styleで指定
+                $diary->content = mb_substr($diary->content, 0, $placeOfWord) . "<span style='background-color:#FFFDBF;color:var(--kn_b)'>" . mb_substr($diary->content, $placeOfWord, $keywordLength) . "</span>" . mb_substr($diary->content, $placeOfWord + $keywordLength);
 
 
                 $proceedDiary[] = $diary;
