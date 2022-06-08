@@ -30,5 +30,5 @@ def get_emotion(dic_posi,dic_nega,text):
 
 
 if __name__ == '__main__':
-    kekka=get_emotion("こんにちは、今日の天気は快晴です。")
-    print(kekka)
+    # kekka=get_emotion("こんにちは、今日の天気は快晴です。")
+    raise Exception("単体で動かすことは想定していません")
