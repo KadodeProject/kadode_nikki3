@@ -6,7 +6,6 @@ window.drawWordCloud = function drawWordCloud(TARGET_ELEMENT_ID, data) {
     const h = 300;
     const w = 300;
 
-    let random = d3.randomIrwinHall(2);
     let countMax = d3.max(data, function (d) {
         return d.count;
     });

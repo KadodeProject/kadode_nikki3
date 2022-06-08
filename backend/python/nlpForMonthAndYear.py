@@ -105,9 +105,12 @@ def nlpForMonthAndYear(user_id):
         print(str(row[0])+"Diary処理")
         # nlp関係はNoneがあるので注
         #jsonはdecodeする
+        """
+        使ってないのでコメントアウト
         value_id=row[0]
         value_updated_at=row[1]
         value_updated_statistic_at=row[2]
+        """
         value_date=str(row[3])
         value_char_length=row[4]
         value_emotions=row[5]
