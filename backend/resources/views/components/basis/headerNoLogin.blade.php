@@ -1,6 +1,6 @@
 <header class="px-4 relative w-screen flex justify-center sm:justify-between flex-wrap "
     style="box-shadow: 0px 8px 8px -5px rgba(0,0,0,0.5);">
-    <a href="{{url("/home")}}"><img class="logo-header" src="/img/kadode_logo.png"></a>
+    <a href="{{url("/home")}}"><img class="logo-header" src="/img/kadode_logo.svg" title="エーデルワイスの花言葉は「大切な思い出」です"></a>
 
     </div>
     <div class="flex items-center">

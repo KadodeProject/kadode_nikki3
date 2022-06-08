@@ -1,0 +1,9 @@
+.top-logo-hr {
+    width: 64px;
+    height: auto;
+    object-fit: contain;
+    filter: drop-shadow(5px 5px 5px black);
+    top: -400%;
+    left: calc(50% - 32px);
+    position: absolute;
+}
