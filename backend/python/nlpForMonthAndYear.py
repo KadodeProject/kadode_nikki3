@@ -97,152 +97,152 @@ def nlpForMonthAndYear(user_id):
         #     # データない場合
         #     time_statistics_updated_at = dt.strptime('1800-1-1 11:11:11','%Y-%m-%d %H:%M:%S')
         #本当は条件分岐したいが、全部まとめてやったほうが早いので、分岐せず数の暴力でぶん回す
-        if(0):
-            #処理不要 リーダーブルコードに乗ってたやつ
-            print(str(row[0])+"スキップ")
-            continue
+        # if(0):
+        #     #処理不要 リーダーブルコードに乗ってたやつ
+        #     print(str(row[0])+"スキップ")
+        #     continue
+        # else:
+        print(str(row[0])+"Diary処理")
+        # nlp関係はNoneがあるので注
+        #jsonはdecodeする
+        value_id=row[0]
+        value_updated_at=row[1]
+        value_updated_statistic_at=row[2]
+        value_date=str(row[3])
+        value_char_length=row[4]
+        value_emotions=row[5]
+        value_classification=row[6]
+        value_important_words=json.loads(row[7])
+        value_special_people=json.loads(row[8])
+        value_token=json.loads(row[9])
+
+        '''
+        年月日に分ける
+        '''
+        date=value_date.split('-')
+        # 辞書のラベル用
+        date_label=date[0]+"-"+date[1]
+        year=date[0]
+        day=date[2]
+
+        '''
+        感情まとめ
+        emotions
+        {
+        date:
+        value:
+        }
+        '''
+        yMonth_dicList[date_label]['emotions'].append({
+            "date":day,
+            "value":value_emotions,
+        })
+        #年別用　無ければ作成、あれば足す
+        if date_label in year_dicList[year]['emotions_raw'].keys():
+            year_dicList[year]['emotions_raw'][date_label]+=value_emotions
+            year_dicList[year]['emotions_counter_for_raw'][date_label]+=1
         else:
-            print(str(row[0])+"Diary処理")
-            # nlp関係はNoneがあるので注
-            #jsonはdecodeする
-            value_id=row[0]
-            value_updated_at=row[1]
-            value_updated_statistic_at=row[2]
-            value_date=str(row[3])
-            value_char_length=row[4]
-            value_emotions=row[5]
-            value_classification=row[6]
-            value_important_words=json.loads(row[7])
-            value_special_people=json.loads(row[8])
-            value_token=json.loads(row[9])
+            year_dicList[year]['emotions_raw'][date_label]=value_emotions
+            year_dicList[year]['emotions_counter_for_raw'][date_label]=1
 
-            '''
-            年月日に分ける
-            '''
-            date=value_date.split('-')
-            # 辞書のラベル用
-            date_label=date[0]+"-"+date[1]
-            year=date[0]
-            day=date[2]
+        #足すだけなので処理不要
 
+
+        '''
+        文字数まとめ
+        word_counts
+        {
+        date:
+        count:
+        }
+        '''
+        yMonth_dicList[date_label]['word_counts'].append({
+            "date":day,
+            "words":value_char_length,
+        })
+        #年別用　無ければ作成、あれば足す
+        if date_label in year_dicList[year]['word_counts_raw'].keys():
+            year_dicList[year]['word_counts_raw'][date_label]+=value_char_length
+            year_dicList[year]['diary_counter'][date_label]+=1
+        else:
+            year_dicList[year]['word_counts_raw'][date_label]=value_char_length
+            year_dicList[year]['diary_counter'][date_label]=1
+
+
+        '''
+        名詞多い順3
+        noun_rank
+        {
+        name:
+        count:
+        }
+
+        形容詞多い順3
+        adjective_rank
+        {
+        name:
+        count:
+        }
+
+        '''
+        #token複数あるので、ループで処理
+        for individual_token in value_token.values():
+            #残り
             '''
-            感情まとめ
-            emotions
+            dict
             {
-            date:
-            value:
+                'lemma':#基本形
+                'xPOSTag':#言語依存の品詞(動詞-一般的な)
             }
             '''
-            yMonth_dicList[date_label]['emotions'].append({
-                "date":day,
-                "value":value_emotions,
-            })
-            #年別用　無ければ作成、あれば足す
-            if date_label in year_dicList[year]['emotions_raw'].keys():
-                year_dicList[year]['emotions_raw'][date_label]+=value_emotions
-                year_dicList[year]['emotions_counter_for_raw'][date_label]+=1
-            else:
-                year_dicList[year]['emotions_raw'][date_label]=value_emotions
-                year_dicList[year]['emotions_counter_for_raw'][date_label]=1
-
-            #足すだけなので処理不要
+            if("名詞" in individual_token['xPOSTag'] ):
+                yMonth_dicList[date_label]['noun_rank'].append(individual_token['lemma'])
+                year_dicList[year]['noun_rank'].append(individual_token['lemma'])
+            elif("形容詞" in individual_token['xPOSTag']):
+                yMonth_dicList[date_label]['adjective_rank'].append(individual_token['lemma'])
+                year_dicList[year]['adjective_rank'].append(individual_token['lemma'])
 
 
-            '''
-            文字数まとめ
-            word_counts
-            {
-            date:
-            count:
-            }
-            '''
-            yMonth_dicList[date_label]['word_counts'].append({
-                "date":day,
-                "words":value_char_length,
-            })
-            #年別用　無ければ作成、あれば足す
-            if date_label in year_dicList[year]['word_counts_raw'].keys():
-                year_dicList[year]['word_counts_raw'][date_label]+=value_char_length
-                year_dicList[year]['diary_counter'][date_label]+=1
-            else:
-                year_dicList[year]['word_counts_raw'][date_label]=value_char_length
-                year_dicList[year]['diary_counter'][date_label]=1
+        '''
+        重要そうな単語3
+        important_words
+        {
+        name:
+        count:
+        }
+        '''
+        for important_word in value_important_words:
+            #残り
+            #同一要素数でカウントするため、count枠の数だけ要素を追加する(この方が計算しやすい)
+            for x in range(important_word['count']):
+                yMonth_dicList[date_label]['important_words'].append(important_word['name'])
+                year_dicList[year]['important_words'].append(important_word['name'])
 
+        '''
+        人物多い順3
+        special_people
+        {
+        name:
+        count:
+        }
+        '''
+        for special_person in value_special_people:
+            #残り
+            #同一要素数でカウントするため、count枠の数だけ要素を追加する(この方が計算しやすい)
+            for x in range(special_person['count']):
+                yMonth_dicList[date_label]['special_people'].append(special_person['name'])
+                year_dicList[year]['special_people'].append(special_person['name'])
 
-            '''
-            名詞多い順3
-            noun_rank
-            {
-            name:
-            count:
-            }
-
-            形容詞多い順3
-            adjective_rank
-            {
-            name:
-            count:
-            }
-
-            '''
-            #token複数あるので、ループで処理
-            for individual_token in value_token.values():
-                #残り
-                '''
-                dict
-                {
-                    'lemma':#基本形
-                    'xPOSTag':#言語依存の品詞(動詞-一般的な)
-                }
-                '''
-                if("名詞" in individual_token['xPOSTag'] ):
-                    yMonth_dicList[date_label]['noun_rank'].append(individual_token['lemma'])
-                    year_dicList[year]['noun_rank'].append(individual_token['lemma'])
-                elif("形容詞" in individual_token['xPOSTag']):
-                    yMonth_dicList[date_label]['adjective_rank'].append(individual_token['lemma'])
-                    year_dicList[year]['adjective_rank'].append(individual_token['lemma'])
-
-
-            '''
-            重要そうな単語3
-            important_words
-            {
-            name:
-            count:
-            }
-            '''
-            for important_word in value_important_words:
-                #残り
-                #同一要素数でカウントするため、count枠の数だけ要素を追加する(この方が計算しやすい)
-                for x in range(important_word['count']):
-                    yMonth_dicList[date_label]['important_words'].append(important_word['name'])
-                    year_dicList[year]['important_words'].append(important_word['name'])
-
-            '''
-            人物多い順3
-            special_people
-            {
-            name:
-            count:
-            }
-            '''
-            for special_person in value_special_people:
-                #残り
-                #同一要素数でカウントするため、count枠の数だけ要素を追加する(この方が計算しやすい)
-                for x in range(special_person['count']):
-                    yMonth_dicList[date_label]['special_people'].append(special_person['name'])
-                    year_dicList[year]['special_people'].append(special_person['name'])
-
-            '''
-            推定分類
-            classification
-            {
-            name:
-            count:
-            }
-            '''
-            yMonth_dicList[date_label]['classifications'].append(value_classification)
-            year_dicList[year]['classifications'].append(value_classification)
+        '''
+        推定分類
+        classification
+        {
+        name:
+        count:
+        }
+        '''
+        yMonth_dicList[date_label]['classifications'].append(value_classification)
+        year_dicList[year]['classifications'].append(value_classification)
 
 
 
