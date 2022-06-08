@@ -43,7 +43,7 @@
 <header class="px-4 relative w-full flex justify-between " style="box-shadow: 0px 8px 8px -5px rgba(0,0,0,0.5);">
     <div class="flex justify-center items-center"
         style="height:var(--header-height);filter:drop-shadow(0px 8px 8px -5px rgba(0,0,0,0.5));">
-        <a href="{{url("/home")}}"><img class="logo-header" src="/img/kadode_logo.png"
+        <a href="{{url("/home")}}"><img class="logo-header" src="/img/kadode_logo.svg"
                 title="エーデルワイスの花言葉は「大切な思い出」です"></a>
         <p class="ml-4 md:block hidden kiwi-maru">Public<br>Beta</p>
         <!-- <div class="sm:flex hidden ml-4   flex-col flex-wrap justify-center items-center">

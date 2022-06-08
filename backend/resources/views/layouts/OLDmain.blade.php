@@ -29,7 +29,7 @@
     <header class="px-4 relative border-b-2 w-screen flex justify-between items-center">
         <div class="flex items-center justify-around">
             <a href="{{url("/home")}}"><img style="object-fit:contain;width:auto;height:64px"
-                    src="/img/kadode_logo.png" title="エーデルワイスの花言葉は「大切な思い出」です"></a>
+                    src="/img/kadode_logo.svg" title="エーデルワイスの花言葉は「大切な思い出」です"></a>
             <div class="flex  flex-row flex-wrap justify-center">
                 <p id="headerYear">年</p>
                 <p id="headerMontDate">月</p>

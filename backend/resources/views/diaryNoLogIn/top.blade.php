@@ -9,10 +9,56 @@
     <div class="mb-4 mt-12">
         <h2 class="text-center text-3xl my-4 kiwi-maru">かどで日記</h2>
         <div class="flex justify-center md:w-1/2 px-4 mx-auto flex-col kiwi-maru">
-            <p class="">かどで日記では日記の作成・管理だけでなく、<br class="md:hidden">日記の分析もできます。</p>
-            <p class="">振り返りを楽しむ、<br class="md:hidden">日記Webアプリです。</p>
+            <p class="text-center mt-2">かどで日記では日記の作成・管理だけでなく、<br class="md:hidden">日記の分析もできます。</p>
+            <p class="text-center mb-2">振り返りも楽しめる日記Webアプリです。</p>
+            <p class="text-center my-2">おかげさまで2022年6月14日をもって、<br class="md:hidden">リリース1周年を迎えました🎉</p>
         </div>
     </div>
+
+    <div class="mt-4 mb-24">
+        <h2 class="text-center text-3xl my-4 kiwi-maru"><span class="material-icons">straighten</span>コンセプト</h2>
+        <div class="flex justify-start  md:w-1/2 px-4 mx-auto flex-col">
+            <p class="mx-4 kiwi-maru">
+                人は忘れてしまいます。でも記録は残ります。<br>10世紀に書かれた土佐日記も私達へ受け継がれています。<br>かどで日記の「かどで」は土佐日記に登場する最初の章「門出」より引用しました。<br>ページデザインはちょっとSFチックにしてみました。<br>近未来っぽさと古代っぽさを掛け合わせたコンセプトです。
+            </p>
+
+            <p class="kiwi-maru mx-4 mt-6 mb-2">
+                かどで日記の新しいロゴはエーデルワイスをモチーフに作りました。<br>エーデルワイスの花言葉は「大切な思い出」です。
+            </p>
+            <div class="my-12 h-2 w-100 bg-kn_2 relative rounded-2xl">
+                <img class="top-logo-hr" src="/img/kadode_logo_nobg.svg" title="エーデルワイスの花言葉は「大切な思い出」です">
+            </div>
+        </div>
+    </div>
+    <div class="mb-24 mt-4">
+        <p class="text-center mt-4 kiwi-maru">あくまで個人が作った<br class="md:hidden">趣味で運用しているサービスです。<br>ご理解の上、ご利用ください。</p>
+        <p class="text-center mt-12">
+            <a class="border-2 border-kn_3 p-2 text-3xl  kiwi-maru rounded-2xl" href="{{url("register")}}">新規登録</a>
+        </p>
+    </div>
+    <div>
+        <h2 class="text-center text-3xl my-4 kiwi-maru">ソースコード</h2>
+
+        <div class="flex justify-center md:w-1/2 px-4 mx-auto flex-col kiwi-maru">
+            <p class="text-center">GitHubにて公開しております✨</p>
+            <p class="text-center"><a target="_blank" rel="norefferrer"
+                    href="https://github.com/Usuyuki">かどで日記GitHub</a></p>
+        </div>
+    </div>
+    <div class="mt-8 mb-12">
+        <h2 class="text-center text-3xl my-4 kiwi-maru"><span class="material-icons">face</span>開発者より</h2>
+        <div class="flex justify-center  md:w-1/2 px-4 mx-auto">
+            <p class="kiwi-maru">開発者のうすゆきと申します。<br>Twitter:<a target="_blank" rel="norefferrer"
+                    href="https://twitter.com/usuyuki26">@usuyuki26</a><br>日記を書いてみませんか？</p>
+        </div>
+    </div>
+
+    <!--
+     Copyright (c) June 1, 2015 Tuomas Pöyry
+     Released under the MIT license
+     http://opensource.org/licenses/mit-license.php
+     -->
+    <canvas id="top-animation"></canvas>
     <h2 class="mt-24 mb-12 text-center text-4xl kiwi-maru">--流れ--</h2>
     <!--区切り-->
     @component('components.noLogIn.introFrame')
@@ -120,44 +166,6 @@
 
     <img src="/img/topDiscribe/kadodeImageExport.jpg" class="object-contain border-2 border-kn_2">
     @endcomponent
-
-
-    <!--
-     Copyright (c) June 1, 2015 Tuomas Pöyry
-     Released under the MIT license
-     http://opensource.org/licenses/mit-license.php
-     -->
-    <canvas id="top-animation"></canvas>
-    <div class="mb-24 mt-4">
-        <p class="text-center mt-4">あくまで個人が作った<br class="md:hidden">趣味の遊びサービスです。<br>ご理解の上、ご利用ください。</p>
-        <p class="text-center mt-12">
-            <a class="border-2 border-kn_3 p-2 text-3xl  kiwi-maru rounded-2xl" href="{{url("register")}}">新規登録</a>
-        </p>
-    </div>
-    <div class="mt-4 mb-12">
-        <h2 class="text-center text-3xl my-4 kiwi-maru"><span class="material-icons">face</span>開発者より</h2>
-        <div class="flex justify-center  md:w-1/2 px-4 mx-auto">
-            <p class="">開発者のうすゆきと申します。<br>Twitter:@usuyuki26<br>日記書くの、おすすめです！</p>
-        </div>
-    </div>
-    <div class="mt-4 mb-24">
-        <h2 class="text-center text-3xl my-4 kiwi-maru"><span class="material-icons">straighten</span>コンセプト</h2>
-        <div class="flex justify-start  md:w-1/2 px-4 mx-auto">
-            <p class="mx-4">
-                人は忘れてしまいます。でも記録は残ります。<br>10世紀に書かれた土佐日記も私達へ受け継がれています。<br>かどで日記の「かどで」は土佐日記に登場する最初の章？「門出」より引用しました。一方で、ページデザインはちょっとSFチックな色を選びました。近未来っぽさと古代っぽさを掛け合わせたコンセプトです。
-            </p>
-        </div>
-    </div>
-
-    {{--
-    <div class="w-full h-80 flex items-center justify-center">
-        <div>
-            <span class="kaihatusya material-icons text-kn_w text-xl">
-                face
-            </span>
-        </div>
-    </div> --}}
-
 
 </div>
 <script src="{{ mix('js/topView.js') }}"></script>
