@@ -3,7 +3,7 @@
     {{ $slot }}
 </div>
 <div class="flex items-center justify-center h-32">
-    <p class="material-icons text-main-color" style="font-size: 3em!important">
+    <p class="material-icons text-kn_w" style="font-size: 3em!important">
         arrow_downward
     </p>
 </div>

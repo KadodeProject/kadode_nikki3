@@ -1,15 +1,18 @@
 :root {
     /* カラー定義 */
-    --bg-main-color: #2f3437;
-    --text-main-color: #f9fff9;
-    --logo-main-color: #624464;
-    --button-main-color: #4b8996;
-    --border-main-color: #8a8772;
+    --kn_b: #2f3437;
+    --kn_w: #f9fff9;
+    /* 1 */
+    --kn_1: #624464;
+    /* 2 */
+    --kn_2: #4b8996;
+    /* 3 */
+    --kn_3: #8a8772;
     /* カラー定義その2 */
-    --status-poor: #e2534a;
-    --status-good: #339c76;
-    --status-excellent: #33769c;
-    --submit-bubble-color: #f9fff9;
+    --kn_poor: #e2534a;
+    --kn_good: #339c76;
+    --kn_excellent: #33769c;
+    --kn_bubble: #f9fff9;
     /* ヘッダー高さ */
     --header-height: 73px;
     /* メディアクエリ */
@@ -18,50 +21,4 @@
     --media-lg: 1024px;
     --media-xl: 1280px;
 }
-
-.bg-main-color {
-    background-color: var(--bg-main-color);
-}
-.border-bg-main-color {
-    background-color: var(--border-main-color);
-}
-.border-border-main-color {
-    border-color: var(--border-main-color);
-}
-.border-button-main-color {
-    border-color: var(--button-main-color);
-}
-.button-bg-main-color {
-    background-color: var(--button-main-color);
-}
-.button-border-main-color {
-    border-color: var(--button-main-color);
-}
-.text-main-color {
-    color: var(--text-main-color);
-}
-.border-main-color {
-    color: var(--border-main-color);
-}
-
-.bg-status-poor {
-    background-color: var(--status-poor) !important;
-}
-.text-status-poor {
-    color: var(--status-poor);
-}
-.bg-status-good {
-    background-color: var(--status-good) !important;
-}
-.text-status-good {
-    color: var(--status-good);
-}
-.bg-status-excellent {
-    background-color: var(--status-excellent) !important;
-}
-.text-status-excellent {
-    color: var(--status-excellent);
-}
-.bg-logo-main-color {
-    background-color: var(--logo-main-color) !important;
-}
+/* @todo ここでのカラー定義はtailwind.config.jsにて指定すること */

@@ -164,7 +164,7 @@
                 @endfor
                 <p class="text-center text-3xl kiwi-maru">{{$user->name}}さんの<br class="md:hidden">ユーザーランクは<br
                         class="md:hidden">「{{$user_rank->name}}」です。</p>
-                <p class="text-center text-xl mt-2 mb-4 kiwi-maru text-button-main-color">{{$user_rank->description}}
+                <p class="text-center text-xl mt-2 mb-4 kiwi-maru text-kn_2">{{$user_rank->description}}
                 </p>
 
                 <svg viewBox="0 0 446.16847 309.23255" version="1.1" id="svg5"
@@ -737,7 +737,7 @@
         <div class="settingContentWrapper">
             <form class="flex justify-center flex-wrap flex-col " method="POST" action="/export/diary">
                 @csrf
-                <input type="submit" class="text-black px-2 md:w-1/2 w-full mx-auto" value="csv形式でエクスポート">
+                <input type="submit" class="text-black px-2 md:w-1/2 w-full mx-auto bg-kn_2" value="csv形式でエクスポート">
             </form>
             {{-- <div class="settingContent"><a href="/export/diary">CSVエクスポート</a></div> --}}
         </div>
@@ -747,7 +747,7 @@
 
         <form class="flex justify-center flex-wrap flex-col my-2" method="POST" action="/logout">
             @csrf
-            <input type="submit" class="text-black bg-status-good md:w-1/2 w-full mx-auto" value="ログアウト">
+            <input type="submit" class="text-black bg-kn_good md:w-1/2 w-full mx-auto" value="ログアウト">
         </form>
     </div>
 
@@ -758,7 +758,7 @@
         <p class="text-xl text-red-500 kiwi-maru text-center">！！一度削除すると復元できません。日記も統計データも全て削除されます。ご注意ください！！</p>
         <form class="flex justify-center flex-wrap flex-col" method="POST" action="/deleteUser">
             @csrf
-            <input type="submit" class="text-black bg-status-poor md:w-1/2 w-full mx-auto" value="アカウント削除">
+            <input type="submit" class="text-black bg-kn_poor md:w-1/2 w-full mx-auto" value="アカウント削除">
         </form>
     </div>
 

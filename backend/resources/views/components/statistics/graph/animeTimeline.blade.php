@@ -1,8 +1,8 @@
 <style>
     .vis-item {
-        border-color: var(--button-main-color);
-        background-color: var(--button-main-color);
-        color: var(--text-main-color);
+        border-color: var(--kn_2);
+        background-color: var(--kn_2);
+        color: var(--text-kn_w);
         font-family: "Kiwi Maru", serif;
     }
 </style>

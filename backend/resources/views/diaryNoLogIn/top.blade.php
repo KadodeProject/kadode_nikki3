@@ -22,7 +22,7 @@
     @slot('title')
     日記を書く
     @endslot
-    <img src="/img/topDiscribe/kadodeImageMain.jpg" class="object-contain border-2 button-border-main-color">
+    <img src="/img/topDiscribe/kadodeImageMain.jpg" class="object-contain border-2 border-kn_2">
     @endcomponent
     <!--区切り-->
     @component('components.noLogIn.introFrame')
@@ -33,8 +33,7 @@
     統計の設定を行う
     @endslot
     <p class="text-center my-2 mx-8 ">一般的な辞書にない単語などを<br class="md:hidden">固有表現として登録できます。</p>
-    <img src="/img/topDiscribe/kadodeImageSettingStatistic.jpg"
-        class="object-contain border-2 button-border-main-color">
+    <img src="/img/topDiscribe/kadodeImageSettingStatistic.jpg" class="object-contain border-2 border-kn_2">
     @endcomponent
     <!--区切り-->
     @component('components.noLogIn.introFrame')
@@ -45,13 +44,12 @@
     統計を生成する
     @endslot
     <p class="text-center my-2 mx-8">自然言語処理ライブラリ、<br class="md:hidden">GiNZAをベースに用いています。</p>
-    <img src="/img/topDiscribe/kadodeImageGeneratingStatistics.jpg"
-        class="object-contain border-2 button-border-main-color">
+    <img src="/img/topDiscribe/kadodeImageGeneratingStatistics.jpg" class="object-contain border-2 border-kn_2">
 
 
-    <h4 class="relative top-12 ml-8 my-4 kiwi-maru text-2xl mt-20 bg-main-color inline-block"><span
+    <h4 class="relative top-12 ml-8 my-4 kiwi-maru text-2xl mt-20 bg-kn_b inline-block"><span
             class="material-icons">category</span>処理の流れ</h4>
-    <div class="p-8 m-4 border-dashed border-2 border-border-main-color rounded-xl">
+    <div class="p-8 m-4 border-dashed border-2 border-kn_3 rounded-xl">
         @component('components.statistics.statisticOverallView')
         @endcomponent
     </div>
@@ -68,8 +66,7 @@
     <p class="text-center my-2 mx-8">個別、月別、年別、トータルの<br class="md:hidden">統計情報をご覧いただけます。</p>
     <div class="flex justify-center imtes-center flex-wrap my-8">
         <div class="md:w-1/2 w-full ">
-            <img src="/img/topDiscribe/kadodeImageNlpTotal.jpg"
-                class="object-contain border-2 button-border-main-color">
+            <img src="/img/topDiscribe/kadodeImageNlpTotal.jpg" class="object-contain border-2 border-kn_2">
         </div>
         <div class="md:w-1/2 w-full flex items-center justify-center">
             <p class="text-3xl kiwi-maru">統計(全体)</p>
@@ -77,7 +74,7 @@
     </div>
     <div class="flex justify-center imtes-center flex-wrap my-8">
         <div class="md:w-1/2 w-full md:order-2">
-            <img src="/img/topDiscribe/kadodeImageNlpYear.jpg" class="object-contain border-2 button-border-main-color">
+            <img src="/img/topDiscribe/kadodeImageNlpYear.jpg" class="object-contain border-2 border-kn_2">
         </div>
         <div class="md:w-1/2 w-full md:order-1 flex items-center justify-center">
             <p class="text-3xl kiwi-maru">統計(年別・月別)</p>
@@ -85,8 +82,7 @@
     </div>
     <div class="flex justify-center imtes-center flex-wrap my-8">
         <div class="md:w-1/2 w-full ">
-            <img src="/img/topDiscribe/kadodeImageNlpDiary.jpg"
-                class="object-contain border-2 button-border-main-color">
+            <img src="/img/topDiscribe/kadodeImageNlpDiary.jpg" class="object-contain border-2 border-kn_2">
         </div>
         <div class="md:w-1/2 w-full flex items-center justify-center">
             <p class="text-3xl kiwi-maru">統計(個別)</p>
@@ -122,7 +118,7 @@
     <h4 class="text-center my-4 kiwi-maru text-2xl mt-20"><span class="material-icons">import_export</span>インポート、エクスポート
     </h4>
 
-    <img src="/img/topDiscribe/kadodeImageExport.jpg" class="object-contain border-2 button-border-main-color">
+    <img src="/img/topDiscribe/kadodeImageExport.jpg" class="object-contain border-2 border-kn_2">
     @endcomponent
 
 
@@ -135,7 +131,7 @@
     <div class="mb-24 mt-4">
         <p class="text-center mt-4">あくまで個人が作った<br class="md:hidden">趣味の遊びサービスです。<br>ご理解の上、ご利用ください。</p>
         <p class="text-center mt-12">
-            <a class="border-2 border-border-main-color p-2 text-3xl  kiwi-maru rounded-2xl" href="{{url("register")}}">新規登録</a>
+            <a class="border-2 border-kn_3 p-2 text-3xl  kiwi-maru rounded-2xl" href="{{url("register")}}">新規登録</a>
         </p>
     </div>
     <div class="mt-4 mb-12">
@@ -156,7 +152,7 @@
     {{--
     <div class="w-full h-80 flex items-center justify-center">
         <div>
-            <span class="kaihatusya material-icons text-main-color text-xl">
+            <span class="kaihatusya material-icons text-kn_w text-xl">
                 face
             </span>
         </div>

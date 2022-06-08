@@ -9,7 +9,7 @@
 <div class="mx-auto px-4" style="max-width: 1200px">
     <div class="mb-12">
         <div class="flex items-center">
-            <div class="border-bg-main-color w-2 h-8"></div>
+            <div class="bg-kn_3 w-2 h-8"></div>
             <h2 class="ml-2 text-2xl">作者</h2>
         </div>
         <div class="py-4">
@@ -21,7 +21,7 @@
     </div>
     <div class="mb-12">
         <div class="flex items-center">
-            <div class="border-bg-main-color w-2 h-8"></div>
+            <div class="bg-kn_3 w-2 h-8"></div>
             <h2 class="ml-2 text-2xl">かどで日記GitHubリポジトリ</h2>
         </div>
         <div class="py-4">
@@ -31,7 +31,7 @@
     </div>
     <div class="mb-12">
         <div class="flex items-center">
-            <div class="border-bg-main-color w-2 h-8"></div>
+            <div class="bg-kn_3 w-2 h-8"></div>
             <h2 class="ml-2 text-2xl">お問い合わせフォーム</h2>
         </div>
         <div class="py-4 ">

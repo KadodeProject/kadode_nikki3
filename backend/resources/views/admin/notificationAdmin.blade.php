@@ -77,7 +77,7 @@
                                 class="text-xl mx-auto mb-4  kiwi-maru" name="date">
                         </td>
                         <td>
-                            <input type="submit" id="submitosirase_{{$i}}" class="text-black" value="追加">
+                            <input type="submit" id="submitosirase_{{$i}}" class="text-black bg-kn_2" value="追加">
                         </td>
                         <td>
                             --
@@ -120,14 +120,14 @@
                                 value="{{$releasenote->date->format('Y-m-d')}}">
                         </td>
                         <td>
-                            <input type="submit" id="submitosirase_{{$i}}" class="text-black" value="変更">
+                            <input type="submit" id="submitosirase_{{$i}}" class="text-black bg-kn_2" value="変更">
                         </td>
                     </form>
                     <form class="" method="POST" action="/administrator/settings/releasenote/delete">
                         @csrf
                         <td>
                             <input type="hidden" name="releasenote_id" value="{{$releasenote->id}}">
-                            <input type="submit" class="text-black" value="削除">
+                            <input type="submit" class="text-black bg-kn_poor" value="削除">
                         </td>
                     </form>
                 </tr>
@@ -214,7 +214,7 @@
                                 class="text-xl mx-auto mb-4  kiwi-maru" name="date" value="{{$original_date}}">
                         </td>
                         <td>
-                            <input type="submit" id="submitosirase_{{$i}}" class="text-black" value="追加">
+                            <input type="submit" id="submitosirase_{{$i}}" class="text-black bg-kn_2" value="追加">
                         </td>
                         <td>
                             --
@@ -258,14 +258,14 @@
                                 value="{{$osirase->date->format('Y-m-d')}}">
                         </td>
                         <td>
-                            <input type="submit" id="submitosirase_{{$i}}" class="text-black" value="変更">
+                            <input type="submit" id="submitosirase_{{$i}}" class="text-black bg-kn_2" value="変更">
                         </td>
                     </form>
                     <form class="" method="POST" action="/administrator/settings/osirase/delete">
                         @csrf
                         <td>
                             <input type="hidden" name="osirase_id" value="{{$osirase->id}}">
-                            <input type="submit" class="text-black" value="削除">
+                            <input type="submit" class="text-black bg-kn_poor" value="削除">
                         </td>
                     </form>
                 </tr>

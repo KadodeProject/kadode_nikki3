@@ -52,7 +52,7 @@
     align-items: center;
     width: 40px;
     height: 40px;
-    color: var(--status-good);
+    color: var(--kn_good);
     transform: rotate(90deg);
 }
 .sov-arrow {
@@ -61,7 +61,7 @@
     align-items: center;
     width: 40px;
     height: 40px;
-    color: var(--status-good);
+    color: var(--kn_good);
 }
 .sov-arrow-raw {
     display: flex;
@@ -69,14 +69,14 @@
     align-items: center;
     width: 40px;
     height: 40px;
-    color: var(--status-good);
+    color: var(--kn_good);
 }
 
 .sov-pipe {
     padding: 4px 12px;
     margin: 4px;
     border-radius: 12px;
-    border: 2px solid var(--status-good);
+    border: 2px solid var(--kn_good);
     display: flex;
     align-items: center;
 }
@@ -84,7 +84,7 @@
 .sov-pipe-wrapper section {
     text-align: center;
     font-size: 0.75em;
-    color: var(--text-main-color);
+    color: var(--kn_w);
 }
 .sov-pipe-wrapper nav {
     position: absolute;
@@ -93,8 +93,8 @@
     font-size: 0.75em;
     width: 300px;
     height: 250px;
-    color: var(--text-main-color);
-    background-color: var(--border-main-color);
+    color: var(--kn_w);
+    background-color: var(--kn_3);
     clip-path: polygon(
         67% 12%,
         100% 14%,
@@ -112,7 +112,7 @@
     width: 130px;
     height: 80px;
     clip-path: polygon(75% 0%, 93% 50%, 75% 100%, 0% 100%, 14% 50%, 0% 0%);
-    background-color: var(--border-main-color);
+    background-color: var(--kn_3);
     margin: 4px 0px;
     text-align: center;
     display: flex;
@@ -184,7 +184,7 @@
     padding: 4px 1em;
     margin: 4px;
     height: 2em;
-    border: 1px solid var(--border-main-color);
+    border: 1px solid var(--kn_3);
 }
 .sov-square p {
     text-align: center;
@@ -225,26 +225,26 @@
 }
 
 .nlp-normal-table {
-    color: var(--text-main-color);
-    border: 2px solid var(--button-main-color);
+    color: var(--kn_w);
+    border: 2px solid var(--kn_2);
     text-align: center;
 }
 .nlp-normal-table th,
 td {
     padding: 0.5em;
-    border: 1px solid var(--button-main-color);
+    border: 1px solid var(--kn_2);
 }
 
 .nlp-normal-table th {
-    color: var(--bg-main-color);
-    background-color: var(--button-main-color);
+    color: var(--kn_b);
+    background-color: var(--kn_2);
 }
 
 .nlp-normal-package {
     width: 250px;
     height: 300px;
-    color: var(--text-main-color);
-    border: 1px solid var(--button-main-color);
+    color: var(--kn_w);
+    border: 1px solid var(--kn_2);
     border-radius: 3px;
     margin: 4px 12px;
     padding: 1em 1em;

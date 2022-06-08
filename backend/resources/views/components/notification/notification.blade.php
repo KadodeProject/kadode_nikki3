@@ -1,5 +1,5 @@
 <div style="background-color:rgba({{$bg_color}},.5)"
-    class="border-button-main-color border-2 rounded-xl px-4 py-4 my-4 flex items-center">
+    class="border-kn_2 border-2 rounded-xl px-4 py-4 my-4 flex items-center">
     {{-- status-excellent
     status-good
     status-poor --}}

@@ -16,21 +16,17 @@ body {
 }
 
 .copyright {
-    color: var(--logo-main-color);
+    color: var(--kn_1);
 }
 .footer-menu {
-    color: var(--border-main-color);
-}
-
-.text-button-main-color {
-    color: var(--button-main-color);
+    color: var(--kn_3);
 }
 
 .top-over-header {
     top: var(--header-height);
 }
 body {
-    background-color: var(--bg-main-color);
+    background-color: var(--kn_b);
     overflow-x: hidden;
 }
 
@@ -41,7 +37,7 @@ h3,
 h4,
 h5,
 ol {
-    color: var(--text-main-color);
+    color: var(--kn_w);
 }
 
 .kiwi-maru {
@@ -57,7 +53,7 @@ input[type="file"]:focus {
 input[type="file"]::before {
     content: "添付ファイル：";
     position: absolute;
-    background: var(--bg-main-color);
+    background: var(--kn_b);
     width: 130px;
     height: 32px;
     line-height: 1.8;
@@ -65,7 +61,7 @@ input[type="file"]::before {
 }
 .file-input-wrapper {
     font-size: 16px;
-    border: 1px solid var(--button-main-color);
+    border: 1px solid var(--kn_2);
     border-radius: 4px;
     padding: 0.5em;
     margin: 0.5em auto;
@@ -74,17 +70,16 @@ textarea {
     resize: none;
     width: 300px;
     height: 200px;
-    background-color: var(--bg-main-color) !important;
-    border-color: var(--button-main-color) !important;
-    color: var(--text-main-color);
+    background-color: var(--kn_b) !important;
+    border-color: var(--kn_2) !important;
+    color: var(--kn_w);
 }
 textarea::placeholder {
-    color: var(--border-main-color);
+    color: var(--kn_3);
     font-family: "Kiwi Maru", serif;
 }
 input[type="submit"] {
-    background-color: var(--button-main-color);
-    color: var(--text-main-color);
+    color: var(--kn_w);
     cursor: pointer;
     border-radius: 0 0 4px 4px;
     padding: 0.25em 0.5em;
@@ -106,7 +101,7 @@ p::-webkit-scrollbar {
 /*スクロールバーの軌道*/
 ::-webkit-scrollbar-track {
     border-radius: 10px;
-    /* background-color: var(--border-main-color); */
+    /* background-color: var(--kn_3); */
     /* box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.1); */
 }
 

@@ -67,7 +67,7 @@
                             --
                         </td>
                         <td>
-                            <input type="submit" id="submitNlpPackageName_{{$i}}" class="text-black" value="追加">
+                            <input type="submit" id="submitNlpPackageName_{{$i}}" class="text-black bg-kn_2" value="追加">
                         </td>
                         <td>
                             --
@@ -124,17 +124,17 @@
                             </select>
                         </td>
                         <td>
-                            <a class="button-bg-main-color p-2 rounded-2xl" href="{{url("/administrator/package/".$packageObj->id)}}">編集</a>
+                            <a class="bg-kn_2 p-2 rounded-2xl" href="{{url("/administrator/package/".$packageObj->id)}}">編集</a>
                         </td>
                         <td>
-                            <input type="submit" id="submitNlpPackageName_{{$i}}" class="text-black" value="変更">
+                            <input type="submit" id="submitNlpPackageName_{{$i}}" class="text-black bg-kn_2" value="変更">
                         </td>
                     </form>
                     <form class="" method="POST" action="/administrator/settings/packages/delete">
                         @csrf
                         <td>
                             <input type="hidden" name="NlpPackageName_id" value="{{$packageObj->id}}">
-                            <input type="submit" class="text-black" value="削除">
+                            <input type="submit" class="text-black bg-kn_poor" value="削除">
                         </td>
                     </form>
                 </tr>
@@ -201,7 +201,7 @@
                                 onkeydown="if((event.ctrlKey || event.metaKey)&&event.keyCode==13){document.getElementById('submitNlpPackageName_{{$i}}').click();return false};">
                         </td>
                         <td>
-                            <input type="submit" id="submitNlpPackageName_{{$i}}" class="text-black" value="追加">
+                            <input type="submit" id="submitNlpPackageName_{{$i}}" class="text-black bg-kn_2" value="追加">
                         </td>
                         <td>
                             --
@@ -232,14 +232,14 @@
                                 onkeydown="if((event.ctrlKey || event.metaKey)&&event.keyCode==13){document.getElementById('submitNlpPackageName_{{$i}}').click();return false};">
                         </td>
                         <td>
-                            <input type="submit" id="submitNlpPackageName_{{$i}}" class="text-black" value="変更">
+                            <input type="submit" id="submitNlpPackageName_{{$i}}" class="text-black bg-kn_2" value="変更">
                         </td>
                     </form>
                     <form class="" method="POST" action="/administrator/settings/packages/genre/delete">
                         @csrf
                         <td>
                             <input type="hidden" name="NlpPackageGenre_id" value="{{$PackageGenre->id}}">
-                            <input type="submit" class="text-black" value="削除">
+                            <input type="submit" class="text-black bg-kn_poor" value="削除">
                         </td>
                     </form>
                 </tr>

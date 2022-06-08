@@ -869,26 +869,20 @@ select {
 .right-4 {
   right: 1rem;
 }
-.top-1 {
-  top: 0.25rem;
-}
-.right-2 {
-  right: 0.5rem;
-}
 .top-12 {
   top: 3rem;
 }
 .bottom-0 {
   bottom: 0px;
 }
+.top-0 {
+  top: 0px;
+}
 .top-10 {
   top: 2.5rem;
 }
 .left-2 {
   left: 0.5rem;
-}
-.top-0 {
-  top: 0px;
 }
 .z-0 {
   z-index: 0;
@@ -914,19 +908,19 @@ select {
 .float-left {
   float: left;
 }
-.m-2 {
-  margin: 0.5rem;
-}
 .m-4 {
   margin: 1rem;
+}
+.m-2 {
+  margin: 0.5rem;
 }
 .mx-auto {
   margin-left: auto;
   margin-right: auto;
 }
-.my-2 {
-  margin-top: 0.5rem;
-  margin-bottom: 0.5rem;
+.my-8 {
+  margin-top: 2rem;
+  margin-bottom: 2rem;
 }
 .my-4 {
   margin-top: 1rem;
@@ -936,29 +930,29 @@ select {
   margin-top: 3rem;
   margin-bottom: 3rem;
 }
-.my-8 {
-  margin-top: 2rem;
-  margin-bottom: 2rem;
-}
-.mx-2 {
-  margin-left: 0.5rem;
-  margin-right: 0.5rem;
+.my-2 {
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
 }
 .my-20 {
   margin-top: 5rem;
   margin-bottom: 5rem;
 }
+.mx-8 {
+  margin-left: 2rem;
+  margin-right: 2rem;
+}
 .mx-4 {
   margin-left: 1rem;
   margin-right: 1rem;
 }
+.mx-2 {
+  margin-left: 0.5rem;
+  margin-right: 0.5rem;
+}
 .my-6 {
   margin-top: 1.5rem;
   margin-bottom: 1.5rem;
-}
-.mx-8 {
-  margin-left: 2rem;
-  margin-right: 2rem;
 }
 .ml-3 {
   margin-left: 0.75rem;
@@ -1032,20 +1026,20 @@ select {
 .mb-12 {
   margin-bottom: 3rem;
 }
-.mt-12 {
-  margin-top: 3rem;
+.mb-8 {
+  margin-bottom: 2rem;
 }
 .mb-2 {
   margin-bottom: 0.5rem;
-}
-.mb-8 {
-  margin-bottom: 2rem;
 }
 .mb-20 {
   margin-bottom: 5rem;
 }
 .mt-16 {
   margin-top: 4rem;
+}
+.mt-12 {
+  margin-top: 3rem;
 }
 .mt-24 {
   margin-top: 6rem;
@@ -1062,11 +1056,11 @@ select {
 .mb-10 {
   margin-bottom: 2.5rem;
 }
-.mr-4 {
-  margin-right: 1rem;
-}
 .-mt-px {
   margin-top: -1px;
+}
+.mr-4 {
+  margin-right: 1rem;
 }
 .block {
   display: block;
@@ -1122,17 +1116,14 @@ select {
 .h-80 {
   height: 20rem;
 }
-.h-full {
-  height: 100%;
-}
 .h-32 {
   height: 8rem;
 }
-.h-auto {
-  height: auto;
-}
 .h-2 {
   height: 0.5rem;
+}
+.h-full {
+  height: 100%;
 }
 .min-h-screen {
   min-height: 100vh;
@@ -1188,14 +1179,14 @@ select {
 .w-2 {
   width: 0.5rem;
 }
-.w-screen {
-  width: 100vw;
-}
 .w-1\/5 {
   width: 20%;
 }
 .w-4\/5 {
   width: 80%;
+}
+.w-screen {
+  width: 100vw;
 }
 .w-2\/3 {
   width: 66.666667%;
@@ -1383,11 +1374,11 @@ select {
 .rounded-xl {
   border-radius: 0.75rem;
 }
-.rounded-sm {
-  border-radius: 0.125rem;
-}
 .rounded-2xl {
   border-radius: 1rem;
+}
+.rounded-sm {
+  border-radius: 0.125rem;
 }
 .rounded-l-md {
   border-top-left-radius: 0.375rem;
@@ -1454,6 +1445,14 @@ select {
   --tw-border-opacity: 1;
   border-color: rgb(243 244 246 / var(--tw-border-opacity));
 }
+.border-kn_2 {
+  --tw-border-opacity: 1;
+  border-color: rgb(75 137 150 / var(--tw-border-opacity));
+}
+.border-kn_3 {
+  --tw-border-opacity: 1;
+  border-color: rgb(138 135 114 / var(--tw-border-opacity));
+}
 .bg-white {
   --tw-bg-opacity: 1;
   background-color: rgb(255 255 255 / var(--tw-bg-opacity));
@@ -1501,6 +1500,34 @@ select {
 .bg-gray-200 {
   --tw-bg-opacity: 1;
   background-color: rgb(229 231 235 / var(--tw-bg-opacity));
+}
+.bg-kn_3 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(138 135 114 / var(--tw-bg-opacity));
+}
+.bg-kn_good {
+  --tw-bg-opacity: 1;
+  background-color: rgb(51 156 118 / var(--tw-bg-opacity));
+}
+.bg-kn_excellent {
+  --tw-bg-opacity: 1;
+  background-color: rgb(51 118 156 / var(--tw-bg-opacity));
+}
+.bg-kn_poor {
+  --tw-bg-opacity: 1;
+  background-color: rgb(226 83 74 / var(--tw-bg-opacity));
+}
+.bg-kn_b {
+  --tw-bg-opacity: 1;
+  background-color: rgb(47 52 55 / var(--tw-bg-opacity));
+}
+.bg-kn_2 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(75 137 150 / var(--tw-bg-opacity));
+}
+.bg-kn_1 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(98 68 100 / var(--tw-bg-opacity));
 }
 .bg-opacity-25 {
   --tw-bg-opacity: 0.25;
@@ -1620,32 +1647,32 @@ select {
 .pb-1 {
   padding-bottom: 0.25rem;
 }
-.pb-8 {
-  padding-bottom: 2rem;
-}
-.pb-12 {
-  padding-bottom: 3rem;
-}
-.pt-8 {
-  padding-top: 2rem;
-}
-.pb-2 {
-  padding-bottom: 0.5rem;
-}
-.pt-12 {
-  padding-top: 3rem;
-}
 .pl-4 {
   padding-left: 1rem;
 }
 .pr-2 {
   padding-right: 0.5rem;
 }
-.pb-20 {
-  padding-bottom: 5rem;
+.pb-2 {
+  padding-bottom: 0.5rem;
+}
+.pb-8 {
+  padding-bottom: 2rem;
+}
+.pb-12 {
+  padding-bottom: 3rem;
 }
 .pt-0 {
   padding-top: 0px;
+}
+.pt-8 {
+  padding-top: 2rem;
+}
+.pt-12 {
+  padding-top: 3rem;
+}
+.pb-20 {
+  padding-bottom: 5rem;
 }
 .text-left {
   text-align: left;
@@ -1788,17 +1815,29 @@ select {
   --tw-text-opacity: 1;
   color: rgb(34 197 94 / var(--tw-text-opacity));
 }
-.text-black {
+.text-kn_w {
   --tw-text-opacity: 1;
-  color: rgb(0 0 0 / var(--tw-text-opacity));
+  color: rgb(249 255 249 / var(--tw-text-opacity));
+}
+.text-kn_3 {
+  --tw-text-opacity: 1;
+  color: rgb(138 135 114 / var(--tw-text-opacity));
 }
 .text-gray-300 {
   --tw-text-opacity: 1;
   color: rgb(209 213 219 / var(--tw-text-opacity));
 }
+.text-black {
+  --tw-text-opacity: 1;
+  color: rgb(0 0 0 / var(--tw-text-opacity));
+}
 .text-gray-200 {
   --tw-text-opacity: 1;
   color: rgb(229 231 235 / var(--tw-text-opacity));
+}
+.text-kn_2 {
+  --tw-text-opacity: 1;
+  color: rgb(75 137 150 / var(--tw-text-opacity));
 }
 .underline {
   -webkit-text-decoration-line: underline;
@@ -1905,16 +1944,19 @@ select {
 /* フォントと変数の読み込み */
 :root {
     /* カラー定義 */
-    --bg-main-color: #2f3437;
-    --text-main-color: #f9fff9;
-    --logo-main-color: #624464;
-    --button-main-color: #4b8996;
-    --border-main-color: #8a8772;
+    --kn_b: #2f3437;
+    --kn_w: #f9fff9;
+    /* 1 */
+    --kn_1: #624464;
+    /* 2 */
+    --kn_2: #4b8996;
+    /* 3 */
+    --kn_3: #8a8772;
     /* カラー定義その2 */
-    --status-poor: #e2534a;
-    --status-good: #339c76;
-    --status-excellent: #33769c;
-    --submit-bubble-color: #f9fff9;
+    --kn_poor: #e2534a;
+    --kn_good: #339c76;
+    --kn_excellent: #33769c;
+    --kn_bubble: #f9fff9;
     /* ヘッダー高さ */
     --header-height: 73px;
     /* メディアクエリ */
@@ -1923,51 +1965,7 @@ select {
     --media-lg: 1024px;
     --media-xl: 1280px;
 }
-.bg-main-color {
-    background-color: var(--bg-main-color);
-}
-.border-bg-main-color {
-    background-color: var(--border-main-color);
-}
-.border-border-main-color {
-    border-color: var(--border-main-color);
-}
-.border-button-main-color {
-    border-color: var(--button-main-color);
-}
-.button-bg-main-color {
-    background-color: var(--button-main-color);
-}
-.button-border-main-color {
-    border-color: var(--button-main-color);
-}
-.text-main-color {
-    color: var(--text-main-color);
-}
-.border-main-color {
-    color: var(--border-main-color);
-}
-.bg-status-poor {
-    background-color: var(--status-poor) !important;
-}
-.text-status-poor {
-    color: var(--status-poor);
-}
-.bg-status-good {
-    background-color: var(--status-good) !important;
-}
-.text-status-good {
-    color: var(--status-good);
-}
-.bg-status-excellent {
-    background-color: var(--status-excellent) !important;
-}
-.text-status-excellent {
-    color: var(--status-excellent);
-}
-.bg-logo-main-color {
-    background-color: var(--logo-main-color) !important;
-}
+/* @todo ここでのカラー定義はtailwind.config.jsにて指定すること */
 @font-face {
     font-display: swap;
     font-family: "Material Icons";
@@ -2021,19 +2019,16 @@ body {
     }
 }
 .copyright {
-    color: var(--logo-main-color);
+    color: var(--kn_1);
 }
 .footer-menu {
-    color: var(--border-main-color);
-}
-.text-button-main-color {
-    color: var(--button-main-color);
+    color: var(--kn_3);
 }
 .top-over-header {
     top: var(--header-height);
 }
 body {
-    background-color: var(--bg-main-color);
+    background-color: var(--kn_b);
     overflow-x: hidden;
 }
 p,
@@ -2043,7 +2038,7 @@ h3,
 h4,
 h5,
 ol {
-    color: var(--text-main-color);
+    color: var(--kn_w);
 }
 .kiwi-maru {
     font-family: "Kiwi Maru", serif;
@@ -2058,7 +2053,7 @@ input[type="file"]:focus {
 input[type="file"]::before {
     content: "添付ファイル：";
     position: absolute;
-    background: var(--bg-main-color);
+    background: var(--kn_b);
     width: 130px;
     height: 32px;
     line-height: 1.8;
@@ -2066,7 +2061,7 @@ input[type="file"]::before {
 }
 .file-input-wrapper {
     font-size: 16px;
-    border: 1px solid var(--button-main-color);
+    border: 1px solid var(--kn_2);
     border-radius: 4px;
     padding: 0.5em;
     margin: 0.5em auto;
@@ -2075,25 +2070,24 @@ textarea {
     resize: none;
     width: 300px;
     height: 200px;
-    background-color: var(--bg-main-color) !important;
-    border-color: var(--button-main-color) !important;
-    color: var(--text-main-color);
+    background-color: var(--kn_b) !important;
+    border-color: var(--kn_2) !important;
+    color: var(--kn_w);
 }
 textarea::-moz-placeholder {
-    color: var(--border-main-color);
+    color: var(--kn_3);
     font-family: "Kiwi Maru", serif;
 }
 textarea:-ms-input-placeholder {
-    color: var(--border-main-color);
+    color: var(--kn_3);
     font-family: "Kiwi Maru", serif;
 }
 textarea::placeholder {
-    color: var(--border-main-color);
+    color: var(--kn_3);
     font-family: "Kiwi Maru", serif;
 }
 input[type="submit"] {
-    background-color: var(--button-main-color);
-    color: var(--text-main-color);
+    color: var(--kn_w);
     cursor: pointer;
     border-radius: 0 0 4px 4px;
     padding: 0.25em 0.5em;
@@ -2114,7 +2108,7 @@ p::-webkit-scrollbar {
 /*スクロールバーの軌道*/
 ::-webkit-scrollbar-track {
     border-radius: 10px;
-    /* background-color: var(--border-main-color); */
+    /* background-color: var(--kn_3); */
     /* box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.1); */
 }
 /*スクロールバーの動く部分*/
@@ -2139,7 +2133,7 @@ p::-webkit-scrollbar {
 */
 /* 個々のCSSの読み込み(より細かいものはindexで読み込んでいる) */
 .diary_dashboard {
-    border: 1px solid var(--button-main-color);
+    border: 1px solid var(--kn_2);
     padding: 1em;
     width: 400px;
     height: 450px;
@@ -2155,7 +2149,7 @@ p::-webkit-scrollbar {
 }
 .diary-main > div {
     width: 50%;
-    border: 2px solid var(--button-main-color);
+    border: 2px solid var(--kn_2);
     height: 600px;
     padding: 1.5em;
 }
@@ -2191,14 +2185,14 @@ p::-webkit-scrollbar {
 .tab_item {
     width: calc(100% / 3);
     height: 50px;
-    border-bottom: 3px solid var(--button-main-color);
+    border-bottom: 3px solid var(--kn_2);
     font-size: 16px;
     display: block;
     line-height: 50px;
     float: left;
     text-align: center;
     transition: all 0.2s ease;
-    color: var(--text-main-color);
+    color: var(--kn_w);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -2220,14 +2214,14 @@ input[name="tab_item"] {
     display: block;
 }
 .board-main input:checked + .tab_item {
-    background-color: var(--button-main-color);
-    color: var(--text-main-color);
+    background-color: var(--kn_2);
+    color: var(--kn_w);
 }
 input[name="do_wakati"] {
     display: none;
 }
 .wakati-button {
-    color: var(--text-main-color);
+    color: var(--kn_w);
     cursor: pointer;
     -webkit-user-select: none;
        -moz-user-select: none;
@@ -2235,27 +2229,27 @@ input[name="do_wakati"] {
             user-select: none;
 }
 #doWakati:checked + .wakati-button {
-    color: var(--logo-main-color);
+    color: var(--kn_1);
 }
 #doWakati:checked ~ .diaryContentWrapper > .wakati::after {
     content: "/";
-    color: var(--button-main-color);
+    color: var(--kn_2);
 }
 /* 日記保存ボタンここから */
 #submitDiary {
     background-color: inherit;
-    border: 1px solid var(--button-main-color);
+    border: 1px solid var(--kn_2);
     transition: background-color 0.3s, box-shadow 0.3s, color 0.3s;
     box-shadow: inset 0 0 0 rgba(75, 137, 150, 0.4),
         0 0 0.5em rgba(75, 137, 150, 0.6);
-    color: var(--text-main-color);
+    color: var(--kn_w);
 
     position: relative;
     z-index: 1;
     /* ↑こいつが鍵を握っている */
 }
 #submitDiary:hover {
-    border: 3px solid var(--button-main-color);
+    border: 3px solid var(--kn_2);
     box-shadow: inset 0 0 0 rgba(75, 137, 150, 0.4),
         0 0 1.5em rgba(75, 137, 150, 0.6);
 }
@@ -2283,27 +2277,27 @@ input[name="do_wakati"] {
     top: -75%;
     background-image: radial-gradient(
             circle,
-            var(--submit-bubble-color) 20%,
+            var(--kn_bubble) 20%,
             transparent 20%
         ),
         radial-gradient(
             circle,
             transparent 20%,
-            var(--submit-bubble-color) 20%,
+            var(--kn_bubble) 20%,
             transparent 30%
         ),
-        radial-gradient(circle, var(--submit-bubble-color) 20%, transparent 20%),
-        radial-gradient(circle, var(--submit-bubble-color) 20%, transparent 20%),
+        radial-gradient(circle, var(--kn_bubble) 20%, transparent 20%),
+        radial-gradient(circle, var(--kn_bubble) 20%, transparent 20%),
         radial-gradient(
             circle,
             transparent 10%,
-            var(--submit-bubble-color) 15%,
+            var(--kn_bubble) 15%,
             transparent 20%
         ),
-        radial-gradient(circle, var(--submit-bubble-color) 20%, transparent 20%),
-        radial-gradient(circle, var(--submit-bubble-color) 20%, transparent 20%),
-        radial-gradient(circle, var(--submit-bubble-color) 20%, transparent 20%),
-        radial-gradient(circle, var(--submit-bubble-color) 20%, transparent 20%);
+        radial-gradient(circle, var(--kn_bubble) 20%, transparent 20%),
+        radial-gradient(circle, var(--kn_bubble) 20%, transparent 20%),
+        radial-gradient(circle, var(--kn_bubble) 20%, transparent 20%),
+        radial-gradient(circle, var(--kn_bubble) 20%, transparent 20%);
     background-size: 22px 22px, 20px 20px, 15px 15px, 20px 20px, 18px 18px,
         22px 22px, 15px 15px, 22px 22px, 18px 18px;
 }
@@ -2312,26 +2306,26 @@ input[name="do_wakati"] {
     bottom: -75%;
     background-image: radial-gradient(
             circle,
-            var(--submit-bubble-color) 20%,
+            var(--kn_bubble) 20%,
             transparent 20%
         ),
-        radial-gradient(circle, var(--submit-bubble-color) 20%, transparent 20%),
+        radial-gradient(circle, var(--kn_bubble) 20%, transparent 20%),
         radial-gradient(
             circle,
             transparent 10%,
-            var(--submit-bubble-color) 15%,
+            var(--kn_bubble) 15%,
             transparent 20%
         ),
-        radial-gradient(circle, var(--submit-bubble-color) 20%, transparent 20%),
-        radial-gradient(circle, var(--submit-bubble-color) 20%, transparent 20%),
-        radial-gradient(circle, var(--submit-bubble-color) 20%, transparent 20%),
-        radial-gradient(circle, var(--submit-bubble-color) 20%, transparent 20%);
+        radial-gradient(circle, var(--kn_bubble) 20%, transparent 20%),
+        radial-gradient(circle, var(--kn_bubble) 20%, transparent 20%),
+        radial-gradient(circle, var(--kn_bubble) 20%, transparent 20%),
+        radial-gradient(circle, var(--kn_bubble) 20%, transparent 20%);
     background-size: 15px 15px, 20px 20px, 18px 18px, 20px 20px, 15px 15px,
         10px 10px, 20px 20px;
 }
 #submitDiary:active {
     transform: scale(0.9);
-    background-color: var(--button-main-color);
+    background-color: var(--kn_2);
     box-shadow: 0 2px 25px rgba(75, 137, 150, 0.2);
 }
 #submitDiary.animate:before {
@@ -2468,7 +2462,7 @@ input[name="do_wakati"] {
     align-items: center;
     width: 40px;
     height: 40px;
-    color: var(--status-good);
+    color: var(--kn_good);
     transform: rotate(90deg);
 }
 .sov-arrow {
@@ -2477,7 +2471,7 @@ input[name="do_wakati"] {
     align-items: center;
     width: 40px;
     height: 40px;
-    color: var(--status-good);
+    color: var(--kn_good);
 }
 .sov-arrow-raw {
     display: flex;
@@ -2485,20 +2479,20 @@ input[name="do_wakati"] {
     align-items: center;
     width: 40px;
     height: 40px;
-    color: var(--status-good);
+    color: var(--kn_good);
 }
 .sov-pipe {
     padding: 4px 12px;
     margin: 4px;
     border-radius: 12px;
-    border: 2px solid var(--status-good);
+    border: 2px solid var(--kn_good);
     display: flex;
     align-items: center;
 }
 .sov-pipe-wrapper section {
     text-align: center;
     font-size: 0.75em;
-    color: var(--text-main-color);
+    color: var(--kn_w);
 }
 .sov-pipe-wrapper nav {
     position: absolute;
@@ -2507,8 +2501,8 @@ input[name="do_wakati"] {
     font-size: 0.75em;
     width: 300px;
     height: 250px;
-    color: var(--text-main-color);
-    background-color: var(--border-main-color);
+    color: var(--kn_w);
+    background-color: var(--kn_3);
     -webkit-clip-path: polygon(
         67% 12%,
         100% 14%,
@@ -2536,7 +2530,7 @@ input[name="do_wakati"] {
     height: 80px;
     -webkit-clip-path: polygon(75% 0%, 93% 50%, 75% 100%, 0% 100%, 14% 50%, 0% 0%);
             clip-path: polygon(75% 0%, 93% 50%, 75% 100%, 0% 100%, 14% 50%, 0% 0%);
-    background-color: var(--border-main-color);
+    background-color: var(--kn_3);
     margin: 4px 0px;
     text-align: center;
     display: flex;
@@ -2642,7 +2636,7 @@ input[name="do_wakati"] {
     padding: 4px 1em;
     margin: 4px;
     height: 2em;
-    border: 1px solid var(--border-main-color);
+    border: 1px solid var(--kn_3);
 }
 .sov-square p {
     text-align: center;
@@ -2683,24 +2677,24 @@ input[name="do_wakati"] {
     }
 }
 .nlp-normal-table {
-    color: var(--text-main-color);
-    border: 2px solid var(--button-main-color);
+    color: var(--kn_w);
+    border: 2px solid var(--kn_2);
     text-align: center;
 }
 .nlp-normal-table th,
 td {
     padding: 0.5em;
-    border: 1px solid var(--button-main-color);
+    border: 1px solid var(--kn_2);
 }
 .nlp-normal-table th {
-    color: var(--bg-main-color);
-    background-color: var(--button-main-color);
+    color: var(--kn_b);
+    background-color: var(--kn_2);
 }
 .nlp-normal-package {
     width: 250px;
     height: 300px;
-    color: var(--text-main-color);
-    border: 1px solid var(--button-main-color);
+    color: var(--kn_w);
+    border: 1px solid var(--kn_2);
     border-radius: 3px;
     margin: 4px 12px;
     padding: 1em 1em;
@@ -2857,52 +2851,52 @@ td {
 input[type="text"],
 input[type="password"],
 input[type="email"] {
-    background-color: var(--bg-main-color);
-    border: 1px solid var(--button-main-color);
-    color: var(--text-main-color);
+    background-color: var(--kn_b);
+    border: 1px solid var(--kn_2);
+    color: var(--kn_w);
 }
 input[type="text"]::-moz-placeholder, input[type="password"]::-moz-placeholder, input[type="email"]::-moz-placeholder {
     font-family: "Kiwi Maru", serif;
-    color: var(--border-main-color);
+    color: var(--kn_3);
 }
 input[type="text"]:-ms-input-placeholder, input[type="password"]:-ms-input-placeholder, input[type="email"]:-ms-input-placeholder {
     font-family: "Kiwi Maru", serif;
-    color: var(--border-main-color);
+    color: var(--kn_3);
 }
 input[type="text"]::placeholder,
 input[type="password"]::placeholder,
 input[type="email"]::placeholder {
     font-family: "Kiwi Maru", serif;
-    color: var(--border-main-color);
+    color: var(--kn_3);
 }
 input[type="date"] {
-    color: var(--text-main-color);
-    background-color: var(--bg-main-color);
-    border-color: var(--button-main-color);
+    color: var(--kn_w);
+    background-color: var(--kn_b);
+    border-color: var(--kn_2);
 }
 .submit-button {
-    background-color: var(--button-main-color);
-    color: var(--text-main-color);
+    background-color: var(--kn_2);
+    color: var(--kn_w);
     cursor: pointer;
     border-radius: 4px 4px 0 0;
     padding: 0.25em 0.5em;
 }
 select {
-    color: var(--text-main-color);
-    background-color: var(--bg-main-color);
-    border-color: var(--button-main-color);
+    color: var(--kn_w);
+    background-color: var(--kn_b);
+    border-color: var(--kn_2);
 }
 header {
-    border-bottom: 1px solid var(--border-main-color);
+    border-bottom: 1px solid var(--kn_3);
 }
 footer {
-    border-top: 1px solid var(--border-main-color);
+    border-top: 1px solid var(--kn_3);
 }
 p a {
     transition: 1s;
 }
 p a:hover {
-    color: var(--button-main-color);
+    color: var(--kn_2);
 }
 .list-decimal li {
     margin-left: 1em;
@@ -2918,8 +2912,8 @@ li ol {
     /* filter: drop-shadow(5px 5px 5px black); */
 }
 .kadode-normal-button {
-    background-color: var(--button-main-color);
-    color: var(--text-main-color);
+    background-color: var(--kn_2);
+    color: var(--kn_w);
     padding: 0.7em 0.6em;
     border-radius: 6px;
 }
@@ -2939,7 +2933,7 @@ li ol {
     left: 40px;
     content: "こんばんは。";
     font-size: 20px;
-    color: var(--text-main-color);
+    color: var(--kn_w);
 }
 /* 動く検索フォーム用ここから */
 /*
@@ -2961,7 +2955,7 @@ li ol {
     font-size: 20px;
     margin: 10px;
     padding: 0 10px;
-    background-color: var(--bg-main-color);
+    background-color: var(--kn_b);
     transition: top 0.2s ease-in-out, font-size 0.2s ease-in-out;
 }
 .active {
@@ -2969,42 +2963,42 @@ li ol {
     font-size: 16px;
 }
 .search-keyword {
-    background-color: var(--bg-main-color);
+    background-color: var(--kn_b);
     border-radius: 3px 0 0 3px; /*ボックス角の丸み*/
-    color: var(--text-main-color);
-    border: 1px solid var(--button-main-color); /*枠線*/
+    color: var(--kn_w);
+    border: 1px solid var(--kn_2); /*枠線*/
 }
 .search-keyword::-moz-placeholder {
     font-family: "Kiwi Maru", serif;
-    color: var(--bg-main-color);
+    color: var(--kn_b);
 }
 .search-keyword:-ms-input-placeholder {
     font-family: "Kiwi Maru", serif;
-    color: var(--bg-main-color);
+    color: var(--kn_b);
 }
 .search-keyword::placeholder {
     font-family: "Kiwi Maru", serif;
-    color: var(--bg-main-color);
+    color: var(--kn_b);
 }
 .active-input::-moz-placeholder {
     font-family: "Kiwi Maru", serif;
-    color: var(--border-main-color);
+    color: var(--kn_3);
 }
 .active-input:-ms-input-placeholder {
     font-family: "Kiwi Maru", serif;
-    color: var(--border-main-color);
+    color: var(--kn_3);
 }
 .active-input::placeholder {
     font-family: "Kiwi Maru", serif;
-    color: var(--border-main-color);
+    color: var(--kn_3);
 }
 .search-keyword:focus {
-    border: 2px solid var(--button-main-color); /*枠線*/
+    border: 2px solid var(--kn_2); /*枠線*/
     outline: none;
 }
 /* 動く検索フォーム用ここまで*/
 .setting {
-    /* border: 1px solid var(--button-main-color); */
+    /* border: 1px solid var(--kn_2); */
     border-radius: 12px;
     margin: 1em;
     padding: 1em;
@@ -3080,6 +3074,10 @@ li ol {
 .hover\:text-gray-900:hover {
   --tw-text-opacity: 1;
   color: rgb(17 24 39 / var(--tw-text-opacity));
+}
+.hover\:text-kn_2:hover {
+  --tw-text-opacity: 1;
+  color: rgb(75 137 150 / var(--tw-text-opacity));
 }
 .focus\:z-10:focus {
   z-index: 10;
@@ -3411,14 +3409,14 @@ li ol {
   }
 }
 @media (min-width: 768px) {
+  .md\:order-2 {
+    order: 2;
+  }
   .md\:order-1 {
     order: 1;
   }
   .md\:order-3 {
     order: 3;
-  }
-  .md\:order-2 {
-    order: 2;
   }
   .md\:col-span-2 {
     grid-column: span 2 / span 2;
@@ -3428,10 +3426,6 @@ li ol {
   }
   .md\:m-8 {
     margin: 2rem;
-  }
-  .md\:mx-0 {
-    margin-left: 0px;
-    margin-right: 0px;
   }
   .md\:mx-auto {
     margin-left: auto;
@@ -3448,20 +3442,20 @@ li ol {
   .md\:mt-0 {
     margin-top: 0px;
   }
-  .md\:ml-24 {
-    margin-left: 6rem;
-  }
   .md\:mb-0 {
     margin-bottom: 0px;
+  }
+  .md\:ml-12 {
+    margin-left: 3rem;
+  }
+  .md\:ml-24 {
+    margin-left: 6rem;
   }
   .md\:mr-12 {
     margin-right: 3rem;
   }
   .md\:mt-12 {
     margin-top: 3rem;
-  }
-  .md\:ml-12 {
-    margin-left: 3rem;
   }
   .md\:block {
     display: block;
@@ -3472,29 +3466,29 @@ li ol {
   .md\:hidden {
     display: none;
   }
-  .md\:w-1\/2 {
-    width: 50%;
-  }
-  .md\:w-full {
-    width: 100%;
-  }
   .md\:w-1\/4 {
     width: 25%;
   }
   .md\:w-3\/4 {
     width: 75%;
   }
-  .md\:w-auto {
-    width: auto;
-  }
-  .md\:w-2\/3 {
-    width: 66.666667%;
-  }
   .md\:w-2\/5 {
     width: 40%;
   }
   .md\:w-3\/5 {
     width: 60%;
+  }
+  .md\:w-1\/2 {
+    width: 50%;
+  }
+  .md\:w-2\/3 {
+    width: 66.666667%;
+  }
+  .md\:w-auto {
+    width: auto;
+  }
+  .md\:w-full {
+    width: 100%;
   }
   .md\:grid-cols-3 {
     grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -3544,10 +3538,6 @@ li ol {
   }
   .md\:text-right {
     text-align: right;
-  }
-  .md\:text-5xl {
-    font-size: 3rem;
-    line-height: 1;
   }
 }
 @media (min-width: 1024px) {

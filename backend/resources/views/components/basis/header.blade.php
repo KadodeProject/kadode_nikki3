@@ -3,39 +3,39 @@
         margin: 0 0.5em;
         padding-bottom: 0.2em;
         font-size: 20px;
-        border-bottom: 2px solid var(--bg-main-color);
+        border-bottom: 2px solid var(--bg-kn_b);
     }
 
     @if(Request::is('home')) .header-links p:nth-of-type(1) {
-        color: var(--button-main-color);
+        color: var(--kn_2);
     }
 
     @elseif(Request::is('edit')) .header-links p:nth-of-type(2) {
-        color: var(--button-main-color);
+        color: var(--kn_2);
     }
 
     @elseif(Request::is('diary/*')) .header-links p:nth-of-type(3) {
-        color: var(--button-main-color);
+        color: var(--kn_2);
     }
 
     @elseif(Request::is('search')) .header-links p:nth-of-type(4) {
-        color: var(--button-main-color);
+        color: var(--kn_2);
     }
 
     @elseif(Request::is('statistics/home')) .header-links p:nth-of-type(5) {
-        color: var(--button-main-color);
+        color: var(--kn_2);
     }
 
     @elseif(Request::is('statistics/settings')) .header-links p:nth-of-type(6) {
-        color: var(--button-main-color);
+        color: var(--kn_2);
     }
 
     @elseif(Request::is('settings')) .header-links p:nth-of-type(7) {
-        color: var(--button-main-color);
+        color: var(--kn_2);
     }
 
     @elseif(Request::is('administrator')) .header-links p:nth-of-type(8) {
-        color: var(--button-main-color);
+        color: var(--kn_2);
     }
 
     @endif
@@ -80,12 +80,12 @@
                 @endif
                 @csrf
                 <div>
-                    <label id="moveLabelJs" class="move-label text-main-color text-sm kiwi-maru"
+                    <label id="moveLabelJs" class="move-label text-kn_w text-sm kiwi-maru"
                         for="keywordLabel">日記検索</label>
                     <input id="keywordLabel" autocomplete="off" class="search-keyword " type="search" name="keyword"
                         placeholder="キーワード(2~20字)">
                 </div>
-                <input type="submit" style=" border-radius: 0 3px 3px 0" class="kiwi-maru" value="検索">
+                <input type="submit" style=" border-radius: 0 3px 3px 0" class="bg-kn_2 kiwi-maru" value="検索">
 
             </form>
         </div>

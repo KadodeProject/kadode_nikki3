@@ -1,5 +1,5 @@
 .diary_dashboard {
-    border: 1px solid var(--button-main-color);
+    border: 1px solid var(--kn_2);
     padding: 1em;
     width: 400px;
     height: 450px;
@@ -15,7 +15,7 @@
 }
 .diary-main > div {
     width: 50%;
-    border: 2px solid var(--button-main-color);
+    border: 2px solid var(--kn_2);
     height: 600px;
     padding: 1.5em;
 }
@@ -54,7 +54,7 @@
 .tab_item {
     width: calc(100% / 3);
     height: 50px;
-    border-bottom: 3px solid var(--button-main-color);
+    border-bottom: 3px solid var(--kn_2);
     font-size: 16px;
     text-align: center;
     display: block;
@@ -62,7 +62,7 @@
     float: left;
     text-align: center;
     transition: all 0.2s ease;
-    color: var(--text-main-color);
+    color: var(--kn_w);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -88,22 +88,22 @@ input[name="tab_item"] {
 }
 
 .board-main input:checked + .tab_item {
-    background-color: var(--button-main-color);
-    color: var(--text-main-color);
+    background-color: var(--kn_2);
+    color: var(--kn_w);
 }
 
 input[name="do_wakati"] {
     display: none;
 }
 .wakati-button {
-    color: var(--text-main-color);
+    color: var(--kn_w);
     cursor: pointer;
     user-select: none;
 }
 #doWakati:checked + .wakati-button {
-    color: var(--logo-main-color);
+    color: var(--kn_1);
 }
 #doWakati:checked ~ .diaryContentWrapper > .wakati::after {
     content: "/";
-    color: var(--button-main-color);
+    color: var(--kn_2);
 }

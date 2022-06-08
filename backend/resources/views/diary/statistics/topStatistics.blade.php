@@ -98,8 +98,7 @@
                 @include('components.statisticHeading',['icon'=>'settings','title'=>'統計設定'])
                 <div class="md:ml-24 ml-4">
                     <a href="/statistics/settings" class="mt-12">
-                        <div
-                            class="w-60 h-30 rounded-2xl button-border-main-color border-2 flex items-center justify-center py-12">
+                        <div class="w-60 h-30 rounded-2xl border-kn_2 border-2 flex items-center justify-center py-12">
                             <p class="kiwi-maru ">統計設定を開く</p>
                             <p class="material-icons">open_in_new</p>
                         </div>

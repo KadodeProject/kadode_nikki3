@@ -95,7 +95,7 @@
         @foreach ($user_ips as $user_ip)
         <div>
             <div
-                class="relative top-10 left-2 text-xl bg-main-color w-10 h-10 rounded-full border-2 flex justify-center items-center kiwi-maru">
+                class="relative top-10 left-2 text-xl bg-kn_b w-10 h-10 rounded-full border-2 flex justify-center items-center kiwi-maru">
                 <p> {{$i++}}</p>
             </div>
             <div class="flex flex-wrap border-2 border-dotted p-4 m-4 rounded-2xl">
