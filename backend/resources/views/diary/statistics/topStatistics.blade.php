@@ -23,7 +23,7 @@
                     <p class="text-xs mt-4 mb-2">日記数が少ない場合は正しくデータを表示できないことがありますのでご了承ください。</p>
                     <form class="flex justify-center flex-wrap flex-col " method="POST" action="/makeStatistics">
                         @csrf
-                        <input type="submit" class="text-black" value="統計データを生成する">
+                        <input type="submit" class="text-black bg-kn_2" value="統計データを生成する">
                     </form>
                     @endif
 
@@ -71,7 +71,7 @@
                     @else
                     <form class="flex justify-center flex-wrap flex-col " method="POST" action="/updateStatistics">
                         @csrf
-                        <input type="submit" class="text-black" value="統計データを更新する">
+                        <input type="submit" class="text-black bg-kn_2" value="統計データを更新する">
                     </form>
                     @endif
                     @endif
