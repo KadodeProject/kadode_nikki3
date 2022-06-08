@@ -3,10 +3,7 @@ def get_mostGuess_classification(affiliation):
     categories={}
     #formの種類の数をそれぞれカウント
     for value in affiliation.values():#辞書型なのでvalues必要
-        try:
-            categories[value['form']]+=1
-        except:
-            categories[value['form']]=1
+        categories[value['form']]=categories[value['form']]+1 if value['form'] in categories else 1
 
     #多い順に並び変え
     sortred_categories = sorted(categories.items(), key=lambda x:x[1],reverse=True)#タプル型になる
