@@ -343,10 +343,7 @@ def nlpForMonthAndYear(user_id):
         '''
         #日付取得
         date=yMonthDate.split('-')
-        # 辞書のラベル用
-        year=date[0]
-        month=date[1]
-        dateForDB=[date[0],date[1]]
+        dateForDB=[date[0],date[1]]#[year,month]
 
 
         #本目的のDB代入処理
