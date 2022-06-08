@@ -18,9 +18,9 @@ class VerifyAdminUser
     public function handle($request, Closure $next, $guard = null)
     {
         /** @var User $user */
+        $user = Auth::user();
 
-        $user =Auth::user();
-        if ($user->user_role_id!=2) {
+        if ($user->user_role_id != 2) {
             //管理者ユーザーじゃなかったら403エラー返す
             abort(403);
         }

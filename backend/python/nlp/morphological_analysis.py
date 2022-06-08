@@ -19,7 +19,7 @@ def get_morphological_for_total(rows:list):
     all_diaries=""
     for row in rows:
         all_diaries+=" "+row[2]
-    
+
     total_noun_asc={}
     total_adjective_asc={}
 
@@ -46,9 +46,8 @@ def get_morphological_for_total(rows:list):
             total_adjective_asc=tmp
         i+=1
 
-        
 
-    return total_noun_asc,total_adjective_asc
+
     """
     {
         '1':{
@@ -58,3 +57,4 @@ def get_morphological_for_total(rows:list):
 
     }
     """
+    return total_noun_asc,total_adjective_asc

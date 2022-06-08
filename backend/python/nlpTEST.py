@@ -39,11 +39,8 @@ def nlpForPre(user_id):
     nlp = spacy.load('ja_ginza')
 
     # ルールの追加
-    from spacy.pipeline import EntityRuler
-    ruler = EntityRuler(nlp)
-
     config = {
-    'overwrite_ents': True
+        'overwrite_ents': True
     }
     ruler = nlp.add_pipe('entity_ruler', config=config)
 

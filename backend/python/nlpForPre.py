@@ -45,9 +45,8 @@ def nlpForPre(user_id):
     固有表現追加の処理が激重なのでループ外で先に行っておく
     '''
     nlp = spacy.load(model)
-    ruler = EntityRuler(nlp)
     config = {
-    'overwrite_ents': True
+        'overwrite_ents': True
     }
     ruler = nlp.add_pipe('entity_ruler', config=config)
     ruler.add_patterns(NERList)
