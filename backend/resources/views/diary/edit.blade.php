@@ -9,11 +9,11 @@
     <div class="dateWrapper">
         <nav class="md:order-1 ">
             @isset($next)
-            <p class="md:mr-12 md:mt-12 p-2 text-xl borer-2 border-border-main-color kiwi-maru"><a
-                    style="vertical-align: middle;" href="{{url('/edit/'.$next->uuid)}}"><span
-                        class="material-icons">arrow_back</span> {{$next->date->format("Y年n月j日")}}</a></p>
+            <p class="md:mr-12 md:mt-12 p-2 text-xl borer-2 border-kn_3 kiwi-maru"><a style="vertical-align: middle;"
+                    href="{{url('/edit/'.$next->uuid)}}"><span class="material-icons">arrow_back</span>
+                    {{$next->date->format("Y年n月j日")}}</a></p>
             @else
-            <p class="md:mr-12 md:mt-12 p-2 text-xl borer-2 border-border-main-color kiwi-maru"><span
+            <p class="md:mr-12 md:mt-12 p-2 text-xl borer-2 border-kn_3 kiwi-maru"><span
                     class="material-icons ">arrow_back</span><span class="material-icons">remove_circle_outline</span>
                 日記なし</p>
             @endisset
@@ -21,11 +21,11 @@
         </nav>
         <nav class="order-2 md:order-3">
             @isset($previous)
-            <p class="md:ml-12 md:mt-12 p-2 text-xl borer-2 border-border-main-color kiwi-maru"><a
-                    style="vertical-align: middle;" href="{{url('/edit/'.$previous->uuid)}}">
+            <p class="md:ml-12 md:mt-12 p-2 text-xl borer-2 border-kn_3 kiwi-maru"><a style="vertical-align: middle;"
+                    href="{{url('/edit/'.$previous->uuid)}}">
                     {{$previous->date->format("Y年n月j日")}}<span class="material-icons">arrow_forward</span></a></p>
             @else
-            <p class="md:mr-12 md:mt-12 p-2 text-xl borer-2 border-border-main-color kiwi-maru">日記なし <span
+            <p class="md:mr-12 md:mt-12 p-2 text-xl borer-2 border-kn_3 kiwi-maru">日記なし <span
                     class="material-icons">remove_circle_outline</span><span class="material-icons">arrow_forward</span>
             </p>
             @endisset

@@ -1,45 +1,45 @@
 input[type="text"],
 input[type="password"],
 input[type="email"] {
-    background-color: var(--bg-main-color);
-    border: 1px solid var(--button-main-color);
-    color: var(--text-main-color);
+    background-color: var(--kn_b);
+    border: 1px solid var(--kn_2);
+    color: var(--kn_w);
 }
 input[type="text"]::placeholder,
 input[type="password"]::placeholder,
 input[type="email"]::placeholder {
     font-family: "Kiwi Maru", serif;
-    color: var(--border-main-color);
+    color: var(--kn_3);
 }
 input[type="date"] {
-    color: var(--text-main-color);
-    background-color: var(--bg-main-color);
-    border-color: var(--button-main-color);
+    color: var(--kn_w);
+    background-color: var(--kn_b);
+    border-color: var(--kn_2);
 }
 .submit-button {
-    background-color: var(--button-main-color);
-    color: var(--text-main-color);
+    background-color: var(--kn_2);
+    color: var(--kn_w);
     cursor: pointer;
     border-radius: 4px 4px 0 0;
     padding: 0.25em 0.5em;
 }
 select {
-    color: var(--text-main-color);
-    background-color: var(--bg-main-color);
-    border-color: var(--button-main-color);
+    color: var(--kn_w);
+    background-color: var(--kn_b);
+    border-color: var(--kn_2);
 }
 
 header {
-    border-bottom: 1px solid var(--border-main-color);
+    border-bottom: 1px solid var(--kn_3);
 }
 footer {
-    border-top: 1px solid var(--border-main-color);
+    border-top: 1px solid var(--kn_3);
 }
 p a {
     transition: 1s;
 }
 p a:hover {
-    color: var(--button-main-color);
+    color: var(--kn_2);
 }
 .list-decimal li {
     margin-left: 1em;
@@ -54,8 +54,8 @@ li ol {
     /* filter: drop-shadow(5px 5px 5px black); */
 }
 .kadode-normal-button {
-    background-color: var(--button-main-color);
-    color: var(--text-main-color);
+    background-color: var(--kn_2);
+    color: var(--kn_w);
     padding: 0.7em 0.6em;
     border-radius: 6px;
 }
@@ -75,7 +75,7 @@ li ol {
     left: 40px;
     content: "こんばんは。";
     font-size: 20px;
-    color: var(--text-main-color);
+    color: var(--kn_w);
 }
 /* 動く検索フォーム用ここから */
 /*
@@ -98,7 +98,7 @@ li ol {
     font-size: 20px;
     margin: 10px;
     padding: 0 10px;
-    background-color: var(--bg-main-color);
+    background-color: var(--kn_b);
     -webkit-transition: top 0.2s ease-in-out, font-size 0.2s ease-in-out;
     transition: top 0.2s ease-in-out, font-size 0.2s ease-in-out;
 }
@@ -108,27 +108,27 @@ li ol {
 }
 
 .search-keyword {
-    background-color: var(--bg-main-color);
+    background-color: var(--kn_b);
     border-radius: 3px 0 0 3px; /*ボックス角の丸み*/
-    color: var(--text-main-color);
-    border: 1px solid var(--button-main-color); /*枠線*/
+    color: var(--kn_w);
+    border: 1px solid var(--kn_2); /*枠線*/
 }
 .search-keyword::placeholder {
     font-family: "Kiwi Maru", serif;
-    color: var(--bg-main-color);
+    color: var(--kn_b);
 }
 .active-input::placeholder {
     font-family: "Kiwi Maru", serif;
-    color: var(--border-main-color);
+    color: var(--kn_3);
 }
 .search-keyword:focus {
-    border: 2px solid var(--button-main-color); /*枠線*/
+    border: 2px solid var(--kn_2); /*枠線*/
     outline: none;
 }
 /* 動く検索フォーム用ここまで*/
 
 .setting {
-    /* border: 1px solid var(--button-main-color); */
+    /* border: 1px solid var(--kn_2); */
     border-radius: 12px;
     margin: 1em;
     padding: 1em;

@@ -8,7 +8,7 @@
 <div class="board-main pb-12 mt-12">
     {{-- <div class="my-12 flex justify-center ">
         <a href="/statistics/home" class="mt-12 ">
-            <div class="w-60 h-30 rounded-2xl button-border-main-color border-2 flex items-center justify-center py-12">
+            <div class="w-60 h-30 rounded-2xl border-kn_2 border-2 flex items-center justify-center py-12">
                 <p class="kiwi-maru ">統計ホームに戻る</p>
                 <p class="material-icons">open_in_new</p>
             </div>
@@ -31,8 +31,7 @@
                     @csrf
                     <td>
                         <input type="hidden" name="package_id" value="{{$packageObj->id}}">
-                        <input type="submit" class="text-black user-package-select-button bg-logo-main-color"
-                            value="解除">
+                        <input type="submit" class="text-black user-package-select-button bg-kn_1" value="解除">
                     </td>
                 </form>
 
@@ -42,7 +41,7 @@
                     @csrf
                     <td>
                         <input type="hidden" name="package_id" value="{{$packageObj->id}}">
-                        <input type="submit" class="user-package-select-button bg-status-good " value="登録">
+                        <input type="submit" class="user-package-select-button bg-kn_good " value="登録">
                     </td>
                 </form>
 
@@ -51,9 +50,9 @@
                 {{-- ユーザー保持のif--}}
                 <div class="nlp-normal-package kiwi-maru text-center">
                     @if (in_array($packageObj->id,$havingPackageList))
-                    <p class="text-sm my-2 p-2 border-2 button-bg-main-color">使用中</p>
+                    <p class="text-sm my-2 p-2 border-2 bg-kn_2">使用中</p>
                     @else
-                    <p class="text-sm my-2 p-2 border-2 bg-logo-main-color">未使用</p>
+                    <p class="text-sm my-2 p-2 border-2 bg-kn_1">未使用</p>
                     @endif
                     <p class="text-sm my-2">[{{$packageObj->genre}}]</p>
                     <p class="material-icons">inventory</p>
@@ -73,7 +72,7 @@
     <div class="statistic-content" id="customNERTable">
         @include('components.statisticHeading',['icon'=>'category','title'=>'ユーザー固有表現ルール追加'])
         <p class="text-center my-4 mx-2 kiwi-maru text-sm">ラベルについては関根の拡張固有表現階層 ver7.1.2をベースとしております。下記をご覧ください。</p>
-        <p class="text-center my-4 mx-2 kiwi-maru text-sm hover:text-button-main-color">
+        <p class="text-center my-4 mx-2 kiwi-maru text-sm hover:text-kn_2">
             <a rel="norefferrer" target="_blank"
                 href="https://github.com/Usuyuki/kadode_nikki3/wiki/21_%E5%9B%BA%E6%9C%89%E8%A1%A8%E7%8F%BE%E3%83%AB%E3%83%BC%E3%83%AB%E3%81%AE%E3%83%A9%E3%83%99%E3%83%AB%E5%90%8D">
                 かどで日記wiki_固有表現ルールのラベル名
@@ -129,7 +128,7 @@
                                 onkeydown="if((event.ctrlKey || event.metaKey)&&event.keyCode==13){document.getElementById('submitCustomNER_{{$i}}').click();return false};">
                         </td>
                         <td>
-                            <input type="submit" id="submitCustomNER_{{$i}}" class="text-black" value="追加">
+                            <input type="submit" id="submitCustomNER_{{$i}}" class="text-black bg-kn_2" value="追加">
                         </td>
                         <td>
                             --
@@ -165,14 +164,14 @@
                                 onkeydown="if((event.ctrlKey || event.metaKey)&&event.keyCode==13){document.getElementById('submitCustomNER_{{$i}}').click();return false};">
                         </td>
                         <td>
-                            <input type="submit" id="submitCustomNER_{{$i}}" class="text-black" value="変更">
+                            <input type="submit" id="submitCustomNER_{{$i}}" class="text-black bg-kn_2" value="変更">
                         </td>
                     </form>
                     <form class="" method="POST" action="/statistics/settings/named_entity/custom/delete">
                         @csrf
                         <td>
                             <input type="hidden" name="customNER_id" value="{{$NER->id}}">
-                            <input type="submit" class="text-black" value="削除">
+                            <input type="submit" class="text-black bg-kn_poor" value="削除">
                         </td>
                     </form>
                 </tr>
@@ -207,14 +206,14 @@
             @endif
         </ul>
                 @csrf
-                <label class="flex md:justify-center flex-wrap text-main-color" for="kadode-csv">
+                <label class="flex md:justify-center flex-wrap text-kn_w" for="kadode-csv">
                     <div class="md:w-full mt-4 mb-2">
                         <span class="file-input-wrapper ">ファイルを選択</span>
                     </div>
                     <input id="kadode-csv" type="file" accept=".csv" class="mx-auto" value="かどで日記csv形式でインポート"
                         name="kadodeCsv">
                 </label>
-                <input type="submit" class="text-black px-2 md:w-1/2 w-full mx-auto" value="インポート">
+                <input type="submit" class="text-black px-2 md:w-1/2 w-full mx-auto bg-kn_2" value="インポート">
             </form>
         </div>
     </div>
@@ -226,7 +225,7 @@
             </p>
             <form class="flex justify-center flex-wrap flex-col " method="POST" action="/export/statistics/namedEntity">
                 @csrf
-                <input type="submit" class="text-black px-2 md:w-1/2 w-full mx-auto" value="csv形式でエクスポート">
+                <input type="submit" class="text-black px-2 md:w-1/2 w-full mx-auto bg-kn_2" value="csv形式でエクスポート">
             </form>
             {{-- <div class="settingContent"><a href="/export/diary">CSVエクスポート</a></div> --}}
 

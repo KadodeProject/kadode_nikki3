@@ -14,9 +14,9 @@
         @endif
         @php
         if($emotions=="arrow_upward"){
-        $bg_color="bg-status-excellent";
+        $bg_color="bg-kn_excellent";
         }else{
-        $bg_color="bg-status-poor";
+        $bg_color="bg-kn_poor";
         }
         @endphp
         <p class="flex  items-center m-2 justify-center   {{$bg_color}} kiwi-maru rounded-full w-6 h-6 text-sm"><span

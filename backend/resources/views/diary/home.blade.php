@@ -181,7 +181,7 @@
             @empty($oldDiary["uuid"])
 
             <div class="diary_dashboard m-2 flex justify-center items-center ">
-                <p class="text-2xl border-main-color kiwi-maru">なし</p>
+                <p class="text-2xl text-kn_3 kiwi-maru">なし</p>
             </div>
             @else
             @component('components.diary.diaryFrame')

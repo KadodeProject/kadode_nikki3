@@ -53,14 +53,14 @@
                                 onkeydown="if((event.ctrlKey || event.metaKey)&&event.keyCode==13){document.getElementById('submitosirase_{{$i}}').click();return false};">
                         </td>
                         <td>
-                            <input type="submit" id="submitosirase_{{$i}}" class="text-black" value="変更">
+                            <input type="submit" id="submitosirase_{{$i}}" class="text-black bg-kn_2" value="変更">
                         </td>
                     </form>
                     <form class="" method="POST" action="/administrator/settings/user/role/delete">
                         @csrf
                         <td>
                             <input type="hidden" name="user_role_id" value="{{$user_role->id}}">
-                            <input type="submit" class="text-black" value="削除">
+                            <input type="submit" class="text-black bg-kn_poor" value="削除">
                         </td>
                     </form>
                 </tr>
@@ -86,7 +86,7 @@
                                 onkeydown="if((event.ctrlKey || event.metaKey)&&event.keyCode==13){document.getElementById('submitosirase_{{$i}}').click();return false};">
                         </td>
                         <td>
-                            <input type="submit" id="submitosirase_{{$i}}" class="text-black" value="追加">
+                            <input type="submit" id="submitosirase_{{$i}}" class="text-black bg-kn_2" value="追加">
                         </td>
                         <td>
                             --
@@ -143,14 +143,14 @@
                                 onkeydown="if((event.ctrlKey || event.metaKey)&&event.keyCode==13){document.getElementById('submitosirase_{{$i}}').click();return false};">
                         </td>
                         <td>
-                            <input type="submit" id="submitosirase_{{$i}}" class="text-black" value="変更">
+                            <input type="submit" id="submitosirase_{{$i}}" class="text-black bg-kn_2" value="変更">
                         </td>
                     </form>
                     <form class="" method="POST" action="/administrator/settings/user/rank/delete">
                         @csrf
                         <td>
                             <input type="hidden" name="user_rank_id" value="{{$user_rank->id}}">
-                            <input type="submit" class="text-black" value="削除">
+                            <input type="submit" class="text-black bg-kn_poor" value="削除">
                         </td>
                     </form>
                 </tr>
@@ -176,7 +176,7 @@
                                 onkeydown="if((event.ctrlKey || event.metaKey)&&event.keyCode==13){document.getElementById('submitosirase_{{$i}}').click();return false};">
                         </td>
                         <td>
-                            <input type="submit" id="submitosirase_{{$i}}" class="text-black" value="追加">
+                            <input type="submit" id="submitosirase_{{$i}}" class="text-black bg-kn_2" value="追加">
                         </td>
                         <td>
                             --

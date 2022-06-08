@@ -1,6 +1,6 @@
 <script src="{{ mix('js/shortStatistics.js') }}"></script>
 
-<details class="text-main-color  kiwi-maru">
+<details class="text-kn_w  kiwi-maru">
     <summary class="text-center m-2 text-xl font-bold">
         このアーカイブの統計情報[更新日:{{$ArchiveData->updated_at}}]
     </summary>
@@ -16,7 +16,7 @@
                     <h3 class="text-2xl float-left text-center">分類</h3>
 
                     <div
-                        class="cursor-pointer hatena_hover text-sm w-6 h-6 border rounded-full border-border-main-color flex items-center justify-center">
+                        class="cursor-pointer hatena_hover text-sm w-6 h-6 border rounded-full border-kn_3 flex items-center justify-center">
                         ?</div>
                     <div class="explain_hatena">固有値表現がらそれぞれの日記で抽出した分類をまとめたグラフです</div>
                 </div>
@@ -33,7 +33,7 @@
             <section class=" kiwi-maru">
                 <h3 class="text-2xl float-left text-center">文字数</h3>
                 <div
-                    class="cursor-pointer hatena_hover text-sm w-6 h-6 border rounded-full border-border-main-color flex items-center justify-center">
+                    class="cursor-pointer hatena_hover text-sm w-6 h-6 border rounded-full border-kn_3 flex items-center justify-center">
                     ?</div>
                 <div class="explain_hatena">日記の本文の文字数推移です。年別表示では月ごとの1日記あたりの平均文字数にしています。</div>
                 {{-- @php
@@ -52,7 +52,7 @@
             <section class=" kiwi-maru">
                 <h3 class="text-2xl float-left text-center">よく使う名詞</h3>
                 <div
-                    class="cursor-pointer hatena_hover text-sm w-6 h-6 border rounded-full border-border-main-color flex items-center justify-center">
+                    class="cursor-pointer hatena_hover text-sm w-6 h-6 border rounded-full border-kn_3 flex items-center justify-center">
                     ?</div>
                 <div class="explain_hatena">日記の本文から形態素解析で抽出した名詞の登場数多い順に5つです</div>
             </section>
@@ -65,7 +65,7 @@
             <section class=" kiwi-maru">
                 <h3 class="text-2xl float-left text-center">よく使う形容詞</h3>
                 <div
-                    class="cursor-pointer hatena_hover text-sm w-6 h-6 border rounded-full border-border-main-color flex items-center justify-center">
+                    class="cursor-pointer hatena_hover text-sm w-6 h-6 border rounded-full border-kn_3 flex items-center justify-center">
                     ?</div>
                 <div class="explain_hatena">日記の本文から形態素解析で抽出した形容詞の登場数多い順に5つです</div>
             </section>
@@ -79,7 +79,7 @@
             <section class=" kiwi-maru">
                 <h3 class="text-2xl float-left text-center">お気持ち</h3>
                 <div
-                    class="cursor-pointer hatena_hover text-sm w-6 h-6 border rounded-full border-border-main-color flex items-center justify-center">
+                    class="cursor-pointer hatena_hover text-sm w-6 h-6 border rounded-full border-kn_3 flex items-center justify-center">
                     ?</div>
                 <div class="explain_hatena">感情極性辞書を用いた本文の感情推測のこのアーカイブでの平均値です</div>
             </section>
@@ -92,7 +92,7 @@
             <section class=" kiwi-maru">
                 <h3 class="text-2xl float-left text-center">お気持ち推移</h3>
                 <div
-                    class="cursor-pointer hatena_hover text-sm w-6 h-6 border rounded-full border-border-main-color flex items-center justify-center">
+                    class="cursor-pointer hatena_hover text-sm w-6 h-6 border rounded-full border-kn_3 flex items-center justify-center">
                     ?</div>
                 <div class="explain_hatena">感情極性辞書を用いた本文の感情推測の推移です</div>
             </section>
@@ -105,7 +105,7 @@
             <section class=" kiwi-maru">
                 <h3 class="text-2xl float-left text-center">人物</h3>
                 <div
-                    class="cursor-pointer hatena_hover text-sm w-6 h-6 border rounded-full border-border-main-color flex items-center justify-center">
+                    class="cursor-pointer hatena_hover text-sm w-6 h-6 border rounded-full border-kn_3 flex items-center justify-center">
                     ?</div>
                 <div class="explain_hatena">固有表現抽出を用いて本文から抽出した、日記でよく登場する人物です。</div>
             </section>
@@ -118,7 +118,7 @@
             <section class=" kiwi-maru">
                 <h3 class="text-2xl float-left text-center">重要そうな単語</h3>
                 <div
-                    class="cursor-pointer hatena_hover text-sm w-6 h-6 border rounded-full border-border-main-color flex items-center justify-center">
+                    class="cursor-pointer hatena_hover text-sm w-6 h-6 border rounded-full border-kn_3 flex items-center justify-center">
                     ?</div>
                 <div class="explain_hatena">固有表現抽出を用いて本文から抽出した、固有表現の登場数の多い単語です。</div>
             </section>
