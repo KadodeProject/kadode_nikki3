@@ -1,4 +1,3 @@
-
 @extends("layouts.main")
 @section("title","インポート結果")
 
@@ -7,17 +6,17 @@
 @endsection
 @section('content')
 <div class=" my-8" id="">
-      
-    <div class="setting">
-        <h2 class="text-2xl">インポート結果</h2>
-        <p>{{$importResult}}</p>
-    </div>
-    
 
-       
-    
-        
+    <div class="setting">
+
+        @include('components.settingHeading',['title'=>'インポート結果',])
+        <p class="text-center mx-2 my-2 text-2xl kiwi-maru">{{$importResult}}</p>
+    </div>
+
+
+
+
+
 </div>
-      
+
 @endsection
- 

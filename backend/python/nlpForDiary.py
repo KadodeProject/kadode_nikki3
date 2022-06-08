@@ -68,14 +68,17 @@ def nlpForDiary(user_id):
             print(str(row[0])+"Diary処理")
             # nlp関係はNoneがあるので注
             #jsonはdecodeする
+            """
+            #使ってないのでコメントアウト
             value_id=row[0]
             value_updated_at=row[1]
             value_updated_statistic_at=row[2]
             value_sentence=json.loads(row[3])
             value_chunk=json.loads(row[4])
             value_token=json.loads(row[5])
-            value_affiliation=json.loads(row[6])
             value_char_length=row[7]
+            """
+            value_affiliation=json.loads(row[6])
             value_content=row[8]
             '''
             emotions:感情数値化

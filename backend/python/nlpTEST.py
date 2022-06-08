@@ -1,11 +1,4 @@
-import time
-
-from datetime import datetime as dt
-
 from base import connectDBClass as database
-
-from nlp import meta_generate
-
 import spacy
 
 def nlpForPre(user_id):

@@ -19,11 +19,8 @@ def get_special_people(affiliation):
     #名前と登場回数を辞書型で保存
     name_counter={}
     for people in people_list:
-        try:
-            name_counter[people]+=1                 
-        except:
-            name_counter[people]=1
-    
+        name_counter[people]=name_counter[people]+1 if people in name_counter else 1
+
     #それを登録する形に改変
     special_people_raw=[]
     for key,value in name_counter.items():

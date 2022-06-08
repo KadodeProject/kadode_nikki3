@@ -704,7 +704,7 @@
                         <input id="kadode-csv" type="file" accept=".csv" class="mx-auto" value="かどで日記csv形式でインポート"
                             name="kadodeCsv">
                     </label>
-                    <input type="submit" class="text-black w-full" value="インポート">
+                    <input type="submit" class="text-black w-full bg-kn_2" value="インポート">
                 </form>
             </div>
             <div class="settingContent md:w-1/2 w-full">
@@ -726,7 +726,7 @@
                         <input id="tuki-txt" type="file" accept=".txt" class="mx-auto" value="月に書く日記txt形式でインポート"
                             name="tukiniTxt">
                     </label>
-                    <input type="submit" class="text-black w-full" value="インポート">
+                    <input type="submit" class="text-black w-full  bg-kn_2" value="インポート">
                 </form>
             </div>
         </div>

@@ -14,7 +14,9 @@ use Goodby\CSV\Import\Standard\Interpreter;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
 
-
+/**
+ * @todo ここDRYにめちゃくちゃ反してるのでインターフェイス作って抽象化したい
+ */
 class ImportDiaryController extends Controller
 {
     /**
@@ -36,7 +38,7 @@ class ImportDiaryController extends Controller
 
         // CSV ファイル保存
         $count = 0;
-        if ($rawfile = $request->kadodeCsv) {
+        if ($request->kadodeCsv) {
             \Log::debug("csvインポート処理開始");
 
             $tmpName = mt_rand() . "." . $request->kadodeCsv->guessExtension(); //TMPファイル名
@@ -77,9 +79,11 @@ class ImportDiaryController extends Controller
                 Diary::insert(['updated_at' => $today_date, 'created_at' => $today_date, 'user_id' => Auth::Id(), 'uuid' => Str::uuid(), 'date' => Carbon::parse($row[0])->toDateString(), 'title' => $row[1], 'content' => $row[2]]);
                 $count++;
             }
+            $importResult = $count . "個の日記がインポートされました🎉";
+        } else {
+            $importResult = "ファイルが見つかりませんでした😢";
         }
 
-        $importResult = $count . "件が正しくインポートされました";
         return view("diary/io/afterImport", ["importResult" => $importResult]);
     }
 
@@ -100,7 +104,7 @@ class ImportDiaryController extends Controller
         $this->validate($request, $rules);
 
         $count = 0;
-        if ($rawfile = $request->tukiniTxt) {
+        if ($request->tukiniTxt) {
             \Log::debug("txtインポート処理開始");
 
             $tmpName = mt_rand() . "." . $request->tukiniTxt->guessExtension(); //TMPファイル名
@@ -153,10 +157,11 @@ class ImportDiaryController extends Controller
             } else {
                 \Log::debug("$tmpPath.の削除失敗");
             }
+            $importResult = $count . "個の日記がインポートされました🎉";
+        } else {
+            $importResult = "ファイルが見つかりませんでした😢";
         }
 
-
-        $importResult = $count . "件が正しくインポートされました";
         return view("diary/io/afterImport", ["importResult" => $importResult]);
     }
 }

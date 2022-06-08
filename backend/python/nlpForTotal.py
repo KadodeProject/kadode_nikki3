@@ -14,19 +14,7 @@ from base import connectDBClass as database
 def nlpForTotal(user_id):
     #DBインスタンス
     db = database.connectDB()
-
-    #タイムゾーン
-    JST = timezone(timedelta(hours=+9), 'JST')
-
-
-
-
     yearDataList=db.get_all_yearStatistics_from_user(user_id)
-
-
-
-
-
 
     '''
     year,emotions,word_counts,noun_asc,adjective_asc,important_words,special_people,classifications
@@ -46,7 +34,10 @@ def nlpForTotal(user_id):
         print(str(yearData[0])+"年処理")
         # nlp関係はNoneがあるので注
         #jsonはdecodeする
+        """
+        # 使ってないのでコメントアウト
         value_year=yearData[0]
+        """
         value_emotions=json.loads(yearData[1])
         value_word_counts=json.loads(yearData[2])
         value_noun_asc=json.loads(yearData[3])

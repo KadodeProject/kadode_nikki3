@@ -7,7 +7,7 @@ def get_importantWords(affiliation):
         name:名前,
         count:登場回数
     }
-    
+
     '''
     # print(affiliation)
     words={}
@@ -22,11 +22,8 @@ def get_importantWords(affiliation):
         if(value['lemma']=="さん" or value['lemma']=="くん" or value['form']=="Person" or value['form']=="Name_Other"):
             continue
         else:
-            try:
-                words[value['lemma']]+=1                 
-            except:
-                words[value['lemma']]=1
-    
+            words[value['lemma']]=words[value['lemma']]+1 if value['lemma'] in words else 1
+
     #それを登録する形に改変
     important_words_raw=[]
     for key,value in words.items():
