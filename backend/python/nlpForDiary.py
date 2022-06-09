@@ -26,7 +26,6 @@ def nlpForDiary(user_id):
     #タイムゾーン
     JST = timezone(timedelta(hours=+9), 'JST')
 
-
     # SELECT id,updated_at,updated_statistic_at,sentence,chunk,token,affiliation,char_length
     rows=db.get_all_diariesPre_from_user(user_id)
 

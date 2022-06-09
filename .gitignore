@@ -6,3 +6,5 @@ mysql-connector-java-8.0.27.jar
 infra/docker/schemaspy/output/*
 tmp
 *.pyc
+.idea/workspace.xml
+.idea/tasks.xml
