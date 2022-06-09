@@ -70,7 +70,6 @@ if (document.getElementById("diary-content") != null) {
 */
 if (document.getElementById("submitDiary") != null) {
     let submitDiaryAnimation = function (e) {
-        e.preventDefault;
         e.target.classList.remove("animate");
 
         e.target.classList.add("animate");

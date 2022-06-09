@@ -1,4 +1,4 @@
-name: larastanでの静的解析とreviewdogコメント生成
+name: PHP静的解析
 on:
   pull_request:
     branches:
@@ -12,9 +12,9 @@ jobs:
         with:
           reviewdog_version: latest
       - name: Setup PHP
-        uses: shivammathur/setup-php@v2 
+        uses: shivammathur/setup-php@v2
         with:
-          php-version: '8.1'
+          php-version: "8.1"
           tools: composer:v2
       - name: cache vendor
         id: cache
@@ -27,7 +27,7 @@ jobs:
       - name: composer install
         if: steps.cache.outputs.cache-hit != 'true'
         run: cd backend && composer install --no-progress --prefer-dist --optimize-autoloader
-        
+
       - name: Run PHPstan
         env:
           REVIEWDOG_GITHUB_API_TOKEN: ${{ secrets.USUYUKI_GITHUB_TOKEN }}
