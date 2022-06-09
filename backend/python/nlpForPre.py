@@ -2,18 +2,11 @@ import time
 import sys
 
 from datetime import datetime as dt
-
 from base import connectDBClass as database
-
 from nlp import meta_generate
 
 
 import spacy
-
-#固有表現ルール追加用
-from spacy.pipeline import EntityRuler
-
-
 
 def nlpForPre(user_id):
     model="ja_ginza" #軽量モデルを使用。本当はtransformer採用型を使いたいけど、メモリが足りない。

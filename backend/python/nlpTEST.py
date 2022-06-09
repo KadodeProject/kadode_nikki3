@@ -5,8 +5,6 @@ def nlpForPre(user_id):
 
     #DBインスタンス
     db = database.connectDB()
-
-
     #固有表現ルールcustom
     customNER=db.get_customNER(user_id)
     print(customNER)
@@ -24,10 +22,6 @@ def nlpForPre(user_id):
         NERList.append({'label':singleNER[0],'pattern':singleNER[1]})
     print(NERList)
 
-
-
-
-
     # GiNZAの準備
     nlp = spacy.load('ja_ginza')
 
@@ -36,7 +30,6 @@ def nlpForPre(user_id):
         'overwrite_ents': True
     }
     ruler = nlp.add_pipe('entity_ruler', config=config)
-
     ruler.add_patterns(NERList)
 
     # 固有表現抽出の実行
@@ -48,7 +41,6 @@ def nlpForPre(user_id):
             str(ent.start_char)+','+ # 開始位置
             str(ent.end_char) # 終了位置
         )
-
 
     print("nlpForPre処理終了")
     #日記数を返す(トータルの条件分岐で使用)

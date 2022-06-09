@@ -1,15 +1,7 @@
-
-
 import sys
 import json
-from datetime import datetime as dt
-from datetime import timezone,timedelta
-
-from datetime import datetime as dt
-from datetime import timezone,timedelta
 
 from base import connectDBClass as database
-
 
 def nlpForTotal(user_id):
     #DBインスタンス
