@@ -1,4 +1,4 @@
-name: LaravelPHPテスト
+name: PHPテスト
 
 on:
   pull_request:

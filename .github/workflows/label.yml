@@ -1,15 +1,14 @@
-name: PRに自動でラベル付けるCI
+name: PR自動ラベル付与
 on: [pull_request]
 
 jobs:
   label:
-
     runs-on: ubuntu-latest
     permissions:
       contents: read
       pull-requests: write
 
     steps:
-    - uses: actions/labeler@v4
-      with:
-        repo-token: "${{ secrets.USUYUKI_GITHUB_TOKEN }}"
+      - uses: actions/labeler@v4
+        with:
+          repo-token: "${{ secrets.USUYUKI_GITHUB_TOKEN }}"
