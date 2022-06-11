@@ -255,22 +255,27 @@ def nlpForMonthAndYear(user_id):
     DB代入のための準備
     '''
     yearList=[]#年別で使う
-    #空の月別を再生成
-    db.delete_depDate_data('statistic_per_months',user_id)
+    #すでに存在しているものを取得
+    exist_date_per_months=db.check_exist_data('statistic_per_months',user_id)
     for dicKey in yMonth_dicList.keys():
         #日付取得
         date=dicKey.split('-')
-        dateForDB=[date[0],date[1]]
-
-        db.set_depDate_insertUpdate_data('statistic_per_months',user_id,dateForDB)
+        # date[1]は月だが06のようになるため、intキャストで先頭の0を除去している(次の条件分岐で事故るため)
+        dateForDB=(int(date[0]),int(date[1]))
+        if (dateForDB not in exist_date_per_months):
+            #DBに存在しなかったら新規作成
+            db.insert_void_column('statistic_per_months',user_id,dateForDB)
         #年情報を収集(あとで重複消す)
         yearList.append(date[0])
 
-    #空の年別を作成
-    db.delete_depDate_data('statistic_per_years',user_id)
+    #すでに存在しているものを取得
+    exist_date_per_years=db.check_exist_data('statistic_per_years',user_id)
     yearListUnique=set(yearList)#重複消す
     for year in yearListUnique:
-        db.set_depDate_insertUpdate_data('statistic_per_years',user_id,[year])
+        #↓(2020,)みたいにくるのでこうしている……
+        if ((int(year)) not in exist_date_per_years):
+            #DBに存在しなかったら新規作成
+            db.insert_void_column('statistic_per_years',user_id,[year])
 
 
 
