@@ -308,9 +308,28 @@ class connectDB:
         cur.close()
         self.conn.ping(True)#mysql2003エラー(サーバー接続切れ防止)
     """
+    ユーザーidの人が持ってる月別・年別統計データを取得する
+    """
+    def check_exist_data(self,column,user_id):
+        # カーソルを取得する
+        cur= self.conn.cursor()
+        # クエリを実行する
+        if(column=="statistic_per_months"):
+            cur.execute(
+                    'SELECT year,month FROM statistic_per_months WHERE user_id ={0}'.format(user_id))
+        if(column=="statistic_per_years"):
+            cur.execute(
+                    'SELECT year FROM statistic_per_years WHERE user_id ={0}'.format(user_id))
+        # 実行結果をすべて取得する
+        result = cur.fetchall()
+        # カーソルを閉じる
+        cur.close()
+        self.conn.ping(True)#mysql2003エラー(サーバー接続切れ防止)
+        return result
+    """
     月別と年別で一度ユーザーのデータをすべて作成する
     """
-    def set_depDate_insertUpdate_data(self,column,user_id,date):
+    def insert_void_column(self,column,user_id,date):
         # カーソルを取得する
         cur= self.conn.cursor()
         # クエリを実行する ここはsqkインジェクションにならないところなので、そのまま
