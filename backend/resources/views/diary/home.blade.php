@@ -63,7 +63,7 @@
         </div>
         <div class="sm:order-2 order-1">
             @empty($today)
-            <!--今日の日記無いときは、日記フォームを表示-->
+            {{-- 今日の日記無いときは、日記フォームを表示 --}}
             @component('components.diary.submitForm')
             @slot("db_method")
             create
@@ -81,7 +81,7 @@
             @endcomponent
 
             @else
-            <!--今日の日記あるときも、日記枠を表示-->
+            {{-- 今日の日記あるときも、日記枠を表示 --}}
             @component('components.diary.submitForm')
             @slot("db_method")
             update
@@ -99,7 +99,12 @@
             {{$today->content}}
             @endslot
             @endcomponent
-
+            @if($today->updated_at->format("Y-m-d H:i:s") === date("Y-m-d H:i:s"))
+            {{-- 保存したてなら保存しましたよを表示する --}}
+            <div id="save-animation" class="show-save-fade-out">
+                <p class="text-center kiwi-maru">保存しました✨</p>
+            </div>
+            @endif
             @endempty
         </div>
 

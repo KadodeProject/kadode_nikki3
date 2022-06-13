@@ -1,0 +1,13 @@
+/* 保存したことを示す要素をフェードアウトさせるクラス */
+.show-save-fade-out {
+    animation: fadein-keyframes 0.6s ease-out 1.25s 1 forwards;
+}
+@keyframes fadein-keyframes {
+    0% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 0;
+    }
+}

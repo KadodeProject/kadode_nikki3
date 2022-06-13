@@ -9,6 +9,7 @@
 @import "common";
 /* 個々のCSSの読み込み(より細かいものはindexで読み込んでいる) */
 @import "components/top";
+@import "components/home";
 @import "components/diary/index";
 @import "components/statistics/index";
 
