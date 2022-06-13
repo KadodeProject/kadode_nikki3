@@ -97,6 +97,7 @@ p::-webkit-scrollbar {
     width: 8px;
     height: 6px;
 }
+/* contentのtextareaの右下白四角問題解消のためにoverflow-xをhiddenにする */
 textarea[name="content"] {
     overflow-x: hidden;
     overflow-y: scroll;

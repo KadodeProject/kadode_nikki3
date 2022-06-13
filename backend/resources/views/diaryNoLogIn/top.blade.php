@@ -42,7 +42,7 @@
         <div class="flex justify-center md:w-1/2 px-4 mx-auto flex-col kiwi-maru">
             <p class="text-center">GitHubにて公開しております✨</p>
             <p class="text-center"><a target="_blank" rel="norefferrer"
-                    href="https://github.com/Usuyuki">かどで日記GitHub</a></p>
+                    href="https://github.com/Usuyuki/kadode_nikki3">かどで日記GitHub</a></p>
         </div>
     </div>
     <div class="mt-8 mb-12">
