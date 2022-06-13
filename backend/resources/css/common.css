@@ -97,6 +97,10 @@ p::-webkit-scrollbar {
     width: 8px;
     height: 6px;
 }
+textarea[name="content"] {
+    overflow-x: hidden;
+    overflow-y: scroll;
+}
 
 /*スクロールバーの軌道*/
 ::-webkit-scrollbar-track {
