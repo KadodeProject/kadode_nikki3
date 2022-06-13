@@ -15,8 +15,6 @@
         @include('components.statisticHeading',['icon'=>'report_problem','title'=>'統計データはありません'])
         <div class="mt-12">
             <div class="setting">
-                <h2 class="text-2xl">統計データ作成(α版)</h2>
-
                 @if($number_of_nikki<30) <p class="text-xl my-2 text-center kiwi-maru">
                     あなたの日記は{{$number_of_nikki}}件です。統計に必要な最低限の日記数を下回っています。<br>日記 が30件を超えるとご利用いただけるようになります。</p>
                     @else

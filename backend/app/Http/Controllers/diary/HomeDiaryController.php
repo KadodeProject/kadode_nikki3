@@ -44,7 +44,6 @@ class homeDiaryController extends Controller
         $latests = Diary::orderby("date", "desc")->take(10)->get();
         $latests = $this->shapeStatisticFromDiaries->invoke($latests);
 
-
         /**
          * 今日と昨日の日記があるか調べる
          */
@@ -58,7 +57,6 @@ class homeDiaryController extends Controller
                 $diaries[] = $latest;
             }
         }
-
 
         $this_day = Carbon::today()->format("Y-m-d");
 
