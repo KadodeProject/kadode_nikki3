@@ -24,7 +24,7 @@
                 <div>
                     <input autocomplete="off" class="search-keyword" type="search" name="keyword"
                         placeholder="キーワード(2~20字)">
-                    <input type="submit" class="h-full kiwi-maru" style="border-radius:4px;" value="検索">
+                    <input type="submit" class="h-full kiwi-maru rounded-2xl bg-kn_2" value="検索">
                 </div>
 
             </form>
