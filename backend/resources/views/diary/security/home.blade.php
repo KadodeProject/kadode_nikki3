@@ -45,7 +45,7 @@
                 <div class="flex justify-start items-center flex-wrap">
                     <input type="text" name="name" class="mr-2" autocomplete="off" placeholder="新しいユーザー名"
                         value="{{$user->name}}">
-                    <input type="submit" class="text-black" style="border-radius:4px" value="ユーザー名を変更する">
+                    <input type="submit" class="text-black bg-kn_2 rounded-2xl" value="ユーザー名を変更する">
                 </div>
             </form>
         </div>
@@ -62,7 +62,7 @@
                 <div class="flex justify-start items-center flex-wrap">
                     <input type="email" name="email" class="mr-2" autocomplete="off" placeholder="新しいメールアドレス"
                         value="{{$user->email}}">
-                    <input type="submit" class="text-black" style="border-radius:4px" value="メールアドレスを変更する">
+                    <input type="submit" class="text-black  bg-kn_2 rounded-2xl" value="メールアドレスを変更する">
                 </div>
             </form>
         </div>
@@ -78,7 +78,7 @@
                 @csrf
                 <div class="flex justify-start items-center flex-wrap">
                     <input type="password" name="password" class="mr-2" autocomplete="off" placeholder="新しいパスワード">
-                    <input type="submit" class="text-black" style="border-radius:4px" value="パスワードを変更する">
+                    <input type="submit" class="text-black bg-kn_2 rounded-2xl" value="パスワードを変更する">
                 </div>
             </form>
             <p class="kiwi-maru text-sm">※8文字以上100文字未満</p>
