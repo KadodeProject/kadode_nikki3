@@ -272,8 +272,8 @@ def nlpForMonthAndYear(user_id):
     exist_date_per_years=db.check_exist_data('statistic_per_years',user_id)
     yearListUnique=set(yearList)#重複消す
     for year in yearListUnique:
-        #↓(2020,)みたいにくるのでこうしている……
-        if ((int(year)) not in exist_date_per_years):
+        #dbで帰ってくる値がselect yearなのに (2022,)みたいにくるので、それに合わせてる
+        if ((int(year),) not in exist_date_per_years):
             #DBに存在しなかったら新規作成
             db.insert_void_column('statistic_per_years',user_id,[year])
 
