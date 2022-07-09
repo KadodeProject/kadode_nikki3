@@ -23,4 +23,3 @@ jobs:
             git pull origin main
             cd backend
             composer i
-            yarn install
