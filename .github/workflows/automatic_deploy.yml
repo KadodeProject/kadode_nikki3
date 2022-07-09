@@ -23,3 +23,4 @@ jobs:
             git pull origin main
             cd backend
             composer i
+            ${{ secrets.YARN_EX_PATH }} install
