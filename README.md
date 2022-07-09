@@ -11,7 +11,7 @@ https://kadode.usuyuki.net/
 [![LaravelPHPテスト](https://github.com/Usuyuki/kadode_nikki3/actions/workflows/laravelTester.yml/badge.svg)](https://github.com/Usuyuki/kadode_nikki3/actions/workflows/laravelTester.yml)
 [![larastanでの静的解析とreviewdogコメント生成](https://github.com/Usuyuki/kadode_nikki3/actions/workflows/larastanReviewdog.yml/badge.svg)](https://github.com/Usuyuki/kadode_nikki3/actions/workflows/larastanReviewdog.yml)
 [![PRに自動でラベル付けるCI](https://github.com/Usuyuki/kadode_nikki3/actions/workflows/label.yml/badge.svg)](https://github.com/Usuyuki/kadode_nikki3/actions/workflows/label.yml)  
-[![自動デプロイ](https://github.com/Usuyuki/kadode_nikki3/actions/workflows/automatic_deploy.yml/badge.svg)](https://github.com/Usuyuki/kadode_nikki3/actions/workflows/automatic_deploy.yml)※現在デプロイは手動にて対応中
+[![自動デプロイと初期構築](https://github.com/Usuyuki/kadode_nikki3/actions/workflows/automatic_deploy.yml/badge.svg)](https://github.com/Usuyuki/kadode_nikki3/actions/workflows/automatic_deploy.yml)
 
 ## LGTM
 
