@@ -21,6 +21,3 @@ jobs:
           script: |
             cd ${{ secrets.SERVER_DEPLOY_DIR }}
             git pull origin main
-            # cd backend
-            # composer i
-            # yarn install
