@@ -1,4 +1,4 @@
-name: 自動デプロイ
+name: 自動デプロイと初期構築
 
 on:
   pull_request:
@@ -21,3 +21,6 @@ jobs:
           script: |
             cd ${{ secrets.SERVER_DEPLOY_DIR }}
             git pull origin main
+            cd backend
+            composer i
+            yarn install
