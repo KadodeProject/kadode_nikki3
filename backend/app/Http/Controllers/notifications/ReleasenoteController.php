@@ -39,21 +39,6 @@ class ReleasenoteController extends Controller
         return redirect('administrator/notification');
     }
 
-    /**
-     * Undocumented function
-     *
-     * @return void
-     */
-    public function read()
-    {
-        $releasenotes = Releasenote::orderBy('date', 'desc')->get(['title', 'date', 'genre_id', 'description']);
-        $releasenoteGenres = Releasenote_genre::get(['id', 'name']);
-        foreach ($releasenotes as $releasenote) {
-            $releasenote->genre = $releasenoteGenres[$releasenote->genre_id - 1]->name;
-        }
-        return view('diaryNoLogIn/releasenote', ['releasenotes' => $releasenotes,]);
-    }
-
 
     /**
      * Undocumented function

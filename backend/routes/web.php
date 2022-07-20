@@ -64,7 +64,7 @@ Route::get('/terms', \App\Http\Actions\ShowTermsAction::class)->name('terms');
 Route::get('/aboutThisSite', \App\Http\Actions\ShowAboutThisSiteAction::class)->name('aboutThisSite');
 Route::get('/teapot', \App\Http\Actions\ShowTeapotAction::class)->name('teapot');
 Route::get('/osirase', \App\Http\Actions\Osirase\ShowOsiraseAction::class)->name('osirase');
-Route::get('/releaseNote', [ReleasenoteController::class, "read"])->name('releaseNote');
+Route::get('/releaseNote', \App\Http\Actions\ReleaseNote\ShowReleaseNoteAction::class)->name('releaseNote');
 
 
 /**

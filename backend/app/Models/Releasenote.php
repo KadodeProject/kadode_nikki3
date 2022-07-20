@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Releasenote extends Model
 {
@@ -18,4 +19,9 @@ class Releasenote extends Model
         "title" => "required|max:50",
         "description" => "required",
     );
+
+    public function releasenote_genre():BelongsTo
+    {
+        return $this->belongsTo(Releasenote_genre::class,'genre_id','id');
+    }
 }
