@@ -74,6 +74,6 @@ https://kadode.usuyuki.net/
 
 [お知らせ](https://kadode.usuyuki.net/news)
 
-[リリースノート](https://kadode.usuyuki.net/releasenote)
+[リリースノート](https://kadode.usuyuki.net/releaseNote)
 
 ![かどでリリースのお知らせ](https://user-images.githubusercontent.com/63891531/124377606-ad6ba080-dce7-11eb-8cf4-af3fc95656ef.png)
