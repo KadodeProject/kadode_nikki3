@@ -2,14 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="aa6216b5-3a8a-49eb-9987-81fd25ac7924" name="変更" comment="">
+      <change beforePath="$PROJECT_DIR$/.github/workflows/laravelTester.yml" beforeDir="false" afterPath="$PROJECT_DIR$/.github/workflows/laravelTester.yml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/app/Http/Controllers/diary/HomeDiaryController.php" beforeDir="false" afterPath="$PROJECT_DIR$/backend/app/Http/Controllers/diary/HomeDiaryController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/app/Http/Controllers/notifications/OsiraseController.php" beforeDir="false" afterPath="$PROJECT_DIR$/backend/app/Http/Controllers/notifications/OsiraseController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/resources/views/components/basis/footer.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/backend/resources/views/components/basis/footer.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/resources/views/diaryNoLogIn/news.blade.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/backend/routes/web.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/tests/MinimumOperationCheck/ShowNoLoginTest.php" beforeDir="false" afterPath="$PROJECT_DIR$/backend/tests/MinimumOperationCheck/ShowNoLoginTest.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -161,7 +155,6 @@
       <path value="$PROJECT_DIR$/backend/vendor/ralouphie/getallheaders" />
       <path value="$PROJECT_DIR$/backend/vendor/symfony/translation" />
       <path value="$PROJECT_DIR$/backend/vendor/guzzlehttp/promises" />
-      <path value="$PROJECT_DIR$/backend/vendor/symfony/debug" />
       <path value="$PROJECT_DIR$/backend/vendor/guzzlehttp/guzzle" />
       <path value="$PROJECT_DIR$/backend/vendor/phpdocumentor/reflection-docblock" />
       <path value="$PROJECT_DIR$/backend/vendor/symfony/process" />
@@ -189,6 +182,7 @@
       <path value="$PROJECT_DIR$/backend/vendor/monolog/monolog" />
       <path value="$PROJECT_DIR$/backend/vendor/ramsey/collection" />
       <path value="$PROJECT_DIR$/backend/vendor/ramsey/uuid" />
+      <path value="$PROJECT_DIR$/backend/vendor/nunomaduro/termwind" />
     </include_path>
   </component>
   <component name="ProjectId" id="2AIWVc78wYusKRwiBe2nK5zhYCz" />
