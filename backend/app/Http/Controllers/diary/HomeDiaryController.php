@@ -143,7 +143,7 @@ class homeDiaryController extends Controller
         if (!$user->is_showed_update_system_info) {
             // リリースノート取得
             $releasenote = Releasenote::where("id", "!=", 0)->orderBy('date', 'desc')->first(['title', 'date']);
-            $new_infos[] = ["url" => "/releasenote", "type" => "releasenote", "bg_color" => "51, 156, 118", "title" => $releasenote->title, "date" => $releasenote->date];
+            $new_infos[] = ["url" => "/releaseNote", "type" => "releasenote", "bg_color" => "51, 156, 118", "title" => $releasenote->title, "date" => $releasenote->date];
         }
         if (!$user->is_showed_update_user_rank) {
             // ユーザーランク取得

@@ -57,31 +57,14 @@ use Illuminate\Http\Request;
 /**
  * 未ログインでも閲覧できるページ
  */
-Route::get('/', function () {
-    return view('diaryNoLogIn/top');
-});
-Route::get('/privacyPolicy', function () {
-    return view('diaryNoLogIn/privacyPolicy');
-});
-Route::get('/contact', function () {
-    return view('diaryNoLogIn/contact');
-});
-
-
-
-
-Route::get('/news', [OsiraseController::class, "read"])->name('releasenote');
-Route::get('/releasenote', [ReleasenoteController::class, "read"])->name('releasenote');
-
-Route::get('/terms', function () {
-    return view('diaryNoLogIn/terms');
-});
-Route::get('/aboutThisSite', function () {
-    return view('diaryNoLogIn/aboutThisSite');
-});
-Route::get('/teapot', function () {
-    abort(418);
-});
+Route::get('/', \App\Http\Actions\ShowTopAction::class)->name('top');
+Route::get('/privacyPolicy', \App\Http\Actions\ShowPrivacyPolicyAction::class)->name('privacyPolicy');
+Route::get('/contact', \App\Http\Actions\ShowContactAction::class)->name('contact');
+Route::get('/terms', \App\Http\Actions\ShowTermsAction::class)->name('terms');
+Route::get('/aboutThisSite', \App\Http\Actions\ShowAboutThisSiteAction::class)->name('aboutThisSite');
+Route::get('/teapot', \App\Http\Actions\ShowTeapotAction::class)->name('teapot');
+Route::get('/news', [OsiraseController::class, "read"])->name('news');
+Route::get('/releaseNote', [ReleasenoteController::class, "read"])->name('releaseNote');
 
 
 /**
