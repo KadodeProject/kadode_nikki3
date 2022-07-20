@@ -9,10 +9,10 @@
 <div class="mx-auto px-4" style="max-width: 1200px">
 
     @foreach($osirases as $osirase)
-    @include('components.noLogIn.news',
+    @include('components.noLogIn.osiraseCard',
     ['title'=>$osirase->title,
     'date'=>$osirase->date->format('Y年n月j日'),
-    'genre'=>$osirase->genre,
+    'genre'=>$osirase->osirase_genre->name,
     'explain'=>$osirase->description,
     ])
     @endforeach

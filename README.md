@@ -72,7 +72,7 @@ https://kadode.usuyuki.net/
 
 [お問い合わせ](https://kadode.usuyuki.net/contact)
 
-[お知らせ](https://kadode.usuyuki.net/news)
+[お知らせ](https://kadode.usuyuki.net/osirase)
 
 [リリースノート](https://kadode.usuyuki.net/releaseNote)
 

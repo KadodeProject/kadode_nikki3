@@ -20,13 +20,13 @@ class ShowNoLoginTest extends TestCase
     /** @test */
     public function リリースノートの表示()
     {
-        $response = $this->get('/releasenote');
+        $response = $this->get('/releaseNote');
         $response->assertStatus(200);
     }
     /** @test */
     public function お知らせの表示()
     {
-        $response = $this->get('/news');
+        $response = $this->get('/osirase');
         $response->assertStatus(200);
     }
     /** @test */

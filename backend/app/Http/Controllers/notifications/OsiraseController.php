@@ -42,23 +42,6 @@ class OsiraseController extends Controller
     /**
      * Undocumented function
      *
-     * @return void
-     */
-    public function read()
-    {
-        $osirases = Osirase::orderBy('date', 'desc')->get(['title', 'date', 'genre_id', 'description']);
-        $osiraseGenres = Osirase_genre::get(['id', 'name']);
-        foreach ($osirases as $osirase) {
-            $osirase->genre = $osiraseGenres[$osirase->genre_id - 1]->name;
-        }
-
-        return view('diaryNoLogIn/news', ['osirases' => $osirases,]);
-    }
-
-
-    /**
-     * Undocumented function
-     *
      * @param Request $request
      * @return void
      */
