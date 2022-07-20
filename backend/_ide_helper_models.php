@@ -223,6 +223,7 @@ namespace App\Models{
  * @property \Illuminate\Support\Carbon $date 日付
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property-read \App\Models\Osirase_genre $osirase_genre
  * @method static \Illuminate\Database\Eloquent\Builder|Osirase newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Osirase newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Osirase query()
@@ -288,6 +289,7 @@ namespace App\Models{
  * @property \Illuminate\Support\Carbon $date 日付
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property-read \App\Models\Releasenote_genre $releasenote_genre
  * @method static \Illuminate\Database\Eloquent\Builder|Releasenote newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Releasenote newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Releasenote query()

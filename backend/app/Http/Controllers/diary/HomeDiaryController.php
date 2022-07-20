@@ -138,7 +138,7 @@ class homeDiaryController extends Controller
         if (!$user->is_showed_service_info) {
             //お知らせ取得
             $osirase = Osirase::where("id", "!=", 0)->orderBy('date', 'desc')->first(['title', 'date']);
-            $new_infos[] = ["url" => "/news", "type" => "osirase", "bg_color" => "51, 118, 156", "title" => $osirase->title, "date" => $osirase->date];
+            $new_infos[] = ["url" => "/osirase", "type" => "osirase", "bg_color" => "51, 118, 156", "title" => $osirase->title, "date" => $osirase->date];
         }
         if (!$user->is_showed_update_system_info) {
             // リリースノート取得

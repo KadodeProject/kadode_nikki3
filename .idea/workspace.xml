@@ -2,17 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="aa6216b5-3a8a-49eb-9987-81fd25ac7924" name="変更" comment="">
-      <change beforePath="$PROJECT_DIR$/.github/workflows/automatic_deploy.yml" beforeDir="false" afterPath="$PROJECT_DIR$/.github/workflows/automatic_deploy.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/public/css/app.css" beforeDir="false" afterPath="$PROJECT_DIR$/backend/public/css/app.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/public/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/backend/public/js/app.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/public/js/common.js" beforeDir="false" afterPath="$PROJECT_DIR$/backend/public/js/common.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/public/js/drawTimeline.js" beforeDir="false" afterPath="$PROJECT_DIR$/backend/public/js/drawTimeline.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/public/js/drawWordCloud.js" beforeDir="false" afterPath="$PROJECT_DIR$/backend/public/js/drawWordCloud.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/public/js/shortStatistics.js" beforeDir="false" afterPath="$PROJECT_DIR$/backend/public/js/shortStatistics.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/public/js/topView.js" beforeDir="false" afterPath="$PROJECT_DIR$/backend/public/js/topView.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/public/js/totalStatistics.js" beforeDir="false" afterPath="$PROJECT_DIR$/backend/public/js/totalStatistics.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.github/workflows/laravelTester.yml" beforeDir="false" afterPath="$PROJECT_DIR$/.github/workflows/laravelTester.yml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -164,7 +154,6 @@
       <path value="$PROJECT_DIR$/backend/vendor/ralouphie/getallheaders" />
       <path value="$PROJECT_DIR$/backend/vendor/symfony/translation" />
       <path value="$PROJECT_DIR$/backend/vendor/guzzlehttp/promises" />
-      <path value="$PROJECT_DIR$/backend/vendor/symfony/debug" />
       <path value="$PROJECT_DIR$/backend/vendor/guzzlehttp/guzzle" />
       <path value="$PROJECT_DIR$/backend/vendor/phpdocumentor/reflection-docblock" />
       <path value="$PROJECT_DIR$/backend/vendor/symfony/process" />
@@ -192,6 +181,7 @@
       <path value="$PROJECT_DIR$/backend/vendor/monolog/monolog" />
       <path value="$PROJECT_DIR$/backend/vendor/ramsey/collection" />
       <path value="$PROJECT_DIR$/backend/vendor/ramsey/uuid" />
+      <path value="$PROJECT_DIR$/backend/vendor/nunomaduro/termwind" />
     </include_path>
   </component>
   <component name="ProjectId" id="2AIWVc78wYusKRwiBe2nK5zhYCz" />
@@ -206,12 +196,13 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/backend/app/Http/Actions" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/backend/app/Http/Actions/ReleaseNote" />
     <property name="nodejs_package_manager_path" value="yarn" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="\\wsl$\Ubuntu-20.04\home\naofumi\source_code\kadode_nikki3\backend\app\Http\Actions\ReleaseNote" />
       <recent name="\\wsl$\Ubuntu-20.04\home\naofumi\source_code\kadode_nikki3\backend\app\Http\Actions" />
     </key>
   </component>

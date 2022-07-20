@@ -28,10 +28,18 @@ jobs:
       DB_PASSWORD: password
 
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
+      - name: cache node_modules
+        id: cache_node
+        uses: actions/cache@v3
+        with:
+          path: ./backend/node_modules
+          key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-yarn-
       - name: cache vendor
-        id: cache
-        uses: actions/cache@v1
+        id: cache_vendor
+        uses: actions/cache@v3
         with:
           path: ./backend/vendor
           key: ${{ runner.os }}-composer-${{ hashFiles('**/composer.lock') }}
@@ -43,14 +51,23 @@ jobs:
         run: sudo pip3 install --upgrade pip && pip3 install python-dotenv mysqlclient ahocorapy && pip3 install -U ginza ja-ginza
       - name: copy .env for ci
         run: cd backend && php -r "file_exists('.env') || copy('.env.ci', '.env');"
+      #ライブラリインストール
+      - name: yarn install
+        if: steps.cache_node.outputs.cache-hit != 'true'
+        run: cd backend && yarn install
       - name: composer install
-        if: steps.cache.outputs.cache-hit != 'true'
+        if: steps.cache_vendor.outputs.cache-hit != 'true'
         run: cd backend && composer install -n --prefer-dist
+      #Laravel初期構築
       - name: composer dump autoload
         run: cd backend && composer dump-autoload
       - name: generate key
         run: cd backend && php artisan key:generate --env=testing
       - name: migrate
         run: cd backend && php artisan migrate
+      #フロントエンドのファイル生成(200テストで使うため)
+      - name: genereate
+        run: cd backend && yarn production
+      #テスト
       - name: unit test
         run: cd backend && ./vendor/bin/phpunit

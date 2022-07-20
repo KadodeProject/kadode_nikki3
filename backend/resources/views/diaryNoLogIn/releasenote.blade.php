@@ -12,7 +12,7 @@
     @include('components.noLogIn.releasenote',
     ['title'=>$releasenote->title,
     'date'=>$releasenote->date->format('Y年n月j日'),
-    'genre'=>$releasenote->genre,
+    'genre'=>$releasenote->releasenote_genre->name,
     'explain'=>$releasenote->description,
     ])
     @endforeach

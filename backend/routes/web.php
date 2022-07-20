@@ -63,8 +63,8 @@ Route::get('/contact', \App\Http\Actions\ShowContactAction::class)->name('contac
 Route::get('/terms', \App\Http\Actions\ShowTermsAction::class)->name('terms');
 Route::get('/aboutThisSite', \App\Http\Actions\ShowAboutThisSiteAction::class)->name('aboutThisSite');
 Route::get('/teapot', \App\Http\Actions\ShowTeapotAction::class)->name('teapot');
-Route::get('/news', [OsiraseController::class, "read"])->name('news');
-Route::get('/releaseNote', [ReleasenoteController::class, "read"])->name('releaseNote');
+Route::get('/osirase', \App\Http\Actions\Osirase\ShowOsiraseAction::class)->name('osirase');
+Route::get('/releaseNote', \App\Http\Actions\ReleaseNote\ShowReleaseNoteAction::class)->name('releaseNote');
 
 
 /**

@@ -5,7 +5,11 @@
     </div>
     <p class="pt-2 flex items-center"><span class="material-icons">
             schedule
-        </span><span> {{$date}}</span></p>
+        </span><span> {{$date}} </span>
+        <span class="material-icons ml-2">
+            category
+        </span><span> {{$genre}}</span></p>
+    <p class="pt-2 flex items-center"></p>
     <div class="py-4">
         <p>{{$explain}}</p>
     </div>
