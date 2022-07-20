@@ -6,5 +6,8 @@ mysql-connector-java-8.0.27.jar
 infra/docker/schemaspy/output/*
 tmp
 *.pyc
-.idea/workspace.xml
-.idea/tasks.xml
+
+#本番ビルドに変更
+backend/public/css
+backend/public/js
+backend/public/mix-manifest.json
