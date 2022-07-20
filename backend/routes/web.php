@@ -69,6 +69,7 @@ Route::get('/releaseNote', \App\Http\Actions\ReleaseNote\ShowReleaseNoteAction::
 
 /**
  * ログイン時閲覧できるリンク
+ * @todo ログインでここ必ず通るからこうなってるんだけど、すごく分かりにくいコードなのでなんとかしたい
  */
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function (Request $request) {
     $ip = $request->ip();

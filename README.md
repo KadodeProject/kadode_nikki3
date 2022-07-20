@@ -42,6 +42,27 @@ https://kadode.usuyuki.net/
 
 ![image](https://img.shields.io/badge/App-%E3%81%8B%E3%81%A9%E3%81%A7%E6%97%A5%E8%A8%98-624466)
 
+# 直近のリファクタリングロードマップ
+
+```mermaid
+flowchart LR
+    A[かどで日記v3.5]-->|ControllerからActionへの移行|B[かどで日記v3.6]
+    A-->|命名規則の統一|B
+    B-->|Responderの整備|C[かどで日記v3.7]
+    B-->|リレーション活用でDBの無駄なアクセスの削減|C
+    C-->|Pythonの技術的負債の解体|D[かどで日記v3.8]
+```
+
+# 直近のフィーチャーロードマップ
+
+```mermaid
+flowchart LR
+    A[かどで日記v3.5]-->|類語付き検索機能|B[かどで日記v4.x]
+    A-->|ネガポジ判定精度改善|B
+    B-->|統計生成の自動化|C[かどで日記v5.x]
+    B-->|閲覧アシスト機能|C
+```
+
 # 文章周り
 
 ## 開発者向けの情報は、かどで日記 wiki を御覧ください
