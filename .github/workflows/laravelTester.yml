@@ -29,22 +29,22 @@ jobs:
 
     steps:
       - uses: actions/checkout@v3
-      - name: cache vendor
-        id: cache
-        uses: actions/cache@v3
-        with:
-          path: ./backend/vendor
-          key: ${{ runner.os }}-composer-${{ hashFiles('**/composer.lock') }}
-          restore-keys: |
-            ${{ runner.os }}-composer-
       - name: cache node_modules
-        id: cache
+        id: cache_node
         uses: actions/cache@v3
         with:
           path: ./backend/node_modules
           key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
           restore-keys: |
             ${{ runner.os }}-yarn-
+      - name: cache vendor
+        id: cache_vendor
+        uses: actions/cache@v3
+        with:
+          path: ./backend/vendor
+          key: ${{ runner.os }}-composer-${{ hashFiles('**/composer.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-composer-
       - name: run apt
         run: sudo apt update && sudo apt install git libicu-dev libonig-dev libzip-dev unzip locales python3-pip libmariadb-dev default-mysql-client python3-venv
       - name: run pip
@@ -53,10 +53,10 @@ jobs:
         run: cd backend && php -r "file_exists('.env') || copy('.env.ci', '.env');"
       #ライブラリインストール
       - name: yarn install
-        if: steps.cache.outputs.cache-hit != 'true'
+        if: steps.cache_node.outputs.cache-hit != 'true'
         run: cd backend && yarn install
       - name: composer install
-        if: steps.cache.outputs.cache-hit != 'true'
+        if: steps.cache_vendor.outputs.cache-hit != 'true'
         run: cd backend && composer install -n --prefer-dist
       #Laravel初期構築
       - name: composer dump autoload
