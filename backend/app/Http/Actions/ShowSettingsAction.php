@@ -1,17 +1,20 @@
 <?php
 
-namespace App\Http\Controllers\diary;
+declare(strict_types=1);
+
+namespace App\Http\Actions;
 
 use App\Http\Controllers\Controller;
+use Illuminate\Contracts\View\Factory;
+use Illuminate\Contracts\View\View;
 use App\Models\User;
 use App\Models\User_rank;
 use Illuminate\Support\Facades\Auth;
 
-class SettingDiaryController extends Controller
+final class ShowSettingsAction extends Controller
 {
-    public function __invoke()
+    public function __invoke(): View|Factory
     {
-
         // ここはグローバルスコープ適応外
         $user = Auth::user();
         $userCounter = User::count();

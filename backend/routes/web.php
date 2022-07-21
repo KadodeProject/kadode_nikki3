@@ -92,18 +92,18 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function (Req
 Route::middleware(['auth:sanctum', 'verified'])->group(function () {
 
     //ユーザー操作
-    Route::get('/settings', SettingDiaryController::class)->name('setting');
-    Route::post('/updateEmail', App\Http\Actions\User\ChangeEmailAction::class)->name('ChangeEmail');
-    Route::post('/updatePassWord', App\Http\Actions\User\ChangePasswordAction::class)->name('ChangePassWord');
-    Route::post('/updateUserName', App\Http\Actions\User\ChangeUserNameAction::class)->name('ChangeUserName');
-    Route::post('/deleteUser', App\Http\Actions\User\DeleteUserAction::class)->name('DeleteUser');
+    Route::get('/settings', \App\Http\Actions\ShowSettingsAction::class)->name('ShowSetting');
+    Route::post('/updateEmail', \App\Http\Actions\User\ChangeEmailAction::class)->name('ChangeEmail');
+    Route::post('/updatePassWord', \App\Http\Actions\User\ChangePasswordAction::class)->name('ChangePassWord');
+    Route::post('/updateUserName', \App\Http\Actions\User\ChangeUserNameAction::class)->name('ChangeUserName');
+    Route::post('/deleteUser', \App\Http\Actions\User\DeleteUserAction::class)->name('DeleteUser');
 
 
     /**
      * 日記関連
      */
     //ホーム
-    Route::get('/home', HomeDiaryController::class)->name('home');
+    Route::get('/home', \App\Http\Actions\ShowHomeAction::class)->name('ShowHome');
 
     //日記のCRUD
     Route::get('/edit', [EditDiaryController::class, "newPage"])->name('newPage');

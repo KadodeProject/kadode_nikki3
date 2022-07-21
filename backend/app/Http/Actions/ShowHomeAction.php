@@ -1,8 +1,12 @@
 <?php
 
-namespace App\Http\Controllers\diary;
+declare(strict_types=1);
+
+namespace App\Http\Actions;
 
 use App\Http\Controllers\Controller;
+use Illuminate\Contracts\View\Factory;
+use Illuminate\Contracts\View\View;
 use App\Models\Diary;
 use App\Models\Osirase;
 use App\Models\Releasenote;
@@ -12,19 +16,14 @@ use DateTime;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Auth;
 
-class homeDiaryController extends Controller
+final class ShowHomeAction extends Controller
 {
     public function __construct(
         private ShapeStatisticFromDiaries $shapeStatisticFromDiaries
     ) {
     }
-    /**
-     * Undocumented function
-     *
-     * @param [type] $request
-     * @return void
-     */
-    public function __invoke()
+
+    public function __invoke(): View|Factory
     {
         //ログインユーザーデーターの取得
         $user = Auth::user();
