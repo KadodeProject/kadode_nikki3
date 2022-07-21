@@ -57,14 +57,15 @@ use Illuminate\Http\Request;
 /**
  * 未ログインでも閲覧できるページ
  */
-Route::get('/', \App\Http\Actions\ShowTopAction::class)->name('top');
-Route::get('/privacyPolicy', \App\Http\Actions\ShowPrivacyPolicyAction::class)->name('privacyPolicy');
-Route::get('/contact', \App\Http\Actions\ShowContactAction::class)->name('contact');
-Route::get('/terms', \App\Http\Actions\ShowTermsAction::class)->name('terms');
-Route::get('/aboutThisSite', \App\Http\Actions\ShowAboutThisSiteAction::class)->name('aboutThisSite');
-Route::get('/teapot', \App\Http\Actions\ShowTeapotAction::class)->name('teapot');
-Route::get('/osirase', \App\Http\Actions\Osirase\ShowOsiraseAction::class)->name('osirase');
-Route::get('/releaseNote', \App\Http\Actions\ReleaseNote\ShowReleaseNoteAction::class)->name('releaseNote');
+Route::get('/', \App\Http\Actions\ShowTopAction::class)->name('ShowTop');
+Route::get('/privacyPolicy', \App\Http\Actions\ShowPrivacyPolicyAction::class)->name('ShowPrivacyPolicy');
+Route::get('/contact', \App\Http\Actions\ShowContactAction::class)->name('ShowContact');
+Route::get('/terms', \App\Http\Actions\ShowTermsAction::class)->name('ShowTerms');
+Route::get('/aboutThisSite', \App\Http\Actions\ShowAboutThisSiteAction::class)->name('ShowAboutThisSite');
+Route::get('/teapot', \App\Http\Actions\ShowTeapotAction::class)->name('ShowTeapot');
+//DBアクセス絡むもの
+Route::get('/osirase', \App\Http\Actions\Osirase\ShowOsiraseAction::class)->name('ShowOsirase');
+Route::get('/releaseNote', \App\Http\Actions\ReleaseNote\ShowReleaseNoteAction::class)->name('ShowReleaseNote');
 
 
 /**
@@ -84,16 +85,18 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function (Req
     return redirect('/home ');
 })->name('home_redirect');
 
+
+/**
+ * 認証
+ */
 Route::middleware(['auth:sanctum', 'verified'])->group(function () {
-    /**
-     * ユーザー関連
-     */
+
     //ユーザー操作
     Route::get('/settings', SettingDiaryController::class)->name('setting');
-    Route::post('/updateEmail', [UpdateUserController::class, "updateEmail"])->name('updateEmail');
-    Route::post('/updatePassWord', [UpdateUserController::class, "updatePassWord"])->name('updatePassWord');
-    Route::post('/updateUserName', [UpdateUserController::class, "updateUserName"])->name('updateUserName');
-    Route::post('/deleteUser', [UpdateUserController::class, "deleteUser"])->name('deleteUser');
+    Route::post('/updateEmail', App\Http\Actions\User\ChangeEmailAction::class)->name('ChangeEmail');
+    Route::post('/updatePassWord', App\Http\Actions\User\ChangePasswordAction::class)->name('ChangePassWord');
+    Route::post('/updateUserName', App\Http\Actions\User\ChangeUserNameAction::class)->name('ChangeUserName');
+    Route::post('/deleteUser', App\Http\Actions\User\DeleteUserAction::class)->name('DeleteUser');
 
 
     /**
