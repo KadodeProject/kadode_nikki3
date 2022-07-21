@@ -106,12 +106,12 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     Route::get('/home', \App\Http\Actions\ShowHomeAction::class)->name('ShowHome');
 
     //日記のCRUD
-    Route::get('/edit', [EditDiaryController::class, "newPage"])->name('newPage');
-    Route::get('/edit/{uuid}', [EditDiaryController::class, "get"])->name('edit');
+    Route::get('/edit', \App\Http\Actions\Diary\ShowCreateDiaryAction::class)->name('CreateDiary');
+    Route::get('/edit/{uuid}',\App\Http\Actions\Diary\ShowSingleDiaryAction::class)->name('edit');
 
-    Route::post('/create', [EditDiaryController::class, "create"])->name('new');
-    Route::post('/update', [EditDiaryController::class, "update"])->name('update');
-    Route::post('/delete', [EditDiaryController::class, "delete"])->name('delete');
+    Route::post('/create', \App\Http\Actions\Diary\CreateDiaryAction::class)->name('CreateDiary');
+    Route::post('/update', \App\Http\Actions\Diary\UpdateDiaryAction::class)->name('UpdateDiary');
+    Route::post('/delete', \App\Http\Actions\Diary\DeleteDiaryAction::class)->name('DeleteDiary');
     //日記閲覧
     Route::get('/diary/{year}/{month}', [ShowDiaryController::class, "getMonthArchive"])->name('show');
     Route::get('/diary/{year}',  [ShowDiaryController::class, "getYearArchive"])->name('show');

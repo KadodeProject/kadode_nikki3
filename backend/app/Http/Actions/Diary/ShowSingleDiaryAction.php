@@ -1,31 +1,30 @@
 <?php
 
-namespace App\Http\Controllers\diary;
+declare(strict_types=1);
+
+namespace App\Http\Actions\Diary;
 
 use App\Http\Controllers\Controller;
-use App\Models\Diary;
 use App\UseCases\Diary\ShapeContentWithNlp;
 use App\UseCases\Diary\ShapeStatisticFromDiaries;
+use Illuminate\Contracts\View\Factory;
+use Illuminate\Contracts\View\View;
+use Illuminate\Http\RedirectResponse;
+use Illuminate\Routing\Redirector;
 use Illuminate\Support\Carbon;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Str;
+use App\Models\Diary;
 
-class EditDiaryController extends Controller
+final class ShowSingleDiaryAction extends Controller
 {
     public function __construct(
         private ShapeStatisticFromDiaries $shapeStatisticFromDiaries,
         private ShapeContentWithNlp $shapeContentWithNlp,
     ) {
     }
-    /**
-     * Undocumented function
-     *
-     */
-    public function get($uuid)
-    {
 
+        public function __invoke($uuid):View|Factory|Redirector|RedirectResponse
+    {
         $diary = Diary::where("uuid", $uuid)->first();
         if ($diary == null) {
             //日記無かったらリダイレクトさせる
@@ -74,69 +73,6 @@ class EditDiaryController extends Controller
         }
 
         return view('diary/edit', ['diary' => $diary, 'contentWithNlp' => $contentWithNlp, 'previous' => $previous, 'next' => $next, 'resembleDiaries' => $resembleDiaries,]);
-    }
 
-    public function newPage()
-    {
-        return view('diary/newDiary');
-    }
-    /**
-     * Undocumented function
-     *
-     * @param Request $request
-     * @return void
-     */
-    public function create(Request $request)
-    {
-        $request->date = $request->date ?? Carbon::today()->format("y-m-d");
-
-        // バリデーション
-        $this->validate($request, Diary::$rules);
-
-        $form = [
-            "user_id" => Auth::id(),
-            "title" => $request->title,
-            "content" => $request->content,
-            "date" => $request->date,
-            "uuid" => Str::uuid(),
-        ];
-
-        Diary::create($form);
-        return redirect('home');
-    }
-
-    /**
-     * Undocumented function
-     *
-     * @param Request $request
-     * @return void
-     */
-    public function update(Request $request)
-    {
-
-
-        // 日付のバリデーション→既に存在する日付ならエラー返す
-        // バリデーション
-        $this->validate($request, Diary::$rules);
-
-        $updateContent = [
-            "title" => $request->title,
-            "content" => $request->content,
-            "date" => $request->date,
-        ];
-        Diary::where('uuid', $request->uuid)->update($updateContent);
-        return redirect('home');
-    }
-
-    /**
-     * Undocumented function
-     *
-     * @param Request $request
-     * @return void
-     */
-    public function delete(Request $request)
-    {
-        Diary::where('uuid', $request->uuid)->delete();
-        return redirect('home');
     }
 }
