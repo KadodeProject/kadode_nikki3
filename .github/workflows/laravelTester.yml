@@ -68,7 +68,10 @@ jobs:
       #Python
       - name: install pip
         if: steps.cache_pip3.outputs.cache-hit != 'true'
-        run: sudo pip3 install --upgrade --upgrade-strategy eager -r backend/kadode_pip_packages.txt
+        run: pip3 install --upgrade --upgrade-strategy eager -r backend/kadode_pip_packages.txt
+
+      - name: check place
+        run: pip3 show SudachiPy
       #JS
       - name: yarn install
         if: steps.cache_node.outputs.cache-hit != 'true'
