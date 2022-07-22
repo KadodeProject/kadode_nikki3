@@ -1,7 +1,3 @@
-/* Tailwind */
-@import "tailwindcss/base";
-@import "tailwindcss/components";
-@import "tailwindcss/utilities";
 /* フォントと変数の読み込み */
 @import "basis/variables";
 @import "basis/fonts";
@@ -15,3 +11,8 @@
 
 /* 分割できていないCSSの読み込み */
 @import "legacy";
+
+/* Tailwind */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;

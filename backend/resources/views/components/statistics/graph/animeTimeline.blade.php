@@ -7,7 +7,7 @@
     }
 </style>
 <div id="animeTimeline"></div>
-<script src="{{ mix('js/drawTimeline.js') }}"></script>
+@vite(['resources/js/drawTimeline.js'])
 
 <script>
     let timeline_data=[

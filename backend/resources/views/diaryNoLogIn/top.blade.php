@@ -174,6 +174,6 @@
     @endcomponent
 
 </div>
-<script src="{{ mix('js/topView.js') }}"></script>
+@vite(['resources/js/topView.js'])
 
 @endsection

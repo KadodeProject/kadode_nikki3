@@ -31,7 +31,7 @@
 
     @else
     <!-- ここに置かないとコンポーネントでchar.js使えないので -->
-    <script src="{{ mix('js/totalStatistics.js') }}"></script>
+    @vite(['resources/js/totalStatistics.js'])
 
 
     <div>
