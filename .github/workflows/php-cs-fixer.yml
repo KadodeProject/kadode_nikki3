@@ -31,4 +31,4 @@ jobs:
         run: cd backend && composer install -n --prefer-dist
 
       - name: PHP-CS-Fixer Dry Run
-        run: cd backend && ./vendor/bin/php-cs-fixer fix --config=.php-cs-fixer.dist.php --verbose --dry-run
+        run: cd backend && ./vendor/bin/php-cs-fixer fix --config=.php-cs-fixer.dist.php -v --dry-run

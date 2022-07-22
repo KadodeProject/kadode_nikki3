@@ -138,7 +138,7 @@ ide-helper:
 stan:
 	docker compose exec app ./vendor/bin/phpstan analyse
 fixer:
-	docker compose exec app ./vendor/bin/php-cs-fixer fix --config=.php-cs-fixer.dist.php -v --diff
+	docker compose exec app ./vendor/bin/php-cs-fixer fix --config=.php-cs-fixer.dist.php -v --dry-run
 barth:
 	docker-compose down --rmi all --volumes --remove-orphans
 777:
