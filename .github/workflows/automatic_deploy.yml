@@ -24,4 +24,4 @@ jobs:
             cd backend
             composer install --no-dev
             ${{ secrets.YARN_EX_PATH }} install
-            ${{ secrets.YARN_EX_PATH }} production
+            ${{ secrets.YARN_EX_PATH }} build
