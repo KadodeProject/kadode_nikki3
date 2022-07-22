@@ -1,21 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="aa6216b5-3a8a-49eb-9987-81fd25ac7924" name="変更" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/kadode_nikki3.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/kadode_nikki3.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Makefile" beforeDir="false" afterPath="$PROJECT_DIR$/Makefile" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/.phpstorm.meta.php" beforeDir="false" afterPath="$PROJECT_DIR$/backend/.phpstorm.meta.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/_ide_helper.php" beforeDir="false" afterPath="$PROJECT_DIR$/backend/_ide_helper.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/app/Http/Actions/CustomNER/UpdateCNERAction.php" beforeDir="false" afterPath="$PROJECT_DIR$/backend/app/Http/Actions/CustomNER/UpdateCNERAction.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/app/Http/Actions/Diary/Search/ShowSimpleSearchAction.php" beforeDir="false" afterPath="$PROJECT_DIR$/backend/app/Http/Actions/Diary/Search/ShowSimpleSearchAction.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/app/Http/Actions/Diary/Search/SimpleSearchAction.php" beforeDir="false" afterPath="$PROJECT_DIR$/backend/app/Http/Actions/Diary/Search/SimpleSearchAction.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/app/Http/Actions/Diary/ShowCreateDiaryAction.php" beforeDir="false" afterPath="$PROJECT_DIR$/backend/app/Http/Actions/Diary/ShowCreateDiaryAction.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/app/Http/Actions/NlpPackageName/UpdatePackageNameAction.php" beforeDir="false" afterPath="$PROJECT_DIR$/backend/app/Http/Actions/NlpPackageName/UpdatePackageNameAction.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/backend/composer.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/backend/composer.lock" afterDir="false" />
-    </list>
+    <list default="true" id="aa6216b5-3a8a-49eb-9987-81fd25ac7924" name="変更" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
