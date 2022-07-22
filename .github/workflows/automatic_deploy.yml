@@ -22,6 +22,6 @@ jobs:
             cd ${{ secrets.API_DIR }}
             git pull origin main
             cd backend
-            composer i
+            composer install --no-dev
             ${{ secrets.YARN_EX_PATH }} install
             ${{ secrets.YARN_EX_PATH }} production

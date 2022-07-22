@@ -7,7 +7,7 @@ jobs:
   analyse:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
       - uses: reviewdog/action-setup@v1
         with:
           reviewdog_version: latest
@@ -18,7 +18,7 @@ jobs:
           tools: composer:v2
       - name: cache vendor
         id: cache
-        uses: actions/cache@v1
+        uses: actions/cache@v3
         with:
           path: ./backend/vendor
           key: ${{ runner.os }}-composer-${{ hashFiles('**/composer.lock') }}
