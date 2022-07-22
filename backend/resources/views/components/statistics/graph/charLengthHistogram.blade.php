@@ -1,6 +1,6 @@
 <canvas id="charLengthHistogram" width="400px" height="400px"></canvas>
 
-<script>
+<script type="module">
     //月ごとの合計文字数
     // 月ごとの1日記あたりの平均文字数
     const charLengthHistogram_id = document.getElementById('charLengthHistogram');

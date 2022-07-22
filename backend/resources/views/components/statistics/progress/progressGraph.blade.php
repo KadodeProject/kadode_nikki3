@@ -1,11 +1,11 @@
 @isset($statistic_progress)
 <p class="text-center kiwi-maru mt-12 mb-2">統計全体の解析状況</p>
 <div class="chartWrapper_small mx-auto" style="padding-top:0px!important">
-    <canvas id="chartNlpAnalyzing" width="400px" height="400px"></canvas>
+  <canvas id="chartNlpAnalyzing" width="400px" height="400px"></canvas>
 </div>
 <!--進行中のときの動作-->
-<script>
-    const chartNlpAnalyzing_id = document.getElementById('chartNlpAnalyzing');
+<script type="module">
+  const chartNlpAnalyzing_id = document.getElementById('chartNlpAnalyzing');
           let chartNlpAnalyzing = new Chart(chartNlpAnalyzing_id, {
               type: 'pie',
               data: {

@@ -1,4 +1,4 @@
-@vite(['resources/js/shortStatistics.js'])
+@vite(['resources/js/statistics/shortStatistics.js'])
 
 
 <details class="text-kn_w  kiwi-maru">

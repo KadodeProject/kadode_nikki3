@@ -31,7 +31,7 @@
 
     @else
     <!-- ここに置かないとコンポーネントでchar.js使えないので -->
-    @vite(['resources/js/totalStatistics.js'])
+    @vite(['resources/js/statistics/totalStatistics.js'])
 
 
     <div>
