@@ -17,9 +17,10 @@ class SimpleSearchAction extends Controller
 {
     public function __construct(
         private ShapeStatisticFromDiaries $shapeStatisticFromDiaries
-    ) {}
+    ) {
+    }
 
-    public function __invoke(Request $request):View|Factory
+    public function __invoke(Request $request): View|Factory
     {
         //効果あるか分からないけれど、危険な変数のエスケープをする
         $request->keyword = htmlspecialchars($request->keyword, ENT_QUOTES);
@@ -42,7 +43,7 @@ class SimpleSearchAction extends Controller
         //文字の抽出　該当箇所の前後飲みにする
         $proceedDiary = null;
         $counter = 0;
-        if (! empty($diaries)) {
+        if (!empty($diaries)) {
 
             $diaries = $this->shapeStatisticFromDiaries->invoke($diaries);
 
@@ -87,5 +88,4 @@ class SimpleSearchAction extends Controller
         }
         return view('diary/search/searchResult', ['counter' => $counter, 'keyword' => $request->keyword, 'diaries' => $proceedDiary, 'queryTime' => $queryTime]);
     }
-
 }
