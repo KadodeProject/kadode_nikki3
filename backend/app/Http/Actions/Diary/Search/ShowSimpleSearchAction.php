@@ -7,7 +7,6 @@ namespace App\Http\Actions\Diary\Search;
 use App\Http\Controllers\Controller;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
-use function view;
 
 class ShowSimpleSearchAction extends Controller
 {

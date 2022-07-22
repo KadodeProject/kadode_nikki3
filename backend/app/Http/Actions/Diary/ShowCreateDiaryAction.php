@@ -6,7 +6,7 @@ namespace App\Http\Actions\Diary;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Contracts\View\Factory;
-use Illuminate\Contracts\View\View;;
+use Illuminate\Contracts\View\View;
 
 
 final class ShowCreateDiaryAction extends Controller
