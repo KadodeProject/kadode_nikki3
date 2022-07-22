@@ -5,12 +5,12 @@ declare(strict_types=1);
 namespace App\Http\Actions\Diary;
 
 use App\Http\Controllers\Controller;
+use App\Models\Diary;
+use App\Models\Statistic_per_month;
 use App\UseCases\Diary\ShapeStatisticFromDiaries;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
 use Illuminate\Support\Carbon;
-use App\Models\Diary;
-use App\Models\Statistic_per_month;
 
 final class ShowMonthDiaryAction extends Controller
 {
@@ -34,8 +34,8 @@ final class ShowMonthDiaryAction extends Controller
         //月
         //月別の統計→配列
         $statisticPerMonth = Statistic_per_month::where("year", $year)->where("month", $month)->first();
-        if ($statisticPerMonth != null) {
-            if ($statisticPerMonth->statistic_progress == 100) {
+        if ($statisticPerMonth !== null) {
+            if ($statisticPerMonth->statistic_progress === 100) {
                 $statisticPerMonth->emotions = array_values(json_decode($statisticPerMonth->emotions, true));
                 $statisticPerMonth->word_counts = array_values(json_decode($statisticPerMonth->word_counts, true));
                 $statisticPerMonth->noun_rank = array_values(json_decode($statisticPerMonth->noun_rank, true));

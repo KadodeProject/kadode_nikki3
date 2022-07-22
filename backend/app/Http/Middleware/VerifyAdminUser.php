@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Http\Middleware;
 
 use App\Models\User;
@@ -20,7 +22,7 @@ class VerifyAdminUser
         /** @var User $user */
         $user = Auth::user();
 
-        if ($user->user_role_id != 2) {
+        if ($user->user_role_id !== 2) {
             //管理者ユーザーじゃなかったら403エラー返す
             abort(403);
         }

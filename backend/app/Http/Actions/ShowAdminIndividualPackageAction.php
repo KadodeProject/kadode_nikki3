@@ -4,14 +4,14 @@ declare(strict_types=1);
 
 namespace App\Http\Actions;
 
-use App\UseCases\NERLabel\GetAllNERLabelInOptionTabFormat;
-use Illuminate\Contracts\View\Factory;
-use Illuminate\Contracts\View\View;
 use App\Http\Controllers\Controller;
+use App\Models\NERLabel;
 use App\Models\NlpPackageGenre;
 use App\Models\NlpPackageName;
 use App\Models\PackageNER;
-use App\Models\NERLabel;
+use App\UseCases\NERLabel\GetAllNERLabelInOptionTabFormat;
+use Illuminate\Contracts\View\Factory;
+use Illuminate\Contracts\View\View;
 
 final class ShowAdminIndividualPackageAction extends Controller
 {
@@ -27,7 +27,7 @@ final class ShowAdminIndividualPackageAction extends Controller
         $NlpPackageGenre = NlpPackageGenre::get();
         //固有表現ルールの中身取得
 
-        if ($packageObj->genre_id == 1) {
+        if ($packageObj->genre_id === 1) {
             //固有表現パッケージだったら
             $packageObj->packageNER = PackageNER::where('package_id', $packageObj->id)->orderBy('updated_at', 'desc')->get();
         }

@@ -1,4 +1,6 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 $finder = PhpCsFixer\Finder::create()
     ->in([
@@ -46,7 +48,7 @@ return $config
         ],
         'not_operator_with_successor_space' => true,
         'blank_line_after_namespace' => true,
-        'final_class' => true,
+        'final_class' => false,
         'date_time_immutable' => true,
         'declare_parentheses' => true,
         'final_public_method_for_abstract_class' => true,

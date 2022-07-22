@@ -6,10 +6,10 @@ namespace App\Http\Actions\NlpPackageUser;
 
 use App\Http\Controllers\Controller;
 use App\Models\NlpPackageUser;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Routing\Redirector;
 use Illuminate\Http\RedirectResponse;
+use Illuminate\Http\Request;
+use Illuminate\Routing\Redirector;
+use Illuminate\Support\Facades\Auth;
 
 final class ReleasePackageAction extends Controller
 {

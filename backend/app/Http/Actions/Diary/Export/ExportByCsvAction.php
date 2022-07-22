@@ -4,10 +4,11 @@ declare(strict_types=1);
 
 namespace App\Http\Actions\Diary\Export;
 
+use App\Models\Diary;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Routing\Redirector;
 use Illuminate\Support\Str;
-use App\Models\Diary;
+use Log;
 
 class ExportByCsvAction
 {
@@ -45,9 +46,9 @@ class ExportByCsvAction
         $file = "exportCsv/$uuid.csv";
         if (unlink($file)) {
             // echo $file.'の削除に成功しました。';
-            \Log::debug("$file.の削除成功");
+            Log::debug("$file.の削除成功");
         } else {
-            \Log::debug("$file.の削除失敗");
+            Log::debug("$file.の削除失敗");
         }
         return redirect("settings");
     }

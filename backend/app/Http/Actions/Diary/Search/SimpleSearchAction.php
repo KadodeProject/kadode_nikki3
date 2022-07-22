@@ -7,6 +7,7 @@ namespace App\Http\Actions\Diary\Search;
 use App\Http\Controllers\Controller;
 use App\Models\Diary;
 use App\UseCases\Diary\ShapeStatisticFromDiaries;
+use DB;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request;
@@ -30,18 +31,18 @@ class SimpleSearchAction extends Controller
 
 
         //DB叩く 最近の日記から直近50個
-        \DB::enableQueryLog();
+        DB::enableQueryLog();
         /** @var Collection|null */
         $diaries = Diary::where("content", "like", "%$request->keyword%")->orderby("date", "desc")->take(200)->get();
         //クエリ時間取得
-        $queryLog = \DB::getQueryLog();
+        $queryLog = DB::getQueryLog();
         $queryTime = $queryLog[0]["time"];
         // \Log::debug("requests".$request->keyword);
 
         //文字の抽出　該当箇所の前後飲みにする
         $proceedDiary = null;
         $counter = 0;
-        if (!empty($diaries)) {
+        if (! empty($diaries)) {
 
             $diaries = $this->shapeStatisticFromDiaries->invoke($diaries);
 

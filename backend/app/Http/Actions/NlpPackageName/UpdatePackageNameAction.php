@@ -6,9 +6,9 @@ namespace App\Http\Actions\NlpPackageName;
 
 use App\Http\Controllers\Controller;
 use App\Models\NlpPackageName;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Redirector;
-use Illuminate\Http\RedirectResponse;
 
 final class UpdatePackageNameAction extends Controller
 {

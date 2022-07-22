@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Tests\Feature\Auth;
 
 use App\Models\User;
@@ -15,7 +17,7 @@ class CreateApiTokenTest extends TestCase
 
     public function test_api_tokens_can_be_created()
     {
-        if (!Features::hasApiFeatures()) {
+        if (! Features::hasApiFeatures()) {
             return $this->markTestSkipped('API support is not enabled.');
         }
 
@@ -36,7 +38,7 @@ class CreateApiTokenTest extends TestCase
             ->call('createApiToken');
 
         $this->assertCount(1, $user->fresh()->tokens);
-        $this->assertEquals('Test Token', $user->fresh()->tokens->first()->name);
+        $this->assertSame('Test Token', $user->fresh()->tokens->first()->name);
         $this->assertTrue($user->fresh()->tokens->first()->can('read'));
         $this->assertFalse($user->fresh()->tokens->first()->can('delete'));
     }

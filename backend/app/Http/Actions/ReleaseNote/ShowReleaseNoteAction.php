@@ -5,9 +5,9 @@ declare(strict_types=1);
 namespace App\Http\Actions\ReleaseNote;
 
 use App\Http\Controllers\Controller;
+use App\Models\Releasenote;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
-use App\Models\Releasenote;
 
 final class ShowReleaseNoteAction extends Controller
 {

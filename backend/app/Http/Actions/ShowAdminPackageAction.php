@@ -4,11 +4,11 @@ declare(strict_types=1);
 
 namespace App\Http\Actions;
 
-use Illuminate\Contracts\View\Factory;
-use Illuminate\Contracts\View\View;
 use App\Http\Controllers\Controller;
 use App\Models\NlpPackageGenre;
 use App\Models\NlpPackageName;
+use Illuminate\Contracts\View\Factory;
+use Illuminate\Contracts\View\View;
 
 final class ShowAdminPackageAction extends Controller
 {

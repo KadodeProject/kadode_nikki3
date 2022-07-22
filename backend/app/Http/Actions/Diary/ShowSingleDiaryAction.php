@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Http\Actions\Diary;
 
 use App\Http\Controllers\Controller;
+use App\Models\Diary;
 use App\UseCases\Diary\ShapeContentWithNlp;
 use App\UseCases\Diary\ShapeStatisticFromDiaries;
 use Illuminate\Contracts\View\Factory;
@@ -13,7 +14,6 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Routing\Redirector;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\DB;
-use App\Models\Diary;
 
 final class ShowSingleDiaryAction extends Controller
 {
@@ -26,7 +26,7 @@ final class ShowSingleDiaryAction extends Controller
         public function __invoke($uuid):View|Factory|Redirector|RedirectResponse
     {
         $diary = Diary::where("uuid", $uuid)->first();
-        if ($diary == null) {
+        if ($diary === null) {
             //日記無かったらリダイレクトさせる
             return redirect("home");
         }
@@ -43,7 +43,7 @@ final class ShowSingleDiaryAction extends Controller
         $contentWithNlp = [];
 
         //最新の情報のときのみ
-        if ($diary->statistic_progress == 100 && $stati_update->gt($diary_update)) {
+        if ($diary->statistic_progress === 100 && $stati_update->gt($diary_update)) {
             /**
              * 名詞と形容詞の登場順
              */
@@ -66,7 +66,7 @@ final class ShowSingleDiaryAction extends Controller
              */
             // \Log::debug($diary->special_people[0]['name']);//一番の人の名前抽出
             //where('id', '<>',$diary->id)で自分自身を除く
-            if (!empty($diary->special_people)) {
+            if (! empty($diary->special_people)) {
                 $resembleDiaries = Diary::where('id', '<>', $diary->id)->where(DB::raw('json_extract(`special_people`, "$[0].name")'), $diary->special_people[0]['name'])->inRandomOrder()->limit(3)->get();
                 $resembleDiaries = $this->shapeStatisticFromDiaries->invoke($resembleDiaries);
             }

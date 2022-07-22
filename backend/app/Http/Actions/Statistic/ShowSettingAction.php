@@ -5,14 +5,14 @@ declare(strict_types=1);
 namespace App\Http\Actions\Statistic;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Contracts\View\Factory;
-use Illuminate\Contracts\View\View;
-use Illuminate\Support\Facades\Auth;
 use App\Models\CustomNER;
 use App\Models\NERLabel;
 use App\Models\NlpPackageGenre;
 use App\Models\NlpPackageName;
 use App\Models\NlpPackageUser;
+use Illuminate\Contracts\View\Factory;
+use Illuminate\Contracts\View\View;
+use Illuminate\Support\Facades\Auth;
 
 /**
  * 統計設定を表示する

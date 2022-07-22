@@ -5,10 +5,10 @@ declare(strict_types=1);
 namespace App\Http\Actions\UserRank;
 
 use App\Http\Controllers\Controller;
+use App\Models\User_rank;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Redirector;
-use App\Models\User_rank;
 
 final class DeleteUserRankAction extends Controller
 {

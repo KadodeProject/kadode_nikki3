@@ -10,8 +10,8 @@ use Tests\TestCase;
 
 class ShapeStatisticFromDiariesTest extends TestCase
 {
-    /** @test */
-    public function コレクションを与えて、コレクションが帰ってくる()
+    /** */
+    public function testコレクションを与えて、コレクションが帰ってくる()
     {
         $shapeStatisticFromDiaries = new ShapeStatisticFromDiaries();
 

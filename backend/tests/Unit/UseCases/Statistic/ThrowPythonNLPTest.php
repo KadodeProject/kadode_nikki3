@@ -13,8 +13,8 @@ class ThrowPythonNLPTest extends TestCase
     private $throwPythonNLPTest;
 
     /** @todo これはデータベースにもろ依存している。 */
-    /** @test */
-    public function execコマンドでpythonをエラー無く実行させる()
+    /** */
+    public function testExecコマンドでpythonをエラー無く実行させる()
     {
         $this->throwPythonNLPTest = new ThrowPythonNLP();
 
