@@ -1,6 +1,6 @@
 <canvas id="chartWritingRatePerMonth" width="400px" height="400px"></canvas>
 
-<script>
+<script type="module">
     // 月ごとの日記執筆率
     const chartWritingRatePerMonth_id = document.getElementById('chartWritingRatePerMonth');
     let chartWritingRatePerMonth = new Chart(chartWritingRatePerMonth_id, {
@@ -49,8 +49,8 @@
                 annotations: {
                 line100: {
                     type: 'line',
-                    dada: 'y',
-                    value:100,
+                    xMin: 100,
+                    xMax: 100,
                     borderColor: '#624464',
                     borderWidth: 3,
                     label: { // ラベルの設定

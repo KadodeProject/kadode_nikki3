@@ -29,6 +29,7 @@ jobs:
 
     steps:
       - uses: actions/checkout@v3
+
       - name: cache node_modules
         id: cache_node
         uses: actions/cache@v3
@@ -67,7 +68,7 @@ jobs:
         run: cd backend && php artisan migrate
       #フロントエンドのファイル生成(200テストで使うため)
       - name: genereate
-        run: cd backend && yarn production
+        run: cd backend && yarn build
       #テスト
       - name: unit test
         run: cd backend && ./vendor/bin/phpunit

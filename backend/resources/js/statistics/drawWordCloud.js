@@ -1,5 +1,5 @@
 import * as d3 from "d3";
-import * as d3_cloud from "d3-cloud";
+import d3_cloud from "d3-cloud";
 //JSON_UNESCAPED_UNICODEで日本語文字化け防止
 window.drawWordCloud = function drawWordCloud(TARGET_ELEMENT_ID, data) {
     // TARGET_ELEMENT_ID→描画先

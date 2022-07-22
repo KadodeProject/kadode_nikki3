@@ -1,1 +1,1 @@
-<script src="{{ mix('js/common.js') }}"></script>
+@vite(['resources/js/common.js'])

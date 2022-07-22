@@ -8,6 +8,5 @@ tmp
 *.pyc
 
 #本番ビルドに変更
-backend/public/css
-backend/public/js
+backend/public/build
 backend/public/mix-manifest.json

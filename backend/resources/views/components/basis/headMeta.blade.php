@@ -13,4 +13,4 @@
 {{--
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"> --}}
 {{-- CSS読み込み --}}
-<link href="{{ mix('css/app.css') }}" rel="stylesheet">
+@vite(['resources/css/app.css'])

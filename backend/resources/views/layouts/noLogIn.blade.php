@@ -94,7 +94,7 @@
     @endcomponent
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-P6MDK8XCEE"></script>
-    <script>
+    <script type="module">
         window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());

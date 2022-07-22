@@ -2,14 +2,14 @@
     .vis-item {
         border-color: var(--kn_2);
         background-color: var(--kn_2);
-        color: var(--text-kn_w);
+        color: var(--kn_w);
         font-family: "Kiwi Maru", serif;
     }
 </style>
 <div id="animeTimeline"></div>
-<script src="{{ mix('js/drawTimeline.js') }}"></script>
+@vite(['resources/js/statistics/drawTimeline.js'])
 
-<script>
+<script type="module">
     let timeline_data=[
             @foreach($anime_timeline as $anime)
             {

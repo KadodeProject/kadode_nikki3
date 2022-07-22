@@ -1,4 +1,5 @@
-<script src="{{ mix('js/shortStatistics.js') }}"></script>
+@vite(['resources/js/statistics/shortStatistics.js'])
+
 
 <details class="text-kn_w  kiwi-maru">
     <summary class="text-center m-2 text-xl font-bold">

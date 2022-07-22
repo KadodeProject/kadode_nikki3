@@ -3,8 +3,8 @@
 <canvas id="chartNlpClassfications" width="400px" height="400px"></canvas>
 
 <!--進行中のときの動作-->
-<script>
-    const chartNlpClassfications_id = document.getElementById('chartNlpClassfications');
+<script type="module">
+  const chartNlpClassfications_id = document.getElementById('chartNlpClassfications');
           let chartNlpClassfications = new Chart(chartNlpClassfications_id, {
             type: 'pie',
             data: {

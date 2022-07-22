@@ -2,8 +2,8 @@
 
 <canvas id="chartTotal{{$slug}}Asc" width="400px" height="1200px"></canvas>
 
-<script>
-    //ここからNLP周り
+<script type="module">
+  //ここからNLP周り
       // {{$pof_name}}登場順
              const chartTotal{{$slug}}Asc_id = document.getElementById('chartTotal{{$slug}}Asc');
               let chartTotal{{$slug}}Asc = new Chart(chartTotal{{$slug}}Asc_id, {

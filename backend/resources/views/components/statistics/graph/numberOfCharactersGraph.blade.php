@@ -1,7 +1,7 @@
 <canvas id="chartCharactersPerMonth" width="400px" height="400px"></canvas>
 
-<script>
-    //月ごとの合計文字数
+<script type="module">
+  //月ごとの合計文字数
   // 月ごとの1日記あたりの平均文字数
   const chartCharactersPerMonth_id = document.getElementById('chartCharactersPerMonth');
   let chartCharactersPerMonth = new Chart(chartCharactersPerMonth_id, {
