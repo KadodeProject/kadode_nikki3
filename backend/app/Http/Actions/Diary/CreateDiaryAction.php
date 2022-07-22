@@ -5,13 +5,13 @@ declare(strict_types=1);
 namespace App\Http\Actions\Diary;
 
 use App\Http\Controllers\Controller;
+use App\Models\Diary;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Redirector;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
-use App\Models\Diary;
 
 final class CreateDiaryAction extends Controller
 {

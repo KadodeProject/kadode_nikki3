@@ -1,10 +1,11 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
 use App\Scopes\ScopeDiary;
+use Illuminate\Database\Eloquent\Model;
 
 class Diary extends Model
 {
@@ -30,11 +31,11 @@ class Diary extends Model
      * Undocumented variable
      *
      * @var array
-     * string型は255バイト？文字？
-     * integerは11桁まで
-     * unsignedBigIntegerはlaravelのid標準
-     * textタイプはmax 65,535バイトでマルチバイトなので大目に見て20000字
-     * longTextというmax4,294,967,295バイトまで行けるものもある。
+     *            string型は255バイト？文字？
+     *            integerは11桁まで
+     *            unsignedBigIntegerはlaravelのid標準
+     *            textタイプはmax 65,535バイトでマルチバイトなので大目に見て20000字
+     *            longTextというmax4,294,967,295バイトまで行けるものもある。
      *
      * numericが整数値のバリデーション
      * user_idは後で入れるので不要

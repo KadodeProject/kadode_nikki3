@@ -5,12 +5,12 @@ declare(strict_types=1);
 namespace App\Http\Actions\Statistic;
 
 use App\Http\Controllers\Controller;
+use App\Models\Statistic;
 use App\UseCases\Statistic\ThrowPythonNLP;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Routing\Redirector;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Auth;
-use App\Models\Statistic;
 
 class UpdateAllStatisticAction extends Controller
 {

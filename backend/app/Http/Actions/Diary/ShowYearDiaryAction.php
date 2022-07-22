@@ -5,12 +5,12 @@ declare(strict_types=1);
 namespace App\Http\Actions\Diary;
 
 use App\Http\Controllers\Controller;
+use App\Models\Diary;
+use App\Models\Statistic_per_year;
 use App\UseCases\Diary\ShapeStatisticFromDiaries;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
 use Illuminate\Support\Carbon;
-use App\Models\Diary;
-use App\Models\Statistic_per_year;
 
 final class ShowYearDiaryAction extends Controller
 {
@@ -31,8 +31,8 @@ final class ShowYearDiaryAction extends Controller
          */
         //年別の統計→配列
         $statisticPerYear = Statistic_per_year::where("year", $year)->first();
-        if ($statisticPerYear != null) {
-            if ($statisticPerYear->statistic_progress == 100) {
+        if ($statisticPerYear !== null) {
+            if ($statisticPerYear->statistic_progress === 100) {
                 $statisticPerYear->emotions = array_values(json_decode($statisticPerYear->emotions, true));
                 $statisticPerYear->word_counts = array_values(json_decode($statisticPerYear->word_counts, true));
                 $statisticPerYear->noun_rank = array_values(json_decode($statisticPerYear->noun_rank, true));

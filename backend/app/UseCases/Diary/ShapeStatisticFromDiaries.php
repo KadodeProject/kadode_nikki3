@@ -28,7 +28,7 @@ class ShapeStatisticFromDiaries
                 $diary_update = new Carbon($diaries[$i]->updated_at);
                 $stati_update = new Carbon($diaries[$i]->updated_statistic_at);
                 //gtでgreater than 日付比較
-                if ($diaries[$i]->statistic_progress == 100 && $stati_update->gt($diary_update)) {
+                if ($diaries[$i]->statistic_progress === 100 && $stati_update->gt($diary_update)) {
                     $diaries[$i]->is_latest_statistic = true;
                     $diaries[$i]->important_words = array_values(json_decode($diary->important_words, true));
                     $diaries[$i]->special_people = array_values(json_decode($diary->special_people, true));

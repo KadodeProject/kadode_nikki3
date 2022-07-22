@@ -5,11 +5,11 @@ declare(strict_types=1);
 namespace App\Http\Actions;
 
 use App\Http\Controllers\Controller;
+use App\Models\User_ip;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use App\Models\User_ip;
 
 final class ShowSecurityAction extends Controller
 {

@@ -5,10 +5,10 @@ declare(strict_types=1);
 namespace App\Http\Actions;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Contracts\View\Factory;
-use Illuminate\Contracts\View\View;
 use App\Models\User_rank;
 use App\Models\User_role;
+use Illuminate\Contracts\View\Factory;
+use Illuminate\Contracts\View\View;
 
 final class ShowAdminRoleRankAction extends Controller
 {

@@ -5,14 +5,13 @@ declare(strict_types=1);
 namespace App\Http\Actions;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Contracts\View\Factory;
-use Illuminate\Contracts\View\View;
 use App\Models\Diary;
 use App\Models\Osirase;
 use App\Models\Releasenote;
 use App\Models\User_rank;
 use App\UseCases\Diary\ShapeStatisticFromDiaries;
-use DateTime;
+use Illuminate\Contracts\View\Factory;
+use Illuminate\Contracts\View\View;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Auth;
 
@@ -105,8 +104,8 @@ final class ShowHomeAction extends Controller
          */
         $i = 0;
         foreach ($oldDiaries as $diary) {
-            if ($diary['date'] != "no") {
-                $oldDiariesDate = new DateTime($oldDiaries[$i]["date"]);
+            if ($diary['date'] !== "no") {
+                $oldDiariesDate = new \DateTimeImmutable($oldDiaries[$i]["date"]);
                 $oldDiaries[$i]["date"] = $oldDiariesDate->format("Y年n月j日");
                 $oldDiaries[$i]["is_latest_statistic"] = false;
                 //統計データがあり、その統計データが日記の内容と合致しているかの判断
@@ -114,7 +113,7 @@ final class ShowHomeAction extends Controller
                     $diary_update = new Carbon($oldDiaries[$i]["updated_at"]);
                     $stati_update = new Carbon($oldDiaries[$i]["updated_statistic_at"]);
                     //gtでgreater than 日付比較
-                    if ($oldDiaries[$i]["statistic_progress"] == 100 && $stati_update->gt($diary_update)) {
+                    if ($oldDiaries[$i]["statistic_progress"] === 100 && $stati_update->gt($diary_update)) {
                         $oldDiaries[$i]["is_latest_statistic"] = true;
                         $oldDiaries[$i]["important_words"] = array_values(json_decode($diary["important_words"], true));
                         $oldDiaries[$i]["special_people"] = array_values(json_decode($diary["special_people"], true));
@@ -134,17 +133,17 @@ final class ShowHomeAction extends Controller
         $new_infos = [];
 
 
-        if (!$user->is_showed_service_info) {
+        if (! $user->is_showed_service_info) {
             //お知らせ取得
             $osirase = Osirase::where("id", "!=", 0)->orderBy('date', 'desc')->first(['title', 'date']);
             $new_infos[] = ["url" => "/osirase", "type" => "osirase", "bg_color" => "51, 118, 156", "title" => $osirase->title, "date" => $osirase->date];
         }
-        if (!$user->is_showed_update_system_info) {
+        if (! $user->is_showed_update_system_info) {
             // リリースノート取得
             $releasenote = Releasenote::where("id", "!=", 0)->orderBy('date', 'desc')->first(['title', 'date']);
             $new_infos[] = ["url" => "/releaseNote", "type" => "releasenote", "bg_color" => "51, 156, 118", "title" => $releasenote->title, "date" => $releasenote->date];
         }
-        if (!$user->is_showed_update_user_rank) {
+        if (! $user->is_showed_update_user_rank) {
             // ユーザーランク取得
             $user_rank = User_rank::where("id", $user->user_rank_id)->first(['name']);
             $new_infos[] = ["url" => "/settings", "type" => "user_rank", "bg_color" => "226, 83, 74", "title" => "ユーザーランクが「" . $user_rank->name . "」になりました！", "date" => $user->user_rank_updated_at];

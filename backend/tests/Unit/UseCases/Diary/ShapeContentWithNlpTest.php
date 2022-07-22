@@ -10,8 +10,8 @@ use Tests\TestCase;
 
 class ShapeContentWithNlpTest extends TestCase
 {
-    /** @test */
-    public function Diaryから配列になって帰ってくる()
+    /** */
+    public function testDiaryから配列になって帰ってくる()
     {
         return $this->markTestSkipped("現状の構成だとシーダーでNLPデータ作れないので、このテストは必ず失敗する。よってスキップ。未来に託します。");
         $shapeContentWithNlp = new ShapeContentWithNlp();

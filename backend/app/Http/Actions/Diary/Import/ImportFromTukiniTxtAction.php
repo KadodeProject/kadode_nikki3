@@ -5,13 +5,14 @@ declare(strict_types=1);
 namespace App\Http\Actions\Diary\Import;
 
 use App\Http\Controllers\Controller;
+use App\Models\Diary;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
-use App\Models\Diary;
+use Log;
 /**
  * @todo ここDRYにめちゃくちゃ反してるのでインターフェイス作って抽象化したい
  */
@@ -28,7 +29,7 @@ class ImportFromTukiniTxtAction extends Controller
 
         $count = 0;
         if ($request->tukiniTxt) {
-            \Log::debug("txtインポート処理開始");
+            Log::debug("txtインポート処理開始");
 
             $tmpName = mt_rand() . "." . $request->tukiniTxt->guessExtension(); //TMPファイル名
             $request->tukiniTxt->move(public_path() . "/importTxt", $tmpName);
@@ -76,9 +77,9 @@ class ImportFromTukiniTxtAction extends Controller
             // TMPファイル削除
             if (unlink($tmpPath)) {
                 // echo $file.'の削除に成功しました。';
-                \Log::debug("$tmpPath.の削除成功");
+                Log::debug("$tmpPath.の削除成功");
             } else {
-                \Log::debug("$tmpPath.の削除失敗");
+                Log::debug("$tmpPath.の削除失敗");
             }
             $importResult = $count . "つの日記がインポートされました🎉";
         } else {

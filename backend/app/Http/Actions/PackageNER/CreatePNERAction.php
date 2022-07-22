@@ -6,9 +6,9 @@ namespace App\Http\Actions\PackageNER;
 
 use App\Http\Controllers\Controller;
 use App\Models\PackageNER;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Redirector;
-use Illuminate\Http\RedirectResponse;
 
 final class CreatePNERAction extends Controller
 {

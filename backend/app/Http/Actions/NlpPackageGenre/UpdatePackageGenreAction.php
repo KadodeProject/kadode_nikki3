@@ -5,10 +5,10 @@ declare(strict_types=1);
 namespace App\Http\Actions\NlpPackageGenre;
 
 use App\Http\Controllers\Controller;
+use App\Models\NlpPackageGenre;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Redirector;
-use Illuminate\Http\RedirectResponse;
-use App\Models\NlpPackageGenre;
 
 final class UpdatePackageGenreAction extends Controller
 {

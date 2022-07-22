@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Http\Actions\Diary\Import;
 
 use App\Http\Controllers\Controller;
+use App\Models\Diary;
 use Goodby\CSV\Import\Standard\Interpreter;
 use Goodby\CSV\Import\Standard\Lexer;
 use Goodby\CSV\Import\Standard\LexerConfig;
@@ -14,7 +15,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
-use App\Models\Diary;
+use Log;
 
 /**
  * @todo ここDRYにめちゃくちゃ反してるのでインターフェイス作って抽象化したい
@@ -34,7 +35,7 @@ class ImportFromKadodeCsvAction extends Controller
         // CSV ファイル保存
         $count = 0;
         if ($request->kadodeCsv) {
-            \Log::debug("csvインポート処理開始");
+            Log::debug("csvインポート処理開始");
 
             $tmpName = mt_rand() . "." . $request->kadodeCsv->guessExtension(); //TMPファイル名
             $request->kadodeCsv->move(public_path() . "/importCsv", $tmpName);
@@ -64,9 +65,9 @@ class ImportFromKadodeCsvAction extends Controller
             // TMPファイル削除
             if (unlink($tmpPath)) {
                 // echo $file.'の削除に成功しました。';
-                \Log::debug("$tmpPath.の削除成功");
+                Log::debug("$tmpPath.の削除成功");
             } else {
-                \Log::debug("$tmpPath.の削除失敗");
+                Log::debug("$tmpPath.の削除失敗");
             }
             $today_date = Carbon::now();
             // 登録処理

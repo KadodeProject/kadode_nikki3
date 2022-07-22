@@ -12,8 +12,8 @@ class GetAllNERLabelInOptionTabFormatTest extends TestCase
     /** @property GetAllNERLabelInOptionTabFormat */
     private $getAllNERLabelInOptionTabFormat;
 
-    /** @test */
-    public function 与えられたコレクションをoptionタグ形式のHTMLとして返す()
+    /** */
+    public function test与えられたコレクションをoptionタグ形式のHTMLとして返す()
     {
         $this->getAllNERLabelInOptionTabFormat = new GetAllNERLabelInOptionTabFormat();
 

@@ -5,12 +5,12 @@ declare(strict_types=1);
 namespace App\Http\Actions;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Contracts\View\Factory;
-use Illuminate\Contracts\View\View;
-use App\Models\Osirase_genre;
 use App\Models\Osirase;
+use App\Models\Osirase_genre;
 use App\Models\Releasenote;
 use App\Models\Releasenote_genre;
+use Illuminate\Contracts\View\Factory;
+use Illuminate\Contracts\View\View;
 
 final class ShowAdminNotificationAction extends Controller
 {

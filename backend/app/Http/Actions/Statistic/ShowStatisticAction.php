@@ -5,12 +5,12 @@ declare(strict_types=1);
 namespace App\Http\Actions\Statistic;
 
 use App\Http\Controllers\Controller;
+use App\Models\Diary;
+use App\Models\Statistic;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Auth;
-use App\Models\Diary;
-use App\Models\Statistic;
 
 class ShowStatisticAction extends Controller
 {
@@ -29,8 +29,8 @@ class ShowStatisticAction extends Controller
         $char_length_frequency_distribution = []; //undefinedエラー防止用
         $biggerDiaries = []; //undefinedエラー防止用
         $anime_timeline = []; //undefinedエラー防止用
-        if (!empty($statistic)) {
-            if ($statistic->statistic_progress == 100) {
+        if (! empty($statistic)) {
+            if ($statistic->statistic_progress === 100) {
 
                 /**
                  * 名詞と形容詞の登場順
@@ -59,7 +59,7 @@ class ShowStatisticAction extends Controller
                 $tmp = [];
                 $i = 0;
                 foreach ($statistic->month_words as $month_word) {
-                    array_push($tmp, $month_word / ($statistic_month_diaries[$i]));
+                    $tmp[] = $month_word / ($statistic_month_diaries[$i]);
                     $i += 1;
                 }
                 $statistic->month_words_per_diary = $tmp;
@@ -71,8 +71,8 @@ class ShowStatisticAction extends Controller
                 foreach ($statistic->months as $date) {
                     //閏年などの対応のため、毎度月の長さをcarbonで作る
                     //mbの必要ないので。ただのsubstr 202101みたいな形式なっているので。
-                    $year = substr($date, 0, 3);
-                    $month = substr($date, 5);
+                    $year = mb_substr($date, 0, 3);
+                    $month = mb_substr($date, 5);
                     $start = Carbon::create($year, $month);
                     $end = Carbon::create($year, $month)->endOfMonth();
 
@@ -82,7 +82,7 @@ class ShowStatisticAction extends Controller
                     //執筆率の計算
                     $writingRate = ($statistic_month_diaries[$i] / $lengthThisMonth) * 100;
 
-                    array_push($monthWritingRate, $writingRate);
+                    $monthWritingRate[] = $writingRate;
                     $i++;
                 }
                 $statistic->monthWritingRate = $monthWritingRate;
@@ -160,7 +160,7 @@ class ShowStatisticAction extends Controller
                 foreach ($anime_data as $value) {
                     $affiliation = json_decode($value->affiliation, true);
                     foreach ($affiliation as $words) {
-                        if ($words['form'] == "Animation") {
+                        if ($words['form'] === "Animation") {
                             $i += 1;
                             $anime_timeline[] = [$i, $words['lemma'], $value->date];
                         }

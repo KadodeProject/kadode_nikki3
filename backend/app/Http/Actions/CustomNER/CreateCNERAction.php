@@ -5,11 +5,11 @@ declare(strict_types=1);
 namespace App\Http\Actions\CustomNER;
 
 use App\Http\Controllers\Controller;
+use App\Models\CustomNER;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Redirector;
 use Illuminate\Support\Facades\Auth;
-use App\Models\CustomNER;
 
 class CreateCNERAction extends Controller
 {
