@@ -10,6 +10,7 @@ use App\Models\Osirase;
 use App\Models\Releasenote;
 use App\Models\User_rank;
 use App\UseCases\Diary\ShapeStatisticFromDiaries;
+use DateTimeImmutable;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
 use Illuminate\Support\Carbon;
@@ -105,7 +106,7 @@ final class ShowHomeAction extends Controller
         $i = 0;
         foreach ($oldDiaries as $diary) {
             if ($diary['date'] !== "no") {
-                $oldDiariesDate = new \DateTimeImmutable($oldDiaries[$i]["date"]);
+                $oldDiariesDate = new DateTimeImmutable($oldDiaries[$i]["date"]);
                 $oldDiaries[$i]["date"] = $oldDiariesDate->format("Y年n月j日");
                 $oldDiaries[$i]["is_latest_statistic"] = false;
                 //統計データがあり、その統計データが日記の内容と合致しているかの判断
