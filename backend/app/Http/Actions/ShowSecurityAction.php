@@ -1,15 +1,19 @@
 <?php
 
-namespace App\Http\Controllers\security;
+declare(strict_types=1);
+
+namespace App\Http\Actions;
 
 use App\Http\Controllers\Controller;
+use Illuminate\Contracts\View\Factory;
+use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request;
-use App\Models\User_ip;
 use Illuminate\Support\Facades\Auth;
+use App\Models\User_ip;
 
-class ShowSecurityPageController extends Controller
+final class ShowSecurityAction extends Controller
 {
-    public function __invoke(Request $request)
+    public function __invoke(Request $request):View|Factory
     {
         $user = Auth::user();
         $user_ips = User_ip::get()->reverse();

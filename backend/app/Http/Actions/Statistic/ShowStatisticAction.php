@@ -1,16 +1,20 @@
 <?php
 
-namespace App\Http\Controllers\statistics;
+declare(strict_types=1);
+
+namespace App\Http\Actions\Statistic;
 
 use App\Http\Controllers\Controller;
-use App\Models\Diary;
-use App\Models\Statistic;
+use Illuminate\Contracts\View\Factory;
+use Illuminate\Contracts\View\View;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Auth;
+use App\Models\Diary;
+use App\Models\Statistic;
 
-class ShowStatisticsController extends Controller
+class ShowStatisticAction extends Controller
 {
-    public function __invoke()
+    public function __invoke():View|Factory
     {
         $user_id = Auth::id();
         $statistic = Statistic::where("user_id", $user_id)->first();
@@ -87,10 +91,10 @@ class ShowStatisticsController extends Controller
                 //wordCloud描画用
                 /**必要なデータ形式
                  * [
-                    {"word":"あああ","count":9},
-                    {"word":"いいい","count":3},
-                    {"word":"ううう","count":4},
-                    {"word":"えええ","count":3},]
+                {"word":"あああ","count":9},
+                {"word":"いいい","count":3},
+                {"word":"ううう","count":4},
+                {"word":"えええ","count":3},]
                  */
                 foreach ($statistic->important_words as $value) {
                     $wordCloud_array[] = array("word" => $value[0], "count" => $value[1]);

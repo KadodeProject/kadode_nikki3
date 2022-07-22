@@ -1,15 +1,19 @@
 <?php
 
-namespace App\Http\Controllers\packages;
+declare(strict_types=1);
+
+namespace App\Http\Actions\NlpPackageUser;
 
 use App\Http\Controllers\Controller;
 use App\Models\NlpPackageUser;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Routing\Redirector;
+use Illuminate\Http\RedirectResponse;
 
-class OwnPackagesController extends Controller
+final class UsePackageAction extends Controller
 {
-    public function use(Request $request)
+    public function __invoke(Request $request): Redirector|RedirectResponse
     {
         $form = [
             "user_id" => Auth::id(),
@@ -17,11 +21,6 @@ class OwnPackagesController extends Controller
         ];
 
         NlpPackageUser::create($form);
-        return redirect('statistics/settings');
-    }
-    public function release(Request $request)
-    {
-        NlpPackageUser::where('user_id', Auth::id())->where('package_id', $request->package_id)->delete();
         return redirect('statistics/settings');
     }
 }

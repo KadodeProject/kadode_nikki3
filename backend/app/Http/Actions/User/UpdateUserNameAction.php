@@ -10,19 +10,18 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Routing\Redirector;
 use Illuminate\Http\RedirectResponse;
-use Illuminate\Support\Facades\Hash;
 
-final class ChangePasswordAction extends Controller
+final class UpdateUserNameAction extends Controller
 {
     public function __invoke(Request $request): Redirector|RedirectResponse
     {
         // バリデーション
-        $this->validate($request, User::$updatePassWordRules);
+        $this->validate($request, User::$updateUserNameRules);
 
 
         $user_id = Auth::user()->id;
         User::where("id", $user_id)->update([
-            "password" => Hash::make($request->password),
+            "name" => $request->name,
         ]);
         return redirect("/security");
     }

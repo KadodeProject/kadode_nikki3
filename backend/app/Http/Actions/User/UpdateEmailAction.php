@@ -11,7 +11,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Routing\Redirector;
 use Illuminate\Http\RedirectResponse;
 
-final class ChangeEmailAction extends Controller
+final class UpdateEmailAction extends Controller
 {
     public function __invoke(Request $request): Redirector|RedirectResponse
     {

@@ -1,23 +1,26 @@
 <?php
 
-namespace App\Http\Controllers\statistics;
+declare(strict_types=1);
+
+namespace App\Http\Actions\Statistic;
 
 use App\Http\Controllers\Controller;
+use Illuminate\Contracts\View\Factory;
+use Illuminate\Contracts\View\View;
+use Illuminate\Support\Facades\Auth;
 use App\Models\CustomNER;
 use App\Models\NERLabel;
 use App\Models\NlpPackageGenre;
 use App\Models\NlpPackageName;
 use App\Models\NlpPackageUser;
-use Illuminate\Support\Facades\Auth;
 
-class SettingsStatisticsController extends Controller
+/**
+ * 統計設定を表示する
+ */
+class ShowSettingAction extends Controller
 {
-    /**
-     * 統計設定を表示するメソッド
-     */
-    public function get(): \Illuminate\Contracts\View\View|\Illuminate\Contracts\View\Factory
+    public function __invoke():View|Factory
     {
-
         //ユーザー定義固有表現ルール→ラベル名はbladeのif文で表示させるのでここではidのままでよい。
         $CustomNER = CustomNER::where('user_id', Auth::id())->get();
 

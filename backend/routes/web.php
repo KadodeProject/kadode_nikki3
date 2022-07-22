@@ -81,9 +81,9 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
 
     //ユーザー操作
     Route::get('/settings', \App\Http\Actions\ShowSettingsAction::class)->name('ShowSetting');
-    Route::post('/updateEmail', \App\Http\Actions\User\ChangeEmailAction::class)->name('ChangeEmail');
-    Route::post('/updatePassWord', \App\Http\Actions\User\ChangePasswordAction::class)->name('ChangePassWord');
-    Route::post('/updateUserName', \App\Http\Actions\User\ChangeUserNameAction::class)->name('ChangeUserName');
+    Route::post('/updateEmail', \App\Http\Actions\User\UpdateEmailAction::class)->name('ChangeEmail');
+    Route::post('/updatePassWord', \App\Http\Actions\User\UpdatePasswordAction::class)->name('ChangePassWord');
+    Route::post('/updateUserName', \App\Http\Actions\User\UpdateUserNameAction::class)->name('ChangeUserName');
     Route::post('/deleteUser', \App\Http\Actions\User\DeleteUserAction::class)->name('DeleteUser');
 
 
@@ -112,7 +112,7 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     Route::post('/export/diary', \App\Http\Actions\Diary\Export\ExportByCsvAction::class)->name('ExportByCsv');
     //セキュリティ
     Route::middleware(['password.confirm'])->group(function () {
-        Route::get('/security', ShowSecurityPageController::class)->name('security');
+        Route::get('/security', \App\Http\Actions\ShowSecurityAction::class)->name('ShowSecurity');
     });
 
 
@@ -121,28 +121,25 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
      */
 
     //統計
-    Route::get('/statistics/home', ShowStatisticsController::class)->name('showStatics');
-    Route::get('/statistics/settings', [SettingsStatisticsController::class, "get"])->name('customStatics');
+    Route::get('/statistics/home', \App\Http\Actions\Statistic\ShowStatisticAction::class)->name('ShowStatistic');
+    Route::get('/statistics/settings', \App\Http\Actions\Statistic\ShowSettingAction::class)->name('ShowStatisticSetting');
     //統計自体の更新
-    Route::post('/makeStatistics', [GenerateStatisticsController::class, "create"])->name('makeStatics');
-    Route::post('/updateStatistics', [GenerateStatisticsController::class, "update"])->name('updateStatics');
+    Route::post('/statistic/create/all', \App\Http\Actions\Statistic\CreateAllStatisticAction::class)->name('CreateAllStatistic');
+    Route::post('/statistic/update/all', \App\Http\Actions\Statistic\UpdateAllStatisticAction::class)->name('UpdateAllStatistic');
     //customNERまわり
-    Route::post('/statistics/settings/named_entity/custom/create',  [NamedEntityStatisticsController::class, "customCreate"])->name('createCustomNamedEntity');
-    Route::post('/statistics/settings/named_entity/custom/update',  [NamedEntityStatisticsController::class, "customUpdate"])->name('updateCustomNamedEntity');
-    Route::post('/statistics/settings/named_entity/custom/delete',  [NamedEntityStatisticsController::class, "customDelete"])->name('deleteCustomNamedEntity');
-    // //固有表現の入出力
-    Route::post('/import/statistics/namedEntity', [ImportStatisticsController::class, "namedEntity"])->name('importNE');
-    Route::post('/export/statistics/namedEntity', [ExportStatisticsController::class, "namedEntity"])->name('exportNE');
-
+    Route::post('/statistics/settings/named_entity/custom/create',  \App\Http\Actions\CustomNER\CreateCNERAction::class)->name('createCustomNamedEntity');
+    Route::post('/statistics/settings/named_entity/custom/update',  \App\Http\Actions\CustomNER\UpdateCNERAction::class)->name('updateCustomNamedEntity');
+    Route::post('/statistics/settings/named_entity/custom/delete',  \App\Http\Actions\CustomNER\DeleteCNERAction::class)->name('deleteCustomNamedEntity');
+    //固有表現のインポート・エクスポートを検討
 
     //ユーザーのパッケージ周り
-    Route::post('/statistics/settings/packages/use',  [OwnPackagesController::class, "use"])->name('usePackages');
-    Route::post('/statistics/settings/packages/release',  [OwnPackagesController::class, "release"])->name('releasePackages');
+    Route::post('/statistics/settings/packages/use',  \App\Http\Actions\NlpPackageUser\UsePackageAction::class)->name('UsePackages');
+    Route::post('/statistics/settings/packages/release',  \App\Http\Actions\NlpPackageUser\ReleasePackageAction::class)->name('ReleasePackages');
 
-    //ユーザー通知周り
-    Route::post('/notification/user_rank/delete',  [ManageNotificationController::class, "user_rank"])->name('removeUser_rankInfo');
-    Route::post('/notification/osirase/delete',  [ManageNotificationController::class, "osirase"])->name('removeOsiraseInfo');
-    Route::post('/notification/releasenote/delete',  [ManageNotificationController::class, "releasenote"])->name('removeReleasenoteInfo');
+    //ユーザー通知周り→bladeで使用
+    Route::post('/notification/user_rank/remove',  \App\Http\Actions\User\Notification\RemoveUserRankNoticeAction::class)->name('removeUser_rankInfo');
+    Route::post('/notification/osirase/remove',  \App\Http\Actions\User\Notification\RemoveOsiraseNoticeAction::class)->name('removeOsiraseInfo');
+    Route::post('/notification/releasenote/remove',  \App\Http\Actions\User\Notification\RemoveReleaseNoteNoticeAction::class)->name('removeReleasenoteInfo');
 
 
     /**
