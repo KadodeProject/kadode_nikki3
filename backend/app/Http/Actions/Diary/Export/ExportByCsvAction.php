@@ -1,16 +1,17 @@
 <?php
 
-namespace App\Http\Controllers\diary;
+declare(strict_types=1);
 
-use App\Http\Controllers\Controller;
-use App\Models\Diary;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
+namespace App\Http\Actions\Diary\Export;
+
+use Illuminate\Http\RedirectResponse;
+use Illuminate\Routing\Redirector;
 use Illuminate\Support\Str;
+use App\Models\Diary;
 
-class ExportDiaryController extends Controller
+class ExportByCsvAction
 {
-    public function __invoke()
+    public function __invoke(): Redirector|RedirectResponse
     {
         $diaries = Diary::orderby("date", "asc")->select(['date', 'title', 'content'])->get()->toArray();
         // \Log::debug("message".$diary);

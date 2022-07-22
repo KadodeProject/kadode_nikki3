@@ -1,20 +1,25 @@
 <?php
 
-namespace App\Http\Controllers\diary;
+declare(strict_types=1);
+
+namespace App\Http\Actions\Diary\Search;
 
 use App\Http\Controllers\Controller;
 use App\Models\Diary;
-use Illuminate\Http\Request;
 use App\UseCases\Diary\ShapeStatisticFromDiaries;
+use Illuminate\Contracts\View\Factory;
+use Illuminate\Contracts\View\View;
+use Illuminate\Http\Request;
 use Illuminate\Support\Collection;
+use function view;
 
-class SearchDiaryController extends Controller
+class SimpleSearchAction extends Controller
 {
     public function __construct(
         private ShapeStatisticFromDiaries $shapeStatisticFromDiaries
-    ) {
-    }
-    public function post(Request $request)
+    ) {}
+
+    public function __invoke(Request $request):View|Factory
     {
         //効果あるか分からないけれど、危険な変数のエスケープをする
         $request->keyword = htmlspecialchars($request->keyword, ENT_QUOTES);
@@ -83,8 +88,4 @@ class SearchDiaryController extends Controller
         return view('diary/search/searchResult', ['counter' => $counter, 'keyword' => $request->keyword, 'diaries' => $proceedDiary, 'queryTime' => $queryTime]);
     }
 
-    public function showSearch()
-    {
-        return view('diary/search/searchResult');
-    }
 }

@@ -1,44 +1,32 @@
 <?php
 
-use App\Http\Controllers\diary\HomeDiaryController;
-use App\Http\Controllers\diary\EditDiaryController;
+use App\Http\Controllers\admin\HomeAdminController;
+use App\Http\Controllers\admin\NotificationBroadcasterAdminController;
+use App\Http\Controllers\admin\packages\ShowIndividualPackage;
+use App\Http\Controllers\admin\packages\ShowPackageAdminController;
+use App\Http\Controllers\admin\Role_rankAdminController;
 use App\Http\Controllers\diary\ExportDiaryController;
 use App\Http\Controllers\diary\ImportDiaryController;
 use App\Http\Controllers\diary\SearchDiaryController;
-use App\Http\Controllers\diary\SettingDiaryController;
-use App\Http\Controllers\diary\ShowDiaryController;
-
+use App\Http\Controllers\notifications\ManageNotificationController;
 use App\Http\Controllers\notifications\OsiraseController;
 use App\Http\Controllers\notifications\ReleasenoteController;
-use App\Http\Controllers\notifications\ManageNotificationController;
-
-use App\Http\Controllers\user\User_roleController;
-use App\Http\Controllers\user\User_rankController;
-
-
-use App\Http\Controllers\security\UpdateUserController;
-use App\Http\Controllers\security\ShowSecurityPageController;
-
-use App\Http\Controllers\statistics\ShowStatisticsController;
-use App\Http\Controllers\statistics\SettingsStatisticsController;
-use App\Http\Controllers\statistics\ImportStatisticsController;
-use App\Http\Controllers\statistics\ExportStatisticsController;
-use App\Http\Controllers\statistics\GenerateStatisticsController;
-use App\Http\Controllers\statistics\NamedEntityStatisticsController;
-
-use App\Http\Controllers\admin\HomeAdminController;
-use App\Http\Controllers\admin\NotificationBroadcasterAdminController;
-use App\Http\Controllers\admin\packages\ShowPackageAdminController;
-use App\Http\Controllers\admin\packages\ShowIndividualPackage;
-use App\Http\Controllers\admin\Role_rankAdminController;
-
 use App\Http\Controllers\packages\GenrePackagesController;
 use App\Http\Controllers\packages\ManagePackagesController;
 use App\Http\Controllers\packages\OwnPackagesController;
+use App\Http\Controllers\security\ShowSecurityPageController;
+use App\Http\Controllers\statistics\ExportStatisticsController;
+use App\Http\Controllers\statistics\GenerateStatisticsController;
+use App\Http\Controllers\statistics\ImportStatisticsController;
+use App\Http\Controllers\statistics\NamedEntityStatisticsController;
+use App\Http\Controllers\statistics\SettingsStatisticsController;
+use App\Http\Controllers\statistics\ShowStatisticsController;
+use App\Http\Controllers\user\User_rankController;
+use App\Http\Controllers\user\User_roleController;
 use App\Models\User_ip;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
-use Illuminate\Http\Request;
 
 /*
 |--------------------------------------------------------------------------
@@ -113,16 +101,15 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     Route::post('/update', \App\Http\Actions\Diary\UpdateDiaryAction::class)->name('UpdateDiary');
     Route::post('/delete', \App\Http\Actions\Diary\DeleteDiaryAction::class)->name('DeleteDiary');
     //日記閲覧
-    Route::get('/diary/{year}/{month}', [ShowDiaryController::class, "getMonthArchive"])->name('show');
-    Route::get('/diary/{year}',  [ShowDiaryController::class, "getYearArchive"])->name('show');
+    Route::get('/diary/{year}/{month}', \App\Http\Actions\Diary\ShowMonthDiaryAction::class)->name('ShowMonthDiary');
+    Route::get('/diary/{year}',  \App\Http\Actions\Diary\ShowYearDiaryAction::class)->name('ShowYearDiary');
     //検索
-    Route::post('/search', [SearchDiaryController::class, "post"])->name('search');
-    Route::get('/search', [SearchDiaryController::class, "showSearch"])->name('searchConsole');
-    // Route::get('/search',[ SearchDiaryController::class,"showSearch"])->name('search');
+    Route::post('/search', \App\Http\Actions\Diary\Search\SimpleSearchAction::class)->name('SimpleSearch');
+    Route::get('/search', \App\Http\Actions\Diary\Search\ShowSimpleSearchAction::class)->name('ShowSimpleSearch');
     //日記の入出力
-    Route::post('/import/diary/kadode', [ImportDiaryController::class, "kadode"])->name('importKadode');
-    Route::post('/import/diary/tukini', [ImportDiaryController::class, "tukini"])->name('importTukini');
-    Route::post('/export/diary', ExportDiaryController::class)->name('export');
+    Route::post('/import/diary/kadode', \App\Http\Actions\Diary\Import\ImportFromKadodeCsvAction::class)->name('ImportFromKadodeCsv');
+    Route::post('/import/diary/tukini', \App\Http\Actions\Diary\Import\ImportFromTukiniTxtAction::class)->name('ImportFromTukiniTxt');
+    Route::post('/export/diary', \App\Http\Actions\Diary\Export\ExportByCsvAction::class)->name('ExportByCsv');
     //セキュリティ
     Route::middleware(['password.confirm'])->group(function () {
         Route::get('/security', ShowSecurityPageController::class)->name('security');

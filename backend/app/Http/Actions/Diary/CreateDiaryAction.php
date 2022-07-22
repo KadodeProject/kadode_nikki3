@@ -15,6 +15,7 @@ use App\Models\Diary;
 
 final class CreateDiaryAction extends Controller
 {
+
     public function __invoke(Request $request):Redirector|RedirectResponse
     {
         $request->date = $request->date ?? Carbon::today()->format("y-m-d");

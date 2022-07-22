@@ -1,21 +1,25 @@
 <?php
 
-namespace App\Http\Controllers\diary;
+declare(strict_types=1);
+
+namespace App\Http\Actions\Diary;
 
 use App\Http\Controllers\Controller;
+use App\UseCases\Diary\ShapeStatisticFromDiaries;
+use Illuminate\Contracts\View\Factory;
+use Illuminate\Contracts\View\View;
+use Illuminate\Support\Carbon;
 use App\Models\Diary;
 use App\Models\Statistic_per_month;
-use App\Models\Statistic_per_year;
-use Illuminate\Support\Carbon;
-use App\UseCases\Diary\ShapeStatisticFromDiaries;
 
-class ShowDiaryController extends Controller
+final class ShowMonthDiaryAction extends Controller
 {
     public function __construct(
         private ShapeStatisticFromDiaries $shapeStatisticFromDiaries
     ) {
     }
-    public function getMonthArchive($year, $month)
+
+        public function __invoke(int $year,int $month):View|Factory
     {
 
         //特定の月だけ取ってくる
@@ -46,34 +50,5 @@ class ShowDiaryController extends Controller
         $diaries = $this->shapeStatisticFromDiaries->invoke($diaries);
 
         return view('diary/archive/monthArchive', ['diaries' => $diaries, 'month' => $month, 'year' => $year, 'statisticPerMonth' => $statisticPerMonth]);
-    }
-    public function getYearArchive($year)
-    {
-
-        //特定の年だけ取ってくる
-        $startYear = Carbon::create($year, 1, 1, 1, 1, 1)->startOfYear()->format("Y-m-d");
-        $endYear = Carbon::create($year, 1, 1, 1, 1, 1)->endOfYear()->format("Y-m-d");
-        $diaries = Diary::where("date", ">=", $startYear)->where("date", "<=", $endYear)->get();
-
-        /**
-         * 統計データの表示処理
-         */
-        //年別の統計→配列
-        $statisticPerYear = Statistic_per_year::where("year", $year)->first();
-        if ($statisticPerYear != null) {
-            if ($statisticPerYear->statistic_progress == 100) {
-                $statisticPerYear->emotions = array_values(json_decode($statisticPerYear->emotions, true));
-                $statisticPerYear->word_counts = array_values(json_decode($statisticPerYear->word_counts, true));
-                $statisticPerYear->noun_rank = array_values(json_decode($statisticPerYear->noun_rank, true));
-                $statisticPerYear->adjective_rank = array_values(json_decode($statisticPerYear->adjective_rank, true));
-                $statisticPerYear->important_words = array_values(json_decode($statisticPerYear->important_words, true));
-                $statisticPerYear->special_people = array_values(json_decode($statisticPerYear->special_people, true));
-                $statisticPerYear->classifications = array_values(json_decode($statisticPerYear->classifications, true));
-            }
-        }
-        //個別
-        $diaries = $this->shapeStatisticFromDiaries->invoke($diaries);
-
-        return view('diary/archive/yearArchive', ['diaries' => $diaries, 'year' => $year, 'statisticPerYear' => $statisticPerYear]);
     }
 }
