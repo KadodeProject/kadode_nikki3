@@ -161,6 +161,12 @@
       <excludeFolder url="file://$MODULE_DIR$/backend/vendor/ramsey/collection" />
       <excludeFolder url="file://$MODULE_DIR$/backend/vendor/ramsey/uuid" />
       <excludeFolder url="file://$MODULE_DIR$/backend/vendor/nunomaduro/termwind" />
+      <excludeFolder url="file://$MODULE_DIR$/backend/vendor/friendsofphp/php-cs-fixer" />
+      <excludeFolder url="file://$MODULE_DIR$/backend/vendor/php-cs-fixer/diff" />
+      <excludeFolder url="file://$MODULE_DIR$/backend/vendor/symfony/options-resolver" />
+      <excludeFolder url="file://$MODULE_DIR$/backend/vendor/symfony/stopwatch" />
+      <excludeFolder url="file://$MODULE_DIR$/backend/vendor/symfony/filesystem" />
+      <excludeFolder url="file://$MODULE_DIR$/backend/vendor/doctrine/annotations" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />

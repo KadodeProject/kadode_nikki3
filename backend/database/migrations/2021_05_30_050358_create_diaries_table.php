@@ -44,6 +44,9 @@ class CreateDiariesTable extends Migration
             $table->timestamps();
 
             //インデックスを作る
+            /**
+             * @todo このインデックスさすがにおかしすぎないか...idは使ってないし、uuidは必要だし...
+             */
             $table->index('id');
             $table->index('user_id');
             // $table->index('content');

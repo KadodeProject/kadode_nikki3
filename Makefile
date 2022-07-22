@@ -137,6 +137,8 @@ ide-helper:
 	docker compose exec app php artisan ide-helper:models --nowrite
 stan:
 	docker compose exec app ./vendor/bin/phpstan analyse
+fixer:
+	docker compose exec app ./vendor/bin/php-cs-fixer fix --config=.php-cs-fixer.dist.php -v --diff --dry-run
 barth:
 	docker-compose down --rmi all --volumes --remove-orphans
 777:
