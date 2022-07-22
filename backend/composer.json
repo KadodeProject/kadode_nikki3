@@ -14,6 +14,7 @@
         "goodby/csv": "^1.3",
         "google/cloud-storage": "^1.26",
         "guzzlehttp/guzzle": "^7.4",
+        "inertiajs/inertia-laravel": "^0.6.3",
         "laravel/framework": "^9.19.0",
         "laravel/jetstream": "^2.6",
         "laravel/sanctum": "^2.6",
