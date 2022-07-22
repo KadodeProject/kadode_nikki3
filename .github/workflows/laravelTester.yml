@@ -52,7 +52,7 @@ jobs:
         id: cache_pip3
         uses: actions/cache@v3
         with:
-          path: ~/.cache/pip
+          path: /home/runner/.local/lib/python3.8/site-packages
           key: ${{ runner.os }}-pip3-${{ hashFiles('**/kadode_pip_packages.txt') }}
           restore-keys: |
             ${{ runner.os }}-pip3-
