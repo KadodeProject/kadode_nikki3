@@ -1,16 +1,20 @@
 <?php
 
-namespace App\Http\Controllers\admin;
+declare(strict_types=1);
+
+namespace App\Http\Actions;
 
 use App\Http\Controllers\Controller;
+use Illuminate\Contracts\View\Factory;
+use Illuminate\Contracts\View\View;
 use App\Models\Diary;
-use App\Models\Statistic;
-use App\Models\Statistic_per_month;
 use App\Models\User;
+use App\Models\Statistic_per_month;
+use App\Models\Statistic;
 
-class HomeAdminController extends Controller
+final class ShowAdminHomeAction extends Controller
 {
-    public function __invoke()
+    public function __invoke(): View|Factory
     {
         $users = User::get();
         foreach ($users as $user) {

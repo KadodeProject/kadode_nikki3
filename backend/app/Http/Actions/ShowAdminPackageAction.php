@@ -2,20 +2,17 @@
 
 declare(strict_types=1);
 
-namespace App\Http\Controllers\admin\packages;
+namespace App\Http\Actions;
 
+use Illuminate\Contracts\View\Factory;
+use Illuminate\Contracts\View\View;
 use App\Http\Controllers\Controller;
 use App\Models\NlpPackageGenre;
 use App\Models\NlpPackageName;
-use App\UseCases\NERLabel\GetAllNERLabelInOptionTabFormat;
 
-class ShowPackageAdminController extends Controller
+final class ShowAdminPackageAction extends Controller
 {
-    public function __construct(
-        private GetAllNERLabelInOptionTabFormat $getAllNERLabelInOptionTabFormat
-    ) {
-    }
-    public function __invoke()
+    public function __invoke(): View|Factory
     {
         //パッケージ表示(最近更新のあったものから取り出す)
         $nlpPackageName = NlpPackageName::withoutGlobalScopes()->orderBy('updated_at', 'desc')->get();

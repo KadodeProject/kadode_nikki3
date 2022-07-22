@@ -1,17 +1,20 @@
 <?php
 
-namespace App\Http\Controllers\admin;
+declare(strict_types=1);
+
+namespace App\Http\Actions;
 
 use App\Http\Controllers\Controller;
-use App\Models\Osirase;
+use Illuminate\Contracts\View\Factory;
+use Illuminate\Contracts\View\View;
 use App\Models\Osirase_genre;
+use App\Models\Osirase;
 use App\Models\Releasenote;
 use App\Models\Releasenote_genre;
 
-
-class NotificationBroadcasterAdminController extends Controller
+final class ShowAdminNotificationAction extends Controller
 {
-    public function __invoke()
+    public function __invoke(): View|Factory
     {
         //お知らせ
         $osirases = Osirase::orderBy('date', 'desc')->get();
@@ -30,5 +33,6 @@ class NotificationBroadcasterAdminController extends Controller
         }
 
         return view('admin/notificationAdmin', ['osirases' => $osirases, 'osiraseGenres' => $osiraseGenres, 'releasenoteGenres' => $releasenoteGenres, 'releasenotes' => $releasenotes,]);
+
     }
 }

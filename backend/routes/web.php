@@ -1,26 +1,14 @@
 <?php
 
-use App\Http\Controllers\admin\HomeAdminController;
 use App\Http\Controllers\admin\NotificationBroadcasterAdminController;
 use App\Http\Controllers\admin\packages\ShowIndividualPackage;
 use App\Http\Controllers\admin\packages\ShowPackageAdminController;
 use App\Http\Controllers\admin\Role_rankAdminController;
-use App\Http\Controllers\diary\ExportDiaryController;
-use App\Http\Controllers\diary\ImportDiaryController;
-use App\Http\Controllers\diary\SearchDiaryController;
-use App\Http\Controllers\notifications\ManageNotificationController;
 use App\Http\Controllers\notifications\OsiraseController;
 use App\Http\Controllers\notifications\ReleasenoteController;
 use App\Http\Controllers\packages\GenrePackagesController;
 use App\Http\Controllers\packages\ManagePackagesController;
-use App\Http\Controllers\packages\OwnPackagesController;
-use App\Http\Controllers\security\ShowSecurityPageController;
-use App\Http\Controllers\statistics\ExportStatisticsController;
-use App\Http\Controllers\statistics\GenerateStatisticsController;
-use App\Http\Controllers\statistics\ImportStatisticsController;
 use App\Http\Controllers\statistics\NamedEntityStatisticsController;
-use App\Http\Controllers\statistics\SettingsStatisticsController;
-use App\Http\Controllers\statistics\ShowStatisticsController;
 use App\Http\Controllers\user\User_rankController;
 use App\Http\Controllers\user\User_roleController;
 use App\Models\User_ip;
@@ -147,25 +135,25 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
      */
     Route::middleware(['administrator'])->group(function () {
         //管理者ページ
-        Route::get('/administrator', HomeAdminController::class)->name('home');
-        Route::get('/administrator/notification', NotificationBroadcasterAdminController::class)->name('notification');
-        Route::get('/administrator/package', ShowPackageAdminController::class)->name('package');
-        Route::get('/administrator/package/{packageId}', ShowIndividualPackage::class)->name('packageIndividual');
-        Route::get('/administrator/role_rank', Role_rankAdminController::class)->name('role');
+        Route::get('/administrator', \App\Http\Actions\ShowAdminHomeAction::class)->name('ShowAdminHome');
+        Route::get('/administrator/notification', \App\Http\Actions\ShowAdminNotificationAction::class)->name('ShowAdminNotification');
+        Route::get('/administrator/package', \App\Http\Actions\ShowAdminPackageAction::class)->name('ShowAdminPackage');
+        Route::get('/administrator/package/{packageId}', \App\Http\Actions\ShowAdminIndividualPackageAction::class)->name('ShowAdminIndividualPackage');
+        Route::get('/administrator/role_rank', \App\Http\Actions\ShowAdminRoleRankAction::class)->name('ShowAdminRoleRank');
 
         //パッケージ名前系
-        Route::post('/administrator/settings/packages/create',  [ManagePackagesController::class, "create"])->name('createPackages');
-        Route::post('/administrator/settings/packages/update',  [ManagePackagesController::class, "update"])->name('updatePackages');
-        Route::post('/administrator/settings/packages/delete',  [ManagePackagesController::class, "delete"])->name('deletePackages');
+        Route::post('/administrator/settings/packages/create', \App\Http\Actions\NlpPackageName\CreatePackageNameAction::class)->name('createPackages');
+        Route::post('/administrator/settings/packages/update', \App\Http\Actions\NlpPackageName\UpdatePackageNameAction::class)->name('updatePackages');
+        Route::post('/administrator/settings/packages/delete',  \App\Http\Actions\NlpPackageName\DeletePackageNameAction::class)->name('deletePackages');
         //パッケージジャンル
-        Route::post('/administrator/settings/packages/genre/create',  [GenrePackagesController::class, "create"])->name('createPackagesGenre');
-        Route::post('/administrator/settings/packages/genre/update',  [GenrePackagesController::class, "update"])->name('updatePackagesGenre');
-        Route::post('/administrator/settings/packages/genre/delete',  [GenrePackagesController::class, "delete"])->name('deletePackagesGenre');
+        Route::post('/administrator/settings/packages/genre/create',  \App\Http\Actions\NlpPackageGenre\CreatePackageGenreAction::class)->name('createPackagesGenre');
+        Route::post('/administrator/settings/packages/genre/update',  \App\Http\Actions\NlpPackageGenre\UpdatePackageGenreAction::class)->name('updatePackagesGenre');
+        Route::post('/administrator/settings/packages/genre/delete',  [\App\Http\Actions\NlpPackageGenre\DeletePackageGenreAction::class)->name('deletePackagesGenre');
 
         //packageNERまわり
-        Route::post('/statistics/settings/named_entity/package/create',  [NamedEntityStatisticsController::class, "packagesCreate"])->name('createPackageNamedEntity');
-        Route::post('/statistics/settings/named_entity/package/update',  [NamedEntityStatisticsController::class, "packagesUpdate"])->name('updatePackageNamedEntity');
-        Route::post('/statistics/settings/named_entity/package/delete',  [NamedEntityStatisticsController::class, "packagesDelete"])->name('deletePackageNamedEntity');
+        Route::post('/statistics/settings/named_entity/package/create',  \App\Http\Actions\PackageNER\CreatePNERAction::class)->name('createPackageNamedEntity');
+        Route::post('/statistics/settings/named_entity/package/update',  \App\Http\Actions\PackageNER\UpdatePNERAction::class)->name('updatePackageNamedEntity');
+        Route::post('/statistics/settings/named_entity/package/delete',  \App\Http\Actions\PackageNER\DeletePNERAction::class)->name('deletePackageNamedEntity');
 
         //お知らせまわり
         Route::post('/administrator/settings/osirase/create',  [OsiraseController::class, "create"])->name('createOsirase');
