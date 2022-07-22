@@ -38,6 +38,7 @@ jobs:
           key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
           restore-keys: |
             ${{ runner.os }}-yarn-
+
       - name: cache vendor
         id: cache_vendor
         uses: actions/cache@v3
@@ -46,19 +47,37 @@ jobs:
           key: ${{ runner.os }}-composer-${{ hashFiles('**/composer.lock') }}
           restore-keys: |
             ${{ runner.os }}-composer-
+
+      - name: cache pip3
+        id: cache_pip3
+        uses: actions/cache@v3
+        with:
+          path: ~/.cache/pip
+          key: ${{ runner.os }}-pip3-${{ hashFiles('**/kadode_py.txt') }}
+          restore-keys: |
+            ${{ runner.os }}-pip3-
+
       - name: run apt
         run: sudo apt update && sudo apt install git libicu-dev libonig-dev libzip-dev unzip locales python3-pip libmariadb-dev default-mysql-client python3-venv
-      - name: run pip
-        run: sudo pip3 install --upgrade pip && pip3 install python-dotenv mysqlclient ahocorapy && pip3 install -U ginza ja-ginza
+      - name: update pip
+        run: sudo pip3 install --upgrade pip
       - name: copy .env for ci
         run: cd backend && php -r "file_exists('.env') || copy('.env.ci', '.env');"
+
       #ライブラリインストール
+      #Python
+      - name: install pip
+        if: steps.cache_pip3.outputs.cache-hit != 'true'
+        run: sudo pip3 install --upgrade --upgrade-strategy eager -r backend/kadode_py.txt
+      #JS
       - name: yarn install
         if: steps.cache_node.outputs.cache-hit != 'true'
         run: cd backend && yarn install
+      #PHP
       - name: composer install
         if: steps.cache_vendor.outputs.cache-hit != 'true'
         run: cd backend && composer install -n --prefer-dist
+
       #Laravel初期構築
       - name: composer dump autoload
         run: cd backend && composer dump-autoload
