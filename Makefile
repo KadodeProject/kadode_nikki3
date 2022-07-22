@@ -36,6 +36,7 @@ init:
 	docker compose exec app php artisan storage:link
 	docker compose exec app chmod -R 777 storage bootstrap/cache
 	@make fresh
+	cd backend && yarn install && yarn build
 remake:
 	@make destroy
 	@make init
