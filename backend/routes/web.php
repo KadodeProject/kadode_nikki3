@@ -1,16 +1,5 @@
 <?php
 
-use App\Http\Controllers\admin\NotificationBroadcasterAdminController;
-use App\Http\Controllers\admin\packages\ShowIndividualPackage;
-use App\Http\Controllers\admin\packages\ShowPackageAdminController;
-use App\Http\Controllers\admin\Role_rankAdminController;
-use App\Http\Controllers\notifications\OsiraseController;
-use App\Http\Controllers\notifications\ReleasenoteController;
-use App\Http\Controllers\packages\GenrePackagesController;
-use App\Http\Controllers\packages\ManagePackagesController;
-use App\Http\Controllers\statistics\NamedEntityStatisticsController;
-use App\Http\Controllers\user\User_rankController;
-use App\Http\Controllers\user\User_roleController;
 use App\Models\User_ip;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -148,7 +137,7 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
         //パッケージジャンル
         Route::post('/administrator/settings/packages/genre/create',  \App\Http\Actions\NlpPackageGenre\CreatePackageGenreAction::class)->name('createPackagesGenre');
         Route::post('/administrator/settings/packages/genre/update',  \App\Http\Actions\NlpPackageGenre\UpdatePackageGenreAction::class)->name('updatePackagesGenre');
-        Route::post('/administrator/settings/packages/genre/delete',  [\App\Http\Actions\NlpPackageGenre\DeletePackageGenreAction::class)->name('deletePackagesGenre');
+        Route::post('/administrator/settings/packages/genre/delete',  \App\Http\Actions\NlpPackageGenre\DeletePackageGenreAction::class)->name('deletePackagesGenre');
 
         //packageNERまわり
         Route::post('/statistics/settings/named_entity/package/create',  \App\Http\Actions\PackageNER\CreatePNERAction::class)->name('createPackageNamedEntity');
@@ -156,23 +145,23 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
         Route::post('/statistics/settings/named_entity/package/delete',  \App\Http\Actions\PackageNER\DeletePNERAction::class)->name('deletePackageNamedEntity');
 
         //お知らせまわり
-        Route::post('/administrator/settings/osirase/create',  [OsiraseController::class, "create"])->name('createOsirase');
-        Route::post('/administrator/settings/osirase/update',  [OsiraseController::class, "update"])->name('updateOsirase');
-        Route::post('/administrator/settings/osirase/delete',  [OsiraseController::class, "delete"])->name('deleteOsirase');
+        Route::post('/administrator/settings/osirase/create',  \App\Http\Actions\Osirase\CreateOsiraseAction::class)->name('createOsirase');
+        Route::post('/administrator/settings/osirase/update',  \App\Http\Actions\Osirase\UpdateOsiraseAction::class)->name('updateOsirase');
+        Route::post('/administrator/settings/osirase/delete',  \App\Http\Actions\Osirase\DeleteOsiraseAction::class)->name('deleteOsirase');
 
         //リリースノートまわり
-        Route::post('/administrator/settings/releasenote/create',  [ReleasenoteController::class, "create"])->name('createReleasenote');
-        Route::post('/administrator/settings/releasenote/update',  [ReleasenoteController::class, "update"])->name('updateReleasenote');
-        Route::post('/administrator/settings/releasenote/delete',  [ReleasenoteController::class, "delete"])->name('deleteReleasenote');
+        Route::post('/administrator/settings/releasenote/create',  \App\Http\Actions\ReleaseNote\CreateReleaseNoteAction::class)->name('createReleasenote');
+        Route::post('/administrator/settings/releasenote/update',  \App\Http\Actions\ReleaseNote\UpdateReleaseNoteAction::class)->name('updateReleasenote');
+        Route::post('/administrator/settings/releasenote/delete',  \App\Http\Actions\ReleaseNote\DeleteReleaseNoteAction::class)->name('deleteReleasenote');
 
         //ユーザーロールまわり
-        Route::post('/administrator/settings/user/role/create',  [User_roleController::class, "create"])->name('createUser_role');
-        Route::post('/administrator/settings/user/role/update',  [User_roleController::class, "update"])->name('updateUser_role');
-        Route::post('/administrator/settings/user/role/delete',  [User_roleController::class, "delete"])->name('deleteUser_role');
+        Route::post('/administrator/settings/user/role/create',  \App\Http\Actions\UserRole\CreateUserRoleAction::class)->name('createUser_role');
+        Route::post('/administrator/settings/user/role/update',  \App\Http\Actions\UserRole\UpdateUserRoleAction::class)->name('updateUser_role');
+        Route::post('/administrator/settings/user/role/delete',  \App\Http\Actions\UserRole\DeleteUserRoleAction::class)->name('deleteUser_role');
 
         //ユーザーランクまわり
-        Route::post('/administrator/settings/user/rank/create',  [User_rankController::class, "create"])->name('createRUser_rank');
-        Route::post('/administrator/settings/user/rank/update',  [User_rankController::class, "update"])->name('updateRUser_rank');
-        Route::post('/administrator/settings/user/rank/delete',  [User_rankController::class, "delete"])->name('deleteRUser_rank');
+        Route::post('/administrator/settings/user/rank/create',  \App\Http\Actions\UserRank\CreateUserRankAction::class)->name('createUser_rank');
+        Route::post('/administrator/settings/user/rank/update',  \App\Http\Actions\UserRank\UpdateUserRankAction::class)->name('updateUser_rank');
+        Route::post('/administrator/settings/user/rank/delete',  \App\Http\Actions\UserRank\DeleteUserRankAction::class)->name('deleteUser_rank');
     });
 });

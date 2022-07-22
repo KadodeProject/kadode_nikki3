@@ -197,17 +197,17 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/backend/app/Http/Actions/PackageNER" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/backend/app/Http/Actions" />
     <property name="nodejs_package_manager_path" value="yarn" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="\\wsl$\Ubuntu-20.04\home\naofumi\source_code\kadode_nikki3\backend\app\Http\Actions\PackageNER" />
-      <recent name="\\wsl$\Ubuntu-20.04\home\naofumi\source_code\kadode_nikki3\backend\app\Http\Actions\NlpPackageGenre" />
-      <recent name="\\wsl$\Ubuntu-20.04\home\naofumi\source_code\kadode_nikki3\backend\app\Http\Actions\NlpPackageName" />
       <recent name="\\wsl$\Ubuntu-20.04\home\naofumi\source_code\kadode_nikki3\backend\app\Http\Actions" />
-      <recent name="\\wsl$\Ubuntu-20.04\home\naofumi\source_code\kadode_nikki3\backend\app\Http\Actions\User\Notification" />
+      <recent name="\\wsl$\Ubuntu-20.04\home\naofumi\source_code\kadode_nikki3\backend\app\Http\Actions\UserRole" />
+      <recent name="\\wsl$\Ubuntu-20.04\home\naofumi\source_code\kadode_nikki3\backend\app\Http\Actions\ReleaseNote" />
+      <recent name="\\wsl$\Ubuntu-20.04\home\naofumi\source_code\kadode_nikki3\backend\app\Http\Actions\Osirase" />
+      <recent name="\\wsl$\Ubuntu-20.04\home\naofumi\source_code\kadode_nikki3\backend\app\Http\Actions\PackageNER" />
     </key>
   </component>
   <component name="RunManager">
