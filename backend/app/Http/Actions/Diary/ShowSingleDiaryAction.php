@@ -23,12 +23,12 @@ final class ShowSingleDiaryAction extends Controller
     ) {
     }
 
-        public function __invoke($uuid):View|Factory|Redirector|RedirectResponse
+    public function __invoke($uuid): View|Factory|Redirector|RedirectResponse
     {
         $diary = Diary::where("uuid", $uuid)->first();
         if ($diary === null) {
             //日記無かったらリダイレクトさせる
-            return redirect("home");
+            return redirect(route('ShowHome'));
         }
         $next = Diary::where("date", ">", $diary->date)->orderBy("date", "asc")->first(['date', 'uuid']);
         $previous = Diary::where("date", "<", $diary->date)->orderBy("date", "desc")->first(['date', 'uuid']);
@@ -66,13 +66,12 @@ final class ShowSingleDiaryAction extends Controller
              */
             // \Log::debug($diary->special_people[0]['name']);//一番の人の名前抽出
             //where('id', '<>',$diary->id)で自分自身を除く
-            if (! empty($diary->special_people)) {
+            if (!empty($diary->special_people)) {
                 $resembleDiaries = Diary::where('id', '<>', $diary->id)->where(DB::raw('json_extract(`special_people`, "$[0].name")'), $diary->special_people[0]['name'])->inRandomOrder()->limit(3)->get();
                 $resembleDiaries = $this->shapeStatisticFromDiaries->invoke($resembleDiaries);
             }
         }
 
         return view('diary/edit', ['diary' => $diary, 'contentWithNlp' => $contentWithNlp, 'previous' => $previous, 'next' => $next, 'resembleDiaries' => $resembleDiaries,]);
-
     }
 }

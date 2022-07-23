@@ -21,6 +21,6 @@ final class UsePackageAction extends Controller
         ];
 
         NlpPackageUser::create($form);
-        return redirect('statistics/settings');
+        return redirect(route('ShowStatisticSetting'));
     }
 }

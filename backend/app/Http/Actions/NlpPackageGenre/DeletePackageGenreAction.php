@@ -15,6 +15,6 @@ final class DeletePackageGenreAction extends Controller
     public function __invoke(Request $request): Redirector|RedirectResponse
     {
         NlpPackageGenre::where('id', $request->NlpPackageGenre_id)->delete();
-        return redirect('administrator/package#packageGenreTable');
+        return redirect(route('ShowAdminPackage') . '#packageGenreTable');
     }
 }

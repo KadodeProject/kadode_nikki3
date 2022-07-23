@@ -66,10 +66,9 @@ jobs:
 
       #ライブラリインストール
       #Python
-      - name: install pip
+      - name: pip install
         if: steps.cache_pip3.outputs.cache-hit != 'true'
         run: pip3 install --upgrade --upgrade-strategy eager -r backend/kadode_pip_packages.txt
-
       #JS
       - name: yarn install
         if: steps.cache_node.outputs.cache-hit != 'true'

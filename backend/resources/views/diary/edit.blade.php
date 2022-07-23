@@ -10,7 +10,8 @@
         <nav class="md:order-1 ">
             @isset($next)
             <p class="md:mr-12 md:mt-12 p-2 text-xl borer-2 border-kn_3 kiwi-maru"><a style="vertical-align: middle;"
-                    href="{{url('/edit/'.$next->uuid)}}"><span class="material-icons">arrow_back</span>
+                    href="{{route('ShowSingleDiary',['uuid'=>$next->uuid])}}"><span
+                        class="material-icons">arrow_back</span>
                     {{$next->date->format("Y年n月j日")}}</a></p>
             @else
             <p class="md:mr-12 md:mt-12 p-2 text-xl borer-2 border-kn_3 kiwi-maru"><span
@@ -22,7 +23,7 @@
         <nav class="order-2 md:order-3">
             @isset($previous)
             <p class="md:ml-12 md:mt-12 p-2 text-xl borer-2 border-kn_3 kiwi-maru"><a style="vertical-align: middle;"
-                    href="{{url('/edit/'.$previous->uuid)}}">
+                    href="{{route('ShowSingleDiary',['uuid'=>$previous->uuid])}}">
                     {{$previous->date->format("Y年n月j日")}}<span class="material-icons">arrow_forward</span></a></p>
             @else
             <p class="md:mr-12 md:mt-12 p-2 text-xl borer-2 border-kn_3 kiwi-maru">日記なし <span
@@ -54,7 +55,7 @@
             <div class="order-3 md:order-2 ">
                 @component('components.diary.submitForm')
                 @slot("db_method")
-                update
+                {{route('UpdateDiary')}}
                 @endslot
                 @slot("original_uuid")
                 {{$diary->uuid}}

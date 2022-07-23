@@ -37,7 +37,7 @@
                 @isset($user_roles)
                 @foreach($user_roles as $user_role)
                 <tr>
-                    <form class="" method="POST" action="/administrator/settings/user/role/update">
+                    <form class="" method="POST" action="{{route('UpdateUserRole')}}">
                         @csrf
                         <input type="hidden" name="user_role_id" value="{{$user_role->id}}">
                         <td>
@@ -56,7 +56,7 @@
                             <input type="submit" id="submitosirase_{{$i}}" class="text-black bg-kn_2" value="変更">
                         </td>
                     </form>
-                    <form class="" method="POST" action="/administrator/settings/user/role/delete">
+                    <form class="" method="POST" action="{{route('DeleteUserRole')}}">
                         @csrf
                         <td>
                             <input type="hidden" name="user_role_id" value="{{$user_role->id}}">
@@ -72,7 +72,7 @@
 
                 {{-- 追加 --}}
                 <tr>
-                    <form class="" method="POST" action="/administrator/settings/user/role/create">
+                    <form class="" method="POST" action="{{route('CreateUserRole')}}">
                         @csrf
                         <td>
                             {{$i}}
@@ -127,7 +127,7 @@
                 @isset($user_ranks)
                 @foreach($user_ranks as $user_rank)
                 <tr>
-                    <form class="" method="POST" action="/administrator/settings/user/rank/update">
+                    <form class="" method="POST" action="{{route('UpdateUserRank')}}">
                         @csrf
                         <input type="hidden" name="user_rank_id" value="{{$user_rank->id}}">
                         <td>
@@ -146,7 +146,7 @@
                             <input type="submit" id="submitosirase_{{$i}}" class="text-black bg-kn_2" value="変更">
                         </td>
                     </form>
-                    <form class="" method="POST" action="/administrator/settings/user/rank/delete">
+                    <form class="" method="POST" action="{{route('DeleteUserRank')}}">
                         @csrf
                         <td>
                             <input type="hidden" name="user_rank_id" value="{{$user_rank->id}}">
@@ -162,7 +162,7 @@
 
                 {{-- 追加 --}}
                 <tr>
-                    <form class="" method="POST" action="/administrator/settings/user/rank/create">
+                    <form class="" method="POST" action="{{route('CreateUserRank')}}">
                         @csrf
                         <td>
                             {{$i}}

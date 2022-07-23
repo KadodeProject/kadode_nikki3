@@ -17,9 +17,9 @@ use Illuminate\Support\Facades\Auth;
 /**
  * 統計設定を表示する
  */
-class ShowSettingAction extends Controller
+class ShowStatisticSettingAction extends Controller
 {
-    public function __invoke():View|Factory
+    public function __invoke(): View|Factory
     {
         //ユーザー定義固有表現ルール→ラベル名はbladeのif文で表示させるのでここではidのままでよい。
         $CustomNER = CustomNER::where('user_id', Auth::id())->get();

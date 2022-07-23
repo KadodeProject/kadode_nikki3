@@ -24,6 +24,6 @@ final class UpdatePNERAction extends Controller
         ];
 
         PackageNER::where('id', $request->PackageNER_id)->update($updateContent);
-        return redirect('administrator/package/' . $request->packageId);
+        return redirect(route('ShowAdminIndividualPackage', ['packageId' => $request->packageId]));
     }
 }

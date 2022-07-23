@@ -49,7 +49,7 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function (Req
         "geo" => $geo->country . "_" . $geo->city,
     ];
     User_ip::create($data);
-    return redirect('/home ');
+    return redirect(route('ShowHome'));
 })->name('home_redirect');
 
 
@@ -73,8 +73,8 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     Route::get('/home', \App\Http\Actions\ShowHomeAction::class)->name('ShowHome');
 
     //日記のCRUD
-    Route::get('/edit', \App\Http\Actions\Diary\ShowCreateDiaryAction::class)->name('CreateDiary');
-    Route::get('/edit/{uuid}',\App\Http\Actions\Diary\ShowSingleDiaryAction::class)->name('edit');
+    Route::get('/edit', \App\Http\Actions\Diary\ShowCreateDiaryAction::class)->name('ShowCreateDiary');
+    Route::get('/edit/{uuid}', \App\Http\Actions\Diary\ShowSingleDiaryAction::class)->name('ShowSingleDiary');
 
     Route::post('/create', \App\Http\Actions\Diary\CreateDiaryAction::class)->name('CreateDiary');
     Route::post('/update', \App\Http\Actions\Diary\UpdateDiaryAction::class)->name('UpdateDiary');
@@ -101,24 +101,24 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
 
     //統計
     Route::get('/statistics/home', \App\Http\Actions\Statistic\ShowStatisticAction::class)->name('ShowStatistic');
-    Route::get('/statistics/settings', \App\Http\Actions\Statistic\ShowSettingAction::class)->name('ShowStatisticSetting');
+    Route::get('/statistics/settings', \App\Http\Actions\Statistic\ShowStatisticSettingAction::class)->name('ShowStatisticSetting');
     //統計自体の更新
     Route::post('/statistic/create/all', \App\Http\Actions\Statistic\CreateAllStatisticAction::class)->name('CreateAllStatistic');
     Route::post('/statistic/update/all', \App\Http\Actions\Statistic\UpdateAllStatisticAction::class)->name('UpdateAllStatistic');
     //customNERまわり
-    Route::post('/statistics/settings/named_entity/custom/create',  \App\Http\Actions\CustomNER\CreateCNERAction::class)->name('createCustomNamedEntity');
-    Route::post('/statistics/settings/named_entity/custom/update',  \App\Http\Actions\CustomNER\UpdateCNERAction::class)->name('updateCustomNamedEntity');
-    Route::post('/statistics/settings/named_entity/custom/delete',  \App\Http\Actions\CustomNER\DeleteCNERAction::class)->name('deleteCustomNamedEntity');
+    Route::post('/statistics/settings/named_entity/custom/create',  \App\Http\Actions\CustomNER\CreateCNERAction::class)->name('CreateCNER');
+    Route::post('/statistics/settings/named_entity/custom/update',  \App\Http\Actions\CustomNER\UpdateCNERAction::class)->name('UpdateCNER');
+    Route::post('/statistics/settings/named_entity/custom/delete',  \App\Http\Actions\CustomNER\DeleteCNERAction::class)->name('DeleteCNER');
     //固有表現のインポート・エクスポートを検討
 
     //ユーザーのパッケージ周り
-    Route::post('/statistics/settings/packages/use',  \App\Http\Actions\NlpPackageUser\UsePackageAction::class)->name('UsePackages');
-    Route::post('/statistics/settings/packages/release',  \App\Http\Actions\NlpPackageUser\ReleasePackageAction::class)->name('ReleasePackages');
+    Route::post('/statistics/settings/packages/use',  \App\Http\Actions\NlpPackageUser\UsePackageAction::class)->name('UsePackage');
+    Route::post('/statistics/settings/packages/release',  \App\Http\Actions\NlpPackageUser\ReleasePackageAction::class)->name('ReleasePackage');
 
     //ユーザー通知周り→bladeで使用
-    Route::post('/notification/user_rank/remove',  \App\Http\Actions\User\Notification\RemoveUserRankNoticeAction::class)->name('removeUser_rankInfo');
-    Route::post('/notification/osirase/remove',  \App\Http\Actions\User\Notification\RemoveOsiraseNoticeAction::class)->name('removeOsiraseInfo');
-    Route::post('/notification/releasenote/remove',  \App\Http\Actions\User\Notification\RemoveReleaseNoteNoticeAction::class)->name('removeReleasenoteInfo');
+    Route::post('/notification/user_rank/remove',  \App\Http\Actions\User\Notification\RemoveUserRankNoticeAction::class)->name('RemoveUserRankInfo');
+    Route::post('/notification/osirase/remove',  \App\Http\Actions\User\Notification\RemoveOsiraseNoticeAction::class)->name('RemoveOsiraseInfo');
+    Route::post('/notification/releasenote/remove',  \App\Http\Actions\User\Notification\RemoveReleaseNoteNoticeAction::class)->name('RemoveReleasenoteInfo');
 
 
     /**
@@ -133,37 +133,37 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
         Route::get('/administrator/role_rank', \App\Http\Actions\ShowAdminRoleRankAction::class)->name('ShowAdminRoleRank');
 
         //パッケージ名前系
-        Route::post('/administrator/settings/packages/create', \App\Http\Actions\NlpPackageName\CreatePackageNameAction::class)->name('createPackages');
-        Route::post('/administrator/settings/packages/update', \App\Http\Actions\NlpPackageName\UpdatePackageNameAction::class)->name('updatePackages');
-        Route::post('/administrator/settings/packages/delete',  \App\Http\Actions\NlpPackageName\DeletePackageNameAction::class)->name('deletePackages');
+        Route::post('/administrator/settings/packages/create', \App\Http\Actions\NlpPackageName\CreatePackageNameAction::class)->name('CreatePackageName');
+        Route::post('/administrator/settings/packages/update', \App\Http\Actions\NlpPackageName\UpdatePackageNameAction::class)->name('UpdatePackageName');
+        Route::post('/administrator/settings/packages/delete',  \App\Http\Actions\NlpPackageName\DeletePackageNameAction::class)->name('DeletePackageName');
         //パッケージジャンル
-        Route::post('/administrator/settings/packages/genre/create',  \App\Http\Actions\NlpPackageGenre\CreatePackageGenreAction::class)->name('createPackagesGenre');
-        Route::post('/administrator/settings/packages/genre/update',  \App\Http\Actions\NlpPackageGenre\UpdatePackageGenreAction::class)->name('updatePackagesGenre');
-        Route::post('/administrator/settings/packages/genre/delete',  \App\Http\Actions\NlpPackageGenre\DeletePackageGenreAction::class)->name('deletePackagesGenre');
+        Route::post('/administrator/settings/packages/genre/create',  \App\Http\Actions\NlpPackageGenre\CreatePackageGenreAction::class)->name('CreatePackageGenre');
+        Route::post('/administrator/settings/packages/genre/update',  \App\Http\Actions\NlpPackageGenre\UpdatePackageGenreAction::class)->name('UpdatePackageGenre');
+        Route::post('/administrator/settings/packages/genre/delete',  \App\Http\Actions\NlpPackageGenre\DeletePackageGenreAction::class)->name('DeletePackageGenre');
 
         //packageNERまわり
-        Route::post('/statistics/settings/named_entity/package/create',  \App\Http\Actions\PackageNER\CreatePNERAction::class)->name('createPackageNamedEntity');
-        Route::post('/statistics/settings/named_entity/package/update',  \App\Http\Actions\PackageNER\UpdatePNERAction::class)->name('updatePackageNamedEntity');
-        Route::post('/statistics/settings/named_entity/package/delete',  \App\Http\Actions\PackageNER\DeletePNERAction::class)->name('deletePackageNamedEntity');
+        Route::post('/statistics/settings/named_entity/package/create',  \App\Http\Actions\PackageNER\CreatePNERAction::class)->name('CreatePNERAction');
+        Route::post('/statistics/settings/named_entity/package/update',  \App\Http\Actions\PackageNER\UpdatePNERAction::class)->name('UpdatePNERAction');
+        Route::post('/statistics/settings/named_entity/package/delete',  \App\Http\Actions\PackageNER\DeletePNERAction::class)->name('DeletePNERAction');
 
         //お知らせまわり
-        Route::post('/administrator/settings/osirase/create',  \App\Http\Actions\Osirase\CreateOsiraseAction::class)->name('createOsirase');
-        Route::post('/administrator/settings/osirase/update',  \App\Http\Actions\Osirase\UpdateOsiraseAction::class)->name('updateOsirase');
-        Route::post('/administrator/settings/osirase/delete',  \App\Http\Actions\Osirase\DeleteOsiraseAction::class)->name('deleteOsirase');
+        Route::post('/administrator/settings/osirase/create',  \App\Http\Actions\Osirase\CreateOsiraseAction::class)->name('CreateOsirase');
+        Route::post('/administrator/settings/osirase/update',  \App\Http\Actions\Osirase\UpdateOsiraseAction::class)->name('UpdateOsirase');
+        Route::post('/administrator/settings/osirase/delete',  \App\Http\Actions\Osirase\DeleteOsiraseAction::class)->name('DeleteOsirase');
 
         //リリースノートまわり
-        Route::post('/administrator/settings/releasenote/create',  \App\Http\Actions\ReleaseNote\CreateReleaseNoteAction::class)->name('createReleasenote');
-        Route::post('/administrator/settings/releasenote/update',  \App\Http\Actions\ReleaseNote\UpdateReleaseNoteAction::class)->name('updateReleasenote');
-        Route::post('/administrator/settings/releasenote/delete',  \App\Http\Actions\ReleaseNote\DeleteReleaseNoteAction::class)->name('deleteReleasenote');
+        Route::post('/administrator/settings/releasenote/create',  \App\Http\Actions\ReleaseNote\CreateReleaseNoteAction::class)->name('CreateReleaseNote');
+        Route::post('/administrator/settings/releasenote/update',  \App\Http\Actions\ReleaseNote\UpdateReleaseNoteAction::class)->name('UpdateReleaseNote');
+        Route::post('/administrator/settings/releasenote/delete',  \App\Http\Actions\ReleaseNote\DeleteReleaseNoteAction::class)->name('DeleteReleaseNote');
 
         //ユーザーロールまわり
-        Route::post('/administrator/settings/user/role/create',  \App\Http\Actions\UserRole\CreateUserRoleAction::class)->name('createUser_role');
-        Route::post('/administrator/settings/user/role/update',  \App\Http\Actions\UserRole\UpdateUserRoleAction::class)->name('updateUser_role');
-        Route::post('/administrator/settings/user/role/delete',  \App\Http\Actions\UserRole\DeleteUserRoleAction::class)->name('deleteUser_role');
+        Route::post('/administrator/settings/user/role/create',  \App\Http\Actions\UserRole\CreateUserRoleAction::class)->name('CreateUserRole');
+        Route::post('/administrator/settings/user/role/update',  \App\Http\Actions\UserRole\UpdateUserRoleAction::class)->name('UpdateUserRole');
+        Route::post('/administrator/settings/user/role/delete',  \App\Http\Actions\UserRole\DeleteUserRoleAction::class)->name('DeleteUserRole');
 
         //ユーザーランクまわり
-        Route::post('/administrator/settings/user/rank/create',  \App\Http\Actions\UserRank\CreateUserRankAction::class)->name('createUser_rank');
-        Route::post('/administrator/settings/user/rank/update',  \App\Http\Actions\UserRank\UpdateUserRankAction::class)->name('updateUser_rank');
-        Route::post('/administrator/settings/user/rank/delete',  \App\Http\Actions\UserRank\DeleteUserRankAction::class)->name('deleteUser_rank');
+        Route::post('/administrator/settings/user/rank/create',  \App\Http\Actions\UserRank\CreateUserRankAction::class)->name('CreateUserRank');
+        Route::post('/administrator/settings/user/rank/update',  \App\Http\Actions\UserRank\UpdateUserRankAction::class)->name('UpdateUserRank');
+        Route::post('/administrator/settings/user/rank/delete',  \App\Http\Actions\UserRank\DeleteUserRankAction::class)->name('DeleteUserRank');
     });
 });

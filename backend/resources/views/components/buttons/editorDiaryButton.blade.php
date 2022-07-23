@@ -1,5 +1,5 @@
 <div class="flex justify-center items-center mb-10">
-    <form class="delete-button  " method="POST" action="/delete">
+    <form class="delete-button  " method="POST" action="{{route('DeleteDiary')}}">
         @csrf
         <input type="hidden" value="{{$delete_uuid}}" name="uuid">
         <button type="submit" class="bg-kn_poor rounded-sm ">

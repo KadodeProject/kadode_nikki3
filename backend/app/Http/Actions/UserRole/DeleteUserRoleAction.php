@@ -15,6 +15,6 @@ final class DeleteUserRoleAction extends Controller
     public function __invoke(Request $request): Redirector|RedirectResponse
     {
         User_role::where('id', $request->user_role_id)->delete();
-        return redirect('administrator/role_rank');
+        return redirect(route('ShowAdminRoleRank'));
     }
 }

@@ -31,6 +31,6 @@ final class CreateOsiraseAction extends Controller
         //ユーザー通知のフラグをオンにする
         User::where('id', '!=', 0)->update(["is_showed_service_info" => 0]);
 
-        return redirect('administrator/notification');
+        return redirect(route('ShowAdminNotification') . '#osirase');
     }
 }

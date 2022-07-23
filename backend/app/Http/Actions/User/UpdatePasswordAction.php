@@ -24,6 +24,6 @@ final class UpdatePasswordAction extends Controller
         User::where("id", $user_id)->update([
             "password" => Hash::make($request->password),
         ]);
-        return redirect("/security");
+        return redirect(route('ShowSecurity'));
     }
 }

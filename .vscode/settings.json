@@ -1,12 +1,15 @@
 {
     "cSpell.words": [
+        "CNER",
         "kadode",
         "nikki",
         "osirase",
         "osirases",
+        "PNER",
         "Redirector",
         "releasenote",
-        "releasenotes"
+        "releasenotes",
+        "Tukini"
     ],
     //psr12の自動整形のための設定↓
     "[php]": {

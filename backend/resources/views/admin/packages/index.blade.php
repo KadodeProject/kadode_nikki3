@@ -36,7 +36,7 @@
                 @endphp
                 {{-- 追加 --}}
                 <tr>
-                    <form class="" method="POST" action="/administrator/settings/packages/create">
+                    <form class="" method="POST" action="{{route('CreatePackageName')}}">
                         @csrf
                         <td>
                             -
@@ -84,7 +84,7 @@
                 $i+=1;
                 @endphp
                 <tr>
-                    <form class="" method="POST" action="/administrator/settings/packages/update">
+                    <form class="" method="POST" action="{{route('UpdatePackageName')}}">
                         @csrf
                         <input type="hidden" name="NlpPackageName_id" value="{{$packageObj->id}}">
                         <td>
@@ -124,13 +124,14 @@
                             </select>
                         </td>
                         <td>
-                            <a class="bg-kn_2 p-2 rounded-2xl" href="{{url("/administrator/package/".$packageObj->id)}}">編集</a>
+                            <a class="bg-kn_2 p-2 rounded-2xl"
+                                href="{{route('ShowAdminIndividualPackage',['packageId'=>$packageObj->id])}}">編集</a>
                         </td>
                         <td>
                             <input type="submit" id="submitNlpPackageName_{{$i}}" class="text-black bg-kn_2" value="変更">
                         </td>
                     </form>
-                    <form class="" method="POST" action="/administrator/settings/packages/delete">
+                    <form class="" method="POST" action="{{route('DeletePackageName')}}">
                         @csrf
                         <td>
                             <input type="hidden" name="NlpPackageName_id" value="{{$packageObj->id}}">
@@ -186,7 +187,7 @@
                 @endphp
                 {{-- 追加 --}}
                 <tr>
-                    <form class="" method="POST" action="/administrator/settings/packages/genre/create">
+                    <form class="" method="POST" action="{{route('CreatePackageGenre')}}">
                         @csrf
                         <td>
                             -
@@ -215,7 +216,7 @@
                 $i+=1;
                 @endphp
                 <tr>
-                    <form class="" method="POST" action="/administrator/settings/packages/genre/update">
+                    <form class="" method="POST" action="{{route('UpdatePackageGenre')}}">
                         @csrf
                         <input type="hidden" name="NlpPackageGenre_id" value="{{$PackageGenre->id}}">
                         <td>
@@ -235,7 +236,7 @@
                             <input type="submit" id="submitNlpPackageName_{{$i}}" class="text-black bg-kn_2" value="変更">
                         </td>
                     </form>
-                    <form class="" method="POST" action="/administrator/settings/packages/genre/delete">
+                    <form class="" method="POST" action="{{route('DeletePackageGenre')}}">
                         @csrf
                         <td>
                             <input type="hidden" name="NlpPackageGenre_id" value="{{$PackageGenre->id}}">

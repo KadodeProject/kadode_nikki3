@@ -46,7 +46,7 @@ return $config
         'phpdoc_align' => [
             'align' => 'left',
         ],
-        'not_operator_with_successor_space' => true,
+        'not_operator_with_successor_space' => false,
         'blank_line_after_namespace' => true,
         'final_class' => false,
         'date_time_immutable' => true,

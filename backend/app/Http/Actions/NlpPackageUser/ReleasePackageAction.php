@@ -16,6 +16,6 @@ final class ReleasePackageAction extends Controller
     public function __invoke(Request $request): Redirector|RedirectResponse
     {
         NlpPackageUser::where('user_id', Auth::id())->where('package_id', $request->package_id)->delete();
-        return redirect('statistics/settings');
+        return redirect(route('ShowStatisticSetting'));
     }
 }

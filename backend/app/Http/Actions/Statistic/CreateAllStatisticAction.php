@@ -45,6 +45,6 @@ class CreateAllStatisticAction extends Controller
          */
         $this->throwPythonNLP->invoke($userId, false, false);
 
-        return redirect("statistics/home");
+        return redirect(route('ShowStatistic'));
     }
 }

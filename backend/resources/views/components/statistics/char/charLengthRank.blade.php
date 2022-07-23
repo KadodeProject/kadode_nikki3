@@ -17,7 +17,9 @@
             <p class="kiwi-maru flex items-center"><span class="material-icons pr-2" style="font-size:0.9em;">
                     schedule
                 </span><span>{{$diary->date->format("Y年n月j日")}}</span></p>
-            <h3 class="kiwi-maru text-3xl"><a href="{{url("edit/".$diary->uuid)}}">「{{$diary->title==""?"タイトルなし":$diary->title }}」</a></h3>
+            <h3 class="kiwi-maru text-3xl"><a
+                    href="{{route('ShowSingleDiary',['uuid'=>$diary->uuid])}}">「{{$diary->title==""?"タイトルなし":$diary->title
+                    }}」</a></h3>
         </div>
     </div>
     @endforeach

@@ -22,56 +22,56 @@ class ShowLoginTest extends TestCase
     {
         $user = User::where('id', 10)->first();
         $response = $this->actingAs($user);
-        $response->get('/home')->assertStatus(200);
+        $response->get(route('ShowHome'))->assertStatus(200);
     }
     /** */
     public function testログイン済みユーザーなら日記作成見れる()
     {
         $user = User::where('id', 10)->first();
         $response = $this->actingAs($user);
-        $response->get('/edit')->assertStatus(200);
+        $response->get(route('ShowCreateDiary'))->assertStatus(200);
     }
     /** */
     public function testログイン済みユーザーならアーカイブ見れる()
     {
         $user = User::where('id', 10)->first();
         $response = $this->actingAs($user);
-        $response->get('/diary/2022/5')->assertStatus(200);
+        $response->get(route('ShowMonthDiary', ['year' => "2020", 'month' => "5"]))->assertStatus(200);
     }
     /** */
     public function testログイン済みユーザーなら検索見れる()
     {
         $user = User::where('id', 10)->first();
         $response = $this->actingAs($user);
-        $response->get('/search')->assertStatus(200);
+        $response->get(route('ShowSimpleSearch'))->assertStatus(200);
     }
     /** */
     public function testログイン済みユーザーなら統計見れる()
     {
         $user = User::where('id', 10)->first();
         $response = $this->actingAs($user);
-        $response->get('/statistics/home')->assertStatus(200);
+        $response->get(route('ShowStatistic'))->assertStatus(200);
     }
     /** */
     public function testログイン済みユーザーなら統計設定見れる()
     {
         $user = User::where('id', 10)->first();
         $response = $this->actingAs($user);
-        $response->get('/statistics/settings')->assertStatus(200);
+        $response->get(route('ShowStatisticSetting'))->assertStatus(200);
     }
     /** */
     public function testログイン済みユーザーなら設定見れる()
     {
         $user = User::where('id', 10)->first();
         $response = $this->actingAs($user);
-        $response->get('/settings')->assertStatus(200);
+        $response->get(route('ShowSetting'))->assertStatus(200);
     }
     /** */
     public function testログイン済みユーザーならセキュリティページで再パスワード要求される()
     {
         $user = User::where('id', 10)->first();
         $response = $this->actingAs($user);
-        $response->get('/security')->assertStatus(302);
+        $response->get(route('ShowSecurity'))->assertStatus(302);
     }
 
     /**
@@ -89,27 +89,27 @@ class ShowLoginTest extends TestCase
     {
         $user = User::where('id', 1)->first();
         $response = $this->actingAs($user);
-        $response->get('/administrator')->assertStatus(200);
+        $response->get(route('ShowAdminHome'))->assertStatus(200);
     }
     /** */
     public function test管理ユーザーならパッケージ管理ページ行ける()
     {
         $user = User::where('id', 1)->first();
         $response = $this->actingAs($user);
-        $response->get('/administrator/package')->assertStatus(200);
+        $response->get(route('ShowAdminPackage'))->assertStatus(200);
     }
     /** */
     public function test管理ユーザーなら通知管理ページ行ける()
     {
         $user = User::where('id', 1)->first();
         $response = $this->actingAs($user);
-        $response->get('/administrator/notification')->assertStatus(200);
+        $response->get(route('ShowAdminNotification'))->assertStatus(200);
     }
     /** */
     public function test管理ユーザーならロールとランク管理ページ行ける()
     {
         $user = User::where('id', 1)->first();
         $response = $this->actingAs($user);
-        $response->get('/administrator/role_rank')->assertStatus(200);
+        $response->get(route('ShowAdminRoleRank'))->assertStatus(200);
     }
 }

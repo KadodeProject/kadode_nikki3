@@ -12,7 +12,7 @@ use Illuminate\Routing\Redirector;
 
 final class UpdateDiaryAction extends Controller
 {
-    public function __invoke(Request $request):Redirector|RedirectResponse
+    public function __invoke(Request $request): Redirector|RedirectResponse
     {
         // 日付のバリデーション→既に存在する日付ならエラー返す
         // バリデーション
@@ -24,6 +24,6 @@ final class UpdateDiaryAction extends Controller
             "date" => $request->date,
         ];
         Diary::where('uuid', $request->uuid)->update($updateContent);
-        return redirect('home');
+        return redirect(route('ShowHome'));
     }
 }

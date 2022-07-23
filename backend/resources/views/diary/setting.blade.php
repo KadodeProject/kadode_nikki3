@@ -9,7 +9,7 @@
     <div class="setting">
         @include('components.settingHeading',['title'=>'セキュリティ',])
         <p class="text-center">※セキュリティ関連は下記へ移動しました。</p>
-        <p class="text-3xl text-center mx-4 my-4 kiwi-maru"><a href="{{url("/security")}}"><span
+        <p class="text-3xl text-center mx-4 my-4 kiwi-maru"><a href="{{route('ShowSecurity')}}"><span
                     class="material-icons">vpn_key</span>セキュリティ</a></p>
     </div>
     <div class="setting">
@@ -689,7 +689,7 @@
                 <h4 class="text-xl text-center mt-4">かどで日記形式の<br class="md:hidden">CSVファイル</h4>
                 <p class="text-sm text-center mb-4">かどで日記からエクスポートしていないものは動作保証外です</p>
                 <form class="text-center flex justify-center flex-wrap flex-col " method="POST"
-                    enctype="multipart/form-data" action="/import/diary/kadode">
+                    enctype="multipart/form-data" action="{{route('ImportFromKadodeCsv')}}">
                     {{-- エラー --}}
                     @if($errors->has('kadodeCsv'))
                     <p class="text-red-500 kiwi-maru">
@@ -711,7 +711,7 @@
                 <h4 class="text-xl text-center mt-4">月に書く日記形式の<br class="md:hidden">txtファイル</h4>
                 <p class="text-sm text-center mb-4">月に書く日記からエクスポートしていないものは動作保証外です</p>
                 <form class="text-center flex justify-center flex-wrap flex-col " method="POST"
-                    enctype="multipart/form-data" action="/import/diary/tukini">
+                    enctype="multipart/form-data" action="{{route('ImportFromTukiniTxt')}}">
                     {{-- エラー --}}
                     @if($errors->has('tukiniTxt'))
                     <p class="text-red-500 kiwi-maru">
@@ -735,7 +735,7 @@
         @include('components.settingHeading',['title'=>'日記のエクスポート'])
         <p class="text-sm text-center kiwi-maru">※エクスポート時に文字コードをutf-8からWindows-31J(拡張Shift-JIS)に変換してCSVを作成します</p>
         <div class="settingContentWrapper">
-            <form class="flex justify-center flex-wrap flex-col " method="POST" action="/export/diary">
+            <form class="flex justify-center flex-wrap flex-col " method="POST" action="{{route('ExportByCsv')}}">
                 @csrf
                 <input type="submit" class="text-black px-2 md:w-1/2 w-full mx-auto bg-kn_2" value="csv形式でエクスポート">
             </form>
@@ -745,7 +745,7 @@
     <div class="setting">
         @include('components.settingHeading',['title'=>'各種操作'])
 
-        <form class="flex justify-center flex-wrap flex-col my-2" method="POST" action="/logout">
+        <form class="flex justify-center flex-wrap flex-col my-2" method="POST" action="{{route('logout')}}">
             @csrf
             <input type="submit" class="text-black bg-kn_good md:w-1/2 w-full mx-auto" value="ログアウト">
         </form>
@@ -756,7 +756,7 @@
     <div class="setting">
         @include('components.settingHeading',['title'=>'Danger Zone'])
         <p class="text-xl text-red-500 kiwi-maru text-center">！！一度削除すると復元できません。日記も統計データも全て削除されます。ご注意ください！！</p>
-        <form class="flex justify-center flex-wrap flex-col" method="POST" action="/deleteUser">
+        <form class="flex justify-center flex-wrap flex-col" method="POST" action="{{route('DeleteUser')}}">
             @csrf
             <input type="submit" class="text-black bg-kn_poor md:w-1/2 w-full mx-auto" value="アカウント削除">
         </form>

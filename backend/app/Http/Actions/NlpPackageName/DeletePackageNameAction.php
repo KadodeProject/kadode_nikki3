@@ -15,6 +15,6 @@ final class DeletePackageNameAction extends Controller
     public function __invoke(Request $request): Redirector|RedirectResponse
     {
         NlpPackageName::where('id', $request->NlpPackageName_id)->delete();
-        return redirect('administrator/package');
+        return redirect(route('ShowAdminPackage'));
     }
 }

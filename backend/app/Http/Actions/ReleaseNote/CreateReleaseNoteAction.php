@@ -31,6 +31,6 @@ final class CreateReleaseNoteAction extends Controller
         //ユーザー通知のフラグをオンにする
         User::where('id', '!=', 0)->update(["is_showed_update_system_info" => 0]);
 
-        return redirect('administrator/notification');
+        return redirect(route('ShowAdminNotification') . '#releaseNote');
     }
 }

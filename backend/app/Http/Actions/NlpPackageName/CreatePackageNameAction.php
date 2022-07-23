@@ -28,6 +28,6 @@ final class CreatePackageNameAction extends Controller
         ];
 
         NlpPackageName::create($form);
-        return redirect('administrator/package');
+        return redirect(route('ShowAdminPackage'));
     }
 }
