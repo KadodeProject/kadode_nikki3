@@ -134,20 +134,20 @@ final class ShowHomeAction extends Controller
         $new_infos = [];
 
 
-        if (! $user->is_showed_service_info) {
+        if (!$user->is_showed_service_info) {
             //お知らせ取得
             $osirase = Osirase::where("id", "!=", 0)->orderBy('date', 'desc')->first(['title', 'date']);
-            $new_infos[] = ["url" => "/osirase", "type" => "osirase", "bg_color" => "51, 118, 156", "title" => $osirase->title, "date" => $osirase->date];
+            $new_infos[] = ["url" => "/osirase", "actionUrl" => route('RemoveOsiraseInfo'), "bg_color" => "51, 118, 156", "title" => $osirase->title, "date" => $osirase->date];
         }
-        if (! $user->is_showed_update_system_info) {
+        if (!$user->is_showed_update_system_info) {
             // リリースノート取得
             $releasenote = Releasenote::where("id", "!=", 0)->orderBy('date', 'desc')->first(['title', 'date']);
-            $new_infos[] = ["url" => "/releaseNote", "type" => "releasenote", "bg_color" => "51, 156, 118", "title" => $releasenote->title, "date" => $releasenote->date];
+            $new_infos[] = ["url" => "/releaseNote", "actionUrl" => route('RemoveReleasenoteInfo'), "bg_color" => "51, 156, 118", "title" => $releasenote->title, "date" => $releasenote->date];
         }
-        if (! $user->is_showed_update_user_rank) {
+        if (!$user->is_showed_update_user_rank) {
             // ユーザーランク取得
             $user_rank = User_rank::where("id", $user->user_rank_id)->first(['name']);
-            $new_infos[] = ["url" => "/settings", "type" => "user_rank", "bg_color" => "226, 83, 74", "title" => "ユーザーランクが「" . $user_rank->name . "」になりました！", "date" => $user->user_rank_updated_at];
+            $new_infos[] = ["url" => "/settings", "actionUrl" => route('RemoveUserRankInfo'), "bg_color" => "226, 83, 74", "title" => "ユーザーランクが「" . $user_rank->name . "」になりました！", "date" => $user->user_rank_updated_at];
         }
 
 

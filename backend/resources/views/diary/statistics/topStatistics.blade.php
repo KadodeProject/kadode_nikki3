@@ -19,7 +19,8 @@
                     あなたの日記は{{$number_of_nikki}}件です。統計に必要な最低限の日記数を下回っています。<br>日記 が30件を超えるとご利用いただけるようになります。</p>
                     @else
                     <p class="text-xs mt-4 mb-2">日記数が少ない場合は正しくデータを表示できないことがありますのでご了承ください。</p>
-                    <form class="flex justify-center flex-wrap flex-col " method="POST" action="/statistic/create/all">
+                    <form class="flex justify-center flex-wrap flex-col " method="POST"
+                        action="{{route('CreateAllStatistic')}}">
                         @csrf
                         <input type="submit" class="text-black bg-kn_2" value="統計データを生成する">
                     </form>
@@ -67,7 +68,8 @@
                 @if($number_of_nikki<30) <p class="text-xl my-2 text-center kiwi-maru">
                     あなたの日記は{{$number_of_nikki}}件です。統計に必要な最低限の日記数を下回っています。<br>日記 が30件を超えるとご利用いただけるようになります。</p>
                     @else
-                    <form class="flex justify-center flex-wrap flex-col " method="POST" action="/statistic/update/all">
+                    <form class="flex justify-center flex-wrap flex-col " method="POST"
+                        action="{{route('UpdateAllStatistic')}}">
                         @csrf
                         <input type="submit" class="text-black bg-kn_2" value="統計データを更新する">
                     </form>

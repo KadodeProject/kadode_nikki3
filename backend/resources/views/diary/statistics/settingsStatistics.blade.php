@@ -27,7 +27,7 @@
                 @if (in_array($packageObj->id,$havingPackageList))
                 {{-- 削除のボタン表示 --}}
 
-                <form class=" text-right" method="POST" action="/statistics/settings/packages/release">
+                <form class=" text-right" method="POST" action="{{route('ReleasePackage')}}">
                     @csrf
                     <td>
                         <input type="hidden" name="package_id" value="{{$packageObj->id}}">
@@ -37,7 +37,7 @@
 
                 @else
                 {{-- 登録のボタン表示 --}}
-                <form class=" text-right" method="POST" action="/statistics/settings/packages/use">
+                <form class=" text-right" method="POST" action="{{route('UsePackage')}}">
                     @csrf
                     <td>
                         <input type="hidden" name="package_id" value="{{$packageObj->id}}">
@@ -110,7 +110,7 @@
                 @endphp
                 {{-- 追加 --}}
                 <tr>
-                    <form class="" method="POST" action="/statistics/settings/named_entity/custom/create">
+                    <form class="" method="POST" action="{{route('CreateCNER')}}">
                         @csrf
                         <td>
                             -
@@ -142,7 +142,7 @@
                 $i+=1;
                 @endphp
                 <tr>
-                    <form class="" method="POST" action="/statistics/settings/named_entity/custom/update">
+                    <form class="" method="POST" action="{{route('UpdateCNER')}}">
                         @csrf
                         <input type="hidden" name="customNER_id" value="{{$NER->id}}">
                         <td>
@@ -167,7 +167,7 @@
                             <input type="submit" id="submitCustomNER_{{$i}}" class="text-black bg-kn_2" value="変更">
                         </td>
                     </form>
-                    <form class="" method="POST" action="/statistics/settings/named_entity/custom/delete">
+                    <form class="" method="POST" action="{{route('DeleteCNER')}}">
                         @csrf
                         <td>
                             <input type="hidden" name="customNER_id" value="{{$NER->id}}">
@@ -196,7 +196,7 @@
         <div class="mt-12 mb-4">
             <p class="text-sm text-center mb-4 kiwi-maru">かどで日記からエクスポートしていないものは動作保証外です</p>
             <form class="text-center flex justify-center flex-wrap flex-col " method="POST"
-                enctype="multipart/form-data" action="/import/diary/kadode">
+                enctype="multipart/form-data" action="{{route('ImportFromKadodeCsv')}}">
                        {{-- エラーの表示 --}}
         <ul class="text-red-500 kiwi-maru text-center">
             @if($errors->has('kadodeCsv'))
@@ -223,7 +223,7 @@
         <div class="mt-12 mb-4">
             <p class="text-sm text-center kiwi-maru">※エクスポート時に文字コードをutf-8からWindows-31J(拡張Shift-JIS)に変換してCSVを作成します
             </p>
-            <form class="flex justify-center flex-wrap flex-col " method="POST" action="/export/statistics/namedEntity">
+            <form class="flex justify-center flex-wrap flex-col " method="POST" >
                 @csrf
                 <input type="submit" class="text-black px-2 md:w-1/2 w-full mx-auto bg-kn_2" value="csv形式でエクスポート">
             </form>

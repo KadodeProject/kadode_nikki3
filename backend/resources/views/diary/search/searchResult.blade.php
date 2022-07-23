@@ -18,7 +18,8 @@
         </p>
         @endif
         <div class="search-form my-12 flex justify-center">
-            <form class="move-label-wrapper flex items-center flex-col flex-wrap " method="POST" action="/search">
+            <form class="move-label-wrapper flex items-center flex-col flex-wrap " method="POST"
+                action="{{route('SimpleSearch')}}">
                 @csrf
                 <p class="text-xl sm:text-left text-center kiwi-maru">キーワード検索</p>
                 <div>
@@ -40,7 +41,8 @@
     </p>
     @endif
     <div class="search-form my-12 flex justify-center">
-        <form class="move-label-wrapper flex items-center flex-col flex-wrap " method="POST" action="/search">
+        <form class="move-label-wrapper flex items-center flex-col flex-wrap " method="POST"
+            action="{{route('SimpleSearch')}}">
             @csrf
             <p class="text-xl sm:text-left text-center kiwi-maru">キーワード検索</p>
             <div>

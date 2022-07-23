@@ -34,7 +34,7 @@
 
         <div class="flex justify-start items-center my-4 flex-wrap">
             <p class="text-xl mr-4">ユーザー名変更</p>
-            <form class="flex justify-center flex-wrap flex-col " method="POST" action="/updateUserName">
+            <form class="flex justify-center flex-wrap flex-col " method="POST" action="{{route('ChangeUserName')}}">
                 {{-- エラー --}}
                 @if($errors->has('name'))
                 <p class="text-red-500 kiwi-maru">
@@ -51,7 +51,7 @@
         </div>
         <div class="flex justify-start items-center my-4  flex-wrap ">
             <p class="text-xl mr-4">メールアドレス変更</p>
-            <form class="flex justify-center flex-wrap flex-col " method="POST" action="/updateEmail">
+            <form class="flex justify-center flex-wrap flex-col " method="POST" action="{{route('ChangeEmail')}}">
                 {{-- エラー --}}
                 @if($errors->has('email'))
                 <p class="text-red-500 kiwi-maru">
@@ -68,7 +68,7 @@
         </div>
         <div class="flex justify-start items-center my-4 flex-wrap">
             <p class="text-xl mr-4">パスワード変更</p>
-            <form class="flex justify-center flex-wrap flex-col " method="POST" action="/updatePassWord">
+            <form class="flex justify-center flex-wrap flex-col " method="POST" action="{{route('ChangePassWord')}}">
                 {{-- エラー --}}
                 @if($errors->has('password'))
                 <p class="text-red-500 kiwi-maru">

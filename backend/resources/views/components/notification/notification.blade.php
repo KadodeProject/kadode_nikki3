@@ -5,7 +5,8 @@
     status-poor --}}
     {{-- <p class="text-center">{{$date->format('Y年n月j日')}}</p> --}}
 
-    <form class="w-12" method="POST" action="/notification/{{$type}}/remove">
+    {{-- $remove_typeの時点でroute()の値が入っているため問題なし --}}
+    <form class="w-12" method="POST" action="{{$actionUrl}}">
         @csrf
         <input type="submit" class="text-black material-icons " style="background-color:inherit" value="highlight_off">
     </form>

@@ -70,7 +70,7 @@
     <div class="flex justify-center ">
         <div class="flex justify-end items-end sm:mb-4 sm:mr-8 mb-2">
 
-            <form class="move-label-wrapper flex" method="POST" action="/search">
+            <form class="move-label-wrapper flex" method="POST" action="{{route('SimpleSearch')}}">
 
                 @if($errors->has('keyword'))
                 {{-- エラーの表示 --}}

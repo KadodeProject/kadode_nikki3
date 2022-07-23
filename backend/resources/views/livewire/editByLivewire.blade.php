@@ -36,7 +36,7 @@
         <div class="order-3 md:order-2 ">
             @component('components.diary.submitForm')
             @slot("db_method")
-            update
+            {{route('UpdateDiary')}}
             @endslot
             @slot("original_uuid")
             {{$diary->uuid}}

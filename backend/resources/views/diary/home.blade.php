@@ -19,8 +19,9 @@
         @slot("url")
         {{$new_info["url"]}}
         @endslot
-        @slot("type")
-        {{$new_info["type"]}}
+        @slot("actionUrl")
+        {{-- この時点でroute()の値が入っている(Controllerで設定) --}}
+        {{$new_info["actionUrl"]}}
         @endslot
         @slot("date")
         {{$new_info["date"]->format('Y年n月j日')}}
@@ -66,7 +67,7 @@
             {{-- 今日の日記無いときは、日記フォームを表示 --}}
             @component('components.diary.submitForm')
             @slot("db_method")
-            create
+            {{route('CreateDiary')}}
             @slot("original_uuid")
             @endslot
             @endslot
@@ -84,7 +85,7 @@
             {{-- 今日の日記あるときも、日記枠を表示 --}}
             @component('components.diary.submitForm')
             @slot("db_method")
-            update
+            {{route('UpdateDiary')}}
             @endslot
             @slot("original_uuid")
             {{$today->uuid}}

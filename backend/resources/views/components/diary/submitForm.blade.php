@@ -1,7 +1,6 @@
 <div>
-
-
-    <form class="flex justify-center flex-wrap flex-col " method="POST" action="/{{$db_method}}">
+    {{-- ここのactionは使われる親の時点でroute()をよびだしているため、このままで問題なし --}}
+    <form class="flex justify-center flex-wrap flex-col " method="POST" action="{{$db_method}}">
         @if(count($errors)>0)
         {{-- バリデーションエラーのとき --}}
         {{-- エラー前に書いていたフォームの保持 --}}
