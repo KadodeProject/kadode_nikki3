@@ -12,49 +12,49 @@ class ShowNoLoginTest extends TestCase
     /** */
     public function testトップページの表示()
     {
-        $response = $this->get('/');
+        $response = $this->get(route('ShowTop'));
         $response->assertStatus(200);
     }
     /** */
     public function testリリースノートの表示()
     {
-        $response = $this->get('/releaseNote');
+        $response = $this->get(route('ShowReleaseNote'));
         $response->assertStatus(200);
     }
     /** */
     public function testお知らせの表示()
     {
-        $response = $this->get('/osirase');
+        $response = $this->get(route('ShowOsirase'));
         $response->assertStatus(200);
     }
     /** */
     public function testプライバシーポリシーの表示()
     {
-        $response = $this->get('/privacyPolicy');
+        $response = $this->get(route('ShowPrivacyPolicy'));
         $response->assertStatus(200);
     }
     /** */
     public function test利用規約の表示()
     {
-        $response = $this->get('/terms');
+        $response = $this->get(route('ShowTerms'));
         $response->assertStatus(200);
     }
     /** */
     public function testこのサイトについて表示()
     {
-        $response = $this->get('/aboutThisSite');
+        $response = $this->get(route('ShowAboutThisSite'));
         $response->assertStatus(200);
     }
     /** */
     public function testお問い合わせの表示()
     {
-        $response = $this->get('/contact');
+        $response = $this->get(route('ShowContact'));
         $response->assertStatus(200);
     }
     /** */
     public function testティーポットエラーの表示()
     {
-        $response = $this->get('/teapot');
+        $response = $this->get(route('ShowTeapot'));
         $response->assertStatus(418);
     }
     /** */
@@ -66,7 +66,7 @@ class ShowNoLoginTest extends TestCase
     /** */
     public function testログインしないと見れないページならログインを要求()
     {
-        $response = $this->get('/home');
+        $response = $this->get(route('ShowHome'));
         $response->assertRedirect(route('login'));
     }
 }
