@@ -12,9 +12,9 @@ use Illuminate\Routing\Redirector;
 
 final class DeleteDiaryAction extends Controller
 {
-    public function __invoke(Request $request):Redirector|RedirectResponse
+    public function __invoke(Request $request): Redirector|RedirectResponse
     {
         Diary::where('uuid', $request->uuid)->delete();
-        return redirect('home');
+        return redirect(route('ShowHome'));
     }
 }

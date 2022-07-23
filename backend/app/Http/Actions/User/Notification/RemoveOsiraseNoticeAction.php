@@ -16,6 +16,6 @@ final class RemoveOsiraseNoticeAction extends Controller
     public function __invoke(): Redirector|RedirectResponse
     {
         User::where('id', Auth::id())->update(["is_showed_service_info" => 1]);
-        return redirect('home');
+        return redirect(route('ShowHome'));
     }
 }

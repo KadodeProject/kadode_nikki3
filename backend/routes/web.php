@@ -49,7 +49,7 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function (Req
         "geo" => $geo->country . "_" . $geo->city,
     ];
     User_ip::create($data);
-    return redirect('/home ');
+    return redirect(route('ShowHome'));
 })->name('home_redirect');
 
 

@@ -13,7 +13,7 @@ use Illuminate\Support\Facades\Auth;
 
 class CreateCNERAction extends Controller
 {
-    public function __invoke(Request $request):Redirector|RedirectResponse
+    public function __invoke(Request $request): Redirector|RedirectResponse
     {
         // バリデーション
         $this->validate($request, CustomNER::$rules);
@@ -26,6 +26,6 @@ class CreateCNERAction extends Controller
         ];
 
         CustomNER::create($form);
-        return redirect('statistics/settings#customNERTable');
+        return redirect(route('ShowStatisticSetting') . '#customNERTable');
     }
 }

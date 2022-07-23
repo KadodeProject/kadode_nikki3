@@ -23,6 +23,6 @@ final class UpdateUserNameAction extends Controller
         User::where("id", $user_id)->update([
             "name" => $request->name,
         ]);
-        return redirect("/security");
+        return redirect(route('ShowSecurity'));
     }
 }

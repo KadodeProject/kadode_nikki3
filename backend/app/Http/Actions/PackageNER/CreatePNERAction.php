@@ -25,6 +25,6 @@ final class CreatePNERAction extends Controller
         ];
 
         PackageNER::create($form);
-        return redirect('administrator/package/' . $request->packageId);
+        return redirect(route('ShowAdminIndividualPackage', ['packageId' => $request->packageId]));
     }
 }

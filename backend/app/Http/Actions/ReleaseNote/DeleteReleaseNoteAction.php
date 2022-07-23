@@ -15,6 +15,6 @@ final class DeleteReleaseNoteAction extends Controller
     public function __invoke(Request $request): Redirector|RedirectResponse
     {
         Releasenote::where('id', $request->releasenote_id)->delete();
-        return redirect('administrator/notification');
+        return redirect(route('ShowAdminNotification') . '#releaseNote');
     }
 }

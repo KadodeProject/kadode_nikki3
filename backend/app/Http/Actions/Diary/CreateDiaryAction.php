@@ -16,7 +16,7 @@ use Illuminate\Support\Str;
 final class CreateDiaryAction extends Controller
 {
 
-    public function __invoke(Request $request):Redirector|RedirectResponse
+    public function __invoke(Request $request): Redirector|RedirectResponse
     {
         $request->date = $request->date ?? Carbon::today()->format("y-m-d");
 
@@ -32,6 +32,6 @@ final class CreateDiaryAction extends Controller
         ];
 
         Diary::create($form);
-        return redirect('home');
+        return redirect(route('ShowHome'));
     }
 }

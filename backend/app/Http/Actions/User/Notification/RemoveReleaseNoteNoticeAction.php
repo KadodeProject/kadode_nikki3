@@ -16,6 +16,6 @@ final class RemoveReleaseNoteNoticeAction extends Controller
     public function __invoke(): Redirector|RedirectResponse
     {
         User::where('id', Auth::id())->update(["is_showed_update_system_info" => 1]);
-        return redirect('home');
+        return redirect(route('ShowHome'));
     }
 }

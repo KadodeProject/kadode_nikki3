@@ -12,7 +12,7 @@ use Illuminate\Routing\Redirector;
 
 class UpdateCNERAction extends Controller
 {
-    public function __invoke(Request $request):Redirector|RedirectResponse
+    public function __invoke(Request $request): Redirector|RedirectResponse
     {
         // 日付のバリデーション→既に存在する日付ならエラー返す
         // バリデーション
@@ -24,6 +24,6 @@ class UpdateCNERAction extends Controller
         ];
 
         CustomNER::where('id', $request->customNER_id)->update($updateContent);
-        return redirect('statistics/settings#customNERTable');
+        return redirect(route('ShowStatisticSetting') . '#customNERTable');
     }
 }

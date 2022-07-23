@@ -25,6 +25,6 @@ final class UpdateOsiraseAction extends Controller
         ];
 
         Osirase::where('id', $request->osirase_id)->update($updateContent);
-        return redirect('administrator/notification');
+        return redirect(route('ShowAdminNotification') . '#osirase');
     }
 }

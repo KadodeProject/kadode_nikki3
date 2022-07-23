@@ -25,6 +25,6 @@ final class UpdateReleaseNoteAction extends Controller
         ];
 
         Releasenote::where('id', $request->releasenote_id)->update($updateContent);
-        return redirect('administrator/notification');
+        return redirect(route('ShowAdminNotification') . '#releaseNote');
     }
 }

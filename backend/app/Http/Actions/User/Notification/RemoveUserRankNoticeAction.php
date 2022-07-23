@@ -16,6 +16,6 @@ final class RemoveUserRankNoticeAction extends Controller
     public function __invoke(): Redirector|RedirectResponse
     {
         User::where('id', Auth::id())->update(["is_showed_update_user_rank" => 1]);
-        return redirect('home');
+        return redirect(route('ShowHome'));
     }
 }

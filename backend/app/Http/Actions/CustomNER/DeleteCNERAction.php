@@ -12,9 +12,9 @@ use Illuminate\Routing\Redirector;
 
 class DeleteCNERAction extends Controller
 {
-    public function __invoke(Request $request):Redirector|RedirectResponse
+    public function __invoke(Request $request): Redirector|RedirectResponse
     {
         CustomNER::where('id', $request->customNER_id)->delete();
-        return redirect('statistics/settings#customNERTable');
+        return redirect(route('ShowStatisticSetting') . '#customNERTable');
     }
 }

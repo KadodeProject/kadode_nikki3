@@ -50,6 +50,6 @@ class ExportByCsvAction
         } else {
             Log::debug("$file.の削除失敗");
         }
-        return redirect("settings");
+        return redirect(route('ShowSetting'));
     }
 }

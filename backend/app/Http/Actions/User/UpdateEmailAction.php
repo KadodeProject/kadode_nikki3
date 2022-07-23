@@ -22,6 +22,6 @@ final class UpdateEmailAction extends Controller
         User::where("id", $user_id)->update([
             "email" => $request->email,
         ]);
-        return redirect("/security");
+        return redirect(route('ShowSecurity'));
     }
 }

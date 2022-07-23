@@ -23,6 +23,6 @@ final class UpdateUserRankAction extends Controller
         ];
 
         User_rank::where('id', $request->user_rank_id)->update($updateContent);
-        return redirect('administrator/role_rank');
+        return redirect(route('ShowAdminRoleRank'));
     }
 }

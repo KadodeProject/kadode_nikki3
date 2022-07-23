@@ -24,6 +24,6 @@ final class CreatePackageGenreAction extends Controller
         ];
 
         NlpPackageGenre::create($form);
-        return redirect('administrator/package#packageGenreTable');
+        return redirect(route('ShowAdminPackage') . '#packageGenreTable');
     }
 }

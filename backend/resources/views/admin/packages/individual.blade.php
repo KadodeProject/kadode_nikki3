@@ -64,7 +64,7 @@
                         @endphp
                         {{-- 追加 --}}
                         <tr>
-                            <form class="" method="POST" action="/statistics/settings/named_entity/package/create">
+                            <form class="" method="POST" action="{{route('CreatePNERAction')}}">
                                 @csrf
                                 <td>
                                     -
@@ -96,7 +96,7 @@
                         $i+=1;
                         @endphp
                         <tr>
-                            <form class="" method="POST" action="/statistics/settings/named_entity/package/update">
+                            <form class="" method="POST" action="{{route('UpdatePNERAction')}}">
                                 @csrf
                                 <input type="hidden" name="PackageNER_id" value="{{$NER->id}}">
                                 <td>
@@ -128,7 +128,7 @@
                                         value="変更">
                                 </td>
                             </form>
-                            <form class="" method="POST" action="/statistics/settings/named_entity/package/delete">
+                            <form class="" method="POST" action="{{route('DeletePNERAction')}}">
                                 @csrf
                                 <td>
                                     <input type="hidden" name="PackageNER_id" value="{{$NER->id}}">

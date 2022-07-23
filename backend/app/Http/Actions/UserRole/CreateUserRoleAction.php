@@ -24,6 +24,6 @@ final class CreateUserRoleAction extends Controller
         ];
 
         User_role::create($form);
-        return redirect('administrator/role_rank');
+        return redirect(route('ShowAdminRoleRank'));
     }
 }

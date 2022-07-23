@@ -50,7 +50,7 @@
 
                 {{-- 追加 --}}
                 <tr>
-                    <form class="" method="POST" action="{{route('CreateReleaseNote').'#releaseNote'}}">
+                    <form class="" method="POST" action="{{route('CreateReleaseNote')}}">
                         @csrf
                         <td>
                             {{$i}}
@@ -88,7 +88,7 @@
                 @isset($releasenotes)
                 @foreach($releasenotes as $releasenote)
                 <tr>
-                    <form class="" method="POST" action="{{route('UpdateReleaseNote').'#releaseNote'}}">
+                    <form class="" method="POST" action="{{route('UpdateReleaseNote')}}">
                         @csrf
                         <input type="hidden" name="releasenote_id" value="{{$releasenote->id}}">
                         <td>
@@ -123,7 +123,7 @@
                             <input type="submit" id="submitosirase_{{$i}}" class="text-black bg-kn_2" value="変更">
                         </td>
                     </form>
-                    <form class="" method="POST" action="{{route('DeleteReleaseNote').'#releaseNote'}}">
+                    <form class="" method="POST" action="{{route('DeleteReleaseNote')}}">
                         @csrf
                         <td>
                             <input type="hidden" name="releasenote_id" value="{{$releasenote->id}}">
@@ -187,7 +187,7 @@
 
                 {{-- 追加 --}}
                 <tr>
-                    <form class="" method="POST" action="{{route('CreateOsirase').'#osirase'}}">
+                    <form class="" method="POST" action="{{route('CreateOsirase')}}">
                         @csrf
                         <td>
                             {{$i}}
@@ -226,7 +226,7 @@
                 @isset($osirases)
                 @foreach($osirases as $osirase)
                 <tr>
-                    <form class="" method="POST" action="{{route('UpdateOsirase').'#osirase'}}">
+                    <form class="" method="POST" action="{{route('UpdateOsirase')}}">
                         @csrf
                         <input type="hidden" name="osirase_id" value="{{$osirase->id}}">
                         <td>
@@ -261,7 +261,7 @@
                             <input type="submit" id="submitosirase_{{$i}}" class="text-black bg-kn_2" value="変更">
                         </td>
                     </form>
-                    <form class="" method="POST" action="{{route('DeleteOsirase').'#osirase'}}">
+                    <form class="" method="POST" action="{{route('DeleteOsirase')}}">
                         @csrf
                         <td>
                             <input type="hidden" name="osirase_id" value="{{$osirase->id}}">

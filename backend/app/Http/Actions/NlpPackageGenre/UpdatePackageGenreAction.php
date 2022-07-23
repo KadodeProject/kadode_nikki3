@@ -24,6 +24,6 @@ final class UpdatePackageGenreAction extends Controller
         ];
 
         NlpPackageGenre::where('id', $request->NlpPackageGenre_id)->update($updateContent);
-        return redirect('administrator/package#packageGenreTable');
+        return redirect(route('ShowAdminPackage') . '#packageGenreTable');
     }
 }

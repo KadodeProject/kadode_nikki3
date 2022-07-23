@@ -15,6 +15,6 @@ final class DeleteUserAction extends Controller
     public function __invoke(): Redirector|RedirectResponse
     {
         User::destroy(Auth::id());
-        return redirect("/");
+        return redirect(route('ShowTop'));
     }
 }

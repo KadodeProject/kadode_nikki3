@@ -26,6 +26,6 @@ final class UpdatePackageNameAction extends Controller
         ];
 
         NlpPackageName::where('id', $request->NlpPackageName_id)->update($updateContent);
-        return redirect('administrator/package');
+        return redirect(route('ShowAdminPackage'));
     }
 }
