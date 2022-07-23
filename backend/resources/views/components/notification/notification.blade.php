@@ -11,6 +11,6 @@
     </form>
     <div>
         <p class="text-sm ml-4 kiwi-maru">{{$date}}</p>
-        <p class="text-xl kiwi-maru px-4"><a href="{{url($url)}}">{{$title}}</a></p>
+        <p class="text-xl kiwi-maru px-4"><a href="{{$url}}">{{$title}}</a></p>
     </div>
 </div>

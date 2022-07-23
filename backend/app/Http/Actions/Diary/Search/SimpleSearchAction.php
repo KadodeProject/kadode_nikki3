@@ -43,7 +43,7 @@ class SimpleSearchAction extends Controller
         //文字の抽出　該当箇所の前後飲みにする
         $proceedDiary = null;
         $counter = 0;
-        if (!empty($diaries)) {
+        if (! empty($diaries)) {
 
             $diaries = $this->shapeStatisticFromDiaries->invoke($diaries);
 

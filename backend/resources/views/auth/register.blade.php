@@ -41,15 +41,13 @@
 
                         <div class="ml-2">
                             {!! __('I agree to the :terms_of_service and :privacy_policy', [
-                            '利用規約' => '<a target="_blank" href="'.url('terms').'"
+                            '利用規約' => '<a target="_blank" href="'.route('ShowTerms').'"
                                 class="underline text-sm text-gray-600 hover:text-gray-900">利用規約</a>',
-                            'プライバシーポリシー' => '<a target="_blank" href="'.url('privacyPolicy').'"
+                            'プライバシーポリシー' => '<a target="_blank" href="'.route('ShowPrivacyPolicy').'"
                                 class="underline text-sm text-gray-600 hover:text-gray-900">プライバシーポリシー</a>',
                             ]) !!}
                         </div>
                     </div>
-                    {{-- <p>利用規約は<a target="_blank" href="{{url("terms")}}">こちら</a></p>
-                    <p>プライバシーポリシーは<a target="_blank" href="{{url("privacyPolicy")}}">こちら</a></p> --}}
                 </x-jet-label>
             </div>
             @endif

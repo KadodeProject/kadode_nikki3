@@ -9,7 +9,7 @@
     <div class="setting">
         @include('components.settingHeading',['title'=>'セキュリティ',])
         <p class="text-center">※セキュリティ関連は下記へ移動しました。</p>
-        <p class="text-3xl text-center mx-4 my-4 kiwi-maru"><a href="{{url("/security")}}"><span
+        <p class="text-3xl text-center mx-4 my-4 kiwi-maru"><a href="{{route('ShowSecurity')}}"><span
                     class="material-icons">vpn_key</span>セキュリティ</a></p>
     </div>
     <div class="setting">

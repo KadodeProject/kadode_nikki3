@@ -43,7 +43,7 @@
 <header class="px-4 relative w-full flex justify-between " style="box-shadow: 0px 8px 8px -5px rgba(0,0,0,0.5);">
     <div class="flex justify-center items-center"
         style="height:var(--header-height);filter:drop-shadow(0px 8px 8px -5px rgba(0,0,0,0.5));">
-        <a href="{{url("/home")}}"><img class="logo-header" src="/img/kadode_logo.svg"
+        <a href="{{route('ShowHome')}}"><img class="logo-header" src="/img/kadode_logo.svg"
                 title="エーデルワイスの花言葉は「大切な思い出」です"></a>
         <p class="ml-4 md:block hidden kiwi-maru">Public<br>Beta</p>
         <!-- <div class="sm:flex hidden ml-4   flex-col flex-wrap justify-center items-center">
@@ -55,16 +55,16 @@
 
     <div class="sm:flex hidden  justify-between items-end header-links h-full kiwi-maru"
         style="height:var(--header-height)">
-        <p><a href="{{url("/home")}}">ホーム</a></p>
-        <p><a href="{{url("/edit")}}">日記作成</a></p>
-        <p><a href="{{url("/diary").date("/Y/n")}}">アーカイブ</a></p>
-        <p><a href="{{url("/search")}}">検索</a></p>
-        <p><a href="{{url("/statistics/home")}}">統計</a></p>
-        <p><a href="{{url("/statistics/settings")}}">統計設定</a></p>
-        <p><a href="{{url("/settings")}}">設定</a></p>
+        <p><a href="{{route('ShowHome')}}">ホーム</a></p>
+        <p><a href="{{route('ShowCreateDiary')}}">日記作成</a></p>
+        <p><a href="{{route('ShowMonthDiary',['year'=>date('Y'),'month'=>date('n')])}}">アーカイブ</a></p>
+        <p><a href="{{route('ShowSimpleSearch')}}">検索</a></p>
+        <p><a href="{{route('ShowStatistic')}}">統計</a></p>
+        <p><a href="{{route('ShowStatisticSetting')}}">統計設定</a></p>
+        <p><a href="{{route('ShowSetting')}}">設定</a></p>
 
         @if( Auth::user()->user_role_id==2)
-        <p><a href="{{url("/administrator")}}">管理者</a></p>
+        <p><a href="{{route('ShowAdminHome')}}">管理者</a></p>
         @endif
     </div>
     <div class="flex justify-center ">
@@ -96,7 +96,7 @@
 
         <div class="flex items-center justify-center">
             <p class="sm:block hidden kiwi-maru">{{ Auth::user()->name }}</p>
-            <p class="sm:hidden block ml-4 mt-2"><a href="{{url("/settings")}}"><span
+            <p class="sm:hidden block ml-4 mt-2"><a href="{{route('ShowSetting')}}"><span
                         class="material-icons">settings</span></a></p>
         </div>
     </div>

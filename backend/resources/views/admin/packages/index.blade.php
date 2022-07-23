@@ -124,7 +124,8 @@
                             </select>
                         </td>
                         <td>
-                            <a class="bg-kn_2 p-2 rounded-2xl" href="{{url("/administrator/package/".$packageObj->id)}}">編集</a>
+                            <a class="bg-kn_2 p-2 rounded-2xl"
+                                href="{{route('ShowAdminIndividualPackage',['packageId'=>$packageObj->id])}}">編集</a>
                         </td>
                         <td>
                             <input type="submit" id="submitNlpPackageName_{{$i}}" class="text-black bg-kn_2" value="変更">
