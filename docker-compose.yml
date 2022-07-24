@@ -108,3 +108,12 @@ services:
     image: mailhog/mailhog
     ports:
       - 82:8025
+
+  selenium:
+    image: selenium/standalone-chrome-debug
+    ports:
+      - 4444:4444
+      - 5900:5900
+    depends_on:
+      - web
+    privileged: true

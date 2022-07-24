@@ -35,6 +35,8 @@ init:
 	docker compose exec app php artisan key:generate
 	docker compose exec app php artisan storage:link
 	docker compose exec app chmod -R 777 storage bootstrap/cache
+	docker compose exec app php artisan dusk:chrome-driver
+	docker compose exec app chmod 775 -R vendor/laravel/dusk/bin
 	@make fresh
 	cd backend && yarn install && yarn build
 remake:
@@ -88,6 +90,8 @@ tinker:
 	docker compose exec app php artisan tinker
 test:
 	docker compose exec app php artisan test
+dusk:
+	docker compose exec app php artisan dusk
 optimize:
 	docker compose exec app php artisan optimize
 optimize-clear:

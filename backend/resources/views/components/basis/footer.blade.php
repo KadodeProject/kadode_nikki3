@@ -2,7 +2,7 @@
 <footer class="py-4">
     <div class="pt-8 flex flex-col md:flex-row md:justify-between justify-center items-center mx-auto flex-wrap footer-menu kiwi-maru"
         style="max-width: 1200px">
-        <p class="md:py-0 py-4"><a href="{{route('ShowReleaseNote')}}">リリースノート</a></p>
+        <p class="md:py-0 py-4"><a dusk="LinkReleaseNote" href="{{route('ShowReleaseNote')}}">リリースノート</a></p>
         <p class="md:py-0 py-4"><a href="{{route('ShowOsirase')}}">お知らせ</a></p>
         <p class="md:py-0 py-4"><a href="{{route('ShowTop')}}">トップ</a></p>
         <p class="md:py-0 py-4"><a href="{{route('ShowPrivacyPolicy')}}">プライバシーポリシー</a></p>
