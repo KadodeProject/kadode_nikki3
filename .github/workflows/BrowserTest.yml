@@ -98,7 +98,7 @@ jobs:
       - name: chmod dusk/bin
         run: cd backend && chmod 775 -R vendor/laravel/dusk/bin
       - name: Start Chrome Driver
-        run: ./vendor/laravel/dusk/bin/chromedriver-linux &
+        run: ./backend/vendor/laravel/dusk/bin/chromedriver-linux &
       #サーバー起動
       - name: Run Laravel Server
         run: cd backend && php artisan serve --no-reload &
