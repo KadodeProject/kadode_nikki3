@@ -46,7 +46,7 @@ abstract class DuskTestCase extends BaseTestCase
          * 自動起動だと失敗するので手作業で起動に変更
          */
         return RemoteWebDriver::create(
-            'http://selenium:4444/wd/hub',
+            env('SELENIUM_URL') . '/wd/hub',
             DesiredCapabilities::chrome()
         );
     }

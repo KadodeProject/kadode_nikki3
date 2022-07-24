@@ -18,11 +18,6 @@ jobs:
         env:
           MYSQL_ROOT_PASSWORD: password
           MYSQL_DATABASE: app_test
-      selenium:
-        image: selenium/standalone-chrome-debug
-        ports:
-          - 4444:4444
-          - 5900:5900
 
     env:
       DB_CONNECTION: mysql
@@ -86,8 +81,6 @@ jobs:
       #Laravel初期構築
       - name: composer dump autoload
         run: cd backend && composer dump-autoload
-      - name: generate key
-        run: cd backend && php artisan key:generate --env=testing
       - name: storage link
         run: cd backend && php artisan storage:link
       - name: chmod storage
@@ -95,14 +88,17 @@ jobs:
       - name: migrate
         run: cd backend && php artisan migrate
 
-      #Laravel Duskのための用意
-      - name: Upgrade Chrome Driver
-        run: cd backend && php artisan dusk:chrome-driver
-      - name: chmod dusk/bin
-        run: cd backend && chmod 775 -R vendor/laravel/dusk/bin
       #フロントエンドのファイル生成
       - name: genereate
         run: cd backend && yarn build
+
+      #Laravel Duskのための用意
+      - name: Upgrade Chrome Driver
+        run: php artisan dusk:chrome-driver `/opt/google/chrome/chrome --version | cut -d " " -f3 | cut -d "." -f1`
+      - name: chmod dusk/bin
+        run: cd backend && chmod 775 -R vendor/laravel/dusk/bin
+      - name: Start Chrome Driver
+        run: ./vendor/laravel/dusk/bin/chromedriver-linux &
       #サーバー起動
       - name: Run Laravel Server
         run: cd backend && php artisan serve --no-reload &
@@ -110,6 +106,7 @@ jobs:
       - name: Run Dusk Tests
         env:
           APP_URL: "http://127.0.0.1:8000"
+          SELENIUM_URL: "http://127.0.0.1:4444"
         run: cd backend && php artisan dusk --testdox
       #情報添付
       - name: Upload Screenshots
