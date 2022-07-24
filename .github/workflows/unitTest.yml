@@ -20,7 +20,6 @@ jobs:
           key: ${{ runner.os }}-composer-${{ hashFiles('**/composer.lock') }}
           restore-keys: |
             ${{ runner.os }}-composer-
-
       - name: run apt
         run: sudo apt update && sudo apt install git libicu-dev libonig-dev libzip-dev unzip locales libmariadb-dev default-mysql-client libgirepository1.0-dev
       - name: copy .env for ci

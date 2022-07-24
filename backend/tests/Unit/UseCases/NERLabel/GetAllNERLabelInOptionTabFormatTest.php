@@ -15,7 +15,7 @@ class GetAllNERLabelInOptionTabFormatTest extends TestCase
     /** */
     public function test与えられたコレクションをoptionタグ形式のHTMLとして返す()
     {
-        $this->getAllNERLabelInOptionTabFormat = new GetAllNERLabelInOptizonTabFormat();
+        $this->getAllNERLabelInOptionTabFormat = new GetAllNERLabelInOptionTabFormat();
 
         $array = [
             [
