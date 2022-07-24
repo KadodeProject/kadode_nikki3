@@ -23,7 +23,6 @@ jobs:
         ports:
           - 4444:4444
           - 5900:5900
-        privileged: true
 
     env:
       DB_CONNECTION: mysql
