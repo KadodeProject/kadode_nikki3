@@ -94,8 +94,13 @@ jobs:
       #フロントエンドのファイル生成
       - name: genereate
         run: cd backend && yarn build
+      #サーバー起動
+      - name: Run Laravel Server
+        run: cd backend && php artisan serve --no-reload &
       #テスト
       - name: Run Dusk Tests
+        env:
+          APP_URL: "http://127.0.0.1:8000"
         run: cd backend && php artisan dusk --testdox
       #情報添付
       - name: Upload Screenshots
