@@ -8,6 +8,9 @@ use App\Models\Diary;
 use App\UseCases\Diary\ShapeStatisticFromDiaries;
 use Tests\TestCase;
 
+/**
+ * @todo Diaryに依存した結果、データベース依存のため、これを治す
+ */
 class ShapeStatisticFromDiariesTest extends TestCase
 {
     /** */
