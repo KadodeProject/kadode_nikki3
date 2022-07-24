@@ -30,6 +30,9 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
+      - uses: browser-actions/setup-chrome@latest
+      - run: chrome --version
+
       - name: cache node_modules
         id: cache_node
         uses: actions/cache@v3
