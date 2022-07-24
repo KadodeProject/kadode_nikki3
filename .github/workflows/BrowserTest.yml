@@ -18,15 +18,14 @@ jobs:
         env:
           MYSQL_ROOT_PASSWORD: password
           MYSQL_DATABASE: app_test
-
-    selenium:
-      image: selenium/standalone-chrome-debug
-      ports:
-        - 4444:4444
-        - 5900:5900
-      depends_on:
-        - web
-      privileged: true
+      selenium:
+        image: selenium/standalone-chrome-debug
+        ports:
+          - 4444:4444
+          - 5900:5900
+        depends_on:
+          - web
+        privileged: true
 
     env:
       DB_CONNECTION: mysql
