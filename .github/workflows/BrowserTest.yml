@@ -94,11 +94,11 @@ jobs:
 
       #Laravel Duskのための用意
       - name: Upgrade Chrome Driver
-        run: cd backend && php artisan dusk:chrome-driver `/opt/google/chrome/chrome --version | cut -d " " -f3 | cut -d "." -f1`
-      - name: chmod dusk/bin
-        run: cd backend && chmod 775 -R vendor/laravel/dusk/bin
+        run: cd backend && php artisan dusk:chrome-driver
       - name: Start Chrome Driver
         run: ./backend/vendor/laravel/dusk/bin/chromedriver-linux &
+      - name: chmod dusk/bin
+        run: cd backend && chmod 775 -R vendor/laravel/dusk/bin
       #サーバー起動
       - name: Run Laravel Server
         run: cd backend && php artisan serve --no-reload &
