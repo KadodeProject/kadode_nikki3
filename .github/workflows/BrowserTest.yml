@@ -19,6 +19,15 @@ jobs:
           MYSQL_ROOT_PASSWORD: password
           MYSQL_DATABASE: app_test
 
+    selenium:
+      image: selenium/standalone-chrome-debug
+      ports:
+        - 4444:4444
+        - 5900:5900
+      depends_on:
+        - web
+      privileged: true
+
     env:
       DB_CONNECTION: mysql
       DB_HOST: 127.0.0.1
@@ -83,14 +92,18 @@ jobs:
         run: cd backend && composer dump-autoload
       - name: generate key
         run: cd backend && php artisan key:generate --env=testing
+      - name: storage link
+        run: cd backend && php artisan storage:link
+      - name: chmod storage
+        run: cd backend && chmod -R 777 storage bootstrap/cache
       - name: migrate
         run: cd backend && php artisan migrate
 
       #Laravel Duskのための用意
       - name: Upgrade Chrome Driver
-        run: cd backend && php artisan dusk:chrome-driver `/opt/google/chrome/chrome --version | cut -d " " -f3 | cut -d "." -f1`
-      - name: Start Chrome Driver
-        run: ./backend/vendor/laravel/dusk/bin/chromedriver-linux &
+        run: cd backend && php artisan dusk:chrome-driver
+      - name: chmod dusk/bin
+        run: cd backend && chmod 775 -R vendor/laravel/dusk/bin
       #フロントエンドのファイル生成
       - name: genereate
         run: cd backend && yarn build
