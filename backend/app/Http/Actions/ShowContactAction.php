@@ -10,8 +10,8 @@ use Illuminate\Contracts\View\View;
 
 final class ShowContactAction extends Controller
 {
-    public function __invoke():View|Factory
+    public function __invoke(): View|Factory
     {
-        return view('diaryNoLogIn/terms');
+        return view('diaryNoLogIn/contact');
     }
 }
