@@ -91,7 +91,7 @@ tinker:
 test:
 	docker compose exec app php artisan test
 dusk:
-	docker compose exec app php artisan dusk
+	docker compose exec app php artisan dusk --testdox
 optimize:
 	docker compose exec app php artisan optimize
 optimize-clear:
