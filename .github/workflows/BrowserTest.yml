@@ -101,7 +101,7 @@ jobs:
       - name: dusk install
         run: cd backend && php artisan dusk:install
       - name: Upgrade Chrome Driver
-        run: cd backend && php artisan dusk:chrome-driver
+        run: cd backend && php artisan dusk:chrome-driver `/opt/google/chrome/chrome --version | cut -d " " -f3 | cut -d "." -f1`
       - name: Start Chrome Driver
         run: ./backend/vendor/laravel/dusk/bin/chromedriver-linux &
       - name: chmod dusk/bin
