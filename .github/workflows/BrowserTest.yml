@@ -20,14 +20,14 @@ jobs:
         shell: bash
         run: |
           # TTYのえらーが出るので-Tつける
-          docker-compose exec app -T composer install
-          docker-compose exec app -T cp .env.example .env
-          docker-compose exec app -T php artisan key:generate
-          docker-compose exec app -T php artisan storage:link
-          docker-compose exec app -T chmod -R 777 storage bootstrap/cache
-          docker-compose exec app -T php artisan dusk:chrome-driver
-          docker-compose exec app -T chmod 775 -R vendor/laravel/dusk/bin
-          docker-compose exec app -T php artisan migrate:fresh --seed
-          docker-compose exec web -T yarn install
-          docker-compose exec web -T yarn build
-          docker-compose exec app -T php artisan dusk --testdox
+          docker-compose exec -T app composer install
+          docker-compose exec -T app cp .env.example .env
+          docker-compose exec -T app php artisan key:generate
+          docker-compose exec -T app php artisan storage:link
+          docker-compose exec -T app chmod -R 777 storage bootstrap/cache
+          docker-compose exec -T app php artisan dusk:chrome-driver
+          docker-compose exec -T app chmod 775 -R vendor/laravel/dusk/bin
+          docker-compose exec -T app php artisan migrate:fresh --seed
+          docker-compose exec -T web yarn install
+          docker-compose exec -T web yarn build
+          docker-compose exec -T app php artisan dusk --testdox
