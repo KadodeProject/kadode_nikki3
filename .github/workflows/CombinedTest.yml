@@ -1,4 +1,4 @@
-name: PHPテスト
+name: PHPテスト[結合]
 
 on:
   pull_request:
@@ -6,7 +6,7 @@ on:
 
 jobs:
   laravel_test:
-    name: phpunit test
+    name: phpunit combined test
     runs-on: ubuntu-latest
 
     services:
@@ -90,4 +90,4 @@ jobs:
         run: cd backend && yarn build
       #テスト
       - name: unit test
-        run: cd backend && ./vendor/bin/phpunit
+        run: cd backend && ./vendor/bin/phpunit --testsuite MinimumOperationCheck --testsuite Feature --testdox

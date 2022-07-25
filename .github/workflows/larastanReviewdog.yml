@@ -5,6 +5,7 @@ on:
       - main
 jobs:
   analyse:
+    name: PHPStan with Larastan
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3

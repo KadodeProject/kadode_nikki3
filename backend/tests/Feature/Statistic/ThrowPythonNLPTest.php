@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Tests\Unit\UseCases\Statistic;
+namespace Tests\Feature\Statistic;
 
 use App\UseCases\Statistic\ThrowPythonNLP;
 use Tests\TestCase;

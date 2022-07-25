@@ -88,10 +88,14 @@ rollback-test:
 	docker compose exec app php artisan migrate:refresh
 tinker:
 	docker compose exec app php artisan tinker
-test:
-	docker compose exec app php artisan test
 dusk:
 	docker compose exec app php artisan dusk --testdox
+test:
+	docker compose exec app php artisan test
+unit-test:
+	docker compose exec app php artisan test --testsuite Unit
+combined-test:
+	docker compose exec app php artisan test --testsuite MinimumOperationCheck --testsuite Feature
 optimize:
 	docker compose exec app php artisan optimize
 optimize-clear:

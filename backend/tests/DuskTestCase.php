@@ -39,15 +39,17 @@ abstract class DuskTestCase extends BaseTestCase
             return $items->merge([
                 '--disable-gpu',
                 '--headless',
+                '--window-size=1920,1080',
+                '--no-sandbox',
             ]);
         })->all());
 
-        /**
-         * 自動起動だと失敗するので手作業で起動に変更
-         */
         return RemoteWebDriver::create(
-            'http://selenium:4444/wd/hub',
-            DesiredCapabilities::chrome()
+            $_ENV['DUSK_DRIVER_URL'] ?? 'http://localhost:9515',
+            DesiredCapabilities::chrome()->setCapability(
+                ChromeOptions::CAPABILITY,
+                $options
+            )
         );
     }
 
