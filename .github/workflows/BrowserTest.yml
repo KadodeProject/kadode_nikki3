@@ -4,6 +4,10 @@ on:
   pull_request:
     branches: [main]
 
+env:
+  LOCALSTACK_CACHE_PATH: localstack-image
+  LOCALSTACK_VERSION: 0.13.0
+
 jobs:
   laravel_test:
     name: phpunit browser test by laravel dusk
@@ -12,11 +16,26 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
-      - name: compose up
+    - name: Cache a LocalStack Docker image
+      id: cache-localstack
+      uses: actions/cache@v3
+      with:
+        path: ${{ env.LOCALSTACK_CACHE_PATH }}
+        key: ${{ runner.os }}-localstack-${{ env.LOCALSTACK_VERSION }}
+
+    - name: Pull and save a LocalStack Docker image
+      if: steps.cache-localstack.outputs.cache-hit != 'true'
+      run: |
+        docker pull localstack/localstack:${LOCALSTACK_VERSION}
+        docker save localstack/localstack:${LOCALSTACK_VERSION} -o ${LOCALSTACK_CACHE_PATH}
+
+    - run: docker load -i ${LOCALSTACK_CACHE_PATH}
+
+      - name: docker-compose up
         shell: bash
         run: docker-compose up -d
 
-      - name: compose run
+      - name: initialize
         shell: bash
         run: |
           # TTYのえらーが出るので-Tつける
@@ -30,4 +49,7 @@ jobs:
           docker-compose exec -T app php artisan migrate:fresh --seed
           docker-compose exec -T web yarn install
           docker-compose exec -T web yarn build
-          docker-compose exec -T app php artisan dusk --testdox
+
+      - name: dusk
+        shell: bash
+        run: docker-compose exec -T app php artisan dusk --testdox
