@@ -23,8 +23,7 @@ jobs:
           docker-compose exec app chmod -R 777 storage bootstrap/cache
           docker-compose exec app php artisan dusk:chrome-driver
           docker-compose exec app chmod 775 -R vendor/laravel/dusk/bin
-	        docker-compose exec app php artisan migrate:fresh --seed
-	        docker-compose exec web yarn install
-	        docker-compose exec web yarn build
+          docker-compose exec app php artisan migrate:fresh --seed
+          docker-compose exec web yarn install
+          docker-compose exec web yarn build
           docker-compose exec app php artisan dusk --testdox
-
