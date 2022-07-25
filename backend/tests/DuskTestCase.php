@@ -39,6 +39,8 @@ abstract class DuskTestCase extends BaseTestCase
             return $items->merge([
                 '--disable-gpu',
                 '--headless',
+                '--window-size=1920,1080',
+                '--no-sandbox',
             ]);
         })->all());
 
