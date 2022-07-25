@@ -32,6 +32,8 @@ jobs:
 
       - uses: browser-actions/setup-chrome@latest
       - run: chrome --version
+        with:
+          chrome-version: stable
 
       - name: cache node_modules
         id: cache_node
