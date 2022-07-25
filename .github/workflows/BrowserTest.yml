@@ -30,10 +30,13 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
-      - uses: browser-actions/setup-chrome@latest
-      - run: chrome --version
+      - name: install chrome
+        uses: browser-actions/setup-chrome@latest
         with:
           chrome-version: stable
+
+      - name: check chrome version
+        run: chrome --version
 
       - name: cache node_modules
         id: cache_node
