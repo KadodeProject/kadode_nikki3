@@ -1,4 +1,6 @@
-name: PHPテスト[ブラウザ]
+#動作確認済み【美品】
+#GitHub Actionsで6分程度要するため廃止
+name: Docker立ててテスト
 
 on:
   pull_request:

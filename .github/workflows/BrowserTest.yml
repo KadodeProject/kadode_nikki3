@@ -109,10 +109,10 @@ jobs:
       #動作チェック
       - name: check1
         run: curl http://127.0.0.1:8000
-      - name: check2
-        run: curl http://127.0.0.1:4444
-      - name: check3
-        run: curl http://127.0.0.1:9515
+      # - name: check2
+      #   run: curl http://127.0.0.1:4444
+      # - name: check3
+      #   run: curl http://127.0.0.1:9515
       #テスト
       - name: Run Dusk Tests
         env:
