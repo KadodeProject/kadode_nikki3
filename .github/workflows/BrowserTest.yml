@@ -99,25 +99,18 @@ jobs:
 
       #Laravel Duskのための用意
       - name: dusk install
-        run: cd backend && php artisan dusk:install
+        run: cd backend && php artisan dusk:chrome-driver
       - name: chmod dusk/bin
         run: cd backend && chmod 775 -R vendor/laravel/dusk/bin
       #サーバー起動
       - name: Run Laravel Server
         run: cd backend && php artisan serve --no-reload &
 
-      #動作チェック
+      #サーバー動作チェック
       - name: check1
         run: curl http://127.0.0.1:8000
-      # - name: check2
-      #   run: curl http://127.0.0.1:4444
-      # - name: check3
-      #   run: curl http://127.0.0.1:9515
       #テスト
       - name: Run Dusk Tests
-        env:
-          APP_URL: "http://127.0.0.1:8000"
-          DUSK_DRIVER_URL: "http://127.0.0.1:4444/wd/hub"
         run: cd backend && php artisan dusk --testdox
       #情報添付
       - name: Upload Screenshots
