@@ -16,20 +16,20 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
-    - name: Cache a LocalStack Docker image
-      id: cache-localstack
-      uses: actions/cache@v3
-      with:
-        path: ${{ env.LOCALSTACK_CACHE_PATH }}
-        key: ${{ runner.os }}-localstack-${{ env.LOCALSTACK_VERSION }}
+      - name: Cache a LocalStack Docker image
+        id: cache-localstack
+        uses: actions/cache@v3
+        with:
+          path: ${{ env.LOCALSTACK_CACHE_PATH }}
+          key: ${{ runner.os }}-localstack-${{ env.LOCALSTACK_VERSION }}
 
-    - name: Pull and save a LocalStack Docker image
-      if: steps.cache-localstack.outputs.cache-hit != 'true'
-      run: |
-        docker pull localstack/localstack:${LOCALSTACK_VERSION}
-        docker save localstack/localstack:${LOCALSTACK_VERSION} -o ${LOCALSTACK_CACHE_PATH}
+      - name: Pull and save a LocalStack Docker image
+        if: steps.cache-localstack.outputs.cache-hit != 'true'
+        run: |
+          docker pull localstack/localstack:${LOCALSTACK_VERSION}
+          docker save localstack/localstack:${LOCALSTACK_VERSION} -o ${LOCALSTACK_CACHE_PATH}
 
-    - run: docker load -i ${LOCALSTACK_CACHE_PATH}
+      - run: docker load -i ${LOCALSTACK_CACHE_PATH}
 
       - name: docker-compose up
         shell: bash
