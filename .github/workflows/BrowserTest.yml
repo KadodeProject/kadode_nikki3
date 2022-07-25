@@ -102,7 +102,6 @@ jobs:
         run: cd backend && php artisan dusk:install
       - name: chmod dusk/bin
         run: cd backend && chmod 775 -R vendor/laravel/dusk/bin
-
       #サーバー起動
       - name: Run Laravel Server
         run: cd backend && php artisan serve --no-reload &
@@ -110,13 +109,15 @@ jobs:
       #動作チェック
       - name: check1
         run: curl http://127.0.0.1:8000
+      - name: check2
+        run: curl http://127.0.0.1:4444
       - name: check3
-        run: curl http://127.0.0.1:9515/status
+        run: curl http://127.0.0.1:9515
       #テスト
       - name: Run Dusk Tests
         env:
           APP_URL: "http://127.0.0.1:8000"
-          BROWSER_URL: "http://127.0.0.1:9515"
+          BROWSER_URL: "http://127.0.0.1:4444/wd/hub"
         run: cd backend && php artisan dusk --testdox
       #情報添付
       - name: Upload Screenshots
