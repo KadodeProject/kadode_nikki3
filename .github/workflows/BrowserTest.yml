@@ -96,6 +96,8 @@ jobs:
         run: cd backend && yarn build
 
       #Laravel Duskのための用意
+      - name: dusk install
+        run: cd backend && php artisan dusk:install
       - name: Upgrade Chrome Driver
         run: cd backend && php artisan dusk:chrome-driver
       - name: Start Chrome Driver
