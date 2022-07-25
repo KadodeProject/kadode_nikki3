@@ -35,9 +35,6 @@ jobs:
         with:
           chrome-version: stable
 
-      - name: check chrome version
-        run: chrome --version
-
       - name: cache node_modules
         id: cache_node
         uses: actions/cache@v3
@@ -112,11 +109,19 @@ jobs:
       #サーバー起動
       - name: Run Laravel Server
         run: cd backend && php artisan serve --no-reload &
+
+      #動作チェック
+      - name: check1
+        run: curl http://127.0.0.1:8000
+      - name: check2
+        run: curl http://127.0.0.1:9515
+      - name: check3
+        run: curl http://127.0.0.1:9515/wd/hub
       #テスト
       - name: Run Dusk Tests
         env:
           APP_URL: "http://127.0.0.1:8000"
-          BROWSER_URL: "http://127.0.0.1:9515"
+          BROWSER_URL: "http://127.0.0.1:9515/wd/hub"
         run: cd backend && php artisan dusk --testdox
       #情報添付
       - name: Upload Screenshots
