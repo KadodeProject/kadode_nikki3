@@ -9,130 +9,22 @@ jobs:
     name: phpunit browser test by laravel dusk
     runs-on: ubuntu-latest
 
-    services:
-      mysql:
-        image: mysql:8.0.19
-        ports:
-          - 3306:3306
-        options: --health-cmd "mysqladmin ping -h localhost" --health-interval 20s --health-timeout 10s --health-retries 10
-        env:
-          MYSQL_ROOT_PASSWORD: password
-          MYSQL_DATABASE: app_test
-
-    env:
-      DB_CONNECTION: mysql
-      DB_HOST: 127.0.0.1
-      DB_PORT: 3306
-      DB_DATABASE: app_test
-      DB_USERNAME: root
-      DB_PASSWORD: password
-
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v2
 
-      - name: install chrome
-        uses: browser-actions/setup-chrome@latest
-        with:
-          chrome-version: stable
+      - name: compose-run
+        shell: bash
+        run: |
+          docker-compose up -d
+          docker-compose exec app composer install
+          docker-compose exec app cp .env.example .env
+          docker-compose exec app php artisan key:generate
+          docker-compose exec app php artisan storage:link
+          docker-compose exec app chmod -R 777 storage bootstrap/cache
+          docker-compose exec app php artisan dusk:chrome-driver
+          docker-compose exec app chmod 775 -R vendor/laravel/dusk/bin
+	        docker-compose exec app php artisan migrate:fresh --seed
+	        docker-compose exec web yarn install
+	        docker-compose exec web yarn build
+          docker-compose exec app php artisan dusk --testdox
 
-      - name: cache node_modules
-        id: cache_node
-        uses: actions/cache@v3
-        with:
-          path: ./backend/node_modules
-          key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
-          restore-keys: |
-            ${{ runner.os }}-yarn-
-
-      - name: cache vendor
-        id: cache_vendor
-        uses: actions/cache@v3
-        with:
-          path: ./backend/vendor
-          key: ${{ runner.os }}-composer-${{ hashFiles('**/composer.lock') }}
-          restore-keys: |
-            ${{ runner.os }}-composer-
-
-      - name: cache pip3
-        id: cache_pip3
-        uses: actions/cache@v3
-        with:
-          path: /home/runner/.local/lib/python3.8/site-packages
-          key: ${{ runner.os }}-pip3-${{ hashFiles('**/kadode_pip_packages.txt') }}
-          restore-keys: |
-            ${{ runner.os }}-pip3-
-
-      - name: run apt
-        run: sudo apt update && sudo apt install git libicu-dev libonig-dev libzip-dev unzip locales python3-pip libmariadb-dev default-mysql-client python3-venv libgirepository1.0-dev
-      - name: update pip
-        run: sudo pip3 install --upgrade pip
-      - name: copy .env for ci
-        run: cd backend && php -r "file_exists('.env') || copy('.env.ci', '.env');"
-
-      #ライブラリインストール
-      #Python
-      - name: pip install
-        if: steps.cache_pip3.outputs.cache-hit != 'true'
-        run: pip3 install --upgrade --upgrade-strategy eager -r backend/kadode_pip_packages.txt
-      #JS
-      - name: yarn install
-        if: steps.cache_node.outputs.cache-hit != 'true'
-        run: cd backend && yarn install
-      #PHP
-      - name: composer install
-        if: steps.cache_vendor.outputs.cache-hit != 'true'
-        run: cd backend && composer install -n --prefer-dist
-
-      #Laravel初期構築
-      - name: composer dump autoload
-        run: cd backend && composer dump-autoload
-      - name: storage link
-        run: cd backend && php artisan storage:link
-      - name: chmod storage
-        run: cd backend && chmod -R 777 storage bootstrap/cache
-      - name: migrate
-        run: cd backend && php artisan migrate
-
-      #フロントエンドのファイル生成
-      - name: genereate
-        run: cd backend && yarn build
-
-      #Laravel Duskのための用意
-      - name: dusk install
-        run: cd backend && php artisan dusk:install
-      - name: Upgrade Chrome Driver
-        run: cd backend && php artisan dusk:chrome-driver `/opt/google/chrome/chrome --version | cut -d " " -f3 | cut -d "." -f1`
-      - name: Start Chrome Driver
-        run: ./backend/vendor/laravel/dusk/bin/chromedriver-linux &
-      - name: chmod dusk/bin
-        run: cd backend && chmod 775 -R vendor/laravel/dusk/bin
-      #サーバー起動
-      - name: Run Laravel Server
-        run: cd backend && php artisan serve --no-reload &
-
-      #動作チェック
-      - name: check1
-        run: curl http://127.0.0.1:8000
-      - name: check2
-        run: curl http://127.0.0.1:9515
-      - name: check3
-        run: curl http://127.0.0.1:9515/wd/hub
-      #テスト
-      - name: Run Dusk Tests
-        env:
-          APP_URL: "http://127.0.0.1:8000"
-          BROWSER_URL: "http://127.0.0.1:9515/wd/hub"
-        run: cd backend && php artisan dusk --testdox
-      #情報添付
-      - name: Upload Screenshots
-        if: failure()
-        uses: actions/upload-artifact@v2
-        with:
-          name: screenshots
-          path: backend/tests/Browser/screenshots
-      - name: Upload Console Logs
-        if: failure()
-        uses: actions/upload-artifact@v2
-        with:
-          name: console
-          path: backend/tests/Browser/console
