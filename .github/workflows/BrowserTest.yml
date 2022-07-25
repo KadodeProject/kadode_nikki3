@@ -117,7 +117,7 @@ jobs:
       - name: Run Dusk Tests
         env:
           APP_URL: "http://127.0.0.1:8000"
-          BROWSER_URL: "http://127.0.0.1:4444/wd/hub"
+          DUSK_DRIVER_URL: "http://127.0.0.1:4444/wd/hub"
         run: cd backend && php artisan dusk --testdox
       #情報添付
       - name: Upload Screenshots

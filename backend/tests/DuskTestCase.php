@@ -44,12 +44,12 @@ abstract class DuskTestCase extends BaseTestCase
             ]);
         })->all());
 
-        /**
-         * 自動起動だと失敗するので手作業で起動に変更
-         */
         return RemoteWebDriver::create(
-            env('BROWSER_URL'),
-            DesiredCapabilities::chrome()
+            $_ENV['DUSK_DRIVER_URL'] ?? 'http://localhost:9515',
+            DesiredCapabilities::chrome()->setCapability(
+                ChromeOptions::CAPABILITY,
+                $options
+            )
         );
     }
 
