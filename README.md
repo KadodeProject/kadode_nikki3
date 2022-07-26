@@ -7,22 +7,26 @@ https://kadode.usuyuki.net
 # Operation
 
 ## CI
+
 ### テスト周り
+
 [![PHPテスト[ブラウザ]](https://github.com/Usuyuki/kadode_nikki3/actions/workflows/BrowserTest.yml/badge.svg)](https://github.com/Usuyuki/kadode_nikki3/actions/workflows/BrowserTest.yml)
 [![PHPテスト[結合]](https://github.com/Usuyuki/kadode_nikki3/actions/workflows/CombinedTest.yml/badge.svg)](https://github.com/Usuyuki/kadode_nikki3/actions/workflows/CombinedTest.yml)
 [![PHPテスト[単体]](https://github.com/Usuyuki/kadode_nikki3/actions/workflows/unitTest.yml/badge.svg)](https://github.com/Usuyuki/kadode_nikki3/actions/workflows/unitTest.yml)
+
 ### コード解析
+
 [![PHPコーディング規約遵守チェック](https://github.com/Usuyuki/kadode_nikki3/actions/workflows/php-cs-fixer.yml/badge.svg)](https://github.com/Usuyuki/kadode_nikki3/actions/workflows/php-cs-fixer.yml)
 [![PHP静的解析](https://github.com/Usuyuki/kadode_nikki3/actions/workflows/larastanReviewdog.yml/badge.svg)](https://github.com/Usuyuki/kadode_nikki3/actions/workflows/larastanReviewdog.yml)
 
 [![Total alerts](https://img.shields.io/lgtm/alerts/g/Usuyuki/kadode_nikki3.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/Usuyuki/kadode_nikki3/alerts/)
 [![Language grade: JavaScript](https://img.shields.io/lgtm/grade/javascript/g/Usuyuki/kadode_nikki3.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/Usuyuki/kadode_nikki3/context:javascript)
 [![Language grade: Python](https://img.shields.io/lgtm/grade/python/g/Usuyuki/kadode_nikki3.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/Usuyuki/kadode_nikki3/context:python)
+
 ### 他
+
 [![PRに自動でラベル付けるCI](https://github.com/Usuyuki/kadode_nikki3/actions/workflows/label.yml/badge.svg)](https://github.com/Usuyuki/kadode_nikki3/actions/workflows/label.yml)
 [![自動デプロイと初期構築](https://github.com/Usuyuki/kadode_nikki3/actions/workflows/automatic_deploy.yml/badge.svg)](https://github.com/Usuyuki/kadode_nikki3/actions/workflows/automatic_deploy.yml)
-
-
 
 ## Web
 
@@ -49,9 +53,10 @@ https://kadode.usuyuki.net
 
 # 開発おたより
 
-**現在はかどで日記v3系「リファクタリングのフェーズ」です!**
+**現在はかどで日記 v3 系「リファクタリングのフェーズ」です!**
 
 ## 大域ロードマップ
+
 ```mermaid
 flowchart LR
     0[かどで日記v0.x]-->|一般向けリリース整備|1[かどで日記v1.x]
@@ -61,9 +66,9 @@ flowchart LR
     4-->|日記解析機能強化|5[かどで日記v5.x]
 ```
 
-※かどで日記3内でのバージョン。かどで日記、かどで日記2とは異なる
+※かどで日記 3 内でのバージョン。かどで日記、かどで日記 2 とは異なる
 
-## v3系終了済みリファクタリング
+## v3 系終了済みリファクタリング
 
 ```mermaid
 flowchart TD
@@ -90,7 +95,7 @@ flowchart TD
     C-->|CIのpipをキャッシュしてCIテスト速度改善|D
 ```
 
-## v3系未リファクタリング
+## v3 系未リファクタリング
 
 ```mermaid
 flowchart TD
@@ -104,7 +109,7 @@ flowchart TD
     G-->|フロントエンド部分のリファクタリング|H[かどで日記v3.13]
 ```
 
-## v4系ロードマップ
+## v4 系ロードマップ
 
 ```mermaid
 flowchart LR
