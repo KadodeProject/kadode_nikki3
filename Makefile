@@ -38,7 +38,8 @@ init:
 	docker compose exec app php artisan dusk:chrome-driver
 	docker compose exec app chmod 775 -R vendor/laravel/dusk/bin
 	@make fresh
-	cd backend && yarn install && yarn build
+	docker compose exec web yarn install
+	docker compose exec web yarn build
 remake:
 	@make destroy
 	@make init
@@ -72,7 +73,7 @@ log-db:
 log-db-watch:
 	docker compose logs --follow db
 web:
-	docker compose exec web ash
+	docker compose exec web bash
 app:
 	docker compose exec app bash
 migrate:
@@ -81,8 +82,6 @@ fresh:
 	docker compose exec app php artisan migrate:fresh --seed
 seed:
 	docker compose exec app php artisan db:seed
-dacapo:
-	docker compose exec app php artisan dacapo
 rollback-test:
 	docker compose exec app php artisan migrate:fresh
 	docker compose exec app php artisan migrate:refresh
@@ -109,36 +108,8 @@ cache-clear:
 	docker compose exec app composer clear-cache
 	@make optimize-clear
 	docker compose exec app php artisan event:clear
-npm:
-	@make npm-install
-npm-install:
-	docker compose exec web npm install
-npm-dev:
-	docker compose exec web npm run dev
-npm-watch:
-	docker compose exec web npm run watch
-npm-watch-poll:
-	docker compose exec web npm run watch-poll
-npm-hot:
-	docker compose exec web npm run hot
-yarn:
-	docker compose exec web yarn
-yarn-install:
-	@make yarn
-yarn-dev:
-	docker compose exec web yarn dev
-yarn-watch:
-	docker compose exec web yarn watch
-yarn-watch-poll:
-	docker compose exec web yarn watch-poll
-yarn-hot:
-	docker compose exec web yarn hot
-db:
-	docker compose exec db bash
 sql:
 	docker compose exec db bash -c 'mysql -u $$MYSQL_USER -p$$MYSQL_PASSWORD $$MYSQL_DATABASE'
-redis:
-	docker compose exec redis redis-cli
 ide-helper:
 	docker compose exec app php artisan clear-compiled
 	docker compose exec app php artisan ide-helper:generate
@@ -152,3 +123,5 @@ barth:
 	docker-compose down --rmi all --volumes --remove-orphans
 777:
 	sudo chmod 777 -R backend
+dev:
+	docker-compose exec web yarn dev
