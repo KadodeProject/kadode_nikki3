@@ -38,8 +38,8 @@ init:
 	docker compose exec app php artisan dusk:chrome-driver
 	docker compose exec app chmod 775 -R vendor/laravel/dusk/bin
 	@make fresh
-	docker compose exec web yarn install
-	docker compose exec web yarn build
+	# docker compose exec web yarn install
+	# docker compose exec web yarn build
 remake:
 	@make destroy
 	@make init
@@ -124,4 +124,5 @@ barth:
 777:
 	sudo chmod 777 -R backend
 dev:
-	docker-compose exec web yarn dev
+	cd backend && yarn dev
+	# docker-compose exec web yarn dev
