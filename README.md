@@ -2,7 +2,7 @@
 
 個人的に欲しかった統計付き日記管理 web アプリを作っています。
 
-https://kadode.usuyuki.net/
+https://kadode.usuyuki.net
 
 # Operation
 
@@ -95,7 +95,9 @@ flowchart TD
 ```mermaid
 flowchart TD
     D[かどで日記v3.8]-->|リポジトリ内のURL指定を全てリバースルート方式に変更|E[かどで日記v3.9]
-    D-->|機能テストでPOST関連もテスト対象にする|E
+    D-->|ブラウザテストを導入し、ぽ水と関連も確認する|E
+    D-->|CIのテストを分野ごとに分離する|E
+    D-->|検索のcollation問題解消|E
     E-->|リレーション活用でDBの無駄なアクセスの削減|F[かどで日記v3.10]
     E-->|Responderの整備|F
     F-->|Pythonの技術的負債の解体|G[かどで日記v3.11]
