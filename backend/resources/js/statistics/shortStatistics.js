@@ -9,6 +9,7 @@ import {
     CategoryScale,
     BarController,
     LinearScale,
+    Legend,
 } from "chart.js";
 import annotationPlugin from "chartjs-plugin-annotation";
 Chart.register(
@@ -21,6 +22,7 @@ Chart.register(
     CategoryScale,
     PieController,
     LinearScale,
+    Legend,
     annotationPlugin
 );
 window.Chart = Chart;
