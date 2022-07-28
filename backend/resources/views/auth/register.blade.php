@@ -1,3 +1,4 @@
+@section("title","新規登録")
 <x-guest-layout style="background-color:#2F3437!important">
     <x-jet-authentication-card>
         <x-slot name="logo">
