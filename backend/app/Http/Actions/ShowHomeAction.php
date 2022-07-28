@@ -94,8 +94,12 @@ final class ShowHomeAction extends Controller
         $lastThreeYearDiary = Diary::where("date", $lastThreeYear->format("Y-m-d"))->first();
         $lastThreeYearDiary = ["explain" => "3年前"] + ($lastThreeYearDiary ? $lastThreeYearDiary->toArray() : ["date" => "no"]);
 
+        $lastFourYear = new Carbon("-4 years");
+        $lastFourYearDiary = Diary::where("date", $lastFourYear->format("Y-m-d"))->first();
+        $lastFourYearDiary = ["explain" => "4年前"] + ($lastFourYearDiary ? $lastFourYearDiary->toArray() : ["date" => "no"]);
 
-        $oldDiaries = [$lastWeekDiary, $lastMonthDiary, $lastTwoMonthDiary, $halfYearDiary, $lastYearDiary, $lastTwoYearDiary, $lastThreeYearDiary];
+
+        $oldDiaries = [$lastWeekDiary, $lastMonthDiary, $lastTwoMonthDiary, $halfYearDiary, $lastYearDiary, $lastTwoYearDiary, $lastThreeYearDiary, $lastFourYearDiary];
         /**
          * oldDiariesの統計データの表示処理
          *
