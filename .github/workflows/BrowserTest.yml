@@ -39,7 +39,8 @@ jobs:
         uses: shivammathur/setup-php@v2
         with:
           php-version: "8.1"
-          ini-values: extension="redis.so"
+          # ini-values: extension="redis.so"
+          # 二重で読み込まれるため上記のphp.ini記述処理は不要
           extensions: redis
 
       - name: install chrome
@@ -119,7 +120,7 @@ jobs:
         run: cd backend && php artisan serve --no-reload &
 
       #サーバー動作チェック
-      - name: check1
+      - name: curl check
         run: curl http://127.0.0.1:8000
       #テスト
       - name: Run Dusk Tests

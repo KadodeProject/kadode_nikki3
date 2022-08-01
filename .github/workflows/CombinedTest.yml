@@ -26,7 +26,8 @@ jobs:
         uses: shivammathur/setup-php@v2
         with:
           php-version: "8.1"
-          ini-values: extension="redis.so"
+          # ini-values: extension="redis.so"
+          # 二重で読み込まれるため上記のphp.ini記述処理は不要
           extensions: redis
 
       - name: cache node_modules
