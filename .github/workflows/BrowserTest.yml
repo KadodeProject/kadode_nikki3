@@ -19,16 +19,28 @@ jobs:
           MYSQL_ROOT_PASSWORD: password
           MYSQL_DATABASE: app_test
 
-    env:
-      DB_CONNECTION: mysql
-      DB_HOST: 127.0.0.1
-      DB_PORT: 3306
-      DB_DATABASE: app_test
-      DB_USERNAME: root
-      DB_PASSWORD: password
+      redis:
+        image: redis
+        ports:
+          - 6379:6379
+        options: >-
+          --health-cmd "redis-cli ping"
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+        env:
+          REDIS_HOST: redis
+          REDIS_PORT: 6379
 
     steps:
       - uses: actions/checkout@v3
+
+      - name: Setup PHP with PECL extension
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: "8.1"
+          ini-values: extension="redis.so"
+          extensions: redis
 
       - name: install chrome
         uses: browser-actions/setup-chrome@latest
