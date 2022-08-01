@@ -67,6 +67,14 @@ services:
       - MYSQL_PASSWORD=${DB_PASS:-secret}
       - MYSQL_ROOT_PASSWORD=${DB_PASS:-secret}
 
+  redis:
+    image: "redis:latest"
+    ports:
+      - "6379:6379"
+    volumes:
+      - "./data/redis:/data"
+      - "./infra/docker/redis/redis.conf:/etc/redis.conf"
+
   schemaspy:
     image: schemaspy/schemaspy
     volumes:
