@@ -1,0 +1,48 @@
+---
+---
+
+@import "{{ site.theme }}";
+
+:root {
+    /* カラー定義 */
+    --kn_b: #2f3437;
+    --kn_w: #f9fff9;
+    /* 1 */
+    --kn_1: #624464;
+    /* 2 */
+    --kn_2: #4b8996;
+    /* 3 */
+    --kn_3: #8a8772;
+    /* カラー定義その2 */
+    --kn_poor: #e2534a;
+    --kn_good: #339c76;
+    --kn_excellent: #33769c;
+    --kn_bubble: #f9fff9;
+}
+// ./の無効化
+header h1:before {
+    content: "";
+}
+body {
+    background-color: var(--kn_b);
+    color: var(--kn-w);
+}
+header {
+    background: rgba(0, 0, 0, 0.1);
+    width: 100%;
+    border-bottom: 1px dashed var(--kn_1);
+    padding: 20px 0;
+    margin: 0 0 40px 0;
+}
+header h1 {
+    color: var(--kn_2);
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    color: var(--kn_2);
+}

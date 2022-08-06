@@ -3,4 +3,4 @@ plugins:
   - jekyll-remote-theme
 title: "かどで日記総合wiki"
 description: "かどで日記のもろもろが書かれています。"
-show_downloads: "false"
+show_downloads: false
