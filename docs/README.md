@@ -1,8 +1,3 @@
----
-title: かどで日記wikiトップ
-layout: default
----
-
 # かどで日記 Wiki
 
 ここは 3 階層に分かれています。
