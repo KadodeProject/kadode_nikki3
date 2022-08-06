@@ -4,3 +4,5 @@ plugins:
 title: [かどで日記総合wiki]
 description: [かどで日記のもろもろが書かれています。]
 show_downloads: "false"
+
+theme: jekyll-theme-cayman
