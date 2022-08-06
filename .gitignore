@@ -11,3 +11,8 @@ data
 #本番ビルドに変更
 backend/public/build
 backend/public/mix-manifest.json
+
+#wiki関連
+docsRoot/node_modules
+docsRoot/.textlint.log
+docsRoot/docs/.vitepress/dist
