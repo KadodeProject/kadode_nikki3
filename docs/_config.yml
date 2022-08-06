@@ -1,1 +1,4 @@
-theme: kadode-docs-theme
+theme: jekyll-theme-hacker
+title: [かどで日記総合wiki]
+description: [かどで日記のもろもろが書かれています。]
+show_downloads: "false"
