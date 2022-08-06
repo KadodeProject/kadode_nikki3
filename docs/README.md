@@ -1,3 +1,8 @@
+---
+title: かどで日記wikiトップ
+layout: default
+---
+
 # かどで日記 Wiki
 
 ここは 3 階層に分かれています。
@@ -16,4 +21,4 @@
 
 ## UML
 
-閲覧は専用のソフトウェアが必要です。
+閲覧は draw.io(旧 diagrams.net)が必要です。
