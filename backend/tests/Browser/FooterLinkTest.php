@@ -9,6 +9,13 @@ use Tests\DuskTestCase;
 
 class FooterLinkTest extends DuskTestCase
 {
+    public function testそもそもDuskが動作するか(): void
+    {
+        $this->browse(function (Browser $browser) {
+            $browser->visit('/login')
+                ->assertPathIs('/login');
+        });
+    }
     public function testフッターのリリースノートリンクが正しく動作する(): void
     {
         $this->browse(function (Browser $browser) {
