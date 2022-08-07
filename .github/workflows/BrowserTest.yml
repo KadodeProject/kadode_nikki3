@@ -77,7 +77,7 @@ jobs:
       - name: copy .env for ci
         run: cd backend && php -r "file_exists('.env') || copy('.env.ci', '.env');"
 
-      バージョン不一致エラーに将来的になるため、キャッシュ後にインストールを走らせる
+      # バージョン不一致エラーに将来的になるため、キャッシュ後にインストールを走らせる
       - name: install chrome
         uses: browser-actions/setup-chrome@latest
         with:
