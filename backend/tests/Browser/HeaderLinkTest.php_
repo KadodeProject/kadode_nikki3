@@ -1,0 +1,32 @@
+<?php
+
+declare(strict_types=1);
+
+namespace Tests\Browser;
+
+use Laravel\Dusk\Browser;
+use Tests\DuskTestCase;
+use App\Models\User;
+
+class HeaderLinkTest extends DuskTestCase
+{
+    public function testそもそもDuskが動作するか(): void
+    {
+        $this->browse(function ($browser) {
+            $browser->loginAs(User::find(1))
+                ->visit('ShowHome')
+                ->assertPathIs('/home');
+        });
+    }
+    public function testログインできる？(): void
+    {
+        $user = User::find(1);
+        $this->browse(function ($browser) use ($user) {
+            $browser->visitRoute('login')
+                ->type('email', $user->email)
+                ->type('password', 'test1234')
+                ->press('ログイン')
+                ->assertPathIs('/home');
+        });
+    }
+}

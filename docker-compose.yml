@@ -125,6 +125,7 @@ services:
     build:
       context: .
       dockerfile: ./infra/docker/selenium/Dockerfile
+    tty: true
     ports:
       - 4444:4444
       - 5900:5900
