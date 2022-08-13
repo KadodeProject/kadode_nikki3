@@ -43,11 +43,6 @@ jobs:
           # 二重で読み込まれるため上記のphp.ini記述処理は不要
           extensions: redis
 
-      - name: install chrome
-        uses: browser-actions/setup-chrome@latest
-        with:
-          chrome-version: stable
-
       - name: cache node_modules
         id: cache_node
         uses: actions/cache@v3
@@ -81,6 +76,12 @@ jobs:
         run: sudo pip3 install --upgrade pip
       - name: copy .env for ci
         run: cd backend && php -r "file_exists('.env') || copy('.env.ci', '.env');"
+
+      # バージョン不一致エラーに将来的になるため、キャッシュ後にインストールを走らせる
+      - name: install chrome
+        uses: browser-actions/setup-chrome@latest
+        with:
+          chrome-version: stable
 
       #ライブラリインストール
       #Python

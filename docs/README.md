@@ -7,7 +7,7 @@
 ## SYSTEM
 
 ※本来はかどで日記本体にあるべき部分のため、移動予定
-[利用者向け Wiki へ](DEV/README.md)
+[利用者向け Wiki へ](REGACY/README.md)
 
 ## ROADMAP
 

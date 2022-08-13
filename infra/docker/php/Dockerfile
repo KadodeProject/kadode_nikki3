@@ -15,7 +15,7 @@ ENV TZ=UTC \
 COPY --from=composer:2.0 /usr/bin/composer /usr/bin/composer
 
 RUN apt-get update && \
-  apt-get -y install git libicu-dev libonig-dev libzip-dev unzip locales python3-pip libmariadb-dev vim cpulimit htop cron default-mysql-client python3-venv  libgirepository1.0-dev chromium && \
+  apt-get -y install git libicu-dev libonig-dev libzip-dev unzip locales python3-pip libmariadb-dev vim cpulimit htop cron default-mysql-client python3-venv  libgirepository1.0-dev  && \
   apt-get clean && \
   rm -rf /var/lib/apt/lists/* && \
   locale-gen en_US.UTF-8 && \
@@ -30,7 +30,7 @@ RUN apt-get update && \
 
 RUN git clone https://github.com/phpredis/phpredis.git /usr/src/php/ext/redis && \
   docker-php-ext-install redis
-  
+
 COPY ./infra/docker/php/php-fpm.d/zzz-www.conf /usr/local/etc/php-fpm.d/zzz-www.conf
 COPY ./infra/docker/php/php.ini /usr/local/etc/php/php.ini
 

@@ -47,25 +47,25 @@ h6 {
     color: var(--kn_2);
 }
 
-// マーメイドの色変え
+// マーメイドの色変え(順番的に後で読み込まれるため、import必要)
 #id0 .flowchart-link {
-    stroke: var(--kn_w);
+    stroke: var(--kn_w) !important;
 }
 #id0 .node rect,
 #id0 .node circle,
 #id0 .node ellipse,
 #id0 .node polygon,
 #id0 .node path {
-    fill: var(--kn_1);
-    stroke: #9370db;
+    fill: var(--kn_1) !important;
+    stroke: #9370db !important;
 }
 
 #id0 .label text,
 #id0 span {
-    fill: var(--kn_w);
-    color: var(--kn_w);
+    fill: var(--kn_w) !important;
+    color: var(--kn_w) !important;
 }
 #id0 .edgeLabel {
-    background-color: var(--kn_2);
+    background-color: var(--kn_2) !important;
 }
 // マーメイドの色変えここまで

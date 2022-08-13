@@ -8,7 +8,7 @@ https://kadode.usuyuki.net
 
 https://kadodedocs.usuyuki.net
 
-または docs ディレクトリ
+または docs ディレクトリへ
 
 # Operation
 
@@ -29,33 +29,23 @@ https://kadodedocs.usuyuki.net
 [![Language grade: JavaScript](https://img.shields.io/lgtm/grade/javascript/g/Usuyuki/kadode_nikki3.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/Usuyuki/kadode_nikki3/context:javascript)
 [![Language grade: Python](https://img.shields.io/lgtm/grade/python/g/Usuyuki/kadode_nikki3.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/Usuyuki/kadode_nikki3/context:python)
 
+### デプロイ
+
+[![自動デプロイと初期構築](https://github.com/Usuyuki/kadode_nikki3/actions/workflows/automatic_deploy.yml/badge.svg)](https://github.com/Usuyuki/kadode_nikki3/actions/workflows/automatic_deploy.yml)
+
+[![かどで日記wiki生成](https://github.com/Usuyuki/kadode_nikki3/actions/workflows/pages/pages-build-deployment/badge.svg)](https://github.com/Usuyuki/kadode_nikki3/actions/workflows/pages/pages-build-deployment)
+
 ### 他
 
 [![PRに自動でラベル付けるCI](https://github.com/Usuyuki/kadode_nikki3/actions/workflows/label.yml/badge.svg)](https://github.com/Usuyuki/kadode_nikki3/actions/workflows/label.yml)
-[![自動デプロイと初期構築](https://github.com/Usuyuki/kadode_nikki3/actions/workflows/automatic_deploy.yml/badge.svg)](https://github.com/Usuyuki/kadode_nikki3/actions/workflows/automatic_deploy.yml)
 
-## Web
+## Website
 
 ![image](https://badgen.net/uptime-robot/status/m791749575-72b5e08236c6f4fb0d2235a7)
 ![image](https://badgen.net/uptime-robot/day/m791749575-72b5e08236c6f4fb0d2235a7)
 ![image](https://badgen.net/uptime-robot/week/m791749575-72b5e08236c6f4fb0d2235a7)
 ![image](https://badgen.net/uptime-robot/month/m791749575-72b5e08236c6f4fb0d2235a7)
 ![image](https://badgen.net/uptime-robot/response/m791749575-72b5e08236c6f4fb0d2235a7)
-
-## Language
-
-![image](https://img.shields.io/badge/-Python-3776AB.svg?logo=python&style=plastic)
-![image](https://img.shields.io/badge/-Php-777BB4.svg?logo=php&style=plastic)
-![image](https://img.shields.io/badge/-Javascript-F7DF1E.svg?logo=javascript&style=plastic)
-![image](https://img.shields.io/badge/-Html5-E34F26.svg?logo=html5&style=plastic)
-![image](https://img.shields.io/badge/-Css3-1572B6.svg?logo=css3&style=plastic)
-
-![image](https://img.shields.io/badge/Framework-Laravel-F4655F)
-![image](https://img.shields.io/badge/Library-TailwindCSS-06B6D4)
-![image](https://img.shields.io/badge/Library-Chart.js-FF6384)
-![image](https://img.shields.io/badge/Library-GiNZA-5A3B1D)
-
-![image](https://img.shields.io/badge/App-%E3%81%8B%E3%81%A9%E3%81%A7%E6%97%A5%E8%A8%98-624466)
 
 # 開発おたより
 
