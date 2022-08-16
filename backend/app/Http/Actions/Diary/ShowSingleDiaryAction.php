@@ -6,6 +6,7 @@ namespace App\Http\Actions\Diary;
 
 use App\Http\Controllers\Controller;
 use App\Models\Diary;
+use App\UseCases\Diary\GetApplicableDateTweet;
 use App\UseCases\Diary\ShapeContentWithNlp;
 use App\UseCases\Diary\ShapeStatisticFromDiaries;
 use Illuminate\Contracts\View\Factory;
@@ -20,6 +21,7 @@ final class ShowSingleDiaryAction extends Controller
     public function __construct(
         private ShapeStatisticFromDiaries $shapeStatisticFromDiaries,
         private ShapeContentWithNlp $shapeContentWithNlp,
+        private GetApplicableDateTweet $getApplicableDateTweet,
     ) {
     }
 
@@ -32,6 +34,9 @@ final class ShowSingleDiaryAction extends Controller
         }
         $next = Diary::where("date", ">", $diary->date)->orderBy("date", "asc")->first(['date', 'uuid']);
         $previous = Diary::where("date", "<", $diary->date)->orderBy("date", "desc")->first(['date', 'uuid']);
+
+        //その日のツイート取得
+        dd($this->getApplicableDateTweet->invoke("usuyuki26", $diary->date));
 
         //日記の統計情報取得
         $diary->is_latest_statistic = false;
