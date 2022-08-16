@@ -58,7 +58,17 @@
 
         <div class="container">
             <section id="main_content">
-                {% include toc.html html=content %} {{ content }}
+                <div
+                    style="
+                        border: 2px dotted var(--kn_2);
+                        margin: 2em 2em;
+                        padding: 1em 1em;
+                    "
+                >
+                    <p style="text-align: center; margin: 4px 4px">もくじ</p>
+                    {% include toc.html html=content %}
+                </div>
+                {{ content }}
             </section>
         </div>
     </body>
