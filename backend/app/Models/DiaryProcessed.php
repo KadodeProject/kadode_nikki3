@@ -6,13 +6,13 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 /**
- * 日記の統計に使うデータを格納する
+ * 日記の統計に使う自然言語処理データを格納する
  */
-class Statistic_per_individual extends Model
+class DiaryProcessed extends Model
 {
     use HasFactory;
     protected $fillable = [
-        "statistic_progress", "emotions", "classification", "important_words", "special_people",
+        "sentence", "chunk", "token", "affiliation", "char_length"
     ];
     /**
      * 日付の登録(format使えるように)
