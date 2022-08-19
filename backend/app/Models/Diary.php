@@ -6,6 +6,7 @@ namespace App\Models;
 
 use App\Scopes\ScopeDiary;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Diary extends Model
 {
@@ -49,7 +50,7 @@ class Diary extends Model
     );
 
     protected $fillable = [
-        "statistic_progress", "user_id", "uuid", "title", "content", "date", "sentence", "chunk", "token", "affiliation", "meta_info", "similar_sentences", "char_length", "emotions", "flavor", "classification", "important_words", "cause_effect_sentences", "special_people", "updated_statistic_at", "created_at", "updated_at"
+        "user_id", "uuid", "title", "content", "date", "created_at", "updated_at"
     ];
 
     // 初期値設定(statistic_progressを0にする)
@@ -62,4 +63,9 @@ class Diary extends Model
      * @var array
      */
     protected $dates = ['date', 'created_at', 'updated_at'];
+
+    public function statistic_per_individual(): BelongsTo
+    {
+        return $this->belongsTo(Statistic_per_individual::class);
+    }
 }
