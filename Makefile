@@ -127,3 +127,7 @@ barth:
 dev:
 	# cd backend && yarn dev
 	docker-compose exec web yarn dev
+cu:
+	docker-compose exec app composer update
+yu:
+	cd backend && yarn upgrade && cd ../
