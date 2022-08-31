@@ -7,6 +7,7 @@ namespace App\Models;
 use App\Scopes\ScopeDiary;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 
 class Diary extends Model
 {
@@ -64,8 +65,12 @@ class Diary extends Model
      */
     protected $dates = ['date', 'created_at', 'updated_at'];
 
-    public function statistic_per_individual(): BelongsTo
+    public function statistic_per_individual(): HasOne
     {
-        return $this->belongsTo(Statistic_per_individual::class);
+        return $this->hasOne(Statistic_per_individual::class, 'diary_id', 'id');
+    }
+    public function diaryProcessed(): HasOne
+    {
+        return $this->hasOne(DiaryProcessed::class, 'diary_id');
     }
 }

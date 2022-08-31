@@ -25,7 +25,8 @@ final class ShowSingleDiaryAction extends Controller
 
     public function __invoke($uuid): View|Factory|Redirector|RedirectResponse
     {
-        $diary = Diary::where("uuid", $uuid)->first();
+        dd(Diary::where("uuid", $uuid)->first()->statistic_per_individual, Diary::with('statistic_per_individual')->where("uuid", $uuid)->first());
+        $diary = Diary::with('DiaryProcessed:id,char_length')->with('')->where("uuid", $uuid)->first();
         if ($diary === null) {
             //日記無かったらリダイレクトさせる
             return redirect(route('ShowHome'));
