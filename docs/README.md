@@ -15,7 +15,7 @@
 
 ## ADR
 
-[ADR へ](ADR/README.md)
+[ADR へ](arc/README.md)
 
 ## UML
 

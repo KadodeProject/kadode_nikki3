@@ -57,50 +57,20 @@ namespace App\Models{
  * @property int $id
  * @property string $uuid uuid
  * @property int $user_id ユーザーID
- * @property int|null $statistic_progress 生成状況(生成まで時間かかるので)
  * @property string|null $title タイトル
  * @property string $content 本文
  * @property \Illuminate\Support\Carbon $date 日記の日付
- * @property mixed|null $sentence 一文ごとの位置(係り受けで使う)
- * @property mixed|null $chunk 係り受け構造
- * @property mixed|null $token 形態素分析された中身を格納 品詞(POS)、原形(lemma)などが存在
- * @property mixed|null $affiliation 固有表現抽出
- * @property int|null $char_length 文字数
- * @property mixed|null $meta_info 事実上予備領域
- * @property mixed|null $similar_sentences 似ている日記の日記ID(5)
- * @property float|null $emotions 感情数値化
- * @property float|null $flavor ユーザーの日記らしさ
- * @property string|null $classification 推定分類
- * @property mixed|null $important_words 重要そうな言葉(top3)
- * @property mixed|null $cause_effect_sentences 原因と結果のjson
- * @property mixed|null $special_people 登場人物
- * @property string|null $updated_statistic_at 統計更新日時
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @method static \Illuminate\Database\Eloquent\Builder|Diary newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Diary newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Diary query()
- * @method static \Illuminate\Database\Eloquent\Builder|Diary whereAffiliation($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Diary whereCauseEffectSentences($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Diary whereCharLength($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Diary whereChunk($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Diary whereClassification($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Diary whereContent($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Diary whereCreatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Diary whereDate($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Diary whereEmotions($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Diary whereFlavor($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Diary whereId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Diary whereImportantWords($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Diary whereMetaInfo($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Diary whereSentence($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Diary whereSimilarSentences($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Diary whereSpecialPeople($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Diary whereStatisticProgress($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Diary whereTitle($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Diary whereToken($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Diary whereUpdatedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Diary whereUpdatedStatisticAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Diary whereUserId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Diary whereUuid($value)
  */
