@@ -15,6 +15,7 @@ class GetAllNERLabelInOptionTabFormatTest extends TestCase
     /** */
     public function test与えられたコレクションをoptionタグ形式のHTMLとして返す()
     {
+        //arrange
         $this->getAllNERLabelInOptionTabFormat = new GetAllNERLabelInOptionTabFormat();
 
         $array = [
@@ -31,8 +32,9 @@ class GetAllNERLabelInOptionTabFormatTest extends TestCase
                 "parent" => "かどで日記独自",
             ]
         ];
-
+        //act
         $response = $this->getAllNERLabelInOptionTabFormat->invoke($array);
+        //assert
         $this->assertMatchesRegularExpression('/((\s<option value=")\d+(">).*?(<\/option>))+/', $response);
     }
 }

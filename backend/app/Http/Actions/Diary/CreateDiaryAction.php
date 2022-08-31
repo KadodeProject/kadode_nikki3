@@ -32,6 +32,7 @@ final class CreateDiaryAction extends Controller
         ];
 
         Diary::create($form);
+        // ここで統計用テーブル作成するのもありだが、後方互換を保つためにはできないたいめ、生成時になかったら作る方式を採用している
         return redirect(route('ShowHome'));
     }
 }
