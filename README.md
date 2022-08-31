@@ -69,6 +69,8 @@ flowchart TD
     E_FF-->|Responderの整備|F
     E_FF-->|ブラウザテストで全体の動作のテストを作成する|F
     F-->|Pythonの技術的負債の解体|G[かどで日記v3.13]
+    F-->|Pythonのコード責務分割|G
+    F-->|Pythonテスト導入|G
     G-->|フロントエンド部分のリファクタリング|H[かどで日記v3.14]
 ```
 
@@ -78,7 +80,7 @@ flowchart TD
 
 ## 開発者向けの情報は、かどで日記 wiki を御覧ください
 
-[かどで日記 wiki](https://github.com/Usuyuki/kadode_nikki3/wiki)
+[かどで日記 wiki](https://kadodedocs.usuyuki.net/)
 
 ## **ライセンス**
 
@@ -89,10 +91,6 @@ flowchart TD
     Copyright (c) 2021-2022 usuyuki
 
     Released under the MIT license
-
-### 使用しているソフトウェアのライセンス表記
-
-[usedLicense.md](./docs/99_usedLicense.md)
 
 ## 他
 
