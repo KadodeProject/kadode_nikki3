@@ -113,8 +113,10 @@ jobs:
 
       #Laravel Duskのための用意
       # chromeのバージョンをシェル芸で取得
+      - name: check chrome version
+        run: google-chrome --version && chrome_v=$(echo $(google-chrome --version) | cut -c 15- | rev | cut -c 9- | rev ) && echo "chrome_v=$chrome_v"
       - name: dusk install
-        run: cd backend && chrome_v=$(echo $(/tmp/chrome-lanjaY/chrome --version) | cut -c 15- | rev | cut -c 9- | rev ) && php artisan dusk:chrome-driver $chrome_v
+        run: cd backend && php artisan dusk:chrome-driver $chrome_v
       - name: chmod dusk/bin
         run: cd backend && chmod 775 -R vendor/laravel/dusk/bin
       #サーバー起動
