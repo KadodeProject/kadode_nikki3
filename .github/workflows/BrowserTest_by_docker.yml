@@ -1,6 +1,6 @@
 #動作確認済み【美品】
 #GitHub Actionsで6分程度要するため廃止
-name: Docker立ててテスト
+name: PHPテスト[ブラウザ(Docker版)]
 
 on:
   pull_request:

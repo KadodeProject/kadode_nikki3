@@ -1,5 +1,7 @@
 name: PHPテスト[ブラウザ]
-
+# chromeのバージョン不一致問題が解消せず動かない
+# 微妙にdusk側とdriver側のバージョンが違ってエラーになる
+# docker版より早いが、動かないため一時停止
 on:
   pull_request:
     branches: [main]
@@ -112,8 +114,11 @@ jobs:
         run: cd backend && yarn build
 
       #Laravel Duskのための用意
+      # chromeのバージョンをシェル芸で取得
+      - name: check chrome version
+        run: google-chrome --version && chrome_v=$(echo $(google-chrome --version) | cut -c 15- ) && echo "chrome_v=$chrome_v"
       - name: dusk install
-        run: cd backend && php artisan dusk:chrome-driver
+        run: cd backend && php artisan dusk:chrome-driver $chrome_v
       - name: chmod dusk/bin
         run: cd backend && chmod 775 -R vendor/laravel/dusk/bin
       #サーバー起動

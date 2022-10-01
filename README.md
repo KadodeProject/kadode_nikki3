@@ -16,7 +16,7 @@ https://kadodedocs.usuyuki.net
 
 ### テスト周り
 
-[![PHPテスト[ブラウザ]](https://github.com/Usuyuki/kadode_nikki3/actions/workflows/BrowserTest.yml/badge.svg)](https://github.com/Usuyuki/kadode_nikki3/actions/workflows/BrowserTest.yml)
+[![PHPテスト[ブラウザ(Docker版)]](https://github.com/KadodeProject/kadode_nikki3/actions/workflows/BrowserTest_by_docker.yml/badge.svg)](https://github.com/KadodeProject/kadode_nikki3/actions/workflows/BrowserTest_by_docker.yml)
 [![PHPテスト[結合]](https://github.com/Usuyuki/kadode_nikki3/actions/workflows/CombinedTest.yml/badge.svg)](https://github.com/Usuyuki/kadode_nikki3/actions/workflows/CombinedTest.yml)
 [![PHPテスト[単体]](https://github.com/Usuyuki/kadode_nikki3/actions/workflows/unitTest.yml/badge.svg)](https://github.com/Usuyuki/kadode_nikki3/actions/workflows/unitTest.yml)
 
