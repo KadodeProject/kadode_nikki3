@@ -99,22 +99,16 @@
 
 <body>
 
-    <!---ヘッダーここから--->
     @component('components.basis.header')
     @endcomponent
-    <!---ヘッダーここまで--->
-    <!---コンテンツここから--->
     <div class="main-wrapper">
         @yield('content')
     </div>
-    <!----コンテンツここまで--->
 
-    <!----フッターここから--->
     @component('components.basis.footer')
     @endcomponent
     @component('components.basis.smFooter')
     @endcomponent
-    <!----フッターここまで--->
     @component('components.basis.roadJS')
     @endcomponent
 

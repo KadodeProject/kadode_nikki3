@@ -159,7 +159,7 @@
                 height: auto;
             }
 
-            @media screen and (max-width: 640px) {
+            @media screen and (max-width: 900px) {
                 object {
                     width: 100%;
                 }
