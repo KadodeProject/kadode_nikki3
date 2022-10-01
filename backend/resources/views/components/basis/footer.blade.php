@@ -1,4 +1,3 @@
-<!---PCフッターここから--->
 <footer class="py-4">
     <div class="pt-8 flex flex-col md:flex-row md:justify-between justify-center items-center mx-auto flex-wrap footer-menu kiwi-maru"
         style="max-width: 1200px">
@@ -21,4 +20,3 @@
     </div>
     <p class="text-center mt-2 copyright">Copyright (c) 2021-{{date("Y")}} usuyuki</p>
 </footer>
-<!---PCフッターここまで--->

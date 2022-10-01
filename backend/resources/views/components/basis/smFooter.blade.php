@@ -1,4 +1,3 @@
-<!---SMフッターここから--->
 <div class="sm:hidden" style="height: 60px">
     <!-- smフッターメニューのための余白 -->
 </div>
@@ -16,4 +15,3 @@
     <p><a class="flex justify-center flex-col" href="{{route('ShowStatistic')}}"><span
                 class="material-icons mx-auto">poll</span><span class="text-xs">統計</span></a></p>
 </div>
-<!---SMフッターここまで--->
