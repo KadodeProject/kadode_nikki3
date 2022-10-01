@@ -63,6 +63,7 @@ final class ShowHomeAction extends Controller
 
         /**
          * 古い日記の取得
+         * @todo ここinでまとめてしゅとくできない？(ホームページのクエリ減らしたい)
          */
         $lastWeek = new Carbon("-1 weeks");
         $lastWeekDiary = Diary::where("date", $lastWeek->format("Y-m-d"))->first();
