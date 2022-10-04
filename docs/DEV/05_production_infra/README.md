@@ -1,5 +1,30 @@
 # 本番環境に関して
 
+## リンク一覧
+
+### 現状
+
+[kadode.usuyuki.net](kadode.usuyuki.net) にて運用中
+
+### 変更後
+
+全体紹介ページ  
+[www.kado.day](https://kado.day)
+
+web フロントの URL  
+[kado.day](https://kado.day)
+
+かどで日記メイン API の URL  
+[api.kado.day](https://api.kado.day)
+
+NLP 関連の API の URL  
+[nlp.kado.day](https://nlp.kado.day)
+
+かどで日記管理用の URL  
+[admin.kado.day](https://admin.kado.day)
+
+# Laravel よく使うコマンド
+
 ## Laravel キャッシュクリア＆最適化
 
 https://qiita.com/ucan-lab/items/c1e561d20cc591966c25
