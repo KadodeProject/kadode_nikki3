@@ -6,7 +6,7 @@ https://kadode.usuyuki.net
 
 ## 開発者向け情報
 
-https://kadodedocs.usuyuki.net
+https://wiki.kado.day
 
 または docs ディレクトリへ
 
