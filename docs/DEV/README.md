@@ -1,5 +1,7 @@
 # 開発者向け Wiki
 
+> この wiki は絶賛改修中です。
+
 [とにかくローカル開発環境を構築したい](04_dev_infra/README.md#初期構築)
 
 [バックエンドに関して](01_backend/README.md)  

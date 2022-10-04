@@ -80,7 +80,7 @@ flowchart TD
 
 ## 開発者向けの情報は、かどで日記 wiki を御覧ください
 
-[かどで日記 wiki](https://kadodedocs.usuyuki.net/)
+[かどで日記 wiki](https://wiki.kado.day/)
 
 ## **ライセンス**
 
