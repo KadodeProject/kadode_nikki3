@@ -8,20 +8,26 @@
 
 ### 変更後
 
-全体紹介ページ  
-[www.kado.day](https://kado.day)
-
-web フロントの URL  
+web フロント  
 [kado.day](https://kado.day)
 
-かどで日記メイン API の URL  
+開発者向け wiki  
+[wiki.kado.day](https://wiki.kado.day)
+
+全体紹介ページ  
+[portal.kado.day](https://kado.day)
+
+かどで日記メイン API  
 [api.kado.day](https://api.kado.day)
 
-NLP 関連の API の URL  
+NLP 関連の API  
 [nlp.kado.day](https://nlp.kado.day)
 
-かどで日記管理用の URL  
+かどで日記管理用
 [admin.kado.day](https://admin.kado.day)
+
+かどで日記稼働状況表示用
+[paper.kado.day](https://paper.kado.day)
 
 # Laravel よく使うコマンド
 
