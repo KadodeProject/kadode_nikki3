@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Models;
 
+use App\Scopes\ScopeLoggedInUser;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -12,6 +13,11 @@ use Illuminate\Database\Eloquent\Model;
  */
 class Statistic_per_individual extends Model
 {
+    protected static function boot()
+    {
+        parent::boot();
+        static::addGlobalScope(new ScopeLoggedInUser);
+    }
     use HasFactory;
     protected $fillable = [
         "statistic_progress", "emotions", "classification", "important_words", "special_people",
