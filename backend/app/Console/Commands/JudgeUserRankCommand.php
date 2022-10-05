@@ -16,7 +16,7 @@ class JudgeUserRankCommand extends Command
      *
      * @var string
      */
-    protected $signature = 'user:judgeUser_rank';
+    protected $signature = 'user:judgeUserRank';
 
     /**
      * The console command description.

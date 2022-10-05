@@ -41,5 +41,5 @@ php artisan kadode:gcsBackup
 かどで日記のユーザーランク審査を行い、ランクアップ可能ならばランクアップ処理を行う
 
 ```
-php artisan user:judgeUser_rank
+php artisan user:judgeUserRank
 ```

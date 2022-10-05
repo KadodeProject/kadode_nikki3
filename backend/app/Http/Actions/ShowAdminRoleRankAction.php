@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace App\Http\Actions;
 
 use App\Http\Controllers\Controller;
-use App\Models\User_rank;
+use App\Models\UserRank;
 use App\Models\UserRole;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
@@ -15,7 +15,7 @@ final class ShowAdminRoleRankAction extends Controller
     public function __invoke(): View|Factory
     {
         //ユーザーランク
-        $user_ranks = User_rank::get();
+        $user_ranks = UserRank::get();
 
         //ユーザーロール
         $user_roles = UserRole::get();

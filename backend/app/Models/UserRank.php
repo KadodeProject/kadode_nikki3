@@ -7,7 +7,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class User_rank extends Model
+class UserRank extends Model
 {
     use HasFactory;
     protected $fillable = [
