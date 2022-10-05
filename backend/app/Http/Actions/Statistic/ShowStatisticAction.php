@@ -6,6 +6,7 @@ namespace App\Http\Actions\Statistic;
 
 use App\Http\Controllers\Controller;
 use App\Models\Diary;
+use App\Models\DiaryProcessed;
 use App\Models\Statistic;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
@@ -14,7 +15,7 @@ use Illuminate\Support\Facades\Auth;
 
 class ShowStatisticAction extends Controller
 {
-    public function __invoke():View|Factory
+    public function __invoke(): View|Factory
     {
         $user_id = Auth::id();
         $statistic = Statistic::where("user_id", $user_id)->first();
@@ -29,7 +30,7 @@ class ShowStatisticAction extends Controller
         $char_length_frequency_distribution = []; //undefinedエラー防止用
         $biggerDiaries = []; //undefinedエラー防止用
         $anime_timeline = []; //undefinedエラー防止用
-        if (! empty($statistic)) {
+        if (!empty($statistic)) {
             if ($statistic->statistic_progress === 100) {
 
                 /**
@@ -172,7 +173,7 @@ class ShowStatisticAction extends Controller
             /**
              * 個別日記処理の進捗を取得する処理
              */
-            $ended_diaries_count = Diary::sum('statistic_progress') / 100; #終わっている日記数の推定値(本当は50で全部通してから次行くので、実際の値とは違う)
+            $ended_diaries_count = DiaryProcessed::sum('statistic_progress') / 100; #終わっている日記数の推定値(本当は50で全部通してから次行くので、実際の値とは違う)
 
             // 基本情報の追加
             //最古の日記

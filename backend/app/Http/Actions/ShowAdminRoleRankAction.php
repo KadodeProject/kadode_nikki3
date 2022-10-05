@@ -6,7 +6,7 @@ namespace App\Http\Actions;
 
 use App\Http\Controllers\Controller;
 use App\Models\User_rank;
-use App\Models\User_role;
+use App\Models\UserRole;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
 
@@ -18,7 +18,7 @@ final class ShowAdminRoleRankAction extends Controller
         $user_ranks = User_rank::get();
 
         //ユーザーロール
-        $user_roles = User_role::get();
+        $user_roles = UserRole::get();
 
         return view('admin/role_rankAdmin', ['user_ranks' => $user_ranks, 'user_roles' => $user_roles,]);
     }
