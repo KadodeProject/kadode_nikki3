@@ -1,6 +1,7 @@
 <?php
 
 declare(strict_types=1);
+
 namespace App\Scopes;
 
 use Illuminate\Database\Eloquent\Builder;
@@ -11,8 +12,10 @@ use Illuminate\Support\Facades\Auth;
 /**
  * 明示しなくてもログイン中のユーザーのみの日記を絞り込むグローバルスコープ
  */
-class ScopeDiary implements Scope{
-    public function apply(Builder $builder,Model $model){
-        $builder->where("user_id",Auth::id());
+class ScopeLoggedInUser implements Scope
+{
+    public function apply(Builder $builder, Model $model)
+    {
+        $builder->where("user_id", Auth::id());
     }
 }
