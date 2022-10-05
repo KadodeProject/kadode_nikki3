@@ -25,8 +25,8 @@ class Osirase extends Model
         "description" => "required",
     );
 
-    public function osirase_genre():BelongsTo
+    public function osiraseGenre(): BelongsTo
     {
-        return $this->belongsTo(Osirase_genre::class,'genre_id','id');
+        return $this->belongsTo(OsiraseGenre::class, 'genre_id', 'id');
     }
 }

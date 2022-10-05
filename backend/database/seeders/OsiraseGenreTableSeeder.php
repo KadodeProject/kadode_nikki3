@@ -7,7 +7,7 @@ namespace Database\Seeders;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
-class Osirase_genreTableSeeder extends Seeder
+class OsiraseGenreTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -17,19 +17,17 @@ class Osirase_genreTableSeeder extends Seeder
     public function run()
     {
 
-        $param=[
+        $param = [
             [
-            'name'=>"お知らせ" ,
+                'name' => "お知らせ",
             ],
             [
-            'name'=>"プレスリリース" ,
+                'name' => "プレスリリース",
             ],
             [
-            'name'=>"イベント" ,
+                'name' => "イベント",
             ],
         ];
         DB::table("osirase_genres")->insert($param);
-
-
     }
 }
