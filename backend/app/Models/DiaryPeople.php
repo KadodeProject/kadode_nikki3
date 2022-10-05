@@ -8,7 +8,7 @@ use App\Scopes\ScopeLoggedInUser;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Diary_people extends Model
+class DiaryPeople extends Model
 {
     /**
      * 日記を自動でログインユーザーのみに絞り込むグローバルスコープの呼び出し関数
