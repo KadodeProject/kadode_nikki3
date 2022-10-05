@@ -35,7 +35,7 @@ class CreateAllStatisticAction extends Controller
         // $data=[
         //     "user_id"=>Auth::id(),
         // ];
-        // // Statistic_per_month::create($data);
+        // // StatisticPerMonth::create($data);
         // // Statistic_per_year::create($data);
         // // Diary_people::create($data);
         // StatisticOverallProgress::create($data);

@@ -6,7 +6,7 @@ namespace App\Http\Actions\Diary;
 
 use App\Http\Controllers\Controller;
 use App\Models\Diary;
-use App\Models\Statistic_per_month;
+use App\Models\StatisticPerMonth;
 use App\UseCases\Diary\ShapeStatisticFromDiaries;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
@@ -19,7 +19,7 @@ final class ShowMonthDiaryAction extends Controller
     ) {
     }
 
-        public function __invoke(int $year,int $month):View|Factory
+    public function __invoke(int $year, int $month): View|Factory
     {
 
         //特定の月だけ取ってくる
@@ -33,7 +33,7 @@ final class ShowMonthDiaryAction extends Controller
          */
         //月
         //月別の統計→配列
-        $statisticPerMonth = Statistic_per_month::where("year", $year)->where("month", $month)->first();
+        $statisticPerMonth = StatisticPerMonth::where("year", $year)->where("month", $month)->first();
         if ($statisticPerMonth !== null) {
             if ($statisticPerMonth->statistic_progress === 100) {
                 $statisticPerMonth->emotions = array_values(json_decode($statisticPerMonth->emotions, true));
