@@ -8,7 +8,7 @@ use App\Scopes\ScopeLoggedInUser;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class User_ip extends Model
+class UserIp extends Model
 {
     use HasFactory;
 

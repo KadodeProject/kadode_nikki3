@@ -22,8 +22,8 @@ class Releasenote extends Model
         "description" => "required",
     );
 
-    public function releasenote_genre():BelongsTo
+    public function releasenoteGenre(): BelongsTo
     {
-        return $this->belongsTo(Releasenote_genre::class,'genre_id','id');
+        return $this->belongsTo(Releasenote_genre::class, 'genre_id', 'id');
     }
 }
