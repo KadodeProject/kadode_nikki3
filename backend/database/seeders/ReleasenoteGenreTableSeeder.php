@@ -17,19 +17,17 @@ class Releasenote_genreTableSeeder extends Seeder
     public function run()
     {
 
-        $param=[
+        $param = [
             [
-            'name'=>"Fix" ,
+                'name' => "Fix",
             ],
             [
-            'name'=>"Feature" ,
+                'name' => "Feature",
             ],
             [
-            'name'=>"Other" ,
+                'name' => "Other",
             ],
         ];
-        DB::table("releasenote_genres")->insert($param);
-
-
+        DB::table("releasenoteGenres")->insert($param);
     }
 }
