@@ -12,7 +12,7 @@
     @include('components.noLogIn.osiraseCard',
     ['title'=>$osirase->title,
     'date'=>$osirase->date->format('Y年n月j日'),
-    'genre'=>$osirase->osirase_genre->name,
+    'genre'=>$osirase->osiraseGenre->name,
     'explain'=>$osirase->description,
     ])
     @endforeach

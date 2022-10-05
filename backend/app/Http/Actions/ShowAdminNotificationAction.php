@@ -8,7 +8,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Osirase;
 use App\Models\OsiraseGenre;
 use App\Models\Releasenote;
-use App\Models\Releasenote_genre;
+use App\Models\ReleasenoteGenre;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
 
@@ -26,7 +26,7 @@ final class ShowAdminNotificationAction extends Controller
 
         //リリースノート
         $releasenotes = Releasenote::orderBy('date', 'desc')->get();
-        $releasenoteGenres = Releasenote_genre::get(['id', 'name']);
+        $releasenoteGenres = ReleasenoteGenre::get(['id', 'name']);
         foreach ($releasenotes as $releasenote) {
             //ジャンルidから名前取得
             $releasenote->genre = $releasenoteGenres[$releasenote->genre_id - 1]->name;

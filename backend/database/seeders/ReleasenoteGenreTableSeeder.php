@@ -7,7 +7,7 @@ namespace Database\Seeders;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
-class Releasenote_genreTableSeeder extends Seeder
+class ReleasenoteGenreTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.

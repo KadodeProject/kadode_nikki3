@@ -24,6 +24,6 @@ class Releasenote extends Model
 
     public function releasenoteGenre(): BelongsTo
     {
-        return $this->belongsTo(Releasenote_genre::class, 'genre_id', 'id');
+        return $this->belongsTo(ReleasenoteGenre::class, 'genre_id', 'id');
     }
 }
