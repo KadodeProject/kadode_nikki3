@@ -6,7 +6,7 @@ namespace App\Http\Actions\Diary;
 
 use App\Http\Controllers\Controller;
 use App\Models\Diary;
-use App\Models\Statistic_per_year;
+use App\Models\StatisticPerYear;
 use App\UseCases\Diary\ShapeStatisticFromDiaries;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
@@ -19,7 +19,7 @@ final class ShowYearDiaryAction extends Controller
     ) {
     }
 
-        public function __invoke(int $year):View|Factory
+    public function __invoke(int $year): View|Factory
     {
         //特定の年だけ取ってくる
         $startYear = Carbon::create($year, 1, 1, 1, 1, 1)->startOfYear()->format("Y-m-d");
@@ -30,7 +30,7 @@ final class ShowYearDiaryAction extends Controller
          * 統計データの表示処理
          */
         //年別の統計→配列
-        $statisticPerYear = Statistic_per_year::where("year", $year)->first();
+        $statisticPerYear = StatisticPerYear::where("year", $year)->first();
         if ($statisticPerYear !== null) {
             if ($statisticPerYear->statistic_progress === 100) {
                 $statisticPerYear->emotions = array_values(json_decode($statisticPerYear->emotions, true));
