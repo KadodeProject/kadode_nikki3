@@ -11,7 +11,7 @@ use Illuminate\Database\Eloquent\Model;
 /**
  * 日記の統計に使うデータを格納する
  */
-class Statistic_per_individual extends Model
+class StatisticPerIndividual extends Model
 {
     protected static function boot()
     {

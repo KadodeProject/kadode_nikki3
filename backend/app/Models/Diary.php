@@ -65,9 +65,9 @@ class Diary extends Model
      */
     protected $dates = ['date', 'created_at', 'updated_at'];
 
-    public function statistic_per_individual(): HasOne
+    public function statisticPerIndividual(): HasOne
     {
-        return $this->hasOne(Statistic_per_individual::class, 'diary_id', 'id');
+        return $this->hasOne(StatisticPerIndividual::class, 'diary_id', 'id');
     }
     public function diaryProcessed(): HasOne
     {
