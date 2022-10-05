@@ -8,7 +8,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Diary;
 use App\Models\Osirase;
 use App\Models\Releasenote;
-use App\Models\User_rank;
+use App\Models\UserRank;
 use App\UseCases\Diary\ShapeStatisticFromDiaries;
 use DateTimeImmutable;
 use Illuminate\Contracts\View\Factory;
@@ -151,7 +151,7 @@ final class ShowHomeAction extends Controller
         }
         if (!$user->is_showed_update_user_rank) {
             // ユーザーランク取得
-            $user_rank = User_rank::where("id", $user->user_rank_id)->first(['name']);
+            $user_rank = UserRank::where("id", $user->user_rank_id)->first(['name']);
             $new_infos[] = ["url" => "/settings", "actionUrl" => route('RemoveUserRankInfo'), "bg_color" => "226, 83, 74", "title" => "ユーザーランクが「" . $user_rank->name . "」になりました！", "date" => $user->user_rank_updated_at];
         }
 
