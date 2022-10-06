@@ -6,12 +6,14 @@ namespace App\Http\Actions\Diary;
 
 use App\Http\Controllers\Controller;
 use App\Models\Diary;
+use App\UseCases\Diary\GetDiaryByUuid;
 use App\UseCases\Diary\ShapeContentWithNlp;
 use App\UseCases\Diary\ShapeStatisticFromDiaries;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Routing\Redirector;
+use App\UseCases\Diary\GetDiaryByDate;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\DB;
 
@@ -20,17 +22,19 @@ final class ShowSingleDiaryAction extends Controller
     public function __construct(
         private ShapeStatisticFromDiaries $shapeStatisticFromDiaries,
         private ShapeContentWithNlp $shapeContentWithNlp,
+        private GetDiaryByUuid $getDiaryByUuid,
+        private GetDiaryByDate $getDiaryByDate,
     ) {
     }
 
     public function __invoke($uuid): View|Factory|Redirector|RedirectResponse
     {
-        dd(Diary::where("uuid", $uuid)->first()->statistic_per_individual, Diary::with('statistic_per_individual')->where("uuid", $uuid)->first());
-        $diary = Diary::with('DiaryProcessed:id,char_length')->with('')->where("uuid", $uuid)->first();
-        if ($diary === null) {
+        $diary = $this->getDiaryByUuid->invoke($uuid);
+        if ($diary === []) {
             //日記無かったらリダイレクトさせる
             return redirect(route('ShowHome'));
         }
+        $tmp = Diary::where('id', 1)->first();
         $next = Diary::where("date", ">", $diary->date)->orderBy("date", "asc")->first(['date', 'uuid']);
         $previous = Diary::where("date", "<", $diary->date)->orderBy("date", "desc")->first(['date', 'uuid']);
 
