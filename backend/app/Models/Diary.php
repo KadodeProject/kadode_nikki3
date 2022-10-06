@@ -54,10 +54,6 @@ class Diary extends Model
         "user_id", "uuid", "title", "content", "date", "created_at", "updated_at"
     ];
 
-    // 初期値設定(statistic_progressを0にする)
-    protected $attributes = [
-        "statistic_progress" => 0,
-    ];
     /**
      * 日付の登録(format使えるように)
      *
@@ -65,9 +61,9 @@ class Diary extends Model
      */
     protected $dates = ['date', 'created_at', 'updated_at'];
 
-    public function statisticPerIndividual(): HasOne
+    public function statisticPerDate(): HasOne
     {
-        return $this->hasOne(StatisticPerIndividual::class, 'diary_id', 'id');
+        return $this->hasOne(StatisticPerDate::class, 'diary_id', 'id');
     }
     public function diaryProcessed(): HasOne
     {

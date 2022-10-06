@@ -40,7 +40,7 @@ class connectDB:
         cur= self.conn.cursor()
         # クエリを実行する
         #このクエリの順番は他所でrow[2]的な依存をしているので変更は要注意
-        sql = "SELECT D.id,D.title,D.content,D.date,D.updated_at,S.updated_at AS updated_statistic_at,S.statistic_progress FROM diaries AS D LEFT JOIN statistic_per_individuals AS S ON D.id = S.diary_id LEFT JOIN diary_processeds AS P ON D.id = P.diary_id  WHERE user_id="+str(user_id)+";"
+        sql = "SELECT D.id,D.title,D.content,D.date,D.updated_at,S.updated_at AS updated_statistic_at,S.statistic_progress FROM diaries AS D LEFT JOIN statistic_per_dates AS S ON D.id = S.diary_id LEFT JOIN diary_processeds AS P ON D.id = P.diary_id  WHERE user_id="+str(user_id)+";"
         cur.execute(sql)
         # 実行結果をすべて取得する
         rows = cur.fetchall()
@@ -56,7 +56,7 @@ class connectDB:
         cur= self.conn.cursor()
         # クエリを実行する
         #このクエリの順番は他所でrow[2]的な依存をしているので変更は要注意
-        sql = "SELECT D.id,D.updated_at,S.updated_at AS updated_statistic_at,P.sentence,P.chunk,P.token,P.affiliation,P.char_length,D.content FROM diaries AS D LEFT JOIN statistic_per_individuals AS S ON D.id = S.diary_id LEFT JOIN diary_processeds AS P ON D.id = P.diary_id WHERE user_id="+str(user_id)+";"
+        sql = "SELECT D.id,D.updated_at,S.updated_at AS updated_statistic_at,P.sentence,P.chunk,P.token,P.affiliation,P.char_length,D.content FROM diaries AS D LEFT JOIN statistic_per_dates AS S ON D.id = S.diary_id LEFT JOIN diary_processeds AS P ON D.id = P.diary_id WHERE D.user_id="+str(user_id)+";"
         cur.execute(sql)
         # 実行結果をすべて取得する
         rows = cur.fetchall()
@@ -74,7 +74,7 @@ class connectDB:
         cur= self.conn.cursor()
         # クエリを実行する
         #このクエリの順番は他所でrow[2]的な依存をしているので変更は要注意
-        sql = "SELECT D.id,D.updated_at,S.updated_at AS updated_statistic_at,D.date,P.char_length,S.emotions,S.classification,S.important_words,S.special_people,P.token FROM diaries AS D LEFT JOIN statistic_per_individuals AS S ON D.id = S.diary_id LEFT JOIN diary_processeds AS P ON D.id = P.diary_id WHERE user_id="+str(user_id)+";"
+        sql = "SELECT D.id,D.updated_at,S.updated_at AS updated_statistic_at,D.date,P.char_length,S.emotions,S.classification,S.important_words,S.special_people,P.token FROM diaries AS D LEFT JOIN statistic_per_dates AS S ON D.id = S.diary_id LEFT JOIN diary_processeds AS P ON D.id = P.diary_id WHERE user_id="+str(user_id)+";"
         cur.execute(sql)
         # 実行結果をすべて取得する
         rows = cur.fetchall()
@@ -181,7 +181,7 @@ class connectDB:
 
     """
     解析済みのJSONデータを書き込む(idで一意に決まりupdateで対応できる個別日記のもの用)
-    statistic_per_individuals専用になっている
+    statistic_per_dates専用になっている
     """
     def set_single_json_data(self,column:str,db_id:int,**jsons):
         for (key,value) in jsons.items():
@@ -248,7 +248,7 @@ class connectDB:
 
     """
     進捗状況--日記テーブルなど1ユーザー複数テーブルでdbid既知のもの用
-    statistic_per_individuals専用になっている
+    statistic_per_dates専用になっている
     """
     def set_single_progress(self,db_id,table_name,value):
         # カーソルを取得する

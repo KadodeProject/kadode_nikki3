@@ -4,20 +4,15 @@ declare(strict_types=1);
 
 namespace App\Models;
 
-use App\Scopes\ScopeLoggedInUser;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 /**
  * 日記の統計に使うデータを格納する
  */
-class StatisticPerIndividual extends Model
+class StatisticPerDate extends Model
 {
-    protected static function boot()
-    {
-        parent::boot();
-        static::addGlobalScope(new ScopeLoggedInUser);
-    }
+    /** statisticPerMonthなどはuser_idで紐づいているがこのテーブルは */
     use HasFactory;
     protected $fillable = [
         "statistic_progress", "emotions", "classification", "important_words", "special_people",

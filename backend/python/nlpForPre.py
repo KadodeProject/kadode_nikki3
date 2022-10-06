@@ -66,7 +66,7 @@ def nlpForPre(user_id):
             time_statistics_updated_at = row[5]
         else:
             #新規で空のデータを作成
-            db.create_diary_meta_row('statistic_per_individuals',row[0],datetime.datetime.now())
+            db.create_diary_meta_row('statistic_per_dates',row[0],datetime.datetime.now())
             db.create_diary_meta_row('diary_processeds',row[0],datetime.datetime.now())
 
             time_statistics_updated_at = dt.strptime('1800-1-1 11:11:11','%Y-%m-%d %H:%M:%S')
@@ -87,7 +87,7 @@ def nlpForPre(user_id):
             continue
         else:
             print(str(row[0])+"pre処理")
-            db.set_single_progress(row[0],"statistic_per_individuals",10)
+            db.set_single_progress(row[0],"diary_processeds",10)
 
             '''
             char_length:日記の文字数
@@ -123,7 +123,7 @@ def nlpForPre(user_id):
             '''
             db.set_single_json_data('diary_processeds',row[0],chunk=chunk,token=token,sentence=sentence,affiliation=affiliation)
             db.set_single_normal_data('diary_processeds',row[0],char_length=char_length)
-            db.set_single_progress(row[0],"statistic_per_individuals",50)
+            db.set_single_progress(row[0],"diary_processeds",100)
 
     db.set_multiple_progress(user_id,"statistics",20)
     #インスタンス破棄
