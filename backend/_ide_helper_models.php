@@ -63,7 +63,7 @@ namespace App\Models{
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @property-read \App\Models\DiaryProcessed|null $diaryProcessed
- * @property-read \App\Models\StatisticPerIndividual|null $statisticPerIndividual
+ * @property-read \App\Models\StatisticPerDate|null $statisticPerDate
  * @method static \Illuminate\Database\Eloquent\Builder|Diary newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Diary newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Diary query()
@@ -96,6 +96,7 @@ namespace App\Models{
  *
  * @property int $id
  * @property int $diary_id 日記のid
+ * @property int|null $statistic_progress 生成状況(生成まで時間かかるので)
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @property mixed|null $sentence 一文ごとの位置(係り受けで使う)
@@ -113,6 +114,7 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|DiaryProcessed whereDiaryId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|DiaryProcessed whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|DiaryProcessed whereSentence($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|DiaryProcessed whereStatisticProgress($value)
  * @method static \Illuminate\Database\Eloquent\Builder|DiaryProcessed whereToken($value)
  * @method static \Illuminate\Database\Eloquent\Builder|DiaryProcessed whereUpdatedAt($value)
  */
@@ -414,22 +416,32 @@ namespace App\Models{
  * @property string|null $classification 推定分類
  * @property mixed|null $important_words 重要そうな言葉(top3)
  * @property mixed|null $special_people 登場人物
+ * @property mixed|null $sentence 一文ごとの位置(係り受けで使う)
+ * @property mixed|null $chunk 係り受け構造
+ * @property mixed|null $token 形態素分析された中身を格納 品詞(POS)、原形(lemma)などが存在
+ * @property mixed|null $affiliation 固有表現抽出
+ * @property int|null $char_length 文字数
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
- * @method static \Illuminate\Database\Eloquent\Builder|StatisticPerIndividual newModelQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|StatisticPerIndividual newQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|StatisticPerIndividual query()
- * @method static \Illuminate\Database\Eloquent\Builder|StatisticPerIndividual whereClassification($value)
- * @method static \Illuminate\Database\Eloquent\Builder|StatisticPerIndividual whereCreatedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|StatisticPerIndividual whereDiaryId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|StatisticPerIndividual whereEmotions($value)
- * @method static \Illuminate\Database\Eloquent\Builder|StatisticPerIndividual whereId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|StatisticPerIndividual whereImportantWords($value)
- * @method static \Illuminate\Database\Eloquent\Builder|StatisticPerIndividual whereSpecialPeople($value)
- * @method static \Illuminate\Database\Eloquent\Builder|StatisticPerIndividual whereStatisticProgress($value)
- * @method static \Illuminate\Database\Eloquent\Builder|StatisticPerIndividual whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|StatisticPerDate newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|StatisticPerDate newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|StatisticPerDate query()
+ * @method static \Illuminate\Database\Eloquent\Builder|StatisticPerDate whereAffiliation($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|StatisticPerDate whereCharLength($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|StatisticPerDate whereChunk($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|StatisticPerDate whereClassification($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|StatisticPerDate whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|StatisticPerDate whereDiaryId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|StatisticPerDate whereEmotions($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|StatisticPerDate whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|StatisticPerDate whereImportantWords($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|StatisticPerDate whereSentence($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|StatisticPerDate whereSpecialPeople($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|StatisticPerDate whereStatisticProgress($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|StatisticPerDate whereToken($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|StatisticPerDate whereUpdatedAt($value)
  */
-	class StatisticPerIndividual extends \Eloquent {}
+	class StatisticPerDate extends \Eloquent {}
 }
 
 namespace App\Models{
@@ -506,35 +518,6 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|StatisticPerYear whereYear($value)
  */
 	class StatisticPerYear extends \Eloquent {}
-}
-
-namespace App\Models{
-/**
- * 日記の統計に使うデータを格納する
- *
- * @property int $id
- * @property int $diary_id 日記のid
- * @property int|null $statistic_progress 生成状況(生成まで時間かかるので)
- * @property float|null $emotions 感情数値化
- * @property string|null $classification 推定分類
- * @property mixed|null $important_words 重要そうな言葉(top3)
- * @property mixed|null $special_people 登場人物
- * @property \Illuminate\Support\Carbon|null $created_at
- * @property \Illuminate\Support\Carbon|null $updated_at
- * @method static \Illuminate\Database\Eloquent\Builder|Statistic_per_individual newModelQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|Statistic_per_individual newQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|Statistic_per_individual query()
- * @method static \Illuminate\Database\Eloquent\Builder|Statistic_per_individual whereClassification($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Statistic_per_individual whereCreatedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Statistic_per_individual whereDiaryId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Statistic_per_individual whereEmotions($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Statistic_per_individual whereId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Statistic_per_individual whereImportantWords($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Statistic_per_individual whereSpecialPeople($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Statistic_per_individual whereStatisticProgress($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Statistic_per_individual whereUpdatedAt($value)
- */
-	class Statistic_per_individual extends \Eloquent {}
 }
 
 namespace App\Models{
