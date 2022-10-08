@@ -28,6 +28,6 @@ class ReleasenoteGenreTableSeeder extends Seeder
                 'name' => "Other",
             ],
         ];
-        DB::table("releasenoteGenres")->insert($param);
+        DB::table("releasenote_genres")->insert($param);
     }
 }

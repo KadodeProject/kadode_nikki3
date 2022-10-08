@@ -11,7 +11,7 @@ use App\Models\Diary;
  * グローバルスコープ機能でユーザーIDの絞り込みを事前に行っているため認可制御は適切
  *
  */
-class GetDiariesByDate
+class GetDiariesByAfterDate
 {
     /**
      * 統計データとともに日記データを返す。

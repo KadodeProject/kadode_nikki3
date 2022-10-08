@@ -81,6 +81,8 @@ migrate:
 	docker compose exec app php artisan migrate
 fresh:
 	docker compose exec app php artisan migrate:fresh --seed
+run-nlp-direct:
+	docker compose exec app python3 python/pythonUseFromPHP.py 1
 seed:
 	docker compose exec app php artisan db:seed
 rollback-test:

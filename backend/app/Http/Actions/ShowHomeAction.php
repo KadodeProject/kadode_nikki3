@@ -47,7 +47,7 @@ final class ShowHomeAction extends Controller
          * 今日と昨日の日記があるか調べる
          */
         foreach ($latests as $latest) {
-            $date    = Carbon::parse($latest->date);
+            $date = Carbon::parse($latest->date);
             if ($today_date->eq($date)) {
                 $today = $latest;
             } else if ($yesterday_date->eq($date)) {

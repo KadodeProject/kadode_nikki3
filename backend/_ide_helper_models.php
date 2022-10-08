@@ -59,7 +59,7 @@ namespace App\Models{
  * @property int $user_id ユーザーID
  * @property string|null $title タイトル
  * @property string $content 本文
- * @property \Illuminate\Support\Carbon $date 日記の日付
+ * @property string $date 日記の日付
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @property-read \App\Models\DiaryProcessed|null $diaryProcessed

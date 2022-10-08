@@ -24,15 +24,21 @@ class GetDiaryByDate
 
         /**
          * laravelのお作法的には下だが、今回はN+1問題関係なく全部の日記で統計データ使うのでこれは使わない
+         * $diary = Diary::with('StatisticPerDate')->where("uuid", $uuid)->first()->toArray();
          * この書き方だと階層が深くなるため
          */
-        //$diary = Diary::with('StatisticPerDate')->where("uuid", $uuid)->first()->toArray();
         if ($diary instanceof Diary) {
             /**
              * $diaryに代入している時点でtoArrayをすると日記存在しない時にエラーになるため、条件分岐で絞った後にtoArray
              * 若干冗長だが、確実に配列を返したいので……
              */
-            return $diary->toArray();
+            $diaryArray = $diary->toArray();
+
+            //統計データが最新かの判定
+            if ($diaryArray) {
+            }
+
+            return $diaryArray;
         } else {
             return [];
         }

@@ -5,6 +5,8 @@ declare(strict_types=1);
 namespace App\UseCases\Diary;
 
 use App\Models\Diary;
+use App\UseCases\Diary\Statistic\CheckStatisticStatusByDiary;
+use App\UseCases\Diary\Statistic\ArrangeDiaryStatistic;
 
 /**
  * 日記をuuidから取得する
@@ -13,26 +15,23 @@ use App\Models\Diary;
  */
 class GetDiaryByUuid
 {
+    public function __construct(
+        private CheckStatisticStatusByDiary $checkStatisticStatusByDiary,
+        private ArrangeDiaryStatistic $arrangeDiaryStatistic
+    ) {
+    }
     /**
      * 統計データとともに日記データを返す。
-     * 戻り値は必ず配列
-     * @return array<{form:string,xPOSTag:string,color:string}> | array<>
+     * @todo 配列の型をPHPDocに書く
      */
     public function invoke(string $uuid): array
     {
-        $diary = Diary::join('statistic_per_dates', 'diaries.id', 'statistic_per_dates.diary_id')->where("uuid", $uuid)->first();
-
-        /**
-         * laravelのお作法的には下だが、今回はN+1問題関係なく全部の日記で統計データ使うのでこれは使わない
-         * この書き方だと階層が深くなるため
-         */
-        //$diary = Diary::with('StatisticPerDate')->where("uuid", $uuid)->first()->toArray();
+        $diary = Diary::with('StatisticPerDate')->where("uuid", $uuid)->first();
         if ($diary instanceof Diary) {
-            /**
-             * $diaryに代入している時点でtoArrayをすると日記存在しない時にエラーになるため、条件分岐で絞った後にtoArray
-             * 若干冗長だが、確実に配列を返したいので……
-             */
-            return $diary->toArray();
+            $statisticStatus = $this->checkStatisticStatusByDiary->invoke($diary);
+            $arrangedDiary = $this->arrangeDiaryStatistic->invoke($diary, $statisticStatus);
+            /** 全部文字列になるため、意図的に再代入してdateの型を補正する*/
+            return $arrangedDiary->toArray();
         } else {
             return [];
         }
