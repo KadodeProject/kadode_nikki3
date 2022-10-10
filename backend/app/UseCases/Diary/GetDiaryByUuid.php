@@ -28,6 +28,9 @@ class GetDiaryByUuid
     {
         $diary = Diary::with('StatisticPerDate')->where("uuid", $uuid)->first();
         if ($diary instanceof Diary) {
+            /** @todo ここでハイフンを年月日に変えたい*/
+            //ここでハイフンを年月日に変えたい
+            //$diary->date = $diary->date->format('Y年m月n日');
             $statisticStatus = $this->checkStatisticStatusByDiary->invoke($diary);
             $arrangedDiary = $this->arrangeDiaryStatistic->invoke($diary, $statisticStatus);
             /** 全部文字列になるため、意図的に再代入してdateの型を補正する*/

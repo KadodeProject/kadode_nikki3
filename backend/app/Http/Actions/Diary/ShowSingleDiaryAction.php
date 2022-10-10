@@ -67,7 +67,6 @@ final class ShowSingleDiaryAction extends Controller
                 $resembleDiaries = $this->shapeStatisticFromDiaries->invoke($resembleDiariesRaw);
             }
         }
-        dd($diary['date']);
         return view('diary/edit', ['diary' => $diary, 'contentWithNlp' => $contentWithNlp, 'dateAndUuidBA' => $dateAndUuidBA,  'resembleDiaries' => $resembleDiaries]);
     }
 }

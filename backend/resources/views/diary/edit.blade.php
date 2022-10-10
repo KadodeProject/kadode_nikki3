@@ -1,5 +1,5 @@
 @extends("layouts.main")
-@section("title", $diary['date']->format("Y年n月j日")."の日記")
+@section("title", $diary['date']."の日記")
 
 @section('header')
 @parent
@@ -8,29 +8,28 @@
 <div class="board-main  kiwi-maru ">
     <div class="dateWrapper">
         <nav class="md:order-1 ">
-            @isset($dateAndUuidBA['next']['uuid'])
-            <p class="md:mr-12 md:mt-12 p-2 text-xl borer-2 border-kn_3 kiwi-maru"><a style="vertical-align: middle;"
-                    href="{{route('ShowSingleDiary',['uuid'=>$dateAndUuidBA['next']['uuid']])}}"><span
-                        class="material-icons">arrow_back</span>
-                    {{$dateAndUuidBA['next']['date']->format("Y年n月j日")}}</a></p>
-            @else
+            @empty($dateAndUuidBA['next']['uuid'])
             <p class="md:mr-12 md:mt-12 p-2 text-xl borer-2 border-kn_3 kiwi-maru"><span
                     class="material-icons ">arrow_back</span><span class="material-icons">remove_circle_outline</span>
                 日記なし</p>
-            @endisset
+            @else
+            <p class="md:mr-12 md:mt-12 p-2 text-xl borer-2 border-kn_3 kiwi-maru"><a style="vertical-align: middle;"
+                    href="{{route('ShowSingleDiary',['uuid'=>$dateAndUuidBA['next']['uuid']])}}"><span
+                        class="material-icons">arrow_back</span>
+                    {{$dateAndUuidBA['next']['date']}}</a></p>
+            @endempty
 
         </nav>
         <nav class="order-2 md:order-3">
-            @isset($dateAndUuidBA['former']['uuid'])
-            <p class="md:ml-12 md:mt-12 p-2 text-xl borer-2 border-kn_3 kiwi-maru"><a style="vertical-align: middle;"
-                    href="{{route('ShowSingleDiary',['uuid'=>$$dateAndUuidBA['next']['uuid']])}}">
-                    {{$$dateAndUuidBA['former']['date']->format("Y年n月j日")}}<span
-                        class="material-icons">arrow_forward</span></a></p>
-            @else
+            @empty($dateAndUuidBA['former']['uuid'])
             <p class="md:mr-12 md:mt-12 p-2 text-xl borer-2 border-kn_3 kiwi-maru">日記なし <span
                     class="material-icons">remove_circle_outline</span><span class="material-icons">arrow_forward</span>
             </p>
-            @endisset
+            @else
+            <p class="md:ml-12 md:mt-12 p-2 text-xl borer-2 border-kn_3 kiwi-maru"><a style="vertical-align: middle;"
+                    href="{{route('ShowSingleDiary',['uuid'=>$dateAndUuidBA['next']['uuid']])}}">
+                    {{$$dateAndUuidBA['former']['date']}}<span class="material-icons">arrow_forward</span></a></p>
+            @endempty
         </nav>
         <nav class="order-3 md:order-2 ">
             <h1 class="text-center mt-6 mb-4 mx-4 text-4xl drop-shadow-3xl">
@@ -41,7 +40,7 @@
                 @endempty
             </h1>
             <h2 class="text-center mt-8 mb-2 mx-4 text-xl">
-                {{$diary['date']->format('Y年n月j日')}}
+                {{$diary['date']}}
             </h2>
         </nav>
     </div>
@@ -62,7 +61,7 @@
                 {{$diary['uuid']}}
                 @endslot
                 @slot("original_date")
-                {{$diary['date']->format("Y-m-d")}}
+                {{$diary['date']}}
                 @endslot
                 @slot("original_title")
                 {{$diary['title']}}
@@ -121,12 +120,12 @@
                     @endcomponent
                 </div>
             </div>
-            @component('components.statistics.char.importantWordsChar',["important_words"=>$diary['important_words']])
+            @component('components.statistics.char.importantWordsChar',["important_words"=>$diary['statistic_per_date']['important_words']])
 
             @endcomponent
             {{-- @component('components.statistics.char.causeEffectChar')
             @endcomponent --}}
-            @component('components.statistics.char.specialPeopleChar',["special_people"=>$diary['special_people']])
+            @component('components.statistics.char.specialPeopleChar',["special_people"=>$diary['statistic_per_date']['special_people']])
 
             @endcomponent
             @elseif($diary['statisticStatus']->value == 2)
@@ -162,7 +161,7 @@
                 {{$resembleDiary->content}}
                 @endslot
                 @slot("date")
-                {{$resembleDiary->date->format("Y年n月j日")}}
+                {{$resembleDiary->date}}
                 @endslot
                 <!--統計部分の処理ここから-->
                 @if($resembleDiary->is_latest_statistic)
@@ -215,7 +214,7 @@
 <div class="my-12">
     @component('components.diary.breadcrumbDate')
     @slot("date")
-    {{$diary['date']->format("Y-n-j")}}
+    {{$diary['date']}}
     @endslot
     @endcomponent
 </div>
