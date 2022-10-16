@@ -24,7 +24,7 @@
         {{$new_info["actionUrl"]}}
         @endslot
         @slot("date")
-        {{$new_info["date"]}}
+        {{$new_info["date"]->format('Y年m月d日')}}
         @endslot
         @slot("title")
         {{$new_info["title"]}}
