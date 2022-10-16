@@ -159,9 +159,9 @@ class ShowStatisticAction extends Controller
                 //id content start(end)
                 $anime_data = DB::table('diaries')
                     ->where('diaries.user_id', $userId)
-                    ->whereNotNull('statistic_per_dates.affiliation')
-                    ->leftJoin('statistic_per_dates', 'diaries.id', '=', 'statistic_per_dates.diary_id')
-                    ->select('diaries.date', 'statistic_per_dates.affiliation')
+                    ->whereNotNull('diary_processeds.affiliation')
+                    ->leftJoin('diary_processeds', 'diaries.id', '=', 'diary_processeds.diary_id')
+                    ->select('diaries.date', 'diary_processeds.affiliation')
                     ->get();
                 $i = 0;
                 //アニメ名と日付を取得
