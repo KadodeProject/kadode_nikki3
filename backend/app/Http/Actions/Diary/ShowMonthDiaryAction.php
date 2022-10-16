@@ -6,7 +6,6 @@ namespace App\Http\Actions\Diary;
 
 use App\Http\Controllers\Controller;
 use App\UseCases\Diary\GetDiariesByMonth;
-use App\UseCases\Diary\ShapeStatisticFromDiaries;
 use App\UseCases\StatisticPerMonth\GetMonthlyStatisticByMonth;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
@@ -14,7 +13,6 @@ use Illuminate\Contracts\View\View;
 final class ShowMonthDiaryAction extends Controller
 {
     public function __construct(
-        private ShapeStatisticFromDiaries $shapeStatisticFromDiaries,
         private GetMonthlyStatisticByMonth $getMonthlyStatisticByMonth,
         private GetDiariesByMonth $getDiariesByMonth,
     ) {
