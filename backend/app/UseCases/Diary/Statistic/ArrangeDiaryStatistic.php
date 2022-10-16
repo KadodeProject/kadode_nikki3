@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace App\UseCases\Diary\Statistic;
 
-use App\Models\Diary;
 use App\Enums\DiaryStatisticStatus;
+use App\Models\Diary;
 
 class ArrangeDiaryStatistic
 {

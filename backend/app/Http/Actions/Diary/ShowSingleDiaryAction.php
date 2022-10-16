@@ -4,17 +4,16 @@ declare(strict_types=1);
 
 namespace App\Http\Actions\Diary;
 
+use App\Enums\DiaryStatisticStatus;
 use App\Http\Controllers\Controller;
 use App\Models\Diary;
 use App\UseCases\Diary\GetDiariesDateNextToDiaryById;
-use App\UseCases\Diary\GetDiaryByDate;
 use App\UseCases\Diary\GetDiaryByUuid;
 use App\UseCases\Diary\ShapeContentWithNlp;
 use App\UseCases\Diary\ShapeStatisticFromDiaries;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\DB;
-use App\Enums\DiaryStatisticStatus;
 
 final class ShowSingleDiaryAction extends Controller
 {
@@ -22,7 +21,6 @@ final class ShowSingleDiaryAction extends Controller
         private ShapeStatisticFromDiaries $shapeStatisticFromDiaries,
         private ShapeContentWithNlp $shapeContentWithNlp,
         private GetDiaryByUuid $getDiaryByUuid,
-        private GetDiaryByDate $getDiaryByDate,
         private GetDiariesDateNextToDiaryById $getDiariesDateNextToDiaryById,
     ) {
     }
