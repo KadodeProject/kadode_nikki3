@@ -107,6 +107,9 @@ cu:
 	docker-compose exec app composer update
 yu:
 	cd backend && yarn upgrade && cd ../
+make-model:
+# make-model name=ModelName
+	docker-compose exec app php artisan make:model $(name) --migration
 1:
 	@make stan
 	@make cs-fixer
