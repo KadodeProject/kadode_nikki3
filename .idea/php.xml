@@ -162,6 +162,10 @@
       <path value="$PROJECT_DIR$/backend/vendor/symfony/filesystem" />
       <path value="$PROJECT_DIR$/backend/vendor/doctrine/annotations" />
       <path value="$PROJECT_DIR$/backend/vendor/inertiajs/inertia-laravel" />
+      <path value="$PROJECT_DIR$/backend/vendor/symfony/polyfill-uuid" />
+      <path value="$PROJECT_DIR$/backend/vendor/php-webdriver/webdriver" />
+      <path value="$PROJECT_DIR$/backend/vendor/symfony/uid" />
+      <path value="$PROJECT_DIR$/backend/vendor/laravel/dusk" />
     </include_path>
   </component>
   <component name="PhpProjectSharedConfiguration" php_language_level="8.1" />

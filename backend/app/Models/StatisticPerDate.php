@@ -17,6 +17,10 @@ class StatisticPerDate extends Model
     protected $fillable = [
         "statistic_progress", "emotions", "classification", "important_words", "special_people",
     ];
+    protected $casts = [
+        'created_at'        => 'datetime:Y-m-d H:i:s',
+        'updated_at'        => 'datetime:Y-m-d H:i:s',  
+    ];
     /**
      * 日付の登録(format使えるように)
      *

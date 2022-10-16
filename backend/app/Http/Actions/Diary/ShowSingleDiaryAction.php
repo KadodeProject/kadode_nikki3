@@ -30,11 +30,11 @@ final class ShowSingleDiaryAction extends Controller
     public function __invoke($uuid): View|RedirectResponse
     {
         $diary = $this->getDiaryByUuid->invoke($uuid);
-        if ($diary === []) {
+        if ($diary === null) {
             //日記無かったらリダイレクトさせる
             return redirect(route('ShowHome'));
         }
-        $dateAndUuidBA = $this->getDiariesDateNextToDiaryById->invoke($diary['date']);
+        $dateAndUuidBA = $this->getDiariesDateNextToDiaryById->invoke($diary->date);
 
 
         /**
@@ -43,30 +43,28 @@ final class ShowSingleDiaryAction extends Controller
         $resembleDiaries = "";
         $contentWithNlp = "";
         if ($diary['statisticStatus'] === DiaryStatisticStatus::existCorrectly) {
-
             /**
-             * NLP付き表示を生成する(固有表現へのハイライトなど)
-             * @todo 機能を改善して復活させる
-             */
-            // $contentWithNlp = $this->shapeContentWithNlp->invoke($diary);
-
-
-            /**
+             * 日記内で一番多く登場した人物がかぶる日記をランダムに3つ取得
+             * \Log::debug($diary->special_people[0]['name']);//一番の人の名前抽出
+             * where('id', '<>',$diary->id)で自分自身を除く
              * modelでの型定義とwhere("hoge->fuga")でjsonの中身引っ張ってこれる
              * が、diariesのjsonが[{},{}]のようになっているのでvalueが直接取れない。よってrawで$[0]とかして取得
              * $[*]でも取れるが、今回はその日記で一番多く登場した人物とすることで関連度を向上させている
              */
-
-            /**
-             * 日記内で一番多く登場した人物がかぶる日記をランダムに3つ取得
-             */
-            // \Log::debug($diary->special_people[0]['name']);//一番の人の名前抽出
-            //where('id', '<>',$diary->id)で自分自身を除く
             if (!empty($diary['special_people'])) {
                 $resembleDiariesRaw = Diary::where('id', '<>', $diary['id'])->where(DB::raw('json_extract(`special_people`, "$[0].name")'), $diary['special_people'][0]['name'])->inRandomOrder()->limit(3)->get();
                 $resembleDiaries = $this->shapeStatisticFromDiaries->invoke($resembleDiariesRaw);
             }
         }
-        return view('diary/edit', ['diary' => $diary, 'contentWithNlp' => $contentWithNlp, 'dateAndUuidBA' => $dateAndUuidBA,  'resembleDiaries' => $resembleDiaries]);
+
+        /**
+         * Laravelの仕様上タイムゾーンが無視されて変換されるので、明示的に入れ替える
+         * Y-m-dの日付は時間が消えてどうやっても復元できないので上書きする
+         * @todo タイムゾーンを全部UTCで統一するのが良いかも
+         */
+        $diaryToArray = $diary->toArray();
+        $diaryToArray['date'] = $diary->date->format('Y-m-d');
+
+        return view('diary/edit', ['diary' => $diaryToArray, 'contentWithNlp' => $contentWithNlp, 'dateAndUuidBA' => $dateAndUuidBA,  'resembleDiaries' => $resembleDiaries]);
     }
 }

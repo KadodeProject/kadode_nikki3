@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\UseCases\Diary;
 
 use App\Models\Diary;
+use Carbon\Carbon;
 use Carbon\CarbonImmutable;
 
 /**
@@ -13,13 +14,12 @@ use Carbon\CarbonImmutable;
 class GetDiariesDateNextToDiaryById
 {
     /**
-     * @param string $date 日付型にしたいが、DIaryから来た時点で文字列になっている Y-m-dとなる
      * @return array<{next:array<{date:DateTime,uuid:string}>,former:array<{date:DateTime,uuid:string}>}>
      * @todo ここは1日記1日付が成り立つ前提で作られている
      */
-    public function invoke(string $date): array
+    public function invoke(Carbon $date): array
     {
-        $carbonInstance = new CarbonImmutable($date);
+        $carbonInstance = new CarbonImmutable($date->format("Y-m-d"));
         $yesterday = $carbonInstance->addDay();
         $tomorrow = $carbonInstance->subDay();
 

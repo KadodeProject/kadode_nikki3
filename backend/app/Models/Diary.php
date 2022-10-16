@@ -50,6 +50,12 @@ class Diary extends Model
         // "user_id"=>"required|numeric",
     );
 
+    protected $casts = [
+        'date' => 'datetime:Y-m-d',
+        'created_at'        => 'datetime:Y-m-d H:i:s',
+        'updated_at'        => 'datetime:Y-m-d H:i:s',
+    ];
+
     protected $fillable = [
         "user_id", "uuid", "title", "content", "date", "created_at", "updated_at"
     ];

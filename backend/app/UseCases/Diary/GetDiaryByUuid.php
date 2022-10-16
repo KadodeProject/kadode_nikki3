@@ -22,21 +22,18 @@ class GetDiaryByUuid
     }
     /**
      * 統計データとともに日記データを返す。
-     * @todo 配列の型をPHPDocに書く
+     * @todo Next.jsとblade混在期はResponderでtoJsonまたはtoArrayをするが、それ移行はここで加工しても良いかも？
      */
-    public function invoke(string $uuid): array
+    public function invoke(string $uuid): Diary | null
     {
         $diary = Diary::with('StatisticPerDate')->where("uuid", $uuid)->first();
         if ($diary instanceof Diary) {
             /** @todo ここでハイフンを年月日に変えたい*/
-            //ここでハイフンを年月日に変えたい
-            //$diary->date = $diary->date->format('Y年m月n日');
             $statisticStatus = $this->checkStatisticStatusByDiary->invoke($diary);
             $arrangedDiary = $this->arrangeDiaryStatistic->invoke($diary, $statisticStatus);
-            /** 全部文字列になるため、意図的に再代入してdateの型を補正する*/
-            return $arrangedDiary->toArray();
+            return $arrangedDiary;
         } else {
-            return [];
+            return null;
         }
     }
 }
