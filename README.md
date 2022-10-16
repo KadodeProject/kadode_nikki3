@@ -68,13 +68,15 @@ https://wiki.kado.day
 
 ```mermaid
 flowchart TD
-    E_F[かどで日記v3.10]-->|Acitonのusecase分離|E_FF[かどで日記v3.11]
-    E_F-->|usecaseの単体テスト整備|E_FF
-    E_F-->|日記の統計テーブルの分離|E_FF
-    E-->|モデル名をpascalCaseに統一|E_F
-    E-->|Diaryテーブルの構成を用途に合わせて3つのテーブルに分離|E_F
+    E_F[かどで日記v3.10]-->|ActionのUseCases分離|E_FF[かどで日記v3.11]
+    E_F-->|モデル名をpascalCaseに統一|E_FF
+    E_F-->|Diaryテーブルから自然言語処理データのカラムを分離|E_FF
+    E_F-->|Diaryテーブルから個々の日記のカラムを分離|E_FF
+    E_F-->|Userテーブルから通知既読カラムを分離|E_FF
     E_FF-->|リレーション活用でDBの無駄なアクセスの削減|F[かどで日記v3.12]
+    E_FF-->|UseCasesの単体テスト整備|F
     E_FF-->|Responderの整備|F
+    E_FF-->|FormRequestへの変更|F
     E_FF-->|ブラウザテストで全体の動作のテストを作成する|F
     F-->|Pythonの技術的負債の解体|G[かどで日記v3.13]
     F-->|Pythonのコード責務分割|G

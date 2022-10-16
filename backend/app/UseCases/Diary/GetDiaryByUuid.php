@@ -24,16 +24,16 @@ class GetDiaryByUuid
      * 統計データとともに日記データを返す。
      * @todo Next.jsとblade混在期はResponderでtoJsonまたはtoArrayをするが、それ移行はここで加工しても良いかも？
      */
-    public function invoke(string $uuid): Diary | null
+    public function invoke(string $uuid): array
     {
         $diary = Diary::with('StatisticPerDate')->where("uuid", $uuid)->first();
         if ($diary instanceof Diary) {
             /** @todo ここでハイフンを年月日に変えたい*/
             $statisticStatus = $this->checkStatisticStatusByDiary->invoke($diary);
             $arrangedDiary = $this->arrangeDiaryStatistic->invoke($diary, $statisticStatus);
-            return $arrangedDiary;
+            return $arrangedDiary->toArray();
         } else {
-            return null;
+            return [];
         }
     }
 }

@@ -6,7 +6,6 @@ namespace App\Http\Actions\Diary;
 
 use App\Http\Controllers\Controller;
 use App\UseCases\Diary\GetDiariesByYear;
-use App\UseCases\Diary\ShapeStatisticFromDiaries;
 use App\UseCases\StatisticPerYear\GetYearlyStatisticByYear;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
@@ -14,7 +13,6 @@ use Illuminate\Contracts\View\View;
 final class ShowYearDiaryAction extends Controller
 {
     public function __construct(
-        private ShapeStatisticFromDiaries $shapeStatisticFromDiaries,
         private GetYearlyStatisticByYear $getYearlyStatisticByYear,
         private GetDiariesByYear $getDiariesByYear,
     ) {

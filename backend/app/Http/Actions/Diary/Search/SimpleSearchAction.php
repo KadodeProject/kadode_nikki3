@@ -7,7 +7,6 @@ namespace App\Http\Actions\Diary\Search;
 use App\Http\Controllers\Controller;
 use App\Models\Diary;
 use App\UseCases\Diary\SearchDiaries;
-use App\UseCases\Diary\ShapeStatisticFromDiaries;
 use DB;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
@@ -18,7 +17,6 @@ use function count;
 class SimpleSearchAction extends Controller
 {
     public function __construct(
-        private ShapeStatisticFromDiaries $shapeStatisticFromDiaries,
         private SearchDiaries $searchDiaries,
     ) {
     }
