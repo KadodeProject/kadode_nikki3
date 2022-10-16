@@ -8,7 +8,6 @@ use App\Http\Controllers\Controller;
 use App\UseCases\Diary\GetDiariesByArray;
 use App\UseCases\Diary\GetLatestDiaries;
 use App\UseCases\Diary\GetSameDayDiariesByDate;
-use App\UseCases\Diary\ShapeStatisticFromDiaries;
 use App\UseCases\User\GetUnreadNotifications;
 use Carbon\CarbonImmutable;
 use Illuminate\Contracts\View\Factory;
@@ -18,7 +17,6 @@ use Illuminate\Support\Facades\Auth;
 final class ShowHomeAction extends Controller
 {
     public function __construct(
-        private ShapeStatisticFromDiaries $shapeStatisticFromDiaries,
         private GetLatestDiaries $getLatestDiaries,
         private GetUnreadNotifications $getUnreadNotifications,
         private GetSameDayDiariesByDate $getSameDayDiariesByDate,

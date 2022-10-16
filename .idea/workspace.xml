@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="aa6216b5-3a8a-49eb-9987-81fd25ac7924" name="変更" comment="" />
+    <list default="true" id="aa6216b5-3a8a-49eb-9987-81fd25ac7924" name="変更" comment="">
+      <change beforePath="$PROJECT_DIR$/.github/workflows/BrowserTest_by_docker.yml" beforeDir="false" afterPath="$PROJECT_DIR$/.github/workflows/BrowserTest_by_docker.yml_" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -243,6 +246,7 @@
       <workItem from="1658499191442" duration="129000" />
       <workItem from="1665618088292" duration="2942000" />
       <workItem from="1665443635101" duration="595000" />
+      <workItem from="1665925593996" duration="580000" />
     </task>
     <servers />
   </component>
