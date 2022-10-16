@@ -5,14 +5,14 @@ declare(strict_types=1);
 namespace App\UseCases\StatisticPerMonth;
 
 use App\Models\StatisticPerMonth;
-use App\UseCases\Statistic\ArrangeStatistic;
+use App\UseCases\Statistic\ArrangeStatisticPerMY;
 use App\UseCases\Statistic\CheckStatisticStatus;
 
 class GetMonthlyStatisticByMonth
 {
     public function __construct(
         private CheckStatisticStatus $checkStatisticStatus,
-        private ArrangeStatistic $arrangeStatistic,
+        private ArrangeStatisticPerMY $arrangeStatistic,
     ) {
     }
 

@@ -14,6 +14,9 @@ use Illuminate\Contracts\View\View;
 
 final class ShowAdminHomeAction extends Controller
 {
+    /**
+     * @todo ここは完全に壊れているが、うすゆきしか使用しない上、200で動くので、リプレースで消えるまで放置
+     */
     public function __invoke(): View|Factory
     {
         $users = User::get();

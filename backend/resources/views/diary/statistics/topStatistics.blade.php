@@ -76,7 +76,7 @@
                     @endif
                     @endif
                     <p class="text-lg my-2 ml-4 text-center kiwi-maru">前回データ更新日 :
-                        {{$statistics->updated_at->format("Y年n月j日 H時y分s秒")}}</p>
+                        {{$statistics->updated_at}}</p>
         </div>
     </div>
     @if($statistics->statistic_progress==100)
@@ -91,7 +91,7 @@
                     $average=round($statistics->total_words/$statistics->total_diaries,2);
                     @endphp
                     <p class="text-xl ml-4">平均文字数 : {{$average}}字</p>
-                    <p class="text-xl ml-4">最古の日記 : {{$oldest_diary_date->format("Y年n月j日")}}</p>
+                    <p class="text-xl ml-4">最古の日記 : {{$oldest_diary_date}}</p>
                 </div>
             </div>
             <div class="md:w-1/2 my-12 md:mt-0">
