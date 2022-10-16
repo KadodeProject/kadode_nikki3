@@ -7,18 +7,11 @@ namespace App\Models;
 use App\Scopes\ScopeLoggedInUser;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Support\Carbon;
 
 class Diary extends Model
 {
-
-    // public function user()
-    // {
-    //     return $this->belongsTo(User::class);
-    // }
-
     /**
      * 日記を自動でログインユーザーのみに絞り込むグローバルスコープの呼び出し関数
      *

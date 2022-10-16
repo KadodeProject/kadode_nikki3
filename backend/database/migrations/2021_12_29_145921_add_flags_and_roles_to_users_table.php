@@ -46,9 +46,6 @@ class AddFlagsAndRolesToUsersTable extends Migration
     public function down()
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->dropColumn('is_showed_update_user_rank');
-            $table->dropColumn('is_showed_update_system_info');
-            $table->dropColumn('is_showed_service_info');
             $table->dropColumn('user_rank_id');
             $table->dropColumn('user_role_id');
             $table->dropColumn('appearance_id');

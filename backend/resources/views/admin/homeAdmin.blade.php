@@ -31,9 +31,9 @@
                     <th>user_rank_id</th>
                     <th>user_role_id</th>
                     <th>appearance_id</th>
-                    <th>is_showed_update_user_rank</th>
-                    <th>is_showed_update_system_info</th>
-                    <th>is_showed_service_info</th>
+                    <th>ユーザーランクの通知既読</th>
+                    <th>アップデート通知の既読</th>
+                    <th>お知らせの既読</th>
                 </tr>
 
                 @include('components.statisticHeading',['icon'=>'category','title'=>'ユーザー情報'])

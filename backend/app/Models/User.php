@@ -6,6 +6,7 @@ namespace App\Models;
 
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Fortify\TwoFactorAuthenticatable;
@@ -32,9 +33,6 @@ class User extends Authenticatable implements MustVerifyEmail
     ];
     // 初期値設定
     protected $attributes = [
-        "is_showed_update_user_rank" => 0,
-        "is_showed_update_system_info" => 0,
-        "is_showed_service_info" => 0,
         "user_rank_id" => 1,
         "user_role_id" => 1,
         "appearance_id" => 1,
@@ -54,9 +52,6 @@ class User extends Authenticatable implements MustVerifyEmail
         'name',
         'email',
         'password',
-        'is_showed_update_user_rank',
-        'is_showed_update_system_info',
-        'is_showed_service_info',
         'user_rank_id',
         'user_role_id',
         'appearance_id',
@@ -118,5 +113,10 @@ class User extends Authenticatable implements MustVerifyEmail
     public function userRole()
     {
         return $this->belongsTo(UserRole::class);
+    }
+
+    public function userReadNotification(): HasOne
+    {
+        return $this->hasOne(UserReadNotification::class, 'diary_id', 'id');
     }
 }

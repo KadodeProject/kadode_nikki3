@@ -22,12 +22,6 @@
             <p class="text-xl my-2">ユーザーランクID : {{$user->user_rank_id}}</p>
             <p class="text-xl my-2">ユーザーロールID : {{$user->user_role_id}}</p>
         </div>
-        <p class="text-xl mt-4 mb-2"><span class="material-icons">bubble_chart</span>フラグ</p>
-        <div class="ml-4">
-            <p class="text-xl my-2">is_showed_update_user_rank : {{$user->is_showed_update_user_rank}}</p>
-            <p class="text-xl my-2">is_showed_update_system_info : {{$user->is_showed_update_system_info}}</p>
-            <p class="text-xl my-2">is_showed_service_info : {{$user->is_showed_service_info}}</p>
-        </div>
     </div>
     @include('components.settingHeading',['title'=>'アカウント情報変更',])
     <div class="md:ml-12 ml-4 my-4 pb-20">

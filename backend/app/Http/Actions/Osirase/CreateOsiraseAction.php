@@ -6,7 +6,7 @@ namespace App\Http\Actions\Osirase;
 
 use App\Http\Controllers\Controller;
 use App\Models\Osirase;
-use App\Models\User;
+use App\Models\UserReadNotification;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Redirector;
@@ -28,8 +28,8 @@ final class CreateOsiraseAction extends Controller
 
         Osirase::create($form);
 
-        //ユーザー通知のフラグをオンにする
-        User::where('id', '!=', 0)->update(["is_showed_service_info" => 0]);
+        //ユーザー通知のフラグをオンにする(ここはすべてのユーザーが対象)
+        UserReadNotification::where('is_showed_service_info', 1)->update(["is_showed_service_info" => 0]);
 
         return redirect(route('ShowAdminNotification') . '#osirase');
     }
