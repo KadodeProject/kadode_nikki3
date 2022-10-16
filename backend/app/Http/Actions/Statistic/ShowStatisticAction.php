@@ -178,7 +178,11 @@ class ShowStatisticAction extends Controller
                 /**
                  * 個別日記処理の進捗を取得する処理
                  */
-                $ended_diaries_count = DiaryProcessed::sum('statistic_progress') / ($number_of_nikki * 100);
+                $ended_diaries_count = DB::table('diaries')
+                    ->where('diaries.user_id', $userId)
+                    ->whereNotNull('diary_processeds.affiliation')
+                    ->leftJoin('diary_processeds', 'diaries.id', '=', 'diary_processeds.diary_id')
+                    ->sum('diary_processeds.statistic_progress') /  100;
             }
             //最古の日記
             $oldest_diary = Diary::orderBy("date", "asc")->first(['date']);
