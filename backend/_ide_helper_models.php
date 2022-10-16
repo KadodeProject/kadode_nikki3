@@ -62,6 +62,8 @@ namespace App\Models{
  * @property \Illuminate\Support\Carbon $date 日記の日付
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property-read \App\Models\DiaryProcessed|null $diaryProcessed
+ * @property-read \App\Models\StatisticPerDate|null $statisticPerDate
  * @method static \Illuminate\Database\Eloquent\Builder|Diary newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Diary newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Diary query()
@@ -79,19 +81,44 @@ namespace App\Models{
 
 namespace App\Models{
 /**
- * App\Models\Diary_people
+ * App\Models\DiaryPeople
+ *
+ * @method static \Illuminate\Database\Eloquent\Builder|DiaryPeople newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|DiaryPeople newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|DiaryPeople query()
+ */
+	class DiaryPeople extends \Eloquent {}
+}
+
+namespace App\Models{
+/**
+ * 日記の統計に使う自然言語処理データを格納する
  *
  * @property int $id
- * @property int $user_id ユーザーID
- * @property string $name 名前
- * @method static \Illuminate\Database\Eloquent\Builder|Diary_people newModelQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|Diary_people newQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|Diary_people query()
- * @method static \Illuminate\Database\Eloquent\Builder|Diary_people whereId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Diary_people whereName($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Diary_people whereUserId($value)
+ * @property int $diary_id 日記のid
+ * @property int|null $statistic_progress 生成状況(生成まで時間かかるので)
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property mixed|null $sentence 一文ごとの位置(係り受けで使う)
+ * @property mixed|null $chunk 係り受け構造
+ * @property mixed|null $token 形態素分析された中身を格納 品詞(POS)、原形(lemma)などが存在
+ * @property mixed|null $affiliation 固有表現抽出
+ * @property int|null $char_length 文字数
+ * @method static \Illuminate\Database\Eloquent\Builder|DiaryProcessed newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|DiaryProcessed newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|DiaryProcessed query()
+ * @method static \Illuminate\Database\Eloquent\Builder|DiaryProcessed whereAffiliation($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|DiaryProcessed whereCharLength($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|DiaryProcessed whereChunk($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|DiaryProcessed whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|DiaryProcessed whereDiaryId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|DiaryProcessed whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|DiaryProcessed whereSentence($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|DiaryProcessed whereStatisticProgress($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|DiaryProcessed whereToken($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|DiaryProcessed whereUpdatedAt($value)
  */
-	class Diary_people extends \Eloquent {}
+	class DiaryProcessed extends \Eloquent {}
 }
 
 namespace App\Models{
@@ -193,7 +220,7 @@ namespace App\Models{
  * @property \Illuminate\Support\Carbon $date 日付
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
- * @property-read \App\Models\Osirase_genre $osirase_genre
+ * @property-read \App\Models\OsiraseGenre $osiraseGenre
  * @method static \Illuminate\Database\Eloquent\Builder|Osirase newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Osirase newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Osirase query()
@@ -210,19 +237,19 @@ namespace App\Models{
 
 namespace App\Models{
 /**
- * App\Models\Osirase_genre
+ * App\Models\OsiraseGenre
  *
  * @property int $id
  * @property string $name ジャンル名
  * @property string|null $description 説明
- * @method static \Illuminate\Database\Eloquent\Builder|Osirase_genre newModelQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|Osirase_genre newQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|Osirase_genre query()
- * @method static \Illuminate\Database\Eloquent\Builder|Osirase_genre whereDescription($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Osirase_genre whereId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Osirase_genre whereName($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|OsiraseGenre newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|OsiraseGenre newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|OsiraseGenre query()
+ * @method static \Illuminate\Database\Eloquent\Builder|OsiraseGenre whereDescription($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|OsiraseGenre whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|OsiraseGenre whereName($value)
  */
-	class Osirase_genre extends \Eloquent {}
+	class OsiraseGenre extends \Eloquent {}
 }
 
 namespace App\Models{
@@ -259,7 +286,7 @@ namespace App\Models{
  * @property \Illuminate\Support\Carbon $date 日付
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
- * @property-read \App\Models\Releasenote_genre $releasenote_genre
+ * @property-read \App\Models\ReleasenoteGenre $releasenoteGenre
  * @method static \Illuminate\Database\Eloquent\Builder|Releasenote newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Releasenote newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Releasenote query()
@@ -276,24 +303,24 @@ namespace App\Models{
 
 namespace App\Models{
 /**
- * App\Models\Releasenote_genre
+ * App\Models\ReleasenoteGenre
  *
  * @property int $id
  * @property string $name ジャンル名
  * @property string|null $description 説明
- * @method static \Illuminate\Database\Eloquent\Builder|Releasenote_genre newModelQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|Releasenote_genre newQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|Releasenote_genre query()
- * @method static \Illuminate\Database\Eloquent\Builder|Releasenote_genre whereDescription($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Releasenote_genre whereId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Releasenote_genre whereName($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|ReleasenoteGenre newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|ReleasenoteGenre newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|ReleasenoteGenre query()
+ * @method static \Illuminate\Database\Eloquent\Builder|ReleasenoteGenre whereDescription($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|ReleasenoteGenre whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|ReleasenoteGenre whereName($value)
  */
-	class Releasenote_genre extends \Eloquent {}
+	class ReleasenoteGenre extends \Eloquent {}
 }
 
 namespace App\Models{
 /**
- * App\Models\Search_setting
+ * App\Models\SearchSetting
  *
  * @property int $id
  * @property int $user_id ユーザーID
@@ -304,20 +331,20 @@ namespace App\Models{
  * @property int|null $is_kana かなカナ展開するか？
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
- * @method static \Illuminate\Database\Eloquent\Builder|Search_setting newModelQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|Search_setting newQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|Search_setting query()
- * @method static \Illuminate\Database\Eloquent\Builder|Search_setting whereCreatedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Search_setting whereId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Search_setting whereIsKana($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Search_setting whereIsMorphological($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Search_setting whereIsSynonym($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Search_setting whereKinds($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Search_setting whereRank($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Search_setting whereUpdatedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Search_setting whereUserId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|SearchSetting newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|SearchSetting newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|SearchSetting query()
+ * @method static \Illuminate\Database\Eloquent\Builder|SearchSetting whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|SearchSetting whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|SearchSetting whereIsKana($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|SearchSetting whereIsMorphological($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|SearchSetting whereIsSynonym($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|SearchSetting whereKinds($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|SearchSetting whereRank($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|SearchSetting whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|SearchSetting whereUserId($value)
  */
-	class Search_setting extends \Eloquent {}
+	class SearchSetting extends \Eloquent {}
 }
 
 namespace App\Models{
@@ -369,30 +396,57 @@ namespace App\Models{
 
 namespace App\Models{
 /**
- * App\Models\Statistic_overall_progress
+ * App\Models\StatisticOverallProgress
  *
- * @property int $id
- * @property int $user_id ユーザーID
- * @property string|null $progress_chr 進行状況
- * @property float|null $progress_ration 進行率
- * @property \Illuminate\Support\Carbon|null $created_at
- * @property \Illuminate\Support\Carbon|null $updated_at
- * @method static \Illuminate\Database\Eloquent\Builder|Statistic_overall_progress newModelQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|Statistic_overall_progress newQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|Statistic_overall_progress query()
- * @method static \Illuminate\Database\Eloquent\Builder|Statistic_overall_progress whereCreatedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Statistic_overall_progress whereId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Statistic_overall_progress whereProgressChr($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Statistic_overall_progress whereProgressRation($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Statistic_overall_progress whereUpdatedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Statistic_overall_progress whereUserId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|StatisticOverallProgress newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|StatisticOverallProgress newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|StatisticOverallProgress query()
  */
-	class Statistic_overall_progress extends \Eloquent {}
+	class StatisticOverallProgress extends \Eloquent {}
 }
 
 namespace App\Models{
 /**
- * App\Models\Statistic_per_month
+ * 日記の統計に使うデータを格納する
+ *
+ * @property int $id
+ * @property int $diary_id 日記のid
+ * @property int|null $statistic_progress 生成状況(生成まで時間かかるので)
+ * @property float|null $emotions 感情数値化
+ * @property string|null $classification 推定分類
+ * @property mixed|null $important_words 重要そうな言葉(top3)
+ * @property mixed|null $special_people 登場人物
+ * @property mixed|null $sentence 一文ごとの位置(係り受けで使う)
+ * @property mixed|null $chunk 係り受け構造
+ * @property mixed|null $token 形態素分析された中身を格納 品詞(POS)、原形(lemma)などが存在
+ * @property mixed|null $affiliation 固有表現抽出
+ * @property int|null $char_length 文字数
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @method static \Illuminate\Database\Eloquent\Builder|StatisticPerDate newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|StatisticPerDate newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|StatisticPerDate query()
+ * @method static \Illuminate\Database\Eloquent\Builder|StatisticPerDate whereAffiliation($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|StatisticPerDate whereCharLength($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|StatisticPerDate whereChunk($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|StatisticPerDate whereClassification($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|StatisticPerDate whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|StatisticPerDate whereDiaryId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|StatisticPerDate whereEmotions($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|StatisticPerDate whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|StatisticPerDate whereImportantWords($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|StatisticPerDate whereSentence($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|StatisticPerDate whereSpecialPeople($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|StatisticPerDate whereStatisticProgress($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|StatisticPerDate whereToken($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|StatisticPerDate whereUpdatedAt($value)
+ */
+	class StatisticPerDate extends \Eloquent {}
+}
+
+namespace App\Models{
+/**
+ * App\Models\StatisticPerMonth
  *
  * @property int $id
  * @property int $user_id ユーザーID
@@ -408,30 +462,30 @@ namespace App\Models{
  * @property mixed|null $classifications 推定分類(top3)
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
- * @method static \Illuminate\Database\Eloquent\Builder|Statistic_per_month newModelQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|Statistic_per_month newQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|Statistic_per_month query()
- * @method static \Illuminate\Database\Eloquent\Builder|Statistic_per_month whereAdjectiveRank($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Statistic_per_month whereClassifications($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Statistic_per_month whereCreatedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Statistic_per_month whereEmotions($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Statistic_per_month whereId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Statistic_per_month whereImportantWords($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Statistic_per_month whereMonth($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Statistic_per_month whereNounRank($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Statistic_per_month whereSpecialPeople($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Statistic_per_month whereStatisticProgress($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Statistic_per_month whereUpdatedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Statistic_per_month whereUserId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Statistic_per_month whereWordCounts($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Statistic_per_month whereYear($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|StatisticPerMonth newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|StatisticPerMonth newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|StatisticPerMonth query()
+ * @method static \Illuminate\Database\Eloquent\Builder|StatisticPerMonth whereAdjectiveRank($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|StatisticPerMonth whereClassifications($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|StatisticPerMonth whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|StatisticPerMonth whereEmotions($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|StatisticPerMonth whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|StatisticPerMonth whereImportantWords($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|StatisticPerMonth whereMonth($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|StatisticPerMonth whereNounRank($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|StatisticPerMonth whereSpecialPeople($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|StatisticPerMonth whereStatisticProgress($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|StatisticPerMonth whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|StatisticPerMonth whereUserId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|StatisticPerMonth whereWordCounts($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|StatisticPerMonth whereYear($value)
  */
-	class Statistic_per_month extends \Eloquent {}
+	class StatisticPerMonth extends \Eloquent {}
 }
 
 namespace App\Models{
 /**
- * App\Models\Statistic_per_year
+ * App\Models\StatisticPerYear
  *
  * @property int $id
  * @property int $user_id ユーザーID
@@ -446,24 +500,24 @@ namespace App\Models{
  * @property mixed|null $classifications 推定分類(top10)
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
- * @method static \Illuminate\Database\Eloquent\Builder|Statistic_per_year newModelQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|Statistic_per_year newQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|Statistic_per_year query()
- * @method static \Illuminate\Database\Eloquent\Builder|Statistic_per_year whereAdjectiveRank($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Statistic_per_year whereClassifications($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Statistic_per_year whereCreatedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Statistic_per_year whereEmotions($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Statistic_per_year whereId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Statistic_per_year whereImportantWords($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Statistic_per_year whereNounRank($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Statistic_per_year whereSpecialPeople($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Statistic_per_year whereStatisticProgress($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Statistic_per_year whereUpdatedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Statistic_per_year whereUserId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Statistic_per_year whereWordCounts($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Statistic_per_year whereYear($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|StatisticPerYear newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|StatisticPerYear newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|StatisticPerYear query()
+ * @method static \Illuminate\Database\Eloquent\Builder|StatisticPerYear whereAdjectiveRank($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|StatisticPerYear whereClassifications($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|StatisticPerYear whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|StatisticPerYear whereEmotions($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|StatisticPerYear whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|StatisticPerYear whereImportantWords($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|StatisticPerYear whereNounRank($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|StatisticPerYear whereSpecialPeople($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|StatisticPerYear whereStatisticProgress($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|StatisticPerYear whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|StatisticPerYear whereUserId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|StatisticPerYear whereWordCounts($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|StatisticPerYear whereYear($value)
  */
-	class Statistic_per_year extends \Eloquent {}
+	class StatisticPerYear extends \Eloquent {}
 }
 
 namespace App\Models{
@@ -495,8 +549,8 @@ namespace App\Models{
  * @property-read int|null $notifications_count
  * @property-read \Illuminate\Database\Eloquent\Collection|\Laravel\Sanctum\PersonalAccessToken[] $tokens
  * @property-read int|null $tokens_count
- * @property-read \App\Models\User_rank|null $user_rank
- * @property-read \App\Models\User_role|null $user_role
+ * @property-read \App\Models\UserRank|null $userRank
+ * @property-read \App\Models\UserRole|null $userRole
  * @method static \Database\Factories\UserFactory factory(...$parameters)
  * @method static \Illuminate\Database\Eloquent\Builder|User newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|User newQuery()
@@ -526,7 +580,7 @@ namespace App\Models{
 
 namespace App\Models{
 /**
- * App\Models\User_ip
+ * App\Models\UserIp
  *
  * @property int $id
  * @property int $user_id ユーザーID
@@ -535,51 +589,51 @@ namespace App\Models{
  * @property string $geo タイトル
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
- * @method static \Illuminate\Database\Eloquent\Builder|User_ip newModelQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|User_ip newQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|User_ip query()
- * @method static \Illuminate\Database\Eloquent\Builder|User_ip whereCreatedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|User_ip whereGeo($value)
- * @method static \Illuminate\Database\Eloquent\Builder|User_ip whereId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|User_ip whereIp($value)
- * @method static \Illuminate\Database\Eloquent\Builder|User_ip whereUa($value)
- * @method static \Illuminate\Database\Eloquent\Builder|User_ip whereUpdatedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|User_ip whereUserId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|UserIp newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|UserIp newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|UserIp query()
+ * @method static \Illuminate\Database\Eloquent\Builder|UserIp whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|UserIp whereGeo($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|UserIp whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|UserIp whereIp($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|UserIp whereUa($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|UserIp whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|UserIp whereUserId($value)
  */
-	class User_ip extends \Eloquent {}
+	class UserIp extends \Eloquent {}
 }
 
 namespace App\Models{
 /**
- * App\Models\User_rank
+ * App\Models\UserRank
  *
  * @property int $id
  * @property string $name ユーザーランク名
  * @property string|null $description 説明
- * @method static \Illuminate\Database\Eloquent\Builder|User_rank newModelQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|User_rank newQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|User_rank query()
- * @method static \Illuminate\Database\Eloquent\Builder|User_rank whereDescription($value)
- * @method static \Illuminate\Database\Eloquent\Builder|User_rank whereId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|User_rank whereName($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|UserRank newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|UserRank newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|UserRank query()
+ * @method static \Illuminate\Database\Eloquent\Builder|UserRank whereDescription($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|UserRank whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|UserRank whereName($value)
  */
-	class User_rank extends \Eloquent {}
+	class UserRank extends \Eloquent {}
 }
 
 namespace App\Models{
 /**
- * App\Models\User_role
+ * App\Models\UserRole
  *
  * @property int $id
  * @property string $name ユーザーロール名
  * @property string|null $description 説明
- * @method static \Illuminate\Database\Eloquent\Builder|User_role newModelQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|User_role newQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|User_role query()
- * @method static \Illuminate\Database\Eloquent\Builder|User_role whereDescription($value)
- * @method static \Illuminate\Database\Eloquent\Builder|User_role whereId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|User_role whereName($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|UserRole newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|UserRole newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|UserRole query()
+ * @method static \Illuminate\Database\Eloquent\Builder|UserRole whereDescription($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|UserRole whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|UserRole whereName($value)
  */
-	class User_role extends \Eloquent {}
+	class UserRole extends \Eloquent {}
 }
 

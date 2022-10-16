@@ -1,4 +1,7 @@
 import MySQLdb
+# curl.execute(,(ここに変数))入れることでSQLインジェクション防げる。
+# SQLインジェクション放置している部分はユーザーの値が入らないところなので即急な対応は不要だが、ちゃんとエスケープしたい。
+# テーブル名がエスケープできない謎仕様なので、プラスでつなげている
 from base import loadEnv
 import json
 
@@ -37,7 +40,7 @@ class connectDB:
         cur= self.conn.cursor()
         # クエリを実行する
         #このクエリの順番は他所でrow[2]的な依存をしているので変更は要注意
-        sql = "SELECT id,title,content,date,updated_at,updated_statistic_at FROM diaries WHERE user_id="+str(user_id)+";"
+        sql = "SELECT D.id,D.title,D.content,D.date,D.updated_at,S.updated_at AS updated_statistic_at,S.statistic_progress FROM diaries AS D LEFT JOIN statistic_per_dates AS S ON D.id = S.diary_id LEFT JOIN diary_processeds AS P ON D.id = P.diary_id  WHERE user_id="+str(user_id)+";"
         cur.execute(sql)
         # 実行結果をすべて取得する
         rows = cur.fetchall()
@@ -53,7 +56,7 @@ class connectDB:
         cur= self.conn.cursor()
         # クエリを実行する
         #このクエリの順番は他所でrow[2]的な依存をしているので変更は要注意
-        sql = "SELECT id,updated_at,updated_statistic_at,sentence,chunk,token,affiliation,char_length,content FROM diaries WHERE user_id="+str(user_id)+";"
+        sql = "SELECT D.id,D.updated_at,S.updated_at AS updated_statistic_at,P.sentence,P.chunk,P.token,P.affiliation,P.char_length,D.content FROM diaries AS D LEFT JOIN statistic_per_dates AS S ON D.id = S.diary_id LEFT JOIN diary_processeds AS P ON D.id = P.diary_id WHERE D.user_id="+str(user_id)+";"
         cur.execute(sql)
         # 実行結果をすべて取得する
         rows = cur.fetchall()
@@ -71,7 +74,7 @@ class connectDB:
         cur= self.conn.cursor()
         # クエリを実行する
         #このクエリの順番は他所でrow[2]的な依存をしているので変更は要注意
-        sql = "SELECT id,updated_at,updated_statistic_at,date,char_length,emotions,classification,important_words,special_people,token FROM diaries WHERE user_id="+str(user_id)+";"
+        sql = "SELECT D.id,D.updated_at,S.updated_at AS updated_statistic_at,D.date,P.char_length,S.emotions,S.classification,S.important_words,S.special_people,P.token FROM diaries AS D LEFT JOIN statistic_per_dates AS S ON D.id = S.diary_id LEFT JOIN diary_processeds AS P ON D.id = P.diary_id WHERE user_id="+str(user_id)+";"
         cur.execute(sql)
         # 実行結果をすべて取得する
         rows = cur.fetchall()
@@ -131,7 +134,7 @@ class connectDB:
         return rows
 
     """
-    解析済みのJSONデータを書き込む(user_diのみで決まるもの)
+    解析済みのJSONデータを書き込む(user_idのみで決まるもの)
     """
     def set_statistics_json(self,user_id,**jsons):
         for (key,value) in jsons.items():
@@ -169,7 +172,7 @@ class connectDB:
             cur= self.conn.cursor()
             # クエリを実行する ここはsqkインジェクションにならないところなので、そのまま
             cur.execute(
-                    'UPDATE {0} SET {1} = %s WHERE id = %s;'.format(column,key),(value,db_id))
+                    'UPDATE {0} SET {1} = %s WHERE diary_id = %s;'.format(column,key),(value,db_id))
             # 保存する
             self.conn.commit()
             # カーソルを閉じる
@@ -178,15 +181,18 @@ class connectDB:
 
     """
     解析済みのJSONデータを書き込む(idで一意に決まりupdateで対応できる個別日記のもの用)
+    statistic_per_dates専用になっている
     """
-    def set_single_json_data(self,column,db_id,**jsons):
+    def set_single_json_data(self,column:str,db_id:int,**jsons):
         for (key,value) in jsons.items():
             # カーソルを取得する
             cur= self.conn.cursor()
             # クエリを実行する ここはsqkインジェクションにならないところなので、そのまま
             json_value = json.dumps(value,ensure_ascii=False)
+            # print('UPDATE '+column+' SET '+key+' = '+json_value+' WHERE diary_id = '+str(db_id)+';')
             cur.execute(
-                    'UPDATE {0} SET {1} = %s WHERE id = %s;'.format(column,key),(json_value,db_id))
+                    'UPDATE {0} SET {1} = %s WHERE diary_id = %s;'.format(column,key),(json_value,db_id))
+
             # 保存する
             self.conn.commit()
             # カーソルを閉じる
@@ -242,13 +248,14 @@ class connectDB:
 
     """
     進捗状況--日記テーブルなど1ユーザー複数テーブルでdbid既知のもの用
+    statistic_per_dates専用になっている
     """
     def set_single_progress(self,db_id,table_name,value):
         # カーソルを取得する
         cur= self.conn.cursor()
         # クエリを実行する
         cur.execute(
-                'UPDATE {0} SET statistic_progress = %s where id = %s;'.format(table_name),(str(value),str(db_id))
+                'UPDATE {0} SET statistic_progress = %s where diary_id = %s;'.format(table_name),(str(value),str(db_id))
                 )
         # 保存する
         self.conn.commit()
@@ -291,23 +298,6 @@ class connectDB:
         cur.close()
 
     """
-    月別と年別で一度ユーザーのデータをすべて消す
-    """
-    def delete_depDate_data(self,column,user_id):
-        # カーソルを取得する
-        cur= self.conn.cursor()
-        # クエリを実行する ここはsqkインジェクションにならないところなので、そのまま
-
-        #ユーザーの統計全削除
-        cur.execute(
-                'DELETE FROM {0} WHERE user_id = {1};'.format(column,user_id))
-
-        # 保存する
-        self.conn.commit()
-        # カーソルを閉じる
-        cur.close()
-        self.conn.ping(True)#mysql2003エラー(サーバー接続切れ防止)
-    """
     ユーザーidの人が持ってる月別・年別統計データを取得する
     """
     def check_exist_data(self,column,user_id):
@@ -327,7 +317,20 @@ class connectDB:
         self.conn.ping(True)#mysql2003エラー(サーバー接続切れ防止)
         return result
     """
-    月別と年別で一度ユーザーのデータをすべて作成する
+    個別の統計行を作成する
+    """
+    def create_diary_meta_row(self,table_name:str,diary_id:int,date):
+        # カーソルを取得する
+        cur= self.conn.cursor()
+        cur.execute(
+            'INSERT INTO {0} (diary_id,created_at,updated_at) VALUES (%s,%s,%s) ;'.format(table_name),(diary_id,date,date))
+        # 保存する
+        self.conn.commit()
+        # カーソルを閉じる
+        cur.close()
+        self.conn.ping(True)#mysql2003エラー(サーバー接続切れ防止)
+    """
+    月別と年別で一度ユーザーのデータを作成する
     """
     def insert_void_column(self,column,user_id,date):
         # カーソルを取得する
@@ -343,194 +346,13 @@ class connectDB:
         else:
             #年でwhereする
             cur.execute(
-                  'INSERT  INTO {0}(user_id,year,statistic_progress) VALUES ({1},{2},10) ;'.format(column,user_id,date[0]))
+                'INSERT  INTO {0}(user_id,year,statistic_progress) VALUES ({1},{2},10) ;'.format(column,user_id,date[0]))
 
         # 保存する
         self.conn.commit()
         # カーソルを閉じる
         cur.close()
         self.conn.ping(True)#mysql2003エラー(サーバー接続切れ防止)
-# """
-# データベースに接続して、引数のユーザーIDのすべての日記の基本情報を取得
-# """
-# def get_all_diaries_from_user(user_id):
-#     conn = MySQLdb.connect(
-#     user=loadEnv.DB_USERNAME,
-#     passwd=loadEnv.DB_PASSWORD,
-#     host=loadEnv.DB_HOST,
-#     db=loadEnv.DB_DATABASE,
-#     charset="utf8"
-#     )
-#     conn.ping(True)
-#
-#     # カーソルを取得する
-#     cur= conn.cursor()
-#     # クエリを実行する
-#     #このクエリの順番は他所でrow[2]的な依存をしているので変更は要注意
-#     sql = "SELECT id,title,content,date,updated_at,updated_statistic_at FROM diaries WHERE user_id="+str(user_id)+";"
-#     cur.execute(sql)
-#     # 実行結果をすべて取得する
-#     rows = cur.fetchall()
-#     # カーソルを閉じる
-#     cur.close()
-#     conn.close()
-#     # conn.ping(True)#mysql2003エラー(サーバー接続切れ防止)
-#     return rows
-# """
-# データベースに接続して、引数のユーザーIDのすべての日記の自然言語Pre情報を取得
-# """
-# def get_all_diariesPre_from_user(user_id):
-#     conn = MySQLdb.connect(
-#     user=loadEnv.DB_USERNAME,
-#     passwd=loadEnv.DB_PASSWORD,
-#     host=loadEnv.DB_HOST,
-#     db=loadEnv.DB_DATABASE,
-#     charset="utf8"
-#     )
-#     conn.ping(True)
-#
-#     # カーソルを取得する
-#     cur= conn.cursor()
-#     # クエリを実行する
-#     #このクエリの順番は他所でrow[2]的な依存をしているので変更は要注意
-#     sql = "SELECT id,updated_at,updated_statistic_at,sentence,chunk,token,affiliation,char_length,content FROM diaries WHERE user_id="+str(user_id)+";"
-#     cur.execute(sql)
-#     # 実行結果をすべて取得する
-#     rows = cur.fetchall()
-#     # カーソルを閉じる
-#     cur.close()
-#     conn.close()
-#     # conn.ping(True)#mysql2003エラー(サーバー接続切れ防止)
-#     return rows
-
-# """
-# 解析済みのJSONデータを書き込む
-# """
-# def set_statistics_json(user_id, column_name, value):
-#     conn = MySQLdb.connect(
-#     user=loadEnv.DB_USERNAME,
-#     passwd=loadEnv.DB_PASSWORD,
-#     host=loadEnv.DB_HOST,
-#     db=loadEnv.DB_DATABASE,
-#     charset="utf8"
-#     )
-#     conn.ping(True)
-#     # カーソルを取得する
-#     cur= conn.cursor()        # クエリを実行する ここはsqkインジェクションにならないところなので、そのまま自家絵やり倒す
-#     json_value = json.dumps(value,ensure_ascii=False)
-#     cur.execute(
-#             'UPDATE statistics SET {0} = %s WHERE user_id = %s;'.format(column_name),(json_value,user_id))
-#     # 保存する
-#     conn.commit()
-#     # カーソルを閉じる
-#     cur.close()
-#     conn.close()
-#     # conn.ping(True)#mysql2003エラー(サーバー接続切れ防止)
-
-# """
-# 解析済みのノーマルデータを書き込む(1ユーザー複数テーブルのもの用)
-# """
-# def set_single_normal_data(column,db_id,**values):
-#     conn = MySQLdb.connect(
-#     user=loadEnv.DB_USERNAME,
-#     passwd=loadEnv.DB_PASSWORD,
-#     host=loadEnv.DB_HOST,
-#     db=loadEnv.DB_DATABASE,
-#     charset="utf8"
-#     )
-#     conn.ping(True)
-#     for (key,value) in values.items():
-#         # カーソルを取得する
-#         cur= conn.cursor()
-#         # クエリを実行する ここはsqkインジェクションにならないところなので、そのまま
-#         cur.execute(
-#                 'UPDATE {0} SET {1} = %s WHERE id = %s;'.format(column,key),(value,db_id))
-#         # 保存する
-#         conn.commit()
-#         # カーソルを閉じる
-#         cur.close()
-#         conn.close()
-#         # conn.ping(True)#mysql2003エラー(サーバー接続切れ防止)
-
-# """
-# 解析済みのJSONデータを書き込む(1ユーザー複数テーブルのもの用)
-# """
-# def set_single_json_data(column,db_id,**jsons):
-#     conn = MySQLdb.connect(
-#     user=loadEnv.DB_USERNAME,
-#     passwd=loadEnv.DB_PASSWORD,
-#     host=loadEnv.DB_HOST,
-#     db=loadEnv.DB_DATABASE,
-#     charset="utf8"
-#     )
-#     conn.ping(True)
-#     for (key,value) in jsons.items():
-#         # カーソルを取得する
-#         cur= conn.cursor()
-#         # クエリを実行する ここはsqkインジェクションにならないところなので、そのまま
-#         json_value = json.dumps(value,ensure_ascii=False)
-#         cur.execute(
-#                 'UPDATE {0} SET {1} = %s WHERE id = %s;'.format(column,key),(json_value,db_id))
-#         # 保存する
-#         conn.commit()
-#         # カーソルを閉じる
-#         cur.close()
-#         conn.close()
-#         # conn.ping(True)#mysql2003エラー(サーバー接続切れ防止)
-
-
-
-# """
-# 進捗状況--日記テーブルなど1ユーザー複数テーブルのもの用
-# """
-# def set_single_progress(db_id,table_name,value):
-#     conn = MySQLdb.connect(
-#     user=loadEnv.DB_USERNAME,
-#     passwd=loadEnv.DB_PASSWORD,
-#     host=loadEnv.DB_HOST,
-#     db=loadEnv.DB_DATABASE,
-#     charset="utf8"
-#     )
-#     conn.ping(True)
-#     # カーソルを取得する
-#     cur= conn.cursor()
-#     # クエリを実行する
-#     cur.execute(
-#             'UPDATE {0} SET statistic_progress = %s where id = %s;'.format(table_name),(str(value),str(db_id))
-#             )
-#     # 保存する
-#     conn.commit()
-#     # カーソルを閉じる
-#     cur.close()
-#     conn.close()
-
-
-# """
-# 進捗状況--統計テーブルなど1ユーザー1テーブルのもの用
-# """
-# def set_multiple_progress(user_id, table_name,value):
-#     conn = MySQLdb.connect(
-#     user=loadEnv.DB_USERNAME,
-#     passwd=loadEnv.DB_PASSWORD,
-#     host=loadEnv.DB_HOST,
-#     db=loadEnv.DB_DATABASE,
-#     charset="utf8"
-#     )
-#     conn.ping(True)
-#     # カーソルを取得する
-#     cur= conn.cursor()
-#     # クエリを実行する
-#     cur.execute(
-#             'UPDATE {0} SET statistic_progress = %s where user_id = %s;'.format(table_name),(str(value),str(user_id))
-#             )
-#     # 保存する
-#     conn.commit()
-#     # カーソルを閉じる
-#     cur.close()
-#     conn.close()
-
-
-
 
 if __name__ == '__main__':
     f = connectDB()

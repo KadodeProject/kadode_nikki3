@@ -83,7 +83,7 @@ def nlpForMonthAndYear(user_id):
     id,updated_at,updated_statistic_at,date,char_length,emotions,classification,important_words,special_people
     '''
     for row in rows:
-
+        # print(row)
         #個別日記のループ
         # if(row[1]!=None):
         #      time_updated_at = row[1]#この時点でdatetime型になっている

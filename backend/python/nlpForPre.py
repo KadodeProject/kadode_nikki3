@@ -1,5 +1,6 @@
 import time
 import sys
+import datetime
 
 from datetime import datetime as dt
 from base import connectDBClass as database
@@ -53,17 +54,21 @@ def nlpForPre(user_id):
     for row in rows:
         number_of_diaries+=1
         #個別日記のループ
-        #日記の更新日取得
+        #日記の更新日取得 row[4]はdiary側のupdated_at
+        #基本的にはnoneにならないが、念のため条件分岐
         if(row[4]!=None):
             time_updated_at = row[4]#この時点でdatetime型になっている
         else:
             # データない場合
             time_updated_at = time.strptime('1800-1-1 11:11:11', '%Y-%m-%d %H:%M:%S')
-        #統計の更新日取得
+        #統計の更新日取得 row[5]は統計データ側のupdated_at
         if(row[5]!=None):
             time_statistics_updated_at = row[5]
         else:
-            # データない場合
+            #新規で空のデータを作成
+            db.create_diary_meta_row('statistic_per_dates',row[0],datetime.datetime.now())
+            db.create_diary_meta_row('diary_processeds',row[0],datetime.datetime.now())
+
             time_statistics_updated_at = dt.strptime('1800-1-1 11:11:11','%Y-%m-%d %H:%M:%S')
         # print(time_updated_at)
         # print(time_statistics_updated_at)
@@ -82,13 +87,12 @@ def nlpForPre(user_id):
             continue
         else:
             print(str(row[0])+"pre処理")
-            db.set_single_progress(row[0],"diaries",10)
+            db.set_single_progress(row[0],"diary_processeds",10)
 
             '''
             char_length:日記の文字数
             '''
             char_length = len(row[2])#pythonはマルチバイトそのままでいける口
-            # print(char_length)
 
             '''
             token:形態素解析
@@ -117,9 +121,9 @@ def nlpForPre(user_id):
             '''
             DB代入
             '''
-            db.set_single_json_data('diaries',row[0],chunk=chunk,token=token,sentence=sentence,affiliation=affiliation)
-            db.set_single_normal_data('diaries',row[0],char_length=char_length)
-            db.set_single_progress(row[0],"diaries",50)
+            db.set_single_json_data('diary_processeds',row[0],chunk=chunk,token=token,sentence=sentence,affiliation=affiliation)
+            db.set_single_normal_data('diary_processeds',row[0],char_length=char_length)
+            db.set_single_progress(row[0],"diary_processeds",100)
 
     db.set_multiple_progress(user_id,"statistics",20)
     #インスタンス破棄

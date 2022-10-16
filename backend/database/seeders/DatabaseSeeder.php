@@ -16,12 +16,12 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         $this->call(AppearanceTableSeeder::class);
-        $this->call(User_rankTableSeeder::class);
-        $this->call(User_roleTableSeeder::class);
+        $this->call(UserRankTableSeeder::class);
+        $this->call(UserRoleTableSeeder::class);
 
-        $this->call(Releasenote_genreTableSeeder::class);
+        $this->call(ReleasenoteGenreTableSeeder::class);
         $this->call(ReleasenoteTableSeeder::class);
-        $this->call(Osirase_genreTableSeeder::class);
+        $this->call(OsiraseGenreTableSeeder::class);
         $this->call(OsiraseTableSeeder::class);
         if (app()->isLocal() || app()->runningUnitTests()) {
             $this->call(UserTableSeeder::class);

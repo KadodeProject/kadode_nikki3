@@ -7,7 +7,7 @@ namespace Database\Seeders;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
-class Releasenote_genreTableSeeder extends Seeder
+class ReleasenoteGenreTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -17,19 +17,17 @@ class Releasenote_genreTableSeeder extends Seeder
     public function run()
     {
 
-        $param=[
+        $param = [
             [
-            'name'=>"Fix" ,
+                'name' => "Fix",
             ],
             [
-            'name'=>"Feature" ,
+                'name' => "Feature",
             ],
             [
-            'name'=>"Other" ,
+                'name' => "Other",
             ],
         ];
         DB::table("releasenote_genres")->insert($param);
-
-
     }
 }

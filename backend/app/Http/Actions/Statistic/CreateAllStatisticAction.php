@@ -35,10 +35,10 @@ class CreateAllStatisticAction extends Controller
         // $data=[
         //     "user_id"=>Auth::id(),
         // ];
-        // // Statistic_per_month::create($data);
-        // // Statistic_per_year::create($data);
+        // // StatisticPerMonth::create($data);
+        // // StatisticPerYear::create($data);
         // // Diary_people::create($data);
-        // Statistic_overall_progress::create($data);
+        // StatisticOverallProgress::create($data);
 
         /**
          * ここからPython

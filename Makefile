@@ -2,32 +2,6 @@ up:
 	docker compose up -d
 build:
 	docker compose build --no-cache --force-rm
-laravel-install:
-	docker compose exec app composer create-project --prefer-dist laravel/laravel .
-create-project:
-	mkdir -p backend
-	@make build
-	@make up
-	@make laravel-install
-	docker compose exec app php artisan key:generate
-	docker compose exec app php artisan storage:link
-	docker compose exec app chmod -R 777 storage bootstrap/cache
-	@make fresh
-install-recommend-packages:
-	# Laravel静的解析用
-	docker compose exec app composer require --dev nunomaduro/larastan
-	# dbカラムの変更用
-	docker compose exec app composer require doctrine/dbal
-	# エディタのコード補完
-	docker compose exec app composer require --dev barryvdh/laravel-ide-helper
-	# bladeでのデバッグ向上
-	docker compose exec app composer require --dev barryvdh/laravel-debugbar
-	# 上記を動作させる用
-	docker compose exec app php artisan vendor:publish --provider="Barryvdh\Debugbar\ServiceProvider"
-	# 上記を動作させる用
-	docker compose exec app composer require --dev roave/security-advisories:dev-master
-	# docker compose exec app composer require --dev beyondcode/laravel-dump-server
-	docker compose exec app php artisan vendor:publish --provider="BeyondCode\DumpServer\DumpServerServiceProvider"
 init:
 	docker compose up -d --build
 	docker compose exec app composer install
@@ -81,6 +55,8 @@ migrate:
 	docker compose exec app php artisan migrate
 fresh:
 	docker compose exec app php artisan migrate:fresh --seed
+run-nlp-direct:
+	docker compose exec app python3 python/pythonUseFromPHP.py 1
 seed:
 	docker compose exec app php artisan db:seed
 rollback-test:
@@ -131,3 +107,7 @@ cu:
 	docker-compose exec app composer update
 yu:
 	cd backend && yarn upgrade && cd ../
+1:
+	@make stan
+	@make cs-fixer
+	@make ide-helper

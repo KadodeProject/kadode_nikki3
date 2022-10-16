@@ -4,8 +4,12 @@ declare(strict_types=1);
 
 namespace App\Models;
 
-use App\Scopes\ScopeDiary;
+use App\Scopes\ScopeLoggedInUser;
+use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasOne;
+use Illuminate\Support\Carbon;
 
 class Diary extends Model
 {
@@ -23,7 +27,7 @@ class Diary extends Model
     protected static function boot()
     {
         parent::boot();
-        static::addGlobalScope(new ScopeDiary);
+        static::addGlobalScope(new ScopeLoggedInUser);
     }
 
 
@@ -49,17 +53,52 @@ class Diary extends Model
     );
 
     protected $fillable = [
-        "statistic_progress", "user_id", "uuid", "title", "content", "date", "sentence", "chunk", "token", "affiliation", "meta_info", "similar_sentences", "char_length", "emotions", "flavor", "classification", "important_words", "cause_effect_sentences", "special_people", "updated_statistic_at", "created_at", "updated_at"
+        "user_id", "uuid", "title", "content", "date", "created_at", "updated_at"
     ];
 
-    // 初期値設定(statistic_progressを0にする)
-    protected $attributes = [
-        "statistic_progress" => 0,
-    ];
     /**
      * 日付の登録(format使えるように)
      *
      * @var array
      */
     protected $dates = ['date', 'created_at', 'updated_at'];
+
+    public function statisticPerDate(): HasOne
+    {
+        return $this->hasOne(StatisticPerDate::class, 'diary_id', 'id');
+    }
+    public function diaryProcessed(): HasOne
+    {
+        return $this->hasOne(DiaryProcessed::class, 'diary_id');
+    }
+
+
+
+    /**
+     * $castsではtoArray,toJsonでUTCになってしまうため、アクセサで上書きする
+     */
+    public function date(): Attribute
+    {
+        return new Attribute(
+            get: fn ($value) => Carbon::parse($value)->timezone('Asia/Tokyo')->format('Y-m-d'),
+        );
+    }
+    /**
+     * $castsではtoArray,toJsonでUTCになってしまうため、アクセサで上書きする
+     */
+    public function createdAt(): Attribute
+    {
+        return new Attribute(
+            get: fn ($value) => Carbon::parse($value)->timezone('Asia/Tokyo')->format('Y-m-d H:i:s'),
+        );
+    }
+    /**
+     * $castsではtoArray,toJsonでUTCになってしまうため、アクセサで上書きする
+     */
+    public function updatedAt(): Attribute
+    {
+        return new Attribute(
+            get: fn ($value) => Carbon::parse($value)->timezone('Asia/Tokyo')->format('Y-m-d H:i:s'),
+        );
+    }
 }

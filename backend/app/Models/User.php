@@ -111,12 +111,12 @@ class User extends Authenticatable implements MustVerifyEmail
     {
         return $this->hasMany(Diary::class);
     }
-    public function user_rank()
+    public function userRank()
     {
-        return $this->belongsTo(User_rank::class);
+        return $this->belongsTo(UserRank::class);
     }
-    public function user_role()
+    public function userRole()
     {
-        return $this->belongsTo(User_role::class);
+        return $this->belongsTo(UserRole::class);
     }
 }

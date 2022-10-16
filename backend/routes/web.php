@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-use App\Models\User_ip;
+use App\Models\UserIp;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -48,7 +48,7 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function (Req
         "ua" => $request->header('User-Agent'),
         "geo" => $geo->country . "_" . $geo->city,
     ];
-    User_ip::create($data);
+    UserIp::create($data);
     return redirect(route('ShowHome'));
 })->name('home_redirect');
 

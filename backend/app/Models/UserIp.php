@@ -4,11 +4,11 @@ declare(strict_types=1);
 
 namespace App\Models;
 
-use App\Scopes\ScopeDiary;
+use App\Scopes\ScopeLoggedInUser;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class User_ip extends Model
+class UserIp extends Model
 {
     use HasFactory;
 
@@ -16,7 +16,7 @@ class User_ip extends Model
     protected static function boot()
     {
         parent::boot();
-        static::addGlobalScope(new ScopeDiary);
+        static::addGlobalScope(new ScopeLoggedInUser);
     }
 
     protected $fillable = [

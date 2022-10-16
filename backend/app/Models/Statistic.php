@@ -4,9 +4,11 @@ declare(strict_types=1);
 
 namespace App\Models;
 
-use App\Scopes\ScopeDiary;
+use App\Scopes\ScopeLoggedInUser;
+use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Carbon;
 
 class Statistic extends Model
 {
@@ -18,7 +20,7 @@ class Statistic extends Model
     protected static function boot()
     {
         parent::boot();
-        static::addGlobalScope(new ScopeDiary);
+        static::addGlobalScope(new ScopeLoggedInUser);
     }
 
     use HasFactory;
@@ -31,4 +33,23 @@ class Statistic extends Model
     protected $attributes = [
         "statistic_progress" => 0,
     ];
+
+    /**
+     * $castsではtoArray,toJsonでUTCになってしまうため、アクセサで上書きする
+     */
+    public function createdAt(): Attribute
+    {
+        return new Attribute(
+            get: fn ($value) => Carbon::parse($value)->timezone('Asia/Tokyo')->format('Y-m-d H:i:s'),
+        );
+    }
+    /**
+     * $castsではtoArray,toJsonでUTCになってしまうため、アクセサで上書きする
+     */
+    public function updatedAt(): Attribute
+    {
+        return new Attribute(
+            get: fn ($value) => Carbon::parse($value)->timezone('Asia/Tokyo')->format('Y-m-d H:i:s'),
+        );
+    }
 }

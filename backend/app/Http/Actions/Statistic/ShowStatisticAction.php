@@ -6,51 +6,49 @@ namespace App\Http\Actions\Statistic;
 
 use App\Http\Controllers\Controller;
 use App\Models\Diary;
-use App\Models\Statistic;
+use App\Models\DiaryProcessed;
+use App\UseCases\Statistic\GetStatistic;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class ShowStatisticAction extends Controller
 {
-    public function __invoke():View|Factory
+    public function __construct(
+        private GetStatistic $getStatistic,
+    ) {
+    }
+
+    /**
+     * @todo ここ地獄すぎるのでUseCaseに分離したい
+     * リニューアルで消える部分なのである程度は放置
+     */
+    public function __invoke(): View|Factory
     {
-        $user_id = Auth::id();
-        $statistic = Statistic::where("user_id", $user_id)->first();
+        $userId = Auth::id();
+        $statistic = $this->getStatistic->invoke($userId);
         /**
          * 日記数少なすぎるときは警告出したいので
          * これは統計表示前にも使うので1統計テーブルからのデータは使えない
          */
-        $number_of_nikki = Diary::where("user_id", $user_id)->count();
+        $number_of_nikki = Diary::count();
         $wordCloud_array = [];
 
         $ended_diaries_count = ""; //undefinedエラー防止用
         $char_length_frequency_distribution = []; //undefinedエラー防止用
         $biggerDiaries = []; //undefinedエラー防止用
         $anime_timeline = []; //undefinedエラー防止用
-        if (! empty($statistic)) {
-            if ($statistic->statistic_progress === 100) {
+        $oldest_diary_date = "";
+        //統計作っていない場合はEnum型取れずnullになるので
+        if ($statistic !== null) {
+            if ($statistic->statisticStatus->value === 1) {
 
                 /**
                  * 名詞と形容詞の登場順
                  */
-                //jsonを配列に戻し、連想配列を配列にする
 
-                $statistic->total_noun_asc = array_values(json_decode($statistic->total_noun_asc, true));
-                $statistic->total_adjective_asc = array_values(json_decode($statistic->total_adjective_asc, true));
-                $statistic->emotions = array_values(json_decode($statistic->emotions, true));
-                $statistic->special_people = array_values(json_decode($statistic->special_people, true));
-                $statistic->classifications = array_values(json_decode($statistic->classifications, true));
-                $statistic->important_words = array_values(json_decode($statistic->important_words, true));
-                /**
-                 * 月ごとの1日記あたりの平均文字数算出
-                 */
-                //配列のキーから月を取得
-                $statistic->months = array_keys(json_decode($statistic->month_words, true));
-                //jsonを配列に戻し、連想配列を配列にする
-                $statistic->month_words = array_values(json_decode($statistic->month_words, true));
-                $statistic->month_diaries = array_values(json_decode($statistic->month_diaries, true));
                 //一度変数に代入しないと怒られるのでこうしている。
                 $statistic_month_diaries = $statistic->month_diaries; //平均文字数で利用
                 /**
@@ -103,8 +101,11 @@ class ShowStatisticAction extends Controller
                 /**
                  * ヒストグラム用のやつ
                  */
-                $char_length_obj = Diary::where("user_id", $user_id)->get(['char_length']);
-
+                $char_length_obj =  DB::table('diaries')
+                    ->where('diaries.user_id', $userId)
+                    ->leftJoin('diary_processeds', 'diaries.id', '=', 'diary_processeds.diary_id')
+                    ->select('diary_processeds.char_length')
+                    ->get();
 
                 //array_valuesだと何故か事故るので
                 //文字数の配列取得
@@ -145,16 +146,23 @@ class ShowStatisticAction extends Controller
                 }
 
                 //文字数多いのトップ10
-                $biggerDiaries = Diary::where("user_id", $user_id)->orderBy("char_length", "desc")->limit(10)->get(['date', 'title', 'uuid', 'char_length']);
-
+                $biggerDiaries = DB::table('diaries')
+                    ->where('diaries.user_id', $userId)
+                    ->leftJoin('diary_processeds', 'diaries.id', '=', 'diary_processeds.diary_id')
+                    ->orderBy('diary_processeds.char_length', 'desc')
+                    ->select('diaries.date', 'diaries.title', 'diaries.uuid',  'diary_processeds.char_length')
+                    ->limit(10)
+                    ->get();
                 /**
                  * アニメのタイムライン描画
                  */
                 //id content start(end)
-                $anime_data = Diary::where("user_id", $user_id)->whereNotNull('affiliation')->orderBy('date', 'desc')->get(['date', 'affiliation']);
-                $anime_count = [];
-                $anime_name = [];
-                $anime_date = [];
+                $anime_data = DB::table('diaries')
+                    ->where('diaries.user_id', $userId)
+                    ->whereNotNull('statistic_per_dates.affiliation')
+                    ->leftJoin('statistic_per_dates', 'diaries.id', '=', 'statistic_per_dates.diary_id')
+                    ->select('diaries.date', 'statistic_per_dates.affiliation')
+                    ->get();
                 $i = 0;
                 //アニメ名と日付を取得
                 foreach ($anime_data as $value) {
@@ -166,21 +174,15 @@ class ShowStatisticAction extends Controller
                         }
                     }
                 }
+            } elseif ($statistic->statisticStatus->value === 3) {
+                /**
+                 * 個別日記処理の進捗を取得する処理
+                 */
+                $ended_diaries_count = DiaryProcessed::sum('statistic_progress') / ($number_of_nikki * 100);
             }
-            // 統計100じゃないとだめ系ここまで
-
-            /**
-             * 個別日記処理の進捗を取得する処理
-             */
-            $ended_diaries_count = Diary::sum('statistic_progress') / 100; #終わっている日記数の推定値(本当は50で全部通してから次行くので、実際の値とは違う)
-
-            // 基本情報の追加
             //最古の日記
-            $oldest_diary = Diary::where("user_id", $user_id)->orderBy("date", "asc")->first(['date']);
+            $oldest_diary = Diary::orderBy("date", "asc")->first(['date']);
             $oldest_diary_date = $oldest_diary->date;
-        } else {
-            // 統計データないとき
-            $oldest_diary_date = "なし";
         }
 
         return view("diary/statistics/topStatistics", ["statistics" => $statistic, "anime_timeline" => $anime_timeline, "char_length_frequency_distribution" => $char_length_frequency_distribution, "biggerDiaries" => $biggerDiaries, 'oldest_diary_date' => $oldest_diary_date, 'number_of_nikki' => $number_of_nikki, 'ended_diaries_count' => $ended_diaries_count, "wordCloud_array" => $wordCloud_array]);

@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Models;
 
-use App\Scopes\ScopeDiary;
+use App\Scopes\ScopeLoggedInUser;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -13,7 +13,7 @@ class CustomNER extends Model
     protected static function boot()
     {
         parent::boot();
-        static::addGlobalScope(new ScopeDiary);
+        static::addGlobalScope(new ScopeLoggedInUser);
     }
     use HasFactory;
     protected $fillable = [

@@ -6,12 +6,12 @@
 @endsection
 @section('content')
 <div class="board-main">
-    @empty($new_infos)
+    @empty($unreadNotifications)
     <!--新着通知なし-->
     @else
     <div class="fixed top-over-header right-4 lg:w-1/6 ">
         <!--通知センター-->
-        @foreach($new_infos as $new_info)
+        @foreach($unreadNotifications as $new_info)
         @component('components.notification.notification')
         @slot("bg_color")
         {{$new_info["bg_color"]}}
@@ -24,7 +24,7 @@
         {{$new_info["actionUrl"]}}
         @endslot
         @slot("date")
-        {{$new_info["date"]->format('Y年n月j日')}}
+        {{$new_info["date"]}}
         @endslot
         @slot("title")
         {{$new_info["title"]}}
@@ -43,27 +43,27 @@
             * id被りによるJSの意図しない動作（保存時のアニメーションと、ショートカットキーで別日の日記保存)はidかぶらせずすれば治るので、応急処置はできるがコード汚くなるので。
             */
             @endphp
-            @empty($yesterday)
+            @empty($yesterdayDiary)
             <h3 class="text-center text-3xl my-20 kiwi-maru">昨日の日記なし</h3>
             @else
             @component('components.diary.latestDiaryContent')
             @slot("uuid")
-            {{$yesterday->uuid}}
+            {{$yesterdayDiary['uuid']}}
             @endslot
             @slot("title")
-            {{$yesterday->title}}
+            {{$yesterdayDiary['title']}}
             @endslot
             @slot("content")
-            {{$yesterday->content}}
+            {{$yesterdayDiary['content']}}
             @endslot
             @slot("date")
-            {{$yesterday->date->format("Y年n月j日")}}
+            {{$yesterdayDiary['date']}}
             @endslot
             @endcomponent
             @endempty
         </div>
         <div class="sm:order-2 order-1">
-            @empty($today)
+            @empty($todayDiary)
             {{-- 今日の日記無いときは、日記フォームを表示 --}}
             @component('components.diary.submitForm')
             @slot("db_method")
@@ -88,54 +88,48 @@
             {{route('UpdateDiary')}}
             @endslot
             @slot("original_uuid")
-            {{$today->uuid}}
+            {{$todayDiary['uuid']}}
             @endslot
             @slot("original_date")
-            {{$today->date->format("Y-m-d")}}
+            {{$todayDiary['date']}}
             @endslot
             @slot("original_title")
-            {{$today->title}}
+            {{$todayDiary['title']}}
             @endslot
             @slot("original_content")
-            {{$today->content}}
+            {{$todayDiary['content']}}
             @endslot
             @endcomponent
-            @if($today->updated_at->format("Y-m-d H:i:s") === date("Y-m-d H:i:s"))
-            {{-- 保存したてなら保存しましたよを表示する --}}
-            <div id="save-animation" class="show-save-fade-out">
-                <p class="text-center kiwi-maru">保存しました✨</p>
-            </div>
-            @endif
             @endempty
         </div>
 
     </div>
-    @empty($diaries)
+    @empty($latestDiaries)
     <h3 class="text-center text-3xl my-20 kiwi-maru">直近の日記はありません！</h3>
     @else
     <h3 class="text-center text-3xl mt-16 mb-2 kiwi-maru">直近の日記</h3>
     <div class="flex w-auto m-4 overflow-x-auto " style="height: 500px!important">
-        @foreach($diaries as $diary )
+        @foreach($latestDiaries as $latestDiary )
         @component('components.diary.diaryFrame')
         @slot("uuid")
-        {{$diary->uuid}}
+        {{$latestDiary['uuid']}}
         @endslot
         @slot("title")
-        {{$diary->title}}
+        {{$latestDiary['title']}}
         @endslot
         @slot("content")
-        {{$diary->content}}
+        {{$latestDiary['content']}}
         @endslot
         @slot("date")
-        {{$diary->date->format('Y年n月j日')}}
+        {{$latestDiary['date']}}
         @endslot
         <!--統計部分の処理ここから-->
-        @if($diary->is_latest_statistic)
+        @if($latestDiary['statisticStatus']->value === 1)
         @slot("is_latest_statistic")
         true
         @endslot
         @php
-        $emotions=$diary->emotions;
+        $emotions=$latestDiary['statistic_per_date']['emotions'];
         if($emotions>=0.5){
         $emotions_icon="arrow_upward";
         }else{
@@ -146,7 +140,7 @@
         {{$emotions_icon}}
         @endslot
         @php
-        $words=$diary->important_words;
+        $words=$latestDiary['statistic_per_date']['important_words'];
         @endphp
         @slot("important_words")
         @if(count($words)>=1)
@@ -156,7 +150,7 @@
         @endif
         @endslot
         @php
-        $people=$diary->special_people;
+        $people=$latestDiary['statistic_per_date']['special_people'];
         @endphp
         @slot("special_people")
         @if(count($people)>=1)
@@ -181,9 +175,6 @@
         @foreach($oldDiaries as $oldDiary )
 
         <article>
-            <p class="text-center kiwi-maru">
-                {{$oldDiary["explain"]}}
-            </p>
             @empty($oldDiary["uuid"])
 
             <div class="diary_dashboard m-2 flex justify-center items-center ">
@@ -204,12 +195,12 @@
             {{$oldDiary["date"]}}
             @endslot
             <!--統計部分の処理ここから-->
-            @if($oldDiary["is_latest_statistic"])
+            @if($oldDiary['statisticStatus']->value === 1)
             @slot("is_latest_statistic")
             true
             @endslot
             @php
-            $emotions=$oldDiary["emotions"];
+            $emotions=$oldDiary['statistic_per_date']["emotions"];
             if($emotions>=0.5){
             $emotions_icon="arrow_upward";
             }else{
@@ -220,7 +211,7 @@
             {{$emotions_icon}}
             @endslot
             @php
-            $words=$oldDiary["important_words"];
+            $words=$oldDiary['statistic_per_date']["important_words"];
             @endphp
             @slot("important_words")
             @if(count($words)>=1)
@@ -230,7 +221,7 @@
             @endif
             @endslot
             @php
-            $people=$oldDiary["special_people"];
+            $people=$oldDiary['statistic_per_date']["special_people"];
             @endphp
             @slot("special_people")
             @if(count($people)>=1)

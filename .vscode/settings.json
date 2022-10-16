@@ -7,6 +7,7 @@
         "osirase",
         "osirases",
         "PNER",
+        "processeds",
         "Redirector",
         "releasenote",
         "releasenotes",
@@ -23,6 +24,6 @@
         "default": "/backend/resources/views"
     },
     "laravel_goto_view.extensions": [".blade.php"],
-    "laravel_goto_controller.pathController": "/backend/app/Http/Controllers",
+    "laravel_goto_controller.pathController": "/backend/app/Http/Actions",
     "editor.formatOnSave": true
 }

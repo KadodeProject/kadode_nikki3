@@ -65,6 +65,7 @@ def nlpForDiary(user_id):
             continue
         else:
             print(str(row[0])+"Diary処理")
+            db.set_single_progress(row[0],"statistic_per_dates",10)
             # nlp関係はNoneがあるので注
             #jsonはdecodeする
             """
@@ -83,7 +84,6 @@ def nlpForDiary(user_id):
             emotions:感情数値化
             '''
             emotions=emotions_analysis.get_emotion(dic_posi,dic_nega,value_content)
-            # print(emotions)
             '''
             flavor:ユーザーの日記らしさ、コサイン類似度?TF-IDF?
             値は出てくるが、激的に遅い上、差が見られない
@@ -131,10 +131,10 @@ def nlpForDiary(user_id):
 
             #DB代入
             #まだ　meta_info,emotions,flavor,similar_sentences,classification,important_words,cause_effect_sentences,special_people,updated_statistic_at
-            db.set_single_json_data('diaries',row[0],important_words=important_words,special_people=special_people)
-            db.set_single_normal_data('diaries',row[0],classification=classification,emotions=emotions,updated_statistic_at=updated_statistic_at)
+            db.set_single_json_data('statistic_per_dates',row[0],important_words=important_words,special_people=special_people)
+            db.set_single_normal_data('statistic_per_dates',row[0],classification=classification,emotions=emotions,updated_at=updated_statistic_at)
 
-            db.set_single_progress(row[0],"diaries",100)
+            db.set_single_progress(row[0],"statistic_per_dates",100)
 
     db.set_multiple_progress(user_id,"statistics",40)
     del db

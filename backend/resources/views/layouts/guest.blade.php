@@ -21,8 +21,17 @@
     /* あんまりやりたくないけどCSS読み込みの都合、ここに書く…… */
     .auth_bg {
         background-position: center;
-        background-size: contain;
+        background-size: 50%;
         background-image: url('/img/loginPage/bg.png');
+    }
+
+    /* タブレットサイズ切ったくらいから小さすぎて不快になるので、大きさ戻す */
+    @media screen and (max-width: 830px) {
+        .auth_bg {
+            background-position: center;
+            background-size: contain;
+            background-image: url('/img/loginPage/bg.png');
+        }
     }
 </style>
 

@@ -61,24 +61,24 @@
         @foreach($diaries as $diary )
         @component('components.diary.diaryFrame')
         @slot("uuid")
-        {{$diary->uuid}}
+        {{$diary['uuid']}}
         @endslot
         @slot("title")
-        {{$diary->title}}
+        {{$diary['title']}}
         @endslot
         @slot("content")
-        {!! $diary->content !!}
+        {!! $diary['content'] !!}
         @endslot
         @slot("date")
-        {{$diary->date->format("Y年n月j日")}}
+        {{$diary['date']}}
         @endslot
         <!--統計部分の処理ここから-->
-        @if($diary->is_latest_statistic)
+        @if($diary['statisticStatus']->value === 1)
         @slot("is_latest_statistic")
         true
         @endslot
         @php
-        $emotions=$diary->emotions;
+        $emotions=$diary['statistic_per_date']['emotions'];
         if($emotions>=0.5){
         $emotions_icon="arrow_upward";
         }else{
@@ -89,7 +89,7 @@
         {{$emotions_icon}}
         @endslot
         @php
-        $words=$diary->important_words;
+        $words=$diary['statistic_per_date']['important_words'];
         @endphp
         @slot("important_words")
         @if(count($words)>=1)
@@ -99,7 +99,7 @@
         @endif
         @endslot
         @php
-        $people=$diary->special_people;
+        $people=$diary['statistic_per_date']['special_people'];
         @endphp
         @slot("special_people")
         @if(count($people)>=1)

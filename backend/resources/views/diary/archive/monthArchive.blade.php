@@ -24,6 +24,9 @@
                     href="{{route('ShowMonthDiary',['year'=>$year-2,'month'=>$month])}}">{{$year-2}}</a></p>
         </div>
         <div class="mt-4 flex justify-center items-center archive-month-menu  mx-auto sm:flex-nowrap flex-wrap ">
+            @php
+            /** @todo ゆめみからの挑戦状で出てきてた処理に置き換える(ただし9月までは全角数字にしたほうが見やすい点が厄介) */
+            @endphp
             <p class="mx-2 sm:mb-0 mb-4"><a href="{{route('ShowMonthDiary',['year'=>$year,'month'=>1])}}">１月</a></p>
             <p class="mx-2 sm:mb-0 mb-4"><a href="{{route('ShowMonthDiary',['year'=>$year,'month'=>2])}}">２月</a></p>
             <p class="mx-2 sm:mb-0 mb-4"><a href="{{route('ShowMonthDiary',['year'=>$year,'month'=>3])}}">３月</a></p>
@@ -40,16 +43,16 @@
     </div>
     {{-- 年と月の選択バーここまで--}}
     {{-- 統計情報 --}}
-    @isset($statisticPerMonth->statistic_progress)
-    @if($statisticPerMonth->statistic_progress==100)
+    @empty(!$statisticPerMonth)
+    @if($statisticPerMonth['statisticStatus']->value === 1)
     @component('components.statistics.frame.statisticFrameForArchive',['ArchiveData'=>$statisticPerMonth])
     @endcomponent
-    @elseif($statisticPerMonth->statistic_progress==1)
+    @elseif($statisticPerMonth['statisticStatus']->value === 3)
     <p class="text-center text-2xl my-4 kiwi-maru">この月のまとめ統計データを生成中です</p>
     @endif
     @else
     <p class="text-center text-xl my-4 kiwi-maru">この月のまとめ統計データはありません</p>
-    @endisset
+    @endempty
     {{-- 統計情報ここまで --}}
 
     {{-- 日記のループ --}}
@@ -60,24 +63,24 @@
         @foreach($diaries as $diary )
         @component('components.diary.diaryFrame')
         @slot("uuid")
-        {{$diary->uuid}}
+        {{$diary['uuid']}}
         @endslot
         @slot("title")
-        {{$diary->title}}
+        {{$diary['title']}}
         @endslot
         @slot("content")
-        {{$diary->content}}
+        {{$diary['content']}}
         @endslot
         @slot("date")
-        {{$diary->date->format("Y年n月j日")}}
+        {{$diary['date']}}
         @endslot
         <!--統計部分の処理ここから-->
-        @if($diary->is_latest_statistic)
+        @if($diary['statisticStatus']->value === 1)
         @slot("is_latest_statistic")
         true
         @endslot
         @php
-        $emotions=$diary->emotions;
+        $emotions=$diary['statistic_per_date']['emotions'];
         if($emotions>=0.5){
         $emotions_icon="arrow_upward";
         }else{
@@ -88,7 +91,7 @@
         {{$emotions_icon}}
         @endslot
         @php
-        $words=$diary->important_words;
+        $words=$diary['statistic_per_date']['important_words'];
         @endphp
         @slot("important_words")
         @if(count($words)>=1)
@@ -98,7 +101,7 @@
         @endif
         @endslot
         @php
-        $people=$diary->special_people;
+        $people=$diary['statistic_per_date']['special_people'];
         @endphp
         @slot("special_people")
         @if(count($people)>=1)
