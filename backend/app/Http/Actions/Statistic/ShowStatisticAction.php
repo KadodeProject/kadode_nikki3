@@ -6,7 +6,6 @@ namespace App\Http\Actions\Statistic;
 
 use App\Http\Controllers\Controller;
 use App\Models\Diary;
-use App\Models\DiaryProcessed;
 use App\UseCases\Statistic\GetStatistic;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
