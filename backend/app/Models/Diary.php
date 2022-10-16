@@ -38,12 +38,12 @@ class Diary extends Model
      * user_idは後で入れるので不要
      *
      */
-    public static $rules = array(
+    public static $rules = [
         "date" => "required",
         "title" => "max:50", //laravelのstringはvarchar(255)なので、255文字まで、しかし入らないから50字に抑える
         "content" => "required|min:1|max:16000", //text型の限界が16384文字なので(マルチバイトで)
         // "user_id"=>"required|numeric",
-    );
+    ];
 
     protected $fillable = [
         "user_id", "uuid", "title", "content", "date", "created_at", "updated_at"
