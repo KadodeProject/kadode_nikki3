@@ -6,7 +6,7 @@ namespace App\Http\Actions\ReleaseNote;
 
 use App\Http\Controllers\Controller;
 use App\Models\Releasenote;
-use App\Models\User;
+use App\Models\UserReadNotification;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Redirector;
@@ -29,7 +29,7 @@ final class CreateReleaseNoteAction extends Controller
         Releasenote::create($form);
 
         //ユーザー通知のフラグをオンにする
-        User::where('id', '!=', 0)->update(["is_showed_update_system_info" => 0]);
+        UserReadNotification::where('is_showed_update_system_info', 1)->update(["is_showed_update_system_info" => 0]);
 
         return redirect(route('ShowAdminNotification') . '#releaseNote');
     }

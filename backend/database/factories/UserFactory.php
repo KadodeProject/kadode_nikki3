@@ -34,9 +34,6 @@ class UserFactory extends Factory
             'email_verified_at' => now(),
             'password' => Hash::make($email),
             'remember_token' => Str::random(10),
-            'is_showed_update_user_rank' => 0,
-            'is_showed_update_system_info' => 0,
-            'is_showed_service_info' => 0,
             'user_rank_id' => 1,
             'user_role_id' => 1,
             'user_rank_updated_at' => now(),
@@ -64,7 +61,7 @@ class UserFactory extends Factory
      */
     public function withPersonalTeam()
     {
-        if (! Features::hasTeamFeatures()) {
+        if (!Features::hasTeamFeatures()) {
             return $this->state([]);
         }
 

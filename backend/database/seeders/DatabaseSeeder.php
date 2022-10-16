@@ -25,6 +25,7 @@ class DatabaseSeeder extends Seeder
         $this->call(OsiraseTableSeeder::class);
         if (app()->isLocal() || app()->runningUnitTests()) {
             $this->call(UserTableSeeder::class);
+            $this->call(userReadNotificationTableSeeder::class);
             $this->call(DiaryTableSeeder::class);
         }
         $this->call(NERLabelSeeder::class);

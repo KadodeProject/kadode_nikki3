@@ -526,9 +526,6 @@ namespace App\Models{
  * @property string|null $profile_photo_path
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
- * @property int|null $is_showed_update_user_rank ユーザーランクの更新通知フラグ
- * @property int|null $is_showed_update_system_info アップデート情報更新通知フラグ
- * @property int|null $is_showed_service_info お知らせ通知フラグ
  * @property int|null $user_rank_id ユーザーランク
  * @property int|null $user_role_id ユーザーロール(一般、管理者etc)
  * @property int|null $appearance_id ページの見た目
@@ -540,6 +537,7 @@ namespace App\Models{
  * @property-read \Illuminate\Database\Eloquent\Collection|\Laravel\Sanctum\PersonalAccessToken[] $tokens
  * @property-read int|null $tokens_count
  * @property-read \App\Models\UserRank|null $userRank
+ * @property-read \App\Models\UserReadNotification|null $userReadNotification
  * @property-read \App\Models\UserRole|null $userRole
  * @method static \Database\Factories\UserFactory factory(...$parameters)
  * @method static \Illuminate\Database\Eloquent\Builder|User newModelQuery()
@@ -551,9 +549,6 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|User whereEmail($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User whereEmailVerifiedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User whereId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|User whereIsShowedServiceInfo($value)
- * @method static \Illuminate\Database\Eloquent\Builder|User whereIsShowedUpdateSystemInfo($value)
- * @method static \Illuminate\Database\Eloquent\Builder|User whereIsShowedUpdateUserRank($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User whereName($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User wherePassword($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User whereProfilePhotoPath($value)
@@ -608,6 +603,31 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|UserRank whereName($value)
  */
 	class UserRank extends \Eloquent {}
+}
+
+namespace App\Models{
+/**
+ * App\Models\UserReadNotification
+ *
+ * @property int $id
+ * @property int $user_id ユーザーID
+ * @property int|null $is_showed_update_user_rank ユーザーランクの更新通知フラグ
+ * @property int|null $is_showed_update_system_info アップデート情報更新通知フラグ
+ * @property int|null $is_showed_service_info お知らせ通知フラグ
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @method static \Illuminate\Database\Eloquent\Builder|UserReadNotification newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|UserReadNotification newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|UserReadNotification query()
+ * @method static \Illuminate\Database\Eloquent\Builder|UserReadNotification whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|UserReadNotification whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|UserReadNotification whereIsShowedServiceInfo($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|UserReadNotification whereIsShowedUpdateSystemInfo($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|UserReadNotification whereIsShowedUpdateUserRank($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|UserReadNotification whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|UserReadNotification whereUserId($value)
+ */
+	class UserReadNotification extends \Eloquent {}
 }
 
 namespace App\Models{

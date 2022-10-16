@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Console\Commands;
 
 use App\Models\User;
+use App\Models\UserReadNotification;
 use Illuminate\Console\Command;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\DB;
@@ -44,7 +45,13 @@ class JudgeUserRankCommand extends Command
          * ユーザーランクアップ対象の場合の処理
          */
         //ユーザー通知のフラグをオン、idを上げる、日付更新
-        User::where('id', $user_id)->update(["user_rank_id" => $currentUserRank + 1, "is_showed_update_user_rank" => 0, "user_rank_updated_at" => Carbon::now()]);
+        /** @todo 2回クエリ走っているのでjoinで一緒にupdateできたらもっと早くなりそう */
+        User::where('id', $user_id)->update(["user_rank_id" => $currentUserRank + 1, "user_rank_updated_at" => Carbon::now()]);
+        /**
+         * 新規のユーザーはテーブルが存在しないのでここで作成する(1日に1回実行されるので自然とテーブル作れるのでここだけupdateOrCreateをしている)
+         * @todo user作ったときに一緒にテーブル作れると一番良いのだが、ライブラリの中触らないといけない雰囲気なので断念
+         */
+        UserReadNotification::updateOrCreate(["user_id" => $user_id], ["is_showed_update_user_rank" => 0]);
         echo ('id:' . $user_id . '/ランクアップ' . $currentUserRank . "→" . ($currentUserRank + 1) . "\n");
     }
 

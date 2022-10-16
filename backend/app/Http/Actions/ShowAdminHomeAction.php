@@ -9,6 +9,7 @@ use App\Models\Diary;
 use App\Models\Statistic;
 use App\Models\StatisticPerMonth;
 use App\Models\User;
+use App\Models\UserReadNotification;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
 
@@ -40,6 +41,18 @@ final class ShowAdminHomeAction extends Controller
                 } else {
                     $user->diary_average = "生成中"; //無い可能性もあるので0に
                 }
+            }
+
+            /** @todo withで取るべきだが、後にこのメソッドごと廃止予定なので一旦これで放置 */
+            $userReadNotification = UserReadNotification::withoutGlobalScopes()->where("user_id", $user->id)->first();
+            if ($userReadNotification === null) {
+                $user->is_showed_update_user_rank = "☐";
+                $user->is_showed_update_system_info = "☐";
+                $user->is_showed_service_info =  "☐";
+            } else {
+                $user->is_showed_update_user_rank = $userReadNotification->is_showed_update_user_rank  ? "☑" : "☐";
+                $user->is_showed_update_system_info = $userReadNotification->is_showed_update_system_info  ? "☑" : "☐";
+                $user->is_showed_service_info = $userReadNotification->is_showed_service_info ? "☑" : "☐";
             }
         }
 
