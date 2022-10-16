@@ -9,11 +9,11 @@ use App\UseCases\Diary\Statistic\ArrangeDiaryStatistic;
 use App\UseCases\Diary\Statistic\CheckStatisticStatusByDiary;
 
 /**
- * 複数の日付の日記を取得する
+ * 配列で渡された複数の日付の日記を取得する
  * グローバルスコープ機能でユーザーIDの絞り込みを事前に行っているため認可制御は適切
  *
  */
-class GetDiariesByDates
+class GetDiariesByArray
 {
     public function __construct(
         private CheckStatisticStatusByDiary $checkStatisticStatusByDiary,
@@ -33,11 +33,7 @@ class GetDiariesByDates
         $arrangedDiaries = [];
         foreach ($diaries as $diary) {
             $statisticStatus = $this->checkStatisticStatusByDiary->invoke($diary);
-            /** @todo laravelの仕様上UTCに勝手に変換して日付も変えるのでここで戻す処理を走らせる */
-            $jstDiaryDate = $diary->date->format('Y-m-d');
-            $arrangedDiaryToArray = $this->arrangeDiaryStatistic->invoke($diary, $statisticStatus)->toArray();
-            $arrangedDiaryToArray['date'] = $jstDiaryDate;
-            $arrangedDiaries[] = $arrangedDiaryToArray;
+            $arrangedDiaries[] = $this->arrangeDiaryStatistic->invoke($diary, $statisticStatus)->toArray();
         }
         return $arrangedDiaries;
     }

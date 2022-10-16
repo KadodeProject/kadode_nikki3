@@ -8,7 +8,7 @@ namespace App\Enums;
  * 日記が存在しない、存在するが処理中、存在するが古い、存在して最新の4パターン存在
  */
 
-enum DiaryStatisticStatus: int
+enum StatisticStatus: int
 {
     case existCorrectly = 1;
     case notExist = 2;

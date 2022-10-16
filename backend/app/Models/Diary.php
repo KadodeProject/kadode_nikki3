@@ -5,9 +5,11 @@ declare(strict_types=1);
 namespace App\Models;
 
 use App\Scopes\ScopeLoggedInUser;
+use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasOne;
+use Illuminate\Support\Carbon;
 
 class Diary extends Model
 {
@@ -50,12 +52,6 @@ class Diary extends Model
         // "user_id"=>"required|numeric",
     );
 
-    protected $casts = [
-        'date' => 'datetime:Y-m-d',
-        'created_at'        => 'datetime:Y-m-d H:i:s',
-        'updated_at'        => 'datetime:Y-m-d H:i:s',
-    ];
-
     protected $fillable = [
         "user_id", "uuid", "title", "content", "date", "created_at", "updated_at"
     ];
@@ -74,5 +70,35 @@ class Diary extends Model
     public function diaryProcessed(): HasOne
     {
         return $this->hasOne(DiaryProcessed::class, 'diary_id');
+    }
+
+
+
+    /**
+     * $castsではtoArray,toJsonでUTCになってしまうため、アクセサで上書きする
+     */
+    public function date(): Attribute
+    {
+        return new Attribute(
+            get: fn ($value) => Carbon::parse($value)->timezone('Asia/Tokyo')->format('Y-m-d'),
+        );
+    }
+    /**
+     * $castsではtoArray,toJsonでUTCになってしまうため、アクセサで上書きする
+     */
+    public function createdAt(): Attribute
+    {
+        return new Attribute(
+            get: fn ($value) => Carbon::parse($value)->timezone('Asia/Tokyo')->format('Y-m-d H:i:s'),
+        );
+    }
+    /**
+     * $castsではtoArray,toJsonでUTCになってしまうため、アクセサで上書きする
+     */
+    public function updatedAt(): Attribute
+    {
+        return new Attribute(
+            get: fn ($value) => Carbon::parse($value)->timezone('Asia/Tokyo')->format('Y-m-d H:i:s'),
+        );
     }
 }

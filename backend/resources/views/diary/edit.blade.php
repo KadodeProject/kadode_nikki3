@@ -84,7 +84,7 @@
     <div class="tab_content" id="viewStatisticContent">
         <div class="mb-12  md:w-2/3 md:mx-auto">
             <h2 class="kiwi-maru text-3xl text-center mt-4"><span class="material-icons">science</span>解析情報</h2>
-            @if($diary['statisticStatus']->value == 1)
+            @if($diary['statisticStatus']->value === 1)
             <p class="text-right md:pr-12 px-2 text-sm mt-2 kiwi-maru">統計作成時刻:
                 {{$diary['statistic_per_date']['updated_at']}}
             </p>
@@ -130,7 +130,7 @@
             @endcomponent
             @elseif($diary['statisticStatus']->value == 2)
             <h3 class="kiwi-maru text-2xl text-center my-6">統計情報が生成されていません</h3>
-            @elseif($diary['statisticStatus']->value == 3)
+            @elseif($diary['statisticStatus']->value === 3)
             <h3 class="kiwi-maru text-2xl text-center my-6">統計情報を生成中です</h3>
             @elseif($diary['statisticStatus']->value == 4)
             <h3 class="kiwi-maru text-2xl text-center my-6">統計情報が最新でないため表示していません</h3>
@@ -138,7 +138,7 @@
         </div>
 
 
-        @if($diary['statisticStatus']->value == 1)
+        @if($diary['statisticStatus']->value === 1)
         <div class="mb-4   md:mx-auto">
             @empty($resembleDiaries)
             <h3 class="text-center text-sm my-20 kiwi-maru">関連日記は見つかりませんでした。</h3>

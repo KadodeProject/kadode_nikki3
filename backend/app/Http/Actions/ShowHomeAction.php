@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace App\Http\Actions;
 
 use App\Http\Controllers\Controller;
-use App\UseCases\Diary\GetDiariesByDates;
+use App\UseCases\Diary\GetDiariesByArray;
 use App\UseCases\Diary\GetLatestDiaries;
 use App\UseCases\Diary\GetSameDayDiariesByDate;
 use App\UseCases\Diary\ShapeStatisticFromDiaries;
@@ -22,7 +22,7 @@ final class ShowHomeAction extends Controller
         private GetLatestDiaries $getLatestDiaries,
         private GetUnreadNotifications $getUnreadNotifications,
         private GetSameDayDiariesByDate $getSameDayDiariesByDate,
-        private GetDiariesByDates $getDiariesByDates,
+        private GetDiariesByArray $getDiariesByArray,
     ) {
     }
 
@@ -62,7 +62,7 @@ final class ShowHomeAction extends Controller
          * @todo 変数名要検討
          * @todo 先週、みたいな表記はフロントエンドでやる(Day.jsなど使って)
          */
-        $recentDiaries = $this->getDiariesByDates->invoke([
+        $recentDiaries = $this->getDiariesByArray->invoke([
             $carbonImmutableToday->subWeek(1)->format("Y-m-d"),
             $carbonImmutableToday->subMonth(1)->format("Y-m-d"),
             $carbonImmutableToday->subMonth(2)->format("Y-m-d"),

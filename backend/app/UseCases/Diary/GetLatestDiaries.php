@@ -32,11 +32,7 @@ class GetLatestDiaries
         $arrangedDiaries = [];
         foreach ($diaries as $diary) {
             $statisticStatus = $this->checkStatisticStatusByDiary->invoke($diary);
-            /** @todo laravelの仕様上UTCに勝手に変換して日付も変えるのでここで戻す処理を走らせる */
-            $jstDiaryDate = $diary->date->format('Y-m-d');
-            $arrangedDiaryToArray = $this->arrangeDiaryStatistic->invoke($diary, $statisticStatus)->toArray();
-            $arrangedDiaryToArray['date'] = $jstDiaryDate;
-            $arrangedDiaries[] = $arrangedDiaryToArray;
+            $arrangedDiaries[] = $this->arrangeDiaryStatistic->invoke($diary, $statisticStatus)->toArray();
         }
         return $arrangedDiaries;
     }

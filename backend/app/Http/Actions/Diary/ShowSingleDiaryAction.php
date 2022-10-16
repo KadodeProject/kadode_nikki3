@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Http\Actions\Diary;
 
-use App\Enums\DiaryStatisticStatus;
+use App\Enums\StatisticStatus;
 use App\Http\Controllers\Controller;
 use App\Models\Diary;
 use App\UseCases\Diary\GetDiariesDateNextToDiaryById;
@@ -40,7 +40,7 @@ final class ShowSingleDiaryAction extends Controller
          */
         $resembleDiaries = "";
         $contentWithNlp = "";
-        if ($diary['statisticStatus'] === DiaryStatisticStatus::existCorrectly) {
+        if ($diary['statisticStatus'] === StatisticStatus::existCorrectly) {
             /**
              * 日記内で一番多く登場した人物がかぶる日記をランダムに3つ取得
              * \Log::debug($diary->special_people[0]['name']);//一番の人の名前抽出
@@ -56,12 +56,9 @@ final class ShowSingleDiaryAction extends Controller
         }
 
         /**
-         * Laravelの仕様上タイムゾーンが無視されて変換されるので、明示的に入れ替える
-         * Y-m-dの日付は時間が消えてどうやっても復元できないので上書きする
-         * @todo タイムゾーンを全部UTCで統一するのが良いかも
+         * @todo toArrayする処理はすべてUseCaseで行いたい(Actionsでは加工しないので)←今は一部処理がactionsに残っているのでこうしている
          */
         $diaryToArray = $diary->toArray();
-        $diaryToArray['date'] = $diary->date->format('Y-m-d');
 
         return view('diary/edit', ['diary' => $diaryToArray, 'contentWithNlp' => $contentWithNlp, 'dateAndUuidBA' => $dateAndUuidBA,  'resembleDiaries' => $resembleDiaries]);
     }
