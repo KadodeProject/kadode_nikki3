@@ -25,14 +25,12 @@ class SimpleSearchAction extends Controller
 
     public function __invoke(Request $request): View|Factory
     {
-        //効果あるか分からないけれど、危険な変数のエスケープをする
-        $request->keyword = htmlspecialchars($request->keyword, ENT_QUOTES);
-        // 検索結果のバリデーション
         $rules = array(
             "keyword" => "min:2|max:20",
         );
+        // 検索結果のバリデーション
         $this->validate($request, $rules);
-
+        //XSS対策は不要(外部からここにアクセスできないため、自身にしか攻撃できないため)←加えて、XSS対策まわりはフロントエンドで行われるため問題なし
 
         //DB叩く 最近の日記から直近50個
         DB::enableQueryLog();

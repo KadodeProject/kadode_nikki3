@@ -168,6 +168,10 @@
       <excludeFolder url="file://$MODULE_DIR$/backend/vendor/symfony/filesystem" />
       <excludeFolder url="file://$MODULE_DIR$/backend/vendor/doctrine/annotations" />
       <excludeFolder url="file://$MODULE_DIR$/backend/vendor/inertiajs/inertia-laravel" />
+      <excludeFolder url="file://$MODULE_DIR$/backend/vendor/symfony/polyfill-uuid" />
+      <excludeFolder url="file://$MODULE_DIR$/backend/vendor/php-webdriver/webdriver" />
+      <excludeFolder url="file://$MODULE_DIR$/backend/vendor/symfony/uid" />
+      <excludeFolder url="file://$MODULE_DIR$/backend/vendor/laravel/dusk" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
