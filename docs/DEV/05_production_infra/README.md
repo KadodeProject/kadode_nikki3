@@ -9,7 +9,7 @@
 ### 変更後
 
 web フロント  
-[kado.day](https://kado.day)
+[diary.kado.day](https://diary.kado.day)
 
 開発者向け wiki  
 [wiki.kado.day](https://wiki.kado.day)
