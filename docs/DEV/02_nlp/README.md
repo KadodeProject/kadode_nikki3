@@ -5,7 +5,7 @@
 リポジトリごとに pip を管理できる venv を利用しています。
 
 ```
-dc exec app bash
+dc exec backend bash
 ```
 
 source kadode_py/bin/activate

@@ -3,5 +3,5 @@
 モデルと一緒にマイグレーションファイル作る
 
 ```
-dc exec app php artisan make:model ModelName --migration
+dc exec backend php artisan make:model ModelName --migration
 ```

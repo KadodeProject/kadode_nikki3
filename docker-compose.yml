@@ -4,7 +4,7 @@ volumes:
   db-store:
   psysh-store:
 services:
-  app:
+  backend:
     build:
       context: .
       dockerfile: ./infra/dev/php/Dockerfile
