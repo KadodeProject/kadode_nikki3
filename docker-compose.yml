@@ -140,3 +140,14 @@ services:
     depends_on:
       - nginx
     privileged: true
+
+  python:
+    restart: always
+    build:
+      context: .
+      dockerfile: ./infra/docker/python/Dockerfile
+    container_name: "python3"
+    working_dir: "/root/"
+    tty: true
+    volumes:
+      - ./nlp:/root/opt

@@ -1,0 +1,5 @@
+python-dotenv
+mysqlclient
+ahocorapy
+ginza
+ja-ginza
