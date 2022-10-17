@@ -1,9 +1,13 @@
 # 大枠
-💻frontend:
+🏛️frontend_legacy:
   - backend/public/*
   - backend/resources/*
+💻frontend:
+  - frontend/*
 ⚙backend:
   - any: ["backend/*", "!backend/public/*", "!backend/resources/*"]
+
+# インフラ
 ✈ci:
   - .github/*
   - backend/env.ci
@@ -13,16 +17,35 @@
   - backend/package.json
   - backend/package-lock.json
   - backend/env.example
+  - frontend/package.json
+  - frontend/yarn.lock
+  - docs/CNAME
 🏠localInfra:
-  - infra/*
+  - infra/dev/*
   - docker-compose.yml
-📄docs:
-  - docs/*
+
+# 文章周り
+📄wiki:
+  - docs/dev/*
+  - docs/assets/*
+  - docs/REGACY/*
+  - docs/README.md
+  - docs/404.md
+  - docs/_config.yml
+  - docs/_layouts
+✍ADR:
+  - docs/arc/*
+📐UML:
+  - docs/UML/*
+🧭roadMap:
+  - docs/ROADMAP/*
+
 # 細かいもの
 🧪tests:
   - backend/tests/*
 🍃nlp:
   - backend/python/*
+  - nlp
 📦database-core:
   - backend/database/migrations/*
 🔗router:
