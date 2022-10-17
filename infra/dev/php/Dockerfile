@@ -31,7 +31,7 @@ RUN apt-get update && \
 RUN git clone https://github.com/phpredis/phpredis.git /usr/src/php/ext/redis && \
   docker-php-ext-install redis
 
-COPY ./infra/docker/php/php-fpm.d/zzz-www.conf /usr/local/etc/php-fpm.d/zzz-www.conf
-COPY ./infra/docker/php/php.ini /usr/local/etc/php/php.ini
+COPY ./infra/dev/php/php-fpm.d/zzz-www.conf /usr/local/etc/php-fpm.d/zzz-www.conf
+COPY ./infra/dev/php/php.ini /usr/local/etc/php/php.ini
 
 WORKDIR /work/backend

@@ -7,7 +7,7 @@ services:
   app:
     build:
       context: .
-      dockerfile: ./infra/docker/php/Dockerfile
+      dockerfile: ./infra/dev/php/Dockerfile
     volumes:
       - type: volume
         source: php-fpm-socket
@@ -33,7 +33,7 @@ services:
   web:
     build:
       context: .
-      dockerfile: ./infra/docker/nginx/Dockerfile
+      dockerfile: ./infra/dev/nginx/Dockerfile
     ports:
       - target: 80
         published: ${WEB_PORT:-80}
@@ -56,14 +56,14 @@ services:
   db:
     build:
       context: .
-      dockerfile: ./infra/docker/mysql/Dockerfile
+      dockerfile: ./infra/dev/mysql/Dockerfile
     ports:
       - target: 3306
         published: ${DB_PORT:-3306}
         protocol: tcp
         mode: host
     volumes:
-      - ./infra/docker/mysql/initial:/docker-entrypoint-initdb.d
+      - ./infra/dev/mysql/initial:/docker-entrypoint-initdb.d
       - db-store:/var/lib/mysql
     environment:
       - MYSQL_DATABASE=${DB_NAME:-kadode_local}
@@ -77,13 +77,13 @@ services:
       - "6379:6379"
     volumes:
       - "./data/redis:/data"
-      - "./infra/docker/redis/redis.conf:/etc/redis.conf"
+      - "./infra/dev/redis/redis.conf:/etc/redis.conf"
 
   # schemaspy:
   #   image: schemaspy/schemaspy
   #   volumes:
-  #     - ./infra/docker/schemaspy/output:/output
-  #     - ./infra/docker/schemaspy/drivers:/drivers
+  #     - ./infra/dev/schemaspy/output:/output
+  #     - ./infra/dev/schemaspy/drivers:/drivers
   #   command: >
   #     java -jar schemaspy.jar
   #     -t mysql
@@ -99,7 +99,7 @@ services:
   # schemaspy_web:
   #   image: nginx:1.18-alpine
   #   volumes:
-  #     - ./infra/docker/schemaspy/output:/usr/share/nginx/html
+  #     - ./infra/dev/schemaspy/output:/usr/share/nginx/html
   #   ports:
   #     - ${SCHEMASPY_WEB_PORT:-8080}:80
 
@@ -115,7 +115,7 @@ services:
     ports:
       - 81:80
     volumes:
-      - ./infra/docker/phpmyadmin/sessions:/sessions
+      - ./infra/dev/phpmyadmin/sessions:/sessions
   mail:
     image: mailhog/mailhog
     ports:
@@ -124,7 +124,7 @@ services:
   selenium:
     build:
       context: .
-      dockerfile: ./infra/docker/selenium/Dockerfile
+      dockerfile: ./infra/dev/selenium/Dockerfile
     tty: true
     ports:
       - 4444:4444
