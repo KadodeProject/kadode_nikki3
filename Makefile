@@ -12,8 +12,6 @@ init:
 	docker compose exec backend php artisan dusk:chrome-driver
 	docker compose exec backend chmod 775 -R vendor/laravel/dusk/bin
 	@make fresh
-	docker compose exec web yarn install
-	docker compose exec web yarn build
 
 remake:
 	@make destroy

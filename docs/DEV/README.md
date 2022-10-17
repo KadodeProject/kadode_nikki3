@@ -2,6 +2,18 @@
 
 > この wiki は絶賛改修中です。
 
+# 開発用 URL
+
+[かどで日記フロント](http://localhost:7000/)
+[かどで日記 API](http://localhost:7001/)
+
+<!-- [かどで日記自然言語処理API](http://localhost:7002/) -->
+
+[PHPMyAdmin(DB 閲覧用)](http://localhost:7010/)
+[メールクライアント](http://localhost:7011/)
+
+# リンク集
+
 [とにかくローカル開発環境を構築したい](04_dev_infra/README.md#初期構築)
 
 [バックエンドに関して](01_backend/README.md)  

@@ -39,18 +39,18 @@ services:
       - ./frontend:/frontend
     environment:
       - WATCHPACK_POLLING=true
-    command: sh -c "npm run dev"
+    command: sh -c "yarn install && yarn dev"
 
   nginx:
     build:
       context: .
       dockerfile: ./infra/dev/nginx/Dockerfile
     ports:
-      - "80:80"
-      - "3000:3000"
+      - "7001:80"
+      - "7000:3000"
     depends_on:
-      - "frontend"
       - "backend"
+      - "frontend"
     volumes:
       - type: volume
         source: php-fpm-socket
@@ -121,13 +121,13 @@ services:
     depends_on:
       - db
     ports:
-      - 81:80
+      - 7010:80
     volumes:
       - ./infra/dev/phpmyadmin/sessions:/sessions
   mail:
     image: mailhog/mailhog
     ports:
-      - 82:8025
+      - 7011:8025
 
   selenium:
     build:
