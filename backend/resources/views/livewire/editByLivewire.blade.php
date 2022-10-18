@@ -38,7 +38,7 @@
             @slot("db_method")
             {{route('UpdateDiary')}}
             @endslot
-            @slot("original_uuid")
+            @slot("original_id")
             {{$diary->uuid}}
             @endslot
             @slot("original_date")
@@ -186,8 +186,8 @@
         @endif
     </div>
     @component('components.buttons.editorDiaryButton')
-    @slot("delete_uuid")
-    {{$diary->uuid}}
+    @slot("delete_id")
+    {{$diary->id}}
     @endslot
     @endcomponent
 

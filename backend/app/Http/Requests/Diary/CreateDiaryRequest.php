@@ -1,10 +1,14 @@
 <?php
 
-namespace App\Http\Requests;
+declare(strict_types=1);
 
+namespace App\Http\Requests\Diary;
+
+use App\Rules\Diary\RejectExistDayDiaryForCreateOnDateRule;
+use Auth;
 use Illuminate\Foundation\Http\FormRequest;
 
-class DiaryRequest extends FormRequest
+class CreateDiaryRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -13,7 +17,9 @@ class DiaryRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        //アプリケーションの別の部分でリクエストの認可ロジックを処理しているため、ここは強制true
+        //https://readouble.com/laravel/9.x/ja/validation.html
+        return true;
     }
 
     /**
@@ -32,9 +38,9 @@ class DiaryRequest extends FormRequest
     public function rules()
     {
         return [
-            "date" => "required",
-            "title" => "max:50", //laravelのstringはvarchar(255)なので、255文字まで、しかし入らないから50字に抑える
-            "content" => "required|min:1|max:16000", //text型の限界が16384文字なので(マルチバイトで)
+            'date' => ['required', new RejectExistDayDiaryForCreateOnDateRule(Auth::id())],
+            'title' => ['max:50'], //laravelのstringはvarchar(255)なので、255文字まで、しかし入らないから50字に抑える
+            'content' => ['required', 'min:1', 'max:16000'], //text型の限界が16384文字なので(マルチバイトで)
         ];
     }
 }

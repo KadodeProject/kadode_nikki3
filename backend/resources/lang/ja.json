@@ -613,6 +613,7 @@
     "You may not delete your personal team.": "パーソナルチームを削除することはできません。",
     "You may not leave a team that you created.": "自身が作成したチームを離れることはできません。",
     "Your email address is not verified.": "Your email address is not verified.",
+    "You cannot create a diary for the same day": "同じ日の日記は作成できません",
     "Zambia": "Zambia",
     "Zimbabwe": "Zimbabwe"
 }

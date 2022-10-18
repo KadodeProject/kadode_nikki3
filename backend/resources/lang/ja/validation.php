@@ -13,6 +13,7 @@
 
 return [
     'accepted'             => ':attributeを承認してください。',
+    'existSameDayDiary'    => '既に存在する日付の日記は作成できません',
     'active_url'           => ':attributeは、有効なURLではありません。',
     'after'                => ':attributeには、:dateより後の日付を指定してください。',
     'after_or_equal'       => ':attributeには、:date以降の日付を指定してください。',
@@ -128,14 +129,14 @@ return [
         ],
     ],
     'attributes'           => [
-        'name' => '名前', 
-        'email' => 'メールアドレス', 
-        'password' => 'パスワード' ,
-        'content'=>'本文',
-        'title'=>'タイトル',
-        'date'=>'日付',
-        'terms'=> "利用規約とプライバシーポリシーへの同意",
-        'keyword'=>"キーワード",
+        'name' => '名前',
+        'email' => 'メールアドレス',
+        'password' => 'パスワード',
+        'content' => '本文',
+        'title' => 'タイトル',
+        'date' => '日付',
+        'terms' => "利用規約とプライバシーポリシーへの同意",
+        'keyword' => "キーワード",
 
     ],
 ];
