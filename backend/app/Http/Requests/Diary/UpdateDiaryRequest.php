@@ -38,7 +38,7 @@ class UpdateDiaryRequest extends FormRequest
     public function rules()
     {
         return [
-            'title' => ['max:50'], //laravelのstringはvarchar(255)なので、255文字まで、しかし入らないから50字に抑える
+            'title' => ['max:50'], //laravelのstringはvarchar(255)なので、255文字までだが、マルチバイトなど色々踏まえて50に押
             'content' => ['required', 'min:1', 'max:16000'], //text型の限界が16384文字なので(マルチバイトで)
             'id' => ['required', 'int'],
             /**
