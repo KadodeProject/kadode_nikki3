@@ -74,7 +74,7 @@ class ImportFromKadodeCsvAction extends Controller
             // CSVデータをパース($interpreterでaddObserverした後にparseをすることで値が中に入るため、addObserverの処理はここで実行される)
             $lexer->parse($tmpPath, $interpreter);
             /** CSVファイル削除処理 */
-            unlink($tmpPath);
+            unlink($tmpPath) ?? die("ファイル削除に失敗しました");
 
             //issetで日付の存在判定するための日付の配列が帰ってくる 'Y-m-d'=>無意味の値 みたいな形
             $existDates = $this->getAllDateByUserId->invoke($userId);
