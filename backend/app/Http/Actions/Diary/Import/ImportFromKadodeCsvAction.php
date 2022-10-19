@@ -85,7 +85,7 @@ class ImportFromKadodeCsvAction extends Controller
                     //さらにインポートしたデータ内でも同一の日付を含む可能性があるので、同一だったらマージするようにする
                     if (isset($distinctDiary[$dateYmd])) {
                         //あったら改行＋タイトル＋改行＋本文を元の本文に追加する
-                        $distinctDiary[$dateYmd]['content'] .= '\n' . $title . '\n' . $content;
+                        $distinctDiary[$dateYmd]['content'] .= "\n\n\n" . $title . "\n\n" . $content;
                     } else {
                         $distinctDiary[$dateYmd] = ['title' => $title, 'content' => $content];
                     }
@@ -93,7 +93,7 @@ class ImportFromKadodeCsvAction extends Controller
                     //さらにインポートしたデータ内でも同一の日付を含む可能性があるので、同一だったらマージするようにする
                     if (isset($newDiary[$dateYmd])) {
                         //あったら改行＋タイトル＋改行＋本文を元の本文に追加する
-                        $newDiary[$dateYmd]['content'] .= '\n' . $title . '\n' . $content;
+                        $newDiary[$dateYmd]['content'] .= "\n\n\n" . $title . "\n\n" . $content;
                     } else {
                         $newDiary[$dateYmd] = ['updated_at' => $carbonNow, 'created_at' => $carbonNow, 'user_id' => $userId, 'uuid' => Str::uuid(), 'date' => $date, 'title' => $title, 'content' => $content];
                     }
@@ -134,23 +134,14 @@ class ImportFromKadodeCsvAction extends Controller
                     'content' => $diary['content'],
                 ];
             }
-            //合体しながらupdateする(upsertでinsertは想定しておらず、あくまでループでupdateをしないために用いている),発行されるsqlはinsert on dupliucate keyみたいな感じなのでuuidとかも必要
-            // dd(array_map(function ($diary, $date) use ($existDateContents) {
-            //     $diary['id'] = $existDateContents[$date]['id'];
-            //     $diary['content'] = $existDateContents[$date]['content'] . '\n' . $diary['title'] . '\n' . $diary['content'];
-            //     return $diary;
-            // }, $distinctDiary, array_keys($distinctDiary)), [
-            //     ['id' => 1, 'name' => 'taro', 'age' => 20],      // update
-            //     ['id' => 2, 'name' => 'jiro', 'age' => 22],      // update
-            //     ['id' => null, 'name' => 'taro', 'age' => 24]    // insert
-            // ]);
+            //合体しながらupdateする(upsertでinsertは想定しておらず、あくまでループでupdateをしないために用いている),発行されるsqlはinsert on dupliucate keyみたいな感じなので結局uuidとかも必要
             Diary::upsert(
                 array_map(function ($diary, $date) use ($userId, $existDateContents) {
                     $diary['id'] = $existDateContents[$date]['id'];
                     $diary['user_id'] = $userId;
                     $diary['date'] = $date;
                     $diary['uuid'] = $existDateContents[$date]['uuid'];
-                    $diary['content'] = $existDateContents[$date]['content'] . '\n' . $diary['title'] . '\n' . $diary['content'];
+                    $diary['content'] = $existDateContents[$date]['content'] . "\n\n\n" . $diary['title'] . "\n\n" . $diary['content'];
                     return $diary;
                 }, $distinctDiary, array_keys($distinctDiary)),
                 ['id'],
