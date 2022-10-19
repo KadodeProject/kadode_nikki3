@@ -14,7 +14,7 @@
             @component('components.diary.submitForm')
             @slot("db_method")
             {{route('CreateDiary')}}
-            @slot("original_uuid")
+            @slot("original_id")
             @endslot
             @endslot
             @slot("original_date")

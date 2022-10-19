@@ -5,23 +5,32 @@ declare(strict_types=1);
 namespace App\Http\Actions\Diary\Import;
 
 use App\Http\Controllers\Controller;
-use App\Models\Diary;
+use App\UseCases\Diary\GetAllDateByUserId;
+use App\UseCases\Diary\Import\CreateDiaryBaseArrayFromImportedData;
+use App\UseCases\Diary\Import\InsertDiaryFromImportData;
+use App\UseCases\Diary\Import\UpsertDiaryFromImportData;
 use Goodby\CSV\Import\Standard\Interpreter;
 use Goodby\CSV\Import\Standard\Lexer;
 use Goodby\CSV\Import\Standard\LexerConfig;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request;
-use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Str;
-use Log;
+use function count;
 
 /**
  * @todo ここDRYにめちゃくちゃ反してるのでインターフェイス作って抽象化したい
  */
 class ImportFromKadodeCsvAction extends Controller
 {
+    public function __construct(
+        private GetAllDateByUserId $getAllDateByUserId,
+        private UpsertDiaryFromImportData $upsertDiaryFromImportData,
+        private InsertDiaryFromImportData $insertDiaryFromImportData,
+        private CreateDiaryBaseArrayFromImportedData $createDiaryBaseArrayFromImportedData,
+    ) {
+    }
+
     public function __invoke(Request $request): View|Factory
     {
         //バリデーション、CSV形式、1M以内のファイル
@@ -33,10 +42,8 @@ class ImportFromKadodeCsvAction extends Controller
 
 
         // CSV ファイル保存
-        $count = 0;
         if ($request->kadodeCsv) {
-            Log::debug("csvインポート処理開始");
-
+            $userId = Auth::id();
             $tmpName = mt_rand() . "." . $request->kadodeCsv->guessExtension(); //TMPファイル名
             $request->kadodeCsv->move(public_path() . "/importCsv", $tmpName);
             $tmpPath = public_path() . "/importCsv/" . $tmpName;
@@ -46,36 +53,41 @@ class ImportFromKadodeCsvAction extends Controller
             $interpreter = new Interpreter();
             $lexer = new Lexer($config);
 
-            //CharsetをUTF-8に変換、CSVのヘッダー行を無視
+            //文字コードをUTF-8に変換、CSVのヘッダー行を無視
             $config->setToCharset("UTF-8");
             $config->setFromCharset("sjis-win");
             $config->setIgnoreHeaderLine(true);
 
-            $dataList = [];
 
-            // 新規Observerとして、$dataList配列に値を代入
-            $interpreter->addObserver(function (array $row) use (&$dataList) {
-                // 各列のデータを取得
-                $dataList[] = $row;
+            /** @var array<{date:string,title:string,content:string}> */
+            $importDataProceed = [];
+
+            //CSVのからデータを取得してuescaseに投げられる形に変換
+            $interpreter->addObserver(function (array $row) use (&$importDataProceed) {
+                $importDataProceed[] = [
+                    'date' => $row[0],
+                    'title' => $row[1],
+                    'content' => $row[2],
+                ];
             });
 
-            // CSVデータをパース
+            // CSVデータをパース($interpreterでaddObserverした後にparseをすることで値が中に入るため、addObserverの処理はここで実行される)
             $lexer->parse($tmpPath, $interpreter);
+            /** CSVファイル削除処理 */
+            unlink($tmpPath) ?? die("ファイル削除に失敗しました");
 
-            // TMPファイル削除
-            if (unlink($tmpPath)) {
-                // echo $file.'の削除に成功しました。';
-                Log::debug("$tmpPath.の削除成功");
-            } else {
-                Log::debug("$tmpPath.の削除失敗");
-            }
-            $today_date = Carbon::now();
-            // 登録処理
-            foreach ($dataList as $row) {
-                Diary::insert(['updated_at' => $today_date, 'created_at' => $today_date, 'user_id' => Auth::Id(), 'uuid' => Str::uuid(), 'date' => Carbon::parse($row[0])->toDateString(), 'title' => $row[1], 'content' => $row[2]]);
-                $count++;
-            }
-            $importResult = $count . "つの日記がインポートされました🎉";
+            //issetで日付の存在判定するための日付の配列が帰ってくる 'Y-m-d'=>無意味の値 みたいな形
+            $existDates = $this->getAllDateByUserId->invoke($userId);
+
+            [$newDiary, $distinctDiary] = $this->createDiaryBaseArrayFromImportedData->invoke($importDataProceed, $existDates, $userId);
+
+            //インポートしたデータから重複チェックを行いDB上の日付被っている日記と被っていない日記に振り分ける
+            //重複してない日付の日記をDBへ
+            $this->insertDiaryFromImportData->invoke($newDiary);
+            //重複した日付の日記をDBへ
+            $this->upsertDiaryFromImportData->invoke($distinctDiary, $userId);
+
+            $importResult = count($newDiary) . "つの日記が新しくインポートされ、" . count($distinctDiary) . "の日記がアップデートされました🎉";
         } else {
             $importResult = "ファイルが見つかりませんでした😢";
         }

@@ -6,7 +6,7 @@
         {{-- エラー前に書いていたフォームの保持 --}}
         @php
         $original_date=old("date");
-        $original_uuid=old("uuid");
+        $original_id=old("id");
         $original_title=old("title");
         $original_content=old("content");
         @endphp
@@ -33,7 +33,7 @@
 
         <input type="date" class="text-xl mx-auto mb-4  kiwi-maru" name="date" value="{{$original_date}}">
 
-        <input type="hidden" value="{{$original_uuid}}" name="uuid">
+        <input type="hidden" value="{{$original_id}}" name="id">
         <input placeholder="タイトル(50字以内)" style="height:32px" class="mx-auto w-2/3 " type="text" name="title"
             autocomplete="off" value="{{$original_title}}">
 

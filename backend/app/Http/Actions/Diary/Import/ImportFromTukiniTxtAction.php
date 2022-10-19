@@ -5,19 +5,29 @@ declare(strict_types=1);
 namespace App\Http\Actions\Diary\Import;
 
 use App\Http\Controllers\Controller;
-use App\Models\Diary;
+use App\UseCases\Diary\GetAllDateByUserId;
+use App\UseCases\Diary\Import\CreateDiaryBaseArrayFromImportedData;
+use App\UseCases\Diary\Import\InsertDiaryFromImportData;
+use App\UseCases\Diary\Import\UpsertDiaryFromImportData;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request;
-use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Str;
 use Log;
+use function count;
+
 /**
  * @todo ここDRYにめちゃくちゃ反してるのでインターフェイス作って抽象化したい
  */
 class ImportFromTukiniTxtAction extends Controller
 {
+    public function __construct(
+        private GetAllDateByUserId $getAllDateByUserId,
+        private UpsertDiaryFromImportData $upsertDiaryFromImportData,
+        private InsertDiaryFromImportData $insertDiaryFromImportData,
+        private CreateDiaryBaseArrayFromImportedData $createDiaryBaseArrayFromImportedData,
+    ) {
+    }
     public function __invoke(Request $request): View|Factory
     {
         // $request->tukiniTxt;
@@ -27,7 +37,6 @@ class ImportFromTukiniTxtAction extends Controller
         );
         $this->validate($request, $rules);
 
-        $count = 0;
         if ($request->tukiniTxt) {
             Log::debug("txtインポート処理開始");
 
@@ -35,22 +44,24 @@ class ImportFromTukiniTxtAction extends Controller
             $request->tukiniTxt->move(public_path() . "/importTxt", $tmpName);
             $tmpPath = public_path() . "/importTxt/" . $tmpName;
 
-
-
-            /**
-             * 必死の努力で導き出した専用正規関数
-             * txtデータ→[["date","","","",].......]の配列にする
-             * 日付→\d{4}\.\d{1,2}\.\d{1,2}
-             * タイトル→\d{4}\.\d{1,2}\.\d{1,2}\s[\u4E00-\u9FFF]{2}\s\d{2}\:\d{2}[\s\S]*?\s-\s
-             * 本文→\s-\s[\s\S]*?\d{4}\.\d{1,2}\.\d{1,2}
-             */
+            /** @var int */
+            $arrayCounter = 0;
+            /** @var int */
+            $userId = Auth::id();
+            /** @var array<{date:string,title:string,content:string}> */
+            $importDataProceed = [];
 
             $rawTxt = file_get_contents("importTxt/" . $tmpName); //txt読み込み、改行までちゃんとイケてる
-
             if ($rawTxt) {
                 //文章 終わり検知のためのダミーデータ追加
                 $rawTxt = $rawTxt . "\n2000.99.99 午前 12:58\n";
 
+                /**
+                 * txtデータ→[["date","","","",].......]の配列にする
+                 * 日付→\d{4}\.\d{1,2}\.\d{1,2}
+                 * タイトル→\d{4}\.\d{1,2}\.\d{1,2}\s[\u4E00-\u9FFF]{2}\s\d{2}\:\d{2}[\s\S]*?\s-\s
+                 * 本文→\s-\s[\s\S]*?\d{4}\.\d{1,2}\.\d{1,2}
+                 */
                 //日付とタイトル
                 preg_match_all("@(?<date>\d{4}\.\d{1,2}\.\d{1,2})\s\D+\s\d{2}\:\d{2}\s(?<title>.*)\s\s-\s@", $rawTxt, $extractionResult, PREG_PATTERN_ORDER);
                 $dateTxt = $extractionResult['date'];
@@ -61,27 +72,32 @@ class ImportFromTukiniTxtAction extends Controller
                 $contentTxt = $extractionResult['content'];
 
 
-                //各配列をまとめて1つの配列とする
-
-                // 登録処理
-                $arrayCounter = 0;
-                $today_date = Carbon::now();
+                //useCasesで使える形にインポート
                 foreach ($dateTxt as $date) {
-                    Diary::insert(['updated_at' => $today_date, 'created_at' => $today_date, 'user_id' => Auth::Id(), 'uuid' => Str::uuid(), 'date' => $date, 'title' => $titleTxt[$arrayCounter], 'content' => $contentTxt[$arrayCounter]]);
-                    $count++;
+                    $importDataProceed[] = [
+                        'date' => str_replace('.', '-', $date),
+                        'title' =>  $titleTxt[$arrayCounter],
+                        'content' =>  $contentTxt[$arrayCounter],
+                    ];
                     $arrayCounter++;
                 }
             }
 
+            unlink($tmpPath) ?? die("ファイル削除に失敗しました");
 
-            // TMPファイル削除
-            if (unlink($tmpPath)) {
-                // echo $file.'の削除に成功しました。';
-                Log::debug("$tmpPath.の削除成功");
-            } else {
-                Log::debug("$tmpPath.の削除失敗");
-            }
-            $importResult = $count . "つの日記がインポートされました🎉";
+            //issetで日付の存在判定するための日付の配列が帰ってくる 'Y-m-d'=>無意味の値 みたいな形
+            $existDates = $this->getAllDateByUserId->invoke($userId);
+
+            [$newDiary, $distinctDiary] = $this->createDiaryBaseArrayFromImportedData->invoke($importDataProceed, $existDates, $userId);
+
+            //インポートしたデータから重複チェックを行いDB上の日付被っている日記と被っていない日記に振り分ける
+            //重複してない日付の日記をDBへ
+            $this->insertDiaryFromImportData->invoke($newDiary);
+            //重複した日付の日記をDBへ
+            $this->upsertDiaryFromImportData->invoke($distinctDiary, $userId);
+
+
+            $importResult = count($newDiary) . "つの日記が新しくインポートされ、" . count($distinctDiary) . "の日記がアップデートされました🎉";
         } else {
             $importResult = "ファイルが見つかりませんでした😢";
         }

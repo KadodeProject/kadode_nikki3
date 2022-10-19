@@ -108,6 +108,9 @@ yu:
 make-model:
 # make-model name=ModelName
 	docker-compose exec backend php artisan make:model $(name) --migration
+	docker-compose exec app php artisan make:model $(name) --migration
+tag:
+	sh script/git_tag.sh
 1:
 	@make stan
 	@make cs-fixer
