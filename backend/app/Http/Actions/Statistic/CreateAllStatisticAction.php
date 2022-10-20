@@ -43,7 +43,7 @@ class CreateAllStatisticAction extends Controller
         /**
          * ここからPython
          */
-        $this->throwPythonNLP->invoke($userId, false, false);
+        $this->throwPythonNLP->invoke($userId);
 
         return redirect(route('ShowStatistic'));
     }

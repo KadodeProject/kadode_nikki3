@@ -37,7 +37,7 @@ class UpdateAllStatisticAction extends Controller
             ];
             $static->update($data);
             //自然言語処理↓
-            $this->throwPythonNLP->invoke($userId, false, false);
+            $this->throwPythonNLP->invoke($userId);
         }
         return redirect(route('ShowStatistic'));
     }
