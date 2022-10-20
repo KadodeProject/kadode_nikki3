@@ -131,6 +131,7 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
         Route::get('/administrator/package', \App\Http\Actions\ShowAdminPackageAction::class)->name('ShowAdminPackage');
         Route::get('/administrator/package/{packageId}', \App\Http\Actions\ShowAdminIndividualPackageAction::class)->name('ShowAdminIndividualPackage');
         Route::get('/administrator/role_rank', \App\Http\Actions\ShowAdminRoleRankAction::class)->name('ShowAdminRoleRank');
+        Route::get('/administrator/phpinfo', \App\Http\Actions\ShowAdminPhpInfo::class)->name('ShowAdminPhpInfo');
 
         //パッケージ名前系
         Route::post('/administrator/settings/packages/create', \App\Http\Actions\NlpPackageName\CreatePackageNameAction::class)->name('CreatePackageName');

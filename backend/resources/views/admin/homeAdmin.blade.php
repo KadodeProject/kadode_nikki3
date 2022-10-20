@@ -13,6 +13,7 @@
         <p class="text-center my-12 mx-4 text-3xl"><a href="{{route('ShowAdminPackage')}}">パッケージ</a></p>
         <p class="text-center my-12 mx-4 text-3xl"><a href="{{route('ShowAdminNotification')}}">通知管理</a></p>
         <p class="text-center my-12 mx-4 text-3xl"><a href="{{route('ShowAdminRoleRank')}}">ロールとランク</a></p>
+        <p class="text-center my-12 mx-4 text-3xl"><a href="{{route('ShowAdminPhpInfo')}}">phpinfo()を見る</a></p>
     </div>
     <div class="statistic-content">
         {{-- 表示 --}}
