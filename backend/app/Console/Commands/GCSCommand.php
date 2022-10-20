@@ -60,10 +60,10 @@ class GCSCommand extends Command
         /**
          * $fileListは
          * ^ array:5 [
-         *     0 => "2022-07-26-22-22-06.zip"
-         *     1 => "2022-07-26-22-37-15.zip"
-         *     2 => ".."
-         *     3 => "."
+         *     0 => '2022-07-26-22-22-06.zip'
+         *     1 => '2022-07-26-22-37-15.zip'
+         *     2 => '..'
+         *     3 => '.'
          *     4 => false
          *     ]
          * なので、後ろ3つを除く
@@ -71,17 +71,17 @@ class GCSCommand extends Command
         array_splice($fileList, -3);
 
         //最新ファイルの探索
-        $timer = date_create_immutable_from_format("Y-m-d-H-i-s", "2021-10-20-07-16-00");
-        $recentFile = "";
+        $timer = date_create_immutable_from_format('Y-m-d-H-i-s', '2021-10-20-07-16-00');
+        $recentFile = '';
         foreach ($fileList as $newFile) {
             $dateFromName = mb_substr($newFile, 0, -4); //時刻抽出(ファイル名から)
-            $timeDate = date_create_immutable_from_format("Y-m-d-H-i-s", $dateFromName); //ファイルの更新日時を取得
+            $timeDate = date_create_immutable_from_format('Y-m-d-H-i-s', $dateFromName); //ファイルの更新日時を取得
             if ($timeDate > $timer) {
                 $recentFile = $newFile; //最新のCSVファイル
                 $timer = $timeDate; //最新の更新日時
             }
         }
-        if ($recentFile !== "") {
+        if ($recentFile !== '') {
 
             $latestFile = $recentFile;
 
