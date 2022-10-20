@@ -30,7 +30,6 @@ class Kernel extends ConsoleKernel
         // $schedule->command('inspire')->hourly();
         $schedule->command('user:judgeUserRank')->dailyAt('02:10'); //ユーザーランク審査
         $schedule->command('backup:clean --disable-notifications')->dailyAt('04:10'); //バックアップ削除
-        $schedule->command('backup:clean --disable-notifications')->dailyAt('04:10'); //バックアップ削除
         $schedule->command('backup:run --only-db')->dailyAt('04:10'); //バックアップ作成
         $schedule->command('gcs:backup')->dailyAt('04:10'); //バックアップをgcsに
     }

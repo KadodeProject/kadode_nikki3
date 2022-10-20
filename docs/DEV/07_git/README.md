@@ -7,11 +7,5 @@
 コミットにタグ付け
 
 ```
-git tag -a タグ -m 'コメント' コミット
-```
-
-ネットの海に放つ
-
-```
-git push origin タグ名
+sh script/git_tag.sh vx.x.x commitId
 ```
