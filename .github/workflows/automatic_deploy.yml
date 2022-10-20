@@ -22,6 +22,10 @@ jobs:
             cd ${{ secrets.API_DIR }}
             git pull origin main
             cd backend
-            composer install --no-dev
+            composer install --optimize-autoloader --no-dev
+            # composer install で内部的に dumpautoloadやoptimizeやってるのでそれらのコマンドは不要
+            php artisan config:cache
+            php artisan route:cache
+            php artisan view:cache
             ${{ secrets.YARN_EX_PATH }} install
             ${{ secrets.YARN_EX_PATH }} build
