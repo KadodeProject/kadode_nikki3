@@ -1,8 +1,7 @@
 import time
 import sys
-import datetime
 
-from datetime import datetime as dt
+from datetime import datetime as dt,timezone,timedelta
 from base import connectDBClass as database
 from nlp import meta_generate
 
@@ -11,6 +10,9 @@ import spacy
 
 def nlpForPre(user_id):
     model="ja_ginza" #軽量モデルを使用。本当はtransformer採用型を使いたいけど、メモリが足りない。
+
+    #タイムゾーン
+    JST = timezone(timedelta(hours=+9), 'JST')
 
     #DBインスタンス
     db = database.connectDB()
@@ -57,18 +59,17 @@ def nlpForPre(user_id):
         #日記の更新日取得 row[4]はdiary側のupdated_at
         #基本的にはnoneにならないが、念のため条件分岐
         if(row[4]!=None):
-            time_updated_at = row[4]#この時点でdatetime型になっている
+            time_updated_at = row[4]#diaries updated_at
         else:
             # データない場合
             time_updated_at = time.strptime('1800-1-1 11:11:11', '%Y-%m-%d %H:%M:%S')
         #統計の更新日取得 row[5]は統計データ側のupdated_at
         if(row[5]!=None):
-            time_statistics_updated_at = row[5]
+            time_statistics_updated_at = row[5]#diary_proceeded  updated_at
         else:
             #新規で空のデータを作成
-            db.create_diary_meta_row('statistic_per_dates',row[0],datetime.datetime.now())
-            db.create_diary_meta_row('diary_processeds',row[0],datetime.datetime.now())
-
+            db.create_diary_meta_row('diary_processeds',row[0],dt.now(JST))
+            # データない場合(確実に統計処理を走らせるために、過去の日付を入れる)
             time_statistics_updated_at = dt.strptime('1800-1-1 11:11:11','%Y-%m-%d %H:%M:%S')
         # print(time_updated_at)
         # print(time_statistics_updated_at)
@@ -79,7 +80,6 @@ def nlpForPre(user_id):
         # print(logic_updated_at)
         # print(time_statistics_updated_at)
         #統計の更新がロジック更新後に更新入っているか統計更新してから日記側に変更xがないときは変更しない
-        #falseで実行なので、andに違和感覚えるが、これでいい。
         if(time_statistics_updated_at > logic_updated_at and time_statistics_updated_at>time_updated_at):
             #処理不要 リーダーブルコードに乗ってたなんとかかんとかってやつ
             print(str(row[0])+"スキップ")

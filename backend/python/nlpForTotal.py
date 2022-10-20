@@ -133,7 +133,7 @@ def nlpForTotal(user_id):
 
     del db
 
-    print("nlpForMonth終了")
+    print("nlpForTotal終了")
 
 if __name__ == '__main__':
     from_php = sys.argv#php側の引数
