@@ -15,6 +15,8 @@ class ThrowPythonNLP
      * 2021/9/21
      * python側で呼び出さないと、並列処理になってしまい各所でバグの温床になるので、一括実行へ変更←どういうこと？
      * $user_idの日記の自然言語処理を走らせる
+     * デフォルト引数だけ変えればデバッグできるようにする
+     *  $error_checkと$debugを有効にするとlaravel.logで実行結果とenv値見れるようになる
      */
     public static function invoke(int $user_id, bool $error_check = false, bool $debug = false): array
     {
@@ -32,7 +34,8 @@ class ThrowPythonNLP
 
         if ($debug) {
             Log::debug($path);
-            Log::debug("file_name:" . env('PYTHON_VENV_DIR') . "pythonUseFromPHP.py");
+            Log::debug("python_path:" . env('PYTHON_PRO_DIR'));
+            Log::debug("python_folder_dir:" . env('PYTHON_FOLDER_DIR'));
             Log::debug("python_output:");
             Log::debug($output);
             // \Log::debug("command_output:");
