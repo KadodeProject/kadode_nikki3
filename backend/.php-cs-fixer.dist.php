@@ -26,7 +26,7 @@ return $config
         //バージョンアップで変わったものや書き方の補正用(ここはPHPのバージョンアップに併せてより上にしていく)
         //例えば@php81はphp80,74などより古いバージョンのものを含んでいる
         '@PHP81Migration' => true, //https://cs.symfony.com/doc/ruleSets/PHP81Migration.html
-        //'@PHP80Migration:risky' => true, //https://cs.symfony.com/doc/ruleSets/PHP80MigrationRisky.html
+        '@PHP80Migration:risky' => true, //https://cs.symfony.com/doc/ruleSets/PHP80MigrationRisky.html
         //'@PHPUnit84Migration:risky' => true, //https://cs.symfony.com/doc/ruleSets/PHPUnit84MigrationRisky.html
 
         //上記で適用されたもの以外や、上記でされると困るものを下記に書く

@@ -13,7 +13,7 @@ class CreateDiaryPeoplesTable extends Migration
      */
     public function up(): void
     {
-        Schema::create('diary_peoples', function (Blueprint $table) {
+        Schema::create('diary_peoples', function (Blueprint $table): void {
             $table->id();
             $table->unsignedBigInteger('user_id')->comment('ユーザーID');
             $table->string('name')->comment('名前');

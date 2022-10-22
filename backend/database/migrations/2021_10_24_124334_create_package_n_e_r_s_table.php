@@ -13,7 +13,7 @@ class CreatePackageNERSTable extends Migration
      */
     public function up(): void
     {
-        Schema::create('package_n_e_r_s', function (Blueprint $table) {
+        Schema::create('package_n_e_r_s', function (Blueprint $table): void {
             $table->id();
             $table->unsignedBigInteger('package_id')->comment('登録しているパッケージの名前');
             $table->unsignedBigInteger('label_id')->comment('ラベルのID');

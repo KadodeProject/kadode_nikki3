@@ -17,7 +17,7 @@ class UserIp extends Model
     ];
 
     // グローバルスコープ
-    protected static function boot()
+    protected static function boot(): void
     {
         parent::boot();
         static::addGlobalScope(new ScopeLoggedInUser());

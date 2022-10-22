@@ -13,7 +13,7 @@ class CreateUserRanksTable extends Migration
      */
     public function up(): void
     {
-        Schema::create('user_ranks', function (Blueprint $table) {
+        Schema::create('user_ranks', function (Blueprint $table): void {
             $table->id();
             $table->string('name')->comment('ユーザーランク名');
             $table->string('description')->nullable()->comment('説明');

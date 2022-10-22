@@ -13,7 +13,7 @@ class CreateUserRolesTable extends Migration
      */
     public function up(): void
     {
-        Schema::create('user_roles', function (Blueprint $table) {
+        Schema::create('user_roles', function (Blueprint $table): void {
             $table->id();
             $table->string('name')->comment('ユーザーロール名');
             $table->string('description')->nullable()->comment('説明');

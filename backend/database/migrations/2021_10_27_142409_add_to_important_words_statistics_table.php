@@ -13,7 +13,7 @@ class AddToImportantWordsStatisticsTable extends Migration
      */
     public function up(): void
     {
-        Schema::table('statistics', function (Blueprint $table) {
+        Schema::table('statistics', function (Blueprint $table): void {
             $table->json('important_words')->nullable()->comment('重要そうな言葉');
         });
     }
@@ -23,7 +23,7 @@ class AddToImportantWordsStatisticsTable extends Migration
      */
     public function down(): void
     {
-        Schema::table('statistics', function (Blueprint $table) {
+        Schema::table('statistics', function (Blueprint $table): void {
             $table->dropColumn('important_words');
         });
     }

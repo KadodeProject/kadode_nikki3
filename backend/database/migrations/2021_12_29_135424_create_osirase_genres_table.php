@@ -13,7 +13,7 @@ class CreateOsiraseGenresTable extends Migration
      */
     public function up(): void
     {
-        Schema::create('osirase_genres', function (Blueprint $table) {
+        Schema::create('osirase_genres', function (Blueprint $table): void {
             $table->id();
             $table->string('name')->comment('ジャンル名');
             $table->string('description')->nullable()->comment('説明');

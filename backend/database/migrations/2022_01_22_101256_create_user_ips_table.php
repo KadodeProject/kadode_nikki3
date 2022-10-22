@@ -13,7 +13,7 @@ class CreateUserIpsTable extends Migration
      */
     public function up(): void
     {
-        Schema::create('user_ips', function (Blueprint $table) {
+        Schema::create('user_ips', function (Blueprint $table): void {
             $table->id();
             $table->unsignedBigInteger('user_id')->comment('ユーザーID');
             $table->string('ip')->comment('ipアドレス');

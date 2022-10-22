@@ -18,7 +18,7 @@ final class PasswordConfirmationTest extends TestCase
 {
     use RefreshDatabase;
 
-    public function testConfirmPasswordScreenCanBeRendered()
+    public function testConfirmPasswordScreenCanBeRendered(): void
     {
         $user = Features::hasTeamFeatures()
             ? User::factory()->withPersonalTeam()->create()
@@ -29,7 +29,7 @@ final class PasswordConfirmationTest extends TestCase
         $response->assertStatus(200);
     }
 
-    public function testPasswordCanBeConfirmed()
+    public function testPasswordCanBeConfirmed(): void
     {
         $user = User::factory()->create();
 
@@ -41,7 +41,7 @@ final class PasswordConfirmationTest extends TestCase
         $response->assertSessionHasNoErrors();
     }
 
-    public function testPasswordIsNotConfirmedWithInvalidPassword()
+    public function testPasswordIsNotConfirmedWithInvalidPassword(): void
     {
         $user = User::factory()->create();
 

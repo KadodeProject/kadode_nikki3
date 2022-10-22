@@ -13,7 +13,7 @@ class CreateStatisticPerMonthsTable extends Migration
      */
     public function up(): void
     {
-        Schema::create('statistic_per_months', function (Blueprint $table) {
+        Schema::create('statistic_per_months', function (Blueprint $table): void {
             $table->id();
             $table->unsignedBigInteger('user_id')->comment('ユーザーID');
             $table->integer('statistic_progress')->nullable()->comment('生成状況(生成まで時間かかるので)');

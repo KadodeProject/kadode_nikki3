@@ -12,7 +12,7 @@ return new class() extends Migration {
      */
     public function up(): void
     {
-        Schema::create('user_read_notifications', function (Blueprint $table) {
+        Schema::create('user_read_notifications', function (Blueprint $table): void {
             $table->id();
             $table->unsignedBigInteger('user_id')->comment('ユーザーID');
             $table->boolean('is_showed_update_user_rank')->nullable()->comment('ユーザーランクの更新通知フラグ')->default(0);

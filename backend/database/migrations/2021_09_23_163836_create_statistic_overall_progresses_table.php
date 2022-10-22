@@ -13,7 +13,7 @@ class CreateStatisticOverallProgressesTable extends Migration
      */
     public function up(): void
     {
-        Schema::create('statistic_overall_progresses', function (Blueprint $table) {
+        Schema::create('statistic_overall_progresses', function (Blueprint $table): void {
             $table->id();
             $table->unsignedBigInteger('user_id')->comment('ユーザーID');
             $table->string('progress_chr')->nullable()->comment('進行状況');

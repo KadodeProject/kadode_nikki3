@@ -18,14 +18,14 @@ final class AuthenticationTest extends TestCase
 {
     use RefreshDatabase;
 
-    public function testLoginScreenCanBeRendered()
+    public function testLoginScreenCanBeRendered(): void
     {
         $response = $this->get('/login');
 
         $response->assertStatus(200);
     }
 
-    public function testUsersCanAuthenticateUsingTheLoginScreen()
+    public function testUsersCanAuthenticateUsingTheLoginScreen(): void
     {
         $user = User::factory()->create();
 
@@ -38,7 +38,7 @@ final class AuthenticationTest extends TestCase
         $response->assertRedirect(RouteServiceProvider::HOME);
     }
 
-    public function testUsersCanNotAuthenticateWithInvalidPassword()
+    public function testUsersCanNotAuthenticateWithInvalidPassword(): void
     {
         $user = User::factory()->create();
 

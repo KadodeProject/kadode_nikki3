@@ -13,7 +13,7 @@ class CreateNlpPackageUsersTable extends Migration
      */
     public function up(): void
     {
-        Schema::create('nlp_package_users', function (Blueprint $table) {
+        Schema::create('nlp_package_users', function (Blueprint $table): void {
             $table->id();
             $table->unsignedBigInteger('user_id')->comment('所有ユーザー');
             $table->unsignedBigInteger('package_id')->comment('パッケージ');

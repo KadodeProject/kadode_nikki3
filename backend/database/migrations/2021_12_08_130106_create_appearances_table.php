@@ -13,7 +13,7 @@ class CreateAppearancesTable extends Migration
      */
     public function up(): void
     {
-        Schema::create('appearances', function (Blueprint $table) {
+        Schema::create('appearances', function (Blueprint $table): void {
             $table->id();
             $table->string('name')->comment('見た目名');
             $table->string('description')->nullable()->comment('説明');

@@ -60,7 +60,7 @@ class ImportFromKadodeCsvAction extends Controller
             $importDataProceed = [];
 
             // CSVのからデータを取得してuescaseに投げられる形に変換
-            $interpreter->addObserver(function (array $row) use (&$importDataProceed) {
+            $interpreter->addObserver(function (array $row) use (&$importDataProceed): void {
                 $importDataProceed[] = [
                     'date' => $row[0],
                     'title' => $row[1],

@@ -48,7 +48,7 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function (Req
 })->name('home_redirect');
 
 // 認証
-Route::middleware(['auth:sanctum', 'verified'])->group(function () {
+Route::middleware(['auth:sanctum', 'verified'])->group(function (): void {
     // ユーザー操作
     Route::get('/settings', \App\Http\Actions\ShowSettingsAction::class)->name('ShowSetting');
     Route::post('/updateEmail', \App\Http\Actions\User\UpdateEmailAction::class)->name('ChangeEmail');
@@ -78,7 +78,7 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     Route::post('/import/diary/tukini', \App\Http\Actions\Diary\Import\ImportFromTukiniTxtAction::class)->name('ImportFromTukiniTxt');
     Route::post('/export/diary', \App\Http\Actions\Diary\Export\ExportByCsvAction::class)->name('ExportByCsv');
     // セキュリティ
-    Route::middleware(['password.confirm'])->group(function () {
+    Route::middleware(['password.confirm'])->group(function (): void {
         Route::get('/security', \App\Http\Actions\ShowSecurityAction::class)->name('ShowSecurity');
     });
 
@@ -106,7 +106,7 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     Route::post('/notification/releasenote/remove', \App\Http\Actions\User\Notification\RemoveReleaseNoteNoticeAction::class)->name('RemoveReleasenoteInfo');
 
     // 管理者関連
-    Route::middleware(['administrator'])->group(function () {
+    Route::middleware(['administrator'])->group(function (): void {
         // 管理者ページ
         Route::get('/administrator', \App\Http\Actions\ShowAdminHomeAction::class)->name('ShowAdminHome');
         Route::get('/administrator/notification', \App\Http\Actions\ShowAdminNotificationAction::class)->name('ShowAdminNotification');

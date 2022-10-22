@@ -21,7 +21,7 @@ class NlpPackageName extends Model
         'name', 'user_id', 'is_publish', 'genre_id', 'description', 'created_at', 'updated_at',
     ];
 
-    protected static function boot()
+    protected static function boot(): void
     {
         parent::boot();
         static::addGlobalScope(new ScopeLoggedInUser());

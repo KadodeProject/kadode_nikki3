@@ -13,7 +13,7 @@ class CreateReleasenotesTable extends Migration
      */
     public function up(): void
     {
-        Schema::create('releasenotes', function (Blueprint $table) {
+        Schema::create('releasenotes', function (Blueprint $table): void {
             $table->id();
             $table->string('title')->comment('タイトル');
             $table->unsignedBigInteger('genre_id')->comment('リリースノートのジャンルID');

@@ -13,7 +13,7 @@ class CreateCustomNERSTable extends Migration
      */
     public function up(): void
     {
-        Schema::create('custom_n_e_r_s', function (Blueprint $table) {
+        Schema::create('custom_n_e_r_s', function (Blueprint $table): void {
             $table->id();
             $table->unsignedBigInteger('user_id')->comment('登録しているユーザーID');
             $table->unsignedBigInteger('label_id')->comment('ラベルのID');

@@ -13,7 +13,7 @@ class CreateNlpPackageGenresTable extends Migration
      */
     public function up(): void
     {
-        Schema::create('nlp_package_genres', function (Blueprint $table) {
+        Schema::create('nlp_package_genres', function (Blueprint $table): void {
             $table->id();
             $table->string('name')->comment('ジャンル名');
             $table->string('description')->nullable()->comment('説明');

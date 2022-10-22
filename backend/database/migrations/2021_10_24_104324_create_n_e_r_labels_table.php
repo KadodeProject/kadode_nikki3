@@ -13,7 +13,7 @@ class CreateNERLabelsTable extends Migration
      */
     public function up(): void
     {
-        Schema::create('n_e_r_labels', function (Blueprint $table) {
+        Schema::create('n_e_r_labels', function (Blueprint $table): void {
             $table->id();
             $table->string('label')->comment('ラベル(正式英名)');
             $table->string('name')->comment('ラベル(日本語名)');

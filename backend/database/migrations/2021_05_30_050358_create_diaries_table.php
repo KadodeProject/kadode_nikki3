@@ -13,7 +13,7 @@ class CreateDiariesTable extends Migration
      */
     public function up(): void
     {
-        Schema::create('diaries', function (Blueprint $table) {
+        Schema::create('diaries', function (Blueprint $table): void {
             $table->id();
             $table->uuid('uuid')->unique()->comment('uuid');
             $table->unsignedBigInteger('user_id')->comment('ユーザーID');

@@ -18,7 +18,7 @@ final class ThrowPythonNLPTest extends TestCase
     private $throwPythonNLPTest;
 
     /** @todo これはデータベースにもろ依存している。 */
-    public function testExecコマンドでpythonをエラー無く実行させる()
+    public function testExecコマンドでpythonをエラー無く実行させる(): void
     {
         $this->throwPythonNLPTest = new ThrowPythonNLP();
 

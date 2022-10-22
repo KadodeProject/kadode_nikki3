@@ -13,7 +13,7 @@ class CreateOsirasesTable extends Migration
      */
     public function up(): void
     {
-        Schema::create('osirases', function (Blueprint $table) {
+        Schema::create('osirases', function (Blueprint $table): void {
             $table->id();
             $table->string('title')->comment('タイトル');
             $table->unsignedBigInteger('genre_id')->comment('お知らせのジャンルID');

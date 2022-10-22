@@ -12,7 +12,7 @@ return new class() extends Migration {
      */
     public function up(): void
     {
-        Schema::create('diary_processeds', function (Blueprint $table) {
+        Schema::create('diary_processeds', function (Blueprint $table): void {
             $table->id();
             $table->unsignedBigInteger('diary_id')->comment('日記のid');
             $table->integer('statistic_progress')->nullable()->comment('生成状況(生成まで時間かかるので)');

@@ -13,7 +13,7 @@ class CreateSearchSettingsTable extends Migration
      */
     public function up(): void
     {
-        Schema::create('search_settings', function (Blueprint $table) {
+        Schema::create('search_settings', function (Blueprint $table): void {
             $table->id();
             $table->unsignedBigInteger('user_id')->comment('ユーザーID');
             $table->string('rank')->nullable()->comment('検索順位の選び方');

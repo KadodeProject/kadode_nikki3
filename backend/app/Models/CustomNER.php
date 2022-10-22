@@ -21,7 +21,7 @@ class CustomNER extends Model
         'user_id', 'label_id', 'name', 'created_at', 'updated_at',
     ];
 
-    protected static function boot()
+    protected static function boot(): void
     {
         parent::boot();
         static::addGlobalScope(new ScopeLoggedInUser());
