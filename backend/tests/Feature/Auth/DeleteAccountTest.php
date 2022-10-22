@@ -11,14 +11,19 @@ use Laravel\Jetstream\Http\Livewire\DeleteUserForm;
 use Livewire\Livewire;
 use Tests\TestCase;
 
-class DeleteAccountTest extends TestCase
+/**
+ * @internal
+ *
+ * @coversNothing
+ */
+final class DeleteAccountTest extends TestCase
 {
     use RefreshDatabase;
 
-    public function test_user_accounts_can_be_deleted()
+    public function testUserAccountsCanBeDeleted()
     {
-        if (! Features::hasAccountDeletionFeatures()) {
-            return $this->markTestSkipped('Account deletion is not enabled.');
+        if (!Features::hasAccountDeletionFeatures()) {
+            return static::markTestSkipped('Account deletion is not enabled.');
         }
 
         $this->actingAs($user = User::factory()->create());
@@ -27,13 +32,13 @@ class DeleteAccountTest extends TestCase
             ->set('password', $user->email)
             ->call('deleteUser');
 
-        $this->assertNull($user->fresh());
+        static::assertNull($user->fresh());
     }
 
-    public function test_correct_password_must_be_provided_before_account_can_be_deleted()
+    public function testCorrectPasswordMustBeProvidedBeforeAccountCanBeDeleted()
     {
-        if (! Features::hasAccountDeletionFeatures()) {
-            return $this->markTestSkipped('Account deletion is not enabled.');
+        if (!Features::hasAccountDeletionFeatures()) {
+            return static::markTestSkipped('Account deletion is not enabled.');
         }
 
         $this->actingAs($user = User::factory()->create());
@@ -43,6 +48,6 @@ class DeleteAccountTest extends TestCase
             ->call('deleteUser')
             ->assertHasErrors(['password']);
 
-        $this->assertNotNull($user->fresh());
+        static::assertNotNull($user->fresh());
     }
 }

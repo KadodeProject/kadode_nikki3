@@ -16,7 +16,6 @@ use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use function count;
 
 /**
  * @todo ここDRYにめちゃくちゃ反してるのでインターフェイス作って抽象化したい
@@ -33,37 +32,35 @@ class ImportFromKadodeCsvAction extends Controller
 
     public function __invoke(Request $request): View|Factory
     {
-        //バリデーション、CSV形式、1M以内のファイル
-        //csvだけだと何故かエラー出るので、やむをえず、txtも。 .csv認識できてないっぽい
+        // バリデーション、CSV形式、1M以内のファイル
+        // csvだけだと何故かエラー出るので、やむをえず、txtも。 .csv認識できてないっぽい
         $rules = [
-            "kadodeCsv" => "file|max:2000|mimes:csv,txt",
+            'kadodeCsv' => 'file|max:2000|mimes:csv,txt',
         ];
         $this->validate($request, $rules);
-
 
         // CSV ファイル保存
         if ($request->kadodeCsv) {
             $userId = Auth::id();
-            $tmpName = mt_rand() . "." . $request->kadodeCsv->guessExtension(); //TMPファイル名
-            $request->kadodeCsv->move(public_path() . "/importCsv", $tmpName);
-            $tmpPath = public_path() . "/importCsv/" . $tmpName;
+            $tmpName = mt_rand().'.'.$request->kadodeCsv->guessExtension(); // TMPファイル名
+            $request->kadodeCsv->move(public_path().'/importCsv', $tmpName);
+            $tmpPath = public_path().'/importCsv/'.$tmpName;
 
-            //Goodby CSVのconfig設定
+            // Goodby CSVのconfig設定
             $config = new LexerConfig();
             $interpreter = new Interpreter();
             $lexer = new Lexer($config);
 
-            //文字コードをUTF-8に変換、CSVのヘッダー行を無視
-            $config->setToCharset("UTF-8");
-            $config->setFromCharset("sjis-win");
+            // 文字コードをUTF-8に変換、CSVのヘッダー行を無視
+            $config->setToCharset('UTF-8');
+            $config->setFromCharset('sjis-win');
             $config->setIgnoreHeaderLine(true);
-
 
             /** @var array<{date:string,title:string,content:string}> */
             $importDataProceed = [];
 
-            //CSVのからデータを取得してuescaseに投げられる形に変換
-            $interpreter->addObserver(function (array $row) use (&$importDataProceed) {
+            // CSVのからデータを取得してuescaseに投げられる形に変換
+            $interpreter->addObserver(function (array $row) use (&$importDataProceed): void {
                 $importDataProceed[] = [
                     'date' => $row[0],
                     'title' => $row[1],
@@ -73,25 +70,25 @@ class ImportFromKadodeCsvAction extends Controller
 
             // CSVデータをパース($interpreterでaddObserverした後にparseをすることで値が中に入るため、addObserverの処理はここで実行される)
             $lexer->parse($tmpPath, $interpreter);
-            /** CSVファイル削除処理 */
-            unlink($tmpPath) ?? die("ファイル削除に失敗しました");
+            // CSVファイル削除処理
+            unlink($tmpPath) ?? exit('ファイル削除に失敗しました');
 
-            //issetで日付の存在判定するための日付の配列が帰ってくる 'Y-m-d'=>無意味の値 みたいな形
+            // issetで日付の存在判定するための日付の配列が帰ってくる 'Y-m-d'=>無意味の値 みたいな形
             $existDates = $this->getAllDateByUserId->invoke($userId);
 
             [$newDiary, $distinctDiary] = $this->createDiaryBaseArrayFromImportedData->invoke($importDataProceed, $existDates, $userId);
 
-            //インポートしたデータから重複チェックを行いDB上の日付被っている日記と被っていない日記に振り分ける
-            //重複してない日付の日記をDBへ
+            // インポートしたデータから重複チェックを行いDB上の日付被っている日記と被っていない日記に振り分ける
+            // 重複してない日付の日記をDBへ
             $this->insertDiaryFromImportData->invoke($newDiary);
-            //重複した日付の日記をDBへ
+            // 重複した日付の日記をDBへ
             $this->upsertDiaryFromImportData->invoke($distinctDiary, $userId);
 
-            $importResult = count($newDiary) . "つの日記が新しくインポートされ、" . count($distinctDiary) . "の日記がアップデートされました🎉";
+            $importResult = \count($newDiary).'つの日記が新しくインポートされ、'.\count($distinctDiary).'の日記がアップデートされました🎉';
         } else {
-            $importResult = "ファイルが見つかりませんでした😢";
+            $importResult = 'ファイルが見つかりませんでした😢';
         }
 
-        return view("diary/io/afterImport", ["importResult" => $importResult]);
+        return view('diary/io/afterImport', ['importResult' => $importResult]);
     }
 }

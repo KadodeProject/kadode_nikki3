@@ -8,12 +8,13 @@ use App\Models\Diary;
 use Carbon\CarbonImmutable;
 
 /**
- * 指定した日記idの前後の日付とその日記の存在チェックとuuidを取得する
+ * 指定した日記idの前後の日付とその日記の存在チェックとuuidを取得する.
  */
 class GetDiariesDateNextToDiaryById
 {
     /**
      * @return array<{next:array<{date:DateTime,uuid:string}>,former:array<{date:DateTime,uuid:string}>}>
+     *
      * @todo ここは1日記1日付が成り立つ前提で作られている
      */
     public function invoke(string $date): array
@@ -39,9 +40,7 @@ class GetDiariesDateNextToDiaryById
             }
         }
 
-        /**
-         * @todo uuid廃止してdateだけでURL生成するようにしたいので後ほどこの配列もuuidからidに変えたい
-         */
+        // @todo uuid廃止してdateだけでURL生成するようにしたいので後ほどこの配列もuuidからidに変えたい
         return [
             'next' => [
                 'date' => $tomorrow->toDateTime(),
@@ -50,7 +49,7 @@ class GetDiariesDateNextToDiaryById
             'former' => [
                 'date' => $yesterday->toDateTime(),
                 'uuid' => $former_uuid,
-            ]
+            ],
         ];
     }
 }

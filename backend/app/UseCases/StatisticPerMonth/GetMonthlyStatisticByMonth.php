@@ -17,17 +17,17 @@ class GetMonthlyStatisticByMonth
     }
 
     /**
-     * 指定された月の統計データを整えて返す
+     * 指定された月の統計データを整えて返す.
      */
     public function invoke(int $year, int $month): array
     {
-        $statisticPerMonth = StatisticPerMonth::where("year", $year)->where("month", $month)->first();
+        $statisticPerMonth = StatisticPerMonth::where('year', $year)->where('month', $month)->first();
         $statisticStatus = $this->checkStatisticStatus->invoke($statisticPerMonth);
         $statisticPerMonthProceed = $this->arrangeStatistic->invoke($statisticPerMonth, $statisticStatus);
-        if ($statisticPerMonth === null) {
+        if (null === $statisticPerMonth) {
             return [];
-        } else {
-            return $statisticPerMonthProceed->toArray();
         }
+
+        return $statisticPerMonthProceed->toArray();
     }
 }

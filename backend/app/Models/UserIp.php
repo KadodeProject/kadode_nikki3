@@ -12,14 +12,14 @@ class UserIp extends Model
 {
     use HasFactory;
 
-    //グローバルスコープ
-    protected static function boot()
+    protected $fillable = [
+        'user_id', 'ip', 'ua', 'geo', 'created_at', 'updated_at',
+    ];
+
+    // グローバルスコープ
+    protected static function boot(): void
     {
         parent::boot();
-        static::addGlobalScope(new ScopeLoggedInUser);
+        static::addGlobalScope(new ScopeLoggedInUser());
     }
-
-    protected $fillable = [
-        "user_id", "ip", "ua", "geo", "created_at", "updated_at"
-    ];
 }

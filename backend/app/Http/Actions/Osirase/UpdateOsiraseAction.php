@@ -18,13 +18,14 @@ final class UpdateOsiraseAction extends Controller
         $this->validate($request, Osirase::$rules);
 
         $updateContent = [
-            "title" => $request->title,
-            "genre_id" => $request->osirase_genre_id,
-            "description" => $request->description,
-            "date" => $request->date,
+            'title' => $request->title,
+            'genre_id' => $request->osirase_genre_id,
+            'description' => $request->description,
+            'date' => $request->date,
         ];
 
         Osirase::where('id', $request->osirase_id)->update($updateContent);
-        return redirect(route('ShowAdminNotification') . '#osirase');
+
+        return redirect(route('ShowAdminNotification').'#osirase');
     }
 }

@@ -12,27 +12,25 @@ class PackageNERTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.
-     *
-     * @return void
      */
-    public function run()
+    public function run(): void
     {
-        $param=[
+        $param = [
             [
-                'package_id'=>1 ,
-                'label_id'=>1,
-                'name'=>"キャラメルポップコーン",
+                'package_id' => 1,
+                'label_id' => 1,
+                'name' => 'キャラメルポップコーン',
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now(),
             ],
             [
-                'package_id'=>1 ,
-                'label_id'=>1,
-                'name'=>"コンペイトウ",
+                'package_id' => 1,
+                'label_id' => 1,
+                'name' => 'コンペイトウ',
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now(),
             ],
         ];
-        DB::table("package_n_e_r_s")->insert($param);
+        DB::table('package_n_e_r_s')->insert($param);
     }
 }

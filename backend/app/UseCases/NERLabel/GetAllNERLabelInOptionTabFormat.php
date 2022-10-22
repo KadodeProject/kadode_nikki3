@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace App\UseCases\NERLabel;
 
 /**
- * Undocumented class
+ * Undocumented class.
  */
 final class GetAllNERLabelInOptionTabFormat
 {
@@ -15,10 +15,10 @@ final class GetAllNERLabelInOptionTabFormat
     public function invoke(array $NERLabels): string
     {
         /** @var string */
-        $NERLabelsInOptionTabFormat = "";
+        $NERLabelsInOptionTabFormat = '';
 
         foreach ($NERLabels as $NERLabel) {
-            $NERLabelsInOptionTabFormat = $NERLabelsInOptionTabFormat . ' <option value="' . $NERLabel['id'] . '">' . $NERLabel['name'] . '</option>';
+            $NERLabelsInOptionTabFormat = $NERLabelsInOptionTabFormat.' <option value="'.$NERLabel['id'].'">'.$NERLabel['name'].'</option>';
         }
 
         return $NERLabelsInOptionTabFormat;

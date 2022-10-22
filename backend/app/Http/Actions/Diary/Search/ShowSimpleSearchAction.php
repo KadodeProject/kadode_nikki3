@@ -10,7 +10,7 @@ use Illuminate\Contracts\View\View;
 
 class ShowSimpleSearchAction extends Controller
 {
-    public function __invoke():View|Factory
+    public function __invoke(): View|Factory
     {
         return view('diary/search/searchResult');
     }

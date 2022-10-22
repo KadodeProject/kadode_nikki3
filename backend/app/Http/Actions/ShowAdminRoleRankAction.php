@@ -14,12 +14,12 @@ final class ShowAdminRoleRankAction extends Controller
 {
     public function __invoke(): View|Factory
     {
-        //ユーザーランク
+        // ユーザーランク
         $user_ranks = UserRank::get();
 
-        //ユーザーロール
+        // ユーザーロール
         $user_roles = UserRole::get();
 
-        return view('admin/role_rankAdmin', ['user_ranks' => $user_ranks, 'user_roles' => $user_roles,]);
+        return view('admin/role_rankAdmin', ['user_ranks' => $user_ranks, 'user_roles' => $user_roles]);
     }
 }

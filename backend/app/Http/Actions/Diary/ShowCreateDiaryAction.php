@@ -8,10 +8,9 @@ use App\Http\Controllers\Controller;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
 
-
 final class ShowCreateDiaryAction extends Controller
 {
-    public function __invoke():View|Factory
+    public function __invoke(): View|Factory
     {
         return view('diary/newDiary');
     }

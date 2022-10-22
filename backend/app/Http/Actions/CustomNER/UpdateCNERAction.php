@@ -19,11 +19,12 @@ class UpdateCNERAction extends Controller
         $this->validate($request, CustomNER::$rules);
 
         $updateContent = [
-            "label_id" => $request->label_id,
-            "name" => $request->name,
+            'label_id' => $request->label_id,
+            'name' => $request->name,
         ];
 
         CustomNER::where('id', $request->customNER_id)->update($updateContent);
-        return redirect(route('ShowStatisticSetting') . '#customNERTable');
+
+        return redirect(route('ShowStatisticSetting').'#customNERTable');
     }
 }

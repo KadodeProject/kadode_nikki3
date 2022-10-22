@@ -11,23 +11,20 @@ class OsiraseGenreTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.
-     *
-     * @return void
      */
-    public function run()
+    public function run(): void
     {
-
         $param = [
             [
-                'name' => "お知らせ",
+                'name' => 'お知らせ',
             ],
             [
-                'name' => "プレスリリース",
+                'name' => 'プレスリリース',
             ],
             [
-                'name' => "イベント",
+                'name' => 'イベント',
             ],
         ];
-        DB::table("osirase_genres")->insert($param);
+        DB::table('osirase_genres')->insert($param);
     }
 }

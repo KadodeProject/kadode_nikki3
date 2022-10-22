@@ -18,19 +18,19 @@ final class CreateOsiraseAction extends Controller
         // バリデーション
         $this->validate($request, Osirase::$rules);
 
-        //中身作成
+        // 中身作成
         $form = [
-            "title" => $request->title,
-            "genre_id" => $request->osirase_genre_id,
-            "description" => $request->description,
-            "date" => $request->date,
+            'title' => $request->title,
+            'genre_id' => $request->osirase_genre_id,
+            'description' => $request->description,
+            'date' => $request->date,
         ];
 
         Osirase::create($form);
 
-        //ユーザー通知のフラグをオンにする(ここはすべてのユーザーが対象)
-        UserReadNotification::where('is_showed_service_info', 1)->update(["is_showed_service_info" => 0]);
+        // ユーザー通知のフラグをオンにする(ここはすべてのユーザーが対象)
+        UserReadNotification::where('is_showed_service_info', 1)->update(['is_showed_service_info' => 0]);
 
-        return redirect(route('ShowAdminNotification') . '#osirase');
+        return redirect(route('ShowAdminNotification').'#osirase');
     }
 }

@@ -17,20 +17,25 @@ class GetSameDayDiariesByDate
         private ArrangeDiaryStatistic $arrangeDiaryStatistic
     ) {
     }
+
     /**
-     * 年が違う同じ日の日記を返す
+     * 年が違う同じ日の日記を返す.
+     *
      * @todo Next.jsとblade混在期はResponderでtoJsonまたはtoArrayをするが、それ移行はここで加工しても良いかも？
+     *
      * @return array<Diary>
      */
     public function invoke(Carbon|CarbonImmutable $date): array
     {
-        $diaries = Diary::with('StatisticPerDate')->whereMonth('date', $date->month)->whereDay('date', $date->day)->where('date', '!=', $date)->orderby("date", "desc")->get();
+        $diaries = Diary::with('StatisticPerDate')->whereMonth('date', $date->month)->whereDay('date', $date->day)->where('date', '!=', $date)->orderby('date', 'desc')->get();
+
         /** ->get()だと必ずcollationが返ってくるので条件分岐不要(0の場合は内部からのcollationが来るのでループ勝手に飛ぶ) */
         $arrangedDiaries = [];
         foreach ($diaries as $diary) {
             $statisticStatus = $this->checkStatisticStatusByDiary->invoke($diary);
             $arrangedDiaries[] = $this->arrangeDiaryStatistic->invoke($diary, $statisticStatus)->toArray();
         }
+
         return $arrangedDiaries;
     }
 }

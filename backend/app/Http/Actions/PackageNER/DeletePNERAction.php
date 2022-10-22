@@ -15,6 +15,7 @@ final class DeletePNERAction extends Controller
     public function __invoke(Request $request): Redirector|RedirectResponse
     {
         PackageNER::where('id', $request->PackageNER_id)->delete();
+
         return redirect(route('ShowAdminIndividualPackage', ['packageId' => $request->packageId]));
     }
 }

@@ -24,10 +24,10 @@ class UpdateAllStatisticAction extends Controller
         $dt = new Carbon();
         $yesterday = $dt->subHour(24);
         $userId = Auth::id();
-        $static = Statistic::where("user_id", $userId)->first();
+        $static = Statistic::where('user_id', $userId)->first();
 
         // 24時間以内なら更新しない
-        if (($yesterday->diffInHours($static->updated_at)) >= 0) {
+        if ($yesterday->diffInHours($static->updated_at) >= 0) {
             // $diaries=Diary::orderby("date","asc")->get();
             // $calculateDiary=calculateDiary::calculateDiary($diaries);
 
@@ -36,9 +36,10 @@ class UpdateAllStatisticAction extends Controller
                 'updated_at' => $dt->addHour(24),
             ];
             $static->update($data);
-            //自然言語処理↓
+            // 自然言語処理↓
             $this->throwPythonNLP->invoke($userId);
         }
+
         return redirect(route('ShowStatistic'));
     }
 }

@@ -19,11 +19,11 @@ final class UpdatePasswordAction extends Controller
         // バリデーション
         $this->validate($request, User::$updatePassWordRules);
 
-
         $user_id = Auth::user()->id;
-        User::where("id", $user_id)->update([
-            "password" => Hash::make($request->password),
+        User::where('id', $user_id)->update([
+            'password' => Hash::make($request->password),
         ]);
+
         return redirect(route('ShowSecurity'));
     }
 }

@@ -11,7 +11,7 @@ abstract class TestCase extends BaseTestCase
     use CreatesApplication;
 
     /**
-     * デフォルトのシーダーが各テストの前に実行するかを示す
+     * デフォルトのシーダーが各テストの前に実行するかを示す.
      *
      * @var bool
      */

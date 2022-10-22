@@ -15,6 +15,7 @@ final class DeleteUserRankAction extends Controller
     public function __invoke(Request $request): Redirector|RedirectResponse
     {
         UserRank::where('id', $request->user_rank_id)->delete();
+
         return redirect(route('ShowAdminRoleRank'));
     }
 }

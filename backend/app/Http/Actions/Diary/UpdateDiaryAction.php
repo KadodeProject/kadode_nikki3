@@ -14,13 +14,13 @@ final class UpdateDiaryAction extends Controller
 {
     public function __invoke(UpdateDiaryRequest $request): Redirector|RedirectResponse
     {
-
         $updateContent = [
-            "title" => $request->title,
-            "content" => $request->content,
-            "date" => $request->date,
+            'title' => $request->title,
+            'content' => $request->content,
+            'date' => $request->date,
         ];
         Diary::where('id', $request->id)->update($updateContent);
+
         return redirect(route('ShowHome'));
     }
 }

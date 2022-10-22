@@ -6,54 +6,30 @@ $finder = PhpCsFixer\Finder::create()
     ->in([
         __DIR__ . '/app',
         __DIR__ . '/config',
-        __DIR__ . '/database/factories',
-        __DIR__ . '/database/seeders',
+        __DIR__ . '/database',
         __DIR__ . '/routes',
         __DIR__ . '/tests',
     ]);
 
 $config = new PhpCsFixer\Config();
 
+/**
+ * 全体の設定一覧→https://mlocati.github.io/php-cs-fixer-configurator
+ * まとめて入った@系のやつ→https://cs.symfony.com/doc/ruleSets
+ */
 return $config
     ->setRiskyAllowed(true)
     ->setRules([
-        '@PhpCsFixer:risky' => true,
-        'blank_line_after_opening_tag' => true,
-        'linebreak_after_opening_tag' => true,
-        'declare_strict_types' => true,
-        'no_superfluous_phpdoc_tags' => false,
-        'global_namespace_import' => [
-            'import_classes' => true,
-            'import_constants' => true,
-            'import_functions' => true,
-        ],
-        'ordered_imports' => [
-            'sort_algorithm' => 'alpha',
-            'imports_order' => [
-                'class',
-                'function',
-                'const',
-            ],
-        ],
-        'no_unused_imports' => true,
-        'phpdoc_types_order' => [
-            'null_adjustment' => 'always_last',
-            'sort_algorithm' => 'none',
-        ],
-        'php_unit_test_case_static_method_calls' => [
-            'call_type' => 'this'
-        ],
-        'phpdoc_align' => [
-            'align' => 'left',
-        ],
-        'not_operator_with_successor_space' => false,
-        'blank_line_after_namespace' => true,
-        'final_class' => false,
-        'date_time_immutable' => true,
-        'declare_parentheses' => true,
-        'final_public_method_for_abstract_class' => true,
-        'mb_str_functions' => true,
-        'simplified_if_return' => true,
-        'simplified_null_return' => true,
+        //@PhpCsFixerの中にPERとSymfonyが入っており、その中に最新のコーディング規約が入っている→結果的にPSR12,Symfonyが適用される
+        '@PhpCsFixer' => true, //https://cs.symfony.com/doc/ruleSets/PhpCsFixer.html
+        '@PhpCsFixer:risky' => true, //https://cs.symfony.com/doc/ruleSets/PhpCsFixerRisky.html
+        //バージョンアップで変わったものや書き方の補正用(ここはPHPのバージョンアップに併せてより上にしていく)
+        //例えば@php81はphp80,74などより古いバージョンのものを含んでいる
+        '@PHP81Migration' => true, //https://cs.symfony.com/doc/ruleSets/PHP81Migration.html
+        '@PHP80Migration:risky' => true, //https://cs.symfony.com/doc/ruleSets/PHP80MigrationRisky.html
+        '@PHPUnit84Migration:risky' => true, //https://cs.symfony.com/doc/ruleSets/PHPUnit84MigrationRisky.html
+
+        //上記で適用されたもの以外や、上記でされると困るものを下記に書く
+        'multiline_whitespace_before_semicolons' => true, //メソッドチェーンの末尾のセミコロンを改行する設定を上書きする https://mlocati.github.io/php-cs-fixer-configurator/#version:3.12|configurator|fixer:multiline_whitespace_before_semicolons
     ])
     ->setFinder($finder);

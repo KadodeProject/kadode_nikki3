@@ -13,7 +13,7 @@ use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Auth;
 
 /**
- * 新規作成
+ * 新規作成.
  */
 class CreateAllStatisticAction extends Controller
 {
@@ -27,7 +27,7 @@ class CreateAllStatisticAction extends Controller
         $userId = Auth::id();
         $dt = new Carbon();
         $data = [
-            "user_id" => $userId,
+            'user_id' => $userId,
             'updated_at' => $dt,
             'statistic_progress' => 1,
         ];
@@ -40,9 +40,7 @@ class CreateAllStatisticAction extends Controller
         // // Diary_people::create($data);
         // StatisticOverallProgress::create($data);
 
-        /**
-         * ここからPython
-         */
+        // ここからPython
         $this->throwPythonNLP->invoke($userId);
 
         return redirect(route('ShowStatistic'));

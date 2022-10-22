@@ -12,28 +12,17 @@ use Illuminate\Support\Carbon;
 
 class StatisticPerYear extends Model
 {
-    /**
-     * 日記を自動でログインユーザーのみに絞り込むグローバルスコープの呼び出し関数
-     *
-     * @return void
-     */
-    protected static function boot()
-    {
-        parent::boot();
-        static::addGlobalScope(new ScopeLoggedInUser);
-    }
-
     use HasFactory;
     protected $fillable = [
-        "statistic_progress", "user_id", "year", "emotions", "word_counts", "noun_rank", "adjective_rank", "important_words", "special_people", "classifications", "created_at", "updated_at"
+        'statistic_progress', 'user_id', 'year', 'emotions', 'word_counts', 'noun_rank', 'adjective_rank', 'important_words', 'special_people', 'classifications', 'created_at', 'updated_at',
     ];
     // 初期値設定(statistic_progressを0にする)
     protected $attributes = [
-        "statistic_progress" => 0,
+        'statistic_progress' => 0,
     ];
 
     /**
-     * $castsではtoArray,toJsonでUTCになってしまうため、アクセサで上書きする
+     * $castsではtoArray,toJsonでUTCになってしまうため、アクセサで上書きする.
      */
     public function createdAt(): Attribute
     {
@@ -41,13 +30,23 @@ class StatisticPerYear extends Model
             get: fn ($value) => Carbon::parse($value)->timezone('Asia/Tokyo')->format('Y-m-d H:i:s'),
         );
     }
+
     /**
-     * $castsではtoArray,toJsonでUTCになってしまうため、アクセサで上書きする
+     * $castsではtoArray,toJsonでUTCになってしまうため、アクセサで上書きする.
      */
     public function updatedAt(): Attribute
     {
         return new Attribute(
             get: fn ($value) => Carbon::parse($value)->timezone('Asia/Tokyo')->format('Y-m-d H:i:s'),
         );
+    }
+
+    /**
+     * 日記を自動でログインユーザーのみに絞り込むグローバルスコープの呼び出し関数.
+     */
+    protected static function boot(): void
+    {
+        parent::boot();
+        static::addGlobalScope(new ScopeLoggedInUser());
     }
 }

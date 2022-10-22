@@ -17,17 +17,17 @@ class GetYearlyStatisticByYear
     }
 
     /**
-     * 指定された年の統計データを整えて返す
+     * 指定された年の統計データを整えて返す.
      */
     public function invoke(int $year): array
     {
-        $statisticPerYear = StatisticPerYear::where("year", $year)->first();
+        $statisticPerYear = StatisticPerYear::where('year', $year)->first();
         $statisticStatus = $this->checkStatisticStatus->invoke($statisticPerYear);
         $statisticPerYearProceed = $this->arrangeStatistic->invoke($statisticPerYear, $statisticStatus);
-        if ($statisticPerYear === null) {
+        if (null === $statisticPerYear) {
             return [];
-        } else {
-            return $statisticPerYearProceed->toArray();
         }
+
+        return $statisticPerYearProceed->toArray();
     }
 }

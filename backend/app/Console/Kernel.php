@@ -16,32 +16,27 @@ class Kernel extends ConsoleKernel
      */
     protected $commands = [
         Commands\GCSCommand::class,
-        Commands\JudgeUserRankCommand::class
+        Commands\JudgeUserRankCommand::class,
     ];
 
     /**
      * Define the application's command schedule.
-     *
-     * @param \Illuminate\Console\Scheduling\Schedule $schedule
-     * @return void
      */
-    protected function schedule(Schedule $schedule)
+    protected function schedule(Schedule $schedule): void
     {
         // $schedule->command('inspire')->hourly();
-        $schedule->command('user:judgeUserRank')->dailyAt('02:10'); //ユーザーランク審査
-        $schedule->command('backup:clean --disable-notifications')->dailyAt('04:10'); //バックアップ削除
-        $schedule->command('backup:run --only-db')->dailyAt('04:10'); //バックアップ作成
-        $schedule->command('gcs:backup')->dailyAt('04:10'); //バックアップをgcsに
+        $schedule->command('user:judgeUserRank')->dailyAt('02:10'); // ユーザーランク審査
+        $schedule->command('backup:clean --disable-notifications')->dailyAt('04:10'); // バックアップ削除
+        $schedule->command('backup:run --only-db')->dailyAt('04:10'); // バックアップ作成
+        $schedule->command('gcs:backup')->dailyAt('04:10'); // バックアップをgcsに
     }
 
     /**
      * Register the commands for the application.
-     *
-     * @return void
      */
-    protected function commands()
+    protected function commands(): void
     {
-        $this->load(__DIR__ . '/Commands');
+        $this->load(__DIR__.'/Commands');
 
         require base_path('routes/console.php');
     }

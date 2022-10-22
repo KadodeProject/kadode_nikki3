@@ -18,19 +18,19 @@ final class CreateReleaseNoteAction extends Controller
         // バリデーション
         $this->validate($request, Releasenote::$rules);
 
-        //中身作成
+        // 中身作成
         $form = [
-            "title" => $request->title,
-            "genre_id" => $request->releasenote_genre_id,
-            "description" => $request->description,
-            "date" => $request->date,
+            'title' => $request->title,
+            'genre_id' => $request->releasenote_genre_id,
+            'description' => $request->description,
+            'date' => $request->date,
         ];
 
         Releasenote::create($form);
 
-        //ユーザー通知のフラグをオンにする
-        UserReadNotification::where('is_showed_update_system_info', 1)->update(["is_showed_update_system_info" => 0]);
+        // ユーザー通知のフラグをオンにする
+        UserReadNotification::where('is_showed_update_system_info', 1)->update(['is_showed_update_system_info' => 0]);
 
-        return redirect(route('ShowAdminNotification') . '#releaseNote');
+        return redirect(route('ShowAdminNotification').'#releaseNote');
     }
 }

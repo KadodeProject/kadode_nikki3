@@ -7,20 +7,24 @@ namespace Tests\Feature\Statistic;
 use App\UseCases\Statistic\ThrowPythonNLP;
 use Tests\TestCase;
 
-class ThrowPythonNLPTest extends TestCase
+/**
+ * @internal
+ *
+ * @coversNothing
+ */
+final class ThrowPythonNLPTest extends TestCase
 {
     /** @property ThrowPythonNLP */
     private $throwPythonNLPTest;
 
     /** @todo これはデータベースにもろ依存している。 */
-    /** */
-    public function testExecコマンドでpythonをエラー無く実行させる()
+    public function testExecコマンドでpythonをエラー無く実行させる(): void
     {
         $this->throwPythonNLPTest = new ThrowPythonNLP();
 
-        /**デバックありで実行(第二引数true) */
+        // デバックありで実行(第二引数true)
         $response = $this->throwPythonNLPTest->invoke(1, true, false);
-        /**
+        /*
          *  デバックありexecコマンドでNLP動くとPython側の標準出力で
          * 0 => "nlpForPre"
          * 1 => "DB接続処理開始"
@@ -34,6 +38,6 @@ class ThrowPythonNLPTest extends TestCase
          * 322 => "DONE
          * 的なの出てくるので、最後まで実行された時のDONEを見る。
          *  */
-        $this->assertContains("DONE", $response);
+        static::assertContains('DONE', $response);
     }
 }

@@ -15,6 +15,7 @@ final class DeleteDiaryAction extends Controller
     public function __invoke(Request $request): Redirector|RedirectResponse
     {
         Diary::where('id', $request->id)->delete();
+
         return redirect(route('ShowHome'));
     }
 }

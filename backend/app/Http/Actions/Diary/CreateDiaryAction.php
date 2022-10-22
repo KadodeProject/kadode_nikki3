@@ -15,18 +15,16 @@ use Illuminate\Support\Str;
 
 final class CreateDiaryAction extends Controller
 {
-
     public function __invoke(CreateDiaryRequest $request): Redirector|RedirectResponse
     {
-        $request->date = $request->date ?? Carbon::today()->format("y-m-d");
-
+        $request->date ??= Carbon::today()->format('y-m-d');
 
         $form = [
-            "user_id" => Auth::id(),
-            "title" => $request->title,
-            "content" => $request->content,
-            "date" => $request->date,
-            "uuid" => Str::uuid(),
+            'user_id' => Auth::id(),
+            'title' => $request->title,
+            'content' => $request->content,
+            'date' => $request->date,
+            'uuid' => Str::uuid(),
         ];
 
         Diary::create($form);

@@ -9,15 +9,15 @@ use Illuminate\Database\Eloquent\Model;
 
 class PackageNER extends Model
 {
-    //グローバールスコープ不要！！
+    // グローバールスコープ不要！！
     use HasFactory;
-    protected $fillable = [
-        "package_id", "label_id", "name", "created_at", "updated_at"
-    ];
 
-    //バリデーション
+    // バリデーション
     public static $rules = [
-        "name" => "required|max:50",
-        "label_id" => "min:0|integer",
+        'name' => 'required|max:50',
+        'label_id' => 'min:0|integer',
+    ];
+    protected $fillable = [
+        'package_id', 'label_id', 'name', 'created_at', 'updated_at',
     ];
 }

@@ -10,7 +10,7 @@ use Illuminate\Contracts\View\View;
 
 final class ShowPrivacyPolicyAction extends Controller
 {
-    public function __invoke():View|Factory
+    public function __invoke(): View|Factory
     {
         return view('diaryNoLogIn/privacyPolicy');
     }

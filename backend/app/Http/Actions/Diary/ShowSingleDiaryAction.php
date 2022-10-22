@@ -23,12 +23,12 @@ final class ShowSingleDiaryAction extends Controller
     public function __invoke($uuid): View|RedirectResponse
     {
         $diary = $this->getDiaryByUuid->invoke($uuid);
-        if ($diary === null) {
-            //日記無かったらリダイレクトさせる
+        if (null === $diary) {
+            // 日記無かったらリダイレクトさせる
             return redirect(route('ShowHome'));
         }
         $dateAndUuidBA = $this->getDiariesDateNextToDiaryById->invoke($diary['date']);
 
-        return view('diary/edit', ['diary' => $diary, 'dateAndUuidBA' => $dateAndUuidBA,]);
+        return view('diary/edit', ['diary' => $diary, 'dateAndUuidBA' => $dateAndUuidBA]);
     }
 }

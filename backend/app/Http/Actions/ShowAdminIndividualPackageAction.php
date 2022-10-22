@@ -19,21 +19,23 @@ final class ShowAdminIndividualPackageAction extends Controller
         private GetAllNERLabelInOptionTabFormat $getAllNERLabelInOptionTabFormat
     ) {
     }
+
     public function __invoke(int $packageId): View|Factory
     {
-        //パッケージ表示(最近更新のあったものから取り出す)
+        // パッケージ表示(最近更新のあったものから取り出す)
         $packageObj = NlpPackageName::withoutGlobalScopes()->where('id', $packageId)->first();
-        //パッケージジャンル表示
+        // パッケージジャンル表示
         $NlpPackageGenre = NlpPackageGenre::get();
-        //固有表現ルールの中身取得
+        // 固有表現ルールの中身取得
 
-        if ($packageObj->genre_id === 1) {
-            //固有表現パッケージだったら
+        if (1 === $packageObj->genre_id) {
+            // 固有表現パッケージだったら
             $packageObj->packageNER = PackageNER::where('package_id', $packageObj->id)->orderBy('updated_at', 'desc')->get();
         }
 
-        //固有表現ラベル取得
+        // 固有表現ラベル取得
         $NERLabelsInOptionTabFormat = $this->getAllNERLabelInOptionTabFormat->invoke(NERLabel::all()->toArray());
-        return view('admin/packages/individual', ['packageObj' => $packageObj, 'NlpPackageGenre' => $NlpPackageGenre, 'NERLabelsInOptionTabFormat' => $NERLabelsInOptionTabFormat,]);
+
+        return view('admin/packages/individual', ['packageObj' => $packageObj, 'NlpPackageGenre' => $NlpPackageGenre, 'NERLabelsInOptionTabFormat' => $NERLabelsInOptionTabFormat]);
     }
 }

@@ -8,7 +8,7 @@ use App\Http\Controllers\Controller;
 
 final class ShowTeapotAction extends Controller
 {
-    public function __invoke():void
+    public function __invoke(): void
     {
         abort(418);
     }
