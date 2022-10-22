@@ -25,8 +25,6 @@ class GCSCommand extends Command
 
     /**
      * Create a new command instance.
-     *
-     * @return void
      */
     public function __construct()
     {
@@ -35,29 +33,26 @@ class GCSCommand extends Command
 
     /**
      * Execute the console command.
-     *
-     * @return int
      */
     public function handle(): int
     {
         $client = new StorageClient();
         $bucket = $client->bucket(config('gcs.packet')); // 作成したバケット
 
-
-
         /**
-         * ディレクトリハンドルの取得
-         * @var resource|null
+         * ディレクトリハンドルの取得.
+         *
+         * @var null|resource
          */
         $dirH = opendir(storage_path('app/laravel-backup/'));
 
         while (false !== (
-            /** @var array|null  */
+            // @var array|null
             $fileList[] = readdir($dirH)
         ));
         closedir($dirH);
 
-        /**
+        /*
          * $fileListは
          * ^ array:5 [
          *     0 => '2022-07-26-22-22-06.zip'
@@ -70,28 +65,28 @@ class GCSCommand extends Command
          */
         array_splice($fileList, -3);
 
-        //最新ファイルの探索
+        // 最新ファイルの探索
         $timer = date_create_immutable_from_format('Y-m-d-H-i-s', '2021-10-20-07-16-00');
         $recentFile = '';
         foreach ($fileList as $newFile) {
-            $dateFromName = mb_substr($newFile, 0, -4); //時刻抽出(ファイル名から)
-            $timeDate = date_create_immutable_from_format('Y-m-d-H-i-s', $dateFromName); //ファイルの更新日時を取得
+            $dateFromName = mb_substr($newFile, 0, -4); // 時刻抽出(ファイル名から)
+            $timeDate = date_create_immutable_from_format('Y-m-d-H-i-s', $dateFromName); // ファイルの更新日時を取得
             if ($timeDate > $timer) {
-                $recentFile = $newFile; //最新のCSVファイル
-                $timer = $timeDate; //最新の更新日時
+                $recentFile = $newFile; // 最新のCSVファイル
+                $timer = $timeDate; // 最新の更新日時
             }
         }
-        if ($recentFile !== '') {
+        if ('' !== $recentFile) {
             $latestFile = $recentFile;
 
-
-            /** @var resource|string|null */
-            $uploadData = fopen(storage_path('app/laravel-backup/') . $latestFile, 'r');
+            /** @var null|resource|string */
+            $uploadData = fopen(storage_path('app/laravel-backup/').$latestFile, 'r');
             $bucket->upload($uploadData);
-            echo ('uploaded:' . $latestFile);
+            echo 'uploaded:'.$latestFile;
         } else {
-            echo ('ファイルがありませんでした');
+            echo 'ファイルがありませんでした';
         }
+
         return Command::SUCCESS;
     }
 }

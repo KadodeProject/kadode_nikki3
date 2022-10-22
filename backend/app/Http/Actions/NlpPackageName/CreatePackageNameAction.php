@@ -18,16 +18,17 @@ final class CreatePackageNameAction extends Controller
         // バリデーション
         $this->validate($request, NlpPackageName::$rules);
 
-        //中身作成
+        // 中身作成
         $form = [
-            "user_id" => Auth::id(),
-            "genre_id" => $request->NlpPackageGenre_id,
-            "name" => $request->name,
-            "description" => $request->description,
-            "is_publish" => $request->is_publish,
+            'user_id' => Auth::id(),
+            'genre_id' => $request->NlpPackageGenre_id,
+            'name' => $request->name,
+            'description' => $request->description,
+            'is_publish' => $request->is_publish,
         ];
 
         NlpPackageName::create($form);
+
         return redirect(route('ShowAdminPackage'));
     }
 }

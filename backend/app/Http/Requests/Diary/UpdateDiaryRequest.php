@@ -12,13 +12,11 @@ class UpdateDiaryRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
-     *
-     * @return bool
      */
     public function authorize(): bool
     {
-        //アプリケーションの別の部分でリクエストの認可ロジックを処理しているため、ここは強制true
-        //https://readouble.com/laravel/9.x/ja/validation.html
+        // アプリケーションの別の部分でリクエストの認可ロジックを処理しているため、ここは強制true
+        // https://readouble.com/laravel/9.x/ja/validation.html
         return true;
     }
 
@@ -38,10 +36,10 @@ class UpdateDiaryRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'title' => ['max:50'], //laravelのstringはvarchar(255)なので、255文字までだが、マルチバイトなど色々踏まえて50に押
-            'content' => ['required', 'min:1', 'max:16000'], //text型の限界が16384文字なので(マルチバイトで)
+            'title' => ['max:50'], // laravelのstringはvarchar(255)なので、255文字までだが、マルチバイトなど色々踏まえて50に押
+            'content' => ['required', 'min:1', 'max:16000'], // text型の限界が16384文字なので(マルチバイトで)
             'id' => ['required', 'int'],
-            /**
+            /*
              * 結構豪快な方法でid引っ張ってきてて良くない(バリデーションを通さない値が取れてしまうため)
              *
              * 正しい意味でのintキャストをしています(そもそも$this->request->all()で来る値が全部string型なのがよくない……)
@@ -49,7 +47,7 @@ class UpdateDiaryRequest extends FormRequest
              * たとえば'2aaa'も2になり、これは意図しない値ですが、この先のRuleで処理しているメソッド内部で呼ぶeloquentでユーザー絞った後にid検索のため、不正な値はヒットせず問題なし
              * eloquent側もSQLインジェクション対策は施されているため、結果としてこの処理は安全です。
              */
-            'date' => ['required', new RejectExistDayDiaryForUpdateOnDateRule(Auth::id(), (int)$this->request->all()['id'])],
+            'date' => ['required', new RejectExistDayDiaryForUpdateOnDateRule(Auth::id(), (int) $this->request->all()['id'])],
         ];
     }
 }

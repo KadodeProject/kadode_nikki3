@@ -10,22 +10,18 @@ class CreateUserRanksTable extends Migration
 {
     /**
      * Run the migrations.
-     *
-     * @return void
      */
     public function up(): void
     {
         Schema::create('user_ranks', function (Blueprint $table) {
             $table->id();
-            $table->string("name")->comment("ユーザーランク名");
-            $table->string("description")->nullable()->comment("説明");
+            $table->string('name')->comment('ユーザーランク名');
+            $table->string('description')->nullable()->comment('説明');
         });
     }
 
     /**
      * Reverse the migrations.
-     *
-     * @return void
      */
     public function down(): void
     {

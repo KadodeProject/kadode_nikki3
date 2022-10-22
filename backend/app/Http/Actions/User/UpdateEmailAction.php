@@ -19,9 +19,10 @@ final class UpdateEmailAction extends Controller
         $this->validate($request, User::$updateEmailRules);
 
         $user_id = Auth::user()->id;
-        User::where("id", $user_id)->update([
-            "email" => $request->email,
+        User::where('id', $user_id)->update([
+            'email' => $request->email,
         ]);
+
         return redirect(route('ShowSecurity'));
     }
 }

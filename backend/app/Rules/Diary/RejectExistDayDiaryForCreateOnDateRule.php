@@ -14,8 +14,7 @@ class RejectExistDayDiaryForCreateOnDateRule implements Rule
 
     /**
      * 本来1対1のルールに複数情報を渡したいのでコンストラクタを使って対処する
-     * ここでAuth:id()するのでなく、newするときにauth:idすることで依存性を注入できるようにする
-     *
+     * ここでAuth:id()するのでなく、newするときにauth:idすることで依存性を注入できるようにする.
      */
     public function __construct(int $user_id)
     {
@@ -25,10 +24,9 @@ class RejectExistDayDiaryForCreateOnDateRule implements Rule
     /**
      * 日記を新しく保存しようとしているユーザーが既に同じ日の日記を持っていたら断る
      * 新規で保存する時用のルール、更新で使うと当たり前だが既に同日の日記になるので怒られる
-     * 更新時はRejectExistDayDiaryRuleを使う
+     * 更新時はRejectExistDayDiaryRuleを使う.
      *
      * @param string $attributes
-     * @param mixed $value
      */
     public function passes(mixed $attribute, mixed $value): bool
     {
@@ -37,8 +35,6 @@ class RejectExistDayDiaryForCreateOnDateRule implements Rule
 
     /**
      * Get the validation error message.
-     *
-     * @return string
      */
     public function message(): string
     {

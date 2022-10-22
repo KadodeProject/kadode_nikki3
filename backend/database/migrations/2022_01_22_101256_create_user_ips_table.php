@@ -10,31 +10,28 @@ class CreateUserIpsTable extends Migration
 {
     /**
      * Run the migrations.
-     *
-     * @return void
      */
     public function up(): void
     {
         Schema::create('user_ips', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger("user_id")->comment("ユーザーID");
-            $table->string("ip")->comment("ipアドレス");
-            $table->string("ua")->comment("ユーザーエージェント");
-            $table->string("geo")->comment("タイトル");
+            $table->unsignedBigInteger('user_id')->comment('ユーザーID');
+            $table->string('ip')->comment('ipアドレス');
+            $table->string('ua')->comment('ユーザーエージェント');
+            $table->string('geo')->comment('タイトル');
             $table->timestamps();
 
-            //他テーブルとの関連付け
+            // 他テーブルとの関連付け
             $table->foreign('user_id')
                 ->references('id')
                 ->on('users')
-                ->onDelete('cascade'); //cascadeでユーザー消えたらipも消せる
+                ->onDelete('cascade') // cascadeでユーザー消えたらipも消せる
+            ;
         });
     }
 
     /**
      * Reverse the migrations.
-     *
-     * @return void
      */
     public function down(): void
     {

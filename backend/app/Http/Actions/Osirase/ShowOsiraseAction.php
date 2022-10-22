@@ -15,6 +15,7 @@ final class ShowOsiraseAction extends Controller
     public function __invoke(Request $request): View|Factory
     {
         $osirases = Osirase::with('OsiraseGenre:id,name')->orderBy('date', 'desc')->get(['title', 'date', 'genre_id', 'description']);
-        return view('diaryNoLogIn/osirase', ['osirases' => $osirases,]);
+
+        return view('diaryNoLogIn/osirase', ['osirases' => $osirases]);
     }
 }

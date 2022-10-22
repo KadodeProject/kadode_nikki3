@@ -10,23 +10,19 @@ class CreateDiariesTable extends Migration
 {
     /**
      * Run the migrations.
-     *
-     * @return void
      */
     public function up(): void
     {
         Schema::create('diaries', function (Blueprint $table) {
             $table->id();
-            $table->uuid("uuid")->unique()->comment("uuid");
-            $table->unsignedBigInteger("user_id")->comment("ユーザーID");
-            $table->string("title")->nullable()->comment("タイトル");
-            $table->text("content")->comment("本文");
-            $table->date("date")->comment("日記の日付");
+            $table->uuid('uuid')->unique()->comment('uuid');
+            $table->unsignedBigInteger('user_id')->comment('ユーザーID');
+            $table->string('title')->nullable()->comment('タイトル');
+            $table->text('content')->comment('本文');
+            $table->date('date')->comment('日記の日付');
             // $table->integer("feel")->comment("気持ち"); 2021-9-4削除
 
-            /**
-             * ALTER TABLE tbl_name DROP col_nameで削除
-             */
+            // ALTER TABLE tbl_name DROP col_nameで削除
             // //nlp演算系
             // $table->json("sentence")->nullable()->comment("一文ごとの位置(係り受けで使う)");
             // $table->json("chunk")->nullable()->comment("係り受け構造");
@@ -47,27 +43,24 @@ class CreateDiariesTable extends Migration
 
             $table->timestamps();
 
-            //インデックスを作る
-            /**
-             * @todo このインデックスさすがにおかしすぎないか...idは使ってないし、uuidは必要だし...
-             */
+            // インデックスを作る
+            // @todo このインデックスさすがにおかしすぎないか...idは使ってないし、uuidは必要だし...
             $table->index('id');
             $table->index('user_id');
             // $table->index('content');
             $table->index('date');
 
-            //他テーブルとの関連付け
+            // 他テーブルとの関連付け
             $table->foreign('user_id')
                 ->references('id')
                 ->on('users')
-                ->onDelete('cascade'); //cascadeでユーザー消えたら日記も消せる
+                ->onDelete('cascade') // cascadeでユーザー消えたら日記も消せる
+            ;
         });
     }
 
     /**
      * Reverse the migrations.
-     *
-     * @return void
      */
     public function down(): void
     {

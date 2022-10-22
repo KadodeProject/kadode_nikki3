@@ -17,13 +17,14 @@ final class CreateUserRoleAction extends Controller
         // バリデーション
         $this->validate($request, UserRole::$rules);
 
-        //中身作成
+        // 中身作成
         $form = [
-            "name" => $request->name,
-            "description" => $request->description,
+            'name' => $request->name,
+            'description' => $request->description,
         ];
 
         UserRole::create($form);
+
         return redirect(route('ShowAdminRoleRank'));
     }
 }

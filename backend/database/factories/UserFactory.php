@@ -22,12 +22,11 @@ class UserFactory extends Factory
 
     /**
      * Define the model's default state.
-     *
-     * @return array
      */
     public function definition(): array
     {
         $email = $this->faker->unique()->safeEmail();
+
         return [
             'name' => $this->faker->firstName(),
             'email' => $email,
@@ -42,10 +41,8 @@ class UserFactory extends Factory
 
     /**
      * Indicate that the model's email address should be unverified.
-     *
-     * @return \Illuminate\Database\Eloquent\Factories\Factory
      */
-    public function unverified(): \Illuminate\Database\Eloquent\Factories\Factory
+    public function unverified(): Factory
     {
         return $this->state(function (array $attributes) {
             return [
@@ -68,7 +65,7 @@ class UserFactory extends Factory
         return $this->has(
             Team::factory()
                 ->state(function (array $attributes, User $user) {
-                    return ['name' => $user->name . '\'s Team', 'user_id' => $user->id, 'personal_team' => true];
+                    return ['name' => $user->name.'\'s Team', 'user_id' => $user->id, 'personal_team' => true];
                 }),
             'ownedTeams'
         );

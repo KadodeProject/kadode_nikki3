@@ -11,6 +11,6 @@ class Appearance extends Model
 {
     use HasFactory;
     protected $fillable = [
-        "name", "description", "created_at", "updated_at"
+        'name', 'description', 'created_at', 'updated_at',
     ];
 }

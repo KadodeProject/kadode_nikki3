@@ -17,13 +17,14 @@ final class CreatePackageGenreAction extends Controller
         // バリデーション
         $this->validate($request, NlpPackageGenre::$rules);
 
-        //中身作成
+        // 中身作成
         $form = [
-            "description" => $request->description,
-            "name" => $request->name,
+            'description' => $request->description,
+            'name' => $request->name,
         ];
 
         NlpPackageGenre::create($form);
-        return redirect(route('ShowAdminPackage') . '#packageGenreTable');
+
+        return redirect(route('ShowAdminPackage').'#packageGenreTable');
     }
 }

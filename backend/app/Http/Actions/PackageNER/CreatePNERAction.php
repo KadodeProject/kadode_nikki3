@@ -17,14 +17,15 @@ final class CreatePNERAction extends Controller
         // バリデーション
         $this->validate($request, PackageNER::$rules);
 
-        //中身作成
+        // 中身作成
         $form = [
-            "package_id" => $request->packageId,
-            "label_id" => $request->label_id,
-            "name" => $request->name,
+            'package_id' => $request->packageId,
+            'label_id' => $request->label_id,
+            'name' => $request->name,
         ];
 
         PackageNER::create($form);
+
         return redirect(route('ShowAdminIndividualPackage', ['packageId' => $request->packageId]));
     }
 }

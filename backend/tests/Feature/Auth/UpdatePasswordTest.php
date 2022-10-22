@@ -11,11 +11,16 @@ use Laravel\Jetstream\Http\Livewire\UpdatePasswordForm;
 use Livewire\Livewire;
 use Tests\TestCase;
 
+/**
+ * @internal
+ *
+ * @coversNothing
+ */
 class UpdatePasswordTest extends TestCase
 {
     use RefreshDatabase;
 
-    public function test_password_can_be_updated()
+    public function testPasswordCanBeUpdated()
     {
         $this->actingAs($user = User::factory()->create());
 
@@ -25,12 +30,13 @@ class UpdatePasswordTest extends TestCase
                 'password' => 'new-password',
                 'password_confirmation' => 'new-password',
             ])
-            ->call('updatePassword');
+            ->call('updatePassword')
+        ;
 
         static::assertTrue(Hash::check('new-password', $user->fresh()->password));
     }
 
-    public function test_current_password_must_be_correct()
+    public function testCurrentPasswordMustBeCorrect()
     {
         $this->actingAs($user = User::factory()->create());
 
@@ -41,12 +47,13 @@ class UpdatePasswordTest extends TestCase
                 'password_confirmation' => 'new-password',
             ])
             ->call('updatePassword')
-            ->assertHasErrors(['current_password']);
+            ->assertHasErrors(['current_password'])
+        ;
 
         static::assertTrue(Hash::check($user->email, $user->fresh()->password));
     }
 
-    public function test_new_passwords_must_match()
+    public function testNewPasswordsMustMatch()
     {
         $this->actingAs($user = User::factory()->create());
 
@@ -57,7 +64,8 @@ class UpdatePasswordTest extends TestCase
                 'password_confirmation' => 'wrong-password',
             ])
             ->call('updatePassword')
-            ->assertHasErrors(['password']);
+            ->assertHasErrors(['password'])
+        ;
 
         static::assertTrue(Hash::check($user->email, $user->fresh()->password));
     }

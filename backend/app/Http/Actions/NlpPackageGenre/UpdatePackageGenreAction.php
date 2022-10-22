@@ -19,11 +19,12 @@ final class UpdatePackageGenreAction extends Controller
         $this->validate($request, NlpPackageGenre::$rules);
 
         $updateContent = [
-            "description" => $request->description,
-            "name" => $request->name,
+            'description' => $request->description,
+            'name' => $request->name,
         ];
 
         NlpPackageGenre::where('id', $request->NlpPackageGenre_id)->update($updateContent);
-        return redirect(route('ShowAdminPackage') . '#packageGenreTable');
+
+        return redirect(route('ShowAdminPackage').'#packageGenreTable');
     }
 }

@@ -36,8 +36,7 @@ final class ShowHomeAction extends Controller
         $unreadNotifications = $this->getUnreadNotifications->invoke($user);
 
         /**
-         * 最新10件を取って、今日と昨日、直近の日記へ振り分ける
-         *
+         * 最新10件を取って、今日と昨日、直近の日記へ振り分ける.
          */
         $todayDiary = null;
         $yesterdayDiary = null;
@@ -52,22 +51,25 @@ final class ShowHomeAction extends Controller
             }
         }
 
-
         /** 日付が同じ別の年の日記を取得 */
         $sameDayDiaries = $this->getSameDayDiariesByDate->invoke($carbonImmutableToday);
+
         /**
-         * 先週、先月、2ヶ月前、半年前の日記を取得
+         * 先週、先月、2ヶ月前、半年前の日記を取得.
+         *
          * @todo 変数名要検討
          * @todo 先週、みたいな表記はフロントエンドでやる(Day.jsなど使って)
          */
         $recentDiaries = $this->getDiariesByArray->invoke([
-            $carbonImmutableToday->subWeek(1)->format("Y-m-d"),
-            $carbonImmutableToday->subMonth(1)->format("Y-m-d"),
-            $carbonImmutableToday->subMonth(2)->format("Y-m-d"),
-            $carbonImmutableToday->subMonth(6)->format("Y-m-d"),
+            $carbonImmutableToday->subWeek(1)->format('Y-m-d'),
+            $carbonImmutableToday->subMonth(1)->format('Y-m-d'),
+            $carbonImmutableToday->subMonth(2)->format('Y-m-d'),
+            $carbonImmutableToday->subMonth(6)->format('Y-m-d'),
         ]);
+
         /** 過去の日記表示配列 +だと一部消えるのでarray_merge */
         $oldDiaries = array_merge($recentDiaries, $sameDayDiaries);
-        return view('diary/home', ['unreadNotifications' => $unreadNotifications, 'yesterdayDiary' => $yesterdayDiary, 'todayDiary' => $todayDiary, 'latestDiaries' => $latestDiaries,  'oldDiaries' => $oldDiaries]);
+
+        return view('diary/home', ['unreadNotifications' => $unreadNotifications, 'yesterdayDiary' => $yesterdayDiary, 'todayDiary' => $todayDiary, 'latestDiaries' => $latestDiaries, 'oldDiaries' => $oldDiaries]);
     }
 }

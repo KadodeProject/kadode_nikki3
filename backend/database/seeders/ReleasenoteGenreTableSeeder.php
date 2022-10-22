@@ -11,22 +11,20 @@ class ReleasenoteGenreTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.
-     *
-     * @return void
      */
     public function run(): void
     {
         $param = [
             [
-                'name' => "Fix",
+                'name' => 'Fix',
             ],
             [
-                'name' => "Feature",
+                'name' => 'Feature',
             ],
             [
-                'name' => "Other",
+                'name' => 'Other',
             ],
         ];
-        DB::table("releasenote_genres")->insert($param);
+        DB::table('releasenote_genres')->insert($param);
     }
 }

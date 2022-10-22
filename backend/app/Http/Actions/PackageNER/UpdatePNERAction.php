@@ -19,11 +19,12 @@ final class UpdatePNERAction extends Controller
         $this->validate($request, PackageNER::$rules);
 
         $updateContent = [
-            "label_id" => $request->label_id,
-            "name" => $request->name,
+            'label_id' => $request->label_id,
+            'name' => $request->name,
         ];
 
         PackageNER::where('id', $request->PackageNER_id)->update($updateContent);
+
         return redirect(route('ShowAdminIndividualPackage', ['packageId' => $request->packageId]));
     }
 }

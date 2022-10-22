@@ -10,20 +10,16 @@ class AddToImportantWordsStatisticsTable extends Migration
 {
     /**
      * Run the migrations.
-     *
-     * @return void
      */
     public function up(): void
     {
         Schema::table('statistics', function (Blueprint $table) {
-            $table->json("important_words")->nullable()->comment("重要そうな言葉");
+            $table->json('important_words')->nullable()->comment('重要そうな言葉');
         });
     }
 
     /**
      * Reverse the migrations.
-     *
-     * @return void
      */
     public function down(): void
     {

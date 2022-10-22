@@ -15,6 +15,7 @@ class DeleteCNERAction extends Controller
     public function __invoke(Request $request): Redirector|RedirectResponse
     {
         CustomNER::where('id', $request->customNER_id)->delete();
-        return redirect(route('ShowStatisticSetting') . '#customNERTable');
+
+        return redirect(route('ShowStatisticSetting').'#customNERTable');
     }
 }

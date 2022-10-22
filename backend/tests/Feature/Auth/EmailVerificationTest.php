@@ -13,13 +13,18 @@ use Illuminate\Support\Facades\URL;
 use Laravel\Fortify\Features;
 use Tests\TestCase;
 
+/**
+ * @internal
+ *
+ * @coversNothing
+ */
 class EmailVerificationTest extends TestCase
 {
     use RefreshDatabase;
 
-    public function test_email_verification_screen_can_be_rendered()
+    public function testEmailVerificationScreenCanBeRendered()
     {
-        if (! Features::enabled(Features::emailVerification())) {
+        if (!Features::enabled(Features::emailVerification())) {
             return static::markTestSkipped('Email verification not enabled.');
         }
 
@@ -32,9 +37,9 @@ class EmailVerificationTest extends TestCase
         $response->assertStatus(200);
     }
 
-    public function test_email_can_be_verified()
+    public function testEmailCanBeVerified()
     {
-        if (! Features::enabled(Features::emailVerification())) {
+        if (!Features::enabled(Features::emailVerification())) {
             return static::markTestSkipped('Email verification not enabled.');
         }
 
@@ -55,12 +60,12 @@ class EmailVerificationTest extends TestCase
         Event::assertDispatched(Verified::class);
 
         static::assertTrue($user->fresh()->hasVerifiedEmail());
-        $response->assertRedirect(RouteServiceProvider::HOME . '?verified=1');
+        $response->assertRedirect(RouteServiceProvider::HOME.'?verified=1');
     }
 
-    public function test_email_can_not_verified_with_invalid_hash()
+    public function testEmailCanNotVerifiedWithInvalidHash()
     {
-        if (! Features::enabled(Features::emailVerification())) {
+        if (!Features::enabled(Features::emailVerification())) {
             return static::markTestSkipped('Email verification not enabled.');
         }
 

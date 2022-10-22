@@ -12,8 +12,6 @@ class NlpPackageNameTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.
-     *
-     * @return void
      */
     public function run(): void
     {
@@ -21,13 +19,13 @@ class NlpPackageNameTableSeeder extends Seeder
             [
                 'genre_id' => 1,
                 'user_id' => 1,
-                'name' => "好きなお菓子",
-                'is_publish' => "公開",
-                'description' => "好きなお菓子です",
+                'name' => '好きなお菓子',
+                'is_publish' => '公開',
+                'description' => '好きなお菓子です',
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now(),
             ],
         ];
-        DB::table("nlp_package_names")->insert($param);
+        DB::table('nlp_package_names')->insert($param);
     }
 }

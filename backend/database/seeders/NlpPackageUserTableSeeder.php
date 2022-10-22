@@ -12,8 +12,6 @@ class NlpPackageUserTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.
-     *
-     * @return void
      */
     public function run(): void
     {
@@ -25,6 +23,6 @@ class NlpPackageUserTableSeeder extends Seeder
                 'updated_at' => Carbon::now(),
             ],
         ];
-        DB::table("nlp_package_users")->insert($param);
+        DB::table('nlp_package_users')->insert($param);
     }
 }

@@ -12,13 +12,11 @@ class CreateDiaryRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
-     *
-     * @return bool
      */
     public function authorize(): bool
     {
-        //アプリケーションの別の部分でリクエストの認可ロジックを処理しているため、ここは強制true
-        //https://readouble.com/laravel/9.x/ja/validation.html
+        // アプリケーションの別の部分でリクエストの認可ロジックを処理しているため、ここは強制true
+        // https://readouble.com/laravel/9.x/ja/validation.html
         return true;
     }
 
@@ -39,8 +37,8 @@ class CreateDiaryRequest extends FormRequest
     {
         return [
             'date' => ['required', new RejectExistDayDiaryForCreateOnDateRule(Auth::id())],
-            'title' => ['max:50'], //laravelのstringはvarchar(255)なので、255文字まで、しかし入らないから50字に抑える
-            'content' => ['required', 'min:1', 'max:16000'], //text型の限界が16384文字なので(マルチバイトで)
+            'title' => ['max:50'], // laravelのstringはvarchar(255)なので、255文字まで、しかし入らないから50字に抑える
+            'content' => ['required', 'min:1', 'max:16000'], // text型の限界が16384文字なので(マルチバイトで)
         ];
     }
 }

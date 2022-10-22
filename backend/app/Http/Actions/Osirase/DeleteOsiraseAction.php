@@ -15,6 +15,7 @@ final class DeleteOsiraseAction extends Controller
     public function __invoke(Request $request): Redirector|RedirectResponse
     {
         Osirase::where('id', $request->osirase_id)->delete();
-        return redirect(route('ShowAdminNotification') . '#osirase');
+
+        return redirect(route('ShowAdminNotification').'#osirase');
     }
 }

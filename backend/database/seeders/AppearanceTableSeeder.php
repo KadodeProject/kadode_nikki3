@@ -11,21 +11,19 @@ class AppearanceTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.
-     *
-     * @return void
      */
     public function run(): void
     {
         $param = [
             [
-                'name' => "標準",
-                'description' => "標準の見た目",
+                'name' => '標準',
+                'description' => '標準の見た目',
             ],
             [
-                'name' => "クラシック",
-                'description' => "かつての見た目",
+                'name' => 'クラシック',
+                'description' => 'かつての見た目',
             ],
         ];
-        DB::table("appearances")->insert($param);
+        DB::table('appearances')->insert($param);
     }
 }

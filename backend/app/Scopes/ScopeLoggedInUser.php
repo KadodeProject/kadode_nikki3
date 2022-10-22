@@ -10,12 +10,12 @@ use Illuminate\Database\Eloquent\Scope;
 use Illuminate\Support\Facades\Auth;
 
 /**
- * 明示しなくてもログイン中のユーザーのみの日記を絞り込むグローバルスコープ
+ * 明示しなくてもログイン中のユーザーのみの日記を絞り込むグローバルスコープ.
  */
 class ScopeLoggedInUser implements Scope
 {
     public function apply(Builder $builder, Model $model)
     {
-        $builder->where("user_id", Auth::id());
+        $builder->where('user_id', Auth::id());
     }
 }

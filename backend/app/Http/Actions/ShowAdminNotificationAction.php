@@ -16,22 +16,22 @@ final class ShowAdminNotificationAction extends Controller
 {
     public function __invoke(): View|Factory
     {
-        //お知らせ
+        // お知らせ
         $osirases = Osirase::orderBy('date', 'desc')->get();
         $osiraseGenres = OsiraseGenre::get(['id', 'name']);
         foreach ($osirases as $osirase) {
-            //ジャンルidから名前取得
+            // ジャンルidから名前取得
             $osirase->genre = $osiraseGenres[$osirase->genre_id - 1]->name;
         }
 
-        //リリースノート
+        // リリースノート
         $releasenotes = Releasenote::orderBy('date', 'desc')->get();
         $releasenoteGenres = ReleasenoteGenre::get(['id', 'name']);
         foreach ($releasenotes as $releasenote) {
-            //ジャンルidから名前取得
+            // ジャンルidから名前取得
             $releasenote->genre = $releasenoteGenres[$releasenote->genre_id - 1]->name;
         }
 
-        return view('admin/notificationAdmin', ['osirases' => $osirases, 'osiraseGenres' => $osiraseGenres, 'releasenoteGenres' => $releasenoteGenres, 'releasenotes' => $releasenotes,]);
+        return view('admin/notificationAdmin', ['osirases' => $osirases, 'osiraseGenres' => $osiraseGenres, 'releasenoteGenres' => $releasenoteGenres, 'releasenotes' => $releasenotes]);
     }
 }

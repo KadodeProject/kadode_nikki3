@@ -7,8 +7,7 @@ namespace App\UseCases\Diary;
 use App\Models\Diary;
 
 /**
- * 日記の本文をNLPで彩るようの配列に変換するユースケース
- *
+ * 日記の本文をNLPで彩るようの配列に変換するユースケース.
  */
 class ShapeContentWithNlp
 {
@@ -20,18 +19,21 @@ class ShapeContentWithNlp
         $wordBox = [];
         $token2Json = json_decode($diary->token);
         foreach ($token2Json as $token) {
-            /**
-             * @memo uPosTagが世界共通の大別で、xPosがローカルの分類(名詞-固有名詞など)
-             */
+            // @memo uPosTagが世界共通の大別で、xPosがローカルの分類(名詞-固有名詞など)
             switch ($token->uPOSTag) {
-                case 'NOUN': //名詞
-                    $color = "#ffffff";
+                case 'NOUN': // 名詞
+                    $color = '#ffffff';
+
                     break;
-                case 'VERB': //動詞
-                    $color = "#e3e5e8";
+
+                case 'VERB': // 動詞
+                    $color = '#e3e5e8';
+
                     break;
+
                 default:
-                    $color = "#f9fff9";
+                    $color = '#f9fff9';
+
                     break;
             }
             $wordBox[] = [
@@ -40,6 +42,7 @@ class ShapeContentWithNlp
                 'color' => $color,
             ];
         }
+
         return $wordBox;
     }
 }

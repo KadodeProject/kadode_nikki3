@@ -10,19 +10,21 @@ use Laravel\Jetstream\Http\Livewire\UpdateProfileInformationForm;
 use Livewire\Livewire;
 use Tests\TestCase;
 
+/**
+ * @internal
+ *
+ * @coversNothing
+ */
 class ProfileInformationTest extends TestCase
 {
     use RefreshDatabase;
 
     /**
-     * jetstreamデフォルトのlivewire使ってないのでこのテストは絶対に失敗する
-     *
-     * @return void
+     * jetstreamデフォルトのlivewire使ってないのでこのテストは絶対に失敗する.
      */
-    public function test_current_profile_information_is_available()
+    public function testCurrentProfileInformationIsAvailable()
     {
         return static::markTestSkipped('Livewireでは実装していないため省略');
-
         $this->actingAs($user = User::factory()->create());
 
         $component = Livewire::test(UpdateProfileInformationForm::class);
@@ -31,10 +33,9 @@ class ProfileInformationTest extends TestCase
         static::assertSame($user->email, $component->state['email']);
     }
 
-    public function test_profile_information_can_be_updated()
+    public function testProfileInformationCanBeUpdated()
     {
         return static::markTestSkipped('Livewireでは実装していないため省略');
-
         $this->actingAs($user = User::factory()->create());
 
         Livewire::test(UpdateProfileInformationForm::class)

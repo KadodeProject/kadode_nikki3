@@ -17,13 +17,14 @@ final class CreateUserRankAction extends Controller
         // バリデーション
         $this->validate($request, UserRank::$rules);
 
-        //中身作成
+        // 中身作成
         $form = [
-            "name" => $request->name,
-            "description" => $request->description,
+            'name' => $request->name,
+            'description' => $request->description,
         ];
 
         UserRank::create($form);
+
         return redirect(route('ShowAdminRoleRank'));
     }
 }

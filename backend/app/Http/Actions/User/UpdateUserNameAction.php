@@ -18,11 +18,11 @@ final class UpdateUserNameAction extends Controller
         // バリデーション
         $this->validate($request, User::$updateUserNameRules);
 
-
         $user_id = Auth::user()->id;
-        User::where("id", $user_id)->update([
-            "name" => $request->name,
+        User::where('id', $user_id)->update([
+            'name' => $request->name,
         ]);
+
         return redirect(route('ShowSecurity'));
     }
 }

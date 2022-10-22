@@ -9,10 +9,10 @@ use Illuminate\Database\Eloquent\Model;
 
 class NERLabel extends Model
 {
-    //グローバールスコープ不要！！
+    // グローバールスコープ不要！！
 
     use HasFactory;
     protected $fillable = [
-        "name", "label", "parent"
+        'name', 'label', 'parent',
     ];
 }

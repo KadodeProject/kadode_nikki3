@@ -11,18 +11,19 @@ use Illuminate\Database\Eloquent\Model;
 class NlpPackageName extends Model
 {
     use HasFactory;
+
+    // バリデーション
+    public static $rules = [
+        'name' => 'required',
+        'description' => 'required',
+    ];
+    protected $fillable = [
+        'name', 'user_id', 'is_publish', 'genre_id', 'description', 'created_at', 'updated_at',
+    ];
+
     protected static function boot()
     {
         parent::boot();
         static::addGlobalScope(new ScopeLoggedInUser());
     }
-    protected $fillable = [
-        "name", "user_id", "is_publish", "genre_id", "description", "created_at", "updated_at"
-    ];
-
-    //バリデーション
-    public static $rules = [
-        "name" => "required",
-        "description" => "required",
-    ];
 }

@@ -10,40 +10,37 @@ class AddFlagsAndRolesToUsersTable extends Migration
 {
     /**
      * Run the migrations.
-     *
-     * @return void
      */
     public function up(): void
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->unsignedBigInteger("user_rank_id")->nullable()->comment("ユーザーランク")->default(1);
-            $table->unsignedBigInteger("user_role_id")->nullable()->comment("ユーザーロール(一般、管理者etc)")->default(1);
-            $table->unsignedBigInteger("appearance_id")->nullable()->comment("ページの見た目")->default(1);
-            $table->date("user_rank_updated_at")->nullable()->comment("ユーザーランクアップデート日");
+            $table->unsignedBigInteger('user_rank_id')->nullable()->comment('ユーザーランク')->default(1);
+            $table->unsignedBigInteger('user_role_id')->nullable()->comment('ユーザーロール(一般、管理者etc)')->default(1);
+            $table->unsignedBigInteger('appearance_id')->nullable()->comment('ページの見た目')->default(1);
+            $table->date('user_rank_updated_at')->nullable()->comment('ユーザーランクアップデート日');
 
-
-
-            //他テーブルとの関連付け
+            // 他テーブルとの関連付け
             $table->foreign('user_rank_id')
                 ->references('id')
-                ->on('user_ranks');
+                ->on('user_ranks')
+            ;
 
-            //他テーブルとの関連付け
+            // 他テーブルとの関連付け
             $table->foreign('user_role_id')
                 ->references('id')
-                ->on('user_roles');
+                ->on('user_roles')
+            ;
 
-            //他テーブルとの関連付け
+            // 他テーブルとの関連付け
             $table->foreign('appearance_id')
                 ->references('id')
-                ->on('appearances');
+                ->on('appearances')
+            ;
         });
     }
 
     /**
      * Reverse the migrations.
-     *
-     * @return void
      */
     public function down(): void
     {

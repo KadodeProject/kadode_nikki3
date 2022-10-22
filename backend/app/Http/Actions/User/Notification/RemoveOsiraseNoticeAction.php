@@ -16,8 +16,9 @@ final class RemoveOsiraseNoticeAction extends Controller
 {
     public function __invoke(): Redirector|RedirectResponse
     {
-        //ユーザー通知のフラグをオンにする(ここはすべてのユーザーが対象)
-        UserReadNotification::where('user_id', Auth::id())->update(["is_showed_service_info" => 1]);
+        // ユーザー通知のフラグをオンにする(ここはすべてのユーザーが対象)
+        UserReadNotification::where('user_id', Auth::id())->update(['is_showed_service_info' => 1]);
+
         return redirect(route('ShowHome'));
     }
 }

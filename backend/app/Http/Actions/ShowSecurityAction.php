@@ -17,6 +17,7 @@ final class ShowSecurityAction extends Controller
     {
         $user = Auth::user();
         $user_ips = UserIp::get()->reverse();
-        return view('diary/security/home', ["user" => $user, "user_ips" => $user_ips]);
+
+        return view('diary/security/home', ['user' => $user, 'user_ips' => $user_ips]);
     }
 }

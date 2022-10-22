@@ -18,14 +18,15 @@ class CreateCNERAction extends Controller
         // バリデーション
         $this->validate($request, CustomNER::$rules);
 
-        //中身作成
+        // 中身作成
         $form = [
-            "user_id" => Auth::id(),
-            "label_id" => $request->label_id,
-            "name" => $request->name,
+            'user_id' => Auth::id(),
+            'label_id' => $request->label_id,
+            'name' => $request->name,
         ];
 
         CustomNER::create($form);
-        return redirect(route('ShowStatisticSetting') . '#customNERTable');
+
+        return redirect(route('ShowStatisticSetting').'#customNERTable');
     }
 }

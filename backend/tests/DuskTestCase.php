@@ -17,7 +17,6 @@ abstract class DuskTestCase extends BaseTestCase
      * Prepare for Dusk test execution.
      *
      * @beforeClass
-     * @return void
      */
     final public static function prepare(): void
     {
@@ -28,8 +27,6 @@ abstract class DuskTestCase extends BaseTestCase
 
     /**
      * Create the RemoteWebDriver instance.
-     *
-     * @return \Facebook\WebDriver\Remote\RemoteWebDriver
      */
     protected function driver(): RemoteWebDriver
     {
@@ -55,23 +52,19 @@ abstract class DuskTestCase extends BaseTestCase
 
     /**
      * Determine whether the Dusk command has disabled headless mode.
-     *
-     * @return bool
      */
     protected function hasHeadlessDisabled(): bool
     {
-        return isset($_SERVER['DUSK_HEADLESS_DISABLED']) ||
-            isset($_ENV['DUSK_HEADLESS_DISABLED']);
+        return isset($_SERVER['DUSK_HEADLESS_DISABLED'])
+            || isset($_ENV['DUSK_HEADLESS_DISABLED']);
     }
 
     /**
      * Determine if the browser window should start maximized.
-     *
-     * @return bool
      */
     protected function shouldStartMaximized(): bool
     {
-        return isset($_SERVER['DUSK_START_MAXIMIZED']) ||
-            isset($_ENV['DUSK_START_MAXIMIZED']);
+        return isset($_SERVER['DUSK_START_MAXIMIZED'])
+            || isset($_ENV['DUSK_START_MAXIMIZED']);
     }
 }

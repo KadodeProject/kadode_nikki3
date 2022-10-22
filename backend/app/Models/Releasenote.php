@@ -11,16 +11,16 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 class Releasenote extends Model
 {
     use HasFactory;
-    protected $fillable = [
-        "title", "genre_id", "description", "date", "created_at", "updated_at"
-    ];
-    protected $dates = ['date'];
 
     public static $rules = [
-        "date" => "required",
-        "title" => "required|max:50",
-        "description" => "required",
+        'date' => 'required',
+        'title' => 'required|max:50',
+        'description' => 'required',
     ];
+    protected $fillable = [
+        'title', 'genre_id', 'description', 'date', 'created_at', 'updated_at',
+    ];
+    protected $dates = ['date'];
 
     public function releasenoteGenre(): BelongsTo
     {

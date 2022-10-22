@@ -12,8 +12,6 @@ class CustomNERTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.
-     *
-     * @return void
      */
     public function run(): void
     {
@@ -21,18 +19,18 @@ class CustomNERTableSeeder extends Seeder
             [
                 'user_id' => 1,
                 'label_id' => 5,
-                'name' => "うすゆき",
+                'name' => 'うすゆき',
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now(),
             ],
             [
                 'user_id' => 1,
                 'label_id' => 4,
-                'name' => "かどで日記",
+                'name' => 'かどで日記',
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now(),
             ],
         ];
-        DB::table("custom_n_e_r_s")->insert($param);
+        DB::table('custom_n_e_r_s')->insert($param);
     }
 }

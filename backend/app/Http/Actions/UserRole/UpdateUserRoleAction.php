@@ -18,11 +18,12 @@ final class UpdateUserRoleAction extends Controller
         $this->validate($request, UserRole::$rules);
 
         $updateContent = [
-            "name" => $request->name,
-            "description" => $request->description,
+            'name' => $request->name,
+            'description' => $request->description,
         ];
 
         UserRole::where('id', $request->user_role_id)->update($updateContent);
+
         return redirect(route('ShowAdminRoleRank'));
     }
 }

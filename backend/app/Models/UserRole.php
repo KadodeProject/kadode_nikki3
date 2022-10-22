@@ -10,16 +10,16 @@ use Illuminate\Database\Eloquent\Model;
 class UserRole extends Model
 {
     use HasFactory;
-    protected $fillable = [
-        "name", "description"
-    ];
 
-    //バリデーション
-    public static $rules = [
-        "name" => "required",
-    ];
-
-    //時間カラムの自動挿入無効化
+    // 時間カラムの自動挿入無効化
     public const CREATED_AT = null;
     public const UPDATED_AT = null;
+
+    // バリデーション
+    public static $rules = [
+        'name' => 'required',
+    ];
+    protected $fillable = [
+        'name', 'description',
+    ];
 }

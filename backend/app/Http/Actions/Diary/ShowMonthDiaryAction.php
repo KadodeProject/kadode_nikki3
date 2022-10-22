@@ -23,6 +23,6 @@ final class ShowMonthDiaryAction extends Controller
         $diaries = $this->getDiariesByMonth->invoke($year, $month);
         $statisticPerMonth = $this->getMonthlyStatisticByMonth->invoke($year, $month);
 
-        return view('diary/archive/monthArchive', ['diaries' => $diaries, 'year' => $year,  'month' => $month, 'statisticPerMonth' => $statisticPerMonth]);
+        return view('diary/archive/monthArchive', ['diaries' => $diaries, 'year' => $year, 'month' => $month, 'statisticPerMonth' => $statisticPerMonth]);
     }
 }

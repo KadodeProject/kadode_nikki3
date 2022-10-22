@@ -10,13 +10,10 @@ class DeleteUser implements DeletesUsers
 {
     /**
      * Delete the given user.
-     *
-     * @param mixed $user
-     * @return void
      */
     public function delete(mixed $user)
     {
-        /** @todo テストで事故るのでコメントアウトしている、もしプロフィール画像導入したら有効にする */
+        // @todo テストで事故るのでコメントアウトしている、もしプロフィール画像導入したら有効にする
         // $user->deleteProfilePhoto();
         $user->tokens->each->delete();
         $user->delete();

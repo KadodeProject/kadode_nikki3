@@ -10,29 +10,25 @@ class CreateDiaryPeoplesTable extends Migration
 {
     /**
      * Run the migrations.
-     *
-     * @return void
      */
     public function up(): void
     {
         Schema::create('diary_peoples', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger("user_id")->comment("ユーザーID");
-            $table->string("name")->comment("名前");
+            $table->unsignedBigInteger('user_id')->comment('ユーザーID');
+            $table->string('name')->comment('名前');
 
-
-            //他テーブルとの関連付け
+            // 他テーブルとの関連付け
             $table->foreign('user_id')
                 ->references('id')
                 ->on('users')
-                ->onDelete('cascade'); //cascadeでユーザー消えたら統計データも消せる
+                ->onDelete('cascade') // cascadeでユーザー消えたら統計データも消せる
+            ;
         });
     }
 
     /**
      * Reverse the migrations.
-     *
-     * @return void
      */
     public function down(): void
     {

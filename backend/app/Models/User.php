@@ -21,24 +21,22 @@ class User extends Authenticatable implements MustVerifyEmail
     use Notifiable;
     use TwoFactorAuthenticatable;
 
-
     public static $updatePassWordRules = [
-        "password" => "required|min:8|max:100"
+        'password' => 'required|min:8|max:100',
     ];
     public static $updateEmailRules = [
-        "email" => "required|email|unique:users,email"
+        'email' => 'required|email|unique:users,email',
     ];
     public static $updateUserNameRules = [
-        "name" => "required"
+        'name' => 'required',
     ];
     // 初期値設定
     protected $attributes = [
-        "user_rank_id" => 1,
-        "user_role_id" => 1,
-        "appearance_id" => 1,
-        "user_rank_updated_at" => "2021-12-28",
+        'user_rank_id' => 1,
+        'user_role_id' => 1,
+        'appearance_id' => 1,
+        'user_rank_updated_at' => '2021-12-28',
     ];
-
 
     // public function diaries(){
     //     return $this->hasMany(Diary::class);
@@ -98,18 +96,19 @@ class User extends Authenticatable implements MustVerifyEmail
         'profile_photo_url',
     ];
 
-
-    //format(年月日)するために
+    // format(年月日)するために
     protected $dates = ['user_rank_updated_at'];
 
     public function diary()
     {
         return $this->hasMany(Diary::class);
     }
+
     public function userRank()
     {
         return $this->belongsTo(UserRank::class);
     }
+
     public function userRole()
     {
         return $this->belongsTo(UserRole::class);

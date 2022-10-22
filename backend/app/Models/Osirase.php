@@ -11,19 +11,19 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 class Osirase extends Model
 {
     use HasFactory;
-    protected $fillable = [
-        "title", "genre_id", "description", "date", "created_at", "updated_at"
-    ];
 
-    //format(年月日)するために
-    protected $dates = ['date'];
-
-    //バリデーション
+    // バリデーション
     public static $rules = [
-        "date" => "required",
-        "title" => "required|max:50",
-        "description" => "required",
+        'date' => 'required',
+        'title' => 'required|max:50',
+        'description' => 'required',
     ];
+    protected $fillable = [
+        'title', 'genre_id', 'description', 'date', 'created_at', 'updated_at',
+    ];
+
+    // format(年月日)するために
+    protected $dates = ['date'];
 
     public function osiraseGenre(): BelongsTo
     {

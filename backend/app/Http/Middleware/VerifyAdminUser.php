@@ -13,17 +13,15 @@ class VerifyAdminUser
 {
     /**
      * @param Request $request
-     * @param Closure $next
-     * @param null $guard
-     * @return mixed
+     * @param null    $guard
      */
     public function handle($request, Closure $next, $guard = null): mixed
     {
         /** @var User $user */
         $user = Auth::user();
 
-        if ($user->user_role_id !== 2) {
-            //管理者ユーザーじゃなかったら403エラー返す
+        if (2 !== $user->user_role_id) {
+            // 管理者ユーザーじゃなかったら403エラー返す
             abort(403);
         }
 

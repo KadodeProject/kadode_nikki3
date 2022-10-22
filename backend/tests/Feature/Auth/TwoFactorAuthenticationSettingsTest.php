@@ -10,18 +10,24 @@ use Laravel\Jetstream\Http\Livewire\TwoFactorAuthenticationForm;
 use Livewire\Livewire;
 use Tests\TestCase;
 
+/**
+ * @internal
+ *
+ * @coversNothing
+ */
 class TwoFactorAuthenticationSettingsTest extends TestCase
 {
     use RefreshDatabase;
 
-    public function test_two_factor_authentication_can_be_enabled()
+    public function testTwoFactorAuthenticationCanBeEnabled()
     {
         $this->actingAs($user = User::factory()->create());
 
         $this->withSession(['auth.password_confirmed_at' => time()]);
 
         Livewire::test(TwoFactorAuthenticationForm::class)
-            ->call('enableTwoFactorAuthentication');
+            ->call('enableTwoFactorAuthentication')
+        ;
 
         $user = $user->fresh();
 
@@ -29,7 +35,7 @@ class TwoFactorAuthenticationSettingsTest extends TestCase
         static::assertCount(8, $user->recoveryCodes());
     }
 
-    public function test_recovery_codes_can_be_regenerated()
+    public function testRecoveryCodesCanBeRegenerated()
     {
         $this->actingAs($user = User::factory()->create());
 
@@ -37,7 +43,8 @@ class TwoFactorAuthenticationSettingsTest extends TestCase
 
         $component = Livewire::test(TwoFactorAuthenticationForm::class)
             ->call('enableTwoFactorAuthentication')
-            ->call('regenerateRecoveryCodes');
+            ->call('regenerateRecoveryCodes')
+        ;
 
         $user = $user->fresh();
 
@@ -47,14 +54,15 @@ class TwoFactorAuthenticationSettingsTest extends TestCase
         static::assertCount(8, array_diff($user->recoveryCodes(), $user->fresh()->recoveryCodes()));
     }
 
-    public function test_two_factor_authentication_can_be_disabled()
+    public function testTwoFactorAuthenticationCanBeDisabled()
     {
         $this->actingAs($user = User::factory()->create());
 
         $this->withSession(['auth.password_confirmed_at' => time()]);
 
         $component = Livewire::test(TwoFactorAuthenticationForm::class)
-            ->call('enableTwoFactorAuthentication');
+            ->call('enableTwoFactorAuthentication')
+        ;
 
         static::assertNotNull($user->fresh()->two_factor_secret);
 

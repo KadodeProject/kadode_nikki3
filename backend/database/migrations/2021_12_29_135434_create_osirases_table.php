@@ -10,30 +10,27 @@ class CreateOsirasesTable extends Migration
 {
     /**
      * Run the migrations.
-     *
-     * @return void
      */
     public function up(): void
     {
         Schema::create('osirases', function (Blueprint $table) {
             $table->id();
-            $table->string("title")->comment("タイトル");
-            $table->unsignedBigInteger("genre_id")->comment("お知らせのジャンルID");
-            $table->string("description")->comment("説明");
-            $table->date("date")->comment("日付");
+            $table->string('title')->comment('タイトル');
+            $table->unsignedBigInteger('genre_id')->comment('お知らせのジャンルID');
+            $table->string('description')->comment('説明');
+            $table->date('date')->comment('日付');
             $table->timestamps();
 
-            //他テーブルとの関連付け
+            // 他テーブルとの関連付け
             $table->foreign('genre_id')
                 ->references('id')
-                ->on('osirase_genres');
+                ->on('osirase_genres')
+            ;
         });
     }
 
     /**
      * Reverse the migrations.
-     *
-     * @return void
      */
     public function down(): void
     {
