@@ -23,10 +23,10 @@ class ThrowPythonNLP
 
         if ($error_check) {
             //2>&1でエラーメッセージ出せる
-            $path = "export LANG=ja_JP.UTF-8; " . env('PYTHON_PRO_DIR') . " " . env('PYTHON_FOLDER_DIR') . "pythonUseFromPHP.py " . $user_id . " 2>&1";
+            $path = "export LANG=ja_JP.UTF-8; " . config('nlp.python_absolute_binary_path') . " " . config('nlp.python_absolute_folder_path') . "pythonUseFromPHP.py " . $user_id . " 2>&1";
         } else {
             //> /dev/null & すると非同期で実行できる
-            $path = "export LANG=ja_JP.UTF-8; " . env('PYTHON_PRO_DIR') . " " . env('PYTHON_FOLDER_DIR') . "pythonUseFromPHP.py" . " " . $user_id . " > /dev/null &";
+            $path = "export LANG=ja_JP.UTF-8; " . config('nlp.python_absolute_binary_path') . " " . config('nlp.python_absolute_folder_path') . "pythonUseFromPHP.py" . " " . $user_id . " > /dev/null &";
         }
 
         $output = [];
@@ -34,8 +34,8 @@ class ThrowPythonNLP
 
         if ($debug) {
             Log::debug($path);
-            Log::debug("python_path:" . env('PYTHON_PRO_DIR'));
-            Log::debug("python_folder_dir:" . env('PYTHON_FOLDER_DIR'));
+            Log::debug("python_path:" . config('nlp.python_absolute_binary_path'));
+            Log::debug("python_folder_dir:" . config('nlp.python_absolute_folder_path'));
             Log::debug("python_output:");
             Log::debug($output);
             // \Log::debug("command_output:");
