@@ -6,8 +6,7 @@ $finder = PhpCsFixer\Finder::create()
     ->in([
         __DIR__ . '/app',
         __DIR__ . '/config',
-        __DIR__ . '/database/factories',
-        __DIR__ . '/database/seeders',
+        __DIR__ . '/database',
         __DIR__ . '/routes',
         __DIR__ . '/tests',
     ]);
@@ -18,6 +17,7 @@ return $config
     ->setRiskyAllowed(true)
     ->setRules([
         '@PhpCsFixer:risky' => true,
+        '@PSR2' => true,
         'blank_line_after_opening_tag' => true,
         'linebreak_after_opening_tag' => true,
         'declare_strict_types' => true,

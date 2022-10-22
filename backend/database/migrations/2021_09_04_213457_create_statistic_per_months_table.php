@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -28,11 +30,11 @@ class CreateStatisticPerMonthsTable extends Migration
             $table->json("classifications")->nullable()->comment("推定分類(top3)");
             $table->timestamps();
 
-             //他テーブルとの関連付け
-             $table->foreign('user_id')
-             ->references('id')
-             ->on('users')
-             ->onDelete('cascade');//cascadeでユーザー消えたら統計データも消せる
+            //他テーブルとの関連付け
+            $table->foreign('user_id')
+            ->references('id')
+            ->on('users')
+            ->onDelete('cascade');//cascadeでユーザー消えたら統計データも消せる
         });
     }
 

@@ -19,7 +19,6 @@ class UserTableSeeder extends Seeder
      */
     public function run()
     {
-
         $param = [
             [
                 'name' => "開発者1",

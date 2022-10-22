@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -27,9 +29,6 @@ class CreateStatisticOverallProgressesTable extends Migration
             ->on('users')
             ->onDelete('cascade');//cascadeでユーザー消えたら統計データも消せる
         });
-
-
-        
     }
 
     /**

@@ -6,6 +6,7 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
+
 class NERLabelSeeder extends Seeder
 {
     /**
@@ -881,7 +882,5 @@ class NERLabelSeeder extends Seeder
 
         ];
         DB::table("n_e_r_labels")->insert($param);
-
-
     }
 }

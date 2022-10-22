@@ -19,7 +19,6 @@ class GetUnreadNotifications
      */
     public function invoke(User $user): array
     {
-
         /**
          * ユーザーのお知らせ取得
          */

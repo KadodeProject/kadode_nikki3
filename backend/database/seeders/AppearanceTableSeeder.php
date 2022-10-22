@@ -16,7 +16,6 @@ class AppearanceTableSeeder extends Seeder
      */
     public function run()
     {
-
         $param=[
             [
             'name'=>"標準" ,
@@ -28,7 +27,5 @@ class AppearanceTableSeeder extends Seeder
             ],
         ];
         DB::table("appearances")->insert($param);
-
-
     }
 }

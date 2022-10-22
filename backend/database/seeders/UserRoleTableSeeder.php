@@ -16,7 +16,6 @@ class UserRoleTableSeeder extends Seeder
      */
     public function run()
     {
-
         $param=[
             [
             'name'=>"Normal" ,
@@ -32,7 +31,5 @@ class UserRoleTableSeeder extends Seeder
             ],
         ];
         DB::table("user_roles")->insert($param);
-
-
     }
 }

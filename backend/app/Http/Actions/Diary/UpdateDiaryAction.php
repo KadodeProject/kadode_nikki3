@@ -14,7 +14,6 @@ final class UpdateDiaryAction extends Controller
 {
     public function __invoke(UpdateDiaryRequest $request): Redirector|RedirectResponse
     {
-
         $updateContent = [
             "title" => $request->title,
             "content" => $request->content,

@@ -18,7 +18,6 @@ class RejectExistDayDiaryForUpdateOnDateRule implements Rule
      */
     public function __construct(int $user_id, int $diary_id)
     {
-
         $this->attributes = ['user_id' => $user_id, 'diary_id' => $diary_id];
     }
     /**

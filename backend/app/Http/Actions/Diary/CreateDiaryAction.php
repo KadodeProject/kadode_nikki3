@@ -15,7 +15,6 @@ use Illuminate\Support\Str;
 
 final class CreateDiaryAction extends Controller
 {
-
     public function __invoke(CreateDiaryRequest $request): Redirector|RedirectResponse
     {
         $request->date = $request->date ?? Carbon::today()->format("y-m-d");

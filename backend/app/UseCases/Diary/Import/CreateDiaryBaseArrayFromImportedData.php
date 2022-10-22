@@ -29,7 +29,6 @@ class CreateDiaryBaseArrayFromImportedData
         $newDiary = [];
 
         foreach ($importedData as $data) {
-
             $date = Carbon::parse($data['date']); //insert時にdateにはcarbonだと都合が良いので
             $dateYmd = $date->format('Y-m-d'); //issetで判定するときはY-m-dと比較することになり、繰り返し呼び出すコストを減らすため
             $title = $data['title'];

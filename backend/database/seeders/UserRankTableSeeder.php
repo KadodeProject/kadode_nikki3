@@ -16,7 +16,6 @@ class UserRankTableSeeder extends Seeder
      */
     public function run()
     {
-
         $param = [
             [
                 'name' => "国府",

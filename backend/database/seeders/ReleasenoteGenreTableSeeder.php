@@ -16,7 +16,6 @@ class ReleasenoteGenreTableSeeder extends Seeder
      */
     public function run()
     {
-
         $param = [
             [
                 'name' => "Fix",

@@ -16,7 +16,6 @@ class OsiraseGenreTableSeeder extends Seeder
      */
     public function run()
     {
-
         $param = [
             [
                 'name' => "お知らせ",

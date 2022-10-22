@@ -82,16 +82,15 @@ class GCSCommand extends Command
             }
         }
         if ($recentFile !== '') {
-
             $latestFile = $recentFile;
 
 
             /** @var resource|string|null */
             $uploadData = fopen(storage_path('app/laravel-backup/') . $latestFile, 'r');
             $bucket->upload($uploadData);
-            echo ('uploaded:' . $latestFile);
+            echo('uploaded:' . $latestFile);
         } else {
-            echo ('ファイルがありませんでした');
+            echo('ファイルがありませんでした');
         }
         return Command::SUCCESS;
     }

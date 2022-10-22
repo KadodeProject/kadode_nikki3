@@ -20,7 +20,6 @@ class calculateDiary
         $month_words = [];
         $month_diaries = [];
         foreach ($diaries as $diary) {
-
             $diaryCharacters = mb_strlen($diary->content);
             // 合計カウント
             $diaryCounter += 1;

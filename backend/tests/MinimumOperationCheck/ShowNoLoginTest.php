@@ -8,7 +8,6 @@ use Tests\TestCase;
 
 class ShowNoLoginTest extends TestCase
 {
-
     /** */
     public function testトップページの表示()
     {

@@ -43,7 +43,6 @@ class ShowStatisticAction extends Controller
         //統計作っていない場合はEnum型取れずnullになるので
         if ($statistic !== null) {
             if ($statistic->statisticStatus->value === 1) {
-
                 /**
                  * 名詞と形容詞の登場順
                  */
@@ -149,7 +148,7 @@ class ShowStatisticAction extends Controller
                     ->where('diaries.user_id', $userId)
                     ->leftJoin('diary_processeds', 'diaries.id', '=', 'diary_processeds.diary_id')
                     ->orderBy('diary_processeds.char_length', 'desc')
-                    ->select('diaries.date', 'diaries.title', 'diaries.uuid',  'diary_processeds.char_length')
+                    ->select('diaries.date', 'diaries.title', 'diaries.uuid', 'diary_processeds.char_length')
                     ->limit(10)
                     ->get();
                 /**

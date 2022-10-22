@@ -20,6 +20,6 @@ class UserRole extends Model
     ];
 
     //時間カラムの自動挿入無効化
-    const CREATED_AT = NULL;
-    const UPDATED_AT = NULL;
+    const CREATED_AT = null;
+    const UPDATED_AT = null;
 }

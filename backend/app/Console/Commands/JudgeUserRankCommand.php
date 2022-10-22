@@ -52,7 +52,7 @@ class JudgeUserRankCommand extends Command
          * @todo user作ったときに一緒にテーブル作れると一番良いのだが、ライブラリの中触らないといけない雰囲気なので断念
          */
         UserReadNotification::updateOrCreate(["user_id" => $user_id], ["is_showed_update_user_rank" => 0]);
-        echo ('id:' . $user_id . '/ランクアップ' . $currentUserRank . "→" . ($currentUserRank + 1) . "\n");
+        echo('id:' . $user_id . '/ランクアップ' . $currentUserRank . "→" . ($currentUserRank + 1) . "\n");
     }
 
     /**

@@ -20,7 +20,6 @@ class ThrowPythonNLP
      */
     public static function invoke(int $user_id, bool $error_check = false, bool $debug = false): array
     {
-
         if ($error_check) {
             //2>&1でエラーメッセージ出せる
             $path = "export LANG=ja_JP.UTF-8; " . config('nlp.python_absolute_binary_path') . " " . config('nlp.python_absolute_folder_path') . "pythonUseFromPHP.py " . $user_id . " 2>&1";

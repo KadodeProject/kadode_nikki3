@@ -12,7 +12,6 @@ use App\Models\Diary;
  */
 class GetAllDateByUserId
 {
-
     /**
      * 統計データとともに日記データを返す。
      * 日付の重複がないかをクエリを増やさず確認するために日付を取得

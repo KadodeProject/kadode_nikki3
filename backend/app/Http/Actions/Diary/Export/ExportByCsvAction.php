@@ -29,7 +29,6 @@ class ExportByCsvAction
             fputcsv($f, $head);
             // データの書き込み
             foreach ($diaries as $diary) {
-
                 mb_convert_variables('SJIS-win', 'UTF-8', $diary);
                 fputcsv($f, $diary);
             }
