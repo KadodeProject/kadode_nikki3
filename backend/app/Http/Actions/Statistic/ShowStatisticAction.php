@@ -94,7 +94,7 @@ class ShowStatisticAction extends Controller
                 {"word":"えええ","count":3},]
                  */
                 foreach ($statistic->important_words as $value) {
-                    $wordCloud_array[] = array("word" => $value[0], "count" => $value[1]);
+                    $wordCloud_array[] = ["word" => $value[0], "count" => $value[1]];
                 }
 
                 /**

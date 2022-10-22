@@ -20,9 +20,9 @@ class CustomNER extends Model
         "user_id", "label_id", "name", "created_at", "updated_at"
     ];
 
-    public static $rules = array(
+    public static $rules = [
         "label_id" => "min:0|integer",
         // "label"=>"required|exists:n_e_r_labels,label",
         "name" => "required|max:20",
-    );
+    ];
 }

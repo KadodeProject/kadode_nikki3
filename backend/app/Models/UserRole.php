@@ -15,9 +15,9 @@ class UserRole extends Model
     ];
 
     //バリデーション
-    public static $rules = array(
+    public static $rules = [
         "name" => "required",
-    );
+    ];
 
     //時間カラムの自動挿入無効化
     const CREATED_AT = NULL;
