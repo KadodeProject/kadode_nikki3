@@ -15,6 +15,6 @@ class ReleasenoteGenre extends Model
     ];
 
     //時間カラムの自動挿入無効化
-    const CREATED_AT = null;
-    const UPDATED_AT = null;
+    public const CREATED_AT = null;
+    public const UPDATED_AT = null;
 }

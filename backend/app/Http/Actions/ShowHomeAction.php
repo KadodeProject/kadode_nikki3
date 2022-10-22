@@ -28,7 +28,7 @@ final class ShowHomeAction extends Controller
     {
         /** 使うもの用意 */
         $user = Auth::user();
-        $carbonImmutable = new CarbonImmutable;
+        $carbonImmutable = new CarbonImmutable();
         $carbonImmutableToday = $carbonImmutable->today();
         $carbonImmutableYesterday = $carbonImmutable->yesterday();
 

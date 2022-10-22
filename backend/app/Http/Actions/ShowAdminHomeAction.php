@@ -50,8 +50,8 @@ final class ShowAdminHomeAction extends Controller
                 $user->is_showed_update_system_info = "☐";
                 $user->is_showed_service_info =  "☐";
             } else {
-                $user->is_showed_update_user_rank = $userReadNotification->is_showed_update_user_rank  ? "☑" : "☐";
-                $user->is_showed_update_system_info = $userReadNotification->is_showed_update_system_info  ? "☑" : "☐";
+                $user->is_showed_update_user_rank = $userReadNotification->is_showed_update_user_rank ? "☑" : "☐";
+                $user->is_showed_update_system_info = $userReadNotification->is_showed_update_system_info ? "☑" : "☐";
                 $user->is_showed_service_info = $userReadNotification->is_showed_service_info ? "☑" : "☐";
             }
         }

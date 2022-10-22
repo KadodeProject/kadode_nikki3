@@ -10,12 +10,12 @@ use Illuminate\Database\Eloquent\Model;
 
 class CustomNER extends Model
 {
+    use HasFactory;
     protected static function boot()
     {
         parent::boot();
-        static::addGlobalScope(new ScopeLoggedInUser);
+        static::addGlobalScope(new ScopeLoggedInUser());
     }
-    use HasFactory;
     protected $fillable = [
         "user_id", "label_id", "name", "created_at", "updated_at"
     ];

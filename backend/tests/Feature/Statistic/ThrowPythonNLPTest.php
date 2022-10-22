@@ -34,6 +34,6 @@ class ThrowPythonNLPTest extends TestCase
          * 322 => "DONE
          * 的なの出てくるので、最後まで実行された時のDONEを見る。
          *  */
-        $this->assertContains("DONE", $response);
+        static::assertContains("DONE", $response);
     }
 }

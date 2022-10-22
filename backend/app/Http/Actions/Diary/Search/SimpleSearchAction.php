@@ -12,6 +12,7 @@ use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request;
 use Illuminate\Support\Collection;
+
 use function count;
 
 class SimpleSearchAction extends Controller
@@ -39,7 +40,7 @@ class SimpleSearchAction extends Controller
         $queryLog = DB::getQueryLog();
         $queryTime = $queryLog[0]["time"];
 
-        $numberOfDiaries = count($diaries);
+        $numberOfDiaries = \count($diaries);
         return view('diary/search/searchResult', ['counter' => $numberOfDiaries, 'keyword' => $request->keyword, 'diaries' => $diaries, 'queryTime' => $queryTime]);
     }
 }

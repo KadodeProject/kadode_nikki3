@@ -19,7 +19,7 @@ class ApiTokenPermissionsTest extends TestCase
     public function test_api_token_permissions_can_be_updated()
     {
         if (!Features::hasApiFeatures()) {
-            return $this->markTestSkipped('API support is not enabled.');
+            return static::markTestSkipped('API support is not enabled.');
         }
 
         if (Features::hasTeamFeatures()) {
@@ -44,8 +44,8 @@ class ApiTokenPermissionsTest extends TestCase
             ]])
             ->call('updateApiToken');
 
-        $this->assertTrue($user->fresh()->tokens->first()->can('delete'));
-        $this->assertFalse($user->fresh()->tokens->first()->can('read'));
-        $this->assertFalse($user->fresh()->tokens->first()->can('missing-permission'));
+        static::assertTrue($user->fresh()->tokens->first()->can('delete'));
+        static::assertFalse($user->fresh()->tokens->first()->can('read'));
+        static::assertFalse($user->fresh()->tokens->first()->can('missing-permission'));
     }
 }

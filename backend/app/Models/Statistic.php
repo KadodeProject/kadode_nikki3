@@ -12,6 +12,7 @@ use Illuminate\Support\Carbon;
 
 class Statistic extends Model
 {
+    use HasFactory;
     /**
      * 日記を自動でログインユーザーのみに絞り込むグローバルスコープの呼び出し関数
      *
@@ -20,10 +21,8 @@ class Statistic extends Model
     protected static function boot()
     {
         parent::boot();
-        static::addGlobalScope(new ScopeLoggedInUser);
+        static::addGlobalScope(new ScopeLoggedInUser());
     }
-
-    use HasFactory;
 
 
     protected $fillable = [

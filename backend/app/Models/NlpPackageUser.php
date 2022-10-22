@@ -10,12 +10,12 @@ use Illuminate\Database\Eloquent\Model;
 
 class NlpPackageUser extends Model
 {
+    use HasFactory;
     protected static function boot()
     {
         parent::boot();
-        static::addGlobalScope(new ScopeLoggedInUser);
+        static::addGlobalScope(new ScopeLoggedInUser());
     }
-    use HasFactory;
     protected $fillable = [
         "name", "package_id", "user_id", "created_at", "updated_at"
     ];

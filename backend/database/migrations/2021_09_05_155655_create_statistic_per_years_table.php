@@ -29,7 +29,7 @@ class CreateStatisticPerYearsTable extends Migration
             $table->json("classifications")->nullable()->comment("推定分類(top10)");
 
             $table->timestamps();
-            
+
             //他テーブルとの関連付け
             $table->foreign('user_id')
             ->references('id')

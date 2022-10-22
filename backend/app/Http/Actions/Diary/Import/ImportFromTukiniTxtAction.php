@@ -14,6 +14,7 @@ use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Log;
+
 use function count;
 
 /**
@@ -97,7 +98,7 @@ class ImportFromTukiniTxtAction extends Controller
             $this->upsertDiaryFromImportData->invoke($distinctDiary, $userId);
 
 
-            $importResult = count($newDiary) . "つの日記が新しくインポートされ、" . count($distinctDiary) . "の日記がアップデートされました🎉";
+            $importResult = \count($newDiary) . "つの日記が新しくインポートされ、" . \count($distinctDiary) . "の日記がアップデートされました🎉";
         } else {
             $importResult = "ファイルが見つかりませんでした😢";
         }

@@ -12,6 +12,7 @@ use Illuminate\Support\Carbon;
 
 class StatisticPerMonth extends Model
 {
+    use HasFactory;
     /**
      * 日記を自動でログインユーザーのみに絞り込むグローバルスコープの呼び出し関数
      *
@@ -20,9 +21,8 @@ class StatisticPerMonth extends Model
     protected static function boot()
     {
         parent::boot();
-        static::addGlobalScope(new ScopeLoggedInUser);
+        static::addGlobalScope(new ScopeLoggedInUser());
     }
-    use HasFactory;
     protected $fillable = [
         "statistic_progress", "user_id", "year", "month", "emotions", "word_counts", "noun_rank", "adjective_rank", "important_words", "special_people", "classifications", "created_at", "updated_at"
     ];

@@ -16,6 +16,7 @@ use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+
 use function count;
 
 /**
@@ -87,7 +88,7 @@ class ImportFromKadodeCsvAction extends Controller
             //重複した日付の日記をDBへ
             $this->upsertDiaryFromImportData->invoke($distinctDiary, $userId);
 
-            $importResult = count($newDiary) . "つの日記が新しくインポートされ、" . count($distinctDiary) . "の日記がアップデートされました🎉";
+            $importResult = \count($newDiary) . "つの日記が新しくインポートされ、" . \count($distinctDiary) . "の日記がアップデートされました🎉";
         } else {
             $importResult = "ファイルが見つかりませんでした😢";
         }

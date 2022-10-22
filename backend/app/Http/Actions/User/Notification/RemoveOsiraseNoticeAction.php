@@ -9,6 +9,7 @@ use App\Models\UserReadNotification;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Routing\Redirector;
 use Illuminate\Support\Facades\Auth;
+
 use function redirect;
 
 final class RemoveOsiraseNoticeAction extends Controller
