@@ -92,7 +92,7 @@ namespace App\Models{
 
 namespace App\Models{
 /**
- * 日記の統計に使う自然言語処理データを格納する
+ * 日記の統計に使う自然言語処理データを格納する.
  *
  * @property int $id
  * @property int $diary_id 日記のid
@@ -407,7 +407,7 @@ namespace App\Models{
 
 namespace App\Models{
 /**
- * 日記の統計に使うデータを格納する
+ * 日記の統計に使うデータを格納する.
  *
  * @property int $id
  * @property int $diary_id 日記のid
