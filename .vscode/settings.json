@@ -25,5 +25,7 @@
     },
     "laravel_goto_view.extensions": [".blade.php"],
     "laravel_goto_controller.pathController": "/backend/app/Http/Actions",
-    "editor.formatOnSave": true
+    "files.insertFinalNewline": true,
+    "editor.formatOnSave": true,
+    "editor.trimAutoWhitespace": false
 }
