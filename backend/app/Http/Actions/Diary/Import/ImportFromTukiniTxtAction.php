@@ -32,9 +32,9 @@ class ImportFromTukiniTxtAction extends Controller
     {
         // $request->tukiniTxt;
         //バリデーション、txt形式、1M以内のファイル
-        $rules = array(
+        $rules = [
             "tukiniTxt" => "file|max:1000|mimes:txt",
-        );
+        ];
         $this->validate($request, $rules);
 
         if ($request->tukiniTxt) {

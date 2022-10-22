@@ -21,8 +21,8 @@ class NlpPackageName extends Model
     ];
 
     //バリデーション
-    public static $rules = array(
+    public static $rules = [
         "name" => "required",
         "description" => "required",
-    );
+    ];
 }

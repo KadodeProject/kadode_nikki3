@@ -16,11 +16,11 @@ class Releasenote extends Model
     ];
     protected $dates = ['date'];
 
-    public static $rules = array(
+    public static $rules = [
         "date" => "required",
         "title" => "required|max:50",
         "description" => "required",
-    );
+    ];
 
     public function releasenoteGenre(): BelongsTo
     {

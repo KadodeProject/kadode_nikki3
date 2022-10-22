@@ -35,9 +35,9 @@ class ImportFromKadodeCsvAction extends Controller
     {
         //バリデーション、CSV形式、1M以内のファイル
         //csvだけだと何故かエラー出るので、やむをえず、txtも。 .csv認識できてないっぽい
-        $rules = array(
+        $rules = [
             "kadodeCsv" => "file|max:2000|mimes:csv,txt",
-        );
+        ];
         $this->validate($request, $rules);
 
 

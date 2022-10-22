@@ -23,9 +23,9 @@ class SimpleSearchAction extends Controller
 
     public function __invoke(Request $request): View|Factory
     {
-        $rules = array(
+        $rules = [
             "keyword" => "min:2|max:20",
-        );
+        ];
         // 検索結果のバリデーション
         $this->validate($request, $rules);
         //XSS対策は不要(外部からここにアクセスできないため、自身にしか攻撃できないため)←加えて、XSS対策まわりはフロントエンドで行われるため問題なし
