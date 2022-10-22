@@ -9,7 +9,7 @@ use Illuminate\Contracts\Validation\Rule;
 
 class RejectExistDayDiaryForCreateOnDateRule implements Rule
 {
-    /** @param array <{user_id: int}> $attributes */
+    /** @param array <array{user_id: int}> $attributes */
     protected array $attributes;
 
     /**
@@ -25,8 +25,6 @@ class RejectExistDayDiaryForCreateOnDateRule implements Rule
      * 日記を新しく保存しようとしているユーザーが既に同じ日の日記を持っていたら断る
      * 新規で保存する時用のルール、更新で使うと当たり前だが既に同日の日記になるので怒られる
      * 更新時はRejectExistDayDiaryRuleを使う.
-     *
-     * @param string $attributes
      */
     public function passes(mixed $attribute, mixed $value): bool
     {

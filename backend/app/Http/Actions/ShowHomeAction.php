@@ -61,10 +61,10 @@ final class ShowHomeAction extends Controller
          * @todo 先週、みたいな表記はフロントエンドでやる(Day.jsなど使って)
          */
         $recentDiaries = $this->getDiariesByArray->invoke([
-            $carbonImmutableToday->subWeek(1)->format('Y-m-d'),
-            $carbonImmutableToday->subMonth(1)->format('Y-m-d'),
-            $carbonImmutableToday->subMonth(2)->format('Y-m-d'),
-            $carbonImmutableToday->subMonth(6)->format('Y-m-d'),
+            $carbonImmutableToday->subWeek()->format('Y-m-d'),
+            $carbonImmutableToday->subMonth()->format('Y-m-d'),
+            $carbonImmutableToday->subMonths(2)->format('Y-m-d'),
+            $carbonImmutableToday->subMonths(6)->format('Y-m-d'),
         ]);
 
         /** 過去の日記表示配列 +だと一部消えるのでarray_merge */

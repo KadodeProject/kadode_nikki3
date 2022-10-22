@@ -48,8 +48,8 @@ class ShowStatisticAction extends Controller
                  * 名詞と形容詞の登場順.
                  */
 
-                // 一度変数に代入しないと怒られるのでこうしている。
-                $statistic_month_diaries = $statistic->month_diaries; // 平均文字数で利用
+                /** @var int 一度変数に代入しないと怒られるのでこうしている。 */
+                $statistic_month_diaries = (int) $statistic->month_diaries; // 平均文字数で利用
 
                 /**
                  * 月当たりの平均文字数にする(月の合計文字数わる日記数).

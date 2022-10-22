@@ -14,7 +14,7 @@ use Tests\TestCase;
  */
 final class GetAllNERLabelInOptionTabFormatTest extends TestCase
 {
-    /** @property GetAllNERLabelInOptionTabFormat */
+    /** @var GetAllNERLabelInOptionTabFormat */
     private $getAllNERLabelInOptionTabFormat;
 
     public function test与えられたコレクションをoptionタグ形式のHTMLとして返す(): void

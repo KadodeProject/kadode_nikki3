@@ -9,7 +9,7 @@ use Illuminate\Contracts\Validation\Rule;
 
 class RejectExistDayDiaryForUpdateOnDateRule implements Rule
 {
-    /** @param array <{user_id: int, diary_id: int}> $attributes */
+    /** @param array <array{user_id: int, diary_id: int}> $attributes */
     protected array $attributes;
 
     /**
@@ -26,8 +26,6 @@ class RejectExistDayDiaryForUpdateOnDateRule implements Rule
      * 更新時用のルール(新規と違い自分自身が1つあるので自分自身は除く必要がある)
      * 日付が同じ→更新してOK
      * 日付が違う→他に同日がなければ更新してOK.
-     *
-     * @param string $attributes
      *
      * @todo 正直ここでAuth呼び出すのは責務分割全然できてないので避けたい。でもこれしか方法なさそう
      */

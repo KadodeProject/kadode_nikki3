@@ -58,10 +58,10 @@ https://wiki.kado.day
 
 ## 大域ロードマップ
 
-[大域ロードマップ](ROADMAP/overall.md)
+[大域ロードマップ](docs/ROADMAP/overall.md)
 
 ※かどで日記 3 内でのバージョン。かどで日記、かどで日記 2 とは異なる
-[v3 系ロードマップ(完了部分)](ROADMAP/v3.md)
+[v3 系ロードマップ(完了部分)](docs/ROADMAP/v3.md)
 
 ## v3 系未リファクタリング
 

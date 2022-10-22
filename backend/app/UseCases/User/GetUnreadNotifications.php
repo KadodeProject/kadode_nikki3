@@ -15,7 +15,7 @@ class GetUnreadNotifications
     /**
      * ホーム画面などで表示する未読のお知らせを入れた配列を取得する.
      *
-     * @return array<{url:string,actionUrl:string,bg_color:string,title:string,date:string}>
+     * @return array<array{url:string,actionUrl:string,bg_color:string,title:string,date:string}>
      */
     public function invoke(User $user): array
     {

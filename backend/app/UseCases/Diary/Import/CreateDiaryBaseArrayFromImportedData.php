@@ -17,19 +17,19 @@ class CreateDiaryBaseArrayFromImportedData
      * 厳密には$existdateに代入してからinsertするまでに新しい日記が入る可能性は極めて低いが0ではなく、重複が0件でないことを保証できない
      * テーブルロックとか掛ければよいのだが、天秤にかけたときにそこまでの必要性がないと判断した
      *
-     * @param array<{date:string,title:string,content:string}> $importedDate ちゃんとkey=>valueになっていれば重複あっても良い
-     * @param array<string,string> $existDates issetが使えるように'Y-m-d'をkeyにしており、valueの値は意味を持たない
+     * @param array<array{date:string,title:string,content:string}> $importedData ちゃんとkey=>valueになっていれば重複あっても良い
+     * @param array<string,string>                                  $existDates   issetが使えるように'Y-m-d'をkeyにしており、valueの値は意味を持たない
      *
-     * @return array {0:array<string,{updated_at:Carbon,created_at:Carbon,user_id:int,uuid:string,date:Carbon,title:string,content:string}>,1:array<string,{title:string,content:string}>}
+     * @return array{0:array<string,array{updated_at:Carbon,created_at:Carbon,user_id:int,uuid:string,date:Carbon,title:string,content:string}>,1:array<string,array{title:string,content:string}>}
      */
     public function invoke(array $importedData, array $existDates, int $userId): array
     {
         $carbonNow = Carbon::now();
 
-        /** @var array<string,{title:string,content:string}> deleteする日記を入れる */
+        /** @var array<string,array{title:string,content:string}> deleteする日記を入れる */
         $distinctDiary = [];
 
-        /** @var array<string,{updated_at:Carbon,created_at:Carbon,user_id:int,uuid:string,date:Carbon,title:string,content:string}> insertする日記を入れる */
+        /** @var array<string,array{updated_at:Carbon,created_at:Carbon,user_id:int,uuid:string,date:Carbon,title:string,content:string}> insertする日記を入れる */
         $newDiary = [];
 
         foreach ($importedData as $data) {

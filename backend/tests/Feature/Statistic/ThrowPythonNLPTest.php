@@ -14,7 +14,7 @@ use Tests\TestCase;
  */
 final class ThrowPythonNLPTest extends TestCase
 {
-    /** @property ThrowPythonNLP */
+    /** @var ThrowPythonNLP */
     private $throwPythonNLPTest;
 
     /** @todo これはデータベースにもろ依存している。 */
