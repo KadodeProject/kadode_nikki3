@@ -30,7 +30,7 @@ class RejectExistDayDiaryForUpdateOnDateRule implements Rule
      * @param mixed $value
      * @todo 正直ここでAuth呼び出すのは責務分割全然できてないので避けたい。でもこれしか方法なさそう
      */
-    public function passes($attribute, $value): bool
+    public function passes(mixed $attribute, mixed  $value): bool
     {
         return !Diary::where('user_id', $this->attributes['user_id'])->where('date', $value)->where('id', '!=', $this->attributes['diary_id'])->exists();
     }

@@ -17,6 +17,7 @@ return $config
     ->setRiskyAllowed(true)
     ->setRules([
         '@PSR12' => true,
-        '@PhpCsFixer:risky' => true,
+        '@PhpCsFixer' => true,
+        // '@PhpCsFixer:risky' => true,
     ])
     ->setFinder($finder);

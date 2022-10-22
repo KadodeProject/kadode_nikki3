@@ -30,7 +30,7 @@ class RejectExistDayDiaryForCreateOnDateRule implements Rule
      * @param string $attributes
      * @param mixed $value
      */
-    public function passes($attribute, $value): bool
+    public function passes(mixed $attribute, mixed $value): bool
     {
         return !Diary::where('user_id', $this->attributes['user_id'])->where('date', $value)->exists();
     }
