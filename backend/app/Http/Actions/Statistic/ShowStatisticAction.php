@@ -48,9 +48,8 @@ class ShowStatisticAction extends Controller
                  * 名詞と形容詞の登場順.
                  */
 
-                /** @var int 一度変数に代入しないと怒られるのでこうしている。 */
-                $statistic_month_diaries = (int) $statistic->month_diaries; // 平均文字数で利用
-
+                /** @var array<int> 一度変数に代入しないと怒られるのでこうしている。 */
+                $statistic_month_diaries = $statistic->month_diaries; // 平均文字数で利用
                 /**
                  * 月当たりの平均文字数にする(月の合計文字数わる日記数).
                  */
@@ -127,7 +126,7 @@ class ShowStatisticAction extends Controller
                 $width = ceil(($max - $min) / 20); // 20分割、切り上げ,20個生成するので、どう転んでも入り切るように切り上げ
                 $i = $min;
                 for ($n = 1; $n <= 20; $n++) {
-                    $char_length_frequency_distribution[$i.'-'.($i + $width)] = 0; // 707-708みたいな感じ xx以上-xx未満
+                    $char_length_frequency_distribution[$i . '-' . ($i + $width)] = 0; // 707-708みたいな感じ xx以上-xx未満
                     $frequencies[] = $i;
                     $i += $width;
                 }
@@ -135,7 +134,7 @@ class ShowStatisticAction extends Controller
                 foreach ($char_length_list as $value) {
                     foreach (array_reverse($frequencies) as $frequency) {
                         if ($value >= $frequency) {
-                            $char_length_frequency_distribution[$frequency.'-'.($frequency + $width)]++;
+                            $char_length_frequency_distribution[$frequency . '-' . ($frequency + $width)]++;
                             // \Log::debug($value."は".($frequency)."-".($frequency+$width)."に入る");
                             break;
                         }
