@@ -41,7 +41,7 @@ class GCSCommand extends Command
     public function handle()
     {
         $client = new StorageClient();
-        $bucket = $client->bucket(env('GCS_PACKET')); // 作成したバケット
+        $bucket = $client->bucket(config('gcs.packet')); // 作成したバケット
 
 
 
