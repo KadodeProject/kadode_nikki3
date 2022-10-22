@@ -80,7 +80,7 @@ class ImportFromTukiniTxtAction extends Controller
                         'title' => $titleTxt[$arrayCounter],
                         'content' => $contentTxt[$arrayCounter],
                     ];
-                    ++$arrayCounter;
+                    $arrayCounter++;
                 }
             }
 

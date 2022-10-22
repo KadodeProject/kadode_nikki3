@@ -28,7 +28,7 @@ class DiaryTableSeeder extends Seeder
         ];
         DB::table('diaries')->insert($param);
 
-        for ($i = 0; $i <= 100; ++$i) {
+        for ($i = 0; $i <= 100; $i++) {
             $param = [
                 'user_id' => 1,
                 'uuid' => Str::uuid(),

@@ -31,5 +31,8 @@ return $config
 
         //上記で適用されたもの以外や、上記でされると困るものを下記に書く
         'multiline_whitespace_before_semicolons' => true, //メソッドチェーンの末尾のセミコロンを改行する設定を上書きする https://mlocati.github.io/php-cs-fixer-configurator/#version:3.12|configurator|fixer:multiline_whitespace_before_semicolons
+        'increment_style' => [
+            'style' => 'post' // ++$iでなく$i++になるようにする　https://mlocati.github.io/php-cs-fixer-configurator/#version:3.12|fixer:increment_style
+        ],
     ])
     ->setFinder($finder);
