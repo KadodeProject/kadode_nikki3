@@ -13,7 +13,7 @@ class CreateCustomNERSTable extends Migration
      *
      * @return void
      */
-    public function up()
+    public function up(): void
     {
         Schema::create('custom_n_e_r_s', function (Blueprint $table) {
             $table->id();
@@ -25,14 +25,14 @@ class CreateCustomNERSTable extends Migration
 
             //他テーブルとの関連付け
             $table->foreign('user_id')
-            ->references('id')
-            ->on('users')
-            ->onDelete('cascade');//cascadeでユーザー消えたら統計データも消せる
+                ->references('id')
+                ->on('users')
+                ->onDelete('cascade'); //cascadeでユーザー消えたら統計データも消せる
             //他テーブルとの関連付け
             $table->foreign('label_id')
-            ->references('id')
-            ->on('n_e_r_labels')
-            ->onDelete('cascade');//cascadeでラベル消えたら統計データも消せる
+                ->references('id')
+                ->on('n_e_r_labels')
+                ->onDelete('cascade'); //cascadeでラベル消えたら統計データも消せる
         });
     }
 
@@ -41,7 +41,7 @@ class CreateCustomNERSTable extends Migration
      *
      * @return void
      */
-    public function down()
+    public function down(): void
     {
         Schema::dropIfExists('custom_n_e_r_s');
     }

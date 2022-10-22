@@ -15,20 +15,20 @@ class CustomNERTableSeeder extends Seeder
      *
      * @return void
      */
-    public function run()
+    public function run(): void
     {
-        $param=[
+        $param = [
             [
-                'user_id'=>1 ,
-                'label_id'=>5,
-                'name'=>"うすゆき",
+                'user_id' => 1,
+                'label_id' => 5,
+                'name' => "うすゆき",
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now(),
             ],
             [
-                'user_id'=>1 ,
-                'label_id'=>4,
-                'name'=>"かどで日記",
+                'user_id' => 1,
+                'label_id' => 4,
+                'name' => "かどで日記",
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now(),
             ],

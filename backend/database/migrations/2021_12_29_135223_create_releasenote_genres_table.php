@@ -13,7 +13,7 @@ class CreateReleasenoteGenresTable extends Migration
      *
      * @return void
      */
-    public function up()
+    public function up(): void
     {
         Schema::create('releasenote_genres', function (Blueprint $table) {
             $table->id();
@@ -27,7 +27,7 @@ class CreateReleasenoteGenresTable extends Migration
      *
      * @return void
      */
-    public function down()
+    public function down(): void
     {
         Schema::dropIfExists('releasenote_genres');
     }

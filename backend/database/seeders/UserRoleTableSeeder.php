@@ -14,20 +14,20 @@ class UserRoleTableSeeder extends Seeder
      *
      * @return void
      */
-    public function run()
+    public function run(): void
     {
-        $param=[
+        $param = [
             [
-            'name'=>"Normal" ,
-            'description'=>"基本的にはこのロール" ,
+                'name' => "Normal",
+                'description' => "基本的にはこのロール",
             ],
             [
-            'name'=>"Administrator" ,
-            'description'=>"管理者ページにアクセスできる" ,
+                'name' => "Administrator",
+                'description' => "管理者ページにアクセスできる",
             ],
             [
-            'name'=>"KinoTsurayuki" ,
-            'description'=>"土佐日記を作成した" ,
+                'name' => "KinoTsurayuki",
+                'description' => "土佐日記を作成した",
             ],
         ];
         DB::table("user_roles")->insert($param);

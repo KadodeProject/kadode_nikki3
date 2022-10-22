@@ -17,7 +17,7 @@ class Diary extends Model
      *
      * @return void
      */
-    protected static function boot()
+    protected static function boot(): void
     {
         parent::boot();
         static::addGlobalScope(new ScopeLoggedInUser());

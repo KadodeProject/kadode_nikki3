@@ -13,7 +13,7 @@ class CreatePackageNERSTable extends Migration
      *
      * @return void
      */
-    public function up()
+    public function up(): void
     {
         Schema::create('package_n_e_r_s', function (Blueprint $table) {
             $table->id();
@@ -25,14 +25,14 @@ class CreatePackageNERSTable extends Migration
 
             //他テーブルとの関連付け
             $table->foreign('package_id')
-            ->references('id')
-            ->on('nlp_package_names')
-            ->onDelete('cascade');//cascadeでパッケージ消えたらNEデータも消せる
+                ->references('id')
+                ->on('nlp_package_names')
+                ->onDelete('cascade'); //cascadeでパッケージ消えたらNEデータも消せる
 
             $table->foreign('label_id')
-            ->references('id')
-            ->on('n_e_r_labels')
-            ->onDelete('cascade');//cascadeでラベル消えたら統計データも消せる
+                ->references('id')
+                ->on('n_e_r_labels')
+                ->onDelete('cascade'); //cascadeでラベル消えたら統計データも消せる
         });
     }
 
@@ -41,7 +41,7 @@ class CreatePackageNERSTable extends Migration
      *
      * @return void
      */
-    public function down()
+    public function down(): void
     {
         Schema::dropIfExists('package_n_e_r_s');
     }

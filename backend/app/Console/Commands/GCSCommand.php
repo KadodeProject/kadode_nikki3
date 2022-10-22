@@ -38,7 +38,7 @@ class GCSCommand extends Command
      *
      * @return int
      */
-    public function handle()
+    public function handle(): int
     {
         $client = new StorageClient();
         $bucket = $client->bucket(config('gcs.packet')); // 作成したバケット
@@ -88,9 +88,9 @@ class GCSCommand extends Command
             /** @var resource|string|null */
             $uploadData = fopen(storage_path('app/laravel-backup/') . $latestFile, 'r');
             $bucket->upload($uploadData);
-            echo('uploaded:' . $latestFile);
+            echo ('uploaded:' . $latestFile);
         } else {
-            echo('ファイルがありませんでした');
+            echo ('ファイルがありませんでした');
         }
         return Command::SUCCESS;
     }

@@ -13,7 +13,7 @@ class CreateDiaryPeoplesTable extends Migration
      *
      * @return void
      */
-    public function up()
+    public function up(): void
     {
         Schema::create('diary_peoples', function (Blueprint $table) {
             $table->id();
@@ -23,9 +23,9 @@ class CreateDiaryPeoplesTable extends Migration
 
             //他テーブルとの関連付け
             $table->foreign('user_id')
-            ->references('id')
-            ->on('users')
-            ->onDelete('cascade');//cascadeでユーザー消えたら統計データも消せる
+                ->references('id')
+                ->on('users')
+                ->onDelete('cascade'); //cascadeでユーザー消えたら統計データも消せる
         });
     }
 
@@ -34,7 +34,7 @@ class CreateDiaryPeoplesTable extends Migration
      *
      * @return void
      */
-    public function down()
+    public function down(): void
     {
         Schema::dropIfExists('diary_peoples');
     }

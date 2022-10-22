@@ -15,7 +15,7 @@ class userReadNotificationTableSeeder extends Seeder
      *
      * @return void
      */
-    public function run()
+    public function run(): void
     {
         /**
          * idとuser_idが一致しているとバグに気付け無いことがあるので意図的にidとuser_idが合わないようにしている

@@ -13,7 +13,7 @@ class CreateSearchSettingsTable extends Migration
      *
      * @return void
      */
-    public function up()
+    public function up(): void
     {
         Schema::create('search_settings', function (Blueprint $table) {
             $table->id();
@@ -28,9 +28,9 @@ class CreateSearchSettingsTable extends Migration
 
             //他テーブルとの関連付け
             $table->foreign('user_id')
-            ->references('id')
-            ->on('users')
-            ->onDelete('cascade');//cascadeでユーザー消えたら統計データも消せる
+                ->references('id')
+                ->on('users')
+                ->onDelete('cascade'); //cascadeでユーザー消えたら統計データも消せる
         });
     }
 
@@ -39,7 +39,7 @@ class CreateSearchSettingsTable extends Migration
      *
      * @return void
      */
-    public function down()
+    public function down(): void
     {
         Schema::dropIfExists('search_settings');
     }

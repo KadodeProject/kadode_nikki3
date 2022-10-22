@@ -13,7 +13,7 @@ class CreateStatisticsTable extends Migration
      *
      * @return void
      */
-    public function up()
+    public function up(): void
     {
         Schema::create('statistics', function (Blueprint $table) {
             $table->id();
@@ -40,9 +40,9 @@ class CreateStatisticsTable extends Migration
 
             //他テーブルとの関連付け
             $table->foreign('user_id')
-            ->references('id')
-            ->on('users')
-            ->onDelete('cascade');//cascadeでユーザー消えたら統計データも消せる
+                ->references('id')
+                ->on('users')
+                ->onDelete('cascade'); //cascadeでユーザー消えたら統計データも消せる
         });
     }
 
@@ -51,7 +51,7 @@ class CreateStatisticsTable extends Migration
      *
      * @return void
      */
-    public function down()
+    public function down(): void
     {
         Schema::dropIfExists('statistics');
     }

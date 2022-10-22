@@ -25,7 +25,7 @@ class UserFactory extends Factory
      *
      * @return array
      */
-    public function definition()
+    public function definition(): array
     {
         $email = $this->faker->unique()->safeEmail();
         return [
@@ -45,7 +45,7 @@ class UserFactory extends Factory
      *
      * @return \Illuminate\Database\Eloquent\Factories\Factory
      */
-    public function unverified()
+    public function unverified(): \Illuminate\Database\Eloquent\Factories\Factory
     {
         return $this->state(function (array $attributes) {
             return [

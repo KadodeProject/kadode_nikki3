@@ -13,7 +13,7 @@ class CreateStatisticPerMonthsTable extends Migration
      *
      * @return void
      */
-    public function up()
+    public function up(): void
     {
         Schema::create('statistic_per_months', function (Blueprint $table) {
             $table->id();
@@ -32,9 +32,9 @@ class CreateStatisticPerMonthsTable extends Migration
 
             //他テーブルとの関連付け
             $table->foreign('user_id')
-            ->references('id')
-            ->on('users')
-            ->onDelete('cascade');//cascadeでユーザー消えたら統計データも消せる
+                ->references('id')
+                ->on('users')
+                ->onDelete('cascade'); //cascadeでユーザー消えたら統計データも消せる
         });
     }
 
@@ -43,7 +43,7 @@ class CreateStatisticPerMonthsTable extends Migration
      *
      * @return void
      */
-    public function down()
+    public function down(): void
     {
         Schema::dropIfExists('statistic_per_months');
     }

@@ -17,7 +17,7 @@ class VerifyAdminUser
      * @param null $guard
      * @return mixed
      */
-    public function handle($request, Closure $next, $guard = null)
+    public function handle($request, Closure $next, $guard = null): mixed
     {
         /** @var User $user */
         $user = Auth::user();

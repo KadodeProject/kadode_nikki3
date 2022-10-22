@@ -15,14 +15,14 @@ class NlpPackageUserTableSeeder extends Seeder
      *
      * @return void
      */
-    public function run()
+    public function run(): void
     {
-        $param=[
+        $param = [
             [
-            'user_id'=>1,
-            'package_id'=>1 ,
-            'created_at' => Carbon::now(),
-            'updated_at' => Carbon::now(),
+                'user_id' => 1,
+                'package_id' => 1,
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now(),
             ],
         ];
         DB::table("nlp_package_users")->insert($param);

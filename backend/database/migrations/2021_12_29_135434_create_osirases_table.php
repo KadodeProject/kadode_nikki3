@@ -13,7 +13,7 @@ class CreateOsirasesTable extends Migration
      *
      * @return void
      */
-    public function up()
+    public function up(): void
     {
         Schema::create('osirases', function (Blueprint $table) {
             $table->id();
@@ -25,8 +25,8 @@ class CreateOsirasesTable extends Migration
 
             //他テーブルとの関連付け
             $table->foreign('genre_id')
-            ->references('id')
-            ->on('osirase_genres');
+                ->references('id')
+                ->on('osirase_genres');
         });
     }
 
@@ -35,7 +35,7 @@ class CreateOsirasesTable extends Migration
      *
      * @return void
      */
-    public function down()
+    public function down(): void
     {
         Schema::dropIfExists('osirases');
     }

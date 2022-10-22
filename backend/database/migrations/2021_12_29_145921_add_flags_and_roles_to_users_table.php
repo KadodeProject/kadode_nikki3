@@ -13,7 +13,7 @@ class AddFlagsAndRolesToUsersTable extends Migration
      *
      * @return void
      */
-    public function up()
+    public function up(): void
     {
         Schema::table('users', function (Blueprint $table) {
             $table->unsignedBigInteger("user_rank_id")->nullable()->comment("ユーザーランク")->default(1);
@@ -45,7 +45,7 @@ class AddFlagsAndRolesToUsersTable extends Migration
      *
      * @return void
      */
-    public function down()
+    public function down(): void
     {
         Schema::table('users', function (Blueprint $table) {
             $table->dropColumn('user_rank_id');

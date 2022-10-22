@@ -13,7 +13,7 @@ class CreateUserIpsTable extends Migration
      *
      * @return void
      */
-    public function up()
+    public function up(): void
     {
         Schema::create('user_ips', function (Blueprint $table) {
             $table->id();
@@ -25,9 +25,9 @@ class CreateUserIpsTable extends Migration
 
             //他テーブルとの関連付け
             $table->foreign('user_id')
-            ->references('id')
-            ->on('users')
-            ->onDelete('cascade');//cascadeでユーザー消えたらipも消せる
+                ->references('id')
+                ->on('users')
+                ->onDelete('cascade'); //cascadeでユーザー消えたらipも消せる
         });
     }
 
@@ -36,7 +36,7 @@ class CreateUserIpsTable extends Migration
      *
      * @return void
      */
-    public function down()
+    public function down(): void
     {
         Schema::dropIfExists('user_ips');
     }

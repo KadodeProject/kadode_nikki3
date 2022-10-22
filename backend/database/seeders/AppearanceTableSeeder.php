@@ -14,16 +14,16 @@ class AppearanceTableSeeder extends Seeder
      *
      * @return void
      */
-    public function run()
+    public function run(): void
     {
-        $param=[
+        $param = [
             [
-            'name'=>"標準" ,
-            'description'=>"標準の見た目" ,
+                'name' => "標準",
+                'description' => "標準の見た目",
             ],
             [
-            'name'=>"クラシック" ,
-            'description'=>"かつての見た目" ,
+                'name' => "クラシック",
+                'description' => "かつての見た目",
             ],
         ];
         DB::table("appearances")->insert($param);

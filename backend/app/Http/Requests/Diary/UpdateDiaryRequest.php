@@ -15,7 +15,7 @@ class UpdateDiaryRequest extends FormRequest
      *
      * @return bool
      */
-    public function authorize()
+    public function authorize(): bool
     {
         //アプリケーションの別の部分でリクエストの認可ロジックを処理しているため、ここは強制true
         //https://readouble.com/laravel/9.x/ja/validation.html
@@ -35,7 +35,7 @@ class UpdateDiaryRequest extends FormRequest
      *
      * @return array<string, mixed>
      */
-    public function rules()
+    public function rules(): array
     {
         return [
             'title' => ['max:50'], //laravelのstringはvarchar(255)なので、255文字までだが、マルチバイトなど色々踏まえて50に押

@@ -15,7 +15,7 @@ class CreateDiaryRequest extends FormRequest
      *
      * @return bool
      */
-    public function authorize()
+    public function authorize(): bool
     {
         //アプリケーションの別の部分でリクエストの認可ロジックを処理しているため、ここは強制true
         //https://readouble.com/laravel/9.x/ja/validation.html
@@ -35,7 +35,7 @@ class CreateDiaryRequest extends FormRequest
      *
      * @return array<string, mixed>
      */
-    public function rules()
+    public function rules(): array
     {
         return [
             'date' => ['required', new RejectExistDayDiaryForCreateOnDateRule(Auth::id())],

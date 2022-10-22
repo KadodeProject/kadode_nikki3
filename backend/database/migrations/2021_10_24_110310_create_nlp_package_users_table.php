@@ -13,7 +13,7 @@ class CreateNlpPackageUsersTable extends Migration
      *
      * @return void
      */
-    public function up()
+    public function up(): void
     {
         Schema::create('nlp_package_users', function (Blueprint $table) {
             $table->id();
@@ -24,14 +24,14 @@ class CreateNlpPackageUsersTable extends Migration
 
             //他テーブルとの関連付け
             $table->foreign('package_id')
-            ->references('id')
-            ->on('nlp_package_names')
-            ->onDelete('cascade');//パッケージ消えたらこのテーブルも消す
+                ->references('id')
+                ->on('nlp_package_names')
+                ->onDelete('cascade'); //パッケージ消えたらこのテーブルも消す
 
             $table->foreign('user_id')
-            ->references('id')
-            ->on('users')
-            ->onDelete('cascade');//ユーザー消えたらこのテーブルも消す
+                ->references('id')
+                ->on('users')
+                ->onDelete('cascade'); //ユーザー消えたらこのテーブルも消す
         });
     }
 
@@ -40,7 +40,7 @@ class CreateNlpPackageUsersTable extends Migration
      *
      * @return void
      */
-    public function down()
+    public function down(): void
     {
         Schema::dropIfExists('nlp_package_users');
     }

@@ -15,14 +15,14 @@ class NlpPackageGenreTableSeeder extends Seeder
      *
      * @return void
      */
-    public function run()
+    public function run(): void
     {
-        $param=[
+        $param = [
             [
-            'name'=>"固有表現抽出ルール" ,
-            'description'=>"固有表現抽出ルールのパッケージ" ,
-            'created_at' => Carbon::now(),
-            'updated_at' => Carbon::now(),
+                'name' => "固有表現抽出ルール",
+                'description' => "固有表現抽出ルールのパッケージ",
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now(),
             ],
         ];
         DB::table("nlp_package_genres")->insert($param);
