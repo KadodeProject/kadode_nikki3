@@ -28,8 +28,7 @@ return new class() extends Migration {
             $table->foreign('diary_id')
                 ->references('id')
                 ->on('diaries')
-                ->onDelete('cascade')
-            ;
+                ->onDelete('cascade');
         });
     }
 

@@ -17,7 +17,7 @@ use Tests\TestCase;
  *
  * @coversNothing
  */
-class DeleteApiTokenTest extends TestCase
+final class DeleteApiTokenTest extends TestCase
 {
     use RefreshDatabase;
 
@@ -41,8 +41,7 @@ class DeleteApiTokenTest extends TestCase
 
         Livewire::test(ApiTokenManager::class)
             ->set(['apiTokenIdBeingDeleted' => $token->id])
-            ->call('deleteApiToken')
-        ;
+            ->call('deleteApiToken');
 
         static::assertCount(0, $user->fresh()->tokens);
     }

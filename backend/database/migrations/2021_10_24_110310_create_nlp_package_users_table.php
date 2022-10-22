@@ -24,13 +24,13 @@ class CreateNlpPackageUsersTable extends Migration
                 ->references('id')
                 ->on('nlp_package_names')
                 ->onDelete('cascade') // パッケージ消えたらこのテーブルも消す
-            ;
+;
 
             $table->foreign('user_id')
                 ->references('id')
                 ->on('users')
                 ->onDelete('cascade') // ユーザー消えたらこのテーブルも消す
-            ;
+;
         });
     }
 

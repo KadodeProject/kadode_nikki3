@@ -25,13 +25,13 @@ class CreateCustomNERSTable extends Migration
                 ->references('id')
                 ->on('users')
                 ->onDelete('cascade') // cascadeでユーザー消えたら統計データも消せる
-            ;
+;
             // 他テーブルとの関連付け
             $table->foreign('label_id')
                 ->references('id')
                 ->on('n_e_r_labels')
                 ->onDelete('cascade') // cascadeでラベル消えたら統計データも消せる
-            ;
+;
         });
     }
 

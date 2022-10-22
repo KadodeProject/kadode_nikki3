@@ -22,20 +22,17 @@ class AddFlagsAndRolesToUsersTable extends Migration
             // 他テーブルとの関連付け
             $table->foreign('user_rank_id')
                 ->references('id')
-                ->on('user_ranks')
-            ;
+                ->on('user_ranks');
 
             // 他テーブルとの関連付け
             $table->foreign('user_role_id')
                 ->references('id')
-                ->on('user_roles')
-            ;
+                ->on('user_roles');
 
             // 他テーブルとの関連付け
             $table->foreign('appearance_id')
                 ->references('id')
-                ->on('appearances')
-            ;
+                ->on('appearances');
         });
     }
 

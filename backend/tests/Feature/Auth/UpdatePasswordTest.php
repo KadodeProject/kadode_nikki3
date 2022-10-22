@@ -16,7 +16,7 @@ use Tests\TestCase;
  *
  * @coversNothing
  */
-class UpdatePasswordTest extends TestCase
+final class UpdatePasswordTest extends TestCase
 {
     use RefreshDatabase;
 
@@ -30,8 +30,7 @@ class UpdatePasswordTest extends TestCase
                 'password' => 'new-password',
                 'password_confirmation' => 'new-password',
             ])
-            ->call('updatePassword')
-        ;
+            ->call('updatePassword');
 
         static::assertTrue(Hash::check('new-password', $user->fresh()->password));
     }
@@ -47,8 +46,7 @@ class UpdatePasswordTest extends TestCase
                 'password_confirmation' => 'new-password',
             ])
             ->call('updatePassword')
-            ->assertHasErrors(['current_password'])
-        ;
+            ->assertHasErrors(['current_password']);
 
         static::assertTrue(Hash::check($user->email, $user->fresh()->password));
     }
@@ -64,8 +62,7 @@ class UpdatePasswordTest extends TestCase
                 'password_confirmation' => 'wrong-password',
             ])
             ->call('updatePassword')
-            ->assertHasErrors(['password'])
-        ;
+            ->assertHasErrors(['password']);
 
         static::assertTrue(Hash::check($user->email, $user->fresh()->password));
     }

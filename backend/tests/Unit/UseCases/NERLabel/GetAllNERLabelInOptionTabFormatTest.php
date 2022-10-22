@@ -12,7 +12,7 @@ use Tests\TestCase;
  *
  * @coversNothing
  */
-class GetAllNERLabelInOptionTabFormatTest extends TestCase
+final class GetAllNERLabelInOptionTabFormatTest extends TestCase
 {
     /** @property GetAllNERLabelInOptionTabFormat */
     private $getAllNERLabelInOptionTabFormat;

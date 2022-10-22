@@ -27,12 +27,11 @@ class CreateNlpPackageNamesTable extends Migration
                 ->references('id')
                 ->on('nlp_package_genres')
                 ->onDelete('cascade') // ジャンル消えたらパッケージも消す
-            ;
+;
             // 他テーブルとの関連付け
             $table->foreign('user_id')
                 ->references('id')
-                ->on('users')
-            ;
+                ->on('users');
         });
     }
 

@@ -16,7 +16,7 @@ use Tests\TestCase;
  *
  * @coversNothing
  */
-class CreateApiTokenTest extends TestCase
+final class CreateApiTokenTest extends TestCase
 {
     use RefreshDatabase;
 
@@ -40,8 +40,7 @@ class CreateApiTokenTest extends TestCase
                     'update',
                 ],
             ]])
-            ->call('createApiToken')
-        ;
+            ->call('createApiToken');
 
         static::assertCount(1, $user->fresh()->tokens);
         static::assertSame('Test Token', $user->fresh()->tokens->first()->name);

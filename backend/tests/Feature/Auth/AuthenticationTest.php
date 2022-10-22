@@ -14,7 +14,7 @@ use Tests\TestCase;
  *
  * @coversNothing
  */
-class AuthenticationTest extends TestCase
+final class AuthenticationTest extends TestCase
 {
     use RefreshDatabase;
 

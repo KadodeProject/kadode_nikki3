@@ -16,7 +16,7 @@ use Tests\TestCase;
  *
  * @coversNothing
  */
-class DeleteAccountTest extends TestCase
+final class DeleteAccountTest extends TestCase
 {
     use RefreshDatabase;
 
@@ -30,8 +30,7 @@ class DeleteAccountTest extends TestCase
 
         $component = Livewire::test(DeleteUserForm::class)
             ->set('password', $user->email)
-            ->call('deleteUser')
-        ;
+            ->call('deleteUser');
 
         static::assertNull($user->fresh());
     }
@@ -47,8 +46,7 @@ class DeleteAccountTest extends TestCase
         Livewire::test(DeleteUserForm::class)
             ->set('password', 'wrong-password')
             ->call('deleteUser')
-            ->assertHasErrors(['password'])
-        ;
+            ->assertHasErrors(['password']);
 
         static::assertNotNull($user->fresh());
     }

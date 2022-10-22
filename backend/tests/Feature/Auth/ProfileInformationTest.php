@@ -15,7 +15,7 @@ use Tests\TestCase;
  *
  * @coversNothing
  */
-class ProfileInformationTest extends TestCase
+final class ProfileInformationTest extends TestCase
 {
     use RefreshDatabase;
 

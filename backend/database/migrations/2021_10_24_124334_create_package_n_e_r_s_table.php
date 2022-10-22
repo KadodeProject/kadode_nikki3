@@ -25,13 +25,13 @@ class CreatePackageNERSTable extends Migration
                 ->references('id')
                 ->on('nlp_package_names')
                 ->onDelete('cascade') // cascadeでパッケージ消えたらNEデータも消せる
-            ;
+;
 
             $table->foreign('label_id')
                 ->references('id')
                 ->on('n_e_r_labels')
                 ->onDelete('cascade') // cascadeでラベル消えたら統計データも消せる
-            ;
+;
         });
     }
 

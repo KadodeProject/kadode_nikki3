@@ -17,7 +17,7 @@ use Tests\TestCase;
  *
  * @coversNothing
  */
-class ApiTokenPermissionsTest extends TestCase
+final class ApiTokenPermissionsTest extends TestCase
 {
     use RefreshDatabase;
 
@@ -47,8 +47,7 @@ class ApiTokenPermissionsTest extends TestCase
                     'missing-permission',
                 ],
             ]])
-            ->call('updateApiToken')
-        ;
+            ->call('updateApiToken');
 
         static::assertTrue($user->fresh()->tokens->first()->can('delete'));
         static::assertFalse($user->fresh()->tokens->first()->can('read'));

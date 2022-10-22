@@ -13,7 +13,7 @@ use Tests\TestCase;
  *
  * @coversNothing
  */
-class ShowLoginTest extends TestCase
+final class ShowLoginTest extends TestCase
 {
     /**
      * A basic Integration test example.

@@ -39,7 +39,7 @@ class CreateStatisticsTable extends Migration
                 ->references('id')
                 ->on('users')
                 ->onDelete('cascade') // cascadeでユーザー消えたら統計データも消せる
-            ;
+;
         });
     }
 

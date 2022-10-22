@@ -18,7 +18,7 @@ use Tests\TestCase;
  *
  * @coversNothing
  */
-class EmailVerificationTest extends TestCase
+final class EmailVerificationTest extends TestCase
 {
     use RefreshDatabase;
 

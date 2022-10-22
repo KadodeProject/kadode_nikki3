@@ -15,7 +15,7 @@ use Tests\TestCase;
  *
  * @coversNothing
  */
-class PasswordResetTest extends TestCase
+final class PasswordResetTest extends TestCase
 {
     use RefreshDatabase;
 

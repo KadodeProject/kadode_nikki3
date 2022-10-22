@@ -15,7 +15,7 @@ use Tests\TestCase;
  *
  * @coversNothing
  */
-class BrowserSessionsTest extends TestCase
+final class BrowserSessionsTest extends TestCase
 {
     use RefreshDatabase;
 
@@ -25,7 +25,6 @@ class BrowserSessionsTest extends TestCase
 
         Livewire::test(LogoutOtherBrowserSessionsForm::class)
             ->set('password', 'password')
-            ->call('logoutOtherBrowserSessions')
-        ;
+            ->call('logoutOtherBrowserSessions');
     }
 }

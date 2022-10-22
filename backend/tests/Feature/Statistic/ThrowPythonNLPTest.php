@@ -12,7 +12,7 @@ use Tests\TestCase;
  *
  * @coversNothing
  */
-class ThrowPythonNLPTest extends TestCase
+final class ThrowPythonNLPTest extends TestCase
 {
     /** @property ThrowPythonNLP */
     private $throwPythonNLPTest;

@@ -26,7 +26,7 @@ class CreateUserIpsTable extends Migration
                 ->references('id')
                 ->on('users')
                 ->onDelete('cascade') // cascadeでユーザー消えたらipも消せる
-            ;
+;
         });
     }
 

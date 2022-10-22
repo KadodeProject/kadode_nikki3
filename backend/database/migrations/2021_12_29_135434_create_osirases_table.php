@@ -24,8 +24,7 @@ class CreateOsirasesTable extends Migration
             // 他テーブルとの関連付け
             $table->foreign('genre_id')
                 ->references('id')
-                ->on('osirase_genres')
-            ;
+                ->on('osirase_genres');
         });
     }
 

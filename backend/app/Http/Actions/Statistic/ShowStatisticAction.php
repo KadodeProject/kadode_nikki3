@@ -105,8 +105,7 @@ class ShowStatisticAction extends Controller
                     ->where('diaries.user_id', $userId)
                     ->leftJoin('diary_processeds', 'diaries.id', '=', 'diary_processeds.diary_id')
                     ->select('diary_processeds.char_length')
-                    ->get()
-                ;
+                    ->get();
 
                 // array_valuesだと何故か事故るので
                 // 文字数の配列取得
@@ -150,8 +149,7 @@ class ShowStatisticAction extends Controller
                     ->orderBy('diary_processeds.char_length', 'desc')
                     ->select('diaries.date', 'diaries.title', 'diaries.uuid', 'diary_processeds.char_length')
                     ->limit(10)
-                    ->get()
-                ;
+                    ->get();
 
                 /**
                  * アニメのタイムライン描画.
@@ -162,8 +160,7 @@ class ShowStatisticAction extends Controller
                     ->whereNotNull('diary_processeds.affiliation')
                     ->leftJoin('diary_processeds', 'diaries.id', '=', 'diary_processeds.diary_id')
                     ->select('diaries.date', 'diary_processeds.affiliation')
-                    ->get()
-                ;
+                    ->get();
                 $i = 0;
                 // アニメ名と日付を取得
                 foreach ($anime_data as $value) {

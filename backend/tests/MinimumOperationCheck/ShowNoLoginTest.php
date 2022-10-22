@@ -11,7 +11,7 @@ use Tests\TestCase;
  *
  * @coversNothing
  */
-class ShowNoLoginTest extends TestCase
+final class ShowNoLoginTest extends TestCase
 {
     public function testトップページの表示()
     {

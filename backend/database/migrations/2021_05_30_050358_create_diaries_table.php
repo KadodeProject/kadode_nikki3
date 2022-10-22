@@ -55,7 +55,7 @@ class CreateDiariesTable extends Migration
                 ->references('id')
                 ->on('users')
                 ->onDelete('cascade') // cascadeでユーザー消えたら日記も消せる
-            ;
+;
         });
     }
 
