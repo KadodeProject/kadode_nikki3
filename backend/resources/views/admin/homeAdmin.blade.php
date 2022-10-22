@@ -45,49 +45,49 @@
                 @foreach($users as $user)
                 <tr>
                     <td>
-                        {{$user->id}}
+                        {{$user['id']}}
                     </td>
                     <td>
-                        {{$user->diary_count}}
+                        {{$user['diary_count']}}
                     </td>
                     <td>
-                        {{$user->statistics_per_month_count}}
+                        {{$user['statistics_per_month_count']}}
                     </td>
                     <td>
-                        {{$user->diary_average}}
+                        {{$user['diary_average']}}
                     </td>
                     <td>
-                        {{$user->created_at}}
+                        {{$user['created_at']}}
                     </td>
                     <td>
-                        {{$user->updated_at}}
+                        {{$user['updated_at']}}
                     </td>
                     <td>
-                        {{$user->email_verified_at}}
+                        {{$user['email_verified_at']}}
                     </td>
                     <td>
-                        {{$user->latest_diary}}
+                        {{$user['latest_diary']}}
                     </td>
                     <td>
-                        {{$user->oldest_diary}}
+                        {{$user['oldest_diary']}}
                     </td>
                     <td>
-                        {{$user->user_rank_id}}
+                        {{$user['user_rank_id']}}
                     </td>
                     <td>
-                        {{$user->user_role_id}}
+                        {{$user['user_role_id']}}
                     </td>
                     <td>
-                        {{$user->appearance_id}}
+                        {{$user['appearance_id']}}
                     </td>
                     <td>
-                        {{$user->is_showed_update_user_rank}}
+                        {{$user['is_showed_update_user_rank']}}
                     </td>
                     <td>
-                        {{$user->is_showed_update_system_info}}
+                        {{$user['is_showed_update_system_info']}}
                     </td>
                     <td>
-                        {{$user->is_showed_service_info}}
+                        {{$user['is_showed_service_info']}}
                     </td>
 
 
