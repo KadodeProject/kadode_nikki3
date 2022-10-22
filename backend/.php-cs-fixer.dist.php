@@ -27,7 +27,7 @@ return $config
         //例えば@php81はphp80,74などより古いバージョンのものを含んでいる
         '@PHP81Migration' => true, //https://cs.symfony.com/doc/ruleSets/PHP81Migration.html
         '@PHP80Migration:risky' => true, //https://cs.symfony.com/doc/ruleSets/PHP80MigrationRisky.html
-        //'@PHPUnit84Migration:risky' => true, //https://cs.symfony.com/doc/ruleSets/PHPUnit84MigrationRisky.html
+        '@PHPUnit84Migration:risky' => true, //https://cs.symfony.com/doc/ruleSets/PHPUnit84MigrationRisky.html
 
         //上記で適用されたもの以外や、上記でされると困るものを下記に書く
         'multiline_whitespace_before_semicolons' => true, //メソッドチェーンの末尾のセミコロンを改行する設定を上書きする https://mlocati.github.io/php-cs-fixer-configurator/#version:3.12|configurator|fixer:multiline_whitespace_before_semicolons
