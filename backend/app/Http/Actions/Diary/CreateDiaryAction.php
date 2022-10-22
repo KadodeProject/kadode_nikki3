@@ -17,7 +17,7 @@ final class CreateDiaryAction extends Controller
 {
     public function __invoke(CreateDiaryRequest $request): Redirector|RedirectResponse
     {
-        $request->date = $request->date ?? Carbon::today()->format('y-m-d');
+        $request->date ??= Carbon::today()->format('y-m-d');
 
         $form = [
             'user_id' => Auth::id(),
