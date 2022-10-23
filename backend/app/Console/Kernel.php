@@ -24,7 +24,11 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule): void
     {
-        // $schedule->command('inspire')->hourly();
+        // 1時間ごと
+        // 1時間ごとに日記コア機能の利用状況をDBに保持
+        $schedule->command('operationCoreTransition:generate')->hourly();
+
+        // 1日ごと
         $schedule->command('user:judgeUserRank')->dailyAt('02:10'); // ユーザーランク審査
         $schedule->command('backup:clean --disable-notifications')->dailyAt('04:10'); // バックアップ削除
         $schedule->command('backup:run --only-db')->dailyAt('04:10'); // バックアップ作成
