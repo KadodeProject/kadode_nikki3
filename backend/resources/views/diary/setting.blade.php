@@ -687,7 +687,7 @@
 
             <div class="settingContent md:w-1/2 w-full">
                 <h4 class="text-xl text-center mt-4">かどで日記形式の<br class="md:hidden">CSVファイル</h4>
-                <p class="text-sm text-center mb-4">かどで日記からエクスポートしていないものは動作保証外です</p>
+                <p class="text-sm text-center mb-4">かどで日記から文字コード:UTF-8でエクスポートしたCSVファイルのみが動作対象です</p>
                 <form class="text-center flex justify-center flex-wrap flex-col " method="POST"
                     enctype="multipart/form-data" action="{{route('ImportFromKadodeCsv')}}">
                     {{-- エラー --}}
@@ -733,13 +733,28 @@
     </div>
     <div class="setting">
         @include('components.settingHeading',['title'=>'日記のエクスポート'])
-        <p class="text-sm text-center kiwi-maru">※エクスポート時に文字コードをutf-8からWindows-31J(拡張Shift-JIS)に変換してCSVを作成します</p>
-        <div class="settingContentWrapper">
-            <form class="flex justify-center flex-wrap flex-col " method="POST" action="{{route('ExportByCsv')}}">
-                @csrf
-                <input type="submit" class="text-black px-2 md:w-1/2 w-full mx-auto bg-kn_2" value="csv形式でエクスポート">
-            </form>
-            {{-- <div class="settingContent"><a href="/export/diary">CSVエクスポート</a></div> --}}
+        <div class="settingContentWrapper flex justify-center items-center flex-wrap">
+            <div class="settingContent md:w-1/2 w-full">
+                <h4 class="text-xl text-center mt-4">CSVファイル(推奨)<br><span class="text-base">文字コード:UTF-8</h4>
+                <p class="text-sm text-center mb-4">
+                    かどで日記の内部と同じ文字コードのためデータの復元が可能ですがMSExcelなどでは文字化けします。</p>
+                <form class="flex justify-center flex-wrap flex-col " method="POST"
+                    action="{{route('ExportByCsvUtf8')}}">
+                    @csrf
+                    <input type="submit" class="text-black px-2 md:w-1/2 w-full mx-auto bg-kn_2" value="エクスポート">
+                </form>
+            </div>
+            <div class="settingContent md:w-1/2 w-full">
+                <h4 class="text-xl text-center mt-4">CSVファイル(非推奨)<br><span class="text-base">文字コード:拡張Shift-JIS</span>
+                </h4>
+                <p class="text-sm text-center mb-4">
+                    かどで日記はutf8mb4で保存されています。この文字コードを選択した場合、MSExcelなどで文字化けせず開けますが一部の文字が壊れます。</p>
+                <form class="flex justify-center flex-wrap flex-col " method="POST"
+                    action="{{route('ExportByCsvSJis')}}">
+                    @csrf
+                    <input type="submit" class="text-black px-2 md:w-1/2 w-full mx-auto bg-kn_2" value="エクスポート">
+                </form>
+            </div>
         </div>
     </div>
     <div class="setting">
