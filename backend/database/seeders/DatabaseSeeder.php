@@ -25,6 +25,7 @@ class DatabaseSeeder extends Seeder
             $this->call(UserTableSeeder::class);
             $this->call(userReadNotificationTableSeeder::class);
             $this->call(DiaryTableSeeder::class);
+            $this->call(OperationCoreTransitionPerHourTableSeeder::class);
         }
         $this->call(NERLabelSeeder::class);
         if (app()->isLocal() || app()->runningUnitTests()) {
