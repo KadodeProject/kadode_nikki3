@@ -87,30 +87,6 @@ services:
       - "./data/redis:/data"
       - "./infra/dev/redis/redis.conf:/etc/redis.conf"
 
-  # schemaspy:
-  #   image: schemaspy/schemaspy
-  #   volumes:
-  #     - ./infra/dev/schemaspy/output:/output
-  #     - ./infra/dev/schemaspy/drivers:/drivers
-  #   command: >
-  #     java -jar schemaspy.jar
-  #     -t mysql
-  #     -dp /drivers
-  #     -host db
-  #     -port 3306
-  #     -db ${DB_NAME:-kadode_local}
-  #     -u ${DB_USER:-phper}
-  #     -p ${DB_PASS:-secret}
-  #     -s ${DB_NAME:-kadode_local}
-  #     -connprops allowPublicKeyRetrieval\\=false useSSL\\=false
-
-  # schemaspy_web:
-  #   image: nginx:1.18-alpine
-  #   volumes:
-  #     - ./infra/dev/schemaspy/output:/usr/share/nginx/html
-  #   ports:
-  #     - ${SCHEMASPY_WEB_PORT:-8080}:80
-
   phpmyadmin:
     image: phpmyadmin/phpmyadmin
     environment:

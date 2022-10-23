@@ -7,14 +7,12 @@ namespace App\Http\Actions\Diary;
 use App\Http\Controllers\Controller;
 use App\UseCases\Diary\GetDiariesDateNextToDiaryById;
 use App\UseCases\Diary\GetDiaryByUuid;
-use App\UseCases\Diary\ShapeContentWithNlp;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
 
 final class ShowSingleDiaryAction extends Controller
 {
     public function __construct(
-        private ShapeContentWithNlp $shapeContentWithNlp,
         private GetDiaryByUuid $getDiaryByUuid,
         private GetDiariesDateNextToDiaryById $getDiariesDateNextToDiaryById,
     ) {

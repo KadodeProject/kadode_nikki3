@@ -16,13 +16,13 @@ return new class() extends Migration {
             $table->id();
             $table->unsignedBigInteger('diary_id')->comment('日記のid');
             $table->integer('statistic_progress')->nullable()->comment('生成状況(生成まで時間かかるので)');
-            $table->timestamps();
-
             $table->json('sentence')->nullable()->comment('一文ごとの位置(係り受けで使う)');
             $table->json('chunk')->nullable()->comment('係り受け構造');
             $table->json('token')->nullable()->comment('形態素分析された中身を格納 品詞(POS)、原形(lemma)などが存在');
             $table->json('affiliation')->nullable()->comment('固有表現抽出');
             $table->unsignedBigInteger('char_length')->nullable()->comment('文字数');
+
+            $table->timestamps();
 
             // 他テーブルとの関連付け
             $table->foreign('diary_id')

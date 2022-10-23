@@ -22,7 +22,7 @@ class calculateDiary
         foreach ($diaries as $diary) {
             $diaryCharacters = mb_strlen($diary->content);
             // 合計カウント
-            ++$diaryCounter;
+            $diaryCounter++;
             $diaryContentCharactersCounter += $diaryCharacters;
 
             // 月ごとカウント

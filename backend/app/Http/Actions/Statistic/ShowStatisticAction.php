@@ -48,7 +48,7 @@ class ShowStatisticAction extends Controller
                  * 名詞と形容詞の登場順.
                  */
 
-                // 一度変数に代入しないと怒られるのでこうしている。
+                /** @var array<int> 一度変数に代入しないと怒られるのでこうしている。 */
                 $statistic_month_diaries = $statistic->month_diaries; // 平均文字数で利用
 
                 /**
@@ -58,7 +58,7 @@ class ShowStatisticAction extends Controller
                 $i = 0;
                 foreach ($statistic->month_words as $month_word) {
                     $tmp[] = $month_word / $statistic_month_diaries[$i];
-                    ++$i;
+                    $i++;
                 }
                 $statistic->month_words_per_diary = $tmp;
 
@@ -82,7 +82,7 @@ class ShowStatisticAction extends Controller
                     $writingRate = ($statistic_month_diaries[$i] / $lengthThisMonth) * 100;
 
                     $monthWritingRate[] = $writingRate;
-                    ++$i;
+                    $i++;
                 }
                 $statistic->monthWritingRate = $monthWritingRate;
 
@@ -126,7 +126,7 @@ class ShowStatisticAction extends Controller
 
                 $width = ceil(($max - $min) / 20); // 20分割、切り上げ,20個生成するので、どう転んでも入り切るように切り上げ
                 $i = $min;
-                for ($n = 1; $n <= 20; ++$n) {
+                for ($n = 1; $n <= 20; $n++) {
                     $char_length_frequency_distribution[$i.'-'.($i + $width)] = 0; // 707-708みたいな感じ xx以上-xx未満
                     $frequencies[] = $i;
                     $i += $width;
@@ -135,7 +135,7 @@ class ShowStatisticAction extends Controller
                 foreach ($char_length_list as $value) {
                     foreach (array_reverse($frequencies) as $frequency) {
                         if ($value >= $frequency) {
-                            ++$char_length_frequency_distribution[$frequency.'-'.($frequency + $width)];
+                            $char_length_frequency_distribution[$frequency.'-'.($frequency + $width)]++;
                             // \Log::debug($value."は".($frequency)."-".($frequency+$width)."に入る");
                             break;
                         }
@@ -167,7 +167,7 @@ class ShowStatisticAction extends Controller
                     $affiliation = json_decode($value->affiliation, true);
                     foreach ($affiliation as $words) {
                         if ('Animation' === $words['form']) {
-                            ++$i;
+                            $i++;
                             $anime_timeline[] = [$i, $words['lemma'], $value->date];
                         }
                     }

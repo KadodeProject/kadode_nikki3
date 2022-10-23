@@ -50,7 +50,7 @@ class ImportFromTukiniTxtAction extends Controller
             /** @var int */
             $userId = Auth::id();
 
-            /** @var array<{date:string,title:string,content:string}> */
+            /** @var array<array{date:string,title:string,content:string}> */
             $importDataProceed = [];
 
             $rawTxt = file_get_contents('importTxt/'.$tmpName); // txt読み込み、改行までちゃんとイケてる
@@ -80,7 +80,7 @@ class ImportFromTukiniTxtAction extends Controller
                         'title' => $titleTxt[$arrayCounter],
                         'content' => $contentTxt[$arrayCounter],
                     ];
-                    ++$arrayCounter;
+                    $arrayCounter++;
                 }
             }
 

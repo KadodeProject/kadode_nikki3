@@ -22,7 +22,7 @@ class UpdateAllStatisticAction extends Controller
     public function __invoke(): Redirector|RedirectResponse
     {
         $dt = new Carbon();
-        $yesterday = $dt->subHour(24);
+        $yesterday = $dt->subHours(24);
         $userId = Auth::id();
         $static = Statistic::where('user_id', $userId)->first();
 
@@ -33,7 +33,7 @@ class UpdateAllStatisticAction extends Controller
 
             $data = [
                 'statistic_progress' => 1,
-                'updated_at' => $dt->addHour(24),
+                'updated_at' => $dt->addHours(24),
             ];
             $static->update($data);
             // 自然言語処理↓

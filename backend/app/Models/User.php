@@ -4,20 +4,22 @@ declare(strict_types=1);
 
 namespace App\Models;
 
+use Carbon\Carbon;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Fortify\TwoFactorAuthenticatable;
-// use Laravel\Jetstream\HasProfilePhoto;
+use Laravel\Jetstream\HasProfilePhoto;
 use Laravel\Sanctum\HasApiTokens;
 
 class User extends Authenticatable implements MustVerifyEmail
 {
     use HasApiTokens;
     use HasFactory;
-    // use HasProfilePhoto;
+    use HasProfilePhoto;
     use Notifiable;
     use TwoFactorAuthenticatable;
 
@@ -98,6 +100,27 @@ class User extends Authenticatable implements MustVerifyEmail
 
     // format(年月日)するために
     protected $dates = ['user_rank_updated_at'];
+
+    /**
+     * $castsではtoArray,toJsonでUTCになってしまうため、アクセサで上書きする.
+     */
+    public function createdAt(): Attribute
+    {
+        return new Attribute(
+            get: fn ($value) => Carbon::parse($value)->timezone('Asia/Tokyo')->format('Y-m-d H:i:s'),
+        );
+    }
+
+    /**
+     * $castsではtoArray,toJsonでUTCになってしまうため、アクセサで上書きする.
+     */
+    public function updatedAt(): Attribute
+    {
+        return new Attribute(
+            get: fn ($value) => Carbon::parse($value)->timezone('Asia/Tokyo')->format('Y-m-d H:i:s'),
+        );
+    }
+    // email_verified_atをキャストするとemailの認証が吹っ飛ぶのでpublic function emailVerifiedAt(): Attributeはしちゃダメ
 
     public function diary()
     {

@@ -13,7 +13,7 @@ use Carbon\CarbonImmutable;
 class GetDiariesDateNextToDiaryById
 {
     /**
-     * @return array<{next:array<{date:DateTime,uuid:string}>,former:array<{date:DateTime,uuid:string}>}>
+     * @return array{next:array{date:DateTime,uuid:string},former:array{date:DateTime,uuid:string}}
      *
      * @todo ここは1日記1日付が成り立つ前提で作られている
      */

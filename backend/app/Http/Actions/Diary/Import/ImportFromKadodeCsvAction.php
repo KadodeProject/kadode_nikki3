@@ -56,7 +56,7 @@ class ImportFromKadodeCsvAction extends Controller
             $config->setFromCharset('sjis-win');
             $config->setIgnoreHeaderLine(true);
 
-            /** @var array<{date:string,title:string,content:string}> */
+            /** @var array<array{date:string,title:string,content:string}> */
             $importDataProceed = [];
 
             // CSVのからデータを取得してuescaseに投げられる形に変換
