@@ -27,7 +27,7 @@ class GetSameDayDiariesByDate
      */
     public function invoke(Carbon|CarbonImmutable $date): array
     {
-        $diaries = Diary::with('StatisticPerDate')->whereMonth('date', $date->month)->whereDay('date', $date->day)->where('date', '!=', $date)->orderby('date', 'desc')->get();
+        $diaries = Diary::with('statisticPerDate')->whereMonth('date', $date->month)->whereDay('date', $date->day)->where('date', '!=', $date)->orderby('date', 'desc')->get();
 
         /** ->get()だと必ずcollationが返ってくるので条件分岐不要(0の場合は内部からのcollationが来るのでループ勝手に飛ぶ) */
         $arrangedDiaries = [];

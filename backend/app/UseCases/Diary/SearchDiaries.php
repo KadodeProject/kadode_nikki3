@@ -29,7 +29,7 @@ class SearchDiaries
      */
     public function invoke(string $searchWords): array
     {
-        $diaries = Diary::with('StatisticPerDate')->where('content', 'like', "%{$searchWords}%")->orderby('date', 'desc')->take(200)->get();
+        $diaries = Diary::with('statisticPerDate')->where('content', 'like', "%{$searchWords}%")->orderby('date', 'desc')->take(200)->get();
 
         /** ->get()だと必ずcollationが返ってくるので条件分岐不要(0の場合は内部からのcollationが来るのでループ勝手に飛ぶ) */
         $arrangedDiaries = [];

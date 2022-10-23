@@ -29,7 +29,7 @@ class GetDiariesByMonth
      */
     public function invoke(int $year, int $month): array
     {
-        $diaries = Diary::with('StatisticPerDate')->whereYear('date', $year)->whereMonth('date', $month)->orderby('date', 'desc')->get();
+        $diaries = Diary::with('statisticPerDate')->whereYear('date', $year)->whereMonth('date', $month)->orderby('date', 'desc')->get();
 
         /** ->get()だと必ずcollationが返ってくるので条件分岐不要(0の場合は内部からのcollationが来るのでループ勝手に飛ぶ) */
         $arrangedDiaries = [];
