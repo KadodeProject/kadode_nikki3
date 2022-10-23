@@ -217,14 +217,14 @@ namespace App\Models{
  * @property int $user_total 合計ユーザー数
  * @property int $diary_total 合計日記数
  * @property int $statistic_per_date_total 合計統計処理済み日記数
- * @property string $timestamp 日時
+ * @property \Illuminate\Support\Carbon $created_at 生成日時
  * @method static \Illuminate\Database\Eloquent\Builder|OperationCoreTransitionPerHour newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|OperationCoreTransitionPerHour newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|OperationCoreTransitionPerHour query()
+ * @method static \Illuminate\Database\Eloquent\Builder|OperationCoreTransitionPerHour whereCreatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|OperationCoreTransitionPerHour whereDiaryTotal($value)
  * @method static \Illuminate\Database\Eloquent\Builder|OperationCoreTransitionPerHour whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|OperationCoreTransitionPerHour whereStatisticPerDateTotal($value)
- * @method static \Illuminate\Database\Eloquent\Builder|OperationCoreTransitionPerHour whereTimestamp($value)
  * @method static \Illuminate\Database\Eloquent\Builder|OperationCoreTransitionPerHour whereUserTotal($value)
  */
 	class OperationCoreTransitionPerHour extends \Eloquent {}
