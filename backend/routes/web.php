@@ -73,10 +73,12 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function (): void {
     // 検索
     Route::post('/search', \App\Http\Actions\Diary\Search\SimpleSearchAction::class)->name('SimpleSearch');
     Route::get('/search', \App\Http\Actions\Diary\Search\ShowSimpleSearchAction::class)->name('ShowSimpleSearch');
-    // 日記の入出力
+    // 日記のインポート
     Route::post('/import/diary/kadode', \App\Http\Actions\Diary\Import\ImportFromKadodeCsvAction::class)->name('ImportFromKadodeCsv');
     Route::post('/import/diary/tukini', \App\Http\Actions\Diary\Import\ImportFromTukiniTxtAction::class)->name('ImportFromTukiniTxt');
-    Route::post('/export/diary', \App\Http\Actions\Diary\Export\ExportByCsvAction::class)->name('ExportByCsv');
+    // 日記のエクスポート
+    Route::post('/export/diary/csv/sjis', \App\Http\Actions\Diary\Export\ExportByCsvSJisAction::class)->name('ExportByCsvSJis');
+    Route::post('/export/diary/csv/utf8', \App\Http\Actions\Diary\Export\ExportByCsvUtf8Action::class)->name('ExportByCsvUtf8');
     // セキュリティ
     Route::middleware(['password.confirm'])->group(function (): void {
         Route::get('/security', \App\Http\Actions\ShowSecurityAction::class)->name('ShowSecurity');

@@ -53,7 +53,7 @@ class ImportFromKadodeCsvAction extends Controller
 
             // 文字コードをUTF-8に変換、CSVのヘッダー行を無視
             $config->setToCharset('UTF-8');
-            $config->setFromCharset('sjis-win');
+            $config->setFromCharset('UTF-8');
             $config->setIgnoreHeaderLine(true);
 
             /** @var array<array{date:string,title:string,content:string}> */

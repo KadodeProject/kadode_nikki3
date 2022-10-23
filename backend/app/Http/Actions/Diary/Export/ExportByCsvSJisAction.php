@@ -8,9 +8,8 @@ use App\Models\Diary;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Routing\Redirector;
 use Illuminate\Support\Str;
-use Log;
 
-class ExportByCsvAction
+class ExportByCsvSJisAction
 {
     public function __invoke(): Redirector|RedirectResponse
     {
@@ -43,12 +42,7 @@ class ExportByCsvAction
         readfile("exportCsv/{$uuid}.csv");
 
         $file = "exportCsv/{$uuid}.csv";
-        if (unlink($file)) {
-            // echo $file.'の削除に成功しました。';
-            Log::debug("{$file}.の削除成功");
-        } else {
-            Log::debug("{$file}.の削除失敗");
-        }
+        unlink($file);
 
         return redirect(route('ShowSetting'));
     }
