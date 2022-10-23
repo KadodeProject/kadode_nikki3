@@ -25,7 +25,6 @@ class OperationCoreTransitionPerHourTableSeeder extends Seeder
                 'statistic_per_date_total' => $i * 3,
                 'created_at' => $time->format('Y-m-d H:i:s'),
             ];
-            var_dump($time->format('Y-m-d H:i:s'));
         }
 
         DB::table('operation_core_transition_per_hours')->insert($param);

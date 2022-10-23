@@ -97,13 +97,13 @@ namespace App\Models{
  * @property int $id
  * @property int $diary_id 日記のid
  * @property int|null $statistic_progress 生成状況(生成まで時間かかるので)
- * @property \Illuminate\Support\Carbon|null $created_at
- * @property \Illuminate\Support\Carbon|null $updated_at
  * @property mixed|null $sentence 一文ごとの位置(係り受けで使う)
  * @property mixed|null $chunk 係り受け構造
  * @property mixed|null $token 形態素分析された中身を格納 品詞(POS)、原形(lemma)などが存在
  * @property mixed|null $affiliation 固有表現抽出
  * @property int|null $char_length 文字数
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
  * @method static \Illuminate\Database\Eloquent\Builder|DiaryProcessed newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|DiaryProcessed newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|DiaryProcessed query()
@@ -207,6 +207,27 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|NlpPackageUser whereUserId($value)
  */
 	class NlpPackageUser extends \Eloquent {}
+}
+
+namespace App\Models{
+/**
+ * App\Models\OperationCoreTransitionPerHour
+ *
+ * @property int $id
+ * @property int $user_total 合計ユーザー数
+ * @property int $diary_total 合計日記数
+ * @property int $statistic_per_date_total 合計統計処理済み日記数
+ * @property string $timestamp 日時
+ * @method static \Illuminate\Database\Eloquent\Builder|OperationCoreTransitionPerHour newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|OperationCoreTransitionPerHour newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|OperationCoreTransitionPerHour query()
+ * @method static \Illuminate\Database\Eloquent\Builder|OperationCoreTransitionPerHour whereDiaryTotal($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|OperationCoreTransitionPerHour whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|OperationCoreTransitionPerHour whereStatisticPerDateTotal($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|OperationCoreTransitionPerHour whereTimestamp($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|OperationCoreTransitionPerHour whereUserTotal($value)
+ */
+	class OperationCoreTransitionPerHour extends \Eloquent {}
 }
 
 namespace App\Models{
