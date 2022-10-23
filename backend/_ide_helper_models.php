@@ -532,6 +532,7 @@ namespace App\Models{
  * @property \Illuminate\Support\Carbon|null $user_rank_updated_at ユーザーランクアップデート日
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Diary[] $diary
  * @property-read int|null $diary_count
+ * @property-read string $profile_photo_url
  * @property-read \Illuminate\Notifications\DatabaseNotificationCollection|\Illuminate\Notifications\DatabaseNotification[] $notifications
  * @property-read int|null $notifications_count
  * @property-read \Illuminate\Database\Eloquent\Collection|\Laravel\Sanctum\PersonalAccessToken[] $tokens

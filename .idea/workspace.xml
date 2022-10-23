@@ -5,6 +5,9 @@
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/backend/app/Models/Diary.php" beforeDir="false" afterPath="$PROJECT_DIR$/backend/app/Models/Diary.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/backend/app/Models/Osirase.php" beforeDir="false" afterPath="$PROJECT_DIR$/backend/app/Models/Osirase.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/phpstan.neon" beforeDir="false" afterPath="$PROJECT_DIR$/backend/phpstan.neon" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/DEV/04_dev_infra/03_dusk.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/DEV/04_dev_infra/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/docs/DEV/04_dev_infra/README.md" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -34,7 +37,6 @@
     <setting file="file://$PROJECT_DIR$/backend/app/Http/Actions/Diary/ShowMonthDiaryAction.php" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/backend/app/Providers/FortifyServiceProvider.php" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/backend/app/Actions/Fortify/CreateNewUser.php" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" />
-    <setting file="file://$APPLICATION_CONFIG_DIR$/consoles/db/59d30bfc-4572-4645-9f68-02b6a36b7ef9/console.sql" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -260,6 +262,7 @@
       <workItem from="1665443635101" duration="595000" />
       <workItem from="1665925593996" duration="580000" />
       <workItem from="1666443625229" duration="435000" />
+      <workItem from="1666444309996" duration="1253000" />
     </task>
     <servers />
   </component>

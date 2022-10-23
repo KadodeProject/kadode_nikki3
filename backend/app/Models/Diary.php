@@ -45,7 +45,7 @@ class Diary extends Model
 
     public function statisticPerDate(): HasOne
     {
-        return $this->hasOne(StatisticPerDate::class, 'diary_id', 'id');
+        return $this->hasOne(StatisticPerDate::class);
     }
 
     public function diaryProcessed(): HasOne
