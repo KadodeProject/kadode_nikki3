@@ -27,8 +27,8 @@
             </p>
             @else
             <p class="md:ml-12 md:mt-12 p-2 text-xl borer-2 border-kn_3 kiwi-maru"><a style="vertical-align: middle;"
-                    href="{{route('ShowSingleDiary',['uuid'=>$dateAndUuidBA['next']['uuid']])}}">
-                    {{$$dateAndUuidBA['former']['date']}}<span class="material-icons">arrow_forward</span></a></p>
+                    href="{{route('ShowSingleDiary',['uuid'=>$dateAndUuidBA['former']['uuid']])}}">
+                    {{$dateAndUuidBA['former']['date']}}<span class="material-icons">arrow_forward</span></a></p>
             @endempty
         </nav>
         <nav class="order-3 md:order-2 ">

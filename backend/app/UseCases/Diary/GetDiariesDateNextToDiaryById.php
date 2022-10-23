@@ -20,11 +20,11 @@ class GetDiariesDateNextToDiaryById
     public function invoke(string $date): array
     {
         $carbonInstance = new CarbonImmutable($date);
-        $yesterday = $carbonInstance->addDay();
-        $tomorrow = $carbonInstance->subDay();
+        $yesterday = $carbonInstance->subDay()->format('Y-m-d');
+        $tomorrow = $carbonInstance->addDay()->format('Y-m-d');
 
         // 日付大きい順に2つinで取ることでクエリ数を削減
-        $bothDiaries = Diary::whereIn('date', [$yesterday->format('Y-m-d'), $tomorrow->format('Y-m-d')])->orderBy('date', 'desc')->limit(2)->get(['date', 'uuid'])->toArray();
+        $bothDiaries = Diary::whereIn('date', [$yesterday, $tomorrow])->orderBy('date', 'desc')->limit(2)->get(['date', 'uuid'])->toArray();
         /*
          * パターン
          * 日記0,日記1(前日のみ、翌日のみ),日記2
@@ -43,11 +43,11 @@ class GetDiariesDateNextToDiaryById
         // @todo uuid廃止してdateだけでURL生成するようにしたいので後ほどこの配列もuuidからidに変えたい
         return [
             'next' => [
-                'date' => $tomorrow->toDateTime(),
+                'date' => $tomorrow,
                 'uuid' => $next_uuid,
             ],
             'former' => [
-                'date' => $yesterday->toDateTime(),
+                'date' => $yesterday,
                 'uuid' => $former_uuid,
             ],
         ];
