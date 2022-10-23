@@ -120,16 +120,7 @@ class User extends Authenticatable implements MustVerifyEmail
             get: fn ($value) => Carbon::parse($value)->timezone('Asia/Tokyo')->format('Y-m-d H:i:s'),
         );
     }
-
-    /**
-     * $castsではtoArray,toJsonでUTCになってしまうため、アクセサで上書きする.
-     */
-    public function emailVerifiedAt(): Attribute
-    {
-        return new Attribute(
-            get: fn ($value) => Carbon::parse($value)->timezone('Asia/Tokyo')->format('Y-m-d H:i:s'),
-        );
-    }
+    // email_verified_atをキャストするとemailの認証が吹っ飛ぶのでpublic function emailVerifiedAt(): Attributeはしちゃダメ
 
     public function diary()
     {
