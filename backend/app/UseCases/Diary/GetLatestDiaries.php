@@ -29,7 +29,7 @@ class GetLatestDiaries
      */
     public function invoke(): array
     {
-        $diaries = Diary::with('StatisticPerDate')->orderby('date', 'desc')->take(10)->get();
+        $diaries = Diary::with('statisticPerDate')->orderby('date', 'desc')->take(10)->get();
 
         /** ->get()だと必ずcollationが返ってくるので条件分岐不要(0の場合は内部からのcollationが来るのでループ勝手に飛ぶ) */
         $arrangedDiaries = [];

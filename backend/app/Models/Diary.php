@@ -50,7 +50,7 @@ class Diary extends Model
 
     public function diaryProcessed(): HasOne
     {
-        return $this->hasOne(DiaryProcessed::class, 'diary_id');
+        return $this->hasOne(DiaryProcessed::class);
     }
 
     /**
