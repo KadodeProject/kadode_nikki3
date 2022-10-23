@@ -3,11 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="aa6216b5-3a8a-49eb-9987-81fd25ac7924" name="変更" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/app/Models/Diary.php" beforeDir="false" afterPath="$PROJECT_DIR$/backend/app/Models/Diary.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/app/Models/Osirase.php" beforeDir="false" afterPath="$PROJECT_DIR$/backend/app/Models/Osirase.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/phpstan.neon" beforeDir="false" afterPath="$PROJECT_DIR$/backend/phpstan.neon" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/DEV/04_dev_infra/03_dusk.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/DEV/04_dev_infra/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/docs/DEV/04_dev_infra/README.md" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -262,7 +257,7 @@
       <workItem from="1665443635101" duration="595000" />
       <workItem from="1665925593996" duration="580000" />
       <workItem from="1666443625229" duration="435000" />
-      <workItem from="1666444309996" duration="1253000" />
+      <workItem from="1666444309996" duration="2309000" />
     </task>
     <servers />
   </component>

@@ -16,6 +16,7 @@
 
 [とにかくローカル開発環境を構築したい](04_dev_infra/README.md#初期構築)
 
+[ドメインに関して](00_domains/README.md)  
 [バックエンドに関して](01_backend/README.md)  
 [自然言語処理に関して](02_nlp/README.md)  
 [フロントエンドに関して](03_frontend/README.md)  
