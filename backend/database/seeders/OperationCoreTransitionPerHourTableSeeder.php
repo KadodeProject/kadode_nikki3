@@ -27,6 +27,11 @@ class OperationCoreTransitionPerHourTableSeeder extends Seeder
             ];
         }
 
-        DB::table('operation_core_transition_per_hours')->insert($param);
+        /*
+         * 上の配列では日記の数を日付に合わせて増加したいので日付の大きい順に配列に入れている
+         * しかし、実際データベース上ではidが大きいほど後の日付が入る。
+         * この違いがAPIの出し順の違いも生み出しているのが現状なので、インサート時にひっくり返して帳尻合わせする
+         */
+        DB::table('operation_core_transition_per_hours')->insert(array_reverse($param));
     }
 }
