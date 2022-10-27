@@ -14,7 +14,8 @@ final class GetOperationCoreTransitionLatestWeek extends Controller
     public function __invoke(): JsonResponse
     {
         return response()->json(
-            OperationCoreTransitionPerHour::where('created_at', '>=', Carbon::now()->subWeek())->get()
+            // idが遅いほど新しいデータなのでidの降順にすることで手前ほど新しいデータにする
+            OperationCoreTransitionPerHour::where('created_at', '>=', Carbon::now()->subWeek())->orderBy('id', 'desc')->get()
         );
     }
 }

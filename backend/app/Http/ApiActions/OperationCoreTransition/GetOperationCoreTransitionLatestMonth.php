@@ -14,7 +14,8 @@ final class GetOperationCoreTransitionLatestMonth extends Controller
     public function __invoke(): JsonResponse
     {
         return response()->json(
-            OperationCoreTransitionPerHour::where('created_at', '>=', Carbon::now()->subMonth())->get()
+            // idが遅いほど新しいデータなのでidの降順にすることで手前ほど新しいデータにする
+            OperationCoreTransitionPerHour::where('created_at', '>=', Carbon::now()->subMonth())->orderBy('id', 'desc')->get()
         );
     }
 }
