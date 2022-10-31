@@ -36,8 +36,13 @@ class GCSCommand extends Command
      */
     public function handle(): int
     {
-        $client = new StorageClient();
-        $bucket = $client->bucket(config('gcs.packet')); // 作成したバケット
+        $packetName = config('gcs.packet');
+        $url = file_get_contents(config('gcs.keyPath'));
+        $client = new StorageClient([
+            'projectId' => $packetName,
+            'keyFile' => json_decode($url, true),
+        ]);
+        $bucket = $client->bucket($packetName); // 作成したバケット
 
         /**
          * ディレクトリハンドルの取得.
