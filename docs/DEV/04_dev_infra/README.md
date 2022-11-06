@@ -4,6 +4,7 @@
 [Docker について](02_docker.md)  
 [テストについて](03_test.md)
 [Dusk(ブラウザテスト)について](04_dusk.md)
+[Redis について](05_redis.md)
 
 ## 必要なもの
 
