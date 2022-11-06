@@ -43,22 +43,27 @@ class GenerateMachineResourceCommand extends Command
             $startUnixTime = time();
             // CPU、メモリ、ディスクの使用率を測定 ローカル環境など値でない場合は0になるように ?? で最後分岐している
             /**
+             * topの-bn1でバッチモード1回だけ実行を利用 正規表現でidの前の値を抽出して、それを100から減じることでCPU使用率を出す.
+             * 謎に改行コードが入るのでdoubleキャストで数値だけにする.
+             *
              * @var float
-             *            topの-bn1でバッチモード1回だけ実行を利用 正規表現でidの前の値を抽出して、それを100から減じることでCPU使用率を出す
              */
-            $cpuPercent = shell_exec('top -bn1 | grep "Cpu(s)" | sed "s/.*, *\([0-9.]*\)%* id.*/\1/" | awk \'{print 100 - $1}\'') ?? 0.0; // CPU使用率の取得
+            $cpuPercent = (float) shell_exec('top -bn1 | grep "Cpu(s)" | sed "s/.*, *\([0-9.]*\)%* id.*/\1/" | awk \'{print 100 - $1}\'') ?? 0.0; // CPU使用率の取得
 
             /**
+             * freeのtotalとfreeの項目から算出.
+             *
              * @var float
-             *            freeのtotalとfreeの項目から算出
              */
-            $memoryPercent = shell_exec("free -m | grep Mem | awk  '{print $4/$2}'") * 100; // メモリ使用率の取得
+            $memoryPercent = (float) shell_exec("free -m | grep Mem | awk  '{print $4/$2}'") * 100; // メモリ使用率の取得
 
             /**
+             * dfの/dev/vda1のUse%の値を使う(ここはサーバにより名前違う可能性があり、サーバー移行後にgrepできるか分からない)
+             * substrでもできるが、10%未満の時の条件分岐が手間なため%を置換することで対処.
+             *
              * @var float | ""
-             *            dfの/dev/vda1のUse%の値を使う(ここはサーバにより名前違う可能性があり、サーバー移行後にgrepできるか分からない)
              */
-            $diskPercentRaw = substr(shell_exec("df -h | grep /dev/vda1 | awk '{print $5}'") ?? '', 0, -1);
+            $diskPercentRaw = (float) str_replace('%', '', shell_exec("df -h | grep /dev/vda1 | awk '{print $5}'") ?? '');
 
             /** @var float */
             $diskPercent = '' === $diskPercentRaw ? 0.0 : $diskPercentRaw;
