@@ -63,13 +63,13 @@ class GenerateMachineResourceCommand extends Command
             /** @var float */
             $diskPercent = '' === $diskPercentRaw ? 0.0 : $diskPercentRaw;
             // 受け取るときのコストを下げるために-つなぎにする cpu-memory-disk
-            $value = $cpuPercent . '-' . $memoryPercent . '-' . $diskPercent;
+            $value = $cpuPercent.'-'.$memoryPercent.'-'.$diskPercent;
 
             /**
              * @todo ここはUNIXタイム依存なので2038年に壊れる可能性がある(64bitならOK) 実装変更も検討
              * UNIXタイムにすることで取り出す時に24時間を超えた時など面倒な分岐を考えなくて良いようにする
              */
-            $key = 'kn_machine_resource:' . $serverName . '-' . $startUnixTime;
+            $key = 'kn_machine_resource:'.$serverName.'-'.$startUnixTime;
             Redis::set($key, $value); // 第2引数に[key,value](第3,4引数でexpire(s)を設定できるが、うまく効いていないため別途expireで指示)
             Redis::expire($key, 60 * 30); // 30分でexpire
             // ループ内の先端から1秒待つ sleep(1)だと1秒普通にまつが、これだと経過時間判定のため、間に処理した時間が引けてより厳密になる
