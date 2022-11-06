@@ -17,7 +17,7 @@ class GenerateOperationCoreTransitionCommand extends Command
      *
      * @var string
      */
-    protected $signature = 'operationCoreTransition:generate';
+    protected $signature = 'generate:operationCoreTransition';
 
     /**
      * The console command description.
