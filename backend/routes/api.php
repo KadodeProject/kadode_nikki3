@@ -20,8 +20,14 @@ Route::middleware('auth:sanctum')->get('/user', fn (Request $request) => $reques
 
 Route::get('/', App\Http\ApiActions\GetApiStatus::class)->name('getApiStatus');
 
+// ユーザー、日記、統計の取得API
 Route::get('OperationCoreTransitionPerHours/relative/day', \App\Http\ApiActions\OperationCoreTransition\GetOperationCoreTransitionLatestDay::class)->name('GetOperationCoreTransitionLatestDay');
 Route::get('OperationCoreTransitionPerHours/relative/week', \App\Http\ApiActions\OperationCoreTransition\GetOperationCoreTransitionLatestWeek::class)->name('GetOperationCoreTransitionLatestWeek');
 Route::get('OperationCoreTransitionPerHours/relative/month', \App\Http\ApiActions\OperationCoreTransition\GetOperationCoreTransitionLatestMonth::class)->name('GetOperationCoreTransitionLatestMonth');
 
+// サーバーのリソース取得API
 Route::get('MachineResource/relative/30min', \App\Http\ApiActions\MachineResource\GetMachineResourceLatest30Minutes::class)->name('GetMachineResourceLatest30Minutes');
+
+// お知らせ一覧取得API
+Route::get('Osirase/all', \App\Http\ApiActions\Osirase\GetAllOsiraseAction::class)->name('GetAllOsiraseAction');
+Route::get('Osirase/latest', \App\Http\ApiActions\Osirase\GetLatestOsiraseAction::class)->name('GetLatestOsiraseAction');
