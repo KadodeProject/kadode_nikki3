@@ -31,3 +31,7 @@ Route::get('MachineResource/relative/30min', \App\Http\ApiActions\MachineResourc
 // お知らせ一覧取得API
 Route::get('Osirase/all', \App\Http\ApiActions\Osirase\GetAllOsiraseAction::class)->name('GetAllOsiraseAction');
 Route::get('Osirase/latest', \App\Http\ApiActions\Osirase\GetLatestOsiraseAction::class)->name('GetLatestOsiraseAction');
+
+// リリースノート一覧取得API
+Route::get('ReleaseNote/all', \App\Http\ApiActions\ReleaseNote\GetAllReleaseNoteAction::class)->name('GetAllReleaseNoteAction');
+Route::get('ReleaseNote/latest', \App\Http\ApiActions\ReleaseNote\GetLatestReleaseNoteAction::class)->name('GetLatestReleaseNoteAction');
