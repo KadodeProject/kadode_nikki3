@@ -239,8 +239,6 @@
         @endforeach
     </div>
     @endempty
-
-
 </div>
-
+@vite(['resources/js/diaryContentScroller.js'])
 @endsection

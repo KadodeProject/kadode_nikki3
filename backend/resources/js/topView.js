@@ -1,5 +1,5 @@
 /*
-    CodePenから持ってきた、codepenで公開されているのでMITライセンスである
+    MITライセンスのソースコードを利用
     */
 /*
     Copyright (c) June 1, 2015 Tuomas Pöyry

@@ -11,6 +11,7 @@ export default defineConfig({
                 "resources/js/app.js",
                 "resources/js/common.js",
                 "resources/js/topView.js",
+                "resources/js/diaryContentScroller.js",
                 "resources/js/statistics/totalStatistics.js",
                 "resources/js/statistics/shortStatistics.js",
                 "resources/js/statistics/drawWordCloud.js",
