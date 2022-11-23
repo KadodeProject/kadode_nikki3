@@ -33,10 +33,11 @@ class Kernel extends ConsoleKernel
         // 1時間ごとに平均のサーバーリソースをDBに格納
 
         // 1日ごと
-        $schedule->command('user:judgeUserRank')->dailyAt('02:10'); // ユーザーランク審査
-        $schedule->command('backup:clean --disable-notifications')->dailyAt('04:10'); // バックアップ削除
-        $schedule->command('backup:run --only-db')->dailyAt('04:10'); // バックアップ作成
-        $schedule->command('gcs:backup')->dailyAt('04:10'); // バックアップをgcsに
+        $schedule->command('user:judgeUserRank')->dailyAt('03:10'); // ユーザーランク審査
+        $schedule->command('nlp:runLegacyNLPOperation')->dailyAt('03:20'); // 統計処理
+        $schedule->command('backup:clean --disable-notifications')->dailyAt('05:10'); // バックアップ削除
+        $schedule->command('backup:run --only-db')->dailyAt('05:12'); // バックアップ作成
+        $schedule->command('gcs:backup')->dailyAt('05:15'); // バックアップをgcsに
     }
 
     /**
