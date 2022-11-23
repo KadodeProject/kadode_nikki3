@@ -26,6 +26,7 @@ Route::get('OperationCoreTransitionPerHours/relative/week', \App\Http\ApiActions
 Route::get('OperationCoreTransitionPerHours/relative/month', \App\Http\ApiActions\OperationCoreTransition\GetOperationCoreTransitionLatestMonth::class)->name('GetOperationCoreTransitionLatestMonth');
 
 // サーバーのリソース取得API
+Route::get('MachineResource/relative/1min', \App\Http\ApiActions\MachineResource\GetMachineResourceLatest1Minutes::class)->name('GetMachineResourceLatest1Minutes');
 Route::get('MachineResource/relative/30min', \App\Http\ApiActions\MachineResource\GetMachineResourceLatest30Minutes::class)->name('GetMachineResourceLatest30Minutes');
 Route::get('MachineResource/relative/day', \App\Http\ApiActions\MachineResource\GetMachineResourceLatestDay::class)->name('GetMachineResourceLatestDay');
 Route::get('MachineResource/relative/week', \App\Http\ApiActions\MachineResource\GetMachineResourceLatestWeek::class)->name('GetMachineResourceLatestWeek');
