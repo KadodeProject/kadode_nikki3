@@ -28,7 +28,7 @@ class Kernel extends ConsoleKernel
         // (実際には2秒ごと) サーバリソースをredisに書き込む
         $schedule->command('measure:machineResourceFor1minToRedis')->everyMinute();
         // 30分ごとに平均のサーバーリソースをDBに格納
-        $schedule->command('measure:machineResourceToDB')->everyThirtyMinutesV();
+        $schedule->command('measure:machineResourceToDB')->everyThirtyMinutes();
 
         // 1時間ごとに実行する処理
         // 1時間ごとに日記コア機能の利用状況をDBに格納
