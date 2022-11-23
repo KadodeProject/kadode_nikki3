@@ -15,7 +15,8 @@ final class GetOperationCoreTransitionLatestMonth extends Controller
     {
         return response()->json(
             // idが遅いほど新しいデータなのでidの降順にすることで手前ほど新しいデータにする
-            OperationCoreTransitionPerHour::where('created_at', '>=', Carbon::now()->subMonth())->orderBy('id', 'desc')->get()
+            // 1時間ごとだと月ごとのデータが多すぎるので、1日1つに制限する(date('G')で現在時間を取得できるので各日リクエストした時間帯の値を取ってくることで直近のデータとの齟齬を無くす)
+            OperationCoreTransitionPerHour::where('created_at', '>=', Carbon::now()->subMonth())->whereRaw('hour(created_at) = ?', [date('G')])->orderBy('id', 'desc')->get()
         );
     }
 }
