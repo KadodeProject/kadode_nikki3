@@ -25,11 +25,12 @@ class Kernel extends ConsoleKernel
     protected function schedule(Schedule $schedule): void
     {
         // 1分ごと
-        // (実際には1秒ごと) サーバリソースをredisに書き込む
-        $schedule->command('generate:machineResource')->everyMinute();
+        // (実際には2秒ごと) サーバリソースをredisに書き込む
+        $schedule->command('measure:machineResourceFor1minToRedis')->everyMinute();
         // 1時間ごと
-        // 1時間ごとに日記コア機能の利用状況をDBに保持
-        $schedule->command('generate:operationCoreTransition')->hourly();
+        // 1時間ごとに日記コア機能の利用状況をDBに格納
+        $schedule->command('measure:operationCoreTransitionToDB')->hourly();
+        // 1時間ごとに平均のサーバーリソースをDBに格納
 
         // 1日ごと
         $schedule->command('user:judgeUserRank')->dailyAt('02:10'); // ユーザーランク審査

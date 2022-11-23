@@ -5,7 +5,7 @@
 ### 実行タイミングでの日記数やユーザー数を DB に格納
 
 ```
-php artisan generate:operationCoreTransition
+php artisan measure:operationCoreTransitionToDB
 ```
 
 ### 取得
@@ -17,7 +17,7 @@ php artisan generate:operationCoreTransition
 ## サーバーの負荷状況
 
 ```
-php artisan generate:machineResource
+php artisan measure:machineResourceFor1minToRedis
 ```
 
 ※ローカルの Docker 環境では htop,free,df が実行できないため 0 となる

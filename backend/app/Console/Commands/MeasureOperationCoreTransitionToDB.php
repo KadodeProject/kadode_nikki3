@@ -10,14 +10,14 @@ use App\Models\StatisticPerDate;
 use App\Models\User;
 use Illuminate\Console\Command;
 
-class GenerateOperationCoreTransitionCommand extends Command
+class MeasureOperationCoreTransitionToDB extends Command
 {
     /**
      * The name and signature of the console command.
      *
      * @var string
      */
-    protected $signature = 'generate:operationCoreTransition';
+    protected $signature = 'measure:operationCoreTransitionToDB';
 
     /**
      * The console command description.
