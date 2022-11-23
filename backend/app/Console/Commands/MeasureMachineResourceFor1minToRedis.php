@@ -32,7 +32,7 @@ class MeasureMachineResourceFor1minToRedis extends Command
     }
 
     /**
-     * @todo この実装でCPUリソースどか食い気絶部にならないか検証を行うこと
+     * @todo この実装でCPUリソースどか食い気絶部にならないか検証を行うこと→OK
      */
     public function handle(): int
     {
