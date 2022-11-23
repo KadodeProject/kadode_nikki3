@@ -37,7 +37,7 @@ class JudgeUserRankCommand extends Command
     /**
      * ユーザーランクを上げるメソッド.
      */
-    public function updateUserRank(int $user_id, int $currentUserRank): void
+    private function updateUserRank(int $user_id, int $currentUserRank): void
     {
         // ユーザーランクアップ対象の場合の処理
         // ユーザー通知のフラグをオン、idを上げる、日付更新
@@ -56,7 +56,7 @@ class JudgeUserRankCommand extends Command
      *
      * @todo これ汎用的なのでここに置く必要ある？　と思ったが$tableそのまま出しててSQLインジェクション怖いの
      */
-    public function countTables(int $user_id, string $table): int
+    private function countTables(int $user_id, string $table): int
     {
         /**
          * なぜかuser以外のeloquent取れないため、rawで取得
