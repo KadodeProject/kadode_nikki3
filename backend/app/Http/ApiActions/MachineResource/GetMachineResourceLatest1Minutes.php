@@ -8,7 +8,7 @@ use App\Http\Controllers\Controller;
 use App\UseCases\MachineResource\GetAllMachineResourceFromRedis;
 use Illuminate\Http\JsonResponse;
 
-final class GetMachineResourceLatest30Minutes extends Controller
+final class GetMachineResourceLatest1Minutes extends Controller
 {
     public function __construct(
         private GetAllMachineResourceFromRedis $getAllMachineResourceFromRedis
@@ -22,6 +22,8 @@ final class GetMachineResourceLatest30Minutes extends Controller
         // redisから来る値がunixタイム順でないので、サーバーごとにソートしておく
         foreach ($machineResources as $perMachine) {
             ksort($perMachine);
+            // 直近30件(後ろ30)だけ取得(2秒間隔で取得されているので、1分)
+            $perMachine = \array_slice($perMachine, -30);
         }
 
         return response()->json(

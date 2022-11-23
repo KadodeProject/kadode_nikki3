@@ -11,7 +11,7 @@ namespace App\CustomFunction;
 
 use Illuminate\Support\Carbon;
 
-class calculateDiary
+class CalculateDiaryLegacy
 {
     public static function calculateDiary($diaries)
     {

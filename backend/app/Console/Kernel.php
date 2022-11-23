@@ -27,13 +27,12 @@ class Kernel extends ConsoleKernel
         // 分ごとに実行する
         // (実際には2秒ごと) サーバリソースをredisに書き込む
         $schedule->command('measure:machineResourceFor1minToRedis')->everyMinute();
+        // 30分ごとに平均のサーバーリソースをDBに格納
+        $schedule->command('measure:machineResourceToDB')->everyThirtyMinutesV();
 
         // 1時間ごとに実行する処理
         // 1時間ごとに日記コア機能の利用状況をDBに格納
         $schedule->command('measure:operationCoreTransitionToDB')->hourly();
-        // 1時間ごとに平均のサーバーリソースをDBに格納
-        // @todo (Redis自体は30分しか持てないので、前半30分がムダになってる)
-        $schedule->command('measure:machineResourceToDB')->hourly();
 
         // 1日ごとに実行する処理
         $schedule->command('user:judgeUserRank')->dailyAt('03:10'); // ユーザーランク審査
