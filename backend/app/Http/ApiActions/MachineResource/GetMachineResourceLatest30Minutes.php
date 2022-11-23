@@ -20,9 +20,11 @@ final class GetMachineResourceLatest30Minutes extends Controller
         /** @var array<string,array<int,array<{cpu:float,memory:float,disk:float}>> */
         $machineResources = $this->getAllMachineResourceFromRedis->invoke();
         // redisから来る値がunixタイム順でないので、サーバーごとにソートしておく
-        foreach ($machineResources as $perMachine) {
+        foreach ($machineResources as &$perMachine) {
             ksort($perMachine);
         }
+        // 参照解除
+        unset($perMachine);
 
         return response()->json(
             $machineResources,
