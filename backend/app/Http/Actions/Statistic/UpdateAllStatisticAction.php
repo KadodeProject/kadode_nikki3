@@ -27,6 +27,7 @@ class UpdateAllStatisticAction extends Controller
         $static = Statistic::where('user_id', $userId)->first();
 
         // 24時間以内なら更新しない
+        // @todo NLP側でも直近更新あるものはしないので、ここなくても良い気がする(ただ執拗なDBアクセスなどは弾けて良さそう)
         if ($yesterday->diffInHours($static->updated_at) >= 0) {
             // $diaries=Diary::orderby("date","asc")->get();
             // $calculateDiary=calculateDiary::calculateDiary($diaries);

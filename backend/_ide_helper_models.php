@@ -123,6 +123,29 @@ namespace App\Models{
 
 namespace App\Models{
 /**
+ * App\Models\MachineResource
+ *
+ * @property int $id
+ * @property string $machine マシン(サーバー)名
+ * @property float $cpu CPU使用率
+ * @property float $memory メモリ使用率
+ * @property float $disk ディスク使用率
+ * @property \Illuminate\Support\Carbon $created_at 生成日時
+ * @method static \Illuminate\Database\Eloquent\Builder|MachineResource newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|MachineResource newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|MachineResource query()
+ * @method static \Illuminate\Database\Eloquent\Builder|MachineResource whereCpu($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|MachineResource whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|MachineResource whereDisk($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|MachineResource whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|MachineResource whereMachine($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|MachineResource whereMemory($value)
+ */
+	class MachineResource extends \Eloquent {}
+}
+
+namespace App\Models{
+/**
  * App\Models\NERLabel
  *
  * @property int $id

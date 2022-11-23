@@ -24,18 +24,22 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule): void
     {
-        // 1分ごと
-        // (実際には1秒ごと) サーバリソースをredisに書き込む
-        $schedule->command('generate:machineResource')->everyMinute();
-        // 1時間ごと
-        // 1時間ごとに日記コア機能の利用状況をDBに保持
-        $schedule->command('generate:operationCoreTransition')->hourly();
+        // 分ごとに実行する
+        // (実際には2秒ごと) サーバリソースをredisに書き込む
+        $schedule->command('measure:machineResourceFor1minToRedis')->everyMinute();
+        // 30分ごとに平均のサーバーリソースをDBに格納
+        $schedule->command('measure:machineResourceToDB')->everyThirtyMinutes();
 
-        // 1日ごと
-        $schedule->command('user:judgeUserRank')->dailyAt('02:10'); // ユーザーランク審査
-        $schedule->command('backup:clean --disable-notifications')->dailyAt('04:10'); // バックアップ削除
-        $schedule->command('backup:run --only-db')->dailyAt('04:10'); // バックアップ作成
-        $schedule->command('gcs:backup')->dailyAt('04:10'); // バックアップをgcsに
+        // 1時間ごとに実行する処理
+        // 1時間ごとに日記コア機能の利用状況をDBに格納
+        $schedule->command('measure:operationCoreTransitionToDB')->hourly();
+
+        // 1日ごとに実行する処理
+        $schedule->command('user:judgeUserRank')->dailyAt('03:10'); // ユーザーランク審査
+        $schedule->command('nlp:runLegacyNLPOperation')->dailyAt('03:20'); // 統計処理
+        $schedule->command('backup:clean --disable-notifications')->dailyAt('05:10'); // バックアップ削除
+        $schedule->command('backup:run --only-db')->dailyAt('05:12'); // バックアップ作成
+        $schedule->command('gcs:backup')->dailyAt('05:15'); // バックアップをgcsに
     }
 
     /**

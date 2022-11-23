@@ -34,39 +34,6 @@ class JudgeUserRankCommand extends Command
         parent::__construct();
     }
 
-    /**
-     * ユーザーランクを上げるメソッド.
-     */
-    public function updateUserRank(int $user_id, int $currentUserRank): void
-    {
-        // ユーザーランクアップ対象の場合の処理
-        // ユーザー通知のフラグをオン、idを上げる、日付更新
-        // @todo 2回クエリ走っているのでjoinで一緒にupdateできたらもっと早くなりそう
-        User::where('id', $user_id)->update(['user_rank_id' => $currentUserRank + 1, 'user_rank_updated_at' => Carbon::now()]);
-        /*
-         * 新規のユーザーはテーブルが存在しないのでここで作成する(1日に1回実行されるので自然とテーブル作れるのでここだけupdateOrCreateをしている)
-         * @todo user作ったときに一緒にテーブル作れると一番良いのだが、ライブラリの中触らないといけない雰囲気なので断念
-         */
-        UserReadNotification::updateOrCreate(['user_id' => $user_id], ['is_showed_update_user_rank' => 0]);
-        echo 'id:'.$user_id.'/ランクアップ'.$currentUserRank.'→'.($currentUserRank + 1)."\n";
-    }
-
-    /**
-     * $user_idの$tableの数をカウントする.
-     *
-     * @todo これ汎用的なのでここに置く必要ある？　と思ったが$tableそのまま出しててSQLインジェクション怖いの
-     */
-    public function countTables(int $user_id, string $table): int
-    {
-        /**
-         * なぜかuser以外のeloquent取れないため、rawで取得
-         * $tableにはユーザー入力値**絶対**入らないのでSQLインジェクションは起きない.
-         */
-        $counter = DB::select(DB::raw('select count(*) as counter from '.$table.' where user_id='.$user_id));
-
-        return $counter[0]->counter;
-    }
-
     public function handle(): int
     {
         $users = User::get();
@@ -132,5 +99,38 @@ class JudgeUserRankCommand extends Command
         }
 
         return Command::SUCCESS;
+    }
+
+    /**
+     * ユーザーランクを上げるメソッド.
+     */
+    private function updateUserRank(int $user_id, int $currentUserRank): void
+    {
+        // ユーザーランクアップ対象の場合の処理
+        // ユーザー通知のフラグをオン、idを上げる、日付更新
+        // @todo 2回クエリ走っているのでjoinで一緒にupdateできたらもっと早くなりそう
+        User::where('id', $user_id)->update(['user_rank_id' => $currentUserRank + 1, 'user_rank_updated_at' => Carbon::now()]);
+        /*
+         * 新規のユーザーはテーブルが存在しないのでここで作成する(1日に1回実行されるので自然とテーブル作れるのでここだけupdateOrCreateをしている)
+         * @todo user作ったときに一緒にテーブル作れると一番良いのだが、ライブラリの中触らないといけない雰囲気なので断念
+         */
+        UserReadNotification::updateOrCreate(['user_id' => $user_id], ['is_showed_update_user_rank' => 0]);
+        echo 'id:'.$user_id.'/ランクアップ'.$currentUserRank.'→'.($currentUserRank + 1)."\n";
+    }
+
+    /**
+     * $user_idの$tableの数をカウントする.
+     *
+     * @todo これ汎用的なのでここに置く必要ある？　と思ったが$tableそのまま出しててSQLインジェクション怖いの
+     */
+    private function countTables(int $user_id, string $table): int
+    {
+        /**
+         * なぜかuser以外のeloquent取れないため、rawで取得
+         * $tableにはユーザー入力値**絶対**入らないのでSQLインジェクションは起きない.
+         */
+        $counter = DB::select(DB::raw('select count(*) as counter from '.$table.' where user_id='.$user_id));
+
+        return $counter[0]->counter;
     }
 }
