@@ -32,9 +32,15 @@ final class GetAllMachineResourceFromRedis
          */
         $machineResource = [];
         foreach ($keys as $key) {
-            [$serverName, $unixTime] = explode('-', substr($key, $prefixLength)); // prefix意向を取得
+            [$serverName, $unixTime] = explode('-', substr($key, $prefixLength)); // prefix以降を取得
 
-            [$cpuPercent, $memoryPercent, $diskPercent] = explode('-', Redis::get($functionPrefix.$serverName.'-'.$unixTime));
+            $redisRawData = Redis::get($functionPrefix.$serverName.'-'.$unixTime);
+
+            if (null === $redisRawData) {
+                // Redisのキーを取得してからここに来るまででexpireになるとRedis::get()がnullになるので、無い場合は次のループへ
+                continue;
+            }
+            [$cpuPercent, $memoryPercent, $diskPercent] = explode('-', $redisRawData);
             $machineResource[$serverName][$unixTime] = [
                 'cpu' => (float) $cpuPercent,
                 'memory' => (float) $memoryPercent,
