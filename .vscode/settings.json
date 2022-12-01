@@ -27,6 +27,10 @@
     "laravel_goto_view.extensions": [".blade.php"],
     "laravel_goto_controller.pathController": "/backend/app/Http/Actions",
     "files.insertFinalNewline": true,
+    "editor.trimAutoWhitespace": false,
     "editor.formatOnSave": true,
-    "editor.trimAutoWhitespace": false
+    "editor.codeActionsOnSave": {
+        "source.organizeImports": true,
+        "source.fixAll.eslint": true
+    }
 }
