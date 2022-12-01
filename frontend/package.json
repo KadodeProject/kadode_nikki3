@@ -3,14 +3,21 @@
     "version": "0.1.0",
     "private": true,
     "scripts": {
-        "dev": "next dev --turbo",
+        "1": "run-s lint format lint:fix",
+        "dev": "next dev",
+        "dev-turbo": "next dev --turbo",
+        "dev-legacy": "next dev",
         "build": "next build",
         "start": "next start",
-        "lint": "next lint"
+        "lint": "next lint --dir src",
+        "lint:fix": "eslint \"src/**/*.{ts,tsx,js,jsx}\" --fix",
+        "format": "prettier --write --ignore-path .gitignore \"src/**/*.{ts,tsx,js,jsx,json,css,scss}\"",
+        "sort-packagejson": "sort-package-json package.json"
     },
     "dependencies": {
         "autoprefixer": "^10.4.13",
-        "next": "13.0.0",
+        "next": "^13.0.3",
+        "next-themes": "^0.2.1",
         "postcss": "^8.4.18",
         "react": "18.2.0",
         "react-dom": "18.2.0",
@@ -20,8 +27,17 @@
         "@types/node": "18.11.7",
         "@types/react": "18.0.24",
         "@types/react-dom": "18.0.8",
+        "@typescript-eslint/eslint-plugin": "^5.45.0",
+        "@typescript-eslint/parser": "^5.45.0",
         "eslint": "8.26.0",
         "eslint-config-next": "13.0.0",
-        "typescript": "4.8.4"
+        "eslint-config-prettier": "8.5.0",
+        "eslint-plugin-import": "^2.26.0",
+        "eslint-plugin-tailwindcss": "^3.7.1",
+        "eslint-plugin-unused-imports": "^2.0.0",
+        "prettier": "2.8.0",
+        "sort-package-json": "^2.1.0",
+        "typescript": "4.8.4",
+        "yarn-run-all": "^3.1.1"
     }
 }
