@@ -1,4 +1,4 @@
-import { Html, Head, Main, NextScript } from 'next/document';
+import { Head, Html, Main, NextScript } from 'next/document';
 
 const MyDocument = () => {
     return (
@@ -7,7 +7,7 @@ const MyDocument = () => {
                 <meta name='application-name' content='かどで日記' />
                 <meta name='description' content='' />
             </Head>
-            <body>
+            <body className='bg-white text-black'>
                 <Main />
                 <NextScript />
             </body>

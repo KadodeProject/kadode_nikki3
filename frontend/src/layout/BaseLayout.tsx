@@ -8,7 +8,7 @@ type Props = {
 
 const BaseLayout = ({ children }: Props) => {
     return (
-        <div>
+        <>
             <Head>
                 <title>Layout</title>
             </Head>
@@ -17,9 +17,9 @@ const BaseLayout = ({ children }: Props) => {
                 <Link href='/'>Home</Link>
             </header>
 
-            <div className='content'>{children}</div>
+            <div className=''>{children}</div>
             <footer className=''></footer>
-        </div>
+        </>
     );
 };
 
