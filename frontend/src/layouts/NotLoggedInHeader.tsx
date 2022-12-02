@@ -1,13 +1,12 @@
 import type { NextPage } from 'next';
-type Props = {
-    title?: string;
-    description?: string;
-};
+import Link from 'next/link';
 
-const Header: NextPage<Props> = ({ title, description }) => {
+const Header: NextPage = () => {
     return (
         <header>
-            <h1 className="text-center text-xl">かどで日記</h1>
+            <h1 className="text-center text-xl">
+                <Link href="/">かどで日記</Link>
+            </h1>
         </header>
     );
 };
