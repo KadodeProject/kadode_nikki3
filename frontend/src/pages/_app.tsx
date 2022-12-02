@@ -1,6 +1,20 @@
 import type { AppProps } from 'next/app';
 import '../styles/globals.css';
 
+//フォント読み込み
+import { Kiwi_Maru, Zen_Kurenaido } from '@next/font/google';
+
+const KiwiMaruRegular = Kiwi_Maru({
+    weight: '400',
+    subsets: ['japanese'],
+    variable: '--font-kiwi-maru',
+});
+const ZenKurenaidoRegular = Zen_Kurenaido({
+    weight: '400',
+    subsets: ['japanese'],
+    variable: '--font-zen-kurenaido',
+});
+
 // ダークモード対応
 import { ThemeProvider } from 'next-themes';
 
@@ -14,9 +28,13 @@ Router.events.on('routeChangeError', () => NProgress.done());
 
 function MyApp({ Component, pageProps }: AppProps) {
     return (
-        <ThemeProvider attribute="class" defaultTheme="dark">
-            <Component {...pageProps} />
-        </ThemeProvider>
+        <>
+            <ThemeProvider attribute="class" defaultTheme="dark">
+                <div className={`${KiwiMaruRegular.variable} ${ZenKurenaidoRegular.variable}`}>
+                    <Component {...pageProps} />
+                </div>
+            </ThemeProvider>
+        </>
     );
 }
 

@@ -1,10 +1,16 @@
+const { fontFamily } = require('tailwindcss/defaultTheme');
 /** @type {import('tailwindcss').Config} */
-
 module.exports = {
     mode: 'jit',
     content: ['./src/**/*.{js,ts,jsx,tsx}'],
     darkMode: 'class', // mediaはos依存に自動でなるため手動で変えられうようにclassへ
     theme: {
+        extend: {
+            fontFamily: {
+                sans: ['var(--font-kiwi-maru)', ...fontFamily.sans],
+                'kiwi-maru': ['var(--font-kiwi-maru)'],
+            },
+        },
         colors: {
             white: 'var(--kn-default-text-color)',
             black: 'var(--kn-default-background-color)',
@@ -20,7 +26,6 @@ module.exports = {
             'kn-a-light-blue': 'var(--kn-a-light-blue)',
             'kn-a-green': 'var(--kn-a-green)',
         },
-        fontFamily: {},
     },
     variants: {
         extend: {},
