@@ -69,7 +69,6 @@ header {
 }
 footer {
     min-height: var(--footer-height);
-    background-color: var(--kn-l-brown);
     display: flex;
     align-items: center;
     flex-direction: column;
@@ -79,7 +78,7 @@ main {
     padding: 1rem;
     max-width: var(--main-max-width);
     margin: 0 auto;
-    min-height: calc(200vh - var(--heder-height) - var(--footer-height));
+    min-height: calc(100vh - var(--heder-height) - var(--footer-height));
     padding-top: var(--main-padding-top);
 }
 
