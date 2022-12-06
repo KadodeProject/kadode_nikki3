@@ -64,12 +64,16 @@ tinker:
 	docker compose exec backend php artisan tinker
 dusk:
 	docker compose exec backend php artisan dusk --testdox
-test:
+p-test:
 	docker compose exec backend php artisan test
-unit-test:
+p-unit-test:
 	docker compose exec backend php artisan test --testsuite Unit
-combined-test:
+p-combined-test:
 	docker compose exec backend php artisan test --testsuite MinimumOperationCheck --testsuite Feature
+j-test:
+	docker compose exec frontend yarn test
+j-format:
+	docker compose exec frontend yarn format
 optimize:
 	docker compose exec backend php artisan optimize
 optimize-clear:

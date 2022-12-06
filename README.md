@@ -1,3 +1,7 @@
+<a href="https://kado.day" style="text-align:center;margin:0 auto;" >
+<img src="./kadodeLogoWithUgoku.svg" width="400"/>
+</a>
+
 # この web アプリについて
 
 個人的に欲しかった統計付き日記管理 web アプリを作っています。
