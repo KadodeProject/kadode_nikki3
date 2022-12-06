@@ -28,13 +28,15 @@ Router.events.on('routeChangeComplete', () => NProgress.done());
 Router.events.on('routeChangeError', () => NProgress.done());
 
 function MyApp({ Component, pageProps }: AppProps) {
-  return (
-    <ThemeProvider attribute="class" defaultTheme="dark">
-      {/* <div className={`${KiwiMaruRegular.variable} ${ZenKurenaidoRegular.variable}`}> */}
-      <Component {...pageProps} />
-      {/* </div> */}
-    </ThemeProvider>
-  );
+    return (
+        <ThemeProvider attribute="class" defaultTheme="dark">
+            {/* <div className={`${KiwiMaruRegular.variable} ${ZenKurenaidoRegular.variable}`}> */}
+            <div className="bg-white text-black">
+                <Component {...pageProps} />
+            </div>
+            {/* </div> */}
+        </ThemeProvider>
+    );
 }
 
 export default MyApp;
