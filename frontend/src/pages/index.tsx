@@ -1,9 +1,11 @@
 import DescribeH2 from '@/components/atoms/heading/DescribeH2';
+import KadodeConcept from '@/components/polymers/index/KadodeConcept';
 import KadodeFunctionalDescription from '@/components/polymers/index/KadodeFunctionalDescription';
+import KadodeIntro from '@/components/polymers/index/KadodeIntro';
+import KadodePoint from '@/components/polymers/index/KadodePoint';
 import Layout from '@/layouts/NotLoggedInLayout';
 import type { NextPage } from 'next';
 import Image from 'next/image';
-
 const IndexPage: NextPage = () => {
     return (
         <Layout>
@@ -16,10 +18,16 @@ const IndexPage: NextPage = () => {
                     src="/img/logo/kadode_logo_without_bg.svg"
                 />
             </div>
-            <h1 className="text-center text-xl">かどで日記</h1>
-            <h1 className="text-center text-xl">with Next.js</h1>
+            <KadodeIntro />
             <DescribeH2 heading="かどで日記のポイント" sub="軸をぶらしません" />
+            <KadodePoint />
+            <DescribeH2
+                heading="かどで日記の特徴"
+                sub="気分に身を任せて書いても、振り返しやすさを維持します"
+            />
             <KadodeFunctionalDescription />
+            <DescribeH2 heading="かどで日記のコンセプト" />
+            <KadodeConcept />
         </Layout>
     );
 };

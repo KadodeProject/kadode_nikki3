@@ -7,7 +7,7 @@ type Props = {
 
 const DescribeH2: NextPage<Props> = ({ heading, sub }) => {
     return (
-        <div className="flex justify-center items-center flex-col mt-4">
+        <div className="flex justify-center items-center flex-col mt-16">
             <h2 className="text-3xl md:text-4xl border-b-2 border-kn-purple pb-2 drop-shadow">
                 {heading}
             </h2>
