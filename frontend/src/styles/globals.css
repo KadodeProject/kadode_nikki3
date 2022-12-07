@@ -58,6 +58,9 @@
     font-family: 'Kiwi Maru';
     src: url('/fonts/KiwiMaru-Regular.ttf') format('truetype');
 }
+body {
+    scroll-behavior: smooth;
+}
 
 /* tailwindがcss直指定のどっちかに統一したい */
 header {
@@ -82,29 +85,21 @@ main {
     padding-top: var(--main-padding-top);
 }
 
-html,
-body {
-    padding: 0;
-    margin: 0;
+.material-symbols-outlined.md-18 {
+    font-size: 18px;
 }
-body {
-    scroll-behavior: smooth;
+.material-symbols-outlined.md-24 {
+    font-size: 24px;
 }
-a {
-    color: inherit;
-    text-decoration: none;
+.material-symbols-outlined.md-36 {
+    font-size: 36px;
 }
-
-* {
-    box-sizing: border-box;
+.material-symbols-outlined.md-48 {
+    font-size: 48px;
 }
-
-@media (prefers-color-scheme: dark) {
-    html {
-        color-scheme: dark;
-    }
-    body {
-        color: white;
-        background: black;
-    }
+.material-symbols-outlined.md-100 {
+    font-size: 100px;
+}
+.material-symbols-outlined.font-weight-100 {
+    font-weight: 100;
 }

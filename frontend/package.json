@@ -19,6 +19,7 @@
     "dependencies": {
         "@next/font": "^13.0.6",
         "autoprefixer": "^10.4.13",
+        "material-symbols": "^0.4.1",
         "next": "^13.0.6",
         "next-themes": "^0.2.1",
         "nprogress": "^0.2.0",
