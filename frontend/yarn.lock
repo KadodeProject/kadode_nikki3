@@ -3480,6 +3480,11 @@ map-stream@~0.1.0:
   resolved "https://registry.yarnpkg.com/map-stream/-/map-stream-0.1.0.tgz#e56aa94c4c8055a16404a0674b78f215f7c8e194"
   integrity sha512-CkYQrPYZfWnu/DAmVCpTSX/xHpKZ80eKh2lAkyA6AJTef6bW+6JpbQZN5rofum7da+SyN1bi5ctTm+lTfcCW3g==
 
+material-symbols@^0.4.1:
+  version "0.4.1"
+  resolved "https://registry.yarnpkg.com/material-symbols/-/material-symbols-0.4.1.tgz#df4e71414e39df30b9ea633fd3a7afc712cb80d3"
+  integrity sha512-rFHdDlN0yzXo46lcUVuJY0ygFcFuzcbvIxWHWUqSPGsBTMb642AOVSPK4BVEx8YG5SMPBO6BRdbnEeFnDjjcHA==
+
 merge-stream@^2.0.0:
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/merge-stream/-/merge-stream-2.0.0.tgz#52823629a14dd00c9770fb6ad47dc6310f2c1f60"
