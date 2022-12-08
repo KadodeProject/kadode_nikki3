@@ -11,9 +11,9 @@ const Header: NextPage = () => {
                 <Image
                     src="/img/logo/kadode_logo_without_bg_with_string.svg"
                     alt="かどで日記ロゴ"
-                    className="p-4"
-                    width={384}
-                    height={96}
+                    className="p-2 object-contain"
+                    width={250}
+                    height={50}
                 />
             </Link>
             <div>
