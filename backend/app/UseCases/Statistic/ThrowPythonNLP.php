@@ -4,8 +4,6 @@ declare(strict_types=1);
 
 namespace App\UseCases\Statistic;
 
-use Log;
-
 /**
  * exec経由でpythonに自然言語処理を投げるクラス.
  */
@@ -32,11 +30,11 @@ class ThrowPythonNLP
         exec($path, $output); // python実行
 
         if ($debug) {
-            Log::debug($path);
-            Log::debug('python_path:'.config('nlp.python_absolute_binary_path'));
-            Log::debug('python_folder_dir:'.config('nlp.python_absolute_folder_path'));
-            Log::debug('python_output:');
-            Log::debug($output);
+            \Log::debug($path);
+            \Log::debug('python_path:'.config('nlp.python_absolute_binary_path'));
+            \Log::debug('python_folder_dir:'.config('nlp.python_absolute_folder_path'));
+            \Log::debug('python_output:');
+            \Log::debug($output);
             // \Log::debug("command_output:");
             // \Log::debug($return_var);
         }

@@ -10,14 +10,12 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Routing\Redirector;
 use Illuminate\Support\Facades\Auth;
 
-use function redirect;
-
 final class RemoveUserRankNoticeAction extends Controller
 {
     public function __invoke(): Redirector|RedirectResponse
     {
         UserReadNotification::where('user_id', Auth::id())->update(['is_showed_update_user_rank' => 1]);
 
-        return redirect(route('ShowHome'));
+        return \redirect(route('ShowHome'));
     }
 }
