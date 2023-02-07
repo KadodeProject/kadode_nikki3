@@ -10,8 +10,6 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Routing\Redirector;
 use Illuminate\Support\Facades\Auth;
 
-use function redirect;
-
 final class RemoveOsiraseNoticeAction extends Controller
 {
     public function __invoke(): Redirector|RedirectResponse
@@ -19,6 +17,6 @@ final class RemoveOsiraseNoticeAction extends Controller
         // ユーザー通知のフラグをオンにする(ここはすべてのユーザーが対象)
         UserReadNotification::where('user_id', Auth::id())->update(['is_showed_service_info' => 1]);
 
-        return redirect(route('ShowHome'));
+        return \redirect(route('ShowHome'));
     }
 }

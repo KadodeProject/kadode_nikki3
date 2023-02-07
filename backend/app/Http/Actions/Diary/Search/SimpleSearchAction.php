@@ -7,7 +7,6 @@ namespace App\Http\Actions\Diary\Search;
 use App\Http\Controllers\Controller;
 use App\Models\Diary;
 use App\UseCases\Diary\SearchDiaries;
-use DB;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request;
@@ -30,13 +29,13 @@ class SimpleSearchAction extends Controller
         // XSS対策は不要(外部からここにアクセスできないため、自身にしか攻撃できないため)←加えて、XSS対策まわりはフロントエンドで行われるため問題なし
 
         // DB叩く 最近の日記から直近50個
-        DB::enableQueryLog();
+        \DB::enableQueryLog();
 
         /** @var null|Collection */
         $diaries = $this->searchDiaries->invoke($request->keyword);
         Diary::where('content', 'like', "%{$request->keyword}%")->orderby('date', 'desc')->take(200)->get();
         // クエリ時間取得
-        $queryLog = DB::getQueryLog();
+        $queryLog = \DB::getQueryLog();
         $queryTime = $queryLog[0]['time'];
 
         $numberOfDiaries = \count($diaries);

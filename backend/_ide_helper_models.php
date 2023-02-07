@@ -97,13 +97,13 @@ namespace App\Models{
  * @property int $id
  * @property int $diary_id 日記のid
  * @property int|null $statistic_progress 生成状況(生成まで時間かかるので)
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
  * @property mixed|null $sentence 一文ごとの位置(係り受けで使う)
  * @property mixed|null $chunk 係り受け構造
  * @property mixed|null $token 形態素分析された中身を格納 品詞(POS)、原形(lemma)などが存在
  * @property mixed|null $affiliation 固有表現抽出
  * @property int|null $char_length 文字数
- * @property \Illuminate\Support\Carbon|null $created_at
- * @property \Illuminate\Support\Carbon|null $updated_at
  * @method static \Illuminate\Database\Eloquent\Builder|DiaryProcessed newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|DiaryProcessed newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|DiaryProcessed query()
@@ -125,21 +125,9 @@ namespace App\Models{
 /**
  * App\Models\MachineResource
  *
- * @property int $id
- * @property string $machine マシン(サーバー)名
- * @property float $cpu CPU使用率
- * @property float $memory メモリ使用率
- * @property float $disk ディスク使用率
- * @property \Illuminate\Support\Carbon $created_at 生成日時
  * @method static \Illuminate\Database\Eloquent\Builder|MachineResource newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|MachineResource newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|MachineResource query()
- * @method static \Illuminate\Database\Eloquent\Builder|MachineResource whereCpu($value)
- * @method static \Illuminate\Database\Eloquent\Builder|MachineResource whereCreatedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|MachineResource whereDisk($value)
- * @method static \Illuminate\Database\Eloquent\Builder|MachineResource whereId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|MachineResource whereMachine($value)
- * @method static \Illuminate\Database\Eloquent\Builder|MachineResource whereMemory($value)
  */
 	class MachineResource extends \Eloquent {}
 }
@@ -236,19 +224,9 @@ namespace App\Models{
 /**
  * App\Models\OperationCoreTransitionPerHour
  *
- * @property int $id
- * @property int $user_total 合計ユーザー数
- * @property int $diary_total 合計日記数
- * @property int $statistic_per_date_total 合計統計処理済み日記数
- * @property \Illuminate\Support\Carbon $created_at 生成日時
  * @method static \Illuminate\Database\Eloquent\Builder|OperationCoreTransitionPerHour newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|OperationCoreTransitionPerHour newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|OperationCoreTransitionPerHour query()
- * @method static \Illuminate\Database\Eloquent\Builder|OperationCoreTransitionPerHour whereCreatedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|OperationCoreTransitionPerHour whereDiaryTotal($value)
- * @method static \Illuminate\Database\Eloquent\Builder|OperationCoreTransitionPerHour whereId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|OperationCoreTransitionPerHour whereStatisticPerDateTotal($value)
- * @method static \Illuminate\Database\Eloquent\Builder|OperationCoreTransitionPerHour whereUserTotal($value)
  */
 	class OperationCoreTransitionPerHour extends \Eloquent {}
 }
@@ -574,17 +552,17 @@ namespace App\Models{
  * @property int|null $user_role_id ユーザーロール(一般、管理者etc)
  * @property int|null $appearance_id ページの見た目
  * @property \Illuminate\Support\Carbon|null $user_rank_updated_at ユーザーランクアップデート日
- * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Diary[] $diary
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Diary> $diary
  * @property-read int|null $diary_count
  * @property-read string $profile_photo_url
- * @property-read \Illuminate\Notifications\DatabaseNotificationCollection|\Illuminate\Notifications\DatabaseNotification[] $notifications
+ * @property-read \Illuminate\Notifications\DatabaseNotificationCollection<int, \Illuminate\Notifications\DatabaseNotification> $notifications
  * @property-read int|null $notifications_count
- * @property-read \Illuminate\Database\Eloquent\Collection|\Laravel\Sanctum\PersonalAccessToken[] $tokens
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \Laravel\Sanctum\PersonalAccessToken> $tokens
  * @property-read int|null $tokens_count
  * @property-read \App\Models\UserRank|null $userRank
  * @property-read \App\Models\UserReadNotification|null $userReadNotification
  * @property-read \App\Models\UserRole|null $userRole
- * @method static \Database\Factories\UserFactory factory(...$parameters)
+ * @method static \Database\Factories\UserFactory factory($count = null, $state = [])
  * @method static \Illuminate\Database\Eloquent\Builder|User newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|User newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|User query()

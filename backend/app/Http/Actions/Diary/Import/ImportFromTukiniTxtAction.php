@@ -13,7 +13,6 @@ use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Log;
 
 /**
  * @todo ここDRYにめちゃくちゃ反してるのでインターフェイス作って抽象化したい
@@ -38,7 +37,7 @@ class ImportFromTukiniTxtAction extends Controller
         $this->validate($request, $rules);
 
         if ($request->tukiniTxt) {
-            Log::debug('txtインポート処理開始');
+            \Log::debug('txtインポート処理開始');
 
             $tmpName = mt_rand().'.'.$request->tukiniTxt->guessExtension(); // TMPファイル名
             $request->tukiniTxt->move(public_path().'/importTxt', $tmpName);

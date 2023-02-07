@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace App\Http\Requests\Diary;
 
 use App\Rules\Diary\RejectExistDayDiaryForUpdateOnDateRule;
-use Auth;
 use Illuminate\Foundation\Http\FormRequest;
 
 class UpdateDiaryRequest extends FormRequest
@@ -47,7 +46,7 @@ class UpdateDiaryRequest extends FormRequest
              * たとえば'2aaa'も2になり、これは意図しない値ですが、この先のRuleで処理しているメソッド内部で呼ぶeloquentでユーザー絞った後にid検索のため、不正な値はヒットせず問題なし
              * eloquent側もSQLインジェクション対策は施されているため、結果としてこの処理は安全です。
              */
-            'date' => ['required', new RejectExistDayDiaryForUpdateOnDateRule(Auth::id(), (int) $this->request->all()['id'])],
+            'date' => ['required', new RejectExistDayDiaryForUpdateOnDateRule(\Auth::id(), (int) $this->request->all()['id'])],
         ];
     }
 }
