@@ -166,6 +166,9 @@
       <path value="$PROJECT_DIR$/backend/vendor/php-webdriver/webdriver" />
       <path value="$PROJECT_DIR$/backend/vendor/symfony/uid" />
       <path value="$PROJECT_DIR$/backend/vendor/laravel/dusk" />
+      <path value="$PROJECT_DIR$/backend/vendor/guzzlehttp/uri-template" />
+      <path value="$PROJECT_DIR$/backend/vendor/symfony/yaml" />
+      <path value="$PROJECT_DIR$/backend/vendor/phpstan/phpdoc-parser" />
     </include_path>
   </component>
   <component name="PhpProjectSharedConfiguration" php_language_level="8.1" />

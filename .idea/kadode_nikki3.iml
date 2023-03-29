@@ -172,6 +172,9 @@
       <excludeFolder url="file://$MODULE_DIR$/backend/vendor/php-webdriver/webdriver" />
       <excludeFolder url="file://$MODULE_DIR$/backend/vendor/symfony/uid" />
       <excludeFolder url="file://$MODULE_DIR$/backend/vendor/laravel/dusk" />
+      <excludeFolder url="file://$MODULE_DIR$/backend/vendor/guzzlehttp/uri-template" />
+      <excludeFolder url="file://$MODULE_DIR$/backend/vendor/symfony/yaml" />
+      <excludeFolder url="file://$MODULE_DIR$/backend/vendor/phpstan/phpdoc-parser" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
