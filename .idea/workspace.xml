@@ -2,19 +2,15 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="aa6216b5-3a8a-49eb-9987-81fd25ac7924" name="変更" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/kadode_nikki3.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/kadode_nikki3.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/app/Http/Kernel.php" beforeDir="false" afterPath="$PROJECT_DIR$/backend/app/Http/Kernel.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/backend/composer.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/composer.lock" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/phpstan.neon" beforeDir="false" afterPath="$PROJECT_DIR$/backend/phpstan.neon" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="ComposerSettings" doNotAsk="true" synchronizationState="SYNCHRONIZE">
+  <component name="ComposerSettings" doNotAsk="true" synchronizationState="DONT_SYNCHRONIZE">
     <pharConfigPath>$PROJECT_DIR$/backend/composer.json</pharConfigPath>
     <execution />
   </component>
@@ -206,6 +202,11 @@
       <path value="$PROJECT_DIR$/backend/vendor/psr/cache" />
       <path value="$PROJECT_DIR$/backend/vendor/psr/container" />
       <path value="$PROJECT_DIR$/backend/vendor/psr/simple-cache" />
+      <path value="$PROJECT_DIR$/backend/vendor/dragon-code/support" />
+      <path value="$PROJECT_DIR$/backend/vendor/dragon-code/pretty-array" />
+      <path value="$PROJECT_DIR$/backend/vendor/dragon-code/contracts" />
+      <path value="$PROJECT_DIR$/backend/vendor/laravel-lang/publisher" />
+      <path value="$PROJECT_DIR$/backend/vendor/archtechx/enums" />
     </include_path>
   </component>
   <component name="ProjectId" id="2AIWVc78wYusKRwiBe2nK5zhYCz" />
@@ -268,6 +269,7 @@
       <workItem from="1680050896647" duration="2477000" />
       <workItem from="1680053452594" duration="418000" />
       <workItem from="1680053885136" duration="2382000" />
+      <workItem from="1680088777390" duration="317000" />
     </task>
     <servers />
   </component>

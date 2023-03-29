@@ -1,0 +1,1039 @@
+parameters:
+	ignoreErrors:
+		-
+			message: "#^Cannot call method forceFill\\(\\) on mixed\\.$#"
+			count: 1
+			path: app/Actions/Fortify/ResetUserPassword.php
+
+		-
+			message: "#^Cannot access property \\$password on mixed\\.$#"
+			count: 1
+			path: app/Actions/Fortify/UpdateUserPassword.php
+
+		-
+			message: "#^Cannot call method forceFill\\(\\) on mixed\\.$#"
+			count: 1
+			path: app/Actions/Fortify/UpdateUserPassword.php
+
+		-
+			message: "#^Cannot access property \\$email on mixed\\.$#"
+			count: 1
+			path: app/Actions/Fortify/UpdateUserProfileInformation.php
+
+		-
+			message: "#^Cannot access property \\$id on mixed\\.$#"
+			count: 1
+			path: app/Actions/Fortify/UpdateUserProfileInformation.php
+
+		-
+			message: "#^Cannot call method forceFill\\(\\) on mixed\\.$#"
+			count: 2
+			path: app/Actions/Fortify/UpdateUserProfileInformation.php
+
+		-
+			message: "#^Cannot call method sendEmailVerificationNotification\\(\\) on mixed\\.$#"
+			count: 1
+			path: app/Actions/Fortify/UpdateUserProfileInformation.php
+
+		-
+			message: "#^Cannot call method updateProfilePhoto\\(\\) on mixed\\.$#"
+			count: 1
+			path: app/Actions/Fortify/UpdateUserProfileInformation.php
+
+		-
+			message: "#^Cannot access property \\$tokens on mixed\\.$#"
+			count: 1
+			path: app/Actions/Jetstream/DeleteUser.php
+
+		-
+			message: "#^Cannot call method delete\\(\\) on mixed\\.$#"
+			count: 1
+			path: app/Actions/Jetstream/DeleteUser.php
+
+		-
+			message: "#^Parameter \\#1 \\$filename of function file_get_contents expects string, mixed given\\.$#"
+			count: 1
+			path: app/Console/Commands/GCSCommand.php
+
+		-
+			message: "#^Parameter \\#1 \\$json of function json_decode expects string, string\\|false given\\.$#"
+			count: 1
+			path: app/Console/Commands/GCSCommand.php
+
+		-
+			message: "#^Parameter \\#1 \\$name of method Google\\\\Cloud\\\\Storage\\\\StorageClient\\:\\:bucket\\(\\) expects string, mixed given\\.$#"
+			count: 1
+			path: app/Console/Commands/GCSCommand.php
+
+		-
+			message: "#^Parameter \\#1 \\$string of function mb_substr expects string, string\\|false given\\.$#"
+			count: 1
+			path: app/Console/Commands/GCSCommand.php
+
+		-
+			message: "#^Parameter \\#1 \\$query of static method Illuminate\\\\Database\\\\Connection\\:\\:select\\(\\) expects string, Illuminate\\\\Contracts\\\\Database\\\\Query\\\\Expression given\\.$#"
+			count: 2
+			path: app/Console/Commands/JudgeUserRankCommand.php
+
+		-
+			message: "#^Expression on left side of \\?\\? is not nullable\\.$#"
+			count: 1
+			path: app/Console/Commands/MeasureMachineResourceFor1minToRedis.php
+
+		-
+			message: "#^Parameter \\#3 \\$subject of function str_replace expects array\\|string, string\\|false given\\.$#"
+			count: 1
+			path: app/Console/Commands/MeasureMachineResourceFor1minToRedis.php
+
+		-
+			message: "#^PHPDoc tag @var has invalid value \\(array\\<string,array\\<int,array\\<\\{cpu\\:float,memory\\:float,disk\\:float\\}\\>\\>\\)\\: Unexpected token \"\\{\", expected type at offset 38$#"
+			count: 1
+			path: app/Console/Commands/MeasureMachineResourceToDB.php
+
+		-
+			message: "#^PHPDoc tag @var has invalid value \\(array\\<\\{machine\\:string,cpu\\:float,memory\\:float,disk\\:float\\}\\>\\)\\: Unexpected token \"\\{\", expected type at offset 15$#"
+			count: 1
+			path: app/Console/Commands/MeasureMachineResourceToDB.php
+
+		-
+			message: "#^PHPDoc type array of property App\\\\Exceptions\\\\Handler\\:\\:\\$dontFlash is not covariant with PHPDoc type array\\<int, string\\> of overridden property Illuminate\\\\Foundation\\\\Exceptions\\\\Handler\\:\\:\\$dontFlash\\.$#"
+			count: 1
+			path: app/Exceptions/Handler.php
+
+		-
+			message: "#^PHPDoc type array of property App\\\\Exceptions\\\\Handler\\:\\:\\$dontReport is not covariant with PHPDoc type array\\<int, class\\-string\\<Throwable\\>\\> of overridden property Illuminate\\\\Foundation\\\\Exceptions\\\\Handler\\:\\:\\$dontReport\\.$#"
+			count: 1
+			path: app/Exceptions/Handler.php
+
+		-
+			message: "#^Parameter \\#1 \\$stream of function fclose expects resource, resource\\|false given\\.$#"
+			count: 1
+			path: app/Http/Actions/Diary/Export/ExportByCsvSJisAction.php
+
+		-
+			message: "#^Parameter \\#2 \\$fields of function fputcsv expects array\\<int\\|string, bool\\|float\\|int\\|string\\|null\\>, mixed given\\.$#"
+			count: 1
+			path: app/Http/Actions/Diary/Export/ExportByCsvSJisAction.php
+
+		-
+			message: "#^Parameter \\#3 \\$var of function mb_convert_variables expects array\\|object\\|string, mixed given\\.$#"
+			count: 1
+			path: app/Http/Actions/Diary/Export/ExportByCsvSJisAction.php
+
+		-
+			message: "#^Parameter \\#1 \\$stream of function fclose expects resource, resource\\|false given\\.$#"
+			count: 1
+			path: app/Http/Actions/Diary/Export/ExportByCsvUtf8Action.php
+
+		-
+			message: "#^Parameter \\#2 \\$fields of function fputcsv expects array\\<int\\|string, bool\\|float\\|int\\|string\\|null\\>, mixed given\\.$#"
+			count: 1
+			path: app/Http/Actions/Diary/Export/ExportByCsvUtf8Action.php
+
+		-
+			message: "#^Cannot call method guessExtension\\(\\) on mixed\\.$#"
+			count: 1
+			path: app/Http/Actions/Diary/Import/ImportFromKadodeCsvAction.php
+
+		-
+			message: "#^Cannot call method move\\(\\) on mixed\\.$#"
+			count: 1
+			path: app/Http/Actions/Diary/Import/ImportFromKadodeCsvAction.php
+
+		-
+			message: "#^Expression on left side of \\?\\? is not nullable\\.$#"
+			count: 1
+			path: app/Http/Actions/Diary/Import/ImportFromKadodeCsvAction.php
+
+		-
+			message: "#^Parameter \\#1 \\$newDiary of method App\\\\UseCases\\\\Diary\\\\Import\\\\InsertDiaryFromImportData\\:\\:invoke\\(\\) expects array\\<string, array\\{updated_at\\: App\\\\UseCases\\\\Diary\\\\Import\\\\Carbon, created_at\\: App\\\\UseCases\\\\Diary\\\\Import\\\\Carbon, user_id\\: int, uuid\\: string, date\\: App\\\\UseCases\\\\Diary\\\\Import\\\\Carbon, title\\: string, content\\: string\\}\\>, array\\<string, array\\{updated_at\\: Carbon\\\\Carbon, created_at\\: Carbon\\\\Carbon, user_id\\: int, uuid\\: string, date\\: Carbon\\\\Carbon, title\\: string, content\\: string\\}\\> given\\.$#"
+			count: 1
+			path: app/Http/Actions/Diary/Import/ImportFromKadodeCsvAction.php
+
+		-
+			message: "#^Parameter \\#1 \\$userId of method App\\\\UseCases\\\\Diary\\\\GetAllDateByUserId\\:\\:invoke\\(\\) expects int, int\\|string\\|null given\\.$#"
+			count: 1
+			path: app/Http/Actions/Diary/Import/ImportFromKadodeCsvAction.php
+
+		-
+			message: "#^Parameter \\#2 \\$userId of method App\\\\UseCases\\\\Diary\\\\Import\\\\UpsertDiaryFromImportData\\:\\:invoke\\(\\) expects int, int\\|string\\|null given\\.$#"
+			count: 1
+			path: app/Http/Actions/Diary/Import/ImportFromKadodeCsvAction.php
+
+		-
+			message: "#^Parameter \\#3 \\$userId of method App\\\\UseCases\\\\Diary\\\\Import\\\\CreateDiaryBaseArrayFromImportedData\\:\\:invoke\\(\\) expects int, int\\|string\\|null given\\.$#"
+			count: 1
+			path: app/Http/Actions/Diary/Import/ImportFromKadodeCsvAction.php
+
+		-
+			message: "#^Cannot call method guessExtension\\(\\) on mixed\\.$#"
+			count: 1
+			path: app/Http/Actions/Diary/Import/ImportFromTukiniTxtAction.php
+
+		-
+			message: "#^Cannot call method move\\(\\) on mixed\\.$#"
+			count: 1
+			path: app/Http/Actions/Diary/Import/ImportFromTukiniTxtAction.php
+
+		-
+			message: "#^Expression on left side of \\?\\? is not nullable\\.$#"
+			count: 1
+			path: app/Http/Actions/Diary/Import/ImportFromTukiniTxtAction.php
+
+		-
+			message: "#^Parameter \\#1 \\$newDiary of method App\\\\UseCases\\\\Diary\\\\Import\\\\InsertDiaryFromImportData\\:\\:invoke\\(\\) expects array\\<string, array\\{updated_at\\: App\\\\UseCases\\\\Diary\\\\Import\\\\Carbon, created_at\\: App\\\\UseCases\\\\Diary\\\\Import\\\\Carbon, user_id\\: int, uuid\\: string, date\\: App\\\\UseCases\\\\Diary\\\\Import\\\\Carbon, title\\: string, content\\: string\\}\\>, array\\<string, array\\{updated_at\\: Carbon\\\\Carbon, created_at\\: Carbon\\\\Carbon, user_id\\: int, uuid\\: string, date\\: Carbon\\\\Carbon, title\\: string, content\\: string\\}\\> given\\.$#"
+			count: 1
+			path: app/Http/Actions/Diary/Import/ImportFromTukiniTxtAction.php
+
+		-
+			message: "#^Parameter \\#1 \\$searchWords of method App\\\\UseCases\\\\Diary\\\\SearchDiaries\\:\\:invoke\\(\\) expects string, mixed given\\.$#"
+			count: 1
+			path: app/Http/Actions/Diary/Search/SimpleSearchAction.php
+
+		-
+			message: "#^Parameter \\#1 \\$value of function count expects array\\|Countable, Illuminate\\\\Support\\\\Collection\\|null given\\.$#"
+			count: 1
+			path: app/Http/Actions/Diary/Search/SimpleSearchAction.php
+
+		-
+			message: "#^Part \\$request\\-\\>keyword \\(mixed\\) of encapsed string cannot be cast to string\\.$#"
+			count: 1
+			path: app/Http/Actions/Diary/Search/SimpleSearchAction.php
+
+		-
+			message: "#^Method App\\\\Http\\\\Actions\\\\Diary\\\\ShowSingleDiaryAction\\:\\:__invoke\\(\\) has parameter \\$uuid with no type specified\\.$#"
+			count: 1
+			path: app/Http/Actions/Diary/ShowSingleDiaryAction.php
+
+		-
+			message: "#^Strict comparison using \\=\\=\\= between null and array will always evaluate to false\\.$#"
+			count: 1
+			path: app/Http/Actions/Diary/ShowSingleDiaryAction.php
+
+		-
+			message: "#^Cannot access offset 'diary_average' on mixed\\.$#"
+			count: 3
+			path: app/Http/Actions/ShowAdminHomeAction.php
+
+		-
+			message: "#^Cannot access offset 'diary_count' on mixed\\.$#"
+			count: 1
+			path: app/Http/Actions/ShowAdminHomeAction.php
+
+		-
+			message: "#^Cannot access offset 'id' on mixed\\.$#"
+			count: 6
+			path: app/Http/Actions/ShowAdminHomeAction.php
+
+		-
+			message: "#^Cannot access offset 'is_showed_service…' on mixed\\.$#"
+			count: 2
+			path: app/Http/Actions/ShowAdminHomeAction.php
+
+		-
+			message: "#^Cannot access offset 'is_showed_update…' on mixed\\.$#"
+			count: 4
+			path: app/Http/Actions/ShowAdminHomeAction.php
+
+		-
+			message: "#^Cannot access offset 'latest_diary' on mixed\\.$#"
+			count: 1
+			path: app/Http/Actions/ShowAdminHomeAction.php
+
+		-
+			message: "#^Cannot access offset 'oldest_diary' on mixed\\.$#"
+			count: 1
+			path: app/Http/Actions/ShowAdminHomeAction.php
+
+		-
+			message: "#^Cannot access offset 'statistics_per…' on mixed\\.$#"
+			count: 1
+			path: app/Http/Actions/ShowAdminHomeAction.php
+
+		-
+			message: "#^Expression on left side of \\?\\? is not nullable\\.$#"
+			count: 2
+			path: app/Http/Actions/ShowAdminHomeAction.php
+
+		-
+			message: "#^Cannot access property \\$genre_id on App\\\\Models\\\\NlpPackageName\\|null\\.$#"
+			count: 1
+			path: app/Http/Actions/ShowAdminIndividualPackageAction.php
+
+		-
+			message: "#^Cannot access property \\$id on App\\\\Models\\\\NlpPackageName\\|null\\.$#"
+			count: 1
+			path: app/Http/Actions/ShowAdminIndividualPackageAction.php
+
+		-
+			message: "#^Cannot access property \\$packageNER on App\\\\Models\\\\NlpPackageName\\|null\\.$#"
+			count: 1
+			path: app/Http/Actions/ShowAdminIndividualPackageAction.php
+
+		-
+			message: "#^Parameter \\#1 \\$NERLabels of method App\\\\UseCases\\\\NERLabel\\\\GetAllNERLabelInOptionTabFormat\\:\\:invoke\\(\\) expects array\\<array\\{id\\: int, name\\: string\\}\\>, array given\\.$#"
+			count: 1
+			path: app/Http/Actions/ShowAdminIndividualPackageAction.php
+
+		-
+			message: "#^Access to an undefined property App\\\\Models\\\\Osirase\\:\\:\\$genre\\.$#"
+			count: 1
+			path: app/Http/Actions/ShowAdminNotificationAction.php
+
+		-
+			message: "#^Access to an undefined property App\\\\Models\\\\Releasenote\\:\\:\\$genre\\.$#"
+			count: 1
+			path: app/Http/Actions/ShowAdminNotificationAction.php
+
+		-
+			message: "#^Cannot access property \\$name on App\\\\Models\\\\OsiraseGenre\\|null\\.$#"
+			count: 1
+			path: app/Http/Actions/ShowAdminNotificationAction.php
+
+		-
+			message: "#^Cannot access property \\$name on App\\\\Models\\\\ReleasenoteGenre\\|null\\.$#"
+			count: 1
+			path: app/Http/Actions/ShowAdminNotificationAction.php
+
+		-
+			message: "#^Parameter \\#1 \\$user of method App\\\\UseCases\\\\User\\\\GetUnreadNotifications\\:\\:invoke\\(\\) expects App\\\\Models\\\\User, App\\\\Models\\\\User\\|null given\\.$#"
+			count: 1
+			path: app/Http/Actions/ShowHomeAction.php
+
+		-
+			message: "#^Cannot access property \\$user_rank_id on App\\\\Models\\\\User\\|null\\.$#"
+			count: 1
+			path: app/Http/Actions/ShowSettingsAction.php
+
+		-
+			message: "#^Parameter \\#1 \\$user_id of method App\\\\UseCases\\\\Statistic\\\\ThrowPythonNLP\\:\\:invoke\\(\\) expects int, int\\|string\\|null given\\.$#"
+			count: 1
+			path: app/Http/Actions/Statistic/CreateAllStatisticAction.php
+
+		-
+			message: "#^Access to an undefined property App\\\\Models\\\\Statistic\\:\\:\\$monthWritingRate\\.$#"
+			count: 1
+			path: app/Http/Actions/Statistic/ShowStatisticAction.php
+
+		-
+			message: "#^Access to an undefined property App\\\\Models\\\\Statistic\\:\\:\\$month_words_per_diary\\.$#"
+			count: 1
+			path: app/Http/Actions/Statistic/ShowStatisticAction.php
+
+		-
+			message: "#^Access to an undefined property App\\\\Models\\\\Statistic\\:\\:\\$months\\.$#"
+			count: 1
+			path: app/Http/Actions/Statistic/ShowStatisticAction.php
+
+		-
+			message: "#^Access to an undefined property App\\\\Models\\\\Statistic\\:\\:\\$statisticStatus\\.$#"
+			count: 2
+			path: app/Http/Actions/Statistic/ShowStatisticAction.php
+
+		-
+			message: "#^Argument of an invalid type mixed supplied for foreach, only iterables are supported\\.$#"
+			count: 1
+			path: app/Http/Actions/Statistic/ShowStatisticAction.php
+
+		-
+			message: "#^Argument of an invalid type string\\|null supplied for foreach, only iterables are supported\\.$#"
+			count: 2
+			path: app/Http/Actions/Statistic/ShowStatisticAction.php
+
+		-
+			message: "#^Cannot access offset 'form' on mixed\\.$#"
+			count: 1
+			path: app/Http/Actions/Statistic/ShowStatisticAction.php
+
+		-
+			message: "#^Cannot access offset 'lemma' on mixed\\.$#"
+			count: 1
+			path: app/Http/Actions/Statistic/ShowStatisticAction.php
+
+		-
+			message: "#^Cannot access property \\$affiliation on mixed\\.$#"
+			count: 1
+			path: app/Http/Actions/Statistic/ShowStatisticAction.php
+
+		-
+			message: "#^Cannot access property \\$char_length on mixed\\.$#"
+			count: 1
+			path: app/Http/Actions/Statistic/ShowStatisticAction.php
+
+		-
+			message: "#^Cannot access property \\$date on App\\\\Models\\\\Diary\\|null\\.$#"
+			count: 1
+			path: app/Http/Actions/Statistic/ShowStatisticAction.php
+
+		-
+			message: "#^Cannot access property \\$date on mixed\\.$#"
+			count: 1
+			path: app/Http/Actions/Statistic/ShowStatisticAction.php
+
+		-
+			message: "#^Cannot call method diffInDays\\(\\) on Illuminate\\\\Support\\\\Carbon\\|false\\.$#"
+			count: 1
+			path: app/Http/Actions/Statistic/ShowStatisticAction.php
+
+		-
+			message: "#^Cannot call method endOfMonth\\(\\) on Illuminate\\\\Support\\\\Carbon\\|false\\.$#"
+			count: 1
+			path: app/Http/Actions/Statistic/ShowStatisticAction.php
+
+		-
+			message: "#^Parameter \\#1 \\$userId of method App\\\\UseCases\\\\Statistic\\\\GetStatistic\\:\\:invoke\\(\\) expects int, int\\|string\\|null given\\.$#"
+			count: 1
+			path: app/Http/Actions/Statistic/ShowStatisticAction.php
+
+		-
+			message: "#^Parameter \\#1 \\$year of static method Carbon\\\\Carbon\\:\\:create\\(\\) expects DateTimeInterface\\|int\\|null, string given\\.$#"
+			count: 2
+			path: app/Http/Actions/Statistic/ShowStatisticAction.php
+
+		-
+			message: "#^Parameter \\#2 \\$month of static method Carbon\\\\Carbon\\:\\:create\\(\\) expects int\\|null, string given\\.$#"
+			count: 2
+			path: app/Http/Actions/Statistic/ShowStatisticAction.php
+
+		-
+			message: "#^Access to an undefined property App\\\\Models\\\\NlpPackageName\\:\\:\\$genre\\.$#"
+			count: 1
+			path: app/Http/Actions/Statistic/ShowStatisticSettingAction.php
+
+		-
+			message: "#^Cannot access property \\$name on App\\\\Models\\\\NlpPackageGenre\\|null\\.$#"
+			count: 1
+			path: app/Http/Actions/Statistic/ShowStatisticSettingAction.php
+
+		-
+			message: "#^Cannot access property \\$updated_at on App\\\\Models\\\\Statistic\\|null\\.$#"
+			count: 1
+			path: app/Http/Actions/Statistic/UpdateAllStatisticAction.php
+
+		-
+			message: "#^Cannot call method update\\(\\) on App\\\\Models\\\\Statistic\\|null\\.$#"
+			count: 1
+			path: app/Http/Actions/Statistic/UpdateAllStatisticAction.php
+
+		-
+			message: "#^Parameter \\#1 \\$user_id of method App\\\\UseCases\\\\Statistic\\\\ThrowPythonNLP\\:\\:invoke\\(\\) expects int, int\\|string\\|null given\\.$#"
+			count: 1
+			path: app/Http/Actions/Statistic/UpdateAllStatisticAction.php
+
+		-
+			message: "#^Parameter \\#1 \\$ids of static method Illuminate\\\\Database\\\\Eloquent\\\\Model\\:\\:destroy\\(\\) expects array\\|Illuminate\\\\Support\\\\Collection\\|int\\|string, int\\|string\\|null given\\.$#"
+			count: 1
+			path: app/Http/Actions/User/DeleteUserAction.php
+
+		-
+			message: "#^Cannot access property \\$id on App\\\\Models\\\\User\\|null\\.$#"
+			count: 1
+			path: app/Http/Actions/User/UpdateEmailAction.php
+
+		-
+			message: "#^Cannot access property \\$id on App\\\\Models\\\\User\\|null\\.$#"
+			count: 1
+			path: app/Http/Actions/User/UpdatePasswordAction.php
+
+		-
+			message: "#^Parameter \\#1 \\$value of static method Illuminate\\\\Support\\\\Facades\\\\Hash\\:\\:make\\(\\) expects string, mixed given\\.$#"
+			count: 1
+			path: app/Http/Actions/User/UpdatePasswordAction.php
+
+		-
+			message: "#^Cannot access property \\$id on App\\\\Models\\\\User\\|null\\.$#"
+			count: 1
+			path: app/Http/Actions/User/UpdateUserNameAction.php
+
+		-
+			message: "#^PHPDoc tag @var has invalid value \\(array\\<string,array\\<int,array\\<\\{cpu\\:float,memory\\:float,disk\\:float\\}\\>\\>\\)\\: Unexpected token \"\\{\", expected type at offset 38$#"
+			count: 1
+			path: app/Http/ApiActions/MachineResource/GetMachineResourceLatest1Minutes.php
+
+		-
+			message: "#^PHPDoc tag @var has invalid value \\(array\\<string,array\\<int,array\\<\\{cpu\\:float,memory\\:float,disk\\:float\\}\\>\\>\\)\\: Unexpected token \"\\{\", expected type at offset 38$#"
+			count: 1
+			path: app/Http/ApiActions/MachineResource/GetMachineResourceLatest30Minutes.php
+
+		-
+			message: "#^Cannot access offset 'url' on mixed\\.$#"
+			count: 1
+			path: app/Http/ApiActions/Osirase/GetAllOsiraseAction.php
+
+		-
+			message: "#^Cannot access offset 'url' on mixed\\.$#"
+			count: 1
+			path: app/Http/ApiActions/Osirase/GetLatestOsiraseAction.php
+
+		-
+			message: "#^Cannot access offset 'url' on mixed\\.$#"
+			count: 1
+			path: app/Http/ApiActions/ReleaseNote/GetAllReleaseNoteAction.php
+
+		-
+			message: "#^Cannot access offset 'url' on mixed\\.$#"
+			count: 1
+			path: app/Http/ApiActions/ReleaseNote/GetLatestReleaseNoteAction.php
+
+		-
+			message: "#^PHPDoc type array of property App\\\\Http\\\\Kernel\\:\\:\\$middleware is not covariant with PHPDoc type array\\<int, string\\> of overridden property Illuminate\\\\Foundation\\\\Http\\\\Kernel\\:\\:\\$middleware\\.$#"
+			count: 1
+			path: app/Http/Kernel.php
+
+		-
+			message: "#^PHPDoc type array of property App\\\\Http\\\\Kernel\\:\\:\\$middlewareAliases is not covariant with PHPDoc type array\\<string, string\\> of overridden property Illuminate\\\\Foundation\\\\Http\\\\Kernel\\:\\:\\$middlewareAliases\\.$#"
+			count: 1
+			path: app/Http/Kernel.php
+
+		-
+			message: "#^PHPDoc type array of property App\\\\Http\\\\Kernel\\:\\:\\$middlewareGroups is not covariant with PHPDoc type array\\<string, array\\<int, string\\>\\> of overridden property Illuminate\\\\Foundation\\\\Http\\\\Kernel\\:\\:\\$middlewareGroups\\.$#"
+			count: 1
+			path: app/Http/Kernel.php
+
+		-
+			message: "#^PHPDoc type array of property App\\\\Http\\\\Middleware\\\\EncryptCookies\\:\\:\\$except is not covariant with PHPDoc type array\\<int, string\\> of overridden property Illuminate\\\\Cookie\\\\Middleware\\\\EncryptCookies\\:\\:\\$except\\.$#"
+			count: 1
+			path: app/Http/Middleware/EncryptCookies.php
+
+		-
+			message: "#^PHPDoc type array of property App\\\\Http\\\\Middleware\\\\PreventRequestsDuringMaintenance\\:\\:\\$except is not covariant with PHPDoc type array\\<int, string\\> of overridden property Illuminate\\\\Foundation\\\\Http\\\\Middleware\\\\PreventRequestsDuringMaintenance\\:\\:\\$except\\.$#"
+			count: 1
+			path: app/Http/Middleware/PreventRequestsDuringMaintenance.php
+
+		-
+			message: "#^PHPDoc type array of property App\\\\Http\\\\Middleware\\\\TrimStrings\\:\\:\\$except is not covariant with PHPDoc type array\\<int, string\\> of overridden property Illuminate\\\\Foundation\\\\Http\\\\Middleware\\\\TrimStrings\\:\\:\\$except\\.$#"
+			count: 1
+			path: app/Http/Middleware/TrimStrings.php
+
+		-
+			message: "#^PHPDoc type array of property App\\\\Http\\\\Middleware\\\\VerifyCsrfToken\\:\\:\\$except is not covariant with PHPDoc type array\\<int, string\\> of overridden property Illuminate\\\\Foundation\\\\Http\\\\Middleware\\\\VerifyCsrfToken\\:\\:\\$except\\.$#"
+			count: 1
+			path: app/Http/Middleware/VerifyCsrfToken.php
+
+		-
+			message: "#^Parameter \\#1 \\$user_id of class App\\\\Rules\\\\Diary\\\\RejectExistDayDiaryForCreateOnDateRule constructor expects int, int\\|string\\|null given\\.$#"
+			count: 1
+			path: app/Http/Requests/Diary/CreateDiaryRequest.php
+
+		-
+			message: "#^Parameter \\#1 \\$user_id of class App\\\\Rules\\\\Diary\\\\RejectExistDayDiaryForUpdateOnDateRule constructor expects int, int\\|string\\|null given\\.$#"
+			count: 1
+			path: app/Http/Requests/Diary/UpdateDiaryRequest.php
+
+		-
+			message: "#^Method App\\\\CustomFunction\\\\CalculateDiaryLegacy\\:\\:calculateDiary\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: app/Legacy/CalculateDiaryLegacy.php
+
+		-
+			message: "#^Method App\\\\CustomFunction\\\\CalculateDiaryLegacy\\:\\:calculateDiary\\(\\) has parameter \\$diaries with no type specified\\.$#"
+			count: 1
+			path: app/Legacy/CalculateDiaryLegacy.php
+
+		-
+			message: "#^Property App\\\\Models\\\\CustomNER\\:\\:\\$rules has no type specified\\.$#"
+			count: 1
+			path: app/Models/CustomNER.php
+
+		-
+			message: "#^Property App\\\\Models\\\\NlpPackageGenre\\:\\:\\$rules has no type specified\\.$#"
+			count: 1
+			path: app/Models/NlpPackageGenre.php
+
+		-
+			message: "#^Property App\\\\Models\\\\NlpPackageName\\:\\:\\$rules has no type specified\\.$#"
+			count: 1
+			path: app/Models/NlpPackageName.php
+
+		-
+			message: "#^Property App\\\\Models\\\\Osirase\\:\\:\\$rules has no type specified\\.$#"
+			count: 1
+			path: app/Models/Osirase.php
+
+		-
+			message: "#^Property App\\\\Models\\\\PackageNER\\:\\:\\$rules has no type specified\\.$#"
+			count: 1
+			path: app/Models/PackageNER.php
+
+		-
+			message: "#^Property App\\\\Models\\\\Releasenote\\:\\:\\$rules has no type specified\\.$#"
+			count: 1
+			path: app/Models/Releasenote.php
+
+		-
+			message: "#^Method App\\\\Models\\\\User\\:\\:diary\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: app/Models/User.php
+
+		-
+			message: "#^Method App\\\\Models\\\\User\\:\\:userRank\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: app/Models/User.php
+
+		-
+			message: "#^Method App\\\\Models\\\\User\\:\\:userRole\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: app/Models/User.php
+
+		-
+			message: "#^PHPDoc type array of property App\\\\Models\\\\User\\:\\:\\$fillable is not covariant with PHPDoc type array\\<string\\> of overridden property Illuminate\\\\Database\\\\Eloquent\\\\Model\\:\\:\\$fillable\\.$#"
+			count: 1
+			path: app/Models/User.php
+
+		-
+			message: "#^PHPDoc type array of property App\\\\Models\\\\User\\:\\:\\$hidden is not covariant with PHPDoc type array\\<int, string\\> of overridden property Illuminate\\\\Database\\\\Eloquent\\\\Model\\:\\:\\$hidden\\.$#"
+			count: 1
+			path: app/Models/User.php
+
+		-
+			message: "#^Property App\\\\Models\\\\User\\:\\:\\$updateEmailRules has no type specified\\.$#"
+			count: 1
+			path: app/Models/User.php
+
+		-
+			message: "#^Property App\\\\Models\\\\User\\:\\:\\$updatePassWordRules has no type specified\\.$#"
+			count: 1
+			path: app/Models/User.php
+
+		-
+			message: "#^Property App\\\\Models\\\\User\\:\\:\\$updateUserNameRules has no type specified\\.$#"
+			count: 1
+			path: app/Models/User.php
+
+		-
+			message: "#^Property App\\\\Models\\\\UserRank\\:\\:\\$rules has no type specified\\.$#"
+			count: 1
+			path: app/Models/UserRank.php
+
+		-
+			message: "#^Property App\\\\Models\\\\UserRole\\:\\:\\$rules has no type specified\\.$#"
+			count: 1
+			path: app/Models/UserRole.php
+
+		-
+			message: "#^PHPDoc type array of property App\\\\Providers\\\\AuthServiceProvider\\:\\:\\$policies is not covariant with PHPDoc type array\\<class\\-string, class\\-string\\> of overridden property Illuminate\\\\Foundation\\\\Support\\\\Providers\\\\AuthServiceProvider\\:\\:\\$policies\\.$#"
+			count: 1
+			path: app/Providers/AuthServiceProvider.php
+
+		-
+			message: "#^PHPDoc type array of property App\\\\Providers\\\\EventServiceProvider\\:\\:\\$listen is not covariant with PHPDoc type array\\<string, array\\<int, string\\>\\> of overridden property Illuminate\\\\Foundation\\\\Support\\\\Providers\\\\EventServiceProvider\\:\\:\\$listen\\.$#"
+			count: 1
+			path: app/Providers/EventServiceProvider.php
+
+		-
+			message: "#^Cannot access property \\$id on mixed\\.$#"
+			count: 1
+			path: app/Providers/RouteServiceProvider.php
+
+		-
+			message: "#^PHPDoc tag @var above a method has no effect\\.$#"
+			count: 1
+			path: app/Providers/RouteServiceProvider.php
+
+		-
+			message: "#^PHPDoc tag @var does not specify variable name\\.$#"
+			count: 1
+			path: app/Providers/RouteServiceProvider.php
+
+		-
+			message: "#^Method App\\\\Rules\\\\Diary\\\\RejectExistDayDiaryForCreateOnDateRule\\:\\:message\\(\\) should return string but returns mixed\\.$#"
+			count: 1
+			path: app/Rules/Diary/RejectExistDayDiaryForCreateOnDateRule.php
+
+		-
+			message: "#^Method App\\\\Rules\\\\Diary\\\\RejectExistDayDiaryForUpdateOnDateRule\\:\\:message\\(\\) should return string but returns mixed\\.$#"
+			count: 1
+			path: app/Rules/Diary/RejectExistDayDiaryForUpdateOnDateRule.php
+
+		-
+			message: "#^Method App\\\\UseCases\\\\Diary\\\\GetAllDateByUserId\\:\\:invoke\\(\\) should return array\\<string, string\\> but returns array\\<int\\|string, int\\>\\.$#"
+			count: 1
+			path: app/UseCases/Diary/GetAllDateByUserId.php
+
+		-
+			message: "#^Parameter \\#2 \\$operator of method Illuminate\\\\Database\\\\Eloquent\\\\Builder\\<App\\\\Models\\\\Diary\\>\\:\\:whereMonth\\(\\) expects string, int given\\.$#"
+			count: 1
+			path: app/UseCases/Diary/GetDiariesByMonth.php
+
+		-
+			message: "#^Parameter \\#2 \\$operator of method Illuminate\\\\Database\\\\Eloquent\\\\Builder\\<App\\\\Models\\\\Diary\\>\\:\\:whereYear\\(\\) expects string, int given\\.$#"
+			count: 1
+			path: app/UseCases/Diary/GetDiariesByMonth.php
+
+		-
+			message: "#^Parameter \\#2 \\$operator of method Illuminate\\\\Database\\\\Eloquent\\\\Builder\\<App\\\\Models\\\\Diary\\>\\:\\:whereYear\\(\\) expects string, int given\\.$#"
+			count: 1
+			path: app/UseCases/Diary/GetDiariesByYear.php
+
+		-
+			message: "#^Cannot access offset 'date' on mixed\\.$#"
+			count: 2
+			path: app/UseCases/Diary/GetDiariesDateNextToDiaryById.php
+
+		-
+			message: "#^Cannot access offset 'uuid' on mixed\\.$#"
+			count: 2
+			path: app/UseCases/Diary/GetDiariesDateNextToDiaryById.php
+
+		-
+			message: "#^Method App\\\\UseCases\\\\Diary\\\\GetDiariesDateNextToDiaryById\\:\\:invoke\\(\\) has invalid return type App\\\\UseCases\\\\Diary\\\\DateTime\\.$#"
+			count: 1
+			path: app/UseCases/Diary/GetDiariesDateNextToDiaryById.php
+
+		-
+			message: "#^Method App\\\\UseCases\\\\Diary\\\\GetDiariesDateNextToDiaryById\\:\\:invoke\\(\\) should return array\\{next\\: array\\{date\\: App\\\\UseCases\\\\Diary\\\\DateTime, uuid\\: string\\}, former\\: array\\{date\\: App\\\\UseCases\\\\Diary\\\\DateTime, uuid\\: string\\}\\} but returns array\\{next\\: array\\{date\\: non\\-falsy\\-string, uuid\\: mixed\\}, former\\: array\\{date\\: non\\-falsy\\-string, uuid\\: mixed\\}\\}\\.$#"
+			count: 1
+			path: app/UseCases/Diary/GetDiariesDateNextToDiaryById.php
+
+		-
+			message: "#^Method App\\\\UseCases\\\\Diary\\\\GetSameDayDiariesByDate\\:\\:invoke\\(\\) should return array\\<App\\\\Models\\\\Diary\\> but returns array\\<int, array\\>\\.$#"
+			count: 1
+			path: app/UseCases/Diary/GetSameDayDiariesByDate.php
+
+		-
+			message: "#^Parameter \\#2 \\$operator of method Illuminate\\\\Database\\\\Eloquent\\\\Builder\\<App\\\\Models\\\\Diary\\>\\:\\:whereDay\\(\\) expects string, int given\\.$#"
+			count: 1
+			path: app/UseCases/Diary/GetSameDayDiariesByDate.php
+
+		-
+			message: "#^Parameter \\#2 \\$operator of method Illuminate\\\\Database\\\\Eloquent\\\\Builder\\<App\\\\Models\\\\Diary\\>\\:\\:whereMonth\\(\\) expects string, int given\\.$#"
+			count: 1
+			path: app/UseCases/Diary/GetSameDayDiariesByDate.php
+
+		-
+			message: "#^Method App\\\\UseCases\\\\Diary\\\\Import\\\\CreateDiaryBaseArrayFromImportedData\\:\\:invoke\\(\\) should return array\\{array\\<string, array\\{updated_at\\: Carbon\\\\Carbon, created_at\\: Carbon\\\\Carbon, user_id\\: int, uuid\\: string, date\\: Carbon\\\\Carbon, title\\: string, content\\: string\\}\\>, array\\<string, array\\{title\\: string, content\\: string\\}\\>\\} but returns array\\{array\\<string, array\\{updated_at\\: Carbon\\\\Carbon, created_at\\: Carbon\\\\Carbon, user_id\\: int, uuid\\: Ramsey\\\\Uuid\\\\UuidInterface\\|string, date\\: Carbon\\\\Carbon, title\\: string, content\\: string\\}\\>, array\\<string, array\\{title\\: string, content\\: string\\}\\>\\}\\.$#"
+			count: 1
+			path: app/UseCases/Diary/Import/CreateDiaryBaseArrayFromImportedData.php
+
+		-
+			message: "#^Parameter \\$newDiary of method App\\\\UseCases\\\\Diary\\\\Import\\\\InsertDiaryFromImportData\\:\\:invoke\\(\\) has invalid type App\\\\UseCases\\\\Diary\\\\Import\\\\Carbon\\.$#"
+			count: 1
+			path: app/UseCases/Diary/Import/InsertDiaryFromImportData.php
+
+		-
+			message: "#^Cannot access offset 'content' on mixed\\.$#"
+			count: 1
+			path: app/UseCases/Diary/Import/UpsertDiaryFromImportData.php
+
+		-
+			message: "#^Cannot access offset 'date' on mixed\\.$#"
+			count: 1
+			path: app/UseCases/Diary/Import/UpsertDiaryFromImportData.php
+
+		-
+			message: "#^Cannot access offset 'id' on mixed\\.$#"
+			count: 1
+			path: app/UseCases/Diary/Import/UpsertDiaryFromImportData.php
+
+		-
+			message: "#^Cannot access offset 'uuid' on mixed\\.$#"
+			count: 1
+			path: app/UseCases/Diary/Import/UpsertDiaryFromImportData.php
+
+		-
+			message: "#^Offset 'uuid' does not exist on array\\{id\\: mixed, uuid\\?\\: mixed, content\\: mixed\\}\\.$#"
+			count: 1
+			path: app/UseCases/Diary/Import/UpsertDiaryFromImportData.php
+
+		-
+			message: "#^Access to an undefined property App\\\\Models\\\\Diary\\:\\:\\$statisticStatus\\.$#"
+			count: 4
+			path: app/UseCases/Diary/Statistic/ArrangeDiaryStatistic.php
+
+		-
+			message: "#^Cannot access property \\$important_words on App\\\\Models\\\\StatisticPerDate\\|null\\.$#"
+			count: 2
+			path: app/UseCases/Diary/Statistic/ArrangeDiaryStatistic.php
+
+		-
+			message: "#^Cannot access property \\$special_people on App\\\\Models\\\\StatisticPerDate\\|null\\.$#"
+			count: 2
+			path: app/UseCases/Diary/Statistic/ArrangeDiaryStatistic.php
+
+		-
+			message: "#^Parameter \\#1 \\$array of function array_values expects array, mixed given\\.$#"
+			count: 2
+			path: app/UseCases/Diary/Statistic/ArrangeDiaryStatistic.php
+
+		-
+			message: "#^Parameter \\#1 \\$json of function json_decode expects string, string\\|null given\\.$#"
+			count: 2
+			path: app/UseCases/Diary/Statistic/ArrangeDiaryStatistic.php
+
+		-
+			message: "#^PHPDoc tag @return has invalid value \\(array\\<string,array\\<int,array\\<\\{cpu\\:float,memory\\:float,disk\\:float\\}\\>\\>\\)\\: Unexpected token \"\\{\", expected type at offset 48$#"
+			count: 1
+			path: app/UseCases/MachineResource/GetAllMachineResourceFromRedis.php
+
+		-
+			message: """
+				#^PHPDoc tag @var has invalid value \\(array\\<string,array\\<int,array\\<\\{cpu\\:float,memory\\:float,disk\\:float\\}\\>\\>
+				\\[サーバー名\\:\\[ユニックスタイム\\:\\[cpu\\:CPU使用率,memory\\:メモリ使用率,disk\\:ディスク使用率\\]\\]\\]\\)\\: Unexpected token "\\{", expected type at offset 50$#
+			"""
+			count: 1
+			path: app/UseCases/MachineResource/GetAllMachineResourceFromRedis.php
+
+		-
+			message: "#^Parameter \\#2 \\$string of function explode expects string, string\\|false given\\.$#"
+			count: 1
+			path: app/UseCases/MachineResource/GetAllMachineResourceFromRedis.php
+
+		-
+			message: "#^Strict comparison using \\=\\=\\= between null and string\\|false will always evaluate to false\\.$#"
+			count: 1
+			path: app/UseCases/MachineResource/GetAllMachineResourceFromRedis.php
+
+		-
+			message: "#^Access to an undefined property App\\\\Models\\\\Statistic\\:\\:\\$months\\.$#"
+			count: 1
+			path: app/UseCases/Statistic/ArrangeStatistic.php
+
+		-
+			message: "#^Access to an undefined property App\\\\Models\\\\Statistic\\:\\:\\$statisticStatus\\.$#"
+			count: 3
+			path: app/UseCases/Statistic/ArrangeStatistic.php
+
+		-
+			message: "#^Method App\\\\UseCases\\\\Statistic\\\\ArrangeStatistic\\:\\:invoke\\(\\) should return App\\\\Models\\\\Statistic\\|null but returns App\\\\Models\\\\Statistic\\|void\\.$#"
+			count: 1
+			path: app/UseCases/Statistic/ArrangeStatistic.php
+
+		-
+			message: "#^Parameter \\#1 \\$array of function array_keys expects array, mixed given\\.$#"
+			count: 1
+			path: app/UseCases/Statistic/ArrangeStatistic.php
+
+		-
+			message: "#^Parameter \\#1 \\$array of function array_values expects array, mixed given\\.$#"
+			count: 8
+			path: app/UseCases/Statistic/ArrangeStatistic.php
+
+		-
+			message: "#^Parameter \\#1 \\$json of function json_decode expects string, string\\|null given\\.$#"
+			count: 9
+			path: app/UseCases/Statistic/ArrangeStatistic.php
+
+		-
+			message: "#^Parameter \\#1 \\$statistic of method App\\\\UseCases\\\\Statistic\\\\ArrangeStatistic\\:\\:existCorrectly\\(\\) expects App\\\\Models\\\\Statistic, App\\\\Models\\\\Statistic\\|null given\\.$#"
+			count: 1
+			path: app/UseCases/Statistic/ArrangeStatistic.php
+
+		-
+			message: "#^Parameter \\#1 \\$statistic of method App\\\\UseCases\\\\Statistic\\\\ArrangeStatistic\\:\\:generating\\(\\) expects App\\\\Models\\\\Statistic, App\\\\Models\\\\Statistic\\|null given\\.$#"
+			count: 1
+			path: app/UseCases/Statistic/ArrangeStatistic.php
+
+		-
+			message: "#^Parameter \\#1 \\$statistic of method App\\\\UseCases\\\\Statistic\\\\ArrangeStatistic\\:\\:outdated\\(\\) expects App\\\\Models\\\\Statistic, App\\\\Models\\\\Statistic\\|null given\\.$#"
+			count: 1
+			path: app/UseCases/Statistic/ArrangeStatistic.php
+
+		-
+			message: "#^Property App\\\\Models\\\\Statistic\\:\\:\\$classifications \\(string\\|null\\) does not accept array\\<int, mixed\\>\\.$#"
+			count: 1
+			path: app/UseCases/Statistic/ArrangeStatistic.php
+
+		-
+			message: "#^Property App\\\\Models\\\\Statistic\\:\\:\\$emotions \\(string\\|null\\) does not accept array\\<int, mixed\\>\\.$#"
+			count: 1
+			path: app/UseCases/Statistic/ArrangeStatistic.php
+
+		-
+			message: "#^Property App\\\\Models\\\\Statistic\\:\\:\\$important_words \\(string\\|null\\) does not accept array\\<int, mixed\\>\\.$#"
+			count: 1
+			path: app/UseCases/Statistic/ArrangeStatistic.php
+
+		-
+			message: "#^Property App\\\\Models\\\\Statistic\\:\\:\\$month_diaries \\(string\\|null\\) does not accept array\\<int, mixed\\>\\.$#"
+			count: 1
+			path: app/UseCases/Statistic/ArrangeStatistic.php
+
+		-
+			message: "#^Property App\\\\Models\\\\Statistic\\:\\:\\$month_words \\(string\\|null\\) does not accept array\\<int, mixed\\>\\.$#"
+			count: 1
+			path: app/UseCases/Statistic/ArrangeStatistic.php
+
+		-
+			message: "#^Property App\\\\Models\\\\Statistic\\:\\:\\$special_people \\(string\\|null\\) does not accept array\\<int, mixed\\>\\.$#"
+			count: 1
+			path: app/UseCases/Statistic/ArrangeStatistic.php
+
+		-
+			message: "#^Property App\\\\Models\\\\Statistic\\:\\:\\$total_adjective_asc \\(string\\|null\\) does not accept array\\<int, mixed\\>\\.$#"
+			count: 1
+			path: app/UseCases/Statistic/ArrangeStatistic.php
+
+		-
+			message: "#^Property App\\\\Models\\\\Statistic\\:\\:\\$total_noun_asc \\(string\\|null\\) does not accept array\\<int, mixed\\>\\.$#"
+			count: 1
+			path: app/UseCases/Statistic/ArrangeStatistic.php
+
+		-
+			message: "#^Access to an undefined property App\\\\Models\\\\Statistic\\|App\\\\Models\\\\StatisticPerMonth\\|App\\\\Models\\\\StatisticPerYear\\:\\:\\$adjective_rank\\.$#"
+			count: 2
+			path: app/UseCases/Statistic/ArrangeStatisticPerMY.php
+
+		-
+			message: "#^Access to an undefined property App\\\\Models\\\\Statistic\\|App\\\\Models\\\\StatisticPerMonth\\|App\\\\Models\\\\StatisticPerYear\\:\\:\\$noun_rank\\.$#"
+			count: 2
+			path: app/UseCases/Statistic/ArrangeStatisticPerMY.php
+
+		-
+			message: "#^Access to an undefined property App\\\\Models\\\\Statistic\\|App\\\\Models\\\\StatisticPerMonth\\|App\\\\Models\\\\StatisticPerYear\\:\\:\\$statisticStatus\\.$#"
+			count: 3
+			path: app/UseCases/Statistic/ArrangeStatisticPerMY.php
+
+		-
+			message: "#^Access to an undefined property App\\\\Models\\\\Statistic\\|App\\\\Models\\\\StatisticPerMonth\\|App\\\\Models\\\\StatisticPerYear\\:\\:\\$word_counts\\.$#"
+			count: 2
+			path: app/UseCases/Statistic/ArrangeStatisticPerMY.php
+
+		-
+			message: "#^Method App\\\\UseCases\\\\Statistic\\\\ArrangeStatisticPerMY\\:\\:invoke\\(\\) should return App\\\\Models\\\\StatisticPerMonth\\|App\\\\Models\\\\StatisticPerYear\\|null but returns App\\\\Models\\\\Statistic\\|App\\\\Models\\\\StatisticPerMonth\\|App\\\\Models\\\\StatisticPerYear\\|void\\.$#"
+			count: 1
+			path: app/UseCases/Statistic/ArrangeStatisticPerMY.php
+
+		-
+			message: "#^Parameter \\#1 \\$array of function array_values expects array, mixed given\\.$#"
+			count: 7
+			path: app/UseCases/Statistic/ArrangeStatisticPerMY.php
+
+		-
+			message: "#^Parameter \\#1 \\$json of function json_decode expects string, string\\|null given\\.$#"
+			count: 7
+			path: app/UseCases/Statistic/ArrangeStatisticPerMY.php
+
+		-
+			message: "#^Parameter \\#1 \\$statistic of method App\\\\UseCases\\\\Statistic\\\\ArrangeStatisticPerMY\\:\\:existCorrectly\\(\\) expects App\\\\Models\\\\Statistic\\|App\\\\Models\\\\StatisticPerMonth\\|App\\\\Models\\\\StatisticPerYear, App\\\\Models\\\\StatisticPerMonth\\|App\\\\Models\\\\StatisticPerYear\\|null given\\.$#"
+			count: 1
+			path: app/UseCases/Statistic/ArrangeStatisticPerMY.php
+
+		-
+			message: "#^Parameter \\#1 \\$statistic of method App\\\\UseCases\\\\Statistic\\\\ArrangeStatisticPerMY\\:\\:generating\\(\\) expects App\\\\Models\\\\Statistic\\|App\\\\Models\\\\StatisticPerMonth\\|App\\\\Models\\\\StatisticPerYear, App\\\\Models\\\\StatisticPerMonth\\|App\\\\Models\\\\StatisticPerYear\\|null given\\.$#"
+			count: 1
+			path: app/UseCases/Statistic/ArrangeStatisticPerMY.php
+
+		-
+			message: "#^Parameter \\#1 \\$statistic of method App\\\\UseCases\\\\Statistic\\\\ArrangeStatisticPerMY\\:\\:outdated\\(\\) expects App\\\\Models\\\\Statistic\\|App\\\\Models\\\\StatisticPerMonth\\|App\\\\Models\\\\StatisticPerYear, App\\\\Models\\\\StatisticPerMonth\\|App\\\\Models\\\\StatisticPerYear\\|null given\\.$#"
+			count: 1
+			path: app/UseCases/Statistic/ArrangeStatisticPerMY.php
+
+		-
+			message: "#^Property App\\\\Models\\\\Statistic\\:\\:\\$classifications \\(string\\|null\\) does not accept array\\<int, mixed\\>\\.$#"
+			count: 1
+			path: app/UseCases/Statistic/ArrangeStatisticPerMY.php
+
+		-
+			message: "#^Property App\\\\Models\\\\Statistic\\:\\:\\$emotions \\(string\\|null\\) does not accept array\\<int, mixed\\>\\.$#"
+			count: 1
+			path: app/UseCases/Statistic/ArrangeStatisticPerMY.php
+
+		-
+			message: "#^Property App\\\\Models\\\\Statistic\\:\\:\\$important_words \\(string\\|null\\) does not accept array\\<int, mixed\\>\\.$#"
+			count: 1
+			path: app/UseCases/Statistic/ArrangeStatisticPerMY.php
+
+		-
+			message: "#^Property App\\\\Models\\\\Statistic\\:\\:\\$special_people \\(string\\|null\\) does not accept array\\<int, mixed\\>\\.$#"
+			count: 1
+			path: app/UseCases/Statistic/ArrangeStatisticPerMY.php
+
+		-
+			message: "#^Cannot call method toArray\\(\\) on App\\\\Models\\\\StatisticPerMonth\\|App\\\\Models\\\\StatisticPerYear\\|null\\.$#"
+			count: 1
+			path: app/UseCases/StatisticPerMonth/GetMonthlyStatisticByMonth.php
+
+		-
+			message: "#^Cannot call method toArray\\(\\) on App\\\\Models\\\\StatisticPerMonth\\|App\\\\Models\\\\StatisticPerYear\\|null\\.$#"
+			count: 1
+			path: app/UseCases/StatisticPerYear/GetYearlyStatisticByYear.php
+
+		-
+			message: "#^Cannot access property \\$date on App\\\\Models\\\\Osirase\\|null\\.$#"
+			count: 1
+			path: app/UseCases/User/GetUnreadNotifications.php
+
+		-
+			message: "#^Cannot access property \\$date on App\\\\Models\\\\Releasenote\\|null\\.$#"
+			count: 1
+			path: app/UseCases/User/GetUnreadNotifications.php
+
+		-
+			message: "#^Cannot access property \\$name on App\\\\Models\\\\UserRank\\|null\\.$#"
+			count: 1
+			path: app/UseCases/User/GetUnreadNotifications.php
+
+		-
+			message: "#^Cannot access property \\$title on App\\\\Models\\\\Osirase\\|null\\.$#"
+			count: 1
+			path: app/UseCases/User/GetUnreadNotifications.php
+
+		-
+			message: "#^Cannot access property \\$title on App\\\\Models\\\\Releasenote\\|null\\.$#"
+			count: 1
+			path: app/UseCases/User/GetUnreadNotifications.php
+
+		-
+			message: "#^Method App\\\\UseCases\\\\User\\\\GetUnreadNotifications\\:\\:invoke\\(\\) should return array\\<array\\{url\\: string, actionUrl\\: string, bg_color\\: string, title\\: string, date\\: string\\}\\> but returns array\\{\\}\\|array\\{0\\: array\\{url\\: '/osirase', actionUrl\\: string, bg_color\\: '51, 118, 156', title\\: string, date\\: Carbon\\\\Carbon\\}, 1\\?\\: array\\{url\\: '/releaseNote', actionUrl\\: string, bg_color\\: '51, 156, 118', title\\: string, date\\: Carbon\\\\Carbon\\}\\|array\\{url\\: '/settings', actionUrl\\: string, bg_color\\: '226, 83, 74', title\\: non\\-falsy\\-string, date\\: Carbon\\\\Carbon\\|null\\}, 2\\?\\: array\\{url\\: '/settings', actionUrl\\: string, bg_color\\: '226, 83, 74', title\\: non\\-falsy\\-string, date\\: Carbon\\\\Carbon\\|null\\}\\}\\|array\\{0\\: array\\{url\\: '/releaseNote', actionUrl\\: string, bg_color\\: '51, 156, 118', title\\: string, date\\: Carbon\\\\Carbon\\}, 1\\?\\: array\\{url\\: '/settings', actionUrl\\: string, bg_color\\: '226, 83, 74', title\\: non\\-falsy\\-string, date\\: Carbon\\\\Carbon\\|null\\}\\}\\|array\\{array\\{url\\: '/settings', actionUrl\\: string, bg_color\\: '226, 83, 74', title\\: non\\-falsy\\-string, date\\: Carbon\\\\Carbon\\|null\\}\\}\\.$#"
+			count: 1
+			path: app/UseCases/User/GetUnreadNotifications.php
+
+		-
+			message: "#^Parameter \\#1 \\$title of static method Illuminate\\\\Support\\\\Str\\:\\:slug\\(\\) expects string, mixed given\\.$#"
+			count: 1
+			path: config/cache.php
+
+		-
+			message: "#^Parameter \\#1 \\$title of static method Illuminate\\\\Support\\\\Str\\:\\:slug\\(\\) expects string, mixed given\\.$#"
+			count: 1
+			path: config/database.php
+
+		-
+			message: "#^Parameter \\#2 \\.\\.\\.\\$values of function sprintf expects bool\\|float\\|int\\|string\\|null, mixed given\\.$#"
+			count: 1
+			path: config/geoip.php
+
+		-
+			message: "#^Parameter \\#1 \\$url of function parse_url expects string, mixed given\\.$#"
+			count: 1
+			path: config/sanctum.php
+
+		-
+			message: "#^Parameter \\#2 \\$string of function explode expects string, mixed given\\.$#"
+			count: 1
+			path: config/sanctum.php
+
+		-
+			message: "#^Parameter \\#1 \\$title of static method Illuminate\\\\Support\\\\Str\\:\\:slug\\(\\) expects string, mixed given\\.$#"
+			count: 1
+			path: config/session.php
+
+		-
+			message: "#^Call to static method factory\\(\\) on an unknown class App\\\\Models\\\\Team\\.$#"
+			count: 1
+			path: database/factories/UserFactory.php
+
+		-
+			message: "#^Method Database\\\\Factories\\\\UserFactory\\:\\:withPersonalTeam\\(\\) should return \\$this\\(Database\\\\Factories\\\\UserFactory\\) but returns static\\(Database\\\\Factories\\\\UserFactory\\)\\.$#"
+			count: 2
+			path: database/factories/UserFactory.php
+
+		-
+			message: "#^PHPDoc type string of property Database\\\\Factories\\\\UserFactory\\:\\:\\$model is not covariant with PHPDoc type class\\-string\\<Illuminate\\\\Database\\\\Eloquent\\\\Model\\> of overridden property Illuminate\\\\Database\\\\Eloquent\\\\Factories\\\\Factory\\<Illuminate\\\\Database\\\\Eloquent\\\\Model\\>\\:\\:\\$model\\.$#"
+			count: 1
+			path: database/factories/UserFactory.php
+
+		-
+			message: "#^Undefined variable\\: \\$this$#"
+			count: 1
+			path: routes/console.php
+
+		-
+			message: "#^Call to an undefined method Torann\\\\GeoIP\\\\GeoIP\\|Torann\\\\GeoIP\\\\Location\\:\\:getLocation\\(\\)\\.$#"
+			count: 1
+			path: routes/web.php
+
+		-
+			message: "#^Parameter \\#1 \\$user of method Illuminate\\\\Foundation\\\\Testing\\\\TestCase\\:\\:actingAs\\(\\) expects Illuminate\\\\Contracts\\\\Auth\\\\Authenticatable, App\\\\Models\\\\User\\|null given\\.$#"
+			count: 13
+			path: tests/MinimumOperationCheck/ShowLoginTest.php
