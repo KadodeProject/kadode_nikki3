@@ -3,7 +3,15 @@
   <component name="ChangeListManager">
     <list default="true" id="aa6216b5-3a8a-49eb-9987-81fd25ac7924" name="変更" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/DEV/01_backend/01_db.md" beforeDir="false" afterPath="$PROJECT_DIR$/docs/DEV/01_backend/01_db.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/_ide_helper.php" beforeDir="false" afterPath="$PROJECT_DIR$/backend/_ide_helper.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/_ide_helper_models.php" beforeDir="false" afterPath="$PROJECT_DIR$/backend/_ide_helper_models.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/app/Http/Actions/User/Notification/RemoveOsiraseNoticeAction.php" beforeDir="false" afterPath="$PROJECT_DIR$/backend/app/Http/Actions/User/Notification/RemoveOsiraseNoticeAction.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/app/Http/Actions/User/Notification/RemoveReleaseNoteNoticeAction.php" beforeDir="false" afterPath="$PROJECT_DIR$/backend/app/Http/Actions/User/Notification/RemoveReleaseNoteNoticeAction.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/app/Http/Actions/User/Notification/RemoveUserRankNoticeAction.php" beforeDir="false" afterPath="$PROJECT_DIR$/backend/app/Http/Actions/User/Notification/RemoveUserRankNoticeAction.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/backend/composer.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/phpunit.xml" beforeDir="false" afterPath="$PROJECT_DIR$/backend/phpunit.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/infra/dev/mysql/initial/second_database.sql_" beforeDir="false" afterPath="$PROJECT_DIR$/infra/dev/mysql/initial/second_database.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/infra/dev/php/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/infra/dev/php/Dockerfile" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -203,6 +211,9 @@
       <path value="$PROJECT_DIR$/backend/vendor/php-webdriver/webdriver" />
       <path value="$PROJECT_DIR$/backend/vendor/symfony/uid" />
       <path value="$PROJECT_DIR$/backend/vendor/laravel/dusk" />
+      <path value="$PROJECT_DIR$/backend/vendor/guzzlehttp/uri-template" />
+      <path value="$PROJECT_DIR$/backend/vendor/symfony/yaml" />
+      <path value="$PROJECT_DIR$/backend/vendor/phpstan/phpdoc-parser" />
     </include_path>
   </component>
   <component name="ProjectId" id="2AIWVc78wYusKRwiBe2nK5zhYCz" />
@@ -220,6 +231,7 @@
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/docs/UML/DB" />
     <property name="nodejs_package_manager_path" value="yarn" />
+    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RecentsManager">
@@ -261,6 +273,8 @@
       <workItem from="1666444309996" duration="3564000" />
       <workItem from="1669900294968" duration="449000" />
       <workItem from="1669900765435" duration="315000" />
+      <workItem from="1680050896647" duration="2477000" />
+      <workItem from="1680053452594" duration="418000" />
     </task>
     <servers />
   </component>
