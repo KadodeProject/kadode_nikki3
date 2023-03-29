@@ -59,7 +59,7 @@ namespace App\Models{
  * @property int $user_id ユーザーID
  * @property string|null $title タイトル
  * @property string $content 本文
- * @property \Illuminate\Support\Carbon $date 日記の日付
+ * @property string $date 日記の日付
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @property-read \App\Models\DiaryProcessed|null $diaryProcessed
@@ -261,7 +261,7 @@ namespace App\Models{
  * @property string $title タイトル
  * @property int $genre_id お知らせのジャンルID
  * @property string $description 説明
- * @property \Illuminate\Support\Carbon $date 日付
+ * @property string $date 日付
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @property-read \App\Models\OsiraseGenre $osiraseGenre
@@ -327,7 +327,7 @@ namespace App\Models{
  * @property string $title タイトル
  * @property int $genre_id リリースノートのジャンルID
  * @property string $description 説明
- * @property \Illuminate\Support\Carbon $date 日付
+ * @property string $date 日付
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @property-read \App\Models\ReleasenoteGenre $releasenoteGenre
@@ -573,10 +573,9 @@ namespace App\Models{
  * @property int|null $user_rank_id ユーザーランク
  * @property int|null $user_role_id ユーザーロール(一般、管理者etc)
  * @property int|null $appearance_id ページの見た目
- * @property \Illuminate\Support\Carbon|null $user_rank_updated_at ユーザーランクアップデート日
+ * @property string|null $user_rank_updated_at ユーザーランクアップデート日
  * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Diary> $diary
  * @property-read int|null $diary_count
- * @property-read string $profile_photo_url
  * @property-read \Illuminate\Notifications\DatabaseNotificationCollection<int, \Illuminate\Notifications\DatabaseNotification> $notifications
  * @property-read int|null $notifications_count
  * @property-read \Illuminate\Database\Eloquent\Collection<int, \Laravel\Sanctum\PersonalAccessToken> $tokens
