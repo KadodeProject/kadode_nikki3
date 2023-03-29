@@ -40,6 +40,11 @@ class Kernel extends ConsoleKernel
         $schedule->command('backup:clean --disable-notifications')->dailyAt('05:10'); // バックアップ削除
         $schedule->command('backup:run --only-db')->dailyAt('05:12'); // バックアップ作成
         $schedule->command('gcs:backup')->dailyAt('05:15'); // バックアップをgcsに
+        /*
+         * @see https://laravel.com/docs/10.x/upgrade
+         * Laravel10のキャッシュ最適化に伴い、古いタグを適切に消す処理を追加
+         */
+        $schedule->command('cache:prune-stale-tags')->hourly();
     }
 
     /**

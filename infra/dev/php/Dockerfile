@@ -1,5 +1,5 @@
-FROM php:8.1-fpm-buster
-LABEL maintainer="ucan-lab <yes@u-can.pro>"
+FROM php:8.2-fpm-buster
+LABEL maintainer="usuyuki"
 SHELL ["/bin/bash", "-oeux", "pipefail", "-c"]
 
 # timezone environment
@@ -12,7 +12,7 @@ ENV TZ=UTC \
   COMPOSER_ALLOW_SUPERUSER=1 \
   COMPOSER_HOME=/composer
 
-COPY --from=composer:2.0 /usr/bin/composer /usr/bin/composer
+COPY --from=composer:lts /usr/bin/composer /usr/bin/composer
 
 RUN apt-get update && \
   apt-get -y install git libicu-dev libonig-dev libzip-dev unzip locales python3-pip libmariadb-dev vim cpulimit htop cron default-mysql-client python3-venv  libgirepository1.0-dev  && \

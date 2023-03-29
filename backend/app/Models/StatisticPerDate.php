@@ -23,9 +23,12 @@ class StatisticPerDate extends Model
     /**
      * 日付の登録(format使えるように).
      *
-     * @var array
+     * @var array<string,string>
      */
-    protected $dates = ['created_at', 'updated_at'];
+    protected $casts = [
+        'created_at' => 'datetime',
+        'updated_at' => 'datetime',
+    ];
 
     /**
      * $castsではtoArray,toJsonでUTCになってしまうため、アクセサで上書きする.
