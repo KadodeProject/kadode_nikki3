@@ -20,7 +20,10 @@ class DiaryProcessed extends Model
     /**
      * 日付の登録(format使えるように).
      *
-     * @var array
+     * @var array<string,string>
      */
-    protected $dates = ['created_at', 'updated_at'];
+    protected $casts = [
+        'created_at' => 'datetime',
+        'updated_at' => 'datetime',
+    ];
 }

@@ -72,9 +72,10 @@ class User extends Authenticatable implements MustVerifyEmail
     /**
      * The attributes that should be cast to native types.
      *
-     * @var array
+     * @var array<string,string>
      */
     protected $casts = [
+        'user_rank_updated_at' => 'datetime',
         'email_verified_at' => 'datetime',
         'sentence' => 'json',
         'chunk' => 'json',
@@ -97,9 +98,6 @@ class User extends Authenticatable implements MustVerifyEmail
     protected $appends = [
         'profile_photo_url',
     ];
-
-    // format(年月日)するために
-    protected $dates = ['user_rank_updated_at'];
 
     /**
      * $castsではtoArray,toJsonでUTCになってしまうため、アクセサで上書きする.

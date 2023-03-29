@@ -40,7 +40,7 @@ jobs:
       - name: Setup PHP with PECL extension
         uses: shivammathur/setup-php@v2
         with:
-          php-version: "8.1"
+          php-version: "8.2"
           # ini-values: extension="redis.so"
           # 二重で読み込まれるため上記のphp.ini記述処理は不要
           extensions: redis

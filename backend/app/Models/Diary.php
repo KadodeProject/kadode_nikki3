@@ -39,9 +39,13 @@ class Diary extends Model
     /**
      * 日付の登録(format使えるように).
      *
-     * @var array
+     * @var array<string,string>
      */
-    protected $dates = ['date', 'created_at', 'updated_at'];
+    protected $casts = [
+        'date' => 'datetime',
+        'created_at' => 'datetime',
+        'updated_at' => 'datetime',
+    ];
 
     public function statisticPerDate(): HasOne
     {
