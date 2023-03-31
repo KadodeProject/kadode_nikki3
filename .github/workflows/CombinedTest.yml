@@ -58,7 +58,7 @@ jobs:
             ${{ runner.os }}-pip3-
 
       - name: run apt
-        run: sudo apt update && sudo apt install git libicu-dev libonig-dev libzip-dev unzip locales python3-pip libmariadb-dev default-mysql-client python3-venv libgirepository1.0-dev
+        run: sudo apt-get -y install git libicu-dev libonig-dev libzip-dev unzip locales python3-pip libmariadb-dev vim cpulimit htop cron default-mysql-client python3-venv  libgirepository1.0-dev
       - name: update pip
         run: sudo pip3 install --upgrade pip
       - name: copy .env for ci
