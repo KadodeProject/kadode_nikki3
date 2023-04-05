@@ -71,8 +71,8 @@ services:
       context: .
       dockerfile: ./infra/dev/nginx/Dockerfile
     ports:
-      - "7001:80"
-      - "7000:3000"
+      - "2010:80"
+      - "2000:2000"
     depends_on:
       - "backend"
       - "frontend"

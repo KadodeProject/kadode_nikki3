@@ -19,7 +19,7 @@ def manager():
     # Serverオブジェクトに定義したServicerクラスを登録する
     nlp_pb2_grpc.add_NlpManagerServicer_to_server(NlpManager(), server)
 
-    # [追記] リフレクション登録
+    # リフレクション登録
     SERVICE_NAMES = (reflection.SERVICE_NAME,)
     SERVICE_NAMES += (
         nlp_pb2.DESCRIPTOR.services_by_name[NlpManager.__name__].full_name,
@@ -28,7 +28,7 @@ def manager():
 
     print("server started...")
     # 1234番ポートで待ち受けするよう指定する
-    server.add_insecure_port("[::]:1000")
+    server.add_insecure_port("[::]:2020")
 
     # 待ち受けを開始する
     server.start()

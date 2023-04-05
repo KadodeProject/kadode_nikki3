@@ -3,7 +3,7 @@
 	"version": "0.0.1",
 	"private": true,
 	"scripts": {
-		"dev": "vite dev --port 1000",
+		"dev": "vite dev --port 2000 --host",
 		"build": "vite build",
 		"preview": "vite preview",
 		"test": "playwright test",
