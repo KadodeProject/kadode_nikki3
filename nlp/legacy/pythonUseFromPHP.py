@@ -1,4 +1,4 @@
-'''
+"""
 ここでpython呼び出すことで複数同時実行でおかしくなるのを防ぐ
 
 従来のだと
@@ -6,22 +6,17 @@
 pre終わる前に次の実行行ってエラーでる
 
 が起きるので、全部pythonで呼び出すことで解決
-'''
+"""
 
-import nlpForPre
-import nlpForDiary
-import nlpForMonthAndYear
-import nlpForTotal
 import sys
 
+from legacy import nlpForDiary, nlpForMonthAndYear, nlpForPre, nlpForTotal
 
-if __name__ == '__main__':
-    from_php = sys.argv#php側の引数
-    user_id=from_php[1]
 
+def legacyRun(user_id):
     print("nlpForPre")
-    number_of_diaries=nlpForPre.nlpForPre(user_id)
-    print("日記数"+str(number_of_diaries))
+    number_of_diaries = nlpForPre.nlpForPre(user_id)
+    print("日記数" + str(number_of_diaries))
     print("nlpForDiary")
     nlpForDiary.nlpForDiary(user_id)
     print("nlpForMonth&year")
@@ -29,3 +24,9 @@ if __name__ == '__main__':
     print("nlpForTotal")
     nlpForTotal.nlpForTotal(user_id)
     print("DONE")
+
+
+if __name__ == "__main__":
+    from_php = sys.argv  # php側の引数
+    user_id = from_php[1]
+    legacyRun(user_id)

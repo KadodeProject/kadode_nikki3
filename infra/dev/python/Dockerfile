@@ -33,3 +33,7 @@ ENV PATH $POETRY_HOME/bin:$PATH
 
 COPY nlp/poetry.lock nlp/pyproject.toml ./
 RUN poetry config virtualenvs.create false && poetry install
+
+EXPOSE 1000
+
+# CMD ["python", "grpc_manager.py"]

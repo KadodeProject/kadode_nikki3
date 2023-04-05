@@ -15,6 +15,7 @@ ginza = "^5.1.2"
 ja-ginza = "^5.1.2"
 grpcio = "^1.53.0"
 grpcio-tools = "^1.53.0"
+grpcio-reflection = "^1.53.0"
 
 
 [build-system]

@@ -5,7 +5,7 @@ import grpc
 from proto import nlp_pb2 as proto_dot_nlp__pb2
 
 
-class NlpServiceStub(object):
+class NlpManagerStub(object):
     """Missing associated documentation comment in .proto file."""
 
     def __init__(self, channel):
@@ -15,13 +15,13 @@ class NlpServiceStub(object):
             channel: A grpc.Channel.
         """
         self.GenerateAll = channel.unary_unary(
-                '/nlp.NlpService/GenerateAll',
+                '/nlp.NlpManager/GenerateAll',
                 request_serializer=proto_dot_nlp__pb2.GenerateAllRequest.SerializeToString,
                 response_deserializer=proto_dot_nlp__pb2.GenerateAllResponse.FromString,
                 )
 
 
-class NlpServiceServicer(object):
+class NlpManagerServicer(object):
     """Missing associated documentation comment in .proto file."""
 
     def GenerateAll(self, request, context):
@@ -31,7 +31,7 @@ class NlpServiceServicer(object):
         raise NotImplementedError('Method not implemented!')
 
 
-def add_NlpServiceServicer_to_server(servicer, server):
+def add_NlpManagerServicer_to_server(servicer, server):
     rpc_method_handlers = {
             'GenerateAll': grpc.unary_unary_rpc_method_handler(
                     servicer.GenerateAll,
@@ -40,12 +40,12 @@ def add_NlpServiceServicer_to_server(servicer, server):
             ),
     }
     generic_handler = grpc.method_handlers_generic_handler(
-            'nlp.NlpService', rpc_method_handlers)
+            'nlp.NlpManager', rpc_method_handlers)
     server.add_generic_rpc_handlers((generic_handler,))
 
 
  # This class is part of an EXPERIMENTAL API.
-class NlpService(object):
+class NlpManager(object):
     """Missing associated documentation comment in .proto file."""
 
     @staticmethod
@@ -59,7 +59,7 @@ class NlpService(object):
             wait_for_ready=None,
             timeout=None,
             metadata=None):
-        return grpc.experimental.unary_unary(request, target, '/nlp.NlpService/GenerateAll',
+        return grpc.experimental.unary_unary(request, target, '/nlp.NlpManager/GenerateAll',
             proto_dot_nlp__pb2.GenerateAllRequest.SerializeToString,
             proto_dot_nlp__pb2.GenerateAllResponse.FromString,
             options, channel_credentials,
