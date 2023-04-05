@@ -14,6 +14,8 @@ poetry update
 
 # grpc
 
+参考にさせていただいた記事 →https://zenn.dev/kumamoto/articles/0596ed47f33965
+
 proto ファイルからの生成
 
 ```

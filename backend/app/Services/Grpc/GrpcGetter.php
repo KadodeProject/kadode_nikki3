@@ -18,7 +18,6 @@ class GrpcGetter
         $grpcRequest = new GenerateAllRequest();
         $grpcRequest->setUserId($userId);
         list($response, $status) = $client->GenerateAll($grpcRequest)->wait();
-        dd($status);
         return $response->start;
     }
 }
