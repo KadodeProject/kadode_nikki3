@@ -58,11 +58,13 @@ services:
       context: .
       dockerfile: ./infra/dev/node/Dockerfile
     tty: true
+    stdin_open: true
+    user: "1000:1000"
     volumes:
       - ./frontend:/frontend
     environment:
       - WATCHPACK_POLLING=true
-    command: sh -c "yarn install && yarn dev"
+    # command: sh -c "pnpm install"
 
   nginx:
     build:
