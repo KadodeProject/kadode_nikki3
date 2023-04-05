@@ -1,7 +1,7 @@
 <?php
 // GENERATED CODE -- DO NOT EDIT!
 
-namespace Nlp;
+namespace GrpcClient\Nlp;
 
 /**
  */
@@ -17,16 +17,16 @@ class NlpManagerClient extends \Grpc\BaseStub {
     }
 
     /**
-     * @param \Nlp\GenerateAllRequest $argument input argument
+     * @param \GrpcClient\Nlp\GenerateAllRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
      * @return \Grpc\UnaryCall
      */
-    public function GenerateAll(\Nlp\GenerateAllRequest $argument,
+    public function GenerateAll(\GrpcClient\Nlp\GenerateAllRequest $argument,
       $metadata = [], $options = []) {
         return $this->_simpleRequest('/nlp.NlpManager/GenerateAll',
         $argument,
-        ['\Nlp\GenerateAllResponse', 'decode'],
+        ['\GrpcClient\Nlp\GenerateAllResponse', 'decode'],
         $metadata, $options);
     }
 

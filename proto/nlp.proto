@@ -1,6 +1,9 @@
 syntax = "proto3";
 package nlp;
 
+option php_namespace = "GrpcClient\\Nlp";
+option php_metadata_namespace = "GrpcClient\\GPBMetadata";
+
 message GenerateAllRequest {
     uint32 userId = 1;
 }

@@ -48,14 +48,16 @@ WORKDIR /tmp
 #     mv bin/* /usr/local/bin/ && \
 #     mv include/* /usr/local/include/
 
-# bazelのインストール(cmakeでごちゃごちゃやるより楽)
+# bazelのインストール
 RUN curl -fsSL https://bazel.build/bazel-release.pub.gpg | gpg --dearmor > bazel.gpg \
     &&  mv bazel.gpg /etc/apt/trusted.gpg.d/ \
     && echo "deb [arch=amd64] https://storage.googleapis.com/bazel-apt stable jdk1.8" | tee /etc/apt/sources.list.d/bazel.list \
     && apt-get update \
     && apt-get install -y bazel
 
-# grpc-php-pluginを自前でビルドする必要がある(←ここでprotoc自体も一緒にビルドするのありかも？)
+# grpc-php-pluginとprotocを自前ビルド
+# protocはgitからも取れるが、grpc-php-pluginは取れないのでここでまとめて2つともビルドする
+# 原稿最新版ではmakeコマンドでビルドできないので、bazelでビルドする
 RUN
 RUN git clone -b ${GRPC_VERSION} https://github.com/grpc/grpc --depth=1 \
     && cd grpc \

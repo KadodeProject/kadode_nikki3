@@ -29,7 +29,8 @@ class NlpManager(nlp_pb2_grpc.NlpManagerServicer):
         # クライアントが送信した引数はrequest引数に格納され、
         # このオブジェクトに対しては一般的なPythonオブジェクトと
         # 同様の形でプロパティにアクセスできる
-        user_id = request.user_id_list
+        user_id = request.userId
+        print(f"userId: {user_id}")
+        pythonUseFromPHP.legacyRun(user_id)
 
-        # UserResponseオブジェクトを返す
-        return user_pb2.UserResponse(start=True)
+        return nlp_pb2.GenerateAllResponse(start=1)
