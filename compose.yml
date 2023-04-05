@@ -58,19 +58,22 @@ services:
       context: .
       dockerfile: ./infra/dev/node/Dockerfile
     tty: true
+    stdin_open: true
+    ports:
+      - "2000:2000"
+    user: "1000:1000"
     volumes:
       - ./frontend:/frontend
     environment:
       - WATCHPACK_POLLING=true
-    command: sh -c "yarn install && yarn dev"
+    # command: sh -c "pnpm install"
 
   nginx:
     build:
       context: .
       dockerfile: ./infra/dev/nginx/Dockerfile
     ports:
-      - "7001:80"
-      - "7000:3000"
+      - "2010:2010"
     depends_on:
       - "backend"
       - "frontend"
