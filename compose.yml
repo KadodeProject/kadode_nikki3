@@ -16,7 +16,7 @@ services:
           nocopy: true
       - type: bind
         source: ./proto/nlp.proto
-        target: /work/backend/resources/nlp.proto
+        target: /work/backend/resources/proto/nlp.proto
       - type: bind
         source: ./backend
         target: /work/backend
