@@ -1,0 +1,7 @@
+python-dotenv
+mysqlclient
+ahocorapy
+ginza
+ja-ginza
+grpcio
+grpcio-tools
