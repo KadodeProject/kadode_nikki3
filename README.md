@@ -8,10 +8,15 @@
 
 # リポジトリの構成について
 
--   backend ← かどで日記のすべて
+-   backend ← かどで日記のバックエンド・フロントエンド(PHP)
 -   docs ← wiki.kado.day の中身
--   frontend ← かどで日記 Next.js 化中のディレクトリ
--   nlp ← かどで日記自然言語処理切り出し中のディレクトリ
+-   frontend ← かどで日記フロントエンド Next.js 化作業中に断念されたディレクトリ(削除予定)
+-   frontend_discontinued ← かどで日記フロントエンド SvelteKit 化をしているディレクトリ
+-   infra ← かどで日記のインフラ周り(開発 Docker、本番 k8s)
+-   nlp ← かどで日記自然言語処理部分(Python)
+-   proto ← かどで日記の Python と PHP で gRPC するための proto 置き場
+-   sampleData ← かどで日記のインポート機能の検証で使うためのサンプルデータ
+-   script ← 開発用のちょっとしたスクリプト置き場
 
 ## お使いになられる方へ
 
