@@ -1,0 +1,3 @@
+import ginza
+
+print("test")

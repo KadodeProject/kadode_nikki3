@@ -3,6 +3,7 @@
         "CNER",
         "kado",
         "kadode",
+        "kadodeveloper",
         "maru",
         "nikki",
         "osirase",
@@ -13,7 +14,9 @@
         "releasenote",
         "releasenotes",
         "sjis",
-        "Tukini"
+        "Tukini",
+        "usergid",
+        "useruid"
     ],
     //psr12の自動整形のための設定↓
     "[php]": {

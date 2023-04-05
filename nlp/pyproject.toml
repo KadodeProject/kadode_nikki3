@@ -1,0 +1,22 @@
+[tool.poetry]
+name = "nlp"
+version = "0.1.0"
+description = ""
+authors = ["usuyuki"]
+license = "MIT"
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.11"
+python-dotenv = "^1.0.0"
+mysqlclient = "^2.1.1"
+ahocorapy = "^1.6.2"
+ginza = "^5.1.2"
+ja-ginza = "^5.1.2"
+grpcio = "^1.53.0"
+grpcio-tools = "^1.53.0"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

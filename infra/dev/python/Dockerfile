@@ -1,6 +1,35 @@
 FROM python:3-slim
+LABEL maintainer="usuyuki"
+
 WORKDIR /nlp
-RUN apt update && apt -y install default-libmysqlclient-dev gcc
-COPY nlp/requirements.txt /nlp/requirements.txt
-RUN pip install -r requirements.txt
-RUN echo "source /usr/share/bash-completion/completions/git" >> ~/.bashrc
+
+ARG apt_get_server=ftp.jaist.ac.jp/pub/Linux
+
+ENV POETRY_HOME=/opt/poetry
+
+RUN \
+    #
+    # apt-get
+    sed -i s@archive.ubuntu.com@${apt_get_server}@g /etc/apt/sources.list && \
+    apt-get update -qq && \
+    apt-get install -y --no-install-recommends \
+    curl \
+    apt-transport-https \
+    gcc \
+    default-libmysqlclient-dev \
+    sudo \
+    && \
+    #
+    # poetryインストール
+    curl -sSL https://install.python-poetry.org | python && \
+    cd /usr/local/bin && \
+    ln -s /opt/poetry/bin/poetry && \
+    #
+    # 容量減らすやつ
+    apt-get clean && \
+    rm -rf /var/lib/apt/lists/*
+
+ENV PATH $POETRY_HOME/bin:$PATH
+
+COPY nlp/poetry.lock nlp/pyproject.toml ./
+RUN poetry config virtualenvs.create false && poetry install
