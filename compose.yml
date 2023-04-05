@@ -59,6 +59,8 @@ services:
       dockerfile: ./infra/dev/node/Dockerfile
     tty: true
     stdin_open: true
+    ports:
+      - "2000:2000"
     user: "1000:1000"
     volumes:
       - ./frontend:/frontend
@@ -71,8 +73,7 @@ services:
       context: .
       dockerfile: ./infra/dev/nginx/Dockerfile
     ports:
-      - "2010:80"
-      - "2000:2000"
+      - "2010:2010"
     depends_on:
       - "backend"
       - "frontend"
