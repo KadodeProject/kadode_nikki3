@@ -35,8 +35,8 @@ jobs:
           push: true
           platforms: linux/amd64,linux/arm64
           tags: |
-            ghcr.io/${{ github.repository_owner }}/kadode-nikki3-${{ matrix.name }}:${{ github.sha }}
-            ghcr.io/${{ github.repository_owner }}/kadode-nikki3-${{ matrix.name }}:latest
+            ghcr.io/kadodeproject/kadode_nikki3_${{ matrix.name }}:${{ github.sha }}
+            ghcr.io/kadodeproject/kadode_nikki3_${{ matrix.name }}:latest
           labels: latest
 
   # deploy:
