@@ -15,7 +15,7 @@ jobs:
     strategy:
       matrix:
         name: ["mysql", "nginx", "frontend", "backend", "nlp"]
-        platform: ["linux/arm64", "linux/amd64"]
+        platform: ["linux/amd64"]
         # redisは外の物を使うのでOK
 
     steps:
