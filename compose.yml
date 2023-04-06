@@ -6,7 +6,7 @@ services:
   backend:
     build:
       context: .
-      dockerfile: ./infra/dev/backend/Dockerfile
+      dockerfile: ./infra/dev/container/backend/Dockerfile
     volumes:
       - type: bind
         source: ./proto/nlp.proto
@@ -63,7 +63,7 @@ services:
   nlp:
     build:
       context: .
-      dockerfile: ./infra/dev/nlp/Dockerfile
+      dockerfile: ./infra/dev/container/nlp/Dockerfile
     tty: true
     stdin_open: true
     volumes:
@@ -86,7 +86,7 @@ services:
   frontend:
     build:
       context: .
-      dockerfile: ./infra/dev/frontend/Dockerfile
+      dockerfile: ./infra/dev/container/frontend/Dockerfile
     tty: true
     stdin_open: true
     ports:
@@ -99,7 +99,7 @@ services:
   nginx:
     build:
       context: .
-      dockerfile: ./infra/dev/nginx/Dockerfile
+      dockerfile: ./infra/dev/container/nginx/Dockerfile
     ports:
       - "2010:2010"
     depends_on:
@@ -113,14 +113,14 @@ services:
   db: # 3306 port
     build:
       context: .
-      dockerfile: ./infra/dev/mysql/Dockerfile
+      dockerfile: ./infra/dev/container/mysql/Dockerfile
     ports:
       - target: 3306
         published: ${DB_PORT:-3306}
         protocol: tcp
         mode: host
     volumes:
-      - ./infra/dev/mysql/initial:/docker-entrypoint-initdb.d
+      - ./infra/dev/container/mysql/initial:/docker-entrypoint-initdb.d
       - db-store:/var/lib/mysql
     environment:
       - MYSQL_DATABASE=${DB_NAME:-kadode_local}
@@ -132,7 +132,7 @@ services:
     image: "redis:latest"
     volumes:
       - "./data/redis:/data"
-      - "./infra/dev/redis/redis.conf:/etc/redis.conf"
+      - "./infra/dev/container/redis/redis.conf:/etc/redis.conf"
 
   phpmyadmin:
     image: phpmyadmin/phpmyadmin
@@ -146,7 +146,7 @@ services:
     ports:
       - 7010:80
     volumes:
-      - ./infra/dev/backendmyadmin/sessions:/sessions
+      - ./infra/dev/container/backendmyadmin/sessions:/sessions
 
   mail:
     image: mailhog/mailhog
@@ -156,7 +156,7 @@ services:
   selenium:
     build:
       context: .
-      dockerfile: ./infra/dev/selenium/Dockerfile
+      dockerfile: ./infra/dev/container/selenium/Dockerfile
     tty: true
     ports:
       - 4444:4444
