@@ -1,6 +1,6 @@
 volumes:
   db-store:
-  psysh-store:
+  psysh-store: # thinker用
 
 services:
   backend:
