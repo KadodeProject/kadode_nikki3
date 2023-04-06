@@ -64,7 +64,8 @@ RUN git clone -b ${GRPC_VERSION} https://github.com/grpc/grpc --depth=1 \
 
 RUN docker-php-ext-install intl pdo_mysql zip bcmath \
     && git clone https://github.com/phpredis/phpredis.git /usr/src/php/ext/redis && docker-php-ext-install redis
-RUN pecl install grpc protobuf && \
+# MAKEFLAGSで並列ビルド指定することでめちゃくちゃに遅いgrpcのinstallを高速化する
+RUN MAKEFLAGS="-j $(nproc)" pecl install grpc protobuf && \
     docker-php-ext-enable grpc protobuf
 RUN composer config -g process-timeout 3600 && composer config -g repos.packagist composer https://packagist.org
 

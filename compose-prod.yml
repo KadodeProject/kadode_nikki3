@@ -1,32 +1,27 @@
 volumes:
   db-store:
-  psysh-store: # thinker用
+
+# dc -f compose-prod.yml up -d --build
 
 services:
   backend:
     build:
       context: .
-      dockerfile: ./infra/dev/php/Dockerfile
+      dockerfile: ./infra/prod/php/Dockerfile
+    tty: true
+    stdin_open: true
     volumes:
       - type: bind
-        source: ./proto/nlp.proto
-        target: /work/backend/resources/proto/nlp.proto
-      - type: bind
-        source: ./backend
-        target: /work/backend
-      - type: volume
-        source: psysh-store
-        target: /root/.config/psysh
-        volume:
-          nocopy: true
+        source: ./backend/storage
+        target: /work/backend/storage
     depends_on:
-      - "db"
       - "redis"
+      - "db"
     environment:
       - APP_NAME=かどで日記3
-      - APP_ENV=local
+      - APP_ENV=production
       - APP_KEY=${APP_KEY}
-      - APP_DEBUG=true
+      - APP_DEBUG=false
       - APP_URL=${APP_URL:-http://localhost:2010}
       - LOG_CHANNEL=single
       - LOG_LEVEL=debug
@@ -63,7 +58,7 @@ services:
   nlp:
     build:
       context: .
-      dockerfile: ./infra/dev/python/Dockerfile
+      dockerfile: ./infra/prod/python/Dockerfile
     tty: true
     stdin_open: true
     volumes:
@@ -86,41 +81,30 @@ services:
   frontend:
     build:
       context: .
-      dockerfile: ./infra/dev/node/Dockerfile
+      dockerfile: ./infra/prod/node/Dockerfile
     tty: true
     stdin_open: true
     ports:
       - "2000:2000"
     user: "1000:1000"
-    volumes:
-      - ./frontend:/frontend
     # command: sh -c "pnpm install"
 
   nginx:
     build:
       context: .
-      dockerfile: ./infra/dev/nginx/Dockerfile
+      dockerfile: ./infra/prod/nginx/Dockerfile
     ports:
       - "2010:2010"
     depends_on:
       - "backend"
       - "frontend"
-    volumes:
-      - type: bind
-        source: ./backend
-        target: /work/backend
 
-  db: # 3306 port
+  db: # 3306port
     build:
       context: .
-      dockerfile: ./infra/dev/mysql/Dockerfile
-    ports:
-      - target: 3306
-        published: ${DB_PORT:-3306}
-        protocol: tcp
-        mode: host
+      dockerfile: ./infra/prod/mysql/Dockerfile
     volumes:
-      - ./infra/dev/mysql/initial:/docker-entrypoint-initdb.d
+      - ./infra/prod/mysql/initial:/docker-entrypoint-initdb.d
       - db-store:/var/lib/mysql
     environment:
       - MYSQL_DATABASE=${DB_NAME:-kadode_local}
@@ -132,35 +116,4 @@ services:
     image: "redis:latest"
     volumes:
       - "./data/redis:/data"
-      - "./infra/dev/redis/redis.conf:/etc/redis.conf"
-
-  phpmyadmin:
-    image: phpmyadmin/phpmyadmin
-    environment:
-      - PMA_ARBITRARY=1
-      - PMA_HOST=db:${DB_PORT:-3306}
-      - PMA_USER=${DB_USER:-phper}
-      - PMA_PASSWORD=${DB_PASS:-secret}
-    depends_on:
-      - "db"
-    ports:
-      - 7010:80
-    volumes:
-      - ./infra/dev/phpmyadmin/sessions:/sessions
-
-  mail:
-    image: mailhog/mailhog
-    ports:
-      - 7011:8025
-
-  selenium:
-    build:
-      context: .
-      dockerfile: ./infra/dev/selenium/Dockerfile
-    tty: true
-    ports:
-      - 4444:4444
-      - 5900:5900
-    depends_on:
-      - nginx
-    privileged: true
+      - "./infra/prod/redis/redis.conf:/etc/redis.conf"
