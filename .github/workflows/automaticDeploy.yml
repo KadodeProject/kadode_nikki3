@@ -15,7 +15,6 @@ jobs:
     strategy:
       matrix:
         name: ["mysql", "nginx", "frontend", "backend", "nlp"]
-        platform: ["linux/amd64"]
         # redisは外の物を使うのでOK
 
     steps:
@@ -33,7 +32,7 @@ jobs:
           context: ./
           file: ./infra/prod/${{ matrix.name }}/Dockerfile
           push: true
-          platforms: ${{ matrix.platform }}
+          platforms: linux/amd64,linux/arm64
           tags: |
             ghcr.io/kadodeproject/kadode_nikki3_${{ matrix.name }}:${{ github.sha }}
             ghcr.io/kadodeproject/kadode_nikki3_${{ matrix.name }}:latest
