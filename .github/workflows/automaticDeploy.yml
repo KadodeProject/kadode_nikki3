@@ -27,10 +27,9 @@ jobs:
           username: ${{ github.repository_owner }}
           password: ${{ secrets.USUYUKI_GITHUB_TOKEN }}
 
+      # arm64とamd64両対応のため
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v2
-        with:
-          use: linux/amd64,linux/arm64
 
       - name: Build and Push to GitHub Container Registry
         uses: docker/build-push-action@v4
