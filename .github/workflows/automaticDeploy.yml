@@ -26,13 +26,19 @@ jobs:
           registry: ghcr.io
           username: ${{ github.repository_owner }}
           password: ${{ secrets.USUYUKI_GITHUB_TOKEN }}
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v2
+        with:
+          use: linux/amd64,linux/arm64
+
       - name: Build and Push to GitHub Container Registry
         uses: docker/build-push-action@v4
         with:
           context: ./
           file: ./infra/prod/${{ matrix.name }}/Dockerfile
           push: true
-          platforms: linux/amd64,linux/arm64
+          platforms: linux/arm64,linux/amd64
           tags: |
             ghcr.io/kadodeproject/kadode_nikki3_${{ matrix.name }}:${{ github.sha }}
             ghcr.io/kadodeproject/kadode_nikki3_${{ matrix.name }}:latest
