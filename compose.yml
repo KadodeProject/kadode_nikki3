@@ -6,7 +6,7 @@ services:
   backend:
     build:
       context: .
-      dockerfile: ./infra/dev/php/Dockerfile
+      dockerfile: ./infra/dev/backend/Dockerfile
     volumes:
       - type: bind
         source: ./proto/nlp.proto
@@ -63,7 +63,7 @@ services:
   nlp:
     build:
       context: .
-      dockerfile: ./infra/dev/python/Dockerfile
+      dockerfile: ./infra/dev/nlp/Dockerfile
     tty: true
     stdin_open: true
     volumes:
@@ -86,7 +86,7 @@ services:
   frontend:
     build:
       context: .
-      dockerfile: ./infra/dev/node/Dockerfile
+      dockerfile: ./infra/dev/frontend/Dockerfile
     tty: true
     stdin_open: true
     ports:
@@ -146,7 +146,7 @@ services:
     ports:
       - 7010:80
     volumes:
-      - ./infra/dev/phpmyadmin/sessions:/sessions
+      - ./infra/dev/backendmyadmin/sessions:/sessions
 
   mail:
     image: mailhog/mailhog

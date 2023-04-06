@@ -7,7 +7,7 @@ services:
   backend:
     build:
       context: .
-      dockerfile: ./infra/prod/php/Dockerfile
+      dockerfile: ./infra/prod/backend/Dockerfile
     tty: true
     stdin_open: true
     volumes:
@@ -58,7 +58,7 @@ services:
   nlp:
     build:
       context: .
-      dockerfile: ./infra/prod/python/Dockerfile
+      dockerfile: ./infra/prod/nlp/Dockerfile
     tty: true
     stdin_open: true
     volumes:
@@ -81,7 +81,7 @@ services:
   frontend:
     build:
       context: .
-      dockerfile: ./infra/prod/node/Dockerfile
+      dockerfile: ./infra/prod/frontend/Dockerfile
     tty: true
     stdin_open: true
     ports:

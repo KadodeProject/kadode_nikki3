@@ -70,6 +70,6 @@ RUN MAKEFLAGS="-j $(nproc)" pecl install grpc protobuf && \
 RUN composer config -g process-timeout 3600 && composer config -g repos.packagist composer https://packagist.org
 
 
-COPY ./infra/dev/php/php.ini /usr/local/etc/php/php.ini
+COPY ./infra/dev/backend/php.ini /usr/local/etc/php/php.ini
 
 WORKDIR /work/backend
