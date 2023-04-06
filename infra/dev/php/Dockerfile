@@ -1,9 +1,7 @@
-FROM php:8.2-fpm-bullseye
-SHELL ["/bin/bash", "-oeux", "pipefail", "-c"]
+FROM php:8.2-fpm-bullseye as base
 ARG PROTOBUF_VERSION=22.2
 ARG GRPC_VERSION=v1.53.0
 
-# timezone environment
 ENV TZ=UTC \
   # locale
   LANG=en_US.UTF-8 \
@@ -58,7 +56,6 @@ RUN curl -fsSL https://bazel.build/bazel-release.pub.gpg | gpg --dearmor > bazel
 # grpc-php-pluginとprotocを自前ビルド
 # protocはgitからも取れるが、grpc-php-pluginは取れないのでここでまとめて2つともビルドする
 # 原稿最新版ではmakeコマンドでビルドできないので、bazelでビルドする
-RUN
 RUN git clone -b ${GRPC_VERSION} https://github.com/grpc/grpc --depth=1 \
     && cd grpc \
     && git submodule update --init \
@@ -79,7 +76,6 @@ RUN composer config -g process-timeout 3600 && composer config -g repos.packagis
 
 RUN git clone https://github.com/phpredis/phpredis.git /usr/src/php/ext/redis && docker-php-ext-install redis
 
-COPY ./infra/dev/php/php-fpm.d/zzz-www.conf /usr/local/etc/php-fpm.d/zzz-www.conf
 COPY ./infra/dev/php/php.ini /usr/local/etc/php/php.ini
 
 

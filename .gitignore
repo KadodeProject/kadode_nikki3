@@ -7,7 +7,4 @@ infra/docker/schemaspy/output/*
 tmp
 *.pyc
 data
-
-#本番ビルドに変更
-backend/public/build
-backend/public/mix-manifest.json
+.env

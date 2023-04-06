@@ -13,3 +13,7 @@ npm-debug.log
 yarn-error.log
 *.pyc
 *.cache
+
+
+/public/build
+/public/mix-manifest.json
