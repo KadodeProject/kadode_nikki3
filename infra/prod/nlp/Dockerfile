@@ -6,7 +6,7 @@ WORKDIR /nlp
 ARG apt_get_server=ftp.jaist.ac.jp/pub/Linux
 
 ENV POETRY_HOME=/opt/poetry
-
+ENV PATH="/root/.cargo/bin:$PATH"
 RUN \
     #
     # apt-get
