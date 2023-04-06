@@ -17,9 +17,11 @@ RUN \
     apt-transport-https \
     gcc \
     default-libmysqlclient-dev \
+    #
+    # arm向けビルドでrustコンパイラが無いと怒られるのでインストール
+    rustc \
     sudo \
     && \
-    #
     # poetryインストール
     curl -sSL https://install.python-poetry.org | python && \
     cd /usr/local/bin && \
