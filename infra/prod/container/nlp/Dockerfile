@@ -6,7 +6,7 @@ WORKDIR /nlp
 ARG apt_get_server=ftp.jaist.ac.jp/pub/Linux
 
 ENV POETRY_HOME=/opt/poetry
-
+ENV PATH="/root/.cargo/bin:$PATH"
 RUN \
     #
     # apt-get
@@ -19,6 +19,9 @@ RUN \
     default-libmysqlclient-dev \
     sudo \
     && \
+    #
+    # arm向けビルドでrustコンパイラが必要なので
+    curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y && \
     #
     # poetryインストール
     curl -sSL https://install.python-poetry.org | python && \

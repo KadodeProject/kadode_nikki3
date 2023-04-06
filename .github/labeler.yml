@@ -21,7 +21,7 @@
   - frontend/yarn.lock
   - docs/CNAME
 🏠localInfra:
-  - infra/dev/*
+  - infra/dev/container/*
   - docker-compose.yml
 
 # 文章周り

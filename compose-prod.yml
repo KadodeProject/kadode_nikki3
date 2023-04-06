@@ -7,7 +7,7 @@ services:
   backend:
     build:
       context: .
-      dockerfile: ./infra/prod/php/Dockerfile
+      dockerfile: ./infra/prod/container/backend/Dockerfile
     tty: true
     stdin_open: true
     volumes:
@@ -58,7 +58,7 @@ services:
   nlp:
     build:
       context: .
-      dockerfile: ./infra/prod/python/Dockerfile
+      dockerfile: ./infra/prod/container/nlp/Dockerfile
     tty: true
     stdin_open: true
     volumes:
@@ -81,7 +81,7 @@ services:
   frontend:
     build:
       context: .
-      dockerfile: ./infra/prod/node/Dockerfile
+      dockerfile: ./infra/prod/container/frontend/Dockerfile
     tty: true
     stdin_open: true
     ports:
@@ -92,7 +92,7 @@ services:
   nginx:
     build:
       context: .
-      dockerfile: ./infra/prod/nginx/Dockerfile
+      dockerfile: ./infra/prod/container/nginx/Dockerfile
     ports:
       - "2010:2010"
     depends_on:
@@ -102,9 +102,9 @@ services:
   db: # 3306port
     build:
       context: .
-      dockerfile: ./infra/prod/mysql/Dockerfile
+      dockerfile: ./infra/prod/container/mysql/Dockerfile
     volumes:
-      - ./infra/prod/mysql/initial:/docker-entrypoint-initdb.d
+      - ./infra/prod/container/mysql/initial:/docker-entrypoint-initdb.d
       - db-store:/var/lib/mysql
     environment:
       - MYSQL_DATABASE=${DB_NAME:-kadode_local}
@@ -116,4 +116,4 @@ services:
     image: "redis:latest"
     volumes:
       - "./data/redis:/data"
-      - "./infra/prod/redis/redis.conf:/etc/redis.conf"
+      - "./infra/prod/container/redis/redis.conf:/etc/redis.conf"
