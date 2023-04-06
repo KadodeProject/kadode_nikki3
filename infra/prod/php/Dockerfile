@@ -50,6 +50,7 @@ RUN mkdir -p bootstrap/cache \
     && mkdir -p storage/framework/app/cache \
     && mkdir -p storage/framework/sessions \
     6& mkdir -p storage/framework/views \
+# COPY ./backend/server.php ./server.php
 COPY ./backend/artisan ./artisan
 COPY ./backend/bootstrap/app.php ./bootstrap/
 COPY ./proto ./resources/proto
