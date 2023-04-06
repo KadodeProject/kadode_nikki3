@@ -1,4 +1,4 @@
-FROM php:8.2-fpm-bullseye as base
+FROM php:8.2-fpm-bullseye
 ARG PROTOBUF_VERSION=22.2
 ARG GRPC_VERSION=v1.53.0
 
@@ -27,13 +27,6 @@ RUN apt-get update \
   && rm -rf /var/lib/apt/lists/* \
   && locale-gen en_US.UTF-8 \
   && localedef -f UTF-8 -i en_US en_US.UTF-8 \
-  && docker-php-ext-install \
-    intl \
-    pdo_mysql \
-    zip \
-    bcmath \
-  && composer config -g process-timeout 3600 \
-  && composer config -g repos.packagist composer https://packagist.org \
   && mkdir /var/run/php-fpm
 
 #
@@ -55,7 +48,7 @@ RUN curl -fsSL https://bazel.build/bazel-release.pub.gpg | gpg --dearmor > bazel
 
 # grpc-php-pluginとprotocを自前ビルド
 # protocはgitからも取れるが、grpc-php-pluginは取れないのでここでまとめて2つともビルドする
-# 原稿最新版ではmakeコマンドでビルドできないので、bazelでビルドする
+# 現行最新版ではmakeコマンドでビルドできないので、bazelでビルドする
 RUN git clone -b ${GRPC_VERSION} https://github.com/grpc/grpc --depth=1 \
     && cd grpc \
     && git submodule update --init \
@@ -69,15 +62,13 @@ RUN git clone -b ${GRPC_VERSION} https://github.com/grpc/grpc --depth=1 \
 # PHP関連のインストール
 #
 
-RUN docker-php-ext-install intl pdo_mysql zip bcmath
+RUN docker-php-ext-install intl pdo_mysql zip bcmath \
+    && git clone https://github.com/phpredis/phpredis.git /usr/src/php/ext/redis && docker-php-ext-install redis
 RUN pecl install grpc protobuf && \
     docker-php-ext-enable grpc protobuf
 RUN composer config -g process-timeout 3600 && composer config -g repos.packagist composer https://packagist.org
 
-RUN git clone https://github.com/phpredis/phpredis.git /usr/src/php/ext/redis && docker-php-ext-install redis
 
 COPY ./infra/dev/php/php.ini /usr/local/etc/php/php.ini
-
-
 
 WORKDIR /work/backend
