@@ -32,8 +32,8 @@ RUN apt-get update \
 
 RUN docker-php-ext-install intl pdo_mysql zip bcmath \
     && git clone https://github.com/phpredis/phpredis.git /usr/src/php/ext/redis && docker-php-ext-install redis
-# RUN pecl install grpc protobuf && \
-#     docker-php-ext-enable grpc protobuf
+RUN pecl install grpc protobuf && \
+    docker-php-ext-enable grpc protobuf
 RUN composer config -g process-timeout 3600 && composer config -g repos.packagist composer https://packagist.org
 
 
@@ -44,22 +44,27 @@ WORKDIR /work/backend
 COPY ./backend/composer.json ./backend/composer.lock ./
 RUN composer install -q -n --no-ansi --no-dev --no-scripts --no-progress --prefer-dist
 
-COPY ./backend/app ./app
-COPY ./backend/bootstrap ./bootstrap
-COPY ./backend/config ./config
-COPY ./backend/database ./database
+# storageはマウントするので、初回ビルドでコケないようにファイル生成のみ
+RUN mkdir -p bootstrap/cache \
+    && mkdir -p storage/framework/cache/data/ \
+    && mkdir -p storage/framework/app/cache \
+    && mkdir -p storage/framework/sessions \
+    6& mkdir -p storage/framework/views \
+COPY ./backend/artisan ./artisan
+COPY ./backend/bootstrap/app.php ./bootstrap/
+COPY ./proto ./resources/proto
 COPY ./backend/GrpcClient ./GrpcClient
 COPY ./backend/public ./public
 COPY ./backend/resources ./resources
+COPY ./backend/config ./config
 COPY ./backend/routes ./routes
-# storageはマウントするので、コピーしない
-COPY ./backend/artisan ./
-COPY ./proto ./resources/proto
+COPY ./backend/database ./database
+COPY ./backend/app ./app
 
 RUN chmod -R 777 storage bootstrap/cache \
     && php artisan optimize:clear \
     && php artisan route:cache \
     && php artisan config:cache \
-    && php artisan view:cache
-    && php artisan optimize \
-
+    && php artisan view:cache \
+    && php artisan optimize
+# 終了させないために

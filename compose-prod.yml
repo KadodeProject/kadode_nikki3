@@ -8,20 +8,17 @@ services:
     build:
       context: .
       dockerfile: ./infra/prod/php/Dockerfile
+    tty: true
+    stdin_open: true
     volumes:
-      - type: volume
-        source: php-fpm-socket
-        target: /var/run/php-fpm
-        volume:
-          nocopy: true
       - type: bind
         source: ./backend/storage
         target: /work/backend/storage
     environment:
       - APP_NAME=かどで日記3
-      - APP_ENV=local
+      - APP_ENV=production
       - APP_KEY=${APP_KEY}
-      - APP_DEBUG=true
+      - APP_DEBUG=false
       - APP_URL=${APP_URL:-http://localhost:2010}
       - LOG_CHANNEL=single
       - LOG_LEVEL=debug
@@ -60,6 +57,7 @@ services:
       context: .
       dockerfile: ./infra/prod/python/Dockerfile
     tty: true
+    stdin_open: true
     volumes:
       - type: bind
         source: ./nlp
@@ -84,8 +82,6 @@ services:
     ports:
       - "2000:2000"
     user: "1000:1000"
-    environment:
-      - WATCHPACK_POLLING=true
     # command: sh -c "pnpm install"
 
   nginx:
@@ -119,6 +115,9 @@ services:
       - MYSQL_USER=${DB_USER:-phper}
       - MYSQL_PASSWORD=${DB_PASS:-secret}
       - MYSQL_ROOT_PASSWORD=${DB_PASS:-secret}
+    depends_on:
+      - "backend"
+      - "nlp"
 
   redis:
     image: "redis:latest"

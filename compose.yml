@@ -62,6 +62,7 @@ services:
       context: .
       dockerfile: ./infra/dev/python/Dockerfile
     tty: true
+    stdin_open: true
     volumes:
       - type: bind
         source: ./nlp
@@ -88,8 +89,6 @@ services:
     user: "1000:1000"
     volumes:
       - ./frontend:/frontend
-    environment:
-      - WATCHPACK_POLLING=true
     # command: sh -c "pnpm install"
 
   nginx:
@@ -123,6 +122,9 @@ services:
       - MYSQL_USER=${DB_USER:-phper}
       - MYSQL_PASSWORD=${DB_PASS:-secret}
       - MYSQL_ROOT_PASSWORD=${DB_PASS:-secret}
+    depends_on:
+      - "backend"
+      - "nlp"
 
   redis:
     image: "redis:latest"
