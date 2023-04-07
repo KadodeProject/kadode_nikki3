@@ -22,6 +22,8 @@ services:
     depends_on:
       - "db"
       - "redis"
+    ports:
+      - "2010:2010"
     environment:
       - APP_NAME=かどで日記3
       - APP_ENV=local
@@ -96,20 +98,6 @@ services:
       - ./frontend:/frontend
     # command: sh -c "pnpm install"
 
-  nginx:
-    build:
-      context: .
-      dockerfile: ./infra/dev/container/nginx/Dockerfile
-    ports:
-      - "2010:2010"
-    depends_on:
-      - "backend"
-      - "frontend"
-    volumes:
-      - type: bind
-        source: ./backend
-        target: /work/backend
-
   db: # 3306 port
     build:
       context: .
@@ -161,6 +149,4 @@ services:
     ports:
       - 4444:4444
       - 5900:5900
-    depends_on:
-      - nginx
     privileged: true
