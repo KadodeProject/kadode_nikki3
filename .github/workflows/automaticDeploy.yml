@@ -1,11 +1,12 @@
-name: 自動デプロイと初期構築
+name: コンテナ生成とデプロイ
 
-on:
-  pull_request:
-    branches:
-      - main
-      - develop/k8s対応
-    types: [closed]
+on: [pull_request]
+# on:
+#   pull_request:
+#     branches:
+#       - main
+#       - develop/k8s対応
+#     types: [closed]
 
 jobs:
   push_to_registry:
@@ -14,7 +15,7 @@ jobs:
 
     strategy:
       matrix:
-        name: ["mysql", "nginx", "frontend", "backend", "nlp"]
+        name: ["frontend", "backend", "nlp"]
         # redisは外の物を使うのでOK
 
     steps:

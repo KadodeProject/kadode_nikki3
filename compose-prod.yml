@@ -92,9 +92,7 @@ services:
     # command: sh -c "pnpm install"
 
   db: # 3306port
-    build:
-      context: .
-      dockerfile: ./infra/prod/container/mysql/Dockerfile
+    image: "mysql/mysql-server:8.0"
     volumes:
       - ./infra/prod/container/mysql/initial:/docker-entrypoint-initdb.d
       - db-store:/var/lib/mysql
