@@ -63,13 +63,6 @@ services:
       dockerfile: ./infra/prod/container/nlp/Dockerfile
     tty: true
     stdin_open: true
-    volumes:
-      - type: bind
-        source: ./nlp
-        target: /nlp
-      - type: bind
-        source: ./proto/nlp.proto
-        target: /nlp/proto/nlp.proto
     depends_on:
       - "db"
     environment:
@@ -93,7 +86,6 @@ services:
   db: # 3306port
     image: "mysql/mysql-server:8.0"
     volumes:
-      - ./infra/prod/container/mysql/initial:/docker-entrypoint-initdb.d
       - db-store:/var/lib/mysql
     environment:
       - MYSQL_DATABASE=${DB_NAME:-kadode_local}

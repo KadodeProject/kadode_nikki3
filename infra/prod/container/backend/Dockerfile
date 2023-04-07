@@ -31,7 +31,7 @@ RUN apt-get update \
 # nginx関連
 #
 COPY infra/prod/container/backend/nginx.conf /etc/nginx/conf.d/default.conf
-COPY infra/prod/container/backend/entrypoint.sh /etc/entrypoint.sh
+COPY infra/prod/container/backend/entrypoint.sh /work/backend/entrypoint.sh
 
 
 #
@@ -72,11 +72,11 @@ COPY ./backend/database ./database
 COPY ./backend/app ./app
 
 RUN chmod -R 777 storage bootstrap/cache \
+    && chmod 777 entrypoint.sh \
     && php artisan optimize:clear \
     && php artisan route:cache \
     && php artisan config:cache \
     && php artisan view:cache \
     && php artisan optimize
 # 終了させないために
-
-ENTRYPOINT ["/etc/entrypoint.sh"]
+ENTRYPOINT ["sh","/work/backend/entrypoint.sh"]

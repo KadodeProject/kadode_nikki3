@@ -34,7 +34,7 @@ RUN apt-get update \
 # nginx関連
 #
 COPY infra/dev/container/backend/nginx.conf /etc/nginx/conf.d/default.conf
-COPY infra/dev/container/backend/entrypoint.sh /etc/entrypoint.sh
+COPY infra/dev/container/backend/entrypoint.sh /work/entrypoint.sh
 
 #
 # GRPC関連のインストール
@@ -81,4 +81,4 @@ COPY ./infra/dev/container/backend/php.ini /usr/local/etc/php/php.ini
 
 WORKDIR /work/backend
 
-ENTRYPOINT ["/etc/entrypoint.sh"]
+ENTRYPOINT ["/work/entrypoint.sh"]
