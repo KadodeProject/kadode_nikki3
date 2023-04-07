@@ -1,0 +1,28 @@
+# deployment.yaml
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: redis-db
+  namespace: kadode-prod
+spec:
+  selector:
+    matchLabels:
+      app: redis-db
+  template:
+    metadata:
+      labels:
+        app: redis-db
+    spec:
+      containers:
+        - name: redis-db
+          image: redis:alpine
+          ports:
+            - containerPort: 6379
+          volumeMounts:
+            - name: redis-data
+              mountPath: /data # Redisが使用するデータの永続化のために、ボリュームをマウントします
+      volumes:
+        - name: redis-data
+          persistentVolumeClaim:
+            claimName: redis-pvc # データ永続化用のPVCを指定します

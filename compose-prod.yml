@@ -73,7 +73,6 @@ services:
     depends_on:
       - "db"
     environment:
-      - DB_CONNECTION=mysql
       - DB_HOST=db
       - DB_PORT=3306
       - DB_DATABASE=${DB_NAME:-kadode_local}
@@ -103,7 +102,7 @@ services:
       - MYSQL_ROOT_PASSWORD=${DB_PASS:-secret}
 
   redis: # 6379 port
-    image: "redis:latest"
+    image: "redis:alpine"
     volumes:
       - "./data/redis:/data"
       - "./infra/prod/container/redis/redis.conf:/etc/redis.conf"

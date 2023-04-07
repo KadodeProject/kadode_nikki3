@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: backend-app
+  namespace: kadode-prod
+spec:
+  selector:
+    matchLabels:
+      app: backend-app
+  template:
+    metadata:
+      labels:
+        app: backend-app
+    spec:
+      containers:
+        - name: backend-app
+          image: ghcr.io/kadodeproject/kadode_nikki3_backend:latest
+          ports:
+            - containerPort: 2010 # ここにbackendアプリケーションが使用するポート番号を指定します
+          envFrom:
+            - configMapRef:
+                name: backend-config
+          imagePullPolicy: Always # 常に最新のイメージを使用するように指定します
