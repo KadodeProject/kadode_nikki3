@@ -10,6 +10,8 @@ services:
       dockerfile: ./infra/prod/container/backend/Dockerfile
     tty: true
     stdin_open: true
+    ports:
+      - "2010:2010"
     volumes:
       - type: bind
         source: ./backend/storage
@@ -88,16 +90,6 @@ services:
       - "2000:2000"
     user: "1000:1000"
     # command: sh -c "pnpm install"
-
-  nginx:
-    build:
-      context: .
-      dockerfile: ./infra/prod/container/nginx/Dockerfile
-    ports:
-      - "2010:2010"
-    depends_on:
-      - "backend"
-      - "frontend"
 
   db: # 3306port
     build:

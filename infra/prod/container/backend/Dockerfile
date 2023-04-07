@@ -20,11 +20,19 @@ RUN apt-get update \
     libicu-dev \
     libonig-dev \
     gnupg \
+    nginx \
   && apt-get clean \
   && rm -rf /var/lib/apt/lists/* \
   && locale-gen en_US.UTF-8 \
   && localedef -f UTF-8 -i en_US en_US.UTF-8 \
   && mkdir /var/run/php-fpm
+
+#
+# nginx関連
+#
+COPY infra/prod/container/backend/nginx.conf /etc/nginx/conf.d/default.conf
+COPY infra/prod/container/backend/entrypoint.sh /etc/entrypoint.sh
+
 
 #
 # PHP関連のインストール
@@ -38,7 +46,7 @@ RUN MAKEFLAGS="-j $(nproc)" pecl install grpc protobuf \
 RUN composer config -g process-timeout 3600 && composer config -g repos.packagist composer https://packagist.org
 
 
-COPY ./infra/dev/container/backend/php.ini /usr/local/etc/php/php.ini
+COPY ./infra/prod/container/backend/php.ini /usr/local/etc/php/php.ini
 
 WORKDIR /work/backend
 
@@ -70,3 +78,5 @@ RUN chmod -R 777 storage bootstrap/cache \
     && php artisan view:cache \
     && php artisan optimize
 # 終了させないために
+
+ENTRYPOINT ["/etc/entrypoint.sh"]

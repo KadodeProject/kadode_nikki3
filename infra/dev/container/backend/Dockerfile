@@ -23,11 +23,18 @@ RUN apt-get update \
     libonig-dev \
     gnupg \
     clang \
+    nginx \
   && apt-get clean \
   && rm -rf /var/lib/apt/lists/* \
   && locale-gen en_US.UTF-8 \
   && localedef -f UTF-8 -i en_US en_US.UTF-8 \
   && mkdir /var/run/php-fpm
+
+#
+# nginx関連
+#
+COPY infra/dev/container/backend/nginx.conf /etc/nginx/conf.d/default.conf
+COPY infra/dev/container/backend/entrypoint.sh /etc/entrypoint.sh
 
 #
 # GRPC関連のインストール
@@ -73,3 +80,5 @@ RUN composer config -g process-timeout 3600 && composer config -g repos.packagis
 COPY ./infra/dev/container/backend/php.ini /usr/local/etc/php/php.ini
 
 WORKDIR /work/backend
+
+ENTRYPOINT ["/etc/entrypoint.sh"]
