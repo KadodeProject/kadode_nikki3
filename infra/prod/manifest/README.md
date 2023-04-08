@@ -21,6 +21,17 @@ kubectl describe po backend-app-6c945cf5d4-49tw2 -n kadode-prod
 kubectl get events -n kadode-prod
 ```
 
+コンテナに入る(git bash だとだめなので WSL で入る)
+
+```
+kubectl exec --stdin --tty backend-app-6c945cf5d4-44dq8 -n kadode-prod -- /bin/bash
+kubectl exec -it backend-service -c backend -n kadode-prod -- /bin/bash
+```
+
+```
+kubectl exec --stdin --tty mysql-db-5849d68b45-hf99h -n kadode-prod -- /bin/mysql -u phper -p
+```
+
 # 削除
 
 ```

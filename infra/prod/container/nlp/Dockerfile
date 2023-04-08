@@ -34,14 +34,10 @@ RUN \
 
 ENV PATH $POETRY_HOME/bin:$PATH
 
-COPY nlp/poetry.lock nlp/pyproject.toml ./
+COPY poetry.lock pyproject.toml ./
 RUN poetry config virtualenvs.create false && poetry install
 
-COPY ./nlp/app ./app
-COPY ./nlp/legacy ./legacy
-COPY ./nlp/proto ./proto
-COPY ./nlp/servicers ./servicers
-COPY ./nlp/grpc_manager.py ./grpc_manager.py
+COPY . .
 
 EXPOSE 1000
 

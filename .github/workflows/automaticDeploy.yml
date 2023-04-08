@@ -44,7 +44,7 @@ jobs:
       - name: Build and Push to GitHub Container Registry
         uses: docker/build-push-action@v4
         with:
-          context: ./
+          context: ./${{ matrix.name }}
           file: ./infra/prod/container/${{ matrix.name }}/Dockerfile
           push: true
           platforms: linux/arm64,linux/amd64
@@ -78,6 +78,5 @@ jobs:
   #           cd ${{ secrets.BLOG_SERVER_PATH }}
   #           git checkout main
   #           git pull origin main
-  #           # docker compose upしても正しく降ってこないので、一旦最新を明示的にpullさせる
-  #           docker pull ghcr.io/usuyuki/usuyuki_blog_v2_astro:latest
-  #           docker compose -f compose-prod.yml up -d --build
+  #           # latestだと更新できないので、shaの方で更新をかける
+  #           kubectl rolling-update frontend --image=ghcr.io/kadodeproject/kadode_nikki3_frontend:${{ github.sha }}

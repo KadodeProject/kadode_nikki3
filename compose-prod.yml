@@ -9,16 +9,12 @@ volumes:
 services:
   backend:
     build:
-      context: .
-      dockerfile: ./infra/prod/container/backend/Dockerfile
+      context: ./backend
+      dockerfile: ../infra/prod/container/backend/Dockerfile
     tty: true
     stdin_open: true
     ports:
       - "2010:2010"
-    volumes:
-      - type: bind
-        source: ./backend/storage
-        target: /work/backend/storage
     depends_on:
       - "redis"
       - "db"
@@ -63,8 +59,8 @@ services:
 
   nlp:
     build:
-      context: .
-      dockerfile: ./infra/prod/container/nlp/Dockerfile
+      context: ./nlp
+      dockerfile: ../infra/prod/container/nlp/Dockerfile
     tty: true
     stdin_open: true
     depends_on:
@@ -78,8 +74,8 @@ services:
 
   frontend:
     build:
-      context: .
-      dockerfile: ./infra/prod/container/frontend/Dockerfile
+      context: ./frontend
+      dockerfile: ../infra/prod/container/frontend/Dockerfile
     tty: true
     stdin_open: true
     ports:
@@ -92,6 +88,7 @@ services:
     volumes:
       - db-store:/var/lib/mysql
     environment:
+      - MYSQL_ROOT_PASSWORD=${DB_NAME:-example}
       - MYSQL_DATABASE=${DB_NAME:-kadode_local}
       - MYSQL_USER=${DB_USER:-phper}
       - MYSQL_PASSWORD=${DB_PASS:-secret}

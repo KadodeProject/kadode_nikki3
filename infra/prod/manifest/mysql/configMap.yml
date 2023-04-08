@@ -4,8 +4,9 @@ metadata:
   name: mysql-config
   namespace: kadode-prod
 data:
-  DB_HOST: "mysql"
-  DB_PORT: "3306"
-  DB_DATABASE: "kadode_local"
-  DB_USER: "phper"
-  DB_PASSWORD: "secret"
+  MYSQL_ROOT_PASSWORD: "example"
+  MYSQL_HOST: "mysql-service"
+  MYSQL_PORT: "3306"
+  MYSQL_DATABASE: "kadode_production"
+  MYSQL_USER: "phper"
+  MYSQL_PASSWORD: "secret"

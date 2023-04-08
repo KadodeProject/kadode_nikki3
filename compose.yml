@@ -10,10 +10,10 @@ services:
     volumes:
       - type: bind
         source: ./proto/nlp.proto
-        target: /work/backend/resources/proto/nlp.proto
+        target: /backend/resources/proto/nlp.proto
       - type: bind
         source: ./backend
-        target: /work/backend
+        target: /backend
       - type: volume
         source: psysh-store
         target: /root/.config/psysh
@@ -79,23 +79,23 @@ services:
     depends_on:
       - "db"
     environment:
-      - DB_HOST=db
-      - DB_PORT=3306
+      - DB_PORT=${DB_PORT:-3306}
+      - DB_HOST=${DB_HOST:-db}
       - DB_DATABASE=${DB_NAME:-kadode_local}
       - DB_USERNAME=${DB_USER:-phper}
       - DB_PASSWORD=${DB_PASS:-secret}
 
   frontend:
     build:
-      context: .
-      dockerfile: ./infra/dev/container/frontend/Dockerfile
+      context: ./frontend
+      dockerfile: ../infra/dev/container/frontend/Dockerfile
     tty: true
     stdin_open: true
     ports:
       - "2000:2000"
     user: "1000:1000"
     volumes:
-      - ./frontend:/frontend
+      - ../frontend:/frontend
     # command: sh -c "pnpm install"
 
   db: # 3306 port

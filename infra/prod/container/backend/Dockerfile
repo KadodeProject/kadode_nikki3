@@ -3,24 +3,25 @@
 #
 FROM node:18-alpine AS node
 RUN corepack enable
-WORKDIR /work/build
-COPY backend/package.json ./
-COPY backend/pnpm-lock.yaml ./
+WORKDIR /build
+COPY package.json ./
+COPY pnpm-lock.yaml ./
 RUN pnpm install --frozen-lockfile
-# COPY backend/postcss.config.js .
-COPY backend/tailwind.config.js .
-COPY backend/vite.config.js .
-COPY backend/resources ./resources
-COPY backend/routes ./routes
-COPY backend/public ./public
+# COPY postcss.config.js .
+COPY tailwind.config.js .
+COPY vite.config.js .
+COPY resources ./resources
+COPY routes ./routes
+COPY public ./public
 
 RUN pnpm build
 
 
 #
 # ここからPHP
+# grpc周りがあまりにも遅いのでキャッシュを効かせるためにステージを分ける
 #
-FROM php:8.2-fpm-bullseye AS backend
+FROM php:8.2-fpm-bullseye AS install-essential
 
 ENV TZ=UTC \
   # locale
@@ -49,17 +50,6 @@ RUN apt-get update \
   && localedef -f UTF-8 -i en_US en_US.UTF-8 \
   && mkdir /var/run/php-fpm
 
-#
-# nginx関連
-#
-COPY infra/prod/container/backend/nginx.conf /etc/nginx/conf.d/default.conf
-COPY infra/prod/container/backend/entrypoint.sh /work/backend/entrypoint.sh
-
-
-#
-# PHP関連のインストール
-#
-
 RUN docker-php-ext-install intl pdo_mysql zip bcmath \
     && git clone https://github.com/phpredis/phpredis.git /usr/src/php/ext/redis && docker-php-ext-install redis
 # MAKEFLAGSで並列ビルド指定することでめちゃくちゃに遅いgrpcのinstallを高速化する
@@ -68,35 +58,40 @@ RUN MAKEFLAGS="-j $(nproc)" pecl install grpc protobuf \
 RUN composer config -g process-timeout 3600 && composer config -g repos.packagist composer https://packagist.org
 
 
-COPY ./infra/prod/container/backend/php.ini /usr/local/etc/php/php.ini
+#
+# ここからcomposerとコピー関連と初期構築
+#
+FROM install-essential AS production
+#
+# nginx関連
+#
+COPY container/prod/nginx.conf /etc/nginx/conf.d/default.conf
+COPY container/prod/entrypoint.sh /backend/entrypoint.sh
+COPY container/prod/php.ini /usr/local/etc/php/php.ini
 
-WORKDIR /work/backend
+WORKDIR /backend
 
-COPY ./backend/composer.json ./backend/composer.lock ./
+COPY composer.json composer.lock ./
 RUN composer install -q -n --no-ansi --no-dev --no-scripts --no-progress --prefer-dist
 
 # storageはマウントするので、初回ビルドでコケないようにファイル生成のみ
+# COPY ./server.php ./server.php
+COPY ./ .
+# artisanを明示的に読まないと読み込んでくれない(ドットがないのでディレクトリ扱いになっている説ある)
+# COPY artisan ./artisan
+COPY --from=node /build/public ./public
+
 RUN mkdir -p bootstrap/cache \
-    storage/framework/cache/data/ \
-    storage/framework/app/cache \
+    storage/app/backup-temp \
+    storage/app/laravel-backup \
+    storage/app/public \
+    storage/framework/cache/data \
     storage/framework/sessions \
     storage/framework/views \
-# COPY ./backend/server.php ./server.php
-COPY ./backend/artisan ./artisan
-COPY ./backend/bootstrap/app.php ./bootstrap/
-COPY ./backend/GrpcClient ./GrpcClient
-COPY ./backend/resources ./resources
-COPY ./backend/config ./config
-COPY ./backend/routes ./routes
-COPY ./backend/database ./database
-COPY ./backend/app ./app
-COPY --from=node /work/build/public ./public
-
-RUN chmod -R 777 storage bootstrap/cache entrypoint.sh \
-    && php artisan optimize:clear \
+    storage/json \
+    && chmod -R 777 storage bootstrap/cache entrypoint.sh \
     && php artisan route:cache \
     && php artisan config:cache \
-    && php artisan view:cache \
-    && php artisan optimize
+    && php artisan view:cache
 # 終了させないために
-ENTRYPOINT ["sh","/work/backend/entrypoint.sh"]
+ENTRYPOINT ["sh","/backend/entrypoint.sh"]

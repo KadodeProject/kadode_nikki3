@@ -7,4 +7,5 @@ infra/docker/schemaspy/output/*
 tmp
 *.pyc
 data
+storage
 .env

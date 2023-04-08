@@ -1,0 +1,28 @@
+node_modules
+vendor
+# publicのbuildはpnpm buildで作る
+public/build
+# cach系はartisanコマンドとmkdirで作る
+bootstrap/cache
+storage
+
+tests
+
+_ide_helper_models.php
+_ide_helper.php
+.dockerignore
+.env
+.env.ci
+.env.dusk.local
+.gitattributes
+.gitignore
+.editorconfig
+.php-cs-fixer.dist.php
+.phpstorm.meta.php
+.phpunit.result.cache
+.styleci.
+phpstan-baseline.neon
+phpstan.neon
+phpunit.dusk.xml
+phpunit.xml
+README.md
