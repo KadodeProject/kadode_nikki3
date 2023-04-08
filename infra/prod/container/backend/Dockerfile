@@ -77,10 +77,10 @@ RUN composer install -q -n --no-ansi --no-dev --no-scripts --no-progress --prefe
 
 # storageはマウントするので、初回ビルドでコケないようにファイル生成のみ
 RUN mkdir -p bootstrap/cache \
-    && mkdir -p storage/framework/cache/data/ \
-    && mkdir -p storage/framework/app/cache \
-    && mkdir -p storage/framework/sessions \
-    6& mkdir -p storage/framework/views \
+    storage/framework/cache/data/ \
+    storage/framework/app/cache \
+    storage/framework/sessions \
+    storage/framework/views \
 # COPY ./backend/server.php ./server.php
 COPY ./backend/artisan ./artisan
 COPY ./backend/bootstrap/app.php ./bootstrap/
@@ -92,8 +92,7 @@ COPY ./backend/database ./database
 COPY ./backend/app ./app
 COPY --from=node /work/build/public ./public
 
-RUN chmod -R 777 storage bootstrap/cache \
-    && chmod 777 entrypoint.sh \
+RUN chmod -R 777 storage bootstrap/cache entrypoint.sh \
     && php artisan optimize:clear \
     && php artisan route:cache \
     && php artisan config:cache \
