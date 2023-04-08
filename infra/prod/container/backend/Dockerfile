@@ -1,4 +1,26 @@
-FROM php:8.2-fpm-bullseye
+#
+# 事前にビルドが必要なものを作っておく
+#
+FROM node:18-alpine AS node
+RUN corepack enable
+WORKDIR /work/build
+COPY backend/package.json ./
+COPY backend/pnpm-lock.yaml ./
+RUN pnpm install --frozen-lockfile
+# COPY backend/postcss.config.js .
+COPY backend/tailwind.config.js .
+COPY backend/vite.config.js .
+COPY backend/resources ./resources
+COPY backend/routes ./routes
+COPY backend/public ./public
+
+RUN pnpm build
+
+
+#
+# ここからPHP
+#
+FROM php:8.2-fpm-bullseye AS backend
 
 ENV TZ=UTC \
   # locale
@@ -62,14 +84,13 @@ RUN mkdir -p bootstrap/cache \
 # COPY ./backend/server.php ./server.php
 COPY ./backend/artisan ./artisan
 COPY ./backend/bootstrap/app.php ./bootstrap/
-COPY ./proto ./resources/proto
 COPY ./backend/GrpcClient ./GrpcClient
-COPY ./backend/public ./public
 COPY ./backend/resources ./resources
 COPY ./backend/config ./config
 COPY ./backend/routes ./routes
 COPY ./backend/database ./database
 COPY ./backend/app ./app
+COPY --from=node /work/build/public ./public
 
 RUN chmod -R 777 storage bootstrap/cache \
     && chmod 777 entrypoint.sh \

@@ -3,8 +3,8 @@ kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/cont
 kubectl get svc -n nginx-ingress
 
 ```
-kubectl create namespace kadode-prod \
-&& kubectl apply -f infra/prod/manifest/backend \
+kubectl create namespace kadode-prod
+kubectl apply -f infra/prod/manifest/backend \
 && kubectl apply -f infra/prod/manifest/frontend \
 && kubectl apply -f infra/prod/manifest/nlp \
 && kubectl apply -f infra/prod/manifest/mysql \
@@ -24,7 +24,7 @@ kubectl get events -n kadode-prod
 # 削除
 
 ```
-kubectl delete namespace
+kubectl delete namespace kadode-prod
 
 kubectl delete -f infra/prod/manifest/ \
 && kubectl delete -f infra/prod/manifest/backend \
@@ -35,6 +35,8 @@ kubectl delete -f infra/prod/manifest/ \
 
 ```
 
-```
+# 更新
 
+```
+kubectl rollout restart deploy nlp-app -n kadode-prod
 ```

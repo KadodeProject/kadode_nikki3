@@ -1,7 +1,10 @@
+#
+# 実際に使用しているファイルではなく、手軽に本番用のコンテナを検証するためのファイルです。
+#
+# dc -f compose-prod.yml up -d --build
+#
 volumes:
   db-store:
-
-# dc -f compose-prod.yml up -d --build
 
 services:
   backend:
@@ -56,6 +59,7 @@ services:
       - GCS_PACKET={$GCS_PACKET}
       - BACKUP_NOTIFICATION_EMAIL_TO={$BACKUP_NOTIFICATION_EMAIL_TO}
       - SERVER_BACKUP_PATH={$SERVER_BACKUP_PATH}
+      - GRPC_SERVER_URL=nlp:2020
 
   nlp:
     build:

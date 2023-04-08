@@ -61,6 +61,7 @@ services:
       - GCS_PACKET={$GCS_PACKET}
       - BACKUP_NOTIFICATION_EMAIL_TO={$BACKUP_NOTIFICATION_EMAIL_TO}
       - SERVER_BACKUP_PATH={$SERVER_BACKUP_PATH}
+      - GRPC_SERVER_URL=nlp:2020
 
   nlp:
     build:
@@ -133,7 +134,7 @@ services:
     ports:
       - 7010:80
     volumes:
-      - ./infra/dev/container/backendmyadmin/sessions:/sessions
+      - ./infra/dev/container/phpmyadmin/sessions:/sessions
 
   mail:
     image: mailhog/mailhog

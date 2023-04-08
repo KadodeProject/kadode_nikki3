@@ -4,7 +4,8 @@ metadata:
   name: nlp-config
   namespace: kadode-prod
 data:
-  MYSQL_HOST: "mysql"
-  MYSQL_DATABASE: "kadode_local"
-  MYSQL_USER: "phper"
-  MYSQL_PASSWORD: "secret"
+  DB_HOST: "mysql-service"
+  DB_PORT: "3306"
+  DB_DATABASE: "kadode_production"
+  DB_USERNAME: "phper"
+  DB_PASSWORD: "secret"
