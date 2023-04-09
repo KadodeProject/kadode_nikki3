@@ -1,12 +1,11 @@
-name: コンテナ生成とデプロイ
+name: 【infra】コンテナ生成とデプロイ
 
-on: [pull_request]
-# on:
-#   pull_request:
-#     branches:
-#       - main
-#       - develop/k8s対応
-#     types: [closed]
+on:
+  pull_request:
+    branches:
+      - main
+      - develop/k8s対応
+    types: [closed]
 
 jobs:
   push_to_registry:
