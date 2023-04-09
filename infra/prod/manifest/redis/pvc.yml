@@ -4,8 +4,12 @@ metadata:
   name: redis-pvc
   namespace: kadode-prod
 spec:
+  storageClassName: local-storage
   accessModes:
-    - ReadWriteOnce # 1つのPodから読み書き可能にします
+    - ReadWriteOnce
   resources:
     requests:
-      storage: 1Gi # データ永続化用のストレージのサイズを指定します
+      storage: 1Gi
+  selector:
+    matchLabels:
+      app: redis
