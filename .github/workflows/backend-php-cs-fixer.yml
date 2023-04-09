@@ -1,9 +1,11 @@
-name: PHPコーディング規約遵守チェック
+name: 【backend】PHPコーディング規約遵守チェック
 
 on:
   pull_request:
     branches:
       - main
+    paths:
+      - backend/**
 
 jobs:
   php-cs-fixer:

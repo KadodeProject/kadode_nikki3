@@ -1,10 +1,13 @@
-name: PHPテスト[ブラウザ]
+name: 【backend】PHPテスト[ブラウザ]
 # chromeのバージョン不一致問題が解消せず動かない
 # 微妙にdusk側とdriver側のバージョンが違ってエラーになる
 # docker版より早いが、動かないため一時停止
 on:
   pull_request:
     branches: [main]
+    paths:
+      - backend/**
+
 
 jobs:
   laravel_test:
