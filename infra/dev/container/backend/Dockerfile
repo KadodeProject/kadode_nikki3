@@ -78,10 +78,10 @@ RUN composer config -g process-timeout 3600 && composer config -g repos.packagis
 # ここから開発用のもの
 #
 FROM install-essential AS dev
-COPY infra/dev/container/backend/nginx.conf /etc/nginx/conf.d/default.conf
-COPY infra/dev/container/backend/entrypoint.sh /etc/entrypoint.sh
+COPY container/dev/nginx.conf /etc/nginx/conf.d/default.conf
+COPY container/dev/entrypoint.sh /etc/entrypoint.sh
 
-COPY ./infra/dev/container/backend/php.ini /usr/local/etc/php/php.ini
+COPY container/dev/php.ini /usr/local/etc/php/php.ini
 
 WORKDIR /backend
 

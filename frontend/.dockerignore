@@ -1,0 +1,14 @@
+.pnpm-store
+.svelte-kit
+build
+node_modules
+tests
+
+.dockerignore
+.eslintignore
+.eslintrc.cjs
+.gitignore
+.prettierignore
+.prettierrc
+playwright.config.ts
+README.md

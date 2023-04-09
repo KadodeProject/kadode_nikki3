@@ -5,8 +5,8 @@ volumes:
 services:
   backend:
     build:
-      context: .
-      dockerfile: ./infra/dev/container/backend/Dockerfile
+      context: ./backend
+      dockerfile: ../infra/dev/container/backend/Dockerfile
     volumes:
       - type: bind
         source: ./proto/nlp.proto
@@ -65,8 +65,8 @@ services:
 
   nlp:
     build:
-      context: .
-      dockerfile: ./infra/dev/container/nlp/Dockerfile
+      context: ./nlp
+      dockerfile: ../infra/dev/container/nlp/Dockerfile
     tty: true
     stdin_open: true
     volumes:
@@ -95,13 +95,13 @@ services:
       - "2000:2000"
     user: "1000:1000"
     volumes:
-      - ../frontend:/frontend
+      - ./frontend:/frontend
     # command: sh -c "pnpm install"
 
   db: # 3306 port
     build:
-      context: .
-      dockerfile: ./infra/dev/container/mysql/Dockerfile
+      context: ./infra/dev/container/mysql
+      dockerfile: Dockerfile
     ports:
       - target: 3306
         published: ${DB_PORT:-3306}
@@ -143,8 +143,8 @@ services:
 
   selenium:
     build:
-      context: .
-      dockerfile: ./infra/dev/container/selenium/Dockerfile
+      context: ./infra/dev/container/selenium
+      dockerfile: Dockerfile
     tty: true
     ports:
       - 4444:4444
