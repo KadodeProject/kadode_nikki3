@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="ja">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="robots" content="index, follow" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<meta name="format-detection" content="telephone=no" />
+		<meta name="viewport" content="width=device-width" />
+		<!-- favicon -->
+		<link rel="icon" href="%sveltekit.assets%/favicon.ico" />
+		<link
+			rel="apple-touch-icon"
+			type="image/png"
+			href="%sveltekit.assets%/img/favicon/apple-touch-icon-180x180.png"
+		/>
+		<link rel="icon" type="image/png" href="%sveltekit.assets%/img/favicon/icon-192x192.png" />
+
+		<!-- Google tag (gtag.js) -->
+		<script async src="https://www.googletagmanager.com/gtag/js?id=G-P6MDK8XCEE"></script>
+		<script>
+			window.dataLayer = window.dataLayer || [];
+			function gtag() {
+				dataLayer.push(arguments);
+			}
+			gtag('js', new Date());
+
+			gtag('config', 'G-P6MDK8XCEE');
+		</script>
+
+		<title>%sveltekit.status% | かどで日記</title>
+	</head>
+	<body data-sveltekit-preload-data="hover">
+		<h1 class="text-3xl mx-2 my-2">%sveltekit.status% エラー</h1>
+		<div class="flex mx-2 my-2 justify-center">
+			<p class="">%sveltekit.error.message%</p>
+		</div>
+	</body>
+</html>
