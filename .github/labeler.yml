@@ -44,6 +44,6 @@
 🏠devInfra:
   - infra/dev/**
   - compose.yml
-🏠prodInfra:
+🏢prodInfra:
   - infra/prod/**
   - compose-prod.yml

@@ -2,7 +2,10 @@ name: 【backend】PHPテスト[単体]
 
 on:
   pull_request:
-    branches: [main]
+    branches:
+      - main
+    paths:
+      - backend/**
 
 jobs:
   laravel_test:

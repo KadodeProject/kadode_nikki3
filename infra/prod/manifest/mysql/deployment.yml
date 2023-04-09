@@ -16,23 +16,17 @@ spec:
         app: mysql
     spec:
       containers:
-      - name: mysql
+        - name: mysql
         image: mysql/mysql-server:8.0
-        env:
-        - name: MYSQL_ROOT_PASSWORD
-          valueFrom:
-            secretKeyRef:
-              name: mysql-secret
-              key: password
-        ports:
-        - containerPort: 3306
-        envFrom:
-          - configMapRef:
-              name: mysql-config
-        volumeMounts:
-        - name: mysql-data
-          mountPath: /var/lib/mysql
+          ports:
+            - containerPort: 3306
+          envFrom:
+            - configMapRef:
+                name: mysql-config
+          volumeMounts:
+            - name: mysql-data
+              mountPath: /var/lib/mysql
       volumes:
-      - name: mysql-data
-        persistentVolumeClaim:
-          claimName: mysql-pvc
+        - name: mysql-data
+          persistentVolumeClaim:
+            claimName: mysql-pvc
