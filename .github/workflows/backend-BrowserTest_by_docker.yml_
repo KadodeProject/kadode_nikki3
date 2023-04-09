@@ -5,6 +5,8 @@ name: 【backend】PHPテスト[ブラウザ(Docker版)]
 on:
   pull_request:
     branches: [main]
+    paths:
+      - backend/**
 
 env:
   LOCALSTACK_CACHE_PATH: localstack-image

@@ -3,6 +3,8 @@ name: 【backend】PHPテスト[結合]
 on:
   pull_request:
     branches: [main]
+    paths:
+      - backend/**
 
 jobs:
   laravel_test:

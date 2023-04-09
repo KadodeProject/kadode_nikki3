@@ -5,6 +5,9 @@ name: 【backend】PHPテスト[ブラウザ]
 on:
   pull_request:
     branches: [main]
+    paths:
+      - backend/**
+
 
 jobs:
   laravel_test:
