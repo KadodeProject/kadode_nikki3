@@ -1,0 +1,65 @@
+name: フロントエンド統合(E2E)テスト (playwright)
+
+on:
+  pull_request:
+    branches: [main]
+
+defaults:
+  run:
+    working-directory: frontend
+
+jobs:
+  frontend_lint:
+    name: integration test
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Install Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+
+      - uses: pnpm/action-setup@v2
+        name: Install pnpm
+        id: pnpm-install
+        with:
+          version: 8
+          run_install: false
+
+      - name: Get pnpm store directory
+        id: pnpm-cache
+        shell: bash
+        run: |
+          echo "STORE_PATH=$(pnpm store path)" >> $GITHUB_OUTPUT
+
+      - uses: actions/cache@v3
+        name: Setup pnpm cache
+        with:
+          path: ${{ steps.pnpm-cache.outputs.STORE_PATH }}
+          key: ${{ runner.os }}-frontend-pnpm-store-${{ hashFiles('**/pnpm-lock.yaml') }}
+          restore-keys: |
+            ${{ runner.os }}-frontend-pnpm-store-
+
+      - name: Install dependencies
+        run: pnpm install
+
+      - name: Install playwright browsers
+        run: npx playwright install --with-deps
+
+      - name: Generate Env
+        run: |
+          echo "NOTION_API_KEY=${{ secrets.NOTION_API_KEY }}" >> .env
+          echo "GHOST_API_URL=${{ secrets.GHOST_API_URL }}" >> .env
+          echo "GHOST_CONTENT_KEY=${{ secrets.GHOST_CONTENT_KEY }}" >> .env
+
+      - name: Generate wrangler.toml
+        run: |
+          cp wrangler.toml.example wrangler.toml
+          sed -i -e "s/ACCOUNT_ID/${{ secrets.CF_ACCOUNT_ID }}/" wrangler.toml
+          sed -i -e "s/KV_ID/${{ secrets.CF_KV_ID }}/" wrangler.toml
+
+      - name: Integration test
+        run: pnpm test:i
