@@ -8,7 +8,8 @@ kubectl apply -f infra/prod/manifest/backend \
 && kubectl apply -f infra/prod/manifest/frontend \
 && kubectl apply -f infra/prod/manifest/nlp \
 && kubectl apply -f infra/prod/manifest/mysql \
-&& kubectl apply -f infra/prod/manifest/redis
+&& kubectl apply -f infra/prod/manifest/redis \
+&& kubectl apply -f infra/prod/manifest/
 ```
 
 # 全体の稼働状況を確認
