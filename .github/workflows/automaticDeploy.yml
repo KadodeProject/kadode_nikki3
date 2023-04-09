@@ -61,12 +61,8 @@ jobs:
         run: |
           rm -rf /tmp/.buildx-cache
           mv /tmp/.buildx-cache-new /tmp/.buildx-cache
-  deploy:
-    name: Deploy to Server
-    needs: push_to_registry
-    runs-on: ubuntu-latest
-    steps:
-      - name: Deploy to Server
+
+      - name: Rolling Update
         uses: appleboy/ssh-action@master
         with:
           host: ${{ secrets.SERVER_HOST }}
@@ -78,4 +74,4 @@ jobs:
             git checkout main
             git pull origin main
             # latestだと更新できないので、shaの方で更新をかける
-            kubectl rolling-update frontend --image=ghcr.io/kadodeproject/kadode_nikki3_frontend:${{ github.sha }}
+            kubectl set image ${{ matrix.name }}-app -n kadode-prod ${{ matrix.name }}-app=ghcr.io/kadodeproject/kadode_nikki3_${{ matrix.name }}:${{ github.sha }}
