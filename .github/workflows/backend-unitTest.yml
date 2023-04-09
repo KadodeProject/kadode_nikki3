@@ -1,0 +1,49 @@
+name: 【backend】PHPテスト[単体]
+
+on:
+  pull_request:
+    branches: [main]
+
+jobs:
+  laravel_test:
+    name: phpunit unit test
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: "8.2"
+          tools: composer:v2
+
+      - name: cache vendor
+        id: cache_vendor
+        uses: actions/cache@v3
+        with:
+          path: ./backend/vendor
+          key: ${{ runner.os }}-composer-${{ hashFiles('**/composer.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-composer-
+      - name: run apt
+        run: sudo apt update && sudo apt install git libicu-dev libonig-dev libzip-dev unzip locales libmariadb-dev default-mysql-client libgirepository1.0-dev
+      - name: copy .env for ci
+        run: cd backend && php -r "file_exists('.env') || copy('.env.ci', '.env');"
+
+      #ライブラリインストール
+      #PHP
+      - name: composer install
+        if: steps.cache_vendor.outputs.cache-hit != 'true'
+        run: cd backend && composer install -n --prefer-dist
+
+      #Laravel初期構築
+      - name: composer dump autoload
+        run: cd backend && composer dump-autoload
+      - name: generate key
+        run: cd backend && php artisan key:generate --env=testing
+      - name: config cache
+        run: cd backend && php artisan config:cache
+      #テスト
+      - name: unit test
+        run: cd backend && ./vendor/bin/phpunit --testsuite Unit  --testdox

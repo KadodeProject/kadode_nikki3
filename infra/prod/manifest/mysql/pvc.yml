@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: mysql-pvc
+  namespace: kadode-prod
+spec:
+  accessModes:
+    - ReadWriteOnce # 1つのPodから読み書き可能にします
+  resources:
+    requests:
+      storage: 5Gi # データ永続化用のストレージのサイズを指定します

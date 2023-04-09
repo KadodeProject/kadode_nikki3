@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: nlp-config
+  namespace: kadode-prod
+data:
+  DB_HOST: "mysql-service"
+  DB_PORT: "3306"
+  DB_DATABASE: "kadode_production"
+  DB_USERNAME: "phper"
+  DB_PASSWORD: "secret"

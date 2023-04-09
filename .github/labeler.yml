@@ -1,52 +1,49 @@
-# 大枠
+# 共通
+🧪tests:
+  - backend/tests/**
+  - frontend/tests/**
+  - nlp/tests/**
+# フロントエンド
 🏛️frontend_legacy:
-  - backend/public/*
-  - backend/resources/*
+  - backend/public/**
+  - backend/resources/**
+  - frontend_discontinued
 💻frontend:
-  - frontend/*
+  - frontend/**
+# バックエンド
 ⚙backend:
-  - any: ["backend/*", "!backend/public/*", "!backend/resources/*"]
-
-# インフラ
-✈ci:
-  - .github/*
-  - backend/env.ci
-⚡infra:
-  - backend/composer.json
-  - backend/composer.lock
-  - backend/package.json
-  - backend/package-lock.json
-  - backend/env.example
-  - frontend/package.json
-  - frontend/yarn.lock
-  - docs/CNAME
-🏠localInfra:
-  - infra/dev/*
-  - docker-compose.yml
-
-# 文章周り
+  - backend/**
+📦database-core:
+  - backend/database/migrations/**
+🔗router:
+  - backend/routes/**
+# nlp
+🍃nlp:
+  - nlp/**
+# proto
+📡proto:
+  - proto/**
+# docs
 📄wiki:
-  - docs/dev/*
-  - docs/assets/*
-  - docs/REGACY/*
+  - docs/dev/**
+  - docs/assets/**
+  - docs/REGACY/**
   - docs/README.md
   - docs/404.md
   - docs/_config.yml
   - docs/_layouts
 ✍ADR:
-  - docs/arc/*
+  - docs/arc/**
 📐UML:
-  - docs/UML/*
+  - docs/UML/**
 🧭roadmap:
-  - docs/ROADMAP/*
-
-# 細かいもの
-🧪tests:
-  - backend/tests/*
-🍃nlp:
-  - backend/python/*
-  - nlp
-📦database-core:
-  - backend/database/migrations/*
-🔗router:
-  - backend/routes/*
+  - docs/ROADMAP/**
+# インフラ
+✈ci:
+  - .github/**
+🏠devInfra:
+  - infra/dev/**
+  - compose.yml
+🏠prodInfra:
+  - infra/prod/**
+  - compose-prod.yml

@@ -1,0 +1,95 @@
+name: 【backend】PHPテスト[結合]
+
+on:
+  pull_request:
+    branches: [main]
+    paths:
+      - backend/**
+
+jobs:
+  laravel_test:
+    name: phpunit combined test
+    runs-on: ubuntu-latest
+
+    services:
+      mysql:
+        image: mysql:8.0.19
+        ports:
+          - 3306:3306
+        options: --health-cmd "mysqladmin ping -h localhost" --health-interval 20s --health-timeout 10s --health-retries 10
+        env:
+          MYSQL_ROOT_PASSWORD: password
+          MYSQL_DATABASE: app_test
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Setup PHP with PECL extension
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: "8.2"
+          # ini-values: extension="redis.so"
+          # 二重で読み込まれるため上記のphp.ini記述処理は不要
+          extensions: redis
+
+      - name: cache node_modules
+        id: cache_node
+        uses: actions/cache@v3
+        with:
+          path: ./backend/node_modules
+          key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-yarn-
+
+      - name: cache vendor
+        id: cache_vendor
+        uses: actions/cache@v3
+        with:
+          path: ./backend/vendor
+          key: ${{ runner.os }}-composer-${{ hashFiles('**/composer.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-composer-
+
+      - name: cache pip3
+        id: cache_pip3
+        uses: actions/cache@v3
+        with:
+          path: /home/runner/.local/lib/python3.8/site-packages
+          key: ${{ runner.os }}-pip3-${{ hashFiles('**/kadode_pip_packages.txt') }}
+          restore-keys: |
+            ${{ runner.os }}-pip3-
+
+      - name: run apt
+        run: sudo apt-get -y install git libicu-dev libonig-dev libzip-dev unzip locales python3-pip libmariadb-dev vim cpulimit htop cron default-mysql-client python3-venv  libgirepository1.0-dev
+      - name: update pip
+        run: sudo pip3 install --upgrade pip
+      - name: copy .env for ci
+        run: cd backend && php -r "file_exists('.env') || copy('.env.ci', '.env');"
+
+      #ライブラリインストール
+      #Python
+      - name: pip install
+        if: steps.cache_pip3.outputs.cache-hit != 'true'
+        run: pip3 install --upgrade --upgrade-strategy eager -r backend/kadode_pip_packages.txt
+      #JS
+      - name: yarn install
+        if: steps.cache_node.outputs.cache-hit != 'true'
+        run: cd backend && yarn install
+      #PHP
+      - name: composer install
+        if: steps.cache_vendor.outputs.cache-hit != 'true'
+        run: cd backend && composer install -n --prefer-dist
+
+      #Laravel初期構築
+      - name: composer dump autoload
+        run: cd backend && composer dump-autoload
+      - name: generate key
+        run: cd backend && php artisan key:generate --env=testing
+      - name: migrate
+        run: cd backend && php artisan migrate
+      #フロントエンドのファイル生成(200テストで使うため)
+      - name: genereate
+        run: cd backend && yarn build
+      #テスト
+      - name: unit test
+        run: cd backend && ./vendor/bin/phpunit --testsuite MinimumOperationCheck --testsuite Feature --testdox

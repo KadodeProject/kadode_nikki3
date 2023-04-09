@@ -1,0 +1,33 @@
+# deployment.yaml
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mysql-db
+  namespace: kadode-prod
+spec:
+  selector:
+    matchLabels:
+      app: mysql-db
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: mysql-db
+    spec:
+      containers:
+        - name: mysql-db
+          image: mysql/mysql-server:8.0
+          ports:
+            - containerPort: 3306 # MySQLが使用するポート番号を指定します
+          volumeMounts:
+            - name: mysql-data
+              mountPath: /var/lib/mysql # MySQLが使用するデータの永続化のために、ボリュームをマウントします
+          envFrom:
+            - configMapRef:
+                name: mysql-config
+      volumes:
+        - name: mysql-data
+          persistentVolumeClaim:
+            claimName: mysql-pvc # データ永続化用のPVCを指定します
