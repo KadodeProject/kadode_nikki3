@@ -81,6 +81,7 @@ COPY ./ .
 # COPY artisan ./artisan
 COPY --from=node /build/public ./public
 
+# config:cacheだけはRUNの状態ではまだconfigが入ってこないのでENTRYPOINTのシェルスクリプト内でやる
 RUN mkdir -p bootstrap/cache \
     storage/app/backup-temp \
     storage/app/laravel-backup \
@@ -91,7 +92,6 @@ RUN mkdir -p bootstrap/cache \
     storage/json \
     && chmod -R 777 storage bootstrap/cache entrypoint.sh \
     && php artisan route:cache \
-    && php artisan config:cache \
     && php artisan view:cache
 # 終了させないために
 ENTRYPOINT ["sh","/backend/entrypoint.sh"]

@@ -3,8 +3,6 @@
 #
 # dc -f compose-prod.yml up -d --build
 #
-volumes:
-  db-store:
 
 services:
   backend:
@@ -13,11 +11,14 @@ services:
       dockerfile: ../infra/prod/container/backend/Dockerfile
     tty: true
     stdin_open: true
+    # restart: always
     ports:
       - "2010:2010"
     depends_on:
-      - "redis"
-      - "db"
+      redis:
+        condition: service_started
+      db:
+        condition: service_healthy
     environment:
       - APP_NAME=かどで日記3
       - APP_ENV=production
@@ -64,7 +65,8 @@ services:
     tty: true
     stdin_open: true
     depends_on:
-      - "db"
+      db:
+        condition: service_healthy
     environment:
       - DB_HOST=db
       - DB_PORT=3306
@@ -85,14 +87,11 @@ services:
 
   db: # 3306port
     image: "mysql/mysql-server:8.0"
-    volumes:
-      - db-store:/var/lib/mysql
     environment:
       - MYSQL_ROOT_PASSWORD=${DB_NAME:-example}
       - MYSQL_DATABASE=${DB_NAME:-kadode_local}
       - MYSQL_USER=${DB_USER:-phper}
       - MYSQL_PASSWORD=${DB_PASS:-secret}
-      - MYSQL_ROOT_PASSWORD=${DB_PASS:-secret}
 
   redis: # 6379 port
     image: "redis:alpine"
