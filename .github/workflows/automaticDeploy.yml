@@ -1,11 +1,12 @@
 name: 【infra】コンテナ生成とデプロイ
 
-on:
-  pull_request:
-    branches:
-      - main
-      - develop/k8s対応
-    types: [closed]
+on: [pull_request]
+# on:
+#   pull_request:
+#     branches:
+#       - main
+#       - develop/k8s対応
+#     types: [closed]
 
 jobs:
   push_to_registry:
@@ -60,21 +61,21 @@ jobs:
         run: |
           rm -rf /tmp/.buildx-cache
           mv /tmp/.buildx-cache-new /tmp/.buildx-cache
-  # deploy:
-  #   name: Deploy to Server
-  #   needs: push_to_registry
-  #   runs-on: ubuntu-latest
-  #   steps:
-  #     - name: Deploy to Server
-  #       uses: appleboy/ssh-action@master
-  #       with:
-  #         host: ${{ secrets.SERVER_HOST }}
-  #         username: ${{ secrets.SERVER_USERNAME }}
-  #         key: ${{ secrets.SERVER_SSH_KEY }}
-  #         port: ${{ secrets.SERVER_PORT }}
-  #         script: |
-  #           cd ${{ secrets.BLOG_SERVER_PATH }}
-  #           git checkout main
-  #           git pull origin main
-  #           # latestだと更新できないので、shaの方で更新をかける
-  #           kubectl rolling-update frontend --image=ghcr.io/kadodeproject/kadode_nikki3_frontend:${{ github.sha }}
+  deploy:
+    name: Deploy to Server
+    needs: push_to_registry
+    runs-on: ubuntu-latest
+    steps:
+      - name: Deploy to Server
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.SERVER_HOST }}
+          username: ${{ secrets.SERVER_USERNAME }}
+          key: ${{ secrets.SERVER_SSH_KEY }}
+          port: ${{ secrets.SERVER_PORT }}
+          script: |
+            cd ${{ secrets.SERVER_K8S_PATH }}
+            git checkout main
+            git pull origin main
+            # latestだと更新できないので、shaの方で更新をかける
+            kubectl rolling-update frontend --image=ghcr.io/kadodeproject/kadode_nikki3_frontend:${{ github.sha }}
