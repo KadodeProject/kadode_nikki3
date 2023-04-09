@@ -48,8 +48,5 @@ jobs:
       - name: Install dependencies
         run: pnpm install
 
-      - name: Generate Dummy Env
-        run: cp .env.example .env
-
       - name: svelte-check
         run: pnpm check
