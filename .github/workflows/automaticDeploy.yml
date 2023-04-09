@@ -70,7 +70,7 @@ jobs:
           port: ${{ secrets.SERVER_PORT }}
           script: |
             cd ${{ secrets.SERVER_K8S_PATH }}
-            git checkout main
-            git pull origin main
-            # latestだと更新できないので、shaの方で更新をかける
-            kubectl set image ${{ matrix.name }}-app -n kadode-prod ${{ matrix.name }}-app=ghcr.io/kadodeproject/kadode_nikki3_${{ matrix.name }}:${{ github.sha }}
+            # git checkout main
+            # git pull origin main
+            # # latestだと更新できないので、shaの方で更新をかける
+            # kubectl set image ${{ matrix.name }}-app -n kadode-prod ${{ matrix.name }}-app=ghcr.io/kadodeproject/kadode_nikki3_${{ matrix.name }}:${{ github.sha }}
