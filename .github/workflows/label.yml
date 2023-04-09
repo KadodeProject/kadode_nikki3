@@ -1,4 +1,4 @@
-name: PR自動ラベル付与
+name: 【infra】PR自動ラベル付与
 on: [pull_request]
 
 jobs:

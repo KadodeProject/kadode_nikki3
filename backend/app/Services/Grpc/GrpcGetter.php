@@ -10,7 +10,7 @@ class GrpcGetter
 {
     public function getGrpcRequest(int $userId):bool
     {
-        $client = new NlpManagerClient('nlp:2020',
+        $client = new NlpManagerClient(config('grpc.server_url'),
         [
             'credentials' => ChannelCredentials::createInsecure(),
         ]

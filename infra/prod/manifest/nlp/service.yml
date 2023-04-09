@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: python-service
+  namespace: kadode-prod
+spec:
+  selector:
+    app: python-app
+  ports:
+    - name: grpc
+      port: 2030
+      targetPort: 2030

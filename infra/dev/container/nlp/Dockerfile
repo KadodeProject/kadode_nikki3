@@ -31,7 +31,7 @@ RUN \
 
 ENV PATH $POETRY_HOME/bin:$PATH
 
-COPY nlp/poetry.lock nlp/pyproject.toml ./
+COPY poetry.lock pyproject.toml ./
 RUN poetry config virtualenvs.create false && poetry install
 
 EXPOSE 1000

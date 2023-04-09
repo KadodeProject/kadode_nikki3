@@ -1,4 +1,4 @@
-name: コンテナ生成とデプロイ
+name: 【infra】コンテナ生成とデプロイ
 
 on: [pull_request]
 # on:
@@ -16,19 +16,22 @@ jobs:
     strategy:
       matrix:
         name: ["frontend", "backend", "nlp"]
-        # redisは外の物を使うのでOK
 
     steps:
       - name: Check out the repo
         uses: actions/checkout@v3
 
+      # arm64とamd64両対応のため
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v2
+
       - name: Cache Docker layers
         uses: actions/cache@v3
         with:
           path: /tmp/.buildx-cache
-          key: ${{ runner.os }}-buildx-${{ github.sha }}
+          key: ${{ runner.os }}-${{ matrix.name }}-buildx-${{ github.sha }}
           restore-keys: |
-            ${{ runner.os }}-buildx-
+            ${{ runner.os }}-${{ matrix.name }}-buildx-
 
       - name: Login to GitHub Container Registry
         uses: docker/login-action@v2
@@ -37,14 +40,10 @@ jobs:
           username: ${{ github.repository_owner }}
           password: ${{ secrets.USUYUKI_GITHUB_TOKEN }}
 
-      # arm64とamd64両対応のため
-      - name: Set up Docker Buildx
-        uses: docker/setup-buildx-action@v2
-
       - name: Build and Push to GitHub Container Registry
         uses: docker/build-push-action@v4
         with:
-          context: ./
+          context: ./${{ matrix.name }}
           file: ./infra/prod/container/${{ matrix.name }}/Dockerfile
           push: true
           platforms: linux/arm64,linux/amd64
@@ -62,22 +61,17 @@ jobs:
         run: |
           rm -rf /tmp/.buildx-cache
           mv /tmp/.buildx-cache-new /tmp/.buildx-cache
-  # deploy:
-  #   name: Deploy to Server
-  #   needs: push_to_registry
-  #   runs-on: ubuntu-latest
-  #   steps:
-  #     - name: Deploy to Server
-  #       uses: appleboy/ssh-action@master
-  #       with:
-  #         host: ${{ secrets.SERVER_HOST }}
-  #         username: ${{ secrets.SERVER_USERNAME }}
-  #         key: ${{ secrets.SERVER_SSH_KEY }}
-  #         port: ${{ secrets.SERVER_PORT }}
-  #         script: |
-  #           cd ${{ secrets.BLOG_SERVER_PATH }}
-  #           git checkout main
-  #           git pull origin main
-  #           # docker compose upしても正しく降ってこないので、一旦最新を明示的にpullさせる
-  #           docker pull ghcr.io/usuyuki/usuyuki_blog_v2_astro:latest
-  #           docker compose -f compose-prod.yml up -d --build
+
+      - name: Rolling Update
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.SERVER_HOST }}
+          username: ${{ secrets.SERVER_USERNAME }}
+          key: ${{ secrets.SERVER_SSH_KEY }}
+          port: ${{ secrets.SERVER_PORT }}
+          script: |
+            cd ${{ secrets.SERVER_K8S_PATH }}
+            git checkout main
+            git pull origin main
+            # latestだと更新できないので、shaの方で更新をかける
+            kubectl set image ${{ matrix.name }}-app -n kadode-prod ${{ matrix.name }}-app=ghcr.io/kadodeproject/kadode_nikki3_${{ matrix.name }}:${{ github.sha }}

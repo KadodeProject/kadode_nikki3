@@ -1,24 +1,24 @@
-volumes:
-  db-store:
-
+#
+# 実際に使用しているファイルではなく、手軽に本番用のコンテナを検証するためのファイルです。
+#
 # dc -f compose-prod.yml up -d --build
+#
 
 services:
   backend:
     build:
-      context: .
-      dockerfile: ./infra/prod/container/backend/Dockerfile
+      context: ./backend
+      dockerfile: ../infra/prod/container/backend/Dockerfile
     tty: true
     stdin_open: true
+    # restart: always
     ports:
       - "2010:2010"
-    volumes:
-      - type: bind
-        source: ./backend/storage
-        target: /work/backend/storage
     depends_on:
-      - "redis"
-      - "db"
+      redis:
+        condition: service_started
+      db:
+        condition: service_healthy
     environment:
       - APP_NAME=かどで日記3
       - APP_ENV=production
@@ -56,24 +56,18 @@ services:
       - GCS_PACKET={$GCS_PACKET}
       - BACKUP_NOTIFICATION_EMAIL_TO={$BACKUP_NOTIFICATION_EMAIL_TO}
       - SERVER_BACKUP_PATH={$SERVER_BACKUP_PATH}
+      - GRPC_SERVER_URL=nlp:2020
 
   nlp:
     build:
-      context: .
-      dockerfile: ./infra/prod/container/nlp/Dockerfile
+      context: ./nlp
+      dockerfile: ../infra/prod/container/nlp/Dockerfile
     tty: true
     stdin_open: true
-    volumes:
-      - type: bind
-        source: ./nlp
-        target: /nlp
-      - type: bind
-        source: ./proto/nlp.proto
-        target: /nlp/proto/nlp.proto
     depends_on:
-      - "db"
+      db:
+        condition: service_healthy
     environment:
-      - DB_CONNECTION=mysql
       - DB_HOST=db
       - DB_PORT=3306
       - DB_DATABASE=${DB_NAME:-kadode_local}
@@ -82,8 +76,8 @@ services:
 
   frontend:
     build:
-      context: .
-      dockerfile: ./infra/prod/container/frontend/Dockerfile
+      context: ./frontend
+      dockerfile: ../infra/prod/container/frontend/Dockerfile
     tty: true
     stdin_open: true
     ports:
@@ -93,17 +87,14 @@ services:
 
   db: # 3306port
     image: "mysql/mysql-server:8.0"
-    volumes:
-      - ./infra/prod/container/mysql/initial:/docker-entrypoint-initdb.d
-      - db-store:/var/lib/mysql
     environment:
+      - MYSQL_ROOT_PASSWORD=${DB_NAME:-example}
       - MYSQL_DATABASE=${DB_NAME:-kadode_local}
       - MYSQL_USER=${DB_USER:-phper}
       - MYSQL_PASSWORD=${DB_PASS:-secret}
-      - MYSQL_ROOT_PASSWORD=${DB_PASS:-secret}
 
   redis: # 6379 port
-    image: "redis:latest"
+    image: "redis:alpine"
     volumes:
       - "./data/redis:/data"
       - "./infra/prod/container/redis/redis.conf:/etc/redis.conf"

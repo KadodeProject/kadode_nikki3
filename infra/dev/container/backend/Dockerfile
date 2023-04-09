@@ -1,4 +1,7 @@
-FROM php:8.2-fpm-bullseye
+#
+# grpc周りがあまりにも遅いのでキャッシュを効かせるためにステージを分ける
+#
+FROM php:8.2-fpm-bullseye AS install-essential
 ARG PROTOBUF_VERSION=22.2
 ARG GRPC_VERSION=v1.53.0
 
@@ -29,12 +32,6 @@ RUN apt-get update \
   && locale-gen en_US.UTF-8 \
   && localedef -f UTF-8 -i en_US en_US.UTF-8 \
   && mkdir /var/run/php-fpm
-
-#
-# nginx関連
-#
-COPY infra/dev/container/backend/nginx.conf /etc/nginx/conf.d/default.conf
-COPY infra/dev/container/backend/entrypoint.sh /etc/entrypoint.sh
 
 #
 # GRPC関連のインストール
@@ -77,8 +74,15 @@ RUN MAKEFLAGS="-j $(nproc)" pecl install grpc protobuf && \
 RUN composer config -g process-timeout 3600 && composer config -g repos.packagist composer https://packagist.org
 
 
-COPY ./infra/dev/container/backend/php.ini /usr/local/etc/php/php.ini
+#
+# ここから開発用のもの
+#
+FROM install-essential AS dev
+COPY container/dev/nginx.conf /etc/nginx/conf.d/default.conf
+COPY container/dev/entrypoint.sh /etc/entrypoint.sh
 
-WORKDIR /work/backend
+COPY container/dev/php.ini /usr/local/etc/php/php.ini
 
-ENTRYPOINT ["/etc/entrypoint.sh"]
+WORKDIR /backend
+
+ENTRYPOINT ["sh","/etc/entrypoint.sh"]

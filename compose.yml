@@ -5,23 +5,25 @@ volumes:
 services:
   backend:
     build:
-      context: .
-      dockerfile: ./infra/dev/container/backend/Dockerfile
+      context: ./backend
+      dockerfile: ../infra/dev/container/backend/Dockerfile
     volumes:
       - type: bind
         source: ./proto/nlp.proto
-        target: /work/backend/resources/proto/nlp.proto
+        target: /backend/resources/proto/nlp.proto
       - type: bind
         source: ./backend
-        target: /work/backend
+        target: /backend
       - type: volume
         source: psysh-store
         target: /root/.config/psysh
         volume:
           nocopy: true
     depends_on:
-      - "db"
-      - "redis"
+      redis:
+        condition: service_started
+      db:
+        condition: service_healthy
     ports:
       - "2010:2010"
     environment:
@@ -61,11 +63,12 @@ services:
       - GCS_PACKET={$GCS_PACKET}
       - BACKUP_NOTIFICATION_EMAIL_TO={$BACKUP_NOTIFICATION_EMAIL_TO}
       - SERVER_BACKUP_PATH={$SERVER_BACKUP_PATH}
+      - GRPC_SERVER_URL=nlp:2020
 
   nlp:
     build:
-      context: .
-      dockerfile: ./infra/dev/container/nlp/Dockerfile
+      context: ./nlp
+      dockerfile: ../infra/dev/container/nlp/Dockerfile
     tty: true
     stdin_open: true
     volumes:
@@ -76,19 +79,19 @@ services:
         source: ./proto/nlp.proto
         target: /nlp/proto/nlp.proto
     depends_on:
-      - "db"
+      db:
+        condition: service_healthy
     environment:
-      - DB_CONNECTION=mysql
-      - DB_HOST=db
-      - DB_PORT=3306
+      - DB_PORT=${DB_PORT:-3306}
+      - DB_HOST=${DB_HOST:-db}
       - DB_DATABASE=${DB_NAME:-kadode_local}
       - DB_USERNAME=${DB_USER:-phper}
       - DB_PASSWORD=${DB_PASS:-secret}
 
   frontend:
     build:
-      context: .
-      dockerfile: ./infra/dev/container/frontend/Dockerfile
+      context: ./frontend
+      dockerfile: ../infra/dev/container/frontend/Dockerfile
     tty: true
     stdin_open: true
     ports:
@@ -100,13 +103,8 @@ services:
 
   db: # 3306 port
     build:
-      context: .
-      dockerfile: ./infra/dev/container/mysql/Dockerfile
-    ports:
-      - target: 3306
-        published: ${DB_PORT:-3306}
-        protocol: tcp
-        mode: host
+      context: ./infra/dev/container/mysql
+      dockerfile: Dockerfile
     volumes:
       - ./infra/dev/container/mysql/initial:/docker-entrypoint-initdb.d
       - db-store:/var/lib/mysql
@@ -117,7 +115,7 @@ services:
       - MYSQL_ROOT_PASSWORD=${DB_PASS:-secret}
 
   redis: # 6379 port
-    image: "redis:latest"
+    image: "redis:alpine"
     volumes:
       - "./data/redis:/data"
       - "./infra/dev/container/redis/redis.conf:/etc/redis.conf"
@@ -134,7 +132,7 @@ services:
     ports:
       - 7010:80
     volumes:
-      - ./infra/dev/container/backendmyadmin/sessions:/sessions
+      - ./infra/dev/container/phpmyadmin/sessions:/sessions
 
   mail:
     image: mailhog/mailhog
@@ -143,8 +141,8 @@ services:
 
   selenium:
     build:
-      context: .
-      dockerfile: ./infra/dev/container/selenium/Dockerfile
+      context: ./infra/dev/container/selenium
+      dockerfile: Dockerfile
     tty: true
     ports:
       - 4444:4444
