@@ -1,10 +1,12 @@
-name: フロントエンド静的解析 (svelte-check)
+name: 【frontend】静的解析 (svelte-check)
 
 on:
   pull_request:
     branches:
       - main
       - develop/k8s対応
+    paths:
+      - frontend/**
 
 defaults:
   run:

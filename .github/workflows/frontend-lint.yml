@@ -1,10 +1,12 @@
-name: フロントエンドLint
+name: 【frontend】Lint
 
 on:
   pull_request:
     branches:
       - main
       - develop/k8s対応
+    paths:
+      - frontend/**
 
 defaults:
   run:
