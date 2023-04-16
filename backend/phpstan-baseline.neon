@@ -1,56 +1,6 @@
 parameters:
 	ignoreErrors:
 		-
-			message: "#^Cannot call method forceFill\\(\\) on mixed\\.$#"
-			count: 1
-			path: app/Actions/Fortify/ResetUserPassword.php
-
-		-
-			message: "#^Cannot access property \\$password on mixed\\.$#"
-			count: 1
-			path: app/Actions/Fortify/UpdateUserPassword.php
-
-		-
-			message: "#^Cannot call method forceFill\\(\\) on mixed\\.$#"
-			count: 1
-			path: app/Actions/Fortify/UpdateUserPassword.php
-
-		-
-			message: "#^Cannot access property \\$email on mixed\\.$#"
-			count: 1
-			path: app/Actions/Fortify/UpdateUserProfileInformation.php
-
-		-
-			message: "#^Cannot access property \\$id on mixed\\.$#"
-			count: 1
-			path: app/Actions/Fortify/UpdateUserProfileInformation.php
-
-		-
-			message: "#^Cannot call method forceFill\\(\\) on mixed\\.$#"
-			count: 2
-			path: app/Actions/Fortify/UpdateUserProfileInformation.php
-
-		-
-			message: "#^Cannot call method sendEmailVerificationNotification\\(\\) on mixed\\.$#"
-			count: 1
-			path: app/Actions/Fortify/UpdateUserProfileInformation.php
-
-		-
-			message: "#^Cannot call method updateProfilePhoto\\(\\) on mixed\\.$#"
-			count: 1
-			path: app/Actions/Fortify/UpdateUserProfileInformation.php
-
-		-
-			message: "#^Cannot access property \\$tokens on mixed\\.$#"
-			count: 1
-			path: app/Actions/Jetstream/DeleteUser.php
-
-		-
-			message: "#^Cannot call method delete\\(\\) on mixed\\.$#"
-			count: 1
-			path: app/Actions/Jetstream/DeleteUser.php
-
-		-
 			message: "#^Parameter \\#1 \\$filename of function file_get_contents expects string, mixed given\\.$#"
 			count: 1
 			path: app/Console/Commands/GCSCommand.php
@@ -615,25 +565,6 @@ parameters:
 			count: 1
 			path: app/Providers/AuthServiceProvider.php
 
-		-
-			message: "#^PHPDoc type array of property App\\\\Providers\\\\EventServiceProvider\\:\\:\\$listen is not covariant with PHPDoc type array\\<string, array\\<int, string\\>\\> of overridden property Illuminate\\\\Foundation\\\\Support\\\\Providers\\\\EventServiceProvider\\:\\:\\$listen\\.$#"
-			count: 1
-			path: app/Providers/EventServiceProvider.php
-
-		-
-			message: "#^Cannot access property \\$id on mixed\\.$#"
-			count: 1
-			path: app/Providers/RouteServiceProvider.php
-
-		-
-			message: "#^PHPDoc tag @var above a method has no effect\\.$#"
-			count: 1
-			path: app/Providers/RouteServiceProvider.php
-
-		-
-			message: "#^PHPDoc tag @var does not specify variable name\\.$#"
-			count: 1
-			path: app/Providers/RouteServiceProvider.php
 
 		-
 			message: "#^Method App\\\\Rules\\\\Diary\\\\RejectExistDayDiaryForCreateOnDateRule\\:\\:message\\(\\) should return string but returns mixed\\.$#"

@@ -98,6 +98,8 @@ ide-helper:
 	docker compose exec backend php artisan ide-helper:models --nowrite
 stan:
 	docker compose exec backend ./vendor/bin/phpstan analyse
+stan-g:
+	docker compose exec backend ./vendor/bin/phpstan analyse --generate-baseline
 cs-fixer:
 	docker compose exec backend ./vendor/bin/php-cs-fixer fix --config=.php-cs-fixer.dist.php -v
 barth:
