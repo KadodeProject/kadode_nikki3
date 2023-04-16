@@ -23,7 +23,7 @@ return [
 
     'allowed_methods' => ['*'],
 
-    'allowed_origins' => [env('FRONTEND_URL')],
+    'allowed_origins' => [env('ALLOWED_ORIGIN')],
 
     'allowed_origins_patterns' => [],
 

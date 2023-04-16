@@ -26,6 +26,9 @@ services:
       - APP_DEBUG=false
       - APP_URL=http://localhost:2010
       - FRONTEND_URL=http://localhost:2000
+      - ALLOWED_ORIGIN=frontend:2000
+      - SANCTUM_STATEFUL_DOMAINS=localhost:2000
+      - SESSION_DOMAIN=localhost
       - LOG_CHANNEL=single
       - LOG_LEVEL=debug
       - LOG_STDERR_FORMATTER=${LOG_STDERR_FORMATTER:-Monolog\Formatter\JsonFormatter}

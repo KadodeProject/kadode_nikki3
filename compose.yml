@@ -33,8 +33,9 @@ services:
       - APP_DEBUG=true
       # frontend,backendでも名前解決できるが、cookieの都合で同じ名前が使えるものを指定
       - APP_URL=http://localhost:2010
-      - FRONTEND_URL=frontend:2000
-      # - SANCTUM_STATEFUL_DOMAINS=localhost:2000
+      - FRONTEND_URL=http://frontend:2000
+      - ALLOWED_ORIGIN=frontend:2000
+      - SANCTUM_STATEFUL_DOMAINS=localhost:2000
       - SESSION_DOMAIN=localhost
       - LOG_CHANNEL=single
       - LOG_LEVEL=debug
