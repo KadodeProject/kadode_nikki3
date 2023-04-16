@@ -7,7 +7,7 @@
 🏛️frontend_legacy:
   - backend/public/**
   - backend/resources/**
-  - frontend_discontinued
+  - frontend_discontinued/**
 💻frontend:
   - frontend/**
 # バックエンド
