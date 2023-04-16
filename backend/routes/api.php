@@ -15,7 +15,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/status', App\Http\ApiActions\GetApiStatus::class)->name('getApiStatus');
+Route::get('/status', App\Http\ApiActions\GetApiStatusAction::class)->name('GetApiStatusAction');
 
 // ユーザー、日記、統計の取得API
 Route::get('OperationCoreTransitionPerHours/relative/day', \App\Http\ApiActions\OperationCoreTransition\GetOperationCoreTransitionLatestDay::class)->name('GetOperationCoreTransitionLatestDay');
@@ -41,5 +41,4 @@ Route::group(['middleware' => ['auth:sanctum']], function (): void {
     Route::get('/user/init', \App\Http\ApiActions\User\GetUserInfoAction::class)->name('getUserInfo');
     Route::get('/test', \App\Http\ApiActions\GetHomeAction::class)->name('getHome');
     Route::post('/diary/create', \App\Http\ApiActions\Diary\CreateDiaryAction::class)->name('CreateDiary');
-    Route::post('/logout', \App\Http\Actions\Auth\LogoutAction::class)->name('logout');
 });
