@@ -26,8 +26,7 @@ class CreateNlpPackageNamesTable extends Migration
             $table->foreign('genre_id')
                 ->references('id')
                 ->on('nlp_package_genres')
-                ->onDelete('cascade') // ジャンル消えたらパッケージも消す
-;
+                ->onDelete('cascade'); // ジャンル消えたらパッケージも消す
             // 他テーブルとの関連付け
             $table->foreign('user_id')
                 ->references('id')

@@ -66,7 +66,9 @@ dusk:
 	docker compose exec backend php artisan dusk --testdox
 p-test:
 	docker compose exec backend php artisan test
-p-unit-test:
+test-bf:
+	docker compose exec backend php artisan test --testsuite Feature
+test-bu:
 	docker compose exec backend php artisan test --testsuite Unit
 p-combined-test:
 	docker compose exec backend php artisan test --testsuite MinimumOperationCheck --testsuite Feature

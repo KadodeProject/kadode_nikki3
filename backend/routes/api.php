@@ -2,7 +2,6 @@
 
 declare(strict_types=1);
 
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -16,9 +15,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', fn (Request $request) => $request->user());
-
-Route::get('/', App\Http\ApiActions\GetApiStatus::class)->name('getApiStatus');
+Route::get('/status', App\Http\ApiActions\GetApiStatus::class)->name('getApiStatus');
 
 // ユーザー、日記、統計の取得API
 Route::get('OperationCoreTransitionPerHours/relative/day', \App\Http\ApiActions\OperationCoreTransition\GetOperationCoreTransitionLatestDay::class)->name('GetOperationCoreTransitionLatestDay');
@@ -39,3 +36,10 @@ Route::get('Osirase/latest', \App\Http\ApiActions\Osirase\GetLatestOsiraseAction
 // リリースノート一覧取得API
 Route::get('ReleaseNote/all', \App\Http\ApiActions\ReleaseNote\GetAllReleaseNoteAction::class)->name('GetAllReleaseNoteAction');
 Route::get('ReleaseNote/latest', \App\Http\ApiActions\ReleaseNote\GetLatestReleaseNoteAction::class)->name('GetLatestReleaseNoteAction');
+
+Route::group(['middleware' => ['auth:sanctum']], function (): void {
+    Route::get('/user/init', \App\Http\ApiActions\User\GetUserInfoAction::class)->name('getUserInfo');
+    Route::get('/test', \App\Http\ApiActions\GetHomeAction::class)->name('getHome');
+    Route::post('/diary/create', \App\Http\ApiActions\Diary\CreateDiaryAction::class)->name('CreateDiary');
+    Route::post('/logout', \App\Http\Actions\Auth\LogoutAction::class)->name('logout');
+});

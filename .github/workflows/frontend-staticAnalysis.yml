@@ -52,3 +52,6 @@ jobs:
 
       - name: svelte-check
         run: pnpm check
+        env:
+          PUBLIC_BASE_API: "http://backend:2010"
+          PUBLIC_LOGIN_PATH: "/login"

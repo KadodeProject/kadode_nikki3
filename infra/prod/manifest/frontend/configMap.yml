@@ -4,4 +4,5 @@ metadata:
   name: frontend-config
   namespace: kadode-prod
 data:
-  API_URL: "api.kado.day"
+  PUBLIC_BASE_API: "http://backend:2010"
+  PUBLIC_LOGIN_PATH: "/login"

@@ -25,8 +25,7 @@ class CreateUserIpsTable extends Migration
             $table->foreign('user_id')
                 ->references('id')
                 ->on('users')
-                ->onDelete('cascade') // cascadeでユーザー消えたらipも消せる
-;
+                ->onDelete('cascade'); // cascadeでユーザー消えたらipも消せる
         });
     }
 
