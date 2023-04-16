@@ -12,8 +12,10 @@ class GrpcGetter
 {
     public function getGrpcRequest(int $userId): bool
     {
+        /** @var string このキャストは良くないが、ここでは必ずstring来るので良い */
+        $serverUrl = config('grpc.server_url');
         $client = new NlpManagerClient(
-            config('grpc.server_url'),
+            $serverUrl,
             [
                 'credentials' => ChannelCredentials::createInsecure(),
             ]
