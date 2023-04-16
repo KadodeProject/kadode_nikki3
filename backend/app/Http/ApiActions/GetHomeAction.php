@@ -6,20 +6,22 @@ namespace App\Http\ApiActions;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\JsonResponse;
-use Illuminate\Http\Request;
+use Illuminate\Auth\AuthenticationException;
+use Illuminate\Support\Facades\Auth;
 
 final class GetHomeAction extends Controller
 {
-    public function __invoke(Request $request): JsonResponse
+    public function __invoke(): JsonResponse
     {
-        $user = $request->user();
-
+        $user = Auth::user();
+        if ($user === null) {
+            // 認証されていない場合の処理
+            throw new AuthenticationException();
+        }
         return new JsonResponse([
-            'data' => [
                 'id' => $user->id,
                 'name' => $user->name,
                 'email' => $user->email,
-            ],
         ]);
     }
 }

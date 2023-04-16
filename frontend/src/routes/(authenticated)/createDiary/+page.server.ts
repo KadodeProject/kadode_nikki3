@@ -14,6 +14,6 @@ export const actions = {
 				content: form.has('content') ? form.get('content') : undefined
 			}
 		});
-		return response.data;
+		return response;
 	}
 } satisfies Actions;

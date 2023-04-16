@@ -9,6 +9,6 @@ export const load = async (event: RequestEvent) => {
 		resource: 'api/test',
 		event: event
 	});
-	const data = response.data as Response;
+	const data = response as Response;
 	return data;
 };
