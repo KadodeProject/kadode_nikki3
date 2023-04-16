@@ -27,11 +27,15 @@ final class LoginAction extends Controller
         if ($this->auth->guard()->attempt($credentials)) {
             $request->session()->regenerate();
 
-            return new JsonResponse([
-                'message' => 'Authenticated.',
-                'id' => $this->auth->user()->id,
-                'name' => $this->auth->user()->name,
-            ]);
+            $user = $this->auth->user();
+
+            if ($user !== null) {
+                return new JsonResponse([
+                    'message' => 'Authenticated.',
+                    'id' => $user->id,
+                    'name' => $user->name,
+                ]);
+            }
         }
 
         throw new AuthenticationException();

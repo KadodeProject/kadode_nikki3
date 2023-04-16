@@ -7,15 +7,21 @@ namespace App\Http\ApiActions\User;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Auth\AuthenticationException;
 
 final class GetUserInfoAction extends Controller
 {
     public function __invoke(): JsonResponse
     {
+        $user = Auth::user();
+        if ($user === null) {
+            // 認証されていない場合の処理
+            throw new AuthenticationException();
+        }
         return response()->json(
             [
-                'id' => Auth::id(),
-                'name' => Auth::user()->name,
+                'id' => $user->id,
+                'name' => $user->name,
             ]
         );
     }
