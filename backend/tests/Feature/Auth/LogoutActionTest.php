@@ -19,7 +19,8 @@ final class LogoutActionTest extends TestCase
 
     public function testログアウトできる(): void
     {
-        $user = User::factory()->create(['email' => 'test@example.com']);
+        /** @var \Illuminate\Contracts\Auth\Authenticatable $user */
+        $user = User::factory()->create(['email' => 'testLogout@example.com', 'password' => 'password']);
 
         $this->actingAs($user)
             ->postJson('/logout')

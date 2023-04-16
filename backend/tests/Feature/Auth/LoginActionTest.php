@@ -19,7 +19,7 @@ final class LoginActionTest extends TestCase
 
     public function testログインできる(): void
     {
-        User::factory()->create(['email' => 'test@example.com', 'password' => bcrypt('password')]);
+        User::factory()->create(['email' => 'test@example.com', 'password' => 'password']);
 
         $params = [
             'email' => 'test@example.com',
