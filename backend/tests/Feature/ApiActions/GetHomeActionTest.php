@@ -19,6 +19,7 @@ final class GetHomeActionTest extends TestCase
 
     public function testSuccess(): void
     {
+        /** @var \Illuminate\Contracts\Auth\Authenticatable $user */
         $user = User::factory()->create([
             'email' => 'testGetHomeAction@example.com',
             'password' => 'password',
@@ -28,11 +29,9 @@ final class GetHomeActionTest extends TestCase
             ->getJson('/api/test')
             ->assertStatus(200)
             ->assertJson([
-                'data' => [
-                    'id' => $user->id,
-                    'name' => $user->name,
-                    'email' => $user->email,
-                ],
+                    'id' => $user->id ?? null,
+                    'name' => $user->name ?? null,
+                    'email' => $user->email ?? null,
             ]);
     }
 
