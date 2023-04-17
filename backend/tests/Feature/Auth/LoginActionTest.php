@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Tests\Feature\Actions\Auth;
 
-use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 
@@ -19,13 +18,10 @@ final class LoginActionTest extends TestCase
 
     public function testログインできる(): void
     {
-        $params = [
-            'email' => 'testLogin@example.com',
-            'password' => 'password',
-        ];
-        User::factory()->create(array_merge($params, ['name' => 'testUser']));
-
-        $this->postJson(route('spaLogin'), $params)
+        $this->postJson(route('spaLogin'), [
+            'email' => 'test1@example.com',
+            'password' => 'test1234',
+        ])
             ->assertStatus(200)
             ->assertJson([
                 'message' => 'Authenticated.',
@@ -35,7 +31,7 @@ final class LoginActionTest extends TestCase
     public function testログインできない(): void
     {
         $params = [
-            'email' => 'testLogin@example.com',
+            'email' => 'ghost@example.com',
             'password' => 'password',
         ];
 
