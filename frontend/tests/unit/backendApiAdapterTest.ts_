@@ -1,0 +1,85 @@
+import { backendApiAdapter } from '$lib/utils/adapter/backendApiAdapter';
+import { expect } from 'vitest';
+
+// モック化したfetch関数
+global.fetch = jest.fn(() =>
+  Promise.resolve({
+    json: () => Promise.resolve({ data: 'mock data' }),
+    status: 200,
+    headers: new Headers()
+  })
+);
+
+// モック化したenvオブジェクト
+const mockEnv = {
+  PUBLIC_BASE_API: 'https://example.com/api',
+  PUBLIC_LOGIN_PATH: '/login'
+};
+
+describe('backendApiAdapter', () => {
+  // テスト前にenvオブジェクトをモック化する
+  beforeEach(() => {
+    jest.spyOn(global, 'env').mockImplementation(() => mockEnv);
+  });
+
+  // テスト後にモックをリセットする
+  afterEach(() => {
+    jest.resetAllMocks();
+  });
+
+  // テストケース
+  it('should call fetch with the correct url and method', async () => {
+    await backendApiAdapter({ method: 'GET', resource: 'users' });
+    expect(fetch).toHaveBeenCalledWith(
+      'https://example.com/api/users',
+      expect.objectContaining({
+        method: 'GET'
+      })
+    );
+  });
+
+  it('should call fetch with the correct headers and body', async () => {
+    await backendApiAdapter({
+      method: 'POST',
+      resource: 'users',
+      data: { name: 'Alice' },
+      event: {
+        cookies: new Map([['XSRF-TOKEN', '123456']]),
+        request: { headers: new Headers({ cookie: 'foo=bar' }) }
+      }
+    });
+    expect(fetch).toHaveBeenCalledWith(
+      expect.any(String),
+      expect.objectContaining({
+        headers: expect.objectContaining({
+          mode: 'cors',
+          origin: 'http://localhost:2000',
+          'content-type': 'application/json',
+          accept: 'application/json',
+          'X-XSRF-TOKEN': '123456',
+          cookie: 'foo=bar'
+        }),
+        body: JSON.stringify({ name: 'Alice' })
+      })
+    );
+  });
+
+  it('should return the json data from the response', async () => {
+    const result = await backendApiAdapter({ method: 'GET', resource: 'users' });
+    expect(result).toEqual({ data: 'mock data' });
+  });
+
+  it('should throw a redirect error if the response status is 401 or 419', async () => {
+    (fetch as jest.MockedFunction<typeof fetch>).mockImplementationOnce(() =>
+      Promise.resolve({
+        json: () => Promise.resolve({}),
+        status: 401,
+        headers: new Headers()
+      })
+    );
+    await expect(
+      backendApiAdapter({ method: 'GET', resource: 'users' })
+    ).rejects.toThrow('Redirecting to /login');
+  });
+
+  it('should log the response
