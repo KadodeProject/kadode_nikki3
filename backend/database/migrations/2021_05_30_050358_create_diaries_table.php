@@ -54,8 +54,7 @@ class CreateDiariesTable extends Migration
             $table->foreign('user_id')
                 ->references('id')
                 ->on('users')
-                ->onDelete('cascade') // cascadeでユーザー消えたら日記も消せる
-;
+                ->onDelete('cascade'); // cascadeでユーザー消えたら日記も消せる
         });
     }
 

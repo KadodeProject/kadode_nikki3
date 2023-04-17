@@ -24,8 +24,7 @@ class CreateStatisticOverallProgressesTable extends Migration
             $table->foreign('user_id')
                 ->references('id')
                 ->on('users')
-                ->onDelete('cascade') // cascadeでユーザー消えたら統計データも消せる
-;
+                ->onDelete('cascade'); // cascadeでユーザー消えたら統計データも消せる
         });
     }
 

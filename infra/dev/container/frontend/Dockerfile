@@ -1,4 +1,5 @@
 FROM node:18-alpine
+RUN apk add curl
 RUN corepack enable
 ENV HOST=0.0.0.0
 ENV PORT=2000

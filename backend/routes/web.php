@@ -152,3 +152,6 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function (): void {
         Route::post('/administrator/settings/user/rank/delete', \App\Http\Actions\UserRank\DeleteUserRankAction::class)->name('DeleteUserRank');
     });
 });
+
+Route::post('/login', \App\Http\Actions\Auth\LoginAction::class)->name('spaLogin');
+Route::post('/logout', \App\Http\Actions\Auth\LogoutAction::class)->name('spaLogout');

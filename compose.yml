@@ -31,7 +31,12 @@ services:
       - APP_ENV=local
       - APP_KEY=${APP_KEY}
       - APP_DEBUG=true
-      - APP_URL=${APP_URL:-http://localhost:2010}
+      # frontend,backendでも名前解決できるが、cookieの都合で同じ名前が使えるものを指定
+      - APP_URL=http://localhost:2010
+      - FRONTEND_URL=http://frontend:2000
+      - ALLOWED_ORIGIN=frontend:2000
+      - SANCTUM_STATEFUL_DOMAINS=localhost:2000
+      - SESSION_DOMAIN=localhost
       - LOG_CHANNEL=single
       - LOG_LEVEL=debug
       - LOG_STDERR_FORMATTER=${LOG_STDERR_FORMATTER:-Monolog\Formatter\JsonFormatter}
@@ -99,6 +104,10 @@ services:
     user: "1000:1000"
     volumes:
       - ./frontend:/frontend
+    environment:
+      # PUBLICつけることでクライアント側でも使えるようにする(SvelteKitの仕様)
+      - PUBLIC_BASE_API=http://backend:2010
+      - PUBLIC_LOGIN_PATH=/login
     # command: sh -c "pnpm install"
 
   db: # 3306 port

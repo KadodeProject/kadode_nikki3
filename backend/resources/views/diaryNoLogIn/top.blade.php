@@ -33,13 +33,13 @@
     <div class="mb-24 mt-4">
         <p class="text-center mt-4 kiwi-maru">あくまで個人が作った<br class="md:hidden">趣味で運用しているサービスです。<br>ご理解の上、ご利用ください。</p>
         <p class="text-center mt-12">
-            <a class="border-2 border-kn_3 p-2 text-3xl  kiwi-maru rounded-2xl" href="{{route('register')}}">
+            {{-- <a class="border-2 border-kn_3 p-2 text-3xl  kiwi-maru rounded-2xl" href="{{route('register')}}">
                 @if (Route::has('login'))
                 ホームへ
                 @else
                 新規登録
                 @endif
-            </a>
+            </a> --}}
         </p>
     </div>
     <div>

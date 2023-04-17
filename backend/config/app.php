@@ -3,6 +3,7 @@
 declare(strict_types=1);
 
 return [
+    'frontend_url' => env('FRONTEND_URL', 'http://localhost:2000'),
     /*
     |--------------------------------------------------------------------------
     | Application Name
@@ -168,8 +169,6 @@ return [
         // App\Providers\BroadcastServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
-        App\Providers\FortifyServiceProvider::class,
-        App\Providers\JetstreamServiceProvider::class,
 
         \Torann\GeoIP\GeoIPServiceProvider::class,
     ],

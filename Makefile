@@ -64,9 +64,16 @@ tinker:
 	docker compose exec backend php artisan tinker
 dusk:
 	docker compose exec backend php artisan dusk --testdox
+cc:
+	docker compose exec backend php artisan config:clear
+# 	docker compose exec backend php artisan config:cache
+# 	docker compose exec backend php artisan route:cache
+# 	docker compose exec backend php artisan view:cache
 p-test:
 	docker compose exec backend php artisan test
-p-unit-test:
+test-bf:
+	docker compose exec backend php artisan test --testsuite Feature
+test-bu:
 	docker compose exec backend php artisan test --testsuite Unit
 p-combined-test:
 	docker compose exec backend php artisan test --testsuite MinimumOperationCheck --testsuite Feature
@@ -96,6 +103,8 @@ ide-helper:
 	docker compose exec backend php artisan ide-helper:models --nowrite
 stan:
 	docker compose exec backend ./vendor/bin/phpstan analyse
+stan-g:
+	docker compose exec backend ./vendor/bin/phpstan analyse --generate-baseline
 cs-fixer:
 	docker compose exec backend ./vendor/bin/php-cs-fixer fix --config=.php-cs-fixer.dist.php -v
 barth:

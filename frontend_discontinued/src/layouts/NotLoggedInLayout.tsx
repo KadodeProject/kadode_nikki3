@@ -1,6 +1,6 @@
 import NotLoggedInHead from '@/components/polymers/seo/NotLoggedInHead';
 import Footer from '@/layouts/Footer';
-import Header from '@/layouts/NotLoggedInHeader';
+import Header from '@/layouts/GuestHeader';
 import type { NextPage } from 'next';
 import type { ReactNode } from 'react';
 type Props = {

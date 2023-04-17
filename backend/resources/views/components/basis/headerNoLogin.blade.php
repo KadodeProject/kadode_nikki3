@@ -13,11 +13,11 @@
             @auth
             <a href="{{ route('ShowHome') }}" class="kiwi-maru kadode-normal-button">ホームへ</a>
             @else
-            <a href="{{ route('login') }}" class="kiwi-maru mr-2 kadode-normal-button">ログイン</a>
+            {{-- <a href="{{ route('login') }}" class="kiwi-maru mr-2 kadode-normal-button">ログイン</a> --}}
 
-            @if (Route::has('register'))
+            {{-- @if (Route::has('register'))
             <a href="{{ route('register') }}" class="kiwi-maru kadode-normal-button">新規登録</a>
-            @endif
+            @endif --}}
             @endauth
         </div>
     </div>
