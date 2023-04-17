@@ -26,18 +26,18 @@ final class GetHomeActionTest extends TestCase
         ]);
 
         $this->actingAs($user)
-            ->getJson('/api/test')
+            ->getJson(route('GetHomeApi'))
             ->assertStatus(200)
             ->assertJson([
-                    'id' => $user->id ?? null,
-                    'name' => $user->name ?? null,
-                    'email' => $user->email ?? null,
+                'id' => $user->id ?? null,
+                'name' => $user->name ?? null,
+                'email' => $user->email ?? null,
             ]);
     }
 
     public function test未認証だとだめ(): void
     {
-        $this->getJson('/api/test')
+        $this->getJson(route('GetHomeApi'))
             ->assertStatus(401)
             ->assertJson([
                 'message' => 'Unauthenticated.',

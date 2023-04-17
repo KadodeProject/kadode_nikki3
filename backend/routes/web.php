@@ -153,5 +153,5 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function (): void {
     });
 });
 
-Route::post('/login', \App\Http\Actions\Auth\LoginAction::class)->name('login');
-Route::post('/logout', \App\Http\Actions\Auth\LogoutAction::class)->name('logout');
+Route::post('/login', \App\Http\Actions\Auth\LoginAction::class)->name('spaLogin');
+Route::post('/logout', \App\Http\Actions\Auth\LogoutAction::class)->name('spaLogout');

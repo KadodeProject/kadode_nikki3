@@ -23,10 +23,9 @@ final class LoginActionTest extends TestCase
             'email' => 'testLogin@example.com',
             'password' => 'password',
         ];
-        User::factory()->create($params);
+        User::factory()->create(array_merge($params, ['name' => 'testUser']));
 
-
-        $this->postJson('/login', $params)
+        $this->postJson(route('spaLogin'), $params)
             ->assertStatus(200)
             ->assertJson([
                 'message' => 'Authenticated.',
@@ -40,7 +39,7 @@ final class LoginActionTest extends TestCase
             'password' => 'password',
         ];
 
-        $this->postJson('/login', $params)
+        $this->postJson(route('spaLogin'), $params)
             ->assertStatus(401)
             ->assertJson([
                 'message' => 'Unauthenticated.',
@@ -49,7 +48,7 @@ final class LoginActionTest extends TestCase
 
     public function test未入力チェック(): void
     {
-        $this->postJson('/login', [])
+        $this->postJson(route('spaLogin'), [])
             ->assertStatus(422)
             ->assertJson([
                 'message' => 'メールアドレスは、必ず指定してください。 (and 1 more error)',

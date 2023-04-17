@@ -23,7 +23,7 @@ final class LogoutActionTest extends TestCase
         $user = User::factory()->create(['email' => 'testLogout@example.com', 'password' => 'password']);
 
         $this->actingAs($user)
-            ->postJson('/logout')
+            ->postJson(route('spaLogout'))
             ->assertStatus(200)
             ->assertJson([
                 'message' => 'Unauthenticated.',
@@ -34,7 +34,7 @@ final class LogoutActionTest extends TestCase
 
     public function testログアウト済み(): void
     {
-        $this->postJson('/logout')
+        $this->postJson(route('spaLogout'))
             ->assertStatus(200)
             ->assertJson([
                 'message' => 'Already Unauthenticated.',

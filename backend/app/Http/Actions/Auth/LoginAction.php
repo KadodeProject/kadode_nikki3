@@ -29,7 +29,7 @@ final class LoginAction extends Controller
 
             $user = $this->auth->user();
 
-            if ($user !== null) {
+            if (null !== $user) {
                 return new JsonResponse([
                     'message' => 'Authenticated.',
                     'id' => $user->id,

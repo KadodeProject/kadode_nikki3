@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Tests\Feature\ApiActions;
 
-use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 
 /**
@@ -16,11 +15,10 @@ final class GetApiStatusActionTest extends TestCase
 {
     public function test✌が帰ってくる(): void
     {
-        $this->getJson('/api/status')
+        $this->getJson(route('GetApiStatus'))
             ->assertStatus(200)
             ->assertJson([
                 'status' => '✌',
             ]);
     }
-
 }

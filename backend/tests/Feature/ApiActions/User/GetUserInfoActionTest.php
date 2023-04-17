@@ -2,12 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Tests\Feature\ApiActions;
+namespace Tests\Feature\ApiActions\User;
 
-use App\Models\Diary;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Support\Str;
 use Tests\TestCase;
 
 /**
@@ -18,6 +16,7 @@ use Tests\TestCase;
 final class GetUserInfoActionTest extends TestCase
 {
     use RefreshDatabase;
+
     public function test認証した人のと名前が帰ってくる(): void
     {
         /** @var User */
@@ -29,12 +28,12 @@ final class GetUserInfoActionTest extends TestCase
 
         /**
          * @var \Illuminate\Contracts\Auth\Authenticatable
-         * PHPStanのためのキャスト
+         *                                                 PHPStanのためのキャスト
          */
         $authUser = $user;
 
         $this->actingAs($authUser)
-            ->getJson('/api/user/init')
+            ->getJson(route('getUserInfo'))
             ->assertStatus(200)
             ->assertJson([
                 'id' => $user->id,
@@ -42,9 +41,9 @@ final class GetUserInfoActionTest extends TestCase
             ]);
     }
 
-    public function test認証していないと401エラー():void
+    public function test認証していないと401エラー(): void
     {
-        $this->getJson('/api/user/init')
+        $this->getJson(route('getUserInfo'))
             ->assertStatus(401);
     }
 }
