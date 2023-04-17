@@ -19,12 +19,12 @@ final class LoginActionTest extends TestCase
 
     public function testログインできる(): void
     {
-        User::factory()->create(['email' => 'test@example.com', 'password' => 'password']);
-
         $params = [
-            'email' => 'test@example.com',
+            'email' => 'testLogin@example.com',
             'password' => 'password',
         ];
+        User::factory()->create($params);
+
 
         $this->postJson('/login', $params)
             ->assertStatus(200)
@@ -36,7 +36,7 @@ final class LoginActionTest extends TestCase
     public function testログインできない(): void
     {
         $params = [
-            'email' => 'test@example.com',
+            'email' => 'testLogin@example.com',
             'password' => 'password',
         ];
 

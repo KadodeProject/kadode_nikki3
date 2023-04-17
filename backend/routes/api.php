@@ -40,5 +40,5 @@ Route::get('ReleaseNote/latest', \App\Http\ApiActions\ReleaseNote\GetLatestRelea
 Route::group(['middleware' => ['auth:sanctum']], function (): void {
     Route::get('/user/init', \App\Http\ApiActions\User\GetUserInfoAction::class)->name('getUserInfo');
     Route::get('/test', \App\Http\ApiActions\GetHomeAction::class)->name('getHome');
-    Route::post('/diary/create', \App\Http\ApiActions\Diary\CreateDiaryAction::class)->name('CreateDiary');
+    Route::post('/diary/create', \App\Http\ApiActions\Diary\CreateDiaryAction::class)->name('CreateDiaryApi');
 });

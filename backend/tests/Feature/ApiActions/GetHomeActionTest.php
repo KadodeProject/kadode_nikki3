@@ -17,7 +17,7 @@ final class GetHomeActionTest extends TestCase
 {
     use RefreshDatabase;
 
-    public function testSuccess(): void
+    public function test値が帰ってくる(): void
     {
         /** @var \Illuminate\Contracts\Auth\Authenticatable $user */
         $user = User::factory()->create([
@@ -35,7 +35,7 @@ final class GetHomeActionTest extends TestCase
             ]);
     }
 
-    public function testUnauthenticated(): void
+    public function test未認証だとだめ(): void
     {
         $this->getJson('/api/test')
             ->assertStatus(401)

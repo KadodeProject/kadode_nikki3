@@ -64,6 +64,11 @@ tinker:
 	docker compose exec backend php artisan tinker
 dusk:
 	docker compose exec backend php artisan dusk --testdox
+cc:
+	docker compose exec backend php artisan config:clear
+# 	docker compose exec backend php artisan config:cache
+# 	docker compose exec backend php artisan route:cache
+# 	docker compose exec backend php artisan view:cache
 p-test:
 	docker compose exec backend php artisan test
 test-bf:
