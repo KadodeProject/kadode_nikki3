@@ -45,8 +45,6 @@ jobs:
         run: cd backend && composer dump-autoload
       - name: generate key
         run: cd backend && php artisan key:generate --env=testing
-      - name: config cache
-        run: cd backend && php artisan config:cache
       #テスト
       - name: unit test
         run: cd backend && ./vendor/bin/phpunit --testsuite Unit  --testdox
