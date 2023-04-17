@@ -41,6 +41,9 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-composer-
 
+      - name: copy .env for ci
+        run: cp backend/.env.ci backend/.env
+
       #ライブラリインストール
       #PHP
       - name: composer install
