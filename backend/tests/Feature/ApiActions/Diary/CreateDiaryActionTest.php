@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Tests\Feature\ApiActions;
+namespace Tests\Feature\ApiActions\Diary;
 
 use App\Models\Diary;
 use App\Models\User;
@@ -20,7 +20,7 @@ final class CreateDiaryActionTest extends TestCase
     use RefreshDatabase;
     public function test正しい値と認証で日記が作れる(): void
     {
-        /** @var \Illuminate\Contracts\Auth\Authenticatable $user */
+        /** @var \Illuminate\Contracts\Auth\Authenticatable */
         $user = User::factory()->create([
             'email' => 'testGetHomeAction@example.com',
             'password' => 'password',
@@ -56,7 +56,7 @@ final class CreateDiaryActionTest extends TestCase
     //タイトルは空でも良いので
     public function test内容が空だとエラー():void
     {
-        /** @var \Illuminate\Contracts\Auth\Authenticatable $user */
+        /** @var \Illuminate\Contracts\Auth\Authenticatable */
         $user = User::factory()->create([
             'email' => 'testGetHomeAction@example.com',
             'password' => 'password',
@@ -82,7 +82,7 @@ final class CreateDiaryActionTest extends TestCase
 
     public function test日付が空だとエラー():void
     {
-        /** @var \Illuminate\Contracts\Auth\Authenticatable $user */
+        /** @var \Illuminate\Contracts\Auth\Authenticatable */
         $user = User::factory()->create([
             'email' => 'testGetHomeAction@example.com',
             'password' => 'password',
@@ -103,7 +103,7 @@ final class CreateDiaryActionTest extends TestCase
 
     public function test既に存在する日付だとエラー():void
     {
-        /** @var \Illuminate\Contracts\Auth\Authenticatable $user */
+        /** @var User */
         $user = User::factory()->create([
             'email' => 'testGetHomeAction@example.com',
             'password' => 'password',
@@ -119,8 +119,13 @@ final class CreateDiaryActionTest extends TestCase
                 'uuid' => Str::uuid(),
             ]
             );
+        /**
+         * @var \Illuminate\Contracts\Auth\Authenticatable
+         * PHPStanのためのキャスト
+         */
+        $authUser = $user;
 
-        $this->actingAs($user)
+        $this->actingAs($authUser)
             ->postJson('/api/diary/create',
             [
                 'date' => '1999-01-01',

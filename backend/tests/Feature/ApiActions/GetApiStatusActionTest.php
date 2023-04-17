@@ -14,7 +14,7 @@ use Tests\TestCase;
  */
 final class GetApiStatusActionTest extends TestCase
 {
-    public function test値が帰ってくる(): void
+    public function test✌が帰ってくる(): void
     {
         $this->getJson('/api/status')
             ->assertStatus(200)

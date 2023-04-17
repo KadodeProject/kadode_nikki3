@@ -17,9 +17,9 @@ final class GetHomeActionTest extends TestCase
 {
     use RefreshDatabase;
 
-    public function test値が帰ってくる(): void
+    public function test認証した人のidとnameとemailが帰る(): void
     {
-        /** @var \Illuminate\Contracts\Auth\Authenticatable $user */
+        /** @var \Illuminate\Contracts\Auth\Authenticatable */
         $user = User::factory()->create([
             'email' => 'testGetHomeAction@example.com',
             'password' => 'password',
