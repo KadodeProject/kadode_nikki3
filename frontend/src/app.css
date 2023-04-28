@@ -86,21 +86,7 @@ main {
 	padding-top: var(--main-padding-top);
 }
 
-.material-symbols-outlined.md-18 {
-	font-size: 18px;
-}
-.material-symbols-outlined.md-24 {
-	font-size: 24px;
-}
-.material-symbols-outlined.md-36 {
-	font-size: 36px;
-}
-.material-symbols-outlined.md-48 {
-	font-size: 48px;
-}
-.material-symbols-outlined.md-100 {
-	font-size: 100px;
-}
-.material-symbols-outlined.font-weight-100 {
-	font-weight: 100;
+.center {
+	max-inline-size: max-content;
+	margin-inline: auto;
 }

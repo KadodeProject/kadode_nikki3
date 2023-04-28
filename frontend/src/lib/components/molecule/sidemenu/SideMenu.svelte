@@ -1,6 +1,7 @@
 <script lang="ts">
 	import SideMenuButton from '$lib/components/atom/button/SideMenuButton.svelte';
 	import { isDark, toggleDarkMode } from '$lib/stores/utility';
+	import InterfaceContentBook2 from '$lib/assets/icon/interface-content-book-2.svg?src';
 </script>
 
 <nav class="bg-purple">
@@ -26,12 +27,12 @@
 	<div>
 		<h2 class="text-2xl">かどで日記</h2>
 	</div>
-	<div class="flex justify-center items-center flex-col">
-		<SideMenuButton title="ホーム" url="/home" />
-		<SideMenuButton title="アーカイブ" url="/archive" />
-		<SideMenuButton title="統計" url="/statistics" />
-		<SideMenuButton title="ハイライト" url="/highlight" />
-		<SideMenuButton title="設定" url="/settings" />
+	<div class="flex justify-center items-center flex-col space-y-4">
+		<SideMenuButton title="ホーム" url="/home" icon={InterfaceContentBook2} />
+		<SideMenuButton title="アーカイブ" url="/archive" icon={InterfaceContentBook2} />
+		<SideMenuButton title="統計" url="/statistics" icon={InterfaceContentBook2} />
+		<SideMenuButton title="ハイライト" url="/highlight" icon={InterfaceContentBook2} />
+		<SideMenuButton title="設定" url="/settings" icon={InterfaceContentBook2} />
 	</div>
 </nav>
 

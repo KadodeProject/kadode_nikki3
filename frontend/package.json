@@ -20,6 +20,7 @@
 	"devDependencies": {
 		"@playwright/experimental-ct-svelte": "^1.32.2",
 		"@playwright/test": "^1.32.2",
+		"@poppanator/sveltekit-svg": "^3.0.0",
 		"@sveltejs/adapter-auto": "^2.0.0",
 		"@sveltejs/adapter-node": "^1.2.3",
 		"@sveltejs/kit": "^1.15.2",
