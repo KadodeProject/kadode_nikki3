@@ -12,13 +12,15 @@ module.exports = {
 			}
 		},
 		colors: {
+			// ダークテーマで色味が変わる部分
 			white: 'var(--kn-default-text-color)',
 			black: 'var(--kn-default-background-color)',
+			purple: 'var(--kn-purple)',
+			blue: 'var(--kn-blue)',
+			brown: 'var(--kb-brown)',
+			// ダークテーマに影響されない部分↓
 			'kn-black': 'var(--kn-black)',
 			'kn-white': 'var(--kn-white)',
-			'kn-purple': 'var(--kn-purple)',
-			'kn-blue': 'var(--kn-blue)',
-			'kb-brown': 'var(--kb-brown)',
 			'kn-s-1': 'var(--kn-s-1)',
 			'kn-s-2': 'var(--kn-s-2)',
 			'kn-s-3': 'var(--kn-s-3)',

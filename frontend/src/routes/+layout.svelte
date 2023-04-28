@@ -1,23 +1,30 @@
 <script lang="ts">
-	import Footer from '$lib/components/molecule/footer/Footer.svelte';
-	import GuestHeader from '$lib/components/molecule/header/GuestHeader.svelte';
 	import '$src/app.css';
+	import { browser } from '$app/environment';
+	import { isDark } from '$lib/stores/utility';
+
+	if (browser && localStorage.theme === 'dark') {
+		isDark.update(() => true);
+	} else {
+		isDark.update(() => false);
+	}
 </script>
 
-<GuestHeader />
-<a
-	href="/logout"
-	class="block w-full px-4 py-2 mt-4 text-sm font-medium leading-5 text-center text-white transition-colors duration-150 bg-purple-600 border border-transparent rounded-lg active:bg-purple-600 hover:bg-purple-700 focus:outline-none focus:shadow-outline-purple"
->
-	LogOut
-</a>
-<a
-	href="/login"
-	class="block w-full px-4 py-2 mt-4 text-sm font-medium leading-5 text-center text-white transition-colors duration-150 bg-purple-600 border border-transparent rounded-lg active:bg-purple-600 hover:bg-purple-700 focus:outline-none focus:shadow-outline-purple"
->
-	LogIn
-</a>
-<main>
+<!-- フッターなどは(authenticated),(auth)でそれぞれ使う。ここはグローバルで使うCSSを入れる -->
+<div class="bg-black text-white">
 	<slot />
-</main>
-<Footer />
+</div>
+<svelte:head>
+	<script>
+		if (
+			localStorage.theme === 'dark' ||
+			(!('theme' in localStorage) &&
+				window.matchMedia('(prefers-color-scheme: dark)').matches)
+		) {
+			document.documentElement.classList.add('dark');
+			localStorage.theme = 'dark';
+		} else {
+			document.documentElement.classList.remove('dark');
+		}
+	</script>
+</svelte:head>

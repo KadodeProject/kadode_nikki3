@@ -4,16 +4,16 @@
 
 @layer base {
 	/* ダークモードをdark:みたいにせず自動で色変えるようにするための設定 */
-	:root[class='light'] {
-		--kn-default-text-color: var(--kn-white);
-		--kn-default-background-color: var(--kn-black);
+	:root {
+		--kn-default-text-color: var(--kn-black);
+		--kn-default-background-color: var(--kn-white);
 		--kn-purple: var(--kn-l-purple);
 		--kn-blue: var(--kn-l-blue);
 		--kn-brown: var(--kn-l-brown);
 	}
 	:root[class='dark'] {
-		--kn-default-text-color: var(--kn-black);
-		--kn-default-background-color: var(--kn-white);
+		--kn-default-text-color: var(--kn-white);
+		--kn-default-background-color: var(--kn-black);
 		--kn-purple: var(--kn-d-purple);
 		--kn-blue: var(--kn-d-blue);
 		--kn-brown: var(--kn-d-brown);
@@ -39,6 +39,7 @@
 	--footer-height: 120px;
 	--main-padding-top: 20px;
 	--main-max-width: 1300px;
+	--sidemenu-width: 200px;
 	--font-kiwi-maru: 'Kiwi Maru';
 }
 
