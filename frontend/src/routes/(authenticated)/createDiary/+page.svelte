@@ -1,3 +1,9 @@
+<script lang="ts">
+	import AuthenticatedHead from '$lib/components/atom/head/AuthenticatedHead.svelte';
+</script>
+
+<AuthenticatedHead title="日記作成" slug="/createDiary" description="日記作成ページ" />
+
 <form class="flex justify-center flex-wrap flex-col" method="POST">
 	<input type="hidden" name="_token" value="yj1L8xPIMzqRvvO3aK5lU5GpoCBpcO49GZq7XApd" />
 	<input type="date" class="text-xl mx-auto mb-4 kiwi-maru" name="date" value="2023-04-16" />
