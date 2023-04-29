@@ -9,17 +9,3 @@
 		<a class="p-2" href="/contact">お問い合わせ</a>
 	</div>
 </footer>
-
-<style>
-	footer {
-		min-height: var(--footer-height);
-		margin-top: 100px;
-		display: flex;
-		align-items: center;
-		flex-direction: column;
-		box-shadow: inset 0px 4px 4px rgba(0, 0, 0, 0.25);
-	}
-	footer > div {
-		max-width: var(--main-max-width);
-	}
-</style>

@@ -11,9 +11,10 @@
 </script>
 
 <!-- フッターなどは(authenticated),(auth)でそれぞれ使う。ここはグローバルで使うCSSを入れる -->
-<div class="bg-black text-white">
+<div class="overflow-scroll">
 	<slot />
 </div>
+
 <svelte:head>
 	<script>
 		if (
