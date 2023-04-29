@@ -7,9 +7,11 @@
 
 <a href={url}>
 	<div
-		class={`space-x-2 w-40 border border-white bg-purple hover:bg-blue rounded-xl px-4 py-3 duration-500 flex items-center justify-center ${className}`}
+		class={`shadow-lg space-x-2 w-48 border-2 border-kn-l-brown bg-purple hover:bg-blue hover:border-blue rounded-xl px-4 py-3 duration-500 flex items-center justify-center ${className}`}
 	>
-		{@html icon}
-		<p class="text-white">{title}</p>
+		<div class="text-kn-white w-1/6">
+			{@html icon}
+		</div>
+		<p class="text-xl w-5/6 text-kn-white">{title}</p>
 	</div>
 </a>

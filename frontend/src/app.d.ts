@@ -13,4 +13,4 @@ declare global {
 		// interface Platform {}
 	}
 }
-export { };
+export {};
