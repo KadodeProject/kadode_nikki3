@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { userStore } from '$lib/stores/userStore';
+	import DarkModeButton from '$lib/components/organism/button/DarkModeButton.svelte';
 </script>
 
 <header class="border-b border-brown">
@@ -10,7 +11,5 @@
 	>
 		LogOut
 	</a>
-	<a href="/">
-		<p class="text-center">かどで日記</p>
-	</a>
+	<DarkModeButton />
 </header>

@@ -7,5 +7,6 @@
 		<a class="p-2" href="/terms">利用規約</a>
 		<a class="p-2" href="/aboutThisSite">このサイトについて</a>
 		<a class="p-2" href="/contact">お問い合わせ</a>
+		<a class="p-2" href="/credit">クレジット</a>
 	</div>
 </footer>

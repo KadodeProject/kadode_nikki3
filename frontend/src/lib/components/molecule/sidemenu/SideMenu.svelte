@@ -5,7 +5,6 @@
 	import InterfaceContentChart from '$lib/assets/icon/interface-content-chart.svg?src';
 	import EntertainmentPartyPopper from '$lib/assets/icon/entertainment-party-popper.svg?src';
 	import InterfaceSettingCog from '$lib/assets/icon/interface-setting-cog.svg?src';
-	import DarkModeButton from '$lib/components/organism/button/DarkModeButton.svelte';
 	import KadodeLogo from '$lib/assets/logo/kadodeLogo.svg?component';
 </script>
 
@@ -15,8 +14,6 @@
 		<h2 class="pl-2 text-2xl">かどで日記</h2>
 	</a>
 
-	<DarkModeButton />
-
 	<div class="flex justify-center items-center flex-col space-y-4">
 		<SideMenuButton title="ホーム" url="/home" icon={InterfaceHome3} />
 		<SideMenuButton title="アーカイブ" url="/archive" icon={InterfaceContentBook2} />
@@ -25,10 +22,3 @@
 		<SideMenuButton title="設定" url="/settings" icon={InterfaceSettingCog} />
 	</div>
 </nav>
-
-<style>
-	nav {
-		width: var(--sidemenu-width);
-		height: 100%;
-	}
-</style>
