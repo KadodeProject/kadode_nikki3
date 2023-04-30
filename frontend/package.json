@@ -3,7 +3,6 @@
 	"version": "0.0.1",
 	"private": true,
 	"scripts": {
-		"1": "pnpm format && (pnpm lint & pnpm check) && exit 0",
 		"tests": "pnpm test:u & pnpm test:c & pnpm test:i",
 		"dev": "vite dev --port 2000 --host",
 		"build": "vite build",
