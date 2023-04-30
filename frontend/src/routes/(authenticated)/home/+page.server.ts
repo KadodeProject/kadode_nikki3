@@ -1,10 +1,10 @@
 import { backendApiAdapter } from '$lib/utils/adapter/backendApiAdapter';
 import type { RequestEvent } from '@sveltejs/kit';
-import type { MihirakiContentType } from '$lib/types/Diary';
+import type { MihirakiContentType, ArchiveDiaryType } from '$lib/types/Diary';
 import type { HomeNotificationsType } from '$lib/types/Notification';
 type Response = {
 	unreadNotifications: HomeNotificationsType;
-	oldDiaries: MihirakiContentType[];
+	oldDiaries: ArchiveDiaryType[];
 	zeroDayAgoDiary: MihirakiContentType;
 	oneDayAgoDiary: MihirakiContentType;
 	twoDayAgoDiary: MihirakiContentType;

@@ -28,6 +28,7 @@ final class GetHomeAction extends Controller
     {
         /** 使うもの用意 */
         $user = Auth::user();
+
         if (null === $user) {
             // 認証されていない場合の処理
             throw new AuthenticationException();

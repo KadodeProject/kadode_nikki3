@@ -6,7 +6,7 @@
 	export let threeDayAgoDiary: MihirakiContentType;
 </script>
 
-<article class="border border-brown rounded-3xl">
+<article class="rounded-3xl border border-brown">
 	<h3 class="text-2xl text-center">今日の日記</h3>
 	<p>
 		{zeroDayAgoDiary ? zeroDayAgoDiary.content : '日記がありません'}
