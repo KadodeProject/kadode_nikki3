@@ -1,7 +1,7 @@
 #
 ## docker
 #
-u:
+up:
 	docker compose up -d
 r:
 	docker compose restart

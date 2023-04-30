@@ -8,7 +8,7 @@ interface ApiParams {
 	data?: Record<string, unknown> | null;
 }
 
-export async function backendApiAdapter(params: ApiParams): Promise<Record<string, unknown>> {
+export async function backendAuthApiAdapter(params: ApiParams): Promise<Record<string, unknown>> {
 	const base = env.PUBLIC_BASE_API;
 	let fullUrl = base;
 
@@ -20,9 +20,9 @@ export async function backendApiAdapter(params: ApiParams): Promise<Record<strin
 	const response = await fetch(fullUrl, {
 		method: params.method,
 		headers: {
-			mode: 'cors',
+			// mode: 'cors',
 			//   'credentials': 'include',
-			origin: 'http://localhost:2000',
+			origin: env.PUBLIC_APP_URL,
 			'content-type': 'application/json',
 			accept: 'application/json',
 			'X-XSRF-TOKEN': params?.event?.cookies?.get('XSRF-TOKEN') as string,
