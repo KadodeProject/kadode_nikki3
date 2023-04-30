@@ -4,69 +4,49 @@
 
 # この web アプリについて
 
-個人的に欲しかった統計付き日記管理 web アプリを作っています。
-
-# 構成
-
-# リポジトリの構成について
-
--   backend ← かどで日記のバックエンド・フロントエンド(PHP)
--   docs ← wiki.kado.day の中身
--   frontend ← かどで日記フロントエンド Next.js 化作業中に断念されたディレクトリ(削除予定)
--   frontend_discontinued ← かどで日記フロントエンド SvelteKit 化をしているディレクトリ
--   infra ← かどで日記のインフラ周り(開発 Docker、本番 k8s)
--   nlp ← かどで日記自然言語処理部分(Python)
--   proto ← かどで日記の Python と PHP で gRPC するための proto 置き場
--   sampleData ← かどで日記のインポート機能の検証で使うためのサンプルデータ
--   script ← 開発用のちょっとしたスクリプト置き場
-
-## ポート
-
--   2000 番台：フロントエンド関連
--   2010 番台：バックエンドメイン関連
--   2020 番台：nlp 関連
-
-## お使いになられる方へ
-
 かどで日記は日記を振り返りやすくすることを目指して開発しているサービスです。
 その時その時の感情を綴った日記を振り返りやすくする機能を中心に開発を進めています。
 
 https://kadode.usuyuki.net
 
-## 開発者向け情報
-
-https://wiki.kado.day
-
-または docs ディレクトリ, GitHub Issues へ
-
 # Operation
 
 ## CI
 
-### テスト周り
+### バックエンド
 
-[![PHPテスト[ブラウザ(Docker版)]](https://github.com/KadodeProject/kadode_nikki3/actions/workflows/BrowserTest_by_docker.yml/badge.svg)](https://github.com/KadodeProject/kadode_nikki3/actions/workflows/BrowserTest_by_docker.yml)
-[![PHPテスト[結合]](https://github.com/Usuyuki/kadode_nikki3/actions/workflows/CombinedTest.yml/badge.svg)](https://github.com/Usuyuki/kadode_nikki3/actions/workflows/CombinedTest.yml)
-[![PHPテスト[単体]](https://github.com/Usuyuki/kadode_nikki3/actions/workflows/unitTest.yml/badge.svg)](https://github.com/Usuyuki/kadode_nikki3/actions/workflows/unitTest.yml)
+[![【backend】PHP Lint (cs-fixer)](https://github.com/KadodeProject/kadode_nikki3/actions/workflows/backend-php-cs-fixer.yml/badge.svg)](https://github.com/KadodeProject/kadode_nikki3/actions/workflows/backend-php-cs-fixer.yml)
+[![【backend】PHP静的解析 (PHPStan)](https://github.com/KadodeProject/kadode_nikki3/actions/workflows/backend-phpstan.yml/badge.svg)](https://github.com/KadodeProject/kadode_nikki3/actions/workflows/backend-phpstan.yml)
 
-### コード解析
+[![【backend】PHPテスト[単体]](https://github.com/KadodeProject/kadode_nikki3/actions/workflows/backend-unitTest.yml/badge.svg)](https://github.com/KadodeProject/kadode_nikki3/actions/workflows/backend-unitTest.yml)
+[![【backend】PHPテスト[結合]](https://github.com/KadodeProject/kadode_nikki3/actions/workflows/backend-CombinedTest.yml/badge.svg)](https://github.com/KadodeProject/kadode_nikki3/actions/workflows/backend-CombinedTest.yml)
 
-[![PHPコーディング規約遵守チェック](https://github.com/Usuyuki/kadode_nikki3/actions/workflows/php-cs-fixer.yml/badge.svg)](https://github.com/Usuyuki/kadode_nikki3/actions/workflows/php-cs-fixer.yml)
-[![PHP静的解析](https://github.com/Usuyuki/kadode_nikki3/actions/workflows/larastanReviewdog.yml/badge.svg)](https://github.com/Usuyuki/kadode_nikki3/actions/workflows/larastanReviewdog.yml)
+### フロントエンド
+
+[![【frontend】Lint (prettier)](https://github.com/KadodeProject/kadode_nikki3/actions/workflows/frontend-lint.yml/badge.svg)](https://github.com/KadodeProject/kadode_nikki3/actions/workflows/frontend-lint.yml)
+[![【frontend】静的解析 (svelte-check)](https://github.com/KadodeProject/kadode_nikki3/actions/workflows/frontend-staticAnalysis.yml/badge.svg)](https://github.com/KadodeProject/kadode_nikki3/actions/workflows/frontend-staticAnalysis.yml)
+
+(テスト書きなさい！！)
+
+### NLP
+
+(準備中)
+
+### 外部ツール
 
 [![Total alerts](https://img.shields.io/lgtm/alerts/g/Usuyuki/kadode_nikki3.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/Usuyuki/kadode_nikki3/alerts/)
 [![Language grade: JavaScript](https://img.shields.io/lgtm/grade/javascript/g/Usuyuki/kadode_nikki3.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/Usuyuki/kadode_nikki3/context:javascript)
 [![Language grade: Python](https://img.shields.io/lgtm/grade/python/g/Usuyuki/kadode_nikki3.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/Usuyuki/kadode_nikki3/context:python)
 
-### デプロイ
+## CD
 
-[![自動デプロイと初期構築](https://github.com/Usuyuki/kadode_nikki3/actions/workflows/automatic_deploy.yml/badge.svg)](https://github.com/Usuyuki/kadode_nikki3/actions/workflows/automatic_deploy.yml)
+[![コンテナ生成とデプロイ](https://github.com/KadodeProject/kadode_nikki3/actions/workflows/automaticDeploy.yml/badge.svg)](https://github.com/KadodeProject/kadode_nikki3/actions/workflows/automaticDeploy.yml)
 
 [![かどで日記wiki生成](https://github.com/Usuyuki/kadode_nikki3/actions/workflows/pages/pages-build-deployment/badge.svg)](https://github.com/Usuyuki/kadode_nikki3/actions/workflows/pages/pages-build-deployment)
 
-### 他
+## 他
 
-[![PRに自動でラベル付けるCI](https://github.com/Usuyuki/kadode_nikki3/actions/workflows/label.yml/badge.svg)](https://github.com/Usuyuki/kadode_nikki3/actions/workflows/label.yml)
+[![PR自動ラベル付与](https://github.com/KadodeProject/kadode_nikki3/actions/workflows/label.yml/badge.svg)](https://github.com/KadodeProject/kadode_nikki3/actions/workflows/label.yml)
 
 ## Website
 
@@ -75,6 +55,42 @@ https://wiki.kado.day
 ![image](https://badgen.net/uptime-robot/week/m791749575-72b5e08236c6f4fb0d2235a7)
 ![image](https://badgen.net/uptime-robot/month/m791749575-72b5e08236c6f4fb0d2235a7)
 ![image](https://badgen.net/uptime-robot/response/m791749575-72b5e08236c6f4fb0d2235a7)
+
+# 構成
+
+## リポジトリの構成について
+
+-   backend : かどで日記のバックエンド・フロントエンド(PHP)
+-   docs : wiki.kado.day の中身
+-   frontend : かどで日記フロントエンド Next.js 化作業中に断念されたディレクトリ(削除予定)
+-   frontend_discontinued : かどで日記フロントエンド SvelteKit 化をしているディレクトリ
+-   infra : かどで日記のインフラ周り(開発 Docker、本番 k8s)
+-   nlp : かどで日記自然言語処理部分(Python)
+-   proto : かどで日記の Python と PHP で gRPC するための proto 置き場
+-   sampleData : かどで日記のインポート機能の検証で使うためのサンプルデータ
+-   script : 開発用のちょっとしたスクリプト置き場
+
+## フロントエンドのコンポーネントの構成について
+- atom : コンポーネントの最小単位
+- molecule : atomで構成されるコンポーネント(日記のカードなど)
+- organism : moleculeで構成されるコンポーネント(最近の日記コーナーなど)
+
+## ポート
+
+-   2000 番台：フロントエンド関連
+-   2010 番台：バックエンドメイン関連
+-   2020 番台：nlp 関連
+
+# 開発支援
+
+## エイリアスなど
+[Makefile](Makefile)をご覧ください
+
+## 開発者向け情報
+
+https://wiki.kado.day
+
+または docs ディレクトリ, GitHub Issues へ (個人開発のため、多くの情報はインターネット上に存在しません)
 
 # 開発おたより
 

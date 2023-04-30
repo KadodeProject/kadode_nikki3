@@ -1,4 +1,4 @@
-name: 【backend】PHPコーディング規約遵守チェック
+name: 【backend】PHP Lint (cs-fixer)
 
 on:
   pull_request:
