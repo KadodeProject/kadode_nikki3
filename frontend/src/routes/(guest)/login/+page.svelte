@@ -1,3 +1,8 @@
+<script>
+	import GuestHead from '$lib/components/atom/head/GuestHead.svelte';
+</script>
+
+<GuestHead title="ログイン" slug="/login" description="ログインページ" />
 <form method="post" action="?/login">
 	<label class="block text-sm">
 		<span class="text-gray-700 dark:text-gray-400">Email</span>

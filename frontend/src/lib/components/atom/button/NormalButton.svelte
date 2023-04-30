@@ -1,5 +1,5 @@
 <script lang="ts">
-	export let bgColorVariable = 'pink';
+	export let bgColorVariable = 'purple';
 	export let textColorVariable = 'black';
 	export let title = 'ボタン名';
 	export let url = '/link';
