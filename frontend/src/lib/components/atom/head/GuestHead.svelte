@@ -1,6 +1,5 @@
 <script lang="ts">
 	import { page } from '$app/stores';
-	const SITE_URL = 'https://kado.day';
 	const SITE_TITLE = 'かどで日記';
 	const SITE_SUB_TITLE = 'かどで日記は振り返りも楽しめる日記Webアプリです';
 	const SITE_AUTHOR = 'うすゆき';
@@ -8,7 +7,7 @@
 
 	export let title: string;
 	export let description: string;
-	export let ogImage: string = SITE_URL + '/img/ogp/ogp.png';
+	export let ogImage: string = $page.url.origin + '/img/ogp/ogp.png';
 
 	let pageTitle = title + ' | ' + SITE_TITLE;
 </script>

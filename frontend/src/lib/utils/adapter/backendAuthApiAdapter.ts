@@ -9,7 +9,7 @@ interface ApiParams {
 }
 
 export async function backendAuthApiAdapter(params: ApiParams): Promise<Record<string, unknown>> {
-	const base = env.PUBLIC_BASE_API;
+	const base = env.PUBLIC_API_URL;
 	let fullUrl = base;
 
 	if (params.resource) {

@@ -6,7 +6,7 @@ import setCookieParser from 'set-cookie-parser';
 import type { Actions } from './$types';
 export const actions: Actions = {
 	login: async (event: RequestEvent) => {
-		const base = env.PUBLIC_BASE_API;
+		const base = env.PUBLIC_API_URL;
 		const form = await event.request.formData();
 		try {
 			const { status, headers } = await axios.get(`${base}/sanctum/csrf-cookie`, {
