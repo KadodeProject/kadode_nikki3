@@ -1,4 +1,4 @@
-name: 【backend】PHP静的解析
+name: 【backend】PHP静的解析 (PHPStan)
 on:
   pull_request:
     branches:
