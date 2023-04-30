@@ -114,7 +114,7 @@ c:
 	# @make c-n
 
 c-b:
-	docker compose exec backend ./vendor/bin/phpstan analyse
+	docker compose exec backend ./vendor/bin/phpstan analyse --memory-limit=1G
 c-f:
 	docker compose exec frontend pnpm check
 # c-n:
@@ -150,7 +150,7 @@ cc:
 stan:
 	@make c-b
 stan-g:
-	docker compose exec backend ./vendor/bin/phpstan analyse --generate-baseline
+	docker compose exec backend ./vendor/bin/phpstan analyse --generate-baseline --memory-limit=1G
 ide-helper:
 	docker compose exec backend php artisan clear-compiled
 	docker compose exec backend php artisan ide-helper:generate
