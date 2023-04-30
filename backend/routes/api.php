@@ -2,6 +2,7 @@
 
 declare(strict_types=1);
 
+use App\Http\ApiActions;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -15,30 +16,30 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/status', App\Http\ApiActions\GetApiStatusAction::class)->name('GetApiStatus');
+Route::get('/status', ApiActions\GetApiStatusAction::class)->name('GetApiStatus');
 
 // ユーザー、日記、統計の取得API
-Route::get('OperationCoreTransitionPerHours/relative/day', \App\Http\ApiActions\OperationCoreTransition\GetOperationCoreTransitionLatestDay::class)->name('GetOperationCoreTransitionLatestDay');
-Route::get('OperationCoreTransitionPerHours/relative/week', \App\Http\ApiActions\OperationCoreTransition\GetOperationCoreTransitionLatestWeek::class)->name('GetOperationCoreTransitionLatestWeek');
-Route::get('OperationCoreTransitionPerHours/relative/month', \App\Http\ApiActions\OperationCoreTransition\GetOperationCoreTransitionLatestMonth::class)->name('GetOperationCoreTransitionLatestMonth');
+Route::get('OperationCoreTransitionPerHours/relative/day', ApiActions\OperationCoreTransition\GetOperationCoreTransitionLatestDay::class)->name('GetOperationCoreTransitionLatestDay');
+Route::get('OperationCoreTransitionPerHours/relative/week', ApiActions\OperationCoreTransition\GetOperationCoreTransitionLatestWeek::class)->name('GetOperationCoreTransitionLatestWeek');
+Route::get('OperationCoreTransitionPerHours/relative/month', ApiActions\OperationCoreTransition\GetOperationCoreTransitionLatestMonth::class)->name('GetOperationCoreTransitionLatestMonth');
 
 // サーバーのリソース取得API
-Route::get('MachineResource/relative/1min', \App\Http\ApiActions\MachineResource\GetMachineResourceLatest1Minutes::class)->name('GetMachineResourceLatest1Minutes');
-Route::get('MachineResource/relative/30min', \App\Http\ApiActions\MachineResource\GetMachineResourceLatest30Minutes::class)->name('GetMachineResourceLatest30Minutes');
-Route::get('MachineResource/relative/day', \App\Http\ApiActions\MachineResource\GetMachineResourceLatestDay::class)->name('GetMachineResourceLatestDay');
-Route::get('MachineResource/relative/week', \App\Http\ApiActions\MachineResource\GetMachineResourceLatestWeek::class)->name('GetMachineResourceLatestWeek');
-Route::get('MachineResource/relative/month', \App\Http\ApiActions\MachineResource\GetMachineResourceLatestMonth::class)->name('GetMachineResourceLatestMonth');
+Route::get('MachineResource/relative/1min', ApiActions\MachineResource\GetMachineResourceLatest1Minutes::class)->name('GetMachineResourceLatest1Minutes');
+Route::get('MachineResource/relative/30min', ApiActions\MachineResource\GetMachineResourceLatest30Minutes::class)->name('GetMachineResourceLatest30Minutes');
+Route::get('MachineResource/relative/day', ApiActions\MachineResource\GetMachineResourceLatestDay::class)->name('GetMachineResourceLatestDay');
+Route::get('MachineResource/relative/week', ApiActions\MachineResource\GetMachineResourceLatestWeek::class)->name('GetMachineResourceLatestWeek');
+Route::get('MachineResource/relative/month', ApiActions\MachineResource\GetMachineResourceLatestMonth::class)->name('GetMachineResourceLatestMonth');
 
 // お知らせ一覧取得API
-Route::get('Osirase/all', \App\Http\ApiActions\Osirase\GetAllOsiraseAction::class)->name('GetAllOsiraseAction');
-Route::get('Osirase/latest', \App\Http\ApiActions\Osirase\GetLatestOsiraseAction::class)->name('GetLatestOsiraseAction');
+Route::get('Osirase/all', ApiActions\Osirase\GetAllOsiraseAction::class)->name('GetAllOsiraseAction');
+Route::get('Osirase/latest', ApiActions\Osirase\GetLatestOsiraseAction::class)->name('GetLatestOsiraseAction');
 
 // リリースノート一覧取得API
-Route::get('ReleaseNote/all', \App\Http\ApiActions\ReleaseNote\GetAllReleaseNoteAction::class)->name('GetAllReleaseNoteAction');
-Route::get('ReleaseNote/latest', \App\Http\ApiActions\ReleaseNote\GetLatestReleaseNoteAction::class)->name('GetLatestReleaseNoteAction');
+Route::get('ReleaseNote/all', ApiActions\ReleaseNote\GetAllReleaseNoteAction::class)->name('GetAllReleaseNoteAction');
+Route::get('ReleaseNote/latest', ApiActions\ReleaseNote\GetLatestReleaseNoteAction::class)->name('GetLatestReleaseNoteAction');
 
 Route::group(['middleware' => ['auth:sanctum']], function (): void {
-    Route::get('/user/init', \App\Http\ApiActions\User\GetUserInfoAction::class)->name('getUserInfo');
-    Route::get('/home', \App\Http\ApiActions\GetHomeAction::class)->name('GetHomeApi');
-    Route::post('/diary/create', \App\Http\ApiActions\Diary\CreateDiaryAction::class)->name('CreateDiaryApi');
+    Route::get('/user/init', ApiActions\User\GetUserInfoAction::class)->name('getUserInfo');
+    Route::get('/home', ApiActions\GetHomeAction::class)->name('GetHomeApi');
+    Route::post('/diary/create', ApiActions\Diary\CreateDiaryAction::class)->name('CreateDiaryApi');
 });
