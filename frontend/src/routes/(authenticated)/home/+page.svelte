@@ -1,13 +1,13 @@
 <script lang="ts">
-	import type { PageData } from './$types';
 	import AuthenticatedHead from '$lib/components/atom/head/AuthenticatedHead.svelte';
-	import Mihiraki from '$lib/components/organism/diary/MihirakiDiaries.svelte';
 	import HomeHeading from '$lib/components/atom/heading/HomeHeading.svelte';
+	import Mihiraki from '$lib/components/organism/diary/MihirakiDiaries.svelte';
 	import RecommendDiaries from '$lib/components/organism/diary/RecommendDiaries.svelte';
+	import type { PageData } from './$types';
 	export let data: PageData;
 </script>
 
-<AuthenticatedHead title="ホーム" slug="/home" description="おかえりなさい" />
+<AuthenticatedHead title="ホーム" description="おかえりなさい" />
 
 <Mihiraki
 	zeroDayAgoDiary={data.zeroDayAgoDiary}

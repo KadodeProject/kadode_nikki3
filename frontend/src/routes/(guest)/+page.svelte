@@ -1,7 +1,7 @@
-<script>
+<script lang="ts">
 	import GuestHead from '$lib/components/atom/head/GuestHead.svelte';
 </script>
 
-<GuestHead title="トップ" slug="/" description="こんばんは" />
+<GuestHead title="トップ" description="こんばんは" />
 
-<h1 class="text-center text-2xl">かどで日記建設予定地です！</h1>
+<h1 class="text-2xl text-center">かどで日記建設予定地です！</h1>

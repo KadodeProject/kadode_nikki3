@@ -2,7 +2,7 @@
 	import AuthenticatedHead from '$lib/components/atom/head/AuthenticatedHead.svelte';
 </script>
 
-<AuthenticatedHead title="ログアウト" slug="/logout" description="さようなら" />
+<AuthenticatedHead title="ログアウト" description="さようなら" />
 
 <form method="post" action="?/logout">
 	<button
