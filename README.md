@@ -62,8 +62,8 @@ https://kadode.usuyuki.net
 
 -   backend : かどで日記のバックエンド・フロントエンド(PHP)
 -   docs : wiki.kado.day の中身
--   frontend : かどで日記フロントエンド Next.js 化作業中に断念されたディレクトリ(削除予定)
--   frontend_discontinued : かどで日記フロントエンド SvelteKit 化をしているディレクトリ
+-   frontend : かどで日記フロントエンド SvelteKit 化をしているディレクトリ
+-   frontend_discontinued : かどで日記フロントエンド Next.js 化作業中に断念されたディレクトリ(削除予定)
 -   infra : かどで日記のインフラ周り(開発 Docker、本番 k8s)
 -   nlp : かどで日記自然言語処理部分(Python)
 -   proto : かどで日記の Python と PHP で gRPC するための proto 置き場
