@@ -103,6 +103,12 @@ footer {
 	margin-inline: auto;
 }
 
+/* 文章系は画面サイズマックスにしたくないので調整 */
+.document-center {
+	max-width: var(--main-max-width);
+	margin: 0 auto;
+	padding: 1em 1em;
+}
 /*
 スクロールバー
 ここから

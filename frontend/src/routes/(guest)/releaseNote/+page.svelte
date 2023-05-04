@@ -6,9 +6,11 @@
 	export let data: PageData;
 </script>
 
-<GuestHead title="おしらせ" description="かどで日記からのおしらせ" />
-<PageHeading title="おしらせ" />
+<GuestHead title="リリースノート" description="かどで日記のリリースノート" />
+<PageHeading title="リリースノート" />
 
-{#each data.data as osirase}
-	<OsiraseSentence {osirase} />
-{/each}
+<div class="document-center">
+	{#each data.data as osirase}
+		<OsiraseSentence {osirase} />
+	{/each}
+</div>

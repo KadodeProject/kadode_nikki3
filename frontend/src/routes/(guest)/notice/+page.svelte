@@ -9,6 +9,8 @@
 <GuestHead title="おしらせ" description="かどで日記からのおしらせ" />
 
 <PageHeading title="おしらせ" />
-{#each data.data as osirase}
-	<OsiraseSentence {osirase} />
-{/each}
+<div class="document-center">
+	{#each data.data as osirase}
+		<OsiraseSentence {osirase} />
+	{/each}
+</div>
