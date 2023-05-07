@@ -3,8 +3,10 @@
 	import GuestHeader from '$lib/components/molecule/header/GuestHeader.svelte';
 </script>
 
-<GuestHeader />
-<main>
-	<slot />
-</main>
-<Footer />
+<div class="main-wrapper">
+	<GuestHeader />
+	<main>
+		<slot />
+	</main>
+	<Footer />
+</div>
