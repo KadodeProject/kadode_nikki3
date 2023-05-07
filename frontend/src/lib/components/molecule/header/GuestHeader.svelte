@@ -1,17 +1,41 @@
-<header>
-	<a href="/">
-		<p class="text-center">かどで日記</p>
-	</a>
-	<a
-		href="/logout"
-		class="block w-full px-4 py-2 mt-4 text-sm font-medium leading-5 text-center text-white transition-colors duration-150 bg-purple-600 border border-transparent rounded-lg active:bg-purple-600 hover:bg-purple-700 focus:outline-none focus:shadow-outline-purple"
-	>
-		LogOut
-	</a>
-	<a
-		href="/login"
-		class="block w-full px-4 py-2 mt-4 text-sm font-medium leading-5 text-center text-white transition-colors duration-150 bg-purple-600 border border-transparent rounded-lg active:bg-purple-600 hover:bg-purple-700 focus:outline-none focus:shadow-outline-purple"
-	>
-		LogIn
-	</a>
+<script lang="ts">
+	import KadodeLogoString from '$lib/assets/logo/kadodeLogoString.svg?component';
+</script>
+
+<header class="sticky inset-x-0 top-0 w-screen">
+	<div class="flex justify-center items-center">
+		<div class="w-1/3" />
+		<div class="flex justify-center w-1/3">
+			<a href="/" class="">
+				<KadodeLogoString width="330" height="60" />
+			</a>
+		</div>
+		<div class="flex justify-end items-center space-x-2 w-1/3">
+			<a
+				href="/regsiter"
+				class="py-2 px-4 text-black rounded-2xl border-2 border-black duration-300 hover:bg-black bg-kn-a-yellow hover:border-kn-a-yellow hover:text-kn-a-yellow"
+			>
+				新規登録
+			</a>
+			<a
+				href="/login"
+				class="py-2 px-4 text-black rounded-2xl border-2 border-black duration-300 hover:bg-black bg-kn-a-yellow hover:border-kn-a-yellow hover:text-kn-a-yellow"
+			>
+				ログイン
+			</a>
+		</div>
+	</div>
 </header>
+
+<style>
+	header {
+		height: var(--heder-height);
+		backdrop-filter: blur(4px);
+		border-bottom: 1px solid var(--kn-s-1);
+	}
+	header > div {
+		margin: 0 auto;
+		width: var(--main-max-width);
+		height: var(--heder-height);
+	}
+</style>
