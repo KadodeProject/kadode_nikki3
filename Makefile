@@ -1,7 +1,7 @@
 #
 ## docker
 #
-u:
+up:
 	docker compose up -d
 r:
 	docker compose restart
@@ -166,7 +166,8 @@ make-model:
 # 
 f-dev:
 	docker compose exec frontend pnpm dev
-
+f-build:
+	docker compose exec frontend pnpm build
 
 # 
 # NLP固有のもの

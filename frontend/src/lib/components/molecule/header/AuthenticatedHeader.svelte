@@ -13,3 +13,11 @@
 	</a>
 	<DarkModeButton />
 </header>
+
+<style>
+	header {
+		height: var(--heder-height);
+		backdrop-filter: blur(4px);
+		border-bottom: 1px solid var(--kn-s-1);
+	}
+</style>

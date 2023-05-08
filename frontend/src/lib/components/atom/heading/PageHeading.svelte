@@ -2,4 +2,4 @@
 	export let title: string;
 </script>
 
-<h2 class="my-4 mx-2 text-2xl text-center">{title}</h2>
+<h1 class="my-4 mx-2 text-3xl text-center">{title}</h1>

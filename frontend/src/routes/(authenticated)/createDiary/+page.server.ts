@@ -1,10 +1,10 @@
-import { backendApiAdapter } from '$lib/utils/adapter/backendApiAdapter';
+import { backendAuthApiAdapter } from '$lib/utils/adapter/backendAuthApiAdapter';
 import type { RequestEvent } from '@sveltejs/kit';
 import type { Actions } from './$types';
 export const actions = {
 	default: async (event: RequestEvent) => {
 		const form = await event.request.formData();
-		const response = await backendApiAdapter({
+		const response = await backendAuthApiAdapter({
 			method: 'post',
 			resource: 'api/diary/create',
 			event: event,

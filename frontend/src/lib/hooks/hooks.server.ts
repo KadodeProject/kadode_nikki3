@@ -1,6 +1,6 @@
 import { userStore } from '$lib/stores/userStore';
 import type { UserStore } from '$lib/types/stores/UserStore';
-import { backendApiAdapter } from '$lib/utils/adapter/backendApiAdapter';
+import { backendAuthApiAdapter } from '$lib/utils/adapter/backendAuthApiAdapter';
 import type { Handle } from '@sveltejs/kit';
 
 export const handle: Handle = async ({ event, resolve }) => {
@@ -14,7 +14,7 @@ export const handle: Handle = async ({ event, resolve }) => {
 		// 認証必要なページなので、認証効いてなかったらadapter側でリダイレクト掛かるのでここでは不要
 		if (userStoreValue.id === 0) {
 			console.log('値をセット');
-			const userInfo = await backendApiAdapter({
+			const userInfo = await backendAuthApiAdapter({
 				method: 'get',
 				resource: 'api/user/init',
 				event

@@ -1,4 +1,4 @@
-import { backendApiAdapter } from '$lib/utils/adapter/backendApiAdapter';
+import { backendAuthApiAdapter } from '$lib/utils/adapter/backendAuthApiAdapter';
 import type { RequestEvent } from '@sveltejs/kit';
 import type { MihirakiContentType, ArchiveDiaryType } from '$lib/types/Diary';
 import type { HomeNotificationsType } from '$lib/types/Notification';
@@ -13,7 +13,7 @@ type Response = {
 };
 
 export const load = async (event: RequestEvent) => {
-	const response = await backendApiAdapter({
+	const response = await backendAuthApiAdapter({
 		method: 'get',
 		resource: 'api/home',
 		event: event

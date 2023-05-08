@@ -1,15 +1,15 @@
-<script>
+<script lang="ts">
 	import GuestHead from '$lib/components/atom/head/GuestHead.svelte';
 </script>
 
-<GuestHead title="ログイン" slug="/login" description="ログインページ" />
+<GuestHead title="ログイン" description="ログインページ" />
 <form method="post" action="?/login">
 	<label class="block text-sm">
 		<span class="text-gray-700 dark:text-gray-400">Email</span>
 		<input
 			name="email"
 			type="email"
-			class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input"
+			class="block mt-1 w-full text-sm dark:text-gray-300 dark:bg-gray-700 dark:border-gray-600 focus:border-purple-400 focus:outline-none form-input dark:focus:shadow-outline-gray focus:shadow-outline-purple"
 			placeholder="Jane Doe"
 		/>
 	</label>
@@ -17,7 +17,7 @@
 		<span class="text-gray-700 dark:text-gray-400">Password</span>
 		<input
 			name="password"
-			class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input"
+			class="block mt-1 w-full text-sm dark:text-gray-300 dark:bg-gray-700 dark:border-gray-600 focus:border-purple-400 focus:outline-none form-input dark:focus:shadow-outline-gray focus:shadow-outline-purple"
 			placeholder="***************"
 			type="password"
 		/>
@@ -26,7 +26,7 @@
 	<!-- You should use a button here, as the anchor is only used for the example  -->
 	<button
 		type="submit"
-		class="block w-full px-4 py-2 mt-4 text-sm font-medium leading-5 text-center text-white transition-colors duration-150 bg-purple-600 border border-transparent rounded-lg active:bg-purple-600 hover:bg-purple-700 focus:outline-none focus:shadow-outline-purple"
+		class="block py-2 px-4 mt-4 w-full text-sm font-medium leading-5 text-center text-white bg-purple-600 rounded-lg border border-transparent transition-colors duration-150 hover:bg-purple-700 focus:outline-none active:bg-purple-600 focus:shadow-outline-purple"
 	>
 		Log in
 	</button>
