@@ -1,5 +1,6 @@
 <script lang="ts">
 	import KadodeLogoString from '$lib/assets/logo/kadodeLogoString.svg?url';
+	import YellowButton from '$lib/components/atom/button/YellowButton.svelte';
 </script>
 
 <header class="sticky inset-x-0 top-0 w-screen">
@@ -7,24 +8,14 @@
 		<div class="hidden w-1/3 md:block">
 			<p>おためし</p>
 		</div>
-		<div class="flex justify-center w-full md:w-1/3 pt-8 md:pt-0">
+		<div class="flex justify-center pt-8 w-full md:pt-0 md:w-1/3">
 			<a href="/" class="">
 				<img src={KadodeLogoString} alt="Kadode Logo" class="p-2 object-fit" />
 			</a>
 		</div>
-		<div class="flex justify-center md:justify-end items-center space-x-2 md:w-1/3 w-full">
-			<a
-				href="/regsiter"
-				class="py-2 px-4 text-black rounded-2xl border-2 border-black duration-300 hover:bg-black bg-kn-a-yellow hover:border-kn-a-yellow hover:text-kn-a-yellow"
-			>
-				新規登録
-			</a>
-			<a
-				href="/login"
-				class="py-2 px-4 text-black rounded-2xl border-2 border-black duration-300 hover:bg-black bg-kn-a-yellow hover:border-kn-a-yellow hover:text-kn-a-yellow"
-			>
-				ログイン
-			</a>
+		<div class="flex justify-center items-center space-x-2 w-full md:justify-end md:w-1/3">
+			<YellowButton title="新規登録" url="/register" />
+			<YellowButton title="ログイン" url="/login" />
 		</div>
 	</div>
 </header>
