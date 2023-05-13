@@ -1,0 +1,23 @@
+name: 【infra】パッケージ更新差分検出
+on:
+  pull_request:
+    branches: [main]
+    paths:
+      - backend/composer.lock
+      # - frontend/pnpm-lock.yaml
+      # サポート対象外 https://github.com/siketyan/loxcan
+      # - nlp/poetry.lock
+
+jobs:
+  label:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      pull-requests: write
+
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+
+      - uses: siketyan/loxcan@master
