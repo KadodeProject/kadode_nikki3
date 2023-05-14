@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Models;
 
+use App\Enums\AuthType;
 use Carbon\Carbon;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Casts\Attribute;
@@ -51,6 +52,7 @@ class User extends Authenticatable implements MustVerifyEmail
         'user_rank_id',
         'user_role_id',
         'appearance_id',
+        'auth_type',
     ];
 
     /**
@@ -84,6 +86,7 @@ class User extends Authenticatable implements MustVerifyEmail
         'important_words' => 'json',
         'cause_effect_sentences' => 'json',
         'special_people' => 'json',
+        'auth_type' => AuthType::class,
     ];
 
     /**

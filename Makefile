@@ -144,8 +144,12 @@ cc:
 	docker compose exec backend php artisan route:clear
 migrate:
 	docker compose exec backend php artisan migrate
+# DB再構築
 fresh:
 	docker compose exec backend php artisan migrate:fresh --seed
+# DBロールバック
+refresh:
+	docker compose exec backend php artisan migrate:refresh
 tinker:
 	docker compose exec backend php artisan tinker
 stan:

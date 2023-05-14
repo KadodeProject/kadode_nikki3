@@ -16,13 +16,39 @@ class CreateUsersTable extends Migration
         Schema::create('users', function (Blueprint $table): void {
             $table->id();
             $table->string('name');
+            // 0~255もあれば十分なのでutinyint
+            $table->unsignedTinyInteger('auth_type')->comment('enum認証タイプ');
             $table->string('email')->unique();
-            $table->timestamp('email_verified_at')->nullable();
-            $table->string('password')->nullabe();
             $table->rememberToken();
-            $table->foreignId('current_team_id')->nullable();
+
+            $table->unsignedBigInteger('user_rank_id')->nullable()->comment('ユーザーランク')->default(1);
+            $table->unsignedBigInteger('user_role_id')->nullable()->comment('ユーザーロール(一般、管理者etc)')->default(1);
+            $table->unsignedBigInteger('appearance_id')->nullable()->comment('ページの見た目')->default(1);
+            $table->date('user_rank_updated_at')->nullable()->comment('ユーザーランクアップデート日');
+
+            // nullable
+            $table->string('password')->nullable();
+            $table->string('oauth_id')->comment('プロバイダーユーザID')->nullable();
+            $table->timestamp('email_verified_at')->nullable();
             $table->text('profile_photo_path')->nullable();
             $table->timestamps();
+
+            $table->unique(['id', 'auth_type']); // 複合ユニーク
+
+            // 他テーブルとの関連付け
+            $table->foreign('user_rank_id')
+                ->references('id')
+                ->on('user_ranks');
+
+            // 他テーブルとの関連付け
+            $table->foreign('user_role_id')
+                ->references('id')
+                ->on('user_roles');
+
+            // 他テーブルとの関連付け
+            $table->foreign('appearance_id')
+                ->references('id')
+                ->on('appearances');
         });
     }
 

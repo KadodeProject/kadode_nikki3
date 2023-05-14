@@ -32,6 +32,7 @@ class UserFactory extends Factory
             'email_verified_at' => now(),
             'password' => Hash::make($email),
             'remember_token' => Str::random(10),
+            'auth_type' => 1,
             'user_rank_id' => 1,
             'user_role_id' => 1,
             'user_rank_updated_at' => now(),
