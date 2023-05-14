@@ -4,8 +4,6 @@ declare(strict_types=1);
 
 namespace App\Enums;
 
-// 日記が存在しない、存在するが処理中、存在するが古い、存在して最新の4パターン存在
-
 enum AuthType: int
 {
     case email = 1;

@@ -410,9 +410,9 @@ namespace App\Models{
  * @property mixed|null $emotions 感情数値化のグラフと平均用json
  * @property mixed|null $classifications 推定分類(top10)
  * @property mixed|null $special_people 登場人物(top10)
+ * @property mixed|null $important_words 重要そうな言葉
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
- * @property mixed|null $important_words 重要そうな言葉
  * @method static \Illuminate\Database\Eloquent\Builder|Statistic newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Statistic newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Statistic query()
@@ -560,20 +560,21 @@ namespace App\Models{
  *
  * @property int $id
  * @property string $name
+ * @property \App\Enums\AuthType $auth_type enum認証タイプ
  * @property string $email
- * @property \Illuminate\Support\Carbon|null $email_verified_at
- * @property string $password
- * @property string|null $two_factor_secret
- * @property string|null $two_factor_recovery_codes
  * @property string|null $remember_token
- * @property int|null $current_team_id
- * @property string|null $profile_photo_path
- * @property \Illuminate\Support\Carbon|null $created_at
- * @property \Illuminate\Support\Carbon|null $updated_at
  * @property int|null $user_rank_id ユーザーランク
  * @property int|null $user_role_id ユーザーロール(一般、管理者etc)
  * @property int|null $appearance_id ページの見た目
  * @property \Illuminate\Support\Carbon|null $user_rank_updated_at ユーザーランクアップデート日
+ * @property string|null $password
+ * @property string|null $two_factor_secret
+ * @property string|null $two_factor_recovery_codes
+ * @property string|null $oauth_id プロバイダーユーザID
+ * @property \Illuminate\Support\Carbon|null $email_verified_at
+ * @property string|null $profile_photo_path
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
  * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Diary> $diary
  * @property-read int|null $diary_count
  * @property-read \Illuminate\Notifications\DatabaseNotificationCollection<int, \Illuminate\Notifications\DatabaseNotification> $notifications
@@ -588,12 +589,13 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|User newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|User query()
  * @method static \Illuminate\Database\Eloquent\Builder|User whereAppearanceId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|User whereAuthType($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User whereCreatedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|User whereCurrentTeamId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User whereEmail($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User whereEmailVerifiedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User whereName($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|User whereOauthId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User wherePassword($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User whereProfilePhotoPath($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User whereRememberToken($value)
