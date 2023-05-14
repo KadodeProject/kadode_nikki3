@@ -16,10 +16,13 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/login/{provider}', ApiActions\OAuth\GetProviderOAuthURLAction::class)
-    ->name('oautRequest');
-Route::get('/auth/{provider}/callback', ApiActions\OAuth\HandleProviderCallbackAction::class)
-    ->name('oAuthCallBack');
+
+Route::group(['middleware' => ['web']], function () {
+    Route::get('/login/{provider}', ApiActions\OAuth\GetProviderOAuthURLAction::class)
+        ->name('oautRequest');
+    Route::get('/auth/{provider}/callback', ApiActions\OAuth\HandleProviderCallbackAction::class)
+        ->name('oAuthCallBack');
+});
 
 Route::get('/status', ApiActions\GetApiStatusAction::class)->name('GetApiStatus');
 
