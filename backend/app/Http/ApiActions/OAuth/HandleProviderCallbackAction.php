@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Http\Actions\OAuth;
+namespace App\Http\ApiActions\OAuth;
 
 use Laravel\Socialite\Facades\Socialite;
 use Illuminate\Support\Str;

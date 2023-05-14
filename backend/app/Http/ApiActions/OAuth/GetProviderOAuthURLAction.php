@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Http\Actions\OAuth;
+namespace App\Http\ApiActions\OAuth;
 
 use App\Http\Controllers\Controller;
 use App\Http\Responder\OAuthResponder;
@@ -26,7 +26,7 @@ final class GetProviderOAuthURLAction extends Controller
    */
   public function __invoke(string $provider): \Illuminate\Http\JsonResponse
   {
-    assert(in_array($provider, ['google', 'github', 'line']));
+    assert(in_array($provider, ['google', 'github']));
     $redirectUrl = Socialite::driver($provider)->redirect()->getTargetUrl();
 
     return response()->json([

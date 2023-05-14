@@ -4,14 +4,25 @@
 	import GitHubLogo from '$lib/assets/logo/gitHubLogo.svg?url';
 	import GoogleLogo from '$lib/assets/logo/googleLogo.svg?url';
 	import SocialAuthButton from '$lib/components/atom/button/SocialAuthButton.svelte';
+	import { callbackGoogle, callbackGitHub } from '$lib/utils/oAuthCallback';
 </script>
 
 <GuestHead title="ログイン" description="ログインページ" />
 
 <AuthWrapper>
 	<h2 class="text-2xl text-center">ソーシャルログイン</h2>
-	<SocialAuthButton providerName="Google" type="ログイン" url="/auth/google" icon={GoogleLogo} />
-	<SocialAuthButton providerName="GitHub" type="ログイン" url="/auth/GitHub" icon={GitHubLogo} />
+	<SocialAuthButton
+		providerName="Google"
+		type="ログイン"
+		handleClick={callbackGoogle}
+		icon={GoogleLogo}
+	/>
+	<SocialAuthButton
+		providerName="GitHub"
+		type="ログイン"
+		handleClick={callbackGitHub}
+		icon={GitHubLogo}
+	/>
 
 	<h2 class="mt-20 text-2xl text-center">レガシーログイン</h2>
 

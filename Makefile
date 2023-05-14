@@ -139,14 +139,15 @@ u-n:
 # 
 # バックエンド固有のもの
 # 
+cc:
+	docker compose exec backend php artisan config:clear
+	docker compose exec backend php artisan route:clear
 migrate:
 	docker compose exec backend php artisan migrate
 fresh:
 	docker compose exec backend php artisan migrate:fresh --seed
 tinker:
 	docker compose exec backend php artisan tinker
-cc:
-	docker compose exec backend php artisan config:clear
 stan:
 	@make c-b
 stan-g:
