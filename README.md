@@ -64,16 +64,17 @@ https://kadode.usuyuki.net
 -   docs : wiki.kado.day の中身
 -   frontend : かどで日記フロントエンド SvelteKit 化をしているディレクトリ
 -   frontend_discontinued : かどで日記フロントエンド Next.js 化作業中に断念されたディレクトリ(削除予定)
--   infra : かどで日記のインフラ周り(開発 Docker、本番 k8s)
+-   infra : かどで日記のインフラ周り(開発 Docker 本番 k8s で、本番向けのマニュフェストは別リポジトリで管理)
 -   nlp : かどで日記自然言語処理部分(Python)
 -   proto : かどで日記の Python と PHP で gRPC するための proto 置き場
 -   sampleData : かどで日記のインポート機能の検証で使うためのサンプルデータ
 -   script : 開発用のちょっとしたスクリプト置き場
 
 ## フロントエンドのコンポーネントの構成について
-- atom : コンポーネントの最小単位
-- molecule : atomで構成されるコンポーネント(日記のカードなど)
-- organism : moleculeで構成されるコンポーネント(最近の日記コーナーなど)
+
+-   atom : コンポーネントの最小単位
+-   molecule : atom で構成されるコンポーネント(日記のカードなど)
+-   organism : molecule で構成されるコンポーネント(最近の日記コーナーなど)
 
 ## ポート
 
@@ -84,6 +85,7 @@ https://kadode.usuyuki.net
 # 開発支援
 
 ## エイリアスなど
+
 [Makefile](Makefile)をご覧ください
 
 ## 開発者向け情報

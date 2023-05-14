@@ -1,8 +1,0 @@
-apiVersion: v1
-kind: ConfigMap
-metadata:
-  name: frontend-config
-  namespace: kadode-prod
-data:
-  PUBLIC_BASE_API: "http://backend:2010"
-  PUBLIC_LOGIN_PATH: "/login"
