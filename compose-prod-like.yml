@@ -24,9 +24,10 @@ services:
       - APP_ENV=production
       - APP_KEY=${APP_KEY}
       - APP_DEBUG=false
+      # frontend,backendでも名前解決できるが、cookieの都合で同じ名前が使えるものを指定
       - APP_URL=http://localhost:2010
       - FRONTEND_URL=http://localhost:2000
-      - ALLOWED_ORIGIN=frontend:2000
+      - ALLOWED_ORIGIN=http://localhost:2000
       - SANCTUM_STATEFUL_DOMAINS=localhost:2000
       - SESSION_DOMAIN=localhost
       - LOG_CHANNEL=single
@@ -61,7 +62,14 @@ services:
       - BACKUP_NOTIFICATION_EMAIL_TO={$BACKUP_NOTIFICATION_EMAIL_TO}
       - SERVER_BACKUP_PATH={$SERVER_BACKUP_PATH}
       - GRPC_SERVER_URL=nlp:2020
-      - SESSION_DOMAIN=localhost
+      # Google認証関連
+      - GOOGLE_CLIENT_ID=${GOOGLE_CLIENT_ID}
+      - GOOGLE_CLIENT_SECRET=${GOOGLE_CLIENT_SECRET}
+      - GOOGLE_CALLBACK_URL=${GOOGLE_CALLBACK_URL}
+      # GitHub認証関連
+      - GITHUB_CLIENT_ID=${GITHUB_CLIENT_ID}
+      - GITHUB_CLIENT_SECRET=${GITHUB_CLIENT_SECRET}
+      - GITHUB_CALLBACK_URL=${GITHUB_CALLBACK_URL}
 
   nlp:
     build:
@@ -89,7 +97,13 @@ services:
       - "2000:2000"
     user: "1000:1000"
     environment:
-      - PUBLIC_BASE_API=http://backend:2010
+      # PUBLICつけることでクライアント側でも使えるようにする(SvelteKitの仕様)
+      - PUBLIC_API_URL=http://backend:2010
+      # dockerを使っている都合上 サーバーサイドから見るAPIとクライアントから見るAPIが違うので、帳尻合わせ用(本番ではどちらも使わない)
+      - PUBLIC_API_SERVER_SIDE_URL=http://backend:2010
+      - PUBLIC_API_CLIENT_SIDE_URL=http://localhost:2010
+      # 原則APP_URLはバックエンドで処理されるものに使う。クライアントに投げられるものは$app.storesを使う
+      - PUBLIC_APP_URL=http://localhost:2000
       - PUBLIC_LOGIN_PATH=/login
     # command: sh -c "pnpm install"
 
