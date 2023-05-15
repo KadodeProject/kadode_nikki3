@@ -27,6 +27,10 @@ sh-d:
 # 
 # コミット前ルーティン
 #
+1:
+	@make 1-b
+	@make 1-f
+	# @make 1-n
 1-b:
 	@make f-b
 	@make c-b

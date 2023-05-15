@@ -1,30 +1,17 @@
 <script lang="ts">
 	import GuestHead from '$lib/components/atom/head/GuestHead.svelte';
 	import AuthWrapper from '$lib/components/atom/wrapper/AuthWrapper.svelte';
-	import GitHubLogo from '$lib/assets/logo/gitHubLogo.svg?url';
-	import GoogleLogo from '$lib/assets/logo/googleLogo.svg?url';
-	import SocialAuthButton from '$lib/components/atom/button/SocialAuthButton.svelte';
-	import { callbackGoogle, callbackGitHub } from '$lib/utils/oAuthCallback';
+	import SocialAuthElement from '$lib/components/organism/auth/SocialAuthElement.svelte';
 </script>
 
 <GuestHead title="ログイン" description="ログインページ" />
 
 <AuthWrapper>
 	<h2 class="text-2xl text-center">ソーシャルログイン</h2>
-	<SocialAuthButton
-		providerName="Google"
-		type="ログイン"
-		handleClick={callbackGoogle}
-		icon={GoogleLogo}
-	/>
-	<SocialAuthButton
-		providerName="GitHub"
-		type="ログイン"
-		handleClick={callbackGitHub}
-		icon={GitHubLogo}
-	/>
+	<SocialAuthElement buttonName="ログイン" />
+	<hr class="mt-12" />
 
-	<h2 class="mt-20 text-2xl text-center">レガシーログイン</h2>
+	<h2 class="mt-4 text-2xl text-center">emailログイン</h2>
 
 	<form method="post" action="?/login">
 		<label class="block text-sm">

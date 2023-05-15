@@ -22,19 +22,24 @@ final class HandleProviderCallbackAction extends Controller
         \assert(\in_array($provider, ['google', 'github'], true));
 
         /** @phpstan-ignore-next-line */
-        $socialiteUser = Socialite::driver($provider)->stateless()->user();
+        $socialiteUser = Socialite::driver($provider)->stateless()->user(); // statelessが存在するのに存在しないエラーが出るのでPHPStanを黙らせている
 
         $user = User::where('oauth_id', $socialiteUser->id)->first();
         if (!$user) {
-            // ユーザー居なかったら新規で登録
-            $user = User::create([
-                'name' => $socialiteUser->name,
-                'email' => $socialiteUser->email,
-                'email_verified_at' => now(),
-                'auth_type' => $this->getAuthTypeIntFromName($provider),
-                'oauth_id' => $socialiteUser->id,
-                'profile_photo_path' => $socialiteUser->avatar,
-            ]);
+            if (!User::where('email', $socialiteUser->email)->first()) {
+                // ユーザー居なかったら新規で登録
+                $user = User::create([
+                    'name' => $socialiteUser->name,
+                    'email' => $socialiteUser->email,
+                    'email_verified_at' => now(),
+                    'auth_type' => $this->getAuthTypeIntFromName($provider),
+                    'oauth_id' => $socialiteUser->id,
+                    'profile_photo_path' => $socialiteUser->avatar,
+                ]);
+            } else {
+                // メールアドレスは既に存在しているので、別の認証で登録しているパターン
+                return redirect(env('FRONTEND_URL').'/login?error=auth_type');
+            }
         }
 
         Auth::login($user);
