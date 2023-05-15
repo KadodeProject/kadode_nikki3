@@ -61,16 +61,17 @@ jobs:
           rm -rf /tmp/.buildx-cache
           mv /tmp/.buildx-cache-new /tmp/.buildx-cache
 
-      - name: Rolling Update
-        uses: appleboy/ssh-action@master
-        with:
-          host: ${{ secrets.SERVER_HOST }}
-          username: ${{ secrets.SERVER_USERNAME }}
-          key: ${{ secrets.SERVER_SSH_KEY }}
-          port: ${{ secrets.SERVER_PORT }}
-          script: |
-            cd ${{ secrets.SERVER_K8S_PATH }}
-            # git checkout main
-            # git pull origin main
-            # # latestだと更新できないので、shaの方で更新をかける
-            # kubectl set image ${{ matrix.name }}-app -n kadode-prod ${{ matrix.name }}-app=ghcr.io/kadodeproject/kadode_nikki3_${{ matrix.name }}:${{ github.sha }}
+      #本番デプロイの方法を変えたいので一旦コメントアウト
+      # - name: Rolling Update
+      #   uses: appleboy/ssh-action@master
+      #   with:
+      #     host: ${{ secrets.SERVER_HOST }}
+      #     username: ${{ secrets.SERVER_USERNAME }}
+      #     key: ${{ secrets.SERVER_SSH_KEY }}
+      #     port: ${{ secrets.SERVER_PORT }}
+      #     script: |
+      #       cd ${{ secrets.SERVER_K8S_PATH }}
+      # git checkout main
+      # git pull origin main
+      # # latestだと更新できないので、shaの方で更新をかける
+      # kubectl set image ${{ matrix.name }}-app -n kadode-prod ${{ matrix.name }}-app=ghcr.io/kadodeproject/kadode_nikki3_${{ matrix.name }}:${{ github.sha }}
