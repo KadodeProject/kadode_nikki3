@@ -27,6 +27,10 @@ sh-d:
 # 
 # コミット前ルーティン
 #
+1:
+	@make 1-b
+	@make 1-f
+	# @make 1-n
 1-b:
 	@make f-b
 	@make c-b
@@ -114,7 +118,7 @@ c:
 	# @make c-n
 
 c-b:
-	docker compose exec backend ./vendor/bin/phpstan analyse --memory-limit=1G
+	docker compose exec backend ./vendor/bin/phpstan analyse
 c-f:
 	docker compose exec frontend pnpm check
 # c-n:
@@ -139,18 +143,23 @@ u-n:
 # 
 # バックエンド固有のもの
 # 
-migrate:
-	docker compose exec backend php artisan migrate
-fresh:
-	docker compose exec backend php artisan migrate:fresh --seed
-tinker:
-	docker compose exec backend php artisan tinker
 cc:
 	docker compose exec backend php artisan config:clear
+	docker compose exec backend php artisan route:clear
+migrate:
+	docker compose exec backend php artisan migrate
+# DB再構築
+fresh:
+	docker compose exec backend php artisan migrate:fresh --seed
+# DBロールバック
+refresh:
+	docker compose exec backend php artisan migrate:refresh
+tinker:
+	docker compose exec backend php artisan tinker
 stan:
 	@make c-b
 stan-g:
-	docker compose exec backend ./vendor/bin/phpstan analyse --generate-baseline --memory-limit=1G
+	docker compose exec backend ./vendor/bin/phpstan analyse --generate-baseline 
 ide-helper:
 	docker compose exec backend php artisan clear-compiled
 	docker compose exec backend php artisan ide-helper:generate

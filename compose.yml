@@ -33,7 +33,7 @@ services:
       - APP_DEBUG=true
       # frontend,backendでも名前解決できるが、cookieの都合で同じ名前が使えるものを指定
       - APP_URL=http://localhost:2010
-      - FRONTEND_URL=http://frontend:2000
+      - FRONTEND_URL=http://localhost:2000
       - ALLOWED_ORIGIN=http://localhost:2000
       - SANCTUM_STATEFUL_DOMAINS=localhost:2000
       - SESSION_DOMAIN=localhost
@@ -69,6 +69,14 @@ services:
       - BACKUP_NOTIFICATION_EMAIL_TO={$BACKUP_NOTIFICATION_EMAIL_TO}
       - SERVER_BACKUP_PATH={$SERVER_BACKUP_PATH}
       - GRPC_SERVER_URL=nlp:2020
+      # Google認証関連
+      - GOOGLE_CLIENT_ID=${GOOGLE_CLIENT_ID}
+      - GOOGLE_CLIENT_SECRET=${GOOGLE_CLIENT_SECRET}
+      - GOOGLE_CALLBACK_URL=${GOOGLE_CALLBACK_URL}
+      # GitHub認証関連
+      - GITHUB_CLIENT_ID=${GITHUB_CLIENT_ID}
+      - GITHUB_CLIENT_SECRET=${GITHUB_CLIENT_SECRET}
+      - GITHUB_CALLBACK_URL=${GITHUB_CALLBACK_URL}
 
   nlp:
     build:
