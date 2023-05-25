@@ -1,37 +1,68 @@
-name: 【backend】PHP静的解析 (PHPStan)
+name: 【backend】PHP静的解析
 on:
   pull_request:
     branches:
       - main
     paths:
       - backend/**
+
+# working-directoryの指定だとapkで止まるので指定せず必要に応じてcdする
+
 jobs:
-  analyse:
+  phpstan:
     name: PHPStan with Larastan
     runs-on: ubuntu-latest
+    container:
+      image: php:8.2-cli-alpine
     steps:
+      - name: apk install
+        run: |
+          apk add libzip-dev
+
+      #  phpのためにbcmathとzip
+      - name: add extention
+        run: docker-php-ext-install bcmath zip
+
       - uses: actions/checkout@v3
-      - uses: reviewdog/action-setup@v1
+
+      - name: cache composer.phar
+        id: cache-composer-phar
+        uses: actions/cache@v3
         with:
-          reviewdog_version: latest
-      - name: Setup PHP
-        uses: shivammathur/setup-php@v2
-        with:
-          php-version: "8.2"
-          tools: composer:v2
-      - name: cache vendor
-        id: cache
+          path: ./backend/composer.phar
+          # composerのバージョンになりそうなものがないのでcomposer.lockのハッシュで代用
+          key: backend-composer-phar-${{ hashfiles('**/composer.lock') }}
+          restore-keys: |
+            backend-composer-phar-
+
+      - name: Install Composer itself
+        if: steps.cache-composer-phar.outputs.cache-hit != 'true'
+        run: |
+          cd backend
+          php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
+          php -r "if (hash_file('sha384', 'composer-setup.php') === '55ce33d7678c5a611085589f1f3ddf8b3c52d662cd01d4ba75c0ee0459970c2200a51f492d557530c71c15d8dba01eae') { echo 'Installer verified'; } else { echo 'Installer corrupt'; unlink('composer-setup.php'); } echo PHP_EOL;"
+          php composer-setup.php
+          php -r "unlink('composer-setup.php');"
+
+      - name: cache composer vendor
+        id: cache-composer-vendor
         uses: actions/cache@v3
         with:
           path: ./backend/vendor
-          key: ${{ runner.os }}-composer-${{ hashFiles('**/composer.lock') }}
+          key: backend-composer-vendor-${{ hashfiles('**/composer.lock') }}
           restore-keys: |
-            ${{ runner.os }}-composer-
-      - name: composer install
-        if: steps.cache.outputs.cache-hit != 'true'
-        run: cd backend && composer install --no-progress --prefer-dist --optimize-autoloader
+            backend-composer-vendor-
 
-      - name: Run PHPstan
-        env:
-          REVIEWDOG_GITHUB_API_TOKEN: ${{ secrets.USUYUKI_GITHUB_TOKEN }}
-        run: cd backend && ./vendor/bin/phpstan analyse --error-format=raw --no-progress --memory-limit=1G | reviewdog -reporter=github-pr-review -f=phpstan
+      # -qオプション消すと短くはなるけど、結構な頻度でcomposer install失敗するのでいつでも見れるように短くなるオプション消す
+      - name: Composer install
+        if: steps.cache-composer-vendor.outputs.cache-hit != 'true'
+        run: |
+          cd backend
+          php composer.phar install --no-ansi --no-interaction --no-scripts --no-progress --prefer-dist
+
+      - name: Run PHPStan
+        run: |
+          cd backend
+          # ciのスペックではシングルスレッドで走らせたほうが早いので設定を置き換えする
+          # sed -i '/parameters:/a\ \tparallel:\n\t\tmaximumNumberOfProcesses: 1' phpstan.neon
+          ./vendor/bin/phpstan analyse --memory-limit=-1 --error-format=github
