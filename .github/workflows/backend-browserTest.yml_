@@ -1,0 +1,149 @@
+name: 【backend】PHPテスト[ブラウザ]
+# chromeのバージョン不一致問題が解消せず動かない
+# 微妙にdusk側とdriver側のバージョンが違ってエラーになる
+# docker版より早いが、動かないため一時停止
+on:
+  pull_request:
+    branches: [main]
+    paths:
+      - backend/**
+
+
+jobs:
+  laravel_test:
+    name: phpunit browser test by laravel dusk
+    runs-on: ubuntu-latest
+
+    services:
+      mysql:
+        image: mysql:8.0.19
+        ports:
+          - 3306:3306
+        options: --health-cmd "mysqladmin ping -h localhost" --health-interval 20s --health-timeout 10s --health-retries 10
+        env:
+          MYSQL_ROOT_PASSWORD: password
+          MYSQL_DATABASE: app_test
+
+      redis:
+        image: redis
+        ports:
+          - 6379:6379
+        options: >-
+          --health-cmd "redis-cli ping"
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+        env:
+          REDIS_HOST: redis
+          REDIS_PORT: 6379
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Setup PHP with PECL extension
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: "8.2"
+          # ini-values: extension="redis.so"
+          # 二重で読み込まれるため上記のphp.ini記述処理は不要
+          extensions: redis
+
+      - name: cache node_modules
+        id: cache_node
+        uses: actions/cache@v3
+        with:
+          path: ./backend/node_modules
+          key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-yarn-
+
+      - name: cache vendor
+        id: cache_vendor
+        uses: actions/cache@v3
+        with:
+          path: ./backend/vendor
+          key: ${{ runner.os }}-composer-${{ hashFiles('**/composer.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-composer-
+
+      - name: cache pip3
+        id: cache_pip3
+        uses: actions/cache@v3
+        with:
+          path: /home/runner/.local/lib/python3.8/site-packages
+          key: ${{ runner.os }}-pip3-${{ hashFiles('**/kadode_pip_packages.txt') }}
+          restore-keys: |
+            ${{ runner.os }}-pip3-
+
+      - name: run apt
+        run: sudo apt update && sudo apt install git libicu-dev libonig-dev libzip-dev unzip locales python3-pip libmariadb-dev default-mysql-client python3-venv libgirepository1.0-dev
+      - name: update pip
+        run: sudo pip3 install --upgrade pip
+      - name: copy .env for ci
+        run: cd backend && php -r "file_exists('.env') || copy('.env.ci', '.env');"
+
+      # バージョン不一致エラーに将来的になるため、キャッシュ後にインストールを走らせる
+      - name: install chrome
+        uses: browser-actions/setup-chrome@latest
+        with:
+          chrome-version: stable
+
+      #ライブラリインストール
+      #Python
+      - name: pip install
+        if: steps.cache_pip3.outputs.cache-hit != 'true'
+        run: pip3 install --upgrade --upgrade-strategy eager -r backend/kadode_pip_packages.txt
+      #JS
+      - name: yarn install
+        if: steps.cache_node.outputs.cache-hit != 'true'
+        run: cd backend && yarn install
+      #PHP
+      - name: composer install
+        if: steps.cache_vendor.outputs.cache-hit != 'true'
+        run: cd backend && composer install -n --prefer-dist
+
+      #Laravel初期構築
+      - name: composer dump autoload
+        run: cd backend && composer dump-autoload
+      - name: storage link
+        run: cd backend && php artisan storage:link
+      - name: chmod storage
+        run: cd backend && chmod -R 777 storage bootstrap/cache
+      - name: migrate
+        run: cd backend && php artisan migrate
+
+      #フロントエンドのファイル生成
+      - name: genereate
+        run: cd backend && yarn build
+
+      #Laravel Duskのための用意
+      # chromeのバージョンをシェル芸で取得
+      - name: check chrome version
+        run: google-chrome --version && chrome_v=$(echo $(google-chrome --version) | cut -c 15- ) && echo "chrome_v=$chrome_v"
+      - name: dusk install
+        run: cd backend && php artisan dusk:chrome-driver $chrome_v
+      - name: chmod dusk/bin
+        run: cd backend && chmod 775 -R vendor/laravel/dusk/bin
+      #サーバー起動
+      - name: Run Laravel Server
+        run: cd backend && php artisan serve --no-reload &
+
+      #サーバー動作チェック
+      - name: curl check
+        run: curl http://127.0.0.1:8000
+      #テスト
+      - name: Run Dusk Tests
+        run: cd backend && php artisan dusk --testdox
+      #情報添付
+      - name: Upload Screenshots
+        if: failure()
+        uses: actions/upload-artifact@v2
+        with:
+          name: screenshots
+          path: backend/tests/Browser/screenshots
+      - name: Upload Console Logs
+        if: failure()
+        uses: actions/upload-artifact@v2
+        with:
+          name: console
+          path: backend/tests/Browser/console
