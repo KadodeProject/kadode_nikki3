@@ -65,4 +65,4 @@ jobs:
           cd backend
           # ciのスペックではシングルスレッドで走らせたほうが早いので設定を置き換えする
           # sed -i '/parameters:/a\ \tparallel:\n\t\tmaximumNumberOfProcesses: 1' phpstan.neon
-          ./vendor/bin/phpstan analyse --memory-limit=-1
+          ./vendor/bin/phpstan analyse --memory-limit=-1 --error-format=github
