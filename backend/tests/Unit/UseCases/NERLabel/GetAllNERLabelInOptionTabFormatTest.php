@@ -39,6 +39,6 @@ final class GetAllNERLabelInOptionTabFormatTest extends TestCase
         // act
         $response = $this->getAllNERLabelInOptionTabFormat->invoke($array);
         // assert
-        static::assertMatchesRegularExpression('/((\s<option value=")\d+(">).*?(<\/option>))+/', $response);
+        self::assertMatchesRegularExpression('/((\s<option value=")\d+(">).*?(<\/option>))+/', $response);
     }
 }

@@ -61,7 +61,7 @@ class MeasureMachineResourceFor1minToRedis extends Command
              * dfの/dev/vda1のUse%の値を使う(ここはサーバにより名前違う可能性があり、サーバー移行後にgrepできるか分からない)
              * substrでもできるが、10%未満の時の条件分岐が手間なため%を置換することで対処.
              *
-             * @var float | ""
+             * @var ""|float
              */
             $diskPercentRaw = (float) str_replace('%', '', shell_exec("df -h | grep /dev/vda1 | awk '{print $5}'") ?? '');
 
