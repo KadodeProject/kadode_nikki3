@@ -23,9 +23,6 @@ jobs:
       - name: add extention
         run: docker-php-ext-install bcmath zip
 
-      - name: free
-        run: free -h
-
       - uses: actions/checkout@v3
 
       - name: cache composer.phar
