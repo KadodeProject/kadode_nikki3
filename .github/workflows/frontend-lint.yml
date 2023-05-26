@@ -1,10 +1,9 @@
-name: 【frontend】Lint (prettier)
+name: 【frontend】Lint
 
 on:
   pull_request:
     branches:
       - main
-      - develop/k8s対応
     paths:
       - frontend/**
 
@@ -14,7 +13,7 @@ defaults:
 
 jobs:
   frontend_lint:
-    name: frontend lint
+    name: Prettier
     runs-on: ubuntu-latest
 
     steps:

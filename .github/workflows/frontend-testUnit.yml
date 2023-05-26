@@ -1,4 +1,4 @@
-name: 【frontend】静的解析 ()
+name: 【frontend】単体テスト
 
 on:
   pull_request:
@@ -12,8 +12,8 @@ defaults:
     working-directory: frontend
 
 jobs:
-  frontend_static_analysis:
-    name: svelte-check
+  frontend_unit_test:
+    name: Vitest unit
     runs-on: ubuntu-latest
 
     steps:
@@ -30,10 +30,11 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: 18
+          # global cacheの cache
           cache: "pnpm"
           cache-dependency-path: |
             frontend/pnpm-lock.yaml
-          #
+
       # node_modelusはキャッシュしてくれないっぽいので自分でやる
       - name: cache node_modelus
         id: cache-node-modules
@@ -48,11 +49,5 @@ jobs:
         if: steps.cache-node-modules.outputs.cache-hit != 'true'
         run: pnpm install --frozen-lockfile
 
-      - name: svelte-check
-        run: pnpm check
-        env:
-          PUBLIC_API_URL: "http://backend:2010"
-          PUBLIC_API_SERVER_SIDE_URL: "http://backend:2010"
-          PUBLIC_API_CLIENT_SIDE_URL: "http://localhost:2010"
-          PUBLIC_APP_URL: "http://localhost:2000"
-          PUBLIC_LOGIN_PATH: "/login"
+      - name: unit test
+        run: pnpm test:u
