@@ -1,4 +1,4 @@
-name: 【frontend】結合(コンポーネント)テスト
+name: 【frontend】テスト[結合(コンポーネント)]
 on:
   pull_request:
     branches:
@@ -12,7 +12,7 @@ defaults:
 
 jobs:
   frontend_combination_test:
-    name: Playwright combination
+    name: Playwright combination test
     runs-on: ubuntu-latest
 
     steps:
@@ -61,7 +61,7 @@ jobs:
       - name: Install Playwright Browsers
         run: npx playwright install --with-deps
 
-      - name: Cvelte sync
+      - name: Svelte sync
         run: pnpm prepare
 
       - name: Combination test

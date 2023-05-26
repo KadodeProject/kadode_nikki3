@@ -1,4 +1,4 @@
-name: 【frontend】統合(E2E)テスト
+name: 【frontend】テスト[統合]
 
 on:
   pull_request:
@@ -13,7 +13,7 @@ defaults:
 
 jobs:
   frontend_integration_test:
-    name: Playwright integration
+    name: Playwright integration test
     runs-on: ubuntu-latest
 
     steps:

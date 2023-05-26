@@ -1,4 +1,4 @@
-name: 【backend】PHPテスト[単体]
+name: 【backend】Lint
 
 on:
   pull_request:
@@ -10,8 +10,8 @@ on:
 # working-directoryの指定だとapkで止まるので指定せず必要に応じてcdする
 
 jobs:
-  phpunit-unit:
-    name: PHPUnit unit test
+  php-cs-fixer:
+    name: PHP-CS-Fixer
     runs-on: ubuntu-latest
     container:
       image: php:8.2-cli-alpine
@@ -61,8 +61,7 @@ jobs:
           cd backend
           php composer.phar install --no-ansi --no-interaction --no-scripts --no-progress --prefer-dist
 
-      #テスト
-      - name: unit test
+      - name: PHP-CS-Fixer Dry Run
         run: |
           cd backend
-          ./vendor/bin/phpunit --testsuite Unit  --testdox
+          ./vendor/bin/php-cs-fixer fix --config=.php-cs-fixer.dist.php -v --dry-run

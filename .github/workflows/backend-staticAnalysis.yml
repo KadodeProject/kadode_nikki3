@@ -1,5 +1,4 @@
-name: 【backend】PHP Lint
-
+name: 【backend】静的解析
 on:
   pull_request:
     branches:
@@ -10,8 +9,8 @@ on:
 # working-directoryの指定だとapkで止まるので指定せず必要に応じてcdする
 
 jobs:
-  php-cs-fixer:
-    name: PHP-CS-Fixer
+  phpstan:
+    name: PHPStan with Larastan
     runs-on: ubuntu-latest
     container:
       image: php:8.2-cli-alpine
@@ -61,7 +60,9 @@ jobs:
           cd backend
           php composer.phar install --no-ansi --no-interaction --no-scripts --no-progress --prefer-dist
 
-      - name: PHP-CS-Fixer Dry Run
+      - name: Run PHPStan
         run: |
           cd backend
-          ./vendor/bin/php-cs-fixer fix --config=.php-cs-fixer.dist.php -v --dry-run
+          # ciのスペックではシングルスレッドで走らせたほうが早いので設定を置き換えする
+          # sed -i '/parameters:/a\ \tparallel:\n\t\tmaximumNumberOfProcesses: 1' phpstan.neon
+          ./vendor/bin/phpstan analyse --memory-limit=-1 --error-format=github

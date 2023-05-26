@@ -1,17 +1,26 @@
-name: 【backend】PHP静的解析
+name: 【backend】テスト[結合]
+
 on:
   pull_request:
-    branches:
-      - main
+    branches: [main]
     paths:
       - backend/**
 
 # working-directoryの指定だとapkで止まるので指定せず必要に応じてcdする
 
 jobs:
-  phpstan:
-    name: PHPStan with Larastan
+  phpunit-combined:
+    name: PHPUnit combined test
     runs-on: ubuntu-latest
+    services:
+      mysql:
+        image: mysql:8.0
+        ports:
+          - 3306:3306
+        options: --health-cmd "mysqladmin ping -h localhost" --health-interval 20s --health-timeout 10s --health-retries 10
+        env:
+          MYSQL_ROOT_PASSWORD: password
+          MYSQL_DATABASE: app_test
     container:
       image: php:8.2-cli-alpine
     steps:
@@ -21,7 +30,7 @@ jobs:
 
       #  phpのためにbcmathとzip
       - name: add extention
-        run: docker-php-ext-install bcmath zip
+        run: docker-php-ext-install bcmath zip pdo_mysql
 
       - uses: actions/checkout@v3
 
@@ -38,7 +47,6 @@ jobs:
       - name: Install Composer itself
         if: steps.cache-composer-phar.outputs.cache-hit != 'true'
         run: |
-          cd backend
           php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
           php -r "if (hash_file('sha384', 'composer-setup.php') === '55ce33d7678c5a611085589f1f3ddf8b3c52d662cd01d4ba75c0ee0459970c2200a51f492d557530c71c15d8dba01eae') { echo 'Installer verified'; } else { echo 'Installer corrupt'; unlink('composer-setup.php'); } echo PHP_EOL;"
           php composer-setup.php
@@ -60,9 +68,17 @@ jobs:
           cd backend
           php composer.phar install --no-ansi --no-interaction --no-scripts --no-progress --prefer-dist
 
-      - name: Run PHPStan
+      # - name: Show databases for root user
+      #   run: mysql --protocol=tcp -h  mysql -P 3306 -u root -ppassword -e "SHOW DATABASES"
+      # combined testのため多めに設定が必要
+      - name: setup laravel
         run: |
           cd backend
-          # ciのスペックではシングルスレッドで走らせたほうが早いので設定を置き換えする
-          # sed -i '/parameters:/a\ \tparallel:\n\t\tmaximumNumberOfProcesses: 1' phpstan.neon
-          ./vendor/bin/phpstan analyse --memory-limit=-1 --error-format=github
+          cp .env.ci .env
+          php artisan migrate
+
+      #テスト
+      - name: combined test
+        run: |
+          cd backend
+          ./vendor/bin/phpunit --testsuite MinimumOperationCheck --testsuite Feature --testdox

@@ -13,7 +13,7 @@ defaults:
 
 jobs:
   frontend_unit_test:
-    name: Vitest unit
+    name: Vitest unit test
     runs-on: ubuntu-latest
 
     steps:
