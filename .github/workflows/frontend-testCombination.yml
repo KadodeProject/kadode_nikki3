@@ -1,5 +1,4 @@
-name: 【frontend】Lint
-
+name: 【frontend】テスト[結合(コンポーネント)]
 on:
   pull_request:
     branches:
@@ -12,8 +11,8 @@ defaults:
     working-directory: frontend
 
 jobs:
-  frontend_lint:
-    name: Prettier
+  frontend_combination_test:
+    name: Playwright combination test
     runs-on: ubuntu-latest
 
     steps:
@@ -49,5 +48,22 @@ jobs:
         if: steps.cache-node-modules.outputs.cache-hit != 'true'
         run: pnpm install --frozen-lockfile
 
-      - name: lint
-        run: pnpm lint
+      # playwrightのためのブラウザのバイナリのキャッシュ、古ければ新しいのが install --with-deps時にダウンロードされるので、条件分岐はせずにただキャッシュする
+      - name: Cache playwright binaries
+        uses: actions/cache@v3
+        id: cache-playwright-binaries
+        with:
+          path: ~/.cache/ms-playwright
+          key: frontend-playwright-binaries-
+          restore-keys: |
+            frontend-playwright-binaries-
+
+      - name: Install Playwright Browsers
+        run: npx playwright install --with-deps
+
+      - name: Svelte sync
+        run: pnpm prepare
+
+      - name: Combination test
+        run: pnpm test:c
+    # playwright reportはディレクトリが存在せずうまく行かない上、必要性も薄いのでupload-artifactしない

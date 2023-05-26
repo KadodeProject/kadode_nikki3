@@ -1,5 +1,5 @@
 .DS_Store
-node_modules
+/node_modules
 /build
 /.svelte-kit
 /package
@@ -10,3 +10,7 @@ vite.config.js.timestamp-*
 vite.config.ts.timestamp-*
 .pnpm-store
 /playwright-report
+# playwright自体は必要(無いとエラーになるのでgit管理する)
+/playwright/.cache
+/playwright/images
+
