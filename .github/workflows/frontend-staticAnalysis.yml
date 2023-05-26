@@ -35,7 +35,7 @@ jobs:
             frontend/pnpm-lock.yaml
           #
       # node_modelusはキャッシュしてくれないっぽいので自分でやる
-      - name: cache node_modelus
+      - name: Cache node_modelus
         id: cache-node-modules
         uses: actions/cache@v3
         with:
@@ -48,7 +48,7 @@ jobs:
         if: steps.cache-node-modules.outputs.cache-hit != 'true'
         run: pnpm install --frozen-lockfile
 
-      - name: svelte-check
+      - name: Svelte-check
         run: pnpm check
         env:
           PUBLIC_API_URL: "http://backend:2010"

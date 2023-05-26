@@ -36,7 +36,7 @@ jobs:
             frontend/pnpm-lock.yaml
 
       # node_modelusはキャッシュしてくれないっぽいので自分でやる
-      - name: cache node_modelus
+      - name: Cache node_modelus
         id: cache-node-modules
         uses: actions/cache@v3
         with:
