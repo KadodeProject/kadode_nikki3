@@ -109,6 +109,7 @@ services:
     stdin_open: true
     ports:
       - "2000:2000"
+      - "2802:2802" # playwright report
     user: "1000:1000"
     volumes:
       - ./frontend:/frontend
@@ -152,14 +153,14 @@ services:
     depends_on:
       - "db"
     ports:
-      - 7010:80
+      - 2800:80
     volumes:
       - ./infra/dev/container/phpmyadmin/sessions:/sessions
 
   mail:
     image: mailhog/mailhog
     ports:
-      - 7011:8025
+      - 2801:8025
 
   selenium:
     build:

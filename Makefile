@@ -15,7 +15,7 @@ barth:
 sh-b:
 	docker compose exec backend bash
 sh-f:
-	docker compose exec frontend sh
+	docker compose exec frontend bash
 sh-n:
 	docker compose exec nlp bash
 sh-d:
@@ -68,13 +68,17 @@ t-f:
 	@make t-fu
 	@make t-fc
 	@make t-fi
-
+	@make t-fr
+t-finstall:
+	docker compose exec frontend npx playwright install 
 t-fu:
 	docker compose exec frontend pnpm test:u
 t-fc:
 	docker compose exec frontend pnpm test:c
 t-fi:
 	docker compose exec frontend pnpm test:i
+t-fr:
+	docker compose exec frontend npx playwright show-report --host=0.0.0.0 --port=2802
 
 # NLP
 # t-n:
