@@ -1,9 +1,11 @@
+# Standard Library
 import json
 import sys
 import time
 from datetime import datetime as dt
 from datetime import timedelta, timezone
 
+# First Party Library
 from legacy.base import connectDBClass as database
 from legacy.nlp import (
     classification_analysis,
@@ -19,7 +21,6 @@ from legacy.nlp.dic import dic_to_trie
 
 
 def nlpForDiary(user_id):
-
     # DBインスタンス
     db = database.connectDB()
 
@@ -42,25 +43,32 @@ def nlpForDiary(user_id):
     dbに入っている日付2021-09-20 14:29:16
     """
     for row in rows:
-
         # 個別日記のループ
         if row[1] != None:
             time_updated_at = row[1]  # diaries updated_at
         else:
             # データない場合(確実に統計処理を走らせるために、過去の日付を入れる)
-            time_updated_at = time.strptime("1800-1-2 11:11:11", "%Y-%m-%d %H:%M:%S")
+            time_updated_at = time.strptime(
+                "1800-1-2 11:11:11", "%Y-%m-%d %H:%M:%S"
+            )
         # 統計の更新日取得
         if row[2] != None:
-            time_statistics_updated_at = row[2]  # statistic_per_dates updated_at
+            time_statistics_updated_at = row[
+                2
+            ]  # statistic_per_dates updated_at
         else:
             # 新規で空のデータを作成
-            db.create_diary_meta_row("statistic_per_dates", row[0], dt.now(JST))
+            db.create_diary_meta_row(
+                "statistic_per_dates", row[0], dt.now(JST)
+            )
             # データない場合(確実に統計処理を走らせるために、過去の日付を入れる)
             time_statistics_updated_at = dt.strptime(
                 "1800-1-1 11:11:11", "%Y-%m-%d %H:%M:%S"
             )
 
-        logic_updated_at = dt.strptime("2021-10-27 21:00:22", "%Y-%m-%d %H:%M:%S")
+        logic_updated_at = dt.strptime(
+            "2021-10-27 21:00:22", "%Y-%m-%d %H:%M:%S"
+        )
         # 統計の更新がロジック更新後に更新入っているか、統計更新してから日記側に変更がないときは変更しない
         if (
             time_statistics_updated_at > logic_updated_at
@@ -89,7 +97,9 @@ def nlpForDiary(user_id):
             """
             emotions:感情数値化
             """
-            emotions = emotions_analysis.get_emotion(dic_posi, dic_nega, value_content)
+            emotions = emotions_analysis.get_emotion(
+                dic_posi, dic_nega, value_content
+            )
             """
             flavor:ユーザーの日記らしさ、コサイン類似度?TF-IDF?
             値は出てくるが、激的に遅い上、差が見られない
@@ -102,8 +112,10 @@ def nlpForDiary(user_id):
             """
             classification:推定分類　←afliation使えばすぐ行けそう
             """
-            classification = classification_analysis.get_mostGuess_classification(
-                value_affiliation
+            classification = (
+                classification_analysis.get_mostGuess_classification(
+                    value_affiliation
+                )
             )
             # print(classification)
             """

@@ -1,11 +1,14 @@
+# Standard Library
 import asyncio
 import json
 from collections.abc import Iterable
 from typing import List
 
+# Third Party Library
 from google.protobuf import json_format
-from legacy import pythonUseFromPHP
 
+# First Party Library
+from legacy import pythonUseFromPHP
 from proto import nlp_pb2, nlp_pb2_grpc
 
 
@@ -16,7 +19,9 @@ class NlpManager(nlp_pb2_grpc.NlpManagerServicer):
 
     @classmethod
     def get_name_for_reflection_register(self) -> str:
-        return nlp_pb2_grpc.DESCRIPTOR.services_by_name[self.__name__].full_name
+        return nlp_pb2_grpc.DESCRIPTOR.services_by_name[
+            self.__name__
+        ].full_name
 
     def GenerateAll(self, request: nlp_pb2.GenerateAllRequest, context):
         user_id = request.userId

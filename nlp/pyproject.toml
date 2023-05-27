@@ -37,7 +37,17 @@ line-length = 79
 # シングルクォーテーションに統一したいけど、その設定がない。あるのは変えないって設定だけ。
 # PythonではPHPみたいにシングルとダブルで意味が変わらないので、ダブルクオーテーションで統一する。
 # skip-string-normalization = true
-exclude = [".pytest_cache", ".mypy_cache", "__pycache__", "proto"]
+# exclude = [".pytest_cache", ".mypy_cache", "__pycache__", "proto"]
+exclude = '''
+/(
+    \.pytest_cache
+  | \.mypy_cache
+  | __pycache__
+  | proto
+  | build
+  | dist
+)/
+'''
 
 # import整理
 [tool.isort]

@@ -1,9 +1,11 @@
+# Standard Library
 import collections  # 配列の要素カウント
 import json
 import sys
 from datetime import datetime as dt
 from datetime import timedelta, timezone
 
+# First Party Library
 from legacy.base import connectDBClass as database
 
 
@@ -157,10 +159,14 @@ def nlpForMonthAndYear(user_id):
         )
         # 年別用　無ければ作成、あれば足す
         if date_label in year_dicList[year]["word_counts_raw"].keys():
-            year_dicList[year]["word_counts_raw"][date_label] += value_char_length
+            year_dicList[year]["word_counts_raw"][
+                date_label
+            ] += value_char_length
             year_dicList[year]["diary_counter"][date_label] += 1
         else:
-            year_dicList[year]["word_counts_raw"][date_label] = value_char_length
+            year_dicList[year]["word_counts_raw"][
+                date_label
+            ] = value_char_length
             year_dicList[year]["diary_counter"][date_label] = 1
 
         """
@@ -193,12 +199,16 @@ def nlpForMonthAndYear(user_id):
                 yMonth_dicList[date_label]["noun_rank"].append(
                     individual_token["lemma"]
                 )
-                year_dicList[year]["noun_rank"].append(individual_token["lemma"])
+                year_dicList[year]["noun_rank"].append(
+                    individual_token["lemma"]
+                )
             elif "形容詞" in individual_token["xPOSTag"]:
                 yMonth_dicList[date_label]["adjective_rank"].append(
                     individual_token["lemma"]
                 )
-                year_dicList[year]["adjective_rank"].append(individual_token["lemma"])
+                year_dicList[year]["adjective_rank"].append(
+                    individual_token["lemma"]
+                )
 
         """
         重要そうな単語3
@@ -215,7 +225,9 @@ def nlpForMonthAndYear(user_id):
                 yMonth_dicList[date_label]["important_words"].append(
                     important_word["name"]
                 )
-                year_dicList[year]["important_words"].append(important_word["name"])
+                year_dicList[year]["important_words"].append(
+                    important_word["name"]
+                )
 
         """
         人物多い順3
@@ -232,7 +244,9 @@ def nlpForMonthAndYear(user_id):
                 yMonth_dicList[date_label]["special_people"].append(
                     special_person["name"]
                 )
-                year_dicList[year]["special_people"].append(special_person["name"])
+                year_dicList[year]["special_people"].append(
+                    special_person["name"]
+                )
 
         """
         推定分類
@@ -242,7 +256,9 @@ def nlpForMonthAndYear(user_id):
         count:
         }
         """
-        yMonth_dicList[date_label]["classifications"].append(value_classification)
+        yMonth_dicList[date_label]["classifications"].append(
+            value_classification
+        )
         year_dicList[year]["classifications"].append(value_classification)
 
     # forループここまで
@@ -252,7 +268,9 @@ def nlpForMonthAndYear(user_id):
     """
     yearList = []  # 年別で使う
     # すでに存在しているものを取得
-    exist_date_per_months = db.check_exist_data("statistic_per_months", user_id)
+    exist_date_per_months = db.check_exist_data(
+        "statistic_per_months", user_id
+    )
     for dicKey in yMonth_dicList.keys():
         # 日付取得
         date = dicKey.split("-")
@@ -283,7 +301,9 @@ def nlpForMonthAndYear(user_id):
         """
         名詞
         """
-        noun_rank_raw = collections.Counter(yMonth_dic["noun_rank"])  # 単語要素別にカウント
+        noun_rank_raw = collections.Counter(
+            yMonth_dic["noun_rank"]
+        )  # 単語要素別にカウント
         noun_rank_all = sorted(
             noun_rank_raw.items(), key=lambda x: x[1], reverse=True
         )  # 値の大きい順にソート
@@ -427,7 +447,9 @@ def nlpForMonthAndYear(user_id):
         """
         名詞
         """
-        noun_rank_raw = collections.Counter(year_dic["noun_rank"])  # 単語要素別にカウント
+        noun_rank_raw = collections.Counter(
+            year_dic["noun_rank"]
+        )  # 単語要素別にカウント
         noun_rank_all = sorted(
             noun_rank_raw.items(), key=lambda x: x[1], reverse=True
         )  # 値の大きい順にソート

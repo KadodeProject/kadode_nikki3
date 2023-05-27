@@ -1,15 +1,18 @@
 # gRPC serverに登録するservicer
 # gRPCのサーバー実装ではThreadPoolを利用する
+# Standard Library
 from concurrent.futures import ThreadPoolExecutor
 
+# Third Party Library
 # 「grpc」パッケージと、grpc_tools.protocによって生成したパッケージをimportする
 import grpc
 
 # grpc reflection用の追加ライブラリ
 from grpc_reflection.v1alpha import reflection
-from servicers.nlp import NlpManager
 
+# First Party Library
 from proto import nlp_pb2, nlp_pb2_grpc
+from servicers.nlp import NlpManager
 
 
 def manager():

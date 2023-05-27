@@ -8,8 +8,10 @@ pre終わる前に次の実行行ってエラーでる
 が起きるので、全部pythonで呼び出すことで解決
 """
 
+# Standard Library
 import sys
 
+# First Party Library
 from legacy import nlpForDiary, nlpForMonthAndYear, nlpForPre, nlpForTotal
 
 
