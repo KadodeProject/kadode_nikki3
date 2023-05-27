@@ -109,4 +109,4 @@ warn_redundant_casts = true
 # テスト
 [tool.pytest.ini_options]
 testpaths = ["tests"]
-filterwarnings = ["ignore::DeprecationWarning"]
+# filterwarnings = ["ignore::DeprecationWarning"]
