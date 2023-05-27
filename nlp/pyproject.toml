@@ -51,9 +51,9 @@ exclude = '''
 
 # import整理
 [tool.isort]
+# isortはexcludeオプションなし
 # blackと競合防止の為profile追加
 profile = "black"
-# isortはexcludeオプションなし
 line_length = 79
 include_trailing_comma = true
 
@@ -80,14 +80,31 @@ exclude = [".pytest_cache", ".mypy_cache", "__pycache__", "proto"]
 ignore = ["E203", "W503"]
 
 # 循環的複雑度のチェック(条件分岐の数など)
-max-complexity = 18
+max-complexity = 10
 
 # 型チェック
 [tool.mypy]
 python_version = "3.11"
-no_strict_optional = true
-ignore_missing_imports = true
-check_untyped_defs = true
+# エラーメッセージ関連
+show_error_context = false
+show_column_numbers = true
+
+# サードパティライブラリまで見て必要のない警告をするのを防ぐ
+# ignore_missing_imports = true
+
+# 関数定義の引数/戻り値に型アノテーション必須
+disallow_untyped_defs = true
+
+# Optional型の引数や戻り値を明示的に指定しないと指摘
+no_implicit_optional = true
+
+# anyが戻り地なのに型を付けている時に指摘
+warn_return_any = true
+
+# type: ignore しているのにエラーない場所を指摘
+warn_unused_ignores = true
+# 冗長なキャストを指摘
+warn_redundant_casts = true
 
 # テスト
 [tool.pytest.ini_options]
