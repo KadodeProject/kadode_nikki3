@@ -30,7 +30,7 @@ sh-d:
 1:
 	@make 1-b
 	@make 1-f
-	# @make 1-n
+	@make 1-n
 1-b:
 	@make f-b
 	@make c-b
@@ -38,9 +38,9 @@ sh-d:
 1-f:
 	@make f-f
 	@make c-f
-# 1-n:
-# 	@make f-n
-# 	@make c-n
+1-n:
+	@make f-n
+	@make c-n
 
 # 
 # テスト
@@ -48,7 +48,7 @@ sh-d:
 t-a:
 	@make t-b
 	@make t-f
-	# @make t-n
+	@make t-n
 
 # バックエンド
 t-b:
@@ -81,17 +81,17 @@ t-fr:
 	docker compose exec frontend npx playwright show-report --host=0.0.0.0 --port=2802
 
 # NLP
-# t-n:
-# 	@make t-nu
-# 	@make t-nc
-# 	@make t-ni
-#
-# t-nu:
-# 	docker compose exec nlp pytest -m unit
-# t-nc:
-# 	docker compose exec nlp pytest -m component
-# t-ni:
-# 	docker compose exec nlp pytest -m integration
+t-n:
+	@make t-nu
+	@make t-nc
+	@make t-ni
+
+t-nu:
+	docker compose exec nlp pytest tests/unit
+t-nc:
+	docker compose exec nlp pytest tests/combination
+t-ni:
+	docker compose exec nlp pytest tests/integration
 
 
 
@@ -108,7 +108,9 @@ f-b:
 f-f:
 	docker compose exec frontend pnpm format
 	docker compose exec frontend pnpm lint
-# f-n:
+f-n:
+	docker compose exec nlp black .
+	docker compose exec nlp isort .
 
 
 
@@ -125,9 +127,12 @@ c-b:
 	docker compose exec backend ./vendor/bin/phpstan analyse
 c-f:
 	docker compose exec frontend pnpm check
-# c-n:
-#
-#
+c-n:
+	docker compose exec nlp mypy .
+	docker compose exec nlp pflake8 .
+
+
+
 # update
 #
 u:
