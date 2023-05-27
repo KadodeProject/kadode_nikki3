@@ -111,6 +111,7 @@ f-f:
 f-n:
 	docker compose exec nlp black .
 	docker compose exec nlp isort .
+	docker compose exec nlp pflake8 .
 
 
 
@@ -129,7 +130,6 @@ c-f:
 	docker compose exec frontend pnpm check
 c-n:
 	docker compose exec nlp mypy .
-	docker compose exec nlp pflake8 .
 
 
 

@@ -108,5 +108,6 @@ warn_redundant_casts = true
 
 # テスト
 [tool.pytest.ini_options]
-testpaths = ["tests"]
+# testpathsの指定はコマンド上で指定するのでここでは設定しない
+# testpaths = ["tests"]
 # filterwarnings = ["ignore::DeprecationWarning"]
