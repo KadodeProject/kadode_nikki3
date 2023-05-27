@@ -1,0 +1,42 @@
+name: 【nlp】静的解析
+
+on:
+  pull_request:
+    branches:
+      - main
+    paths:
+      - nlp/**
+
+defaults:
+  run:
+    working-directory: nlp
+
+jobs:
+  nlp_static_analysis:
+    name: mypy
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      # デフォで入っているpythonを使う
+      - name: Install poetry
+        run: |
+          curl -sSL https://install.python-poetry.org | python3 -
+          echo "$HOME/.poetry/bin" >> $GITHUB_PATH
+
+      - name: Setup Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: 3.11
+          cache: "poetry" # packageがキャッシュされる模様
+
+      - name: Install Libraries
+        run: |
+          # poetry config virtualenvs.create false
+          poetry install --no-interaction
+
+      - name: Run mypy
+        run: |
+          poetry run mypy .
