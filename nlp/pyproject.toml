@@ -88,15 +88,13 @@ ignore = ["E203", "W503", "E501", "E711"]
 # max-complexity = 10
 
 # 型チェック
+# https://mypy.readthedocs.io/en/stable/config_file.html#example-pyproject-toml
 [tool.mypy]
 python_version = "3.11"
 # エラーメッセージ関連
 show_error_context = true
 show_column_numbers = true
 
-# サードパティライブラリまで見て必要のない警告をするのを防ぐ
-#  error: Skipping analyzing "ginza": module is installed, but missing library stubs or py.typed marker  [import] ←こういうのが出てくるので
-ignore_missing_imports = true
 
 # 関数定義の引数/戻り値に型アノテーション必須
 disallow_untyped_defs = true
@@ -111,6 +109,18 @@ warn_return_any = true
 warn_unused_ignores = true
 # 冗長なキャストを指摘
 warn_redundant_casts = true
+
+# サードパティライブラリまで見て必要のない警告をするのを防ぐ
+#  error: Skipping analyzing "ginza": module is installed, but missing library stubs or py.typed marker  [import] ←こういうのが出てくるので
+[[tool.mypy.overrides]]
+module = [
+  "grpc.tools",
+  "ahocorapy.keywordtree",
+  "ginza",
+  "grpc",
+  "grpc_reflection.v1alpha",
+]
+ignore_missing_imports = true
 
 # テスト
 [tool.pytest.ini_options]
