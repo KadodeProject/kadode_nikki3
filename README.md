@@ -15,38 +15,41 @@ https://kadode.usuyuki.net
 
 ### バックエンド
 
-[![【backend】PHP Lint (cs-fixer)](https://github.com/KadodeProject/kadode_nikki3/actions/workflows/backend-php-cs-fixer.yml/badge.svg)](https://github.com/KadodeProject/kadode_nikki3/actions/workflows/backend-php-cs-fixer.yml)
-[![【backend】PHP静的解析 (PHPStan)](https://github.com/KadodeProject/kadode_nikki3/actions/workflows/backend-phpstan.yml/badge.svg)](https://github.com/KadodeProject/kadode_nikki3/actions/workflows/backend-phpstan.yml)
+[![【backend】Lint](https://github.com/KadodeProject/kadode_nikki3/actions/workflows/backend-lint.yml/badge.svg)](https://github.com/KadodeProject/kadode_nikki3/actions/workflows/backend-lint.yml)
+[![【backend】静的解析](https://github.com/KadodeProject/kadode_nikki3/actions/workflows/backend-staticAnalysis.yml/badge.svg)](https://github.com/KadodeProject/kadode_nikki3/actions/workflows/backend-staticAnalysis.yml)
 
-[![【backend】PHPテスト[単体]](https://github.com/KadodeProject/kadode_nikki3/actions/workflows/backend-unitTest.yml/badge.svg)](https://github.com/KadodeProject/kadode_nikki3/actions/workflows/backend-unitTest.yml)
-[![【backend】PHPテスト[結合]](https://github.com/KadodeProject/kadode_nikki3/actions/workflows/backend-CombinedTest.yml/badge.svg)](https://github.com/KadodeProject/kadode_nikki3/actions/workflows/backend-CombinedTest.yml)
+[![【backend】テスト[単体]](https://github.com/KadodeProject/kadode_nikki3/actions/workflows/backend-testUnit.yml/badge.svg)](https://github.com/KadodeProject/kadode_nikki3/actions/workflows/backend-testUnit.yml)
+[![【backend】テスト[結合]](https://github.com/KadodeProject/kadode_nikki3/actions/workflows/backend-testCombination.yml/badge.svg)](https://github.com/KadodeProject/kadode_nikki3/actions/workflows/backend-testCombination.yml)
 
 ### フロントエンド
 
-[![【frontend】Lint (prettier)](https://github.com/KadodeProject/kadode_nikki3/actions/workflows/frontend-lint.yml/badge.svg)](https://github.com/KadodeProject/kadode_nikki3/actions/workflows/frontend-lint.yml)
-[![【frontend】静的解析 (svelte-check)](https://github.com/KadodeProject/kadode_nikki3/actions/workflows/frontend-staticAnalysis.yml/badge.svg)](https://github.com/KadodeProject/kadode_nikki3/actions/workflows/frontend-staticAnalysis.yml)
+[![【frontend】Lint](https://github.com/KadodeProject/kadode_nikki3/actions/workflows/frontend-lint.yml/badge.svg)](https://github.com/KadodeProject/kadode_nikki3/actions/workflows/frontend-lint.yml)
+[![【frontend】静的解析](https://github.com/KadodeProject/kadode_nikki3/actions/workflows/frontend-staticAnalysis.yml/badge.svg)](https://github.com/KadodeProject/kadode_nikki3/actions/workflows/frontend-staticAnalysis.yml)
 
-(テスト書きなさい！！)
+[![【frontend】テスト[単体]](https://github.com/KadodeProject/kadode_nikki3/actions/workflows/frontend-testUnit.yml/badge.svg)](https://github.com/KadodeProject/kadode_nikki3/actions/workflows/frontend-testUnit.yml)
+[![【frontend】テスト[結合(コンポーネント)]](https://github.com/KadodeProject/kadode_nikki3/actions/workflows/frontend-testCombination.yml/badge.svg)](https://github.com/KadodeProject/kadode_nikki3/actions/workflows/frontend-testCombination.yml)
+[![【frontend】テスト[統合]](https://github.com/KadodeProject/kadode_nikki3/actions/workflows/frontend-testIntegration.yml/badge.svg)](https://github.com/KadodeProject/kadode_nikki3/actions/workflows/frontend-testIntegration.yml)
 
 ### NLP
 
-(準備中)
+[![【nlp】Lint](https://github.com/KadodeProject/kadode_nikki3/actions/workflows/nlp-lint.yml/badge.svg)](https://github.com/KadodeProject/kadode_nikki3/actions/workflows/nlp-lint.yml)
+[![【nlp】静的解析](https://github.com/KadodeProject/kadode_nikki3/actions/workflows/nlp-staticAnalysis.yml/badge.svg)](https://github.com/KadodeProject/kadode_nikki3/actions/workflows/nlp-staticAnalysis.yml)
 
-### 外部ツール
-
-[![Total alerts](https://img.shields.io/lgtm/alerts/g/Usuyuki/kadode_nikki3.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/Usuyuki/kadode_nikki3/alerts/)
-[![Language grade: JavaScript](https://img.shields.io/lgtm/grade/javascript/g/Usuyuki/kadode_nikki3.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/Usuyuki/kadode_nikki3/context:javascript)
-[![Language grade: Python](https://img.shields.io/lgtm/grade/python/g/Usuyuki/kadode_nikki3.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/Usuyuki/kadode_nikki3/context:python)
+[![【nlp】テスト[単体]](https://github.com/KadodeProject/kadode_nikki3/actions/workflows/nlp-testUnit.yml/badge.svg)](https://github.com/KadodeProject/kadode_nikki3/actions/workflows/nlp-testUnit.yml)
+[![【nlp】テスト[結合]](https://github.com/KadodeProject/kadode_nikki3/actions/workflows/nlp-testCombination.yml/badge.svg)](https://github.com/KadodeProject/kadode_nikki3/actions/workflows/nlp-testCombination.yml)
+[![【nlp】テスト[統合]](https://github.com/KadodeProject/kadode_nikki3/actions/workflows/nlp-testIntegration.yml/badge.svg)](https://github.com/KadodeProject/kadode_nikki3/actions/workflows/nlp-testIntegration.yml)
 
 ## CD
 
-[![コンテナ生成とデプロイ](https://github.com/KadodeProject/kadode_nikki3/actions/workflows/automaticDeploy.yml/badge.svg)](https://github.com/KadodeProject/kadode_nikki3/actions/workflows/automaticDeploy.yml)
+[![【infra】コンテナ生成とデプロイ](https://github.com/KadodeProject/kadode_nikki3/actions/workflows/automaticDeploy.yml/badge.svg)](https://github.com/KadodeProject/kadode_nikki3/actions/workflows/automaticDeploy.yml)
 
 [![かどで日記wiki生成](https://github.com/Usuyuki/kadode_nikki3/actions/workflows/pages/pages-build-deployment/badge.svg)](https://github.com/Usuyuki/kadode_nikki3/actions/workflows/pages/pages-build-deployment)
 
 ## 他
 
-[![PR自動ラベル付与](https://github.com/KadodeProject/kadode_nikki3/actions/workflows/label.yml/badge.svg)](https://github.com/KadodeProject/kadode_nikki3/actions/workflows/label.yml)
+[![【infra】PR自動ラベル付与](https://github.com/KadodeProject/kadode_nikki3/actions/workflows/label.yml/badge.svg)](https://github.com/KadodeProject/kadode_nikki3/actions/workflows/label.yml)
+
+[![【infra】パッケージ更新差分検出](https://github.com/KadodeProject/kadode_nikki3/actions/workflows/loxcan.yml/badge.svg)](https://github.com/KadodeProject/kadode_nikki3/actions/workflows/loxcan.yml)
 
 ## Website
 
