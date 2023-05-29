@@ -89,8 +89,10 @@ ignore = ["E203", "W503", "E501", "E711"]
 
 # 型チェック
 # https://mypy.readthedocs.io/en/stable/config_file.html#example-pyproject-toml
+# 対象ファイルの指定はコマンド上で指定するのでここでは設定しない(設定ファイルでうまく動かない)
 [tool.mypy]
 python_version = "3.11"
+
 # エラーメッセージ関連
 show_error_context = true
 show_column_numbers = true
@@ -123,7 +125,7 @@ module = [
 ignore_missing_imports = true
 
 # テスト
+# 対象ファイルの指定はコマンド上で指定するのでここでは設定しない
 [tool.pytest.ini_options]
-# testpathsの指定はコマンド上で指定するのでここでは設定しない
 # testpaths = ["tests"]
 # filterwarnings = ["ignore::DeprecationWarning"]

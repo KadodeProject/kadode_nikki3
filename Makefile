@@ -129,7 +129,10 @@ c-b:
 c-f:
 	docker compose exec frontend pnpm check
 c-n:
-	docker compose exec nlp mypy .
+	docker compose exec nlp mypy ./app
+	docker compose exec nlp mypy ./legacy
+	docker compose exec nlp mypy ./servicers
+	docker compose exec nlp mypy ./tests
 
 
 
