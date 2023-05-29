@@ -192,6 +192,7 @@ pnpm-build:
 # 
 
 black:
+	# previewは原則導入しない
 	docker compose exec nlp black .
 isort:
 	docker compose exec nlp isort .

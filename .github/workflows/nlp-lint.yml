@@ -41,7 +41,7 @@ jobs:
       - name: Run Black
         run: |
           # https://black.readthedocs.io/en/stable/integrations/github_actions.html
-          poetry run black . --check --diff
+          poetry run black . --diff --check
       - name: Run isort
         run: |
           # https://pycqa.github.io/isort/docs/configuration/github_action.html

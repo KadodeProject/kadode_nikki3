@@ -77,10 +77,13 @@ exclude = [".pytest_cache", ".mypy_cache", "__pycache__", "proto"]
 # https://www.flake8rules.com/
 # E203: whitespace before ':'
 # W503: line break before binary operator
-ignore = ["E203", "W503"]
+# E501: line too long ←これはblackでやってくれるので不要であり、blackではコメントや文字列の改行ができないので無駄にコケるのを防ぐ
+# E711: comparison to None should be 'if cond is None:' ←さすがに !=と==をis notとisにはしたくない。phpとjsとの帳尻合わせたい。
+ignore = ["E203", "W503", "E501", "E711"]
 
 # 循環的複雑度のチェック(条件分岐の数など)
-max-complexity = 10
+# 現状のコードだと100超えすらあるので、これはもっとコードがきれいになってから有効化する
+# max-complexity = 10
 
 # 型チェック
 [tool.mypy]
