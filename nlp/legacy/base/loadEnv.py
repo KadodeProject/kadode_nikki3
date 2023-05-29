@@ -1,6 +1,8 @@
+# Standard Library
 import os
 from os.path import dirname, join
 
+# Third Party Library
 from dotenv import load_dotenv
 
 load_dotenv(verbose=True)

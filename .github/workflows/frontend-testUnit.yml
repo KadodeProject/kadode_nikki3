@@ -1,4 +1,4 @@
-name: 【frontend】単体テスト
+name: 【frontend】テスト[単体]
 
 on:
   pull_request:

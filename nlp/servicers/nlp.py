@@ -1,11 +1,8 @@
+# Standard Library
 import asyncio
-import json
-from collections.abc import Iterable
-from typing import List
 
-from google.protobuf import json_format
-from legacy import pythonUseFromPHP
-
+# First Party Library
+from legacy.pythonUseFromPHP import legacyRun
 from proto import nlp_pb2, nlp_pb2_grpc
 
 
@@ -16,7 +13,9 @@ class NlpManager(nlp_pb2_grpc.NlpManagerServicer):
 
     @classmethod
     def get_name_for_reflection_register(self) -> str:
-        return nlp_pb2_grpc.DESCRIPTOR.services_by_name[self.__name__].full_name
+        return nlp_pb2_grpc.DESCRIPTOR.services_by_name[
+            self.__name__
+        ].full_name
 
     def GenerateAll(self, request: nlp_pb2.GenerateAllRequest, context):
         user_id = request.userId
@@ -24,7 +23,7 @@ class NlpManager(nlp_pb2_grpc.NlpManagerServicer):
         # 非同期で投げっぱなしにてreturnする いわゆるfire and forget
         loop = asyncio.new_event_loop()
         asyncio.set_event_loop(loop)
-        loop.run_in_executor(None, pythonUseFromPHP.legacyRun, user_id)
+        loop.run_in_executor(None, legacyRun, user_id)
         print(f"userId: {user_id}")
 
         return nlp_pb2.GenerateAllResponse(start=1)

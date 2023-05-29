@@ -30,7 +30,7 @@ sh-d:
 1:
 	@make 1-b
 	@make 1-f
-	# @make 1-n
+	@make 1-n
 1-b:
 	@make f-b
 	@make c-b
@@ -38,9 +38,9 @@ sh-d:
 1-f:
 	@make f-f
 	@make c-f
-# 1-n:
-# 	@make f-n
-# 	@make c-n
+1-n:
+	@make f-n
+	@make c-n
 
 # 
 # テスト
@@ -48,7 +48,7 @@ sh-d:
 t-a:
 	@make t-b
 	@make t-f
-	# @make t-n
+	@make t-n
 
 # バックエンド
 t-b:
@@ -81,17 +81,17 @@ t-fr:
 	docker compose exec frontend npx playwright show-report --host=0.0.0.0 --port=2802
 
 # NLP
-# t-n:
-# 	@make t-nu
-# 	@make t-nc
-# 	@make t-ni
-#
-# t-nu:
-# 	docker compose exec nlp pytest -m unit
-# t-nc:
-# 	docker compose exec nlp pytest -m component
-# t-ni:
-# 	docker compose exec nlp pytest -m integration
+t-n:
+	@make t-nu
+	@make t-nc
+	@make t-ni
+
+t-nu:
+	docker compose exec nlp pytest tests/unit
+t-nc:
+	docker compose exec nlp pytest tests/combination
+t-ni:
+	docker compose exec nlp pytest tests/integration
 
 
 
@@ -101,14 +101,17 @@ t-fr:
 f:
 	@make f-b
 	@make f-f
-	# @make f-n
+	@make f-n
 
 f-b:
 	docker compose exec backend ./vendor/bin/php-cs-fixer fix --config=.php-cs-fixer.dist.php -v
 f-f:
 	docker compose exec frontend pnpm format
 	docker compose exec frontend pnpm lint
-# f-n:
+f-n:
+	docker compose exec nlp black .
+	docker compose exec nlp isort .
+	docker compose exec nlp pflake8 .
 
 
 
@@ -119,15 +122,18 @@ f-f:
 c:
 	@make c-b
 	@make c-f
-	# @make c-n
+	@make c-n
 
 c-b:
 	docker compose exec backend ./vendor/bin/phpstan analyse
 c-f:
 	docker compose exec frontend pnpm check
-# c-n:
-#
-#
+c-n:
+	# legacyなど従来ファイルは無限にエラーが出てくるので新規で追加するファイルのみを対象にする
+	docker compose exec nlp mypy ./src
+
+
+
 # update
 #
 u:
@@ -177,15 +183,24 @@ make-model:
 # 
 # フロントエンド固有のもの
 # 
-f-dev:
+pnpm-dev:
 	docker compose exec frontend pnpm dev
-f-build:
+pnpm-build:
 	docker compose exec frontend pnpm build
 
 # 
 # NLP固有のもの
 # 
 
+black:
+	# previewは原則導入しない
+	docker compose exec nlp black .
+isort:
+	docker compose exec nlp isort .
+flake:
+	docker compose exec nlp pflake8 .
+mypy:
+	@make c-n
 
 #
 # 開発支援

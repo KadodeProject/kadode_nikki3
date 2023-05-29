@@ -2,7 +2,7 @@
 name = "nlp"
 version = "0.1.0"
 description = ""
-authors = ["usuyuki"]
+authors = ["usuyuki <usuyuki@usuyuki.net>"]
 license = "MIT"
 readme = "README.md"
 
@@ -18,6 +18,115 @@ grpcio-tools = "^1.53.0"
 grpcio-reflection = "^1.53.0"
 
 
+[tool.poetry.group.dev.dependencies]
+flake8 = "^6.0.0"
+black = "^23.3.0"
+isort = "^5.12.0"
+mypy = "^1.3.0"
+pytest = "^7.3.1"
+pyproject-flake8 = "^6.0.0.post1"
+types-mysqlclient = "^2.1.5.7"
+types-protobuf = "^4.23.0.1"
+
 [build-system]
 requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"
+
+# コードフォーマッタ
+[tool.black]
+# 79がPEP8の推奨
+line-length = 79
+# シングルクォーテーションに統一したいけど、その設定がない。あるのは変えないって設定だけ。
+# PythonではPHPみたいにシングルとダブルで意味が変わらないので、ダブルクオーテーションで統一する。
+# skip-string-normalization = true
+# exclude = [".pytest_cache", ".mypy_cache", "__pycache__", "proto"]
+exclude = '''
+/(
+    \.pytest_cache
+  | \.mypy_cache
+  | __pycache__
+  | proto
+  | build
+  | dist
+)/
+'''
+
+# import整理
+[tool.isort]
+# isortはexcludeオプションなし
+# blackと競合防止の為profile追加
+profile = "black"
+line_length = 79
+include_trailing_comma = true
+
+# ライブラリの種類に応じてグループ分けしてコメント付与
+import_heading_stdlib = "Standard Library"
+import_heading_thirdparty = "Third Party Library"
+import_heading_firstparty = "First Party Library"
+import_heading_localfolder = "Local Library"
+
+# https://pycqa.github.io/isort/docs/configuration/multi_line_output_modes.html
+# import 複数の時の挙動変更
+multi_line_output = 3
+
+
+# Lint
+[tool.flake8]
+max-line-length = 79
+exclude = [".pytest_cache", ".mypy_cache", "__pycache__", "proto"]
+
+# blockとの互換性のために↓を追加
+# https://www.flake8rules.com/
+# E203: whitespace before ':'
+# W503: line break before binary operator
+# E501: line too long ←これはblackでやってくれるので不要であり、blackではコメントや文字列の改行ができないので無駄にコケるのを防ぐ
+# E711: comparison to None should be 'if cond is None:' ←さすがに !=と==をis notとisにはしたくない。phpとjsとの帳尻合わせたい。
+ignore = ["E203", "W503", "E501", "E711"]
+
+# 循環的複雑度のチェック(条件分岐の数など)
+# 現状のコードだと100超えすらあるので、これはもっとコードがきれいになってから有効化する
+# max-complexity = 10
+
+# 型チェック
+# https://mypy.readthedocs.io/en/stable/config_file.html#example-pyproject-toml
+# 対象ファイルの指定はコマンド上で指定するのでここでは設定しない(設定ファイルでうまく動かない)
+[tool.mypy]
+python_version = "3.11"
+namespace_packages = true
+# エラーメッセージ関連
+show_error_context = true
+show_column_numbers = true
+
+
+# 関数定義の引数/戻り値に型アノテーション必須
+# あとで有効化する
+disallow_untyped_defs = true
+
+# Optional型の引数や戻り値を明示的に指定しないと指摘
+no_implicit_optional = true
+
+# anyが戻り値なのに型を付けている時に指摘
+warn_return_any = true
+
+# type: ignore しているのにエラーない場所を指摘
+warn_unused_ignores = true
+# 冗長なキャストを指摘
+warn_redundant_casts = true
+
+# サードパティライブラリまで見て必要のない警告をするのを防ぐ
+#  error: Skipping analyzing "ginza": module is installed, but missing library stubs or py.typed marker  [import] ←こういうのが出てくるので
+[[tool.mypy.overrides]]
+module = [
+  "grpc.tools",
+  "ahocorapy.keywordtree",
+  "ginza",
+  "grpc",
+  "grpc_reflection.v1alpha",
+]
+ignore_missing_imports = true
+
+# テスト
+# 対象ファイルの指定はコマンド上で指定するのでここでは設定しない
+[tool.pytest.ini_options]
+# testpaths = ["tests"]
+# filterwarnings = ["ignore::DeprecationWarning"]

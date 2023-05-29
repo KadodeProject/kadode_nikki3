@@ -1,7 +1,9 @@
+# Standard Library
 import json
 import sys
 
-from legacy.base import connectDBClass as database
+# Third Party Library
+import base.connectDBClass as database
 
 
 def nlpForTotal(user_id):
@@ -101,7 +103,9 @@ def nlpForTotal(user_id):
     total_special_people = sorted(
         total_special_people.items(), key=lambda x: x[1], reverse=True
     )
-    total_noun_asc = sorted(total_noun_asc.items(), key=lambda x: x[1], reverse=True)
+    total_noun_asc = sorted(
+        total_noun_asc.items(), key=lambda x: x[1], reverse=True
+    )
     total_adjective_asc = sorted(
         total_adjective_asc.items(), key=lambda x: x[1], reverse=True
     )

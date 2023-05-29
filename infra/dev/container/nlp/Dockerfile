@@ -1,4 +1,4 @@
-FROM python:3-slim
+FROM python:3.11-slim-bullseye
 LABEL maintainer="usuyuki"
 
 WORKDIR /nlp
@@ -32,7 +32,7 @@ RUN \
 ENV PATH $POETRY_HOME/bin:$PATH
 
 COPY poetry.lock pyproject.toml ./
-RUN poetry config virtualenvs.create false && poetry install
+RUN poetry config virtualenvs.create false && poetry install --no-interaction
 
 EXPOSE 1000
 

@@ -1,9 +1,9 @@
+# Third Party Library
+import base.connectDBClass as database
 import spacy
-from legacy.base import connectDBClass as database
 
 
 def nlpForPre(user_id):
-
     # DBインスタンス
     db = database.connectDB()
     # 固有表現ルールcustom

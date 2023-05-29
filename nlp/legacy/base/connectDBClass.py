@@ -1,11 +1,14 @@
+# Standard Library
 import json
 
+# Third Party Library
 import MySQLdb
 
+# Local Library
 # curl.execute(,(ここに変数))入れることでSQLインジェクション防げる。
 # SQLインジェクション放置している部分はユーザーの値が入らないところなので即急な対応は不要だが、ちゃんとエスケープしたい。
 # テーブル名がエスケープできない謎仕様なので、プラスでつなげている
-from legacy.base import loadEnv
+from . import loadEnv
 
 
 class connectDB:
@@ -172,12 +175,16 @@ class connectDB:
     """
 
     def set_statistics_json(self, user_id, **jsons):
-        for (key, value) in jsons.items():
+        for key, value in jsons.items():
             # カーソルを取得する
-            cur = self.conn.cursor()  # クエリを実行する ここはsqkインジェクションにならないところなので、そのまま自家絵やり倒す
+            cur = (
+                self.conn.cursor()
+            )  # クエリを実行する ここはsqkインジェクションにならないところなので、そのまま自家絵やり倒す
             json_value = json.dumps(value, ensure_ascii=False)
             cur.execute(
-                "UPDATE statistics SET {0} = %s WHERE user_id = %s;".format(key),
+                "UPDATE statistics SET {0} = %s WHERE user_id = %s;".format(
+                    key
+                ),
                 (json_value, user_id),
             )
             # 保存する
@@ -191,11 +198,15 @@ class connectDB:
     """
 
     def set_statistics_value(self, user_id, **values):
-        for (key, value) in values.items():
+        for key, value in values.items():
             # カーソルを取得する
-            cur = self.conn.cursor()  # クエリを実行する ここはsqkインジェクションにならないところなので、そのまま自家絵やり倒す
+            cur = (
+                self.conn.cursor()
+            )  # クエリを実行する ここはsqkインジェクションにならないところなので、そのまま自家絵やり倒す
             cur.execute(
-                "UPDATE statistics SET {0} = %s WHERE user_id = %s;".format(key),
+                "UPDATE statistics SET {0} = %s WHERE user_id = %s;".format(
+                    key
+                ),
                 (value, user_id),
             )
             # 保存する
@@ -209,12 +220,14 @@ class connectDB:
     """
 
     def set_single_normal_data(self, column, db_id, **values):
-        for (key, value) in values.items():
+        for key, value in values.items():
             # カーソルを取得する
             cur = self.conn.cursor()
             # クエリを実行する ここはsqkインジェクションにならないところなので、そのまま
             cur.execute(
-                "UPDATE {0} SET {1} = %s WHERE diary_id = %s;".format(column, key),
+                "UPDATE {0} SET {1} = %s WHERE diary_id = %s;".format(
+                    column, key
+                ),
                 (value, db_id),
             )
             # 保存する
@@ -229,14 +242,16 @@ class connectDB:
     """
 
     def set_single_json_data(self, column: str, db_id: int, **jsons):
-        for (key, value) in jsons.items():
+        for key, value in jsons.items():
             # カーソルを取得する
             cur = self.conn.cursor()
             # クエリを実行する ここはsqkインジェクションにならないところなので、そのまま
             json_value = json.dumps(value, ensure_ascii=False)
             # print('UPDATE '+column+' SET '+key+' = '+json_value+' WHERE diary_id = '+str(db_id)+';')
             cur.execute(
-                "UPDATE {0} SET {1} = %s WHERE diary_id = %s;".format(column, key),
+                "UPDATE {0} SET {1} = %s WHERE diary_id = %s;".format(
+                    column, key
+                ),
                 (json_value, db_id),
             )
 
@@ -252,7 +267,7 @@ class connectDB:
     """
 
     def set_depDate_normal_data(self, column, user_id, date, **values):
-        for (key, value) in values.items():
+        for key, value in values.items():
             # カーソルを取得する
             cur = self.conn.cursor()
             # クエリを実行する ここはsqkインジェクションにならないところなので、そのまま
@@ -285,7 +300,7 @@ class connectDB:
     """
 
     def set_depDate_json_data(self, column, user_id, date, **jsons):
-        for (key, value) in jsons.items():
+        for key, value in jsons.items():
             # カーソルを取得する
             cur = self.conn.cursor()
             # クエリを実行する ここはsqkインジェクションにならないところなので、そのまま

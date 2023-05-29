@@ -1,0 +1,53 @@
+name: 【nlp】Lint
+
+on:
+  pull_request:
+    branches:
+      - main
+    paths:
+      - nlp/**
+
+defaults:
+  run:
+    working-directory: nlp
+
+jobs:
+  nlp_lint:
+    name: Black & isort & Flake8
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      # デフォで入っているpythonを使う
+      - name: Install poetry
+        run: |
+          curl -sSL https://install.python-poetry.org | python3 -
+          echo "$HOME/.poetry/bin" >> $GITHUB_PATH
+
+      - name: Setup Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: 3.11
+          cache: "poetry" # dependenciesがキャッシュされる模様 https://github.com/actions/setup-python/blob/main/docs/advanced-usage.md#caching-packages
+
+      - name: Install Libraries
+        run: |
+          # poetry config virtualenvs.create false
+          poetry install --no-interaction
+
+      # 以後はpoetry run経由にすることでOS依存でなく指定したバージョンで実行する
+      - name: Run Black
+        run: |
+          # https://black.readthedocs.io/en/stable/integrations/github_actions.html
+          poetry run black . --check --diff
+      - name: Run isort
+        run: |
+          # https://pycqa.github.io/isort/docs/configuration/github_action.html
+          poetry run isort . --check-only --diff
+      - name: Run flake8
+        run: |
+          # https://flake8.pycqa.org/en/latest/user/options.html
+          # flake8はフォーマットでないので--check的なものは扶養
+          poetry run pflake8 .

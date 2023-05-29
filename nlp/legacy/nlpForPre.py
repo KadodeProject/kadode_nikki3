@@ -1,11 +1,15 @@
+# Standard Library
 import sys
 import time
 from datetime import datetime as dt
 from datetime import timedelta, timezone
 
+# Third Party Library
+import base.connectDBClass as database
 import spacy
-from legacy.base import connectDBClass as database
-from legacy.nlp import meta_generate
+
+# First Party Library
+from nlp import meta_generate
 
 
 def nlpForPre(user_id):
@@ -58,7 +62,9 @@ def nlpForPre(user_id):
             time_updated_at = row[4]  # diaries updated_at
         else:
             # データない場合
-            time_updated_at = time.strptime("1800-1-1 11:11:11", "%Y-%m-%d %H:%M:%S")
+            time_updated_at = time.strptime(
+                "1800-1-1 11:11:11", "%Y-%m-%d %H:%M:%S"
+            )
         # 統計の更新日取得 row[5]は統計データ側のupdated_at
         if row[5] != None:
             time_statistics_updated_at = row[5]  # diary_proceeded  updated_at
@@ -74,7 +80,9 @@ def nlpForPre(user_id):
         # print(type(time_updated_at))
         # print(type(time_statistics_updated_at))
 
-        logic_updated_at = dt.strptime("2021-10-27 21:00:22", "%Y-%m-%d %H:%M:%S")
+        logic_updated_at = dt.strptime(
+            "2021-10-27 21:00:22", "%Y-%m-%d %H:%M:%S"
+        )
         # print(logic_updated_at)
         # print(time_statistics_updated_at)
         # 統計の更新がロジック更新後に更新入っているか統計更新してから日記側に変更xがないときは変更しない
@@ -101,9 +109,11 @@ def nlpForPre(user_id):
             sentence:一文ごとの位置(係り受けで使う)
             """
 
-            token, chunk, sentence = meta_generate.get_tokenChunkSentence_by_ginza(
-                row, nlp
-            )
+            (
+                token,
+                chunk,
+                sentence,
+            ) = meta_generate.get_tokenChunkSentence_by_ginza(row, nlp)
             # print(sentence)
             # print(token)
             # print(chunk

@@ -1,3 +1,0 @@
-import ginza
-
-print("test")
