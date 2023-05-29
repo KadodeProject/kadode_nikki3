@@ -182,15 +182,21 @@ make-model:
 # 
 # フロントエンド固有のもの
 # 
-f-dev:
+pnpm-dev:
 	docker compose exec frontend pnpm dev
-f-build:
+pnpm-build:
 	docker compose exec frontend pnpm build
 
 # 
 # NLP固有のもの
 # 
 
+black:
+	docker compose exec nlp black .
+isort:
+	docker compose exec nlp isort .
+flake:
+	docker compose exec nlp pflake8 .
 
 #
 # 開発支援
