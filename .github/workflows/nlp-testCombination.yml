@@ -1,4 +1,4 @@
-name: 【nlp】テスト[単体]
+name: 【nlp】テスト[結合]
 
 on:
   pull_request:
@@ -12,8 +12,8 @@ defaults:
     working-directory: nlp
 
 jobs:
-  nlp_integration_test:
-    name: pytest unit test
+  nlp_combination_test:
+    name: pytest combination test
     runs-on: ubuntu-latest
 
     steps:
@@ -40,4 +40,4 @@ jobs:
       # 以後はpoetry run経由にすることでOS依存でなく指定したバージョンで実行する
       - name: Run pytest
         run: |
-          poetry run pytest tests/unit
+          poetry run pytest tests/combination
