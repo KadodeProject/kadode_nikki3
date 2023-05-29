@@ -1394,6 +1394,28 @@ doc = ["cairosvg (>=2.5.2,<3.0.0)", "mdx-include (>=1.4.1,<2.0.0)", "mkdocs (>=1
 test = ["black (>=22.3.0,<23.0.0)", "coverage (>=6.2,<7.0)", "isort (>=5.0.6,<6.0.0)", "mypy (==0.910)", "pytest (>=4.4.0,<8.0.0)", "pytest-cov (>=2.10.0,<5.0.0)", "pytest-sugar (>=0.9.4,<0.10.0)", "pytest-xdist (>=1.32.0,<4.0.0)", "rich (>=10.11.0,<13.0.0)", "shellingham (>=1.3.0,<2.0.0)"]
 
 [[package]]
+name = "types-mysqlclient"
+version = "2.1.5.7"
+description = "Typing stubs for mysqlclient"
+optional = false
+python-versions = "*"
+files = [
+    {file = "types-mysqlclient-2.1.5.7.tar.gz", hash = "sha256:726394639524eb42289f99d53d6a872985d42263f9de6402e9faa88464a8f9a4"},
+    {file = "types_mysqlclient-2.1.5.7-py3-none-any.whl", hash = "sha256:ac582d9cd8b4c964be9fbe7842c1ff47dac32cc93201f1cac886cdf363933c3a"},
+]
+
+[[package]]
+name = "types-protobuf"
+version = "4.23.0.1"
+description = "Typing stubs for protobuf"
+optional = false
+python-versions = "*"
+files = [
+    {file = "types-protobuf-4.23.0.1.tar.gz", hash = "sha256:7bd5ea122a057b11a82b785d9de464932a1e9175fe977a4128adef11d7f35547"},
+    {file = "types_protobuf-4.23.0.1-py3-none-any.whl", hash = "sha256:c926104f69ea62103846681b35b690d8d100ecf86c6cdda16c850a1313a272e4"},
+]
+
+[[package]]
 name = "typing-extensions"
 version = "4.6.2"
 description = "Backported and Experimental Type Hints for Python 3.7+"
@@ -1435,4 +1457,4 @@ files = [
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.11"
-content-hash = "2449e94b02930b156502b3ae0fb9c8642909df24d74d038f89a80eac218626e2"
+content-hash = "5c84ca1aa2f343708af6a63eabf7bfe545828c28a97aed40751039840bca6090"

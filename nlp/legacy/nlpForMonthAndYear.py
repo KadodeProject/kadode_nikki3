@@ -5,8 +5,8 @@ import sys
 from datetime import datetime as dt
 from datetime import timedelta, timezone
 
-# First Party Library
-from legacy.base import connectDBClass as database
+# Third Party Library
+import base.connectDBClass as database
 
 
 def nlpForMonthAndYear(user_id):

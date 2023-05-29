@@ -1,8 +1,6 @@
 # Third Party Library
+import base.connectDBClass as database
 import spacy
-
-# First Party Library
-from legacy.base import connectDBClass as database
 
 
 def nlpForPre(user_id):

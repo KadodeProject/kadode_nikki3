@@ -101,7 +101,7 @@ t-ni:
 f:
 	@make f-b
 	@make f-f
-	# @make f-n
+	@make f-n
 
 f-b:
 	docker compose exec backend ./vendor/bin/php-cs-fixer fix --config=.php-cs-fixer.dist.php -v
@@ -122,7 +122,7 @@ f-n:
 c:
 	@make c-b
 	@make c-f
-	# @make c-n
+	@make c-n
 
 c-b:
 	docker compose exec backend ./vendor/bin/phpstan analyse
@@ -198,6 +198,8 @@ isort:
 	docker compose exec nlp isort .
 flake:
 	docker compose exec nlp pflake8 .
+mypy:
+	@make c-n
 
 #
 # 開発支援

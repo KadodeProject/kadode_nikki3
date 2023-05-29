@@ -2,13 +2,11 @@
 import json
 
 # Third Party Library
-import MySQLdb
-
-# First Party Library
 # curl.execute(,(ここに変数))入れることでSQLインジェクション防げる。
 # SQLインジェクション放置している部分はユーザーの値が入らないところなので即急な対応は不要だが、ちゃんとエスケープしたい。
 # テーブル名がエスケープできない謎仕様なので、プラスでつなげている
-from legacy.base import loadEnv
+from . import loadEnv
+import MySQLdb
 
 
 class connectDB:

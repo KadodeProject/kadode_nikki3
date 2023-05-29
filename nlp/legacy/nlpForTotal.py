@@ -2,8 +2,8 @@
 import json
 import sys
 
-# First Party Library
-from legacy.base import connectDBClass as database
+# Third Party Library
+import base.connectDBClass as database
 
 
 def nlpForTotal(user_id):

@@ -2,8 +2,9 @@
 import asyncio
 
 # First Party Library
-from legacy import pythonUseFromPHP
-from proto import nlp_pb2, nlp_pb2_grpc
+from legacy.pythonUseFromPHP import legacyRun
+from proto import nlp_pb2
+from proto import nlp_pb2_grpc
 
 
 class NlpManager(nlp_pb2_grpc.NlpManagerServicer):
@@ -23,7 +24,7 @@ class NlpManager(nlp_pb2_grpc.NlpManagerServicer):
         # 非同期で投げっぱなしにてreturnする いわゆるfire and forget
         loop = asyncio.new_event_loop()
         asyncio.set_event_loop(loop)
-        loop.run_in_executor(None, pythonUseFromPHP.legacyRun, user_id)
+        loop.run_in_executor(None, legacyRun, user_id)
         print(f"userId: {user_id}")
 
         return nlp_pb2.GenerateAllResponse(start=1)

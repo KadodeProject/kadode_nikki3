@@ -1,4 +1,4 @@
-name: 【nlp】Lint
+name: 【nlp】テスト[統合]
 
 on:
   pull_request:
@@ -12,8 +12,8 @@ defaults:
     working-directory: nlp
 
 jobs:
-  nlp_lint:
-    name: Black & isort & Flake8
+  nlp_integration_test:
+    name: pytest integration test
     runs-on: ubuntu-latest
 
     steps:
@@ -38,16 +38,6 @@ jobs:
           poetry install --no-interaction
 
       # 以後はpoetry run経由にすることでOS依存でなく指定したバージョンで実行する
-      - name: Run Black
+      - name: Run pytest
         run: |
-          # https://black.readthedocs.io/en/stable/integrations/github_actions.html
-          poetry run black . --check --diff
-      - name: Run isort
-        run: |
-          # https://pycqa.github.io/isort/docs/configuration/github_action.html
-          poetry run isort . --check-only --diff
-      - name: Run flake8
-        run: |
-          # https://flake8.pycqa.org/en/latest/user/options.html
-          # flake8はフォーマットでないので--check的なものは扶養
-          poetry run pflake8 .
+          poetry run pytest tests/integration
