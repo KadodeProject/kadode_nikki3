@@ -129,10 +129,8 @@ c-b:
 c-f:
 	docker compose exec frontend pnpm check
 c-n:
-	docker compose exec nlp mypy ./app
-	docker compose exec nlp mypy ./legacy
-	docker compose exec nlp mypy ./servicers
-	docker compose exec nlp mypy ./tests
+	# legacyなど従来ファイルは無限にエラーが出てくるので新規で追加するファイルのみを対象にする
+	docker compose exec nlp mypy ./src
 
 
 

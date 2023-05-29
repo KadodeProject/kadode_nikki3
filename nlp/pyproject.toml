@@ -92,13 +92,14 @@ ignore = ["E203", "W503", "E501", "E711"]
 # 対象ファイルの指定はコマンド上で指定するのでここでは設定しない(設定ファイルでうまく動かない)
 [tool.mypy]
 python_version = "3.11"
-
+namespace_packages = true
 # エラーメッセージ関連
 show_error_context = true
 show_column_numbers = true
 
 
 # 関数定義の引数/戻り値に型アノテーション必須
+# あとで有効化する
 disallow_untyped_defs = true
 
 # Optional型の引数や戻り値を明示的に指定しないと指摘

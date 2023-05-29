@@ -3,8 +3,7 @@ import asyncio
 
 # First Party Library
 from legacy.pythonUseFromPHP import legacyRun
-from proto import nlp_pb2
-from proto import nlp_pb2_grpc
+from proto import nlp_pb2, nlp_pb2_grpc
 
 
 class NlpManager(nlp_pb2_grpc.NlpManagerServicer):

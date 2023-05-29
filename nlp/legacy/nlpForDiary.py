@@ -5,17 +5,17 @@ import time
 from datetime import datetime as dt
 from datetime import timedelta, timezone
 
+# Third Party Library
 from base import connectDBClass as database
 
-from nlp.dic import dic_to_trie
-
-# Local Library
+# First Party Library
 from nlp import (
     classification_analysis,
     emotions_analysis,
     importantWords_analysis,
     special_people_extract,
 )
+from nlp.dic import dic_to_trie
 
 # from nlp import causeEffect_analysis
 # from nlp import dependency_analysis
