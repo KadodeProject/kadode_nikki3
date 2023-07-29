@@ -27,7 +27,7 @@ services:
     ports:
       - "2010:2010"
     environment:
-      - APP_NAME=かどで日記3
+      - APP_NAME=kadode_nikki3
       - APP_ENV=local
       - APP_KEY=${APP_KEY}
       - APP_DEBUG=true
