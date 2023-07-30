@@ -72,6 +72,5 @@ jobs:
       - name: Run PHPStan
         run: |
           cd backend
-          # ciのスペックではシングルスレッドで走らせたほうが早いので設定を置き換えする
-          # sed -i '/parameters:/a\ \tparallel:\n\t\tmaximumNumberOfProcesses: 1' phpstan.neon
-          ./vendor/bin/phpstan analyse --memory-limit=-1 --error-format=github
+          # GitHub Actions上だと永遠に終わらず、再現性もないため中止
+          ./vendor/bin/phpstan analyse --no-progress --memory-limit=-1 --error-format=github

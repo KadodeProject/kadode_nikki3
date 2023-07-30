@@ -73,10 +73,10 @@
             "./vendor/bin/php-cs-fixer fix --config=.php-cs-fixer.dist.php -v"
         ],
         "phpstan": [
-            "./vendor/bin/phpstan analyse --memory-limit=2g"
+            "./vendor/bin/phpstan analyse --memory-limit=2G"
         ],
         "phpstan-g": [
-            "./vendor/bin/phpstan analyse --memory-limit=2g --generate-baseline "
+            "./vendor/bin/phpstan analyse --memory-limit=2G --generate-baseline "
         ]
     },
     "extra": {
