@@ -168,7 +168,7 @@ tinker:
 	docker compose exec -T backend php artisan tinker
 stan:
 	@make c-b
-stan-g:
+stan-b:
 	docker compose exec -T backend composer phpstan-g
 ide-helper:
 	docker compose exec -T backend php artisan clear-compiled
