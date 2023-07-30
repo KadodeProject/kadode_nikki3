@@ -156,11 +156,6 @@ parameters:
 			path: app/Http/Actions/Diary/ShowSingleDiaryAction.php
 
 		-
-			message: "#^Strict comparison using \\=\\=\\= between null and array will always evaluate to false\\.$#"
-			count: 1
-			path: app/Http/Actions/Diary/ShowSingleDiaryAction.php
-
-		-
 			message: "#^Cannot access offset 'diary_average' on mixed\\.$#"
 			count: 3
 			path: app/Http/Actions/ShowAdminHomeAction.php
@@ -690,16 +685,6 @@ parameters:
 				#^PHPDoc tag @var has invalid value \\(array\\<string,array\\<int,array\\<\\{cpu\\:float,memory\\:float,disk\\:float\\}\\>\\>
 				\\[サーバー名\\:\\[ユニックスタイム\\:\\[cpu\\:CPU使用率,memory\\:メモリ使用率,disk\\:ディスク使用率\\]\\]\\]\\)\\: Unexpected token "\\{", expected type at offset 50$#
 			"""
-			count: 1
-			path: app/UseCases/MachineResource/GetAllMachineResourceFromRedis.php
-
-		-
-			message: "#^Parameter \\#2 \\$string of function explode expects string, string\\|false given\\.$#"
-			count: 1
-			path: app/UseCases/MachineResource/GetAllMachineResourceFromRedis.php
-
-		-
-			message: "#^Strict comparison using \\=\\=\\= between null and string\\|false will always evaluate to false\\.$#"
 			count: 1
 			path: app/UseCases/MachineResource/GetAllMachineResourceFromRedis.php
 

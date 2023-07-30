@@ -13,13 +13,13 @@ barth:
 	docker-compose down --rmi all --volumes --remove-orphans
 
 sh-b:
-	docker compose exec backend bash
+	docker compose exec -T backend bash
 sh-f:
-	docker compose exec frontend bash
+	docker compose exec -T frontend bash
 sh-n:
-	docker compose exec nlp bash
+	docker compose exec -T nlp bash
 sh-d:
-	docker compose exec db mysql -u root -psecret kadode_local
+	docker compose exec -T db mysql -u root -psecret kadode_local
 
 777:
 	sudo chmod 777 -R backend
@@ -57,11 +57,11 @@ t-b:
 	# ↓大改修で絶賛コケまくってるので一旦保留
 	# @make t-bm
 t-bu:
-	docker compose exec backend php artisan test --testsuite Unit
+	docker compose exec -T backend php artisan test --testsuite Unit
 t-bf:
-	docker compose exec backend php artisan test --testsuite Feature
+	docker compose exec -T backend php artisan test --testsuite Feature
 t-bm:
-	docker compose exec backend php artisan test --testsuite MinimumOperationCheck
+	docker compose exec -T backend php artisan test --testsuite MinimumOperationCheck
 
 # フロントエンド
 t-f:
@@ -70,15 +70,15 @@ t-f:
 	@make t-fi
 	@make t-fr
 t-finstall:
-	docker compose exec frontend npx playwright install
+	docker compose exec -T frontend npx playwright install
 t-fu:
-	docker compose exec frontend pnpm test:u
+	docker compose exec -T frontend pnpm test:u
 t-fc:
-	docker compose exec frontend pnpm test:c
+	docker compose exec -T frontend pnpm test:c
 t-fi:
-	docker compose exec frontend pnpm test:i
+	docker compose exec -T frontend pnpm test:i
 t-fr:
-	docker compose exec frontend npx playwright show-report --host=0.0.0.0 --port=2802
+	docker compose exec -T frontend npx playwright show-report --host=0.0.0.0 --port=2802
 
 # NLP
 t-n:
@@ -87,11 +87,11 @@ t-n:
 	@make t-ni
 
 t-nu:
-	docker compose exec nlp pytest tests/unit
+	docker compose exec -T nlp pytest tests/unit
 t-nc:
-	docker compose exec nlp pytest tests/combination
+	docker compose exec -T nlp pytest tests/combination
 t-ni:
-	docker compose exec nlp pytest tests/integration
+	docker compose exec -T nlp pytest tests/integration
 
 
 
@@ -104,14 +104,14 @@ f:
 	@make f-n
 
 f-b:
-	docker compose exec backend composer cs-fixer-fix
+	docker compose exec -T backend composer cs-fixer-fix
 f-f:
-	docker compose exec frontend pnpm format
-	docker compose exec frontend pnpm lint
+	docker compose exec -T frontend pnpm format
+	docker compose exec -T frontend pnpm lint
 f-n:
-	docker compose exec nlp black .
-	docker compose exec nlp isort .
-	docker compose exec nlp pflake8 .
+	docker compose exec -T nlp black .
+	docker compose exec -T nlp isort .
+	docker compose exec -T nlp pflake8 .
 
 
 
@@ -125,12 +125,12 @@ c:
 	@make c-n
 
 c-b:
-	docker compose exec backend composer phpstan
+	docker compose exec -T backend composer phpstan
 c-f:
-	docker compose exec frontend pnpm check
+	docker compose exec -T frontend pnpm check
 c-n:
 	# legacyなど従来ファイルは無限にエラーが出てくるので新規で追加するファイルのみを対象にする
-	docker compose exec nlp mypy ./src
+	docker compose exec -T nlp mypy ./src
 
 
 
@@ -141,11 +141,11 @@ u:
 	@make u-f
 	@make u-n
 u-b:
-	docker compose exec backend composer update
+	docker compose exec -T backend composer update
 u-f:
-	docker compose exec frontend pnpm upgrade
+	docker compose exec -T frontend pnpm upgrade
 u-n:
-	docker compose exec nlp poetry update
+	docker compose exec -T nlp poetry update
 
 
 
@@ -154,39 +154,39 @@ u-n:
 # バックエンド固有のもの
 #
 cc:
-	docker compose exec backend php artisan config:clear
-	docker compose exec backend php artisan route:clear
+	docker compose exec -T backend php artisan config:clear
+	docker compose exec -T backend php artisan route:clear
 migrate:
-	docker compose exec backend php artisan migrate
+	docker compose exec -T backend php artisan migrate
 # DB再構築
 fresh:
-	docker compose exec backend php artisan migrate:fresh --seed
+	docker compose exec -T backend php artisan migrate:fresh --seed
 # DBロールバック
 refresh:
-	docker compose exec backend php artisan migrate:refresh
+	docker compose exec -T backend php artisan migrate:refresh
 tinker:
-	docker compose exec backend php artisan tinker
+	docker compose exec -T backend php artisan tinker
 stan:
 	@make c-b
-stan-g:
-	docker compose exec backend composer phpstan-g
+stan-b:
+	docker compose exec -T backend composer phpstan-g
 ide-helper:
-	docker compose exec backend php artisan clear-compiled
-	docker compose exec backend php artisan ide-helper:generate
-	docker compose exec backend php artisan ide-helper:meta
-	docker compose exec backend php artisan ide-helper:models --nowrite
+	docker compose exec -T backend php artisan clear-compiled
+	docker compose exec -T backend php artisan ide-helper:generate
+	docker compose exec -T backend php artisan ide-helper:meta
+	docker compose exec -T backend php artisan ide-helper:models --nowrite
 make-model:
 # make-model name=ModelName
-	docker-compose exec backend php artisan make:model $(name) --migration
+	docker-compose exec -T backend php artisan make:model $(name) --migration
 
 
 #
 # フロントエンド固有のもの
 #
 pnpm-dev:
-	docker compose exec frontend pnpm dev
+	docker compose exec -T frontend pnpm dev
 pnpm-build:
-	docker compose exec frontend pnpm build
+	docker compose exec -T frontend pnpm build
 
 #
 # NLP固有のもの
@@ -194,11 +194,11 @@ pnpm-build:
 
 black:
 	# previewは原則導入しない
-	docker compose exec nlp black .
+	docker compose exec -T nlp black .
 isort:
-	docker compose exec nlp isort .
+	docker compose exec -T nlp isort .
 flake:
-	docker compose exec nlp pflake8 .
+	docker compose exec -T nlp pflake8 .
 mypy:
 	@make c-n
 

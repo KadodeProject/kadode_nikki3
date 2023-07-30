@@ -1,0 +1,42 @@
+#!/bin/sh
+echo '🎆コミット前ルーティン開始！'
+fileList=$(git diff --diff-filter=d --cached --name-only)
+
+backendFiles=$(echo "$fileList" | grep -E '^backend/.*\.php$')
+if [ ${#backendFiles} -gt 0 ]; then
+  echo 'backendのPHPファイルが変更されています。Linterを実行します。'
+  make f-b
+  make c-b
+  # エラーがあれば、コミットさせない
+  if [ $? -gt 0 ]; then
+    exit 1
+  fi
+  # エラーがなければ、Linterが変更した差分を取り込んでコミット
+  git add ${backendFiles[@]}
+fi
+
+frontendFiles=$(echo "$fileList" | grep -E '^frontend/')
+if [ ${#frontendFiles} -gt 0 ]; then
+  echo 'frontendのファイルが変更されています。Linterを実行します。'
+  make f-f
+  make c-f
+  # エラーがあれば、コミットさせない
+  if [ $? -gt 0 ]; then
+    exit 1
+  fi
+  # エラーがなければ、Linterが変更した差分を取り込んでコミット
+  git add ${frontendFiles[@]}
+fi
+
+nlpFiles=$(echo "$fileList" | grep -E '^frontend/')
+if [ ${#nlpFiles} -gt 0 ]; then
+  echo 'nlpのファイルが変更されています。Linterを実行します。'
+  make f-n
+  make c-n
+  # エラーがあれば、コミットさせない
+  if [ $? -gt 0 ]; then
+    exit 1
+  fi
+  # エラーがなければ、Linterが変更した差分を取り込んでコミット
+  git add ${nlpFiles[@]}
+fi
