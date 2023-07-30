@@ -72,5 +72,5 @@ jobs:
       - name: Run PHPStan
         run: |
           cd backend
-          # debugにしないとciが終わらなくなる
-          ./vendor/bin/phpstan analyse --no-progress --memory-limit=-1 --error-format=github --debug
+          # GitHub Actions上だと永遠に終わらず、再現性もないため中止
+          ./vendor/bin/phpstan analyse --no-progress --memory-limit=-1 --error-format=github

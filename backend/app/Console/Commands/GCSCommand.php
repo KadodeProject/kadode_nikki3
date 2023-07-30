@@ -7,7 +7,6 @@ namespace App\Console\Commands;
 use Google\Cloud\Storage\StorageClient;
 use Illuminate\Console\Command;
 
-// hoige
 class GCSCommand extends Command
 {
     /**
