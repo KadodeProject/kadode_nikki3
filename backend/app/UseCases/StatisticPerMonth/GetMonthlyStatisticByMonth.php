@@ -24,7 +24,7 @@ class GetMonthlyStatisticByMonth
         $statisticPerMonth = StatisticPerMonth::where('year', $year)->where('month', $month)->first();
         $statisticStatus = $this->checkStatisticStatus->invoke($statisticPerMonth);
         $statisticPerMonthProceed = $this->arrangeStatistic->invoke($statisticPerMonth, $statisticStatus);
-        if (null === $statisticPerMonth) {
+        if ($statisticPerMonth === null) {
             return [];
         }
 

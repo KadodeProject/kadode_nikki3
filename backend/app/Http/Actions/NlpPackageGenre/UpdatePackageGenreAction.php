@@ -20,7 +20,7 @@ final class UpdatePackageGenreAction extends Controller
 
         $updateContent = [
             'description' => $request->description,
-            'name' => $request->name,
+            'name'        => $request->name,
         ];
 
         NlpPackageGenre::where('id', $request->NlpPackageGenre_id)->update($updateContent);

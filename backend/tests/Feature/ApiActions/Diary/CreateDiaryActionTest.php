@@ -23,7 +23,7 @@ final class CreateDiaryActionTest extends TestCase
     {
         /** @var \Illuminate\Contracts\Auth\Authenticatable */
         $user = User::factory()->create([
-            'email' => 'testGetHomeAction@example.com',
+            'email'    => 'testGetHomeAction@example.com',
             'password' => 'password',
         ]);
 
@@ -31,16 +31,16 @@ final class CreateDiaryActionTest extends TestCase
             ->postJson(
                 route('CreateDiaryApi'),
                 [
-                    'date' => '1999-01-01',
-                    'title' => 'test',
+                    'date'    => '1999-01-01',
+                    'title'   => 'test',
                     'content' => 'test',
                 ]
             )
             ->assertStatus(200);
 
         $this->assertDatabaseHas('diaries', [
-            'date' => '1999-01-01',
-            'title' => 'test',
+            'date'    => '1999-01-01',
+            'title'   => 'test',
             'content' => 'test',
         ]);
     }
@@ -50,8 +50,8 @@ final class CreateDiaryActionTest extends TestCase
         $this->postJson(
             route('CreateDiaryApi'),
             [
-                'date' => '1999-01-01',
-                'title' => 'test',
+                'date'    => '1999-01-01',
+                'title'   => 'test',
                 'content' => 'test',
             ]
         )
@@ -63,7 +63,7 @@ final class CreateDiaryActionTest extends TestCase
     {
         /** @var \Illuminate\Contracts\Auth\Authenticatable */
         $user = User::factory()->create([
-            'email' => 'testGetHomeAction@example.com',
+            'email'    => 'testGetHomeAction@example.com',
             'password' => 'password',
         ]);
 
@@ -71,15 +71,15 @@ final class CreateDiaryActionTest extends TestCase
             ->postJson(
                 route('CreateDiaryApi'),
                 [
-                    'date' => '1999-01-01',
-                    'title' => '',
+                    'date'    => '1999-01-01',
+                    'title'   => '',
                     'content' => '',
                 ]
             )
             ->assertStatus(422)
             ->assertJson([
                 'message' => '本文は、必ず指定してください。',
-                'errors' => [
+                'errors'  => [
                     'content' => [
                         '本文は、必ず指定してください。',
                     ],
@@ -91,7 +91,7 @@ final class CreateDiaryActionTest extends TestCase
     {
         /** @var \Illuminate\Contracts\Auth\Authenticatable */
         $user = User::factory()->create([
-            'email' => 'testGetHomeAction@example.com',
+            'email'    => 'testGetHomeAction@example.com',
             'password' => 'password',
         ]);
 
@@ -99,8 +99,8 @@ final class CreateDiaryActionTest extends TestCase
             ->postJson(
                 route('CreateDiaryApi'),
                 [
-                    'date' => '',
-                    'title' => '',
+                    'date'    => '',
+                    'title'   => '',
                     'content' => 'hoge',
                 ]
             )
@@ -114,17 +114,17 @@ final class CreateDiaryActionTest extends TestCase
     {
         /** @var User */
         $user = User::factory()->create([
-            'email' => 'testGetHomeAction@example.com',
+            'email'    => 'testGetHomeAction@example.com',
             'password' => 'password',
         ]);
 
         Diary::create(
             [
-                'date' => '1999-01-01',
-                'title' => 'test',
+                'date'    => '1999-01-01',
+                'title'   => 'test',
                 'content' => 'test',
                 'user_id' => $user->id,
-                'uuid' => Str::uuid(),
+                'uuid'    => Str::uuid(),
             ]
         );
 
@@ -138,8 +138,8 @@ final class CreateDiaryActionTest extends TestCase
             ->postJson(
                 route('CreateDiaryApi'),
                 [
-                    'date' => '1999-01-01',
-                    'title' => '',
+                    'date'    => '1999-01-01',
+                    'title'   => '',
                     'content' => 'hoge',
                 ]
             )

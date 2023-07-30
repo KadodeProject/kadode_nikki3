@@ -20,7 +20,7 @@ final class CreatePackageGenreAction extends Controller
         // 中身作成
         $form = [
             'description' => $request->description,
-            'name' => $request->name,
+            'name'        => $request->name,
         ];
 
         NlpPackageGenre::create($form);

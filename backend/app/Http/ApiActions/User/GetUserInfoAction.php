@@ -14,14 +14,14 @@ final class GetUserInfoAction extends Controller
     public function __invoke(): JsonResponse
     {
         $user = Auth::user();
-        if (null === $user) {
+        if ($user === null) {
             // 認証されていない場合の処理
             throw new AuthenticationException();
         }
 
         return response()->json(
             [
-                'id' => $user->id,
+                'id'   => $user->id,
                 'name' => $user->name,
             ]
         );

@@ -31,9 +31,9 @@ class User extends Authenticatable implements MustVerifyEmail
     ];
     // 初期値設定
     protected $attributes = [
-        'user_rank_id' => 1,
-        'user_role_id' => 1,
-        'appearance_id' => 1,
+        'user_rank_id'         => 1,
+        'user_role_id'         => 1,
+        'appearance_id'        => 1,
         'user_rank_updated_at' => '2021-12-28',
     ];
 
@@ -76,20 +76,20 @@ class User extends Authenticatable implements MustVerifyEmail
      * @var array<string,string>
      */
     protected $casts = [
-        'user_rank_updated_at' => 'datetime',
-        'email_verified_at' => 'datetime',
-        'sentence' => 'json',
-        'chunk' => 'json',
-        'token' => 'json',
-        'affiliation' => 'json',
-        'meta_info' => 'json',
-        'emotions' => 'json',
-        'flavor' => 'json',
-        'similar_sentences' => 'json',
-        'important_words' => 'json',
+        'user_rank_updated_at'   => 'datetime',
+        'email_verified_at'      => 'datetime',
+        'sentence'               => 'json',
+        'chunk'                  => 'json',
+        'token'                  => 'json',
+        'affiliation'            => 'json',
+        'meta_info'              => 'json',
+        'emotions'               => 'json',
+        'flavor'                 => 'json',
+        'similar_sentences'      => 'json',
+        'important_words'        => 'json',
         'cause_effect_sentences' => 'json',
-        'special_people' => 'json',
-        'auth_type' => AuthType::class,
+        'special_people'         => 'json',
+        'auth_type'              => AuthType::class,
     ];
 
     /**
@@ -107,7 +107,7 @@ class User extends Authenticatable implements MustVerifyEmail
     public function createdAt(): Attribute
     {
         return new Attribute(
-            get: fn ($value) => Carbon::parse($value)->timezone('Asia/Tokyo')->format('Y-m-d H:i:s'),
+            get: fn($value) => Carbon::parse($value)->timezone('Asia/Tokyo')->format('Y-m-d H:i:s'),
         );
     }
 
@@ -117,7 +117,7 @@ class User extends Authenticatable implements MustVerifyEmail
     public function updatedAt(): Attribute
     {
         return new Attribute(
-            get: fn ($value) => Carbon::parse($value)->timezone('Asia/Tokyo')->format('Y-m-d H:i:s'),
+            get: fn($value) => Carbon::parse($value)->timezone('Asia/Tokyo')->format('Y-m-d H:i:s'),
         );
     }
     // email_verified_atをキャストするとemailの認証が吹っ飛ぶのでpublic function emailVerifiedAt(): Attributeはしちゃダメ

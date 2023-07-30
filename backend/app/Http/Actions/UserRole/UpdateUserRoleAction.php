@@ -18,7 +18,7 @@ final class UpdateUserRoleAction extends Controller
         $this->validate($request, UserRole::$rules);
 
         $updateContent = [
-            'name' => $request->name,
+            'name'        => $request->name,
             'description' => $request->description,
         ];
 

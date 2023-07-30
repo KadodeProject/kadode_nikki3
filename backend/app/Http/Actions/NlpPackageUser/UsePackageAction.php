@@ -16,7 +16,7 @@ final class UsePackageAction extends Controller
     public function __invoke(Request $request): Redirector|RedirectResponse
     {
         $form = [
-            'user_id' => Auth::id(),
+            'user_id'    => Auth::id(),
             'package_id' => $request->package_id,
         ];
 

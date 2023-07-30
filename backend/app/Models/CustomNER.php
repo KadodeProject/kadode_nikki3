@@ -15,7 +15,7 @@ class CustomNER extends Model
     public static $rules = [
         'label_id' => 'min:0|integer',
         // "label"=>"required|exists:n_e_r_labels,label",
-        'name' => 'required|max:20',
+        'name'     => 'required|max:20',
     ];
     protected $fillable = [
         'user_id', 'label_id', 'name', 'created_at', 'updated_at',

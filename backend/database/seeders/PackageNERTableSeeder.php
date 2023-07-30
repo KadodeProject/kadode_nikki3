@@ -18,15 +18,15 @@ class PackageNERTableSeeder extends Seeder
         $param = [
             [
                 'package_id' => 1,
-                'label_id' => 1,
-                'name' => 'キャラメルポップコーン',
+                'label_id'   => 1,
+                'name'       => 'キャラメルポップコーン',
                 'created_at' => $nowTime,
                 'updated_at' => $nowTime,
             ],
             [
                 'package_id' => 1,
-                'label_id' => 1,
-                'name' => 'コンペイトウ',
+                'label_id'   => 1,
+                'name'       => 'コンペイトウ',
                 'created_at' => $nowTime,
                 'updated_at' => $nowTime,
             ],

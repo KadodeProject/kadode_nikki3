@@ -8,6 +8,8 @@ use App\Http\Controllers\Controller;
 use App\UseCases\MachineResource\GetAllMachineResourceFromRedis;
 use Illuminate\Http\JsonResponse;
 
+use function array_slice;
+
 final class GetMachineResourceLatest1Minutes extends Controller
 {
     public function __construct(
@@ -23,7 +25,7 @@ final class GetMachineResourceLatest1Minutes extends Controller
         foreach ($machineResources as &$perMachine) {
             ksort($perMachine);
             // 直近30件(後ろ30)だけ取得(2秒間隔で取得されているので、1分)
-            $perMachine = \array_slice($perMachine, -30, 30, true);
+            $perMachine = array_slice($perMachine, -30, 30, true);
         }
         // 参照解除
         unset($perMachine);

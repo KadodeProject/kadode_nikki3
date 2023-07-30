@@ -24,7 +24,7 @@ class GetUnreadNotifications
          */
         $new_infos = [];
         $userReadNotification = UserReadNotification::where('user_id', $user->id)->first();
-        if (null !== $userReadNotification) {
+        if ($userReadNotification !== null) {
             if (!$userReadNotification->is_showed_service_info) {
                 // お知らせ取得
                 $osirase = Osirase::where('id', '!=', 0)->orderBy('date', 'desc')->first(['title', 'date']);

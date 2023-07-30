@@ -19,10 +19,10 @@ final class UpdatePackageNameAction extends Controller
         $this->validate($request, NlpPackageName::$rules);
 
         $updateContent = [
-            'genre_id' => $request->NlpPackageGenre_id,
-            'name' => $request->name,
+            'genre_id'    => $request->NlpPackageGenre_id,
+            'name'        => $request->name,
             'description' => $request->description,
-            'is_publish' => $request->is_publish,
+            'is_publish'  => $request->is_publish,
         ];
 
         NlpPackageName::where('id', $request->NlpPackageName_id)->update($updateContent);

@@ -16,83 +16,83 @@ class UserRankTableSeeder extends Seeder
     {
         $param = [
             [
-                'name' => '国府',
+                'name'        => '国府',
                 'description' => 'かどで日記、はじめの一歩',
             ],
             [
-                'name' => '大津',
+                'name'        => '大津',
                 'description' => 'はじめての日記を書いた',
             ],
             [
-                'name' => '浦戸',
+                'name'        => '浦戸',
                 'description' => '15枚の日記を書いた',
             ],
             [
-                'name' => '大湊',
+                'name'        => '大湊',
                 'description' => 'かどで日記への登録1ヶ月が経った',
             ],
             [
-                'name' => '奈半',
+                'name'        => '奈半',
                 'description' => '統計を利用した',
             ],
             [
-                'name' => '室津',
+                'name'        => '室津',
                 'description' => '',
             ],
             [
-                'name' => '津呂',
+                'name'        => '津呂',
                 'description' => '',
             ],
             [
-                'name' => '野根',
+                'name'        => '野根',
                 'description' => '',
             ],
             [
-                'name' => '日和佐',
+                'name'        => '日和佐',
                 'description' => '',
             ],
             [
-                'name' => '答島',
+                'name'        => '答島',
                 'description' => '',
             ],
             [
-                'name' => '土佐泊',
+                'name'        => '土佐泊',
                 'description' => '',
             ],
             [
-                'name' => '灘',
+                'name'        => '灘',
                 'description' => '',
             ],
             [
-                'name' => '佐野・貝塚',
+                'name'        => '佐野・貝塚',
                 'description' => '',
             ],
             [
-                'name' => '澪標',
+                'name'        => '澪標',
                 'description' => '',
             ],
             [
-                'name' => '河尻',
+                'name'        => '河尻',
                 'description' => '',
             ],
             [
-                'name' => '江口',
+                'name'        => '江口',
                 'description' => '',
             ],
             [
-                'name' => '鳥飼',
+                'name'        => '鳥飼',
                 'description' => '',
             ],
             [
-                'name' => '鵜殿',
+                'name'        => '鵜殿',
                 'description' => '',
             ],
             [
-                'name' => '山崎',
+                'name'        => '山崎',
                 'description' => '',
             ],
             [
-                'name' => '京',
+                'name'        => '京',
                 'description' => '',
             ],
         ];

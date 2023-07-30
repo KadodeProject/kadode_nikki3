@@ -20,10 +20,10 @@ class OperationCoreTransitionPerHourTableSeeder extends Seeder
         for ($i = 24 * 31; $i > 0; $i--) {
             $time = $carbonInstance->subHours(1); // イミュターブルでないことを意図的に利用して減らす
             $param[] = [
-                'user_total' => $i * 2,
-                'diary_total' => $i * 4,
+                'user_total'               => $i * 2,
+                'diary_total'              => $i * 4,
                 'statistic_per_date_total' => $i * 3,
-                'created_at' => $time->format('Y-m-d H:i:s'),
+                'created_at'               => $time->format('Y-m-d H:i:s'),
             ];
         }
 

@@ -6,6 +6,7 @@ namespace App\Http\Requests\Diary;
 
 use App\Rules\Diary\RejectExistDayDiaryForUpdateOnDateRule;
 use Illuminate\Foundation\Http\FormRequest;
+use Auth;
 
 class UpdateDiaryRequest extends FormRequest
 {
@@ -35,9 +36,9 @@ class UpdateDiaryRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'title' => ['max:50'], // laravelのstringはvarchar(255)なので、255文字までだが、マルチバイトなど色々踏まえて50に押
+            'title'   => ['max:50'], // laravelのstringはvarchar(255)なので、255文字までだが、マルチバイトなど色々踏まえて50に押
             'content' => ['required', 'min:1', 'max:16000'], // text型の限界が16384文字なので(マルチバイトで)
-            'id' => ['required', 'int'],
+            'id'      => ['required', 'int'],
             /*
              * 結構豪快な方法でid引っ張ってきてて良くない(バリデーションを通さない値が取れてしまうため)
              *
@@ -46,7 +47,7 @@ class UpdateDiaryRequest extends FormRequest
              * たとえば'2aaa'も2になり、これは意図しない値ですが、この先のRuleで処理しているメソッド内部で呼ぶeloquentでユーザー絞った後にid検索のため、不正な値はヒットせず問題なし
              * eloquent側もSQLインジェクション対策は施されているため、結果としてこの処理は安全です。
              */
-            'date' => ['required', new RejectExistDayDiaryForUpdateOnDateRule(\Auth::id(), (int) $this->request->all()['id'])],
+            'date'    => ['required', new RejectExistDayDiaryForUpdateOnDateRule(Auth::id(), (int)$this->request->all()['id'])],
         ];
     }
 }

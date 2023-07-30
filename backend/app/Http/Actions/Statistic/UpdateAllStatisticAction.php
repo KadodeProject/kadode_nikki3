@@ -34,7 +34,7 @@ class UpdateAllStatisticAction extends Controller
 
             $data = [
                 'statistic_progress' => 1,
-                'updated_at' => $dt->addHours(24),
+                'updated_at'         => $dt->addHours(24),
             ];
             $static->update($data);
             // 自然言語処理↓

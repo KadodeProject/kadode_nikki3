@@ -14,7 +14,7 @@ class PackageNER extends Model
 
     // バリデーション
     public static $rules = [
-        'name' => 'required|max:50',
+        'name'     => 'required|max:50',
         'label_id' => 'min:0|integer',
     ];
     protected $fillable = [

@@ -18,7 +18,7 @@ final class UpdateUserRankAction extends Controller
         $this->validate($request, UserRank::$rules);
 
         $updateContent = [
-            'name' => $request->name,
+            'name'        => $request->name,
             'description' => $request->description,
         ];
 

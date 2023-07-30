@@ -20,8 +20,8 @@ final class CreatePNERAction extends Controller
         // 中身作成
         $form = [
             'package_id' => $request->packageId,
-            'label_id' => $request->label_id,
-            'name' => $request->name,
+            'label_id'   => $request->label_id,
+            'name'       => $request->name,
         ];
 
         PackageNER::create($form);

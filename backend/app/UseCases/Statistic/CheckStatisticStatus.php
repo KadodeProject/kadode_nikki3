@@ -20,15 +20,15 @@ class CheckStatisticStatus
     public function invoke(StatisticPerMonth|StatisticPerYear|Statistic|null $statistic): StatisticStatus
     {
         return match (true) {
-            null === $statistic => StatisticStatus::notExist,
-            100 !== $statistic->statistic_progress => StatisticStatus::generating,
+            $statistic === null                    => StatisticStatus::notExist,
+            $statistic->statistic_progress !== 100 => StatisticStatus::generating,
             /*
              * 最新でないかはその月または年のすべての日記の更新日時を比較する必要があり、重さの割にリターンが少ないので探さない
              * @todo 最新でないも判別できるようにする
              * StatisticStatus::outdated
              */
             // ここまでくれば確実に正しい統計データのため、trueで対処(matchにelseがないので)
-            true => StatisticStatus::existCorrectly,
+            true                                   => StatisticStatus::existCorrectly,
         };
     }
 }

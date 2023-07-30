@@ -14,8 +14,8 @@ class Osirase extends Model
 
     // バリデーション
     public static $rules = [
-        'date' => 'required',
-        'title' => 'required|max:50',
+        'date'        => 'required',
+        'title'       => 'required|max:50',
         'description' => 'required',
     ];
     protected $fillable = [

@@ -21,10 +21,10 @@ final class CreateDiaryAction extends Controller
 
         $form = [
             'user_id' => Auth::id(),
-            'title' => $request->title,
+            'title'   => $request->title,
             'content' => $request->content,
-            'date' => $request->date,
-            'uuid' => Str::uuid(),
+            'date'    => $request->date,
+            'uuid'    => Str::uuid(),
         ];
 
         Diary::create($form);

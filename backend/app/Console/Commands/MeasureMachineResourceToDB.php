@@ -53,10 +53,10 @@ class MeasureMachineResourceToDB extends Command
                 $count++;
             }
             $machineResourceAverage[] = [
-                'machine' => $machineName,
-                'cpu' => $cpu / $count,
-                'memory' => $memory / $count,
-                'disk' => $disk / $count,
+                'machine'    => $machineName,
+                'cpu'        => $cpu / $count,
+                'memory'     => $memory / $count,
+                'disk'       => $disk / $count,
                 'created_at' => now(),
             ];
         }

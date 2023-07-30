@@ -16,11 +16,11 @@ class AppearanceTableSeeder extends Seeder
     {
         $param = [
             [
-                'name' => '標準',
+                'name'        => '標準',
                 'description' => '標準の見た目',
             ],
             [
-                'name' => 'クラシック',
+                'name'        => 'クラシック',
                 'description' => 'かつての見た目',
             ],
         ];

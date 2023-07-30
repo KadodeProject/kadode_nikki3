@@ -13,6 +13,9 @@ use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Log;
+
+use function count;
 
 /**
  * @todo ここDRYにめちゃくちゃ反してるのでインターフェイス作って抽象化したい
@@ -37,7 +40,7 @@ class ImportFromTukiniTxtAction extends Controller
         $this->validate($request, $rules);
 
         if ($request->tukiniTxt) {
-            \Log::debug('txtインポート処理開始');
+            Log::debug('txtインポート処理開始');
 
             $tmpName = mt_rand().'.'.$request->tukiniTxt->guessExtension(); // TMPファイル名
             $request->tukiniTxt->move(public_path().'/importTxt', $tmpName);
@@ -75,8 +78,8 @@ class ImportFromTukiniTxtAction extends Controller
                 // useCasesで使える形にインポート
                 foreach ($dateTxt as $date) {
                     $importDataProceed[] = [
-                        'date' => str_replace('.', '-', $date),
-                        'title' => $titleTxt[$arrayCounter],
+                        'date'    => str_replace('.', '-', $date),
+                        'title'   => $titleTxt[$arrayCounter],
                         'content' => $contentTxt[$arrayCounter],
                     ];
                     $arrayCounter++;
@@ -96,7 +99,7 @@ class ImportFromTukiniTxtAction extends Controller
             // 重複した日付の日記をDBへ
             $this->upsertDiaryFromImportData->invoke($distinctDiary, $userId);
 
-            $importResult = \count($newDiary).'つの日記が新しくインポートされ、'.\count($distinctDiary).'の日記がアップデートされました🎉';
+            $importResult = count($newDiary).'つの日記が新しくインポートされ、'.count($distinctDiary).'の日記がアップデートされました🎉';
         } else {
             $importResult = 'ファイルが見つかりませんでした😢';
         }

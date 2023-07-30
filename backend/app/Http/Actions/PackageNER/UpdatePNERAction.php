@@ -20,7 +20,7 @@ final class UpdatePNERAction extends Controller
 
         $updateContent = [
             'label_id' => $request->label_id,
-            'name' => $request->name,
+            'name'     => $request->name,
         ];
 
         PackageNER::where('id', $request->PackageNER_id)->update($updateContent);

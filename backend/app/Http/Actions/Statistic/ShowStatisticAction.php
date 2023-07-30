@@ -42,8 +42,8 @@ class ShowStatisticAction extends Controller
         $anime_timeline = []; // undefinedエラー防止用
         $oldest_diary_date = '';
         // 統計作っていない場合はEnum型取れずnullになるので
-        if (null !== $statistic) {
-            if (1 === $statistic->statisticStatus->value) {
+        if ($statistic !== null) {
+            if ($statistic->statisticStatus->value === 1) {
                 /**
                  * 名詞と形容詞の登場順.
                  */
@@ -166,13 +166,13 @@ class ShowStatisticAction extends Controller
                 foreach ($anime_data as $value) {
                     $affiliation = json_decode($value->affiliation, true);
                     foreach ($affiliation as $words) {
-                        if ('Animation' === $words['form']) {
+                        if ($words['form'] === 'Animation') {
                             $i++;
                             $anime_timeline[] = [$i, $words['lemma'], $value->date];
                         }
                     }
                 }
-            } elseif (3 === $statistic->statisticStatus->value) {
+            } elseif ($statistic->statisticStatus->value === 3) {
                 /**
                  * 個別日記処理の進捗を取得する処理.
                  */

@@ -6,6 +6,8 @@ namespace App\UseCases\MachineResource;
 
 use Illuminate\Support\Facades\Redis;
 
+use function strlen;
+
 /**
  * Redisからサーバーリソースをすべて取得して配列で返す.
  */
@@ -21,7 +23,7 @@ final class GetAllMachineResourceFromRedis
         // 事前に定義したprefix(Redis::getではこちらで取得可能だが、結果は$appPrefix付きのものが返る)
         $functionPrefix = 'kn_machine_resource:';
         // キーに含まれるサーバー名とユニックスタイムがほしいのでそれを分離する
-        $prefixLength = \strlen($appPrefix.$functionPrefix);
+        $prefixLength = strlen($appPrefix.$functionPrefix);
 
         // 現存するキーの一覧取得(getではワイルドカード使えないため)←取得量はkeyのexpireで調整し、ここではそれを元にすべて取得する
         $keys = Redis::keys($functionPrefix.'*');
@@ -36,15 +38,15 @@ final class GetAllMachineResourceFromRedis
 
             $redisRawData = Redis::get($functionPrefix.$serverName.'-'.$unixTime);
 
-            if (null === $redisRawData) {
+            if ($redisRawData === null) {
                 // Redisのキーを取得してからここに来るまででexpireになるとRedis::get()がnullになるので、無い場合は次のループへ
                 continue;
             }
             [$cpuPercent, $memoryPercent, $diskPercent] = explode('-', $redisRawData);
             $machineResource[$serverName][$unixTime] = [
-                'cpu' => (float) $cpuPercent,
-                'memory' => (float) $memoryPercent,
-                'disk' => (float) $diskPercent,
+                'cpu'    => (float)$cpuPercent,
+                'memory' => (float)$memoryPercent,
+                'disk'   => (float)$diskPercent,
             ];
             // 速度を維持するために配列整形せずそのまま文字列として渡す実装(処理重たい場合はこちらを使うようにする)↓ cpu-memory-disk
             // $machineResource[$serverName][$unixTime] = Redis::get($functionPrefix.$serverName.'-'.$unixTime);

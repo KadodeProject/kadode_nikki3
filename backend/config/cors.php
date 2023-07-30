@@ -16,24 +16,24 @@ return [
     |
     */
 
-    'paths' => [
+    'paths'                    => [
         'api/*',
         'login',
         'logout',
         'sanctum/csrf-cookie',
     ],
 
-    'allowed_methods' => ['*'],
+    'allowed_methods'          => ['*'],
 
-    'allowed_origins' => [env('ALLOWED_ORIGIN')],
+    'allowed_origins'          => [env('ALLOWED_ORIGIN')],
 
     'allowed_origins_patterns' => [],
 
-    'allowed_headers' => ['*'],
+    'allowed_headers'          => ['*'],
 
-    'exposed_headers' => [],
+    'exposed_headers'          => [],
 
-    'max_age' => 0,
+    'max_age'                  => 0,
 
-    'supports_credentials' => true,
+    'supports_credentials'     => true,
 ];

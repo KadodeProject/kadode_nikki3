@@ -17,7 +17,7 @@ class NlpPackageUserTableSeeder extends Seeder
         $nowTime = now();
         $param = [
             [
-                'user_id' => 1,
+                'user_id'    => 1,
                 'package_id' => 1,
                 'created_at' => $nowTime,
                 'updated_at' => $nowTime,

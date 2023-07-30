@@ -16,15 +16,15 @@ class UserRoleTableSeeder extends Seeder
     {
         $param = [
             [
-                'name' => 'Normal',
+                'name'        => 'Normal',
                 'description' => '基本的にはこのロール',
             ],
             [
-                'name' => 'Administrator',
+                'name'        => 'Administrator',
                 'description' => '管理者ページにアクセスできる',
             ],
             [
-                'name' => 'KinoTsurayuki',
+                'name'        => 'KinoTsurayuki',
                 'description' => '土佐日記を作成した',
             ],
         ];

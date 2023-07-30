@@ -16,9 +16,9 @@ class ArrangeDiaryStatistic
     public function invoke(Diary $diary, StatisticStatus $statisticStatus): Diary
     {
         return match ($statisticStatus) {
-            StatisticStatus::notExist => $this->notExist($diary),
-            StatisticStatus::generating => $this->generating($diary),
-            StatisticStatus::outdated => $this->outdated($diary),
+            StatisticStatus::notExist       => $this->notExist($diary),
+            StatisticStatus::generating     => $this->generating($diary),
+            StatisticStatus::outdated       => $this->outdated($diary),
             StatisticStatus::existCorrectly => $this->existCorrectly($diary),
         };
     }

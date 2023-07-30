@@ -21,8 +21,8 @@ final class GetUserInfoActionTest extends TestCase
     {
         /** @var User */
         $user = User::factory()->create([
-            'name' => 'testUser',
-            'email' => 'testGetHomeAction@example.com',
+            'name'     => 'testUser',
+            'email'    => 'testGetHomeAction@example.com',
             'password' => 'password',
         ]);
 
@@ -36,7 +36,7 @@ final class GetUserInfoActionTest extends TestCase
             ->getJson(route('getUserInfo'))
             ->assertStatus(200)
             ->assertJson([
-                'id' => $user->id,
+                'id'   => $user->id,
                 'name' => $user->name,
             ]);
     }

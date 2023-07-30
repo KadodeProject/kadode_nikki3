@@ -17,10 +17,10 @@ class NlpPackageGenreTableSeeder extends Seeder
         $nowTime = now();
         $param = [
             [
-                'name' => '固有表現抽出ルール',
+                'name'        => '固有表現抽出ルール',
                 'description' => '固有表現抽出ルールのパッケージ',
-                'created_at' => $nowTime,
-                'updated_at' => $nowTime,
+                'created_at'  => $nowTime,
+                'updated_at'  => $nowTime,
             ],
         ];
         DB::table('nlp_package_genres')->insert($param);

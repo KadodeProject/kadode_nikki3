@@ -29,7 +29,7 @@ final class GetHomeAction extends Controller
         /** 使うもの用意 */
         $user = Auth::user();
 
-        if (null === $user) {
+        if ($user === null) {
             // 認証されていない場合の処理
             throw new AuthenticationException();
         }
@@ -54,11 +54,11 @@ final class GetHomeAction extends Controller
         $latestDiaries = [];
         foreach ($this->getLatestDiaries->invoke() as $targetDiary) {
             match ($targetDiary['date']) {
-                $zeroDayYmd => $zeroDayAgoDiary = $targetDiary,
-                $oneDayYmd => $oneDayAgoDiary = $targetDiary,
-                $twoDayYmd => $twoDayAgoDiary = $targetDiary,
+                $zeroDayYmd  => $zeroDayAgoDiary = $targetDiary,
+                $oneDayYmd   => $oneDayAgoDiary = $targetDiary,
+                $twoDayYmd   => $twoDayAgoDiary = $targetDiary,
                 $threeDayYmd => $threeDayAgoDiary = $targetDiary,
-                default => $latestDiaries[] = $targetDiary,
+                default      => $latestDiaries[] = $targetDiary,
             };
         }
 
@@ -87,12 +87,12 @@ final class GetHomeAction extends Controller
         return new JsonResponse(
             [
                 'unreadNotifications' => $unreadNotifications,
-                'oldDiaries' => $oldDiaries,
-                'zeroDayAgoDiary' => $zeroDayAgoDiary,
-                'oneDayAgoDiary' => $oneDayAgoDiary,
-                'twoDayAgoDiary' => $twoDayAgoDiary,
-                'threeDayAgoDiary' => $threeDayAgoDiary,
-                'latestDiaries' => $latestDiaries,
+                'oldDiaries'          => $oldDiaries,
+                'zeroDayAgoDiary'     => $zeroDayAgoDiary,
+                'oneDayAgoDiary'      => $oneDayAgoDiary,
+                'twoDayAgoDiary'      => $twoDayAgoDiary,
+                'threeDayAgoDiary'    => $threeDayAgoDiary,
+                'latestDiaries'       => $latestDiaries,
             ]
         );
     }

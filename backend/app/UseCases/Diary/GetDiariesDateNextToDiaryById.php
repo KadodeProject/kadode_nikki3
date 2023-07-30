@@ -42,7 +42,7 @@ class GetDiariesDateNextToDiaryById
 
         // @todo uuid廃止してdateだけでURL生成するようにしたいので後ほどこの配列もuuidからidに変えたい
         return [
-            'next' => [
+            'next'   => [
                 'date' => $tomorrow,
                 'uuid' => $next_uuid,
             ],

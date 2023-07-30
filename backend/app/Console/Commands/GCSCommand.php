@@ -40,7 +40,7 @@ class GCSCommand extends Command
         $url = file_get_contents(config('gcs.keyPath'));
         $client = new StorageClient([
             'projectId' => $packetName,
-            'keyFile' => json_decode($url, true),
+            'keyFile'   => json_decode($url, true),
         ]);
         $bucket = $client->bucket($packetName); // 作成したバケット
 
@@ -81,7 +81,7 @@ class GCSCommand extends Command
                 $timer = $timeDate; // 最新の更新日時
             }
         }
-        if ('' !== $recentFile) {
+        if ($recentFile !== '') {
             $latestFile = $recentFile;
 
             /** @var null|resource|string */

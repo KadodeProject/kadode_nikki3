@@ -64,7 +64,7 @@ class SearchDiaries
              * ここcollation対策(ハハパパでDB側ではSELECTされてるのにmb_strposでは引っかかった結果壊れるみたいなことがある)
              * 見つからない時mb_strposがfalseを返すのでそれを利用
              */
-            if (false !== $placeOfWord) {
+            if ($placeOfWord !== false) {
                 // ハイライト追加に際して、シーケンスせずhtml解釈させるので、その前に攻撃防止のためにタグを防ぐ
                 $diary->content = htmlspecialchars($diary->content, ENT_QUOTES);
                 // ハイライト追加

@@ -12,6 +12,9 @@ use Illuminate\Routing\Redirector;
 use Illuminate\Support\Facades\Auth;
 use Laravel\Socialite\Facades\Socialite;
 
+use function assert;
+use function in_array;
+
 final class HandleProviderCallbackAction extends Controller
 {
     /**
@@ -19,7 +22,7 @@ final class HandleProviderCallbackAction extends Controller
      */
     public function __invoke(string $provider): Redirector|RedirectResponse
     {
-        \assert(\in_array($provider, ['google', 'github'], true));
+        assert(in_array($provider, ['google', 'github'], true));
 
         /** @phpstan-ignore-next-line */
         $socialiteUser = Socialite::driver($provider)->stateless()->user(); // statelessが存在するのに存在しないエラーが出るのでPHPStanを黙らせている
@@ -29,11 +32,11 @@ final class HandleProviderCallbackAction extends Controller
             if (!User::where('email', $socialiteUser->email)->first()) {
                 // ユーザー居なかったら新規で登録
                 $user = User::create([
-                    'name' => $socialiteUser->name,
-                    'email' => $socialiteUser->email,
-                    'email_verified_at' => now(),
-                    'auth_type' => $this->getAuthTypeIntFromName($provider),
-                    'oauth_id' => $socialiteUser->id,
+                    'name'               => $socialiteUser->name,
+                    'email'              => $socialiteUser->email,
+                    'email_verified_at'  => now(),
+                    'auth_type'          => $this->getAuthTypeIntFromName($provider),
+                    'oauth_id'           => $socialiteUser->id,
                     'profile_photo_path' => $socialiteUser->avatar,
                 ]);
             } else {

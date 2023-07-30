@@ -24,21 +24,21 @@ final class GetAllNERLabelInOptionTabFormatTest extends TestCase
 
         $array = [
             [
-                'id' => 1,
-                'label' => 'Animation',
-                'name' => 'アニメタイトル',
+                'id'     => 1,
+                'label'  => 'Animation',
+                'name'   => 'アニメタイトル',
                 'parent' => 'かどで日記独自',
             ],
             [
-                'id' => 2,
-                'label' => 'Library_Framework',
-                'name' => 'ライブラリ名',
+                'id'     => 2,
+                'label'  => 'Library_Framework',
+                'name'   => 'ライブラリ名',
                 'parent' => 'かどで日記独自',
             ],
         ];
         // act
         $response = $this->getAllNERLabelInOptionTabFormat->invoke($array);
         // assert
-        self::assertMatchesRegularExpression('/((\s<option value=")\d+(">).*?(<\/option>))+/', $response);
+        $this->assertMatchesRegularExpression('/((\s<option value=")\d+(">).*?(<\/option>))+/', $response);
     }
 }

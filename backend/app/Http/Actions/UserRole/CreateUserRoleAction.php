@@ -19,7 +19,7 @@ final class CreateUserRoleAction extends Controller
 
         // 中身作成
         $form = [
-            'name' => $request->name,
+            'name'        => $request->name,
             'description' => $request->description,
         ];
 

@@ -20,9 +20,9 @@ enum StatisticStatus: int
     {
         return match ($this) {
             self::existCorrectly => '正しく統計データが存在する',
-            self::notExist => '統計データが存在しない',
-            self::generating => '統計データが生成中',
-            self::outdated => '統計データは存在するが古い(統計データの生成後に日記が更新されたが統計データが更新されていない状況)',
+            self::notExist       => '統計データが存在しない',
+            self::generating     => '統計データが生成中',
+            self::outdated       => '統計データは存在するが古い(統計データの生成後に日記が更新されたが統計データが更新されていない状況)',
         };
     }
 
@@ -30,9 +30,9 @@ enum StatisticStatus: int
     {
         return match ($this) {
             self::existCorrectly => 1,
-            self::notExist => 2,
-            self::generating => 3,
-            self::outdated => 4,
+            self::notExist       => 2,
+            self::generating     => 3,
+            self::outdated       => 4,
         };
     }
 }
