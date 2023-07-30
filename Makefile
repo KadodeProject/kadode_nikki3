@@ -13,13 +13,13 @@ barth:
 	docker-compose down --rmi all --volumes --remove-orphans
 
 sh-b:
-	docker compose exec -T backend bash
+	docker compose exec backend bash
 sh-f:
-	docker compose exec -T frontend bash
+	docker compose exec frontend bash
 sh-n:
-	docker compose exec -T nlp bash
+	docker compose exec nlp bash
 sh-d:
-	docker compose exec -T db mysql -u root -psecret kadode_local
+	docker compose exec db mysql -u root -psecret kadode_local
 
 777:
 	sudo chmod 777 -R backend
