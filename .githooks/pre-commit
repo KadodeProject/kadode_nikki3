@@ -8,6 +8,8 @@ if [ ${#phpFiles} -gt 0 ]; then
   echo 'コミット前ルーティン開始！'
   make f-b
   make c-b
+  make f-f
+  make c-f
   # エラーがあれば、コミットさせない
   if [ $? -gt 0 ]; then
     exit 1
