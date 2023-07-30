@@ -12,7 +12,7 @@ if [ ${#backendFiles} -gt 0 ]; then
     exit 1
   fi
   # エラーがなければ、Linterが変更した差分を取り込んでコミット
-  git add ${phpFiles[@]}
+  git add ${backendFiles[@]}
 fi
 
 frontendFiles=$(echo "$fileList" | grep -E '^frontend/')
@@ -25,7 +25,7 @@ if [ ${#frontendFiles} -gt 0 ]; then
     exit 1
   fi
   # エラーがなければ、Linterが変更した差分を取り込んでコミット
-  git add ${phpFiles[@]}
+  git add ${frontendFiles[@]}
 fi
 
 nlpFiles=$(echo "$fileList" | grep -E '^frontend/')
@@ -38,5 +38,5 @@ if [ ${#nlpFiles} -gt 0 ]; then
     exit 1
   fi
   # エラーがなければ、Linterが変更した差分を取り込んでコミット
-  git add ${phpFiles[@]}
+  git add ${nlpFiles[@]}
 fi
