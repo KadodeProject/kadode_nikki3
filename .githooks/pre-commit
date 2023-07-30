@@ -1,0 +1,17 @@
+#!/bin/sh
+fileList=$(git diff --diff-filter=d --cached --name-only)
+
+phpFiles=$(echo "$fileList" | grep -E '\.(php)$')
+
+if [ ${#phpFiles} -gt 0 ]; then
+  # Lintスタート
+  echo 'コミット前ルーティン開始！'
+  make f-b
+  make c-b
+  # エラーがあれば、コミットさせない
+  if [ $? -gt 0 ]; then
+    exit 1
+  fi
+  # エラーがなければ、Linterが変更した差分を取り込んでコミット
+  git add ${phpFiles[@]}
+fi
