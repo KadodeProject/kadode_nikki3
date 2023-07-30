@@ -6,7 +6,7 @@ up:
 r:
 	docker compose restart
 b:
-	docker compose up -d --build 
+	docker compose up -d --build
 s:
 	docker compose stop
 barth:
@@ -24,7 +24,7 @@ sh-d:
 777:
 	sudo chmod 777 -R backend
 
-# 
+#
 # コミット前ルーティン
 #
 1:
@@ -42,9 +42,9 @@ sh-d:
 	@make f-n
 	@make c-n
 
-# 
+#
 # テスト
-# 
+#
 t-a:
 	@make t-b
 	@make t-f
@@ -70,7 +70,7 @@ t-f:
 	@make t-fi
 	@make t-fr
 t-finstall:
-	docker compose exec frontend npx playwright install 
+	docker compose exec frontend npx playwright install
 t-fu:
 	docker compose exec frontend pnpm test:u
 t-fc:
@@ -97,14 +97,14 @@ t-ni:
 
 #
 # format & lint
-# 
+#
 f:
 	@make f-b
 	@make f-f
 	@make f-n
 
 f-b:
-	docker compose exec backend ./vendor/bin/php-cs-fixer fix --config=.php-cs-fixer.dist.php -v
+	docker compose exec backend composer cs-fixer-fix
 f-f:
 	docker compose exec frontend pnpm format
 	docker compose exec frontend pnpm lint
@@ -116,16 +116,16 @@ f-n:
 
 
 
-# 
+#
 # 静的解析
-# 
+#
 c:
 	@make c-b
 	@make c-f
 	@make c-n
 
 c-b:
-	docker compose exec backend ./vendor/bin/phpstan analyse
+	docker compose exec backend composer phpstan
 c-f:
 	docker compose exec frontend pnpm check
 c-n:
@@ -150,9 +150,9 @@ u-n:
 
 
 
-# 
+#
 # バックエンド固有のもの
-# 
+#
 cc:
 	docker compose exec backend php artisan config:clear
 	docker compose exec backend php artisan route:clear
@@ -169,7 +169,7 @@ tinker:
 stan:
 	@make c-b
 stan-g:
-	docker compose exec backend ./vendor/bin/phpstan analyse --generate-baseline 
+	docker compose exec backend composer phpstan-g
 ide-helper:
 	docker compose exec backend php artisan clear-compiled
 	docker compose exec backend php artisan ide-helper:generate
@@ -180,17 +180,17 @@ make-model:
 	docker-compose exec backend php artisan make:model $(name) --migration
 
 
-# 
+#
 # フロントエンド固有のもの
-# 
+#
 pnpm-dev:
 	docker compose exec frontend pnpm dev
 pnpm-build:
 	docker compose exec frontend pnpm build
 
-# 
+#
 # NLP固有のもの
-# 
+#
 
 black:
 	# previewは原則導入しない
