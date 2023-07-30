@@ -36,6 +36,7 @@ final class GetAllMachineResourceFromRedis
         foreach ($keys as $key) {
             [$serverName, $unixTime] = explode('-', substr($key, $prefixLength)); // prefix以降を取得
 
+            /** @var string|null $redisRawData */
             $redisRawData = Redis::get($functionPrefix.$serverName.'-'.$unixTime);
 
             if ($redisRawData === null) {
