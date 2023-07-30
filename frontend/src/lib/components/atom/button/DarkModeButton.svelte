@@ -1,3 +1,4 @@
+<!-- hoge -->
 <script lang="ts">
 	import { isDark, toggleDarkMode } from '$lib/stores/utility';
 	import InterfaceWeatherMoon from '$lib/assets/icon/interface-weather-moon.svg?component';
