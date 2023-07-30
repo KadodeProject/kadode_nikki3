@@ -21,7 +21,7 @@ final class ShowSingleDiaryAction extends Controller
     public function __invoke($uuid): View|RedirectResponse
     {
         $diary = $this->getDiaryByUuid->invoke($uuid);
-        if (null === $diary) {
+        if ($diary === null) {
             // 日記無かったらリダイレクトさせる
             return redirect(route('ShowHome'));
         }

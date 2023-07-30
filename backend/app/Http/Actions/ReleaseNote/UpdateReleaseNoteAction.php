@@ -18,10 +18,10 @@ final class UpdateReleaseNoteAction extends Controller
         $this->validate($request, Releasenote::$rules);
 
         $updateContent = [
-            'title' => $request->title,
-            'genre_id' => $request->releasenote_genre_id,
+            'title'       => $request->title,
+            'genre_id'    => $request->releasenote_genre_id,
             'description' => $request->description,
-            'date' => $request->date,
+            'date'        => $request->date,
         ];
 
         Releasenote::where('id', $request->releasenote_id)->update($updateContent);

@@ -21,20 +21,20 @@ class userReadNotificationTableSeeder extends Seeder
          */
         $param = [
             [
-                'user_id' => 2,
-                'is_showed_update_user_rank' => 0,
+                'user_id'                      => 2,
+                'is_showed_update_user_rank'   => 0,
                 'is_showed_update_system_info' => 0,
-                'is_showed_service_info' => 0,
-                'created_at' => $nowTime,
-                'updated_at' => $nowTime,
+                'is_showed_service_info'       => 0,
+                'created_at'                   => $nowTime,
+                'updated_at'                   => $nowTime,
             ],
             [
-                'user_id' => 1,
-                'is_showed_update_user_rank' => 0,
+                'user_id'                      => 1,
+                'is_showed_update_user_rank'   => 0,
                 'is_showed_update_system_info' => 0,
-                'is_showed_service_info' => 0,
-                'created_at' => $nowTime,
-                'updated_at' => $nowTime,
+                'is_showed_service_info'       => 0,
+                'created_at'                   => $nowTime,
+                'updated_at'                   => $nowTime,
             ],
         ];
         DB::table('user_read_notifications')->insert($param);

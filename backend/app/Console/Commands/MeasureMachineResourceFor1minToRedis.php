@@ -48,14 +48,14 @@ class MeasureMachineResourceFor1minToRedis extends Command
              *
              * @var float
              */
-            $cpuPercent = (float) shell_exec('top -bn1 | grep "Cpu(s)" | sed "s/.*, *\([0-9.]*\)%* id.*/\1/" | awk \'{print 100 - $1}\'') ?? 0.0; // CPU使用率の取得
+            $cpuPercent = (float)shell_exec('top -bn1 | grep "Cpu(s)" | sed "s/.*, *\([0-9.]*\)%* id.*/\1/" | awk \'{print 100 - $1}\'') ?? 0.0; // CPU使用率の取得
 
             /**
              * freeのtotalとfreeの項目から算出.
              *
              * @var float
              */
-            $memoryPercent = (float) shell_exec("free -m | grep Mem | awk  '{print $4/$2}'") * 100; // メモリ使用率の取得
+            $memoryPercent = (float)shell_exec("free -m | grep Mem | awk  '{print $4/$2}'") * 100; // メモリ使用率の取得
 
             /**
              * dfの/dev/vda1のUse%の値を使う(ここはサーバにより名前違う可能性があり、サーバー移行後にgrepできるか分からない)
@@ -63,10 +63,10 @@ class MeasureMachineResourceFor1minToRedis extends Command
              *
              * @var ""|float
              */
-            $diskPercentRaw = (float) str_replace('%', '', shell_exec("df -h | grep /dev/vda1 | awk '{print $5}'") ?? '');
+            $diskPercentRaw = (float)str_replace('%', '', shell_exec("df -h | grep /dev/vda1 | awk '{print $5}'") ?? '');
 
             /** @var float */
-            $diskPercent = '' === $diskPercentRaw ? 0.0 : $diskPercentRaw;
+            $diskPercent = $diskPercentRaw === '' ? 0.0 : $diskPercentRaw;
             // 受け取るときのコストを下げるために-つなぎにする cpu-memory-disk
             $value = $cpuPercent.'-'.$memoryPercent.'-'.$diskPercent;
 

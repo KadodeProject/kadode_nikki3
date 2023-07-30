@@ -27,8 +27,8 @@ class CreateAllStatisticAction extends Controller
         $userId = Auth::id();
         $dt = new Carbon();
         $data = [
-            'user_id' => $userId,
-            'updated_at' => $dt,
+            'user_id'            => $userId,
+            'updated_at'         => $dt,
             'statistic_progress' => 1,
         ];
         Statistic::create($data);

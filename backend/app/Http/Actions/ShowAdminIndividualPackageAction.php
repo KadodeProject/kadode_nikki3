@@ -28,7 +28,7 @@ final class ShowAdminIndividualPackageAction extends Controller
         $NlpPackageGenre = NlpPackageGenre::get();
         // 固有表現ルールの中身取得
 
-        if (1 === $packageObj->genre_id) {
+        if ($packageObj->genre_id === 1) {
             // 固有表現パッケージだったら
             $packageObj->packageNER = PackageNER::where('package_id', $packageObj->id)->orderBy('updated_at', 'desc')->get();
         }

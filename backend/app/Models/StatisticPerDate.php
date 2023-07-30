@@ -36,7 +36,7 @@ class StatisticPerDate extends Model
     public function createdAt(): Attribute
     {
         return new Attribute(
-            get: fn ($value) => Carbon::parse($value)->timezone('Asia/Tokyo')->format('Y-m-d H:i:s'),
+            get: fn($value) => Carbon::parse($value)->timezone('Asia/Tokyo')->format('Y-m-d H:i:s'),
         );
     }
 
@@ -46,7 +46,7 @@ class StatisticPerDate extends Model
     public function updatedAt(): Attribute
     {
         return new Attribute(
-            get: fn ($value) => Carbon::parse($value)->timezone('Asia/Tokyo')->format('Y-m-d H:i:s'),
+            get: fn($value) => Carbon::parse($value)->timezone('Asia/Tokyo')->format('Y-m-d H:i:s'),
         );
     }
 }

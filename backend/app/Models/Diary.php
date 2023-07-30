@@ -26,8 +26,8 @@ class Diary extends Model
      * user_idは後で入れるので不要
      */
     public static $rules = [
-        'date' => 'required',
-        'title' => 'max:50', // laravelのstringはvarchar(255)なので、255文字まで、しかし入らないから50字に抑える
+        'date'    => 'required',
+        'title'   => 'max:50', // laravelのstringはvarchar(255)なので、255文字まで、しかし入らないから50字に抑える
         'content' => 'required|min:1|max:16000', // text型の限界が16384文字なので(マルチバイトで)
         // "user_id"=>"required|numeric",
     ];
@@ -42,7 +42,7 @@ class Diary extends Model
      * @var array<string,string>
      */
     protected $casts = [
-        'date' => 'datetime',
+        'date'       => 'datetime',
         'created_at' => 'datetime',
         'updated_at' => 'datetime',
     ];
@@ -63,7 +63,7 @@ class Diary extends Model
     public function date(): Attribute
     {
         return new Attribute(
-            get: fn ($value) => Carbon::parse($value)->timezone('Asia/Tokyo')->format('Y-m-d'),
+            get: fn($value) => Carbon::parse($value)->timezone('Asia/Tokyo')->format('Y-m-d'),
         );
     }
 
@@ -73,7 +73,7 @@ class Diary extends Model
     public function createdAt(): Attribute
     {
         return new Attribute(
-            get: fn ($value) => Carbon::parse($value)->timezone('Asia/Tokyo')->format('Y-m-d H:i:s'),
+            get: fn($value) => Carbon::parse($value)->timezone('Asia/Tokyo')->format('Y-m-d H:i:s'),
         );
     }
 
@@ -83,7 +83,7 @@ class Diary extends Model
     public function updatedAt(): Attribute
     {
         return new Attribute(
-            get: fn ($value) => Carbon::parse($value)->timezone('Asia/Tokyo')->format('Y-m-d H:i:s'),
+            get: fn($value) => Carbon::parse($value)->timezone('Asia/Tokyo')->format('Y-m-d H:i:s'),
         );
     }
 

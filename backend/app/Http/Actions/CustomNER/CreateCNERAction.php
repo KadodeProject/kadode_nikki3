@@ -20,9 +20,9 @@ class CreateCNERAction extends Controller
 
         // 中身作成
         $form = [
-            'user_id' => Auth::id(),
+            'user_id'  => Auth::id(),
             'label_id' => $request->label_id,
-            'name' => $request->name,
+            'name'     => $request->name,
         ];
 
         CustomNER::create($form);

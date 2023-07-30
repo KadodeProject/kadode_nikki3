@@ -24,7 +24,7 @@ class GetYearlyStatisticByYear
         $statisticPerYear = StatisticPerYear::where('year', $year)->first();
         $statisticStatus = $this->checkStatisticStatus->invoke($statisticPerYear);
         $statisticPerYearProceed = $this->arrangeStatistic->invoke($statisticPerYear, $statisticStatus);
-        if (null === $statisticPerYear) {
+        if ($statisticPerYear === null) {
             return [];
         }
 

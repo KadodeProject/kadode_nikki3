@@ -15,11 +15,11 @@ class CheckStatisticStatusByDiary
     public function invoke(Diary $diary): StatisticStatus
     {
         return match (true) {
-            null === $diary->statisticPerDate => StatisticStatus::notExist,
-            100 !== $diary->statisticPerDate->statistic_progress => StatisticStatus::generating,
+            $diary->statisticPerDate === null                         => StatisticStatus::notExist,
+            $diary->statisticPerDate->statistic_progress !== 100      => StatisticStatus::generating,
             $diary->statisticPerDate->updated_at < $diary->updated_at => StatisticStatus::outdated,
             // ここまでくれば確実に正しい統計データのため、trueで対処(matchにelseがないので)
-            true => StatisticStatus::existCorrectly,
+            true                                                      => StatisticStatus::existCorrectly,
         };
     }
 }

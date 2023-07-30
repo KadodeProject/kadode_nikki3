@@ -18,10 +18,10 @@ final class UpdateOsiraseAction extends Controller
         $this->validate($request, Osirase::$rules);
 
         $updateContent = [
-            'title' => $request->title,
-            'genre_id' => $request->osirase_genre_id,
+            'title'       => $request->title,
+            'genre_id'    => $request->osirase_genre_id,
             'description' => $request->description,
-            'date' => $request->date,
+            'date'        => $request->date,
         ];
 
         Osirase::where('id', $request->osirase_id)->update($updateContent);

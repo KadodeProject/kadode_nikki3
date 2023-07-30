@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\UseCases\Diary\Import;
 
 use Carbon\Carbon;
+use Str;
 
 /**
  * 重複なしのと重複ありの日記の配列を作る日記.
@@ -53,7 +54,7 @@ class CreateDiaryBaseArrayFromImportedData
                     // あったら改行＋タイトル＋改行＋本文を元の本文に追加する
                     $newDiary[$dateYmd]['content'] .= "\n\n\n".$title."\n\n".$content;
                 } else {
-                    $newDiary[$dateYmd] = ['updated_at' => $carbonNow, 'created_at' => $carbonNow, 'user_id' => $userId, 'uuid' => \Str::uuid(), 'date' => $date, 'title' => $title, 'content' => $content];
+                    $newDiary[$dateYmd] = ['updated_at' => $carbonNow, 'created_at' => $carbonNow, 'user_id' => $userId, 'uuid' => Str::uuid(), 'date' => $date, 'title' => $title, 'content' => $content];
                 }
             }
         }

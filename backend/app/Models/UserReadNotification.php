@@ -13,9 +13,9 @@ class UserReadNotification extends Model
 
     // 初期値設定
     protected $attributes = [
-        'is_showed_update_user_rank' => 0,
+        'is_showed_update_user_rank'   => 0,
         'is_showed_update_system_info' => 0,
-        'is_showed_service_info' => 0,
+        'is_showed_service_info'       => 0,
     ];
 
     protected $fillable = [

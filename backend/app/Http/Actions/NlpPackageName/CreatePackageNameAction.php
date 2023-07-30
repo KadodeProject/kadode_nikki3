@@ -20,11 +20,11 @@ final class CreatePackageNameAction extends Controller
 
         // 中身作成
         $form = [
-            'user_id' => Auth::id(),
-            'genre_id' => $request->NlpPackageGenre_id,
-            'name' => $request->name,
+            'user_id'     => Auth::id(),
+            'genre_id'    => $request->NlpPackageGenre_id,
+            'name'        => $request->name,
             'description' => $request->description,
-            'is_publish' => $request->is_publish,
+            'is_publish'  => $request->is_publish,
         ];
 
         NlpPackageName::create($form);

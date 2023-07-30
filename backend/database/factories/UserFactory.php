@@ -27,14 +27,14 @@ class UserFactory extends Factory
         $email = $this->faker->unique()->safeEmail();
 
         return [
-            'name' => $this->faker->firstName(),
-            'email' => $email,
-            'email_verified_at' => now(),
-            'password' => Hash::make($email),
-            'remember_token' => Str::random(10),
-            'auth_type' => 1,
-            'user_rank_id' => 1,
-            'user_role_id' => 1,
+            'name'                 => $this->faker->firstName(),
+            'email'                => $email,
+            'email_verified_at'    => now(),
+            'password'             => Hash::make($email),
+            'remember_token'       => Str::random(10),
+            'auth_type'            => 1,
+            'user_rank_id'         => 1,
+            'user_role_id'         => 1,
             'user_rank_updated_at' => now(),
         ];
     }
@@ -60,7 +60,7 @@ class UserFactory extends Factory
     {
         return $this->has(
             Team::factory()
-                ->state(fn (array $attributes, User $user) => ['name' => $user->name.'\'s Team', 'user_id' => $user->id, 'personal_team' => true]),
+                ->state(fn(array $attributes, User $user) => ['name' => $user->name.'\'s Team', 'user_id' => $user->id, 'personal_team' => true]),
             'ownedTeams'
         );
     }

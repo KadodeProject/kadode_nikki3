@@ -16,9 +16,9 @@ class ArrangeStatistic
     public function invoke(Statistic|null $statistic, StatisticStatus $statisticStatus): Statistic|null
     {
         return match ($statisticStatus) {
-            StatisticStatus::notExist => $this->notExist($statistic),
-            StatisticStatus::generating => $this->generating($statistic),
-            StatisticStatus::outdated => $this->outdated($statistic),
+            StatisticStatus::notExist       => $this->notExist($statistic),
+            StatisticStatus::generating     => $this->generating($statistic),
+            StatisticStatus::outdated       => $this->outdated($statistic),
             StatisticStatus::existCorrectly => $this->existCorrectly($statistic),
         };
     }

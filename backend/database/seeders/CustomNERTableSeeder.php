@@ -17,16 +17,16 @@ class CustomNERTableSeeder extends Seeder
         $nowTime = now();
         $param = [
             [
-                'user_id' => 1,
-                'label_id' => 5,
-                'name' => 'うすゆき',
+                'user_id'    => 1,
+                'label_id'   => 5,
+                'name'       => 'うすゆき',
                 'created_at' => $nowTime,
                 'updated_at' => $nowTime,
             ],
             [
-                'user_id' => 1,
-                'label_id' => 4,
-                'name' => 'かどで日記',
+                'user_id'    => 1,
+                'label_id'   => 4,
+                'name'       => 'かどで日記',
                 'created_at' => $nowTime,
                 'updated_at' => $nowTime,
             ],

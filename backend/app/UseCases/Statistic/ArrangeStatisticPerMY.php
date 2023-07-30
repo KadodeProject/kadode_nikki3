@@ -18,9 +18,9 @@ class ArrangeStatisticPerMY
     public function invoke(StatisticPerMonth|StatisticPerYear|null $statistic, StatisticStatus $statisticStatus): StatisticPerMonth|StatisticPerYear|null
     {
         return match ($statisticStatus) {
-            StatisticStatus::notExist => $this->notExist($statistic),
-            StatisticStatus::generating => $this->generating($statistic),
-            StatisticStatus::outdated => $this->outdated($statistic),
+            StatisticStatus::notExist       => $this->notExist($statistic),
+            StatisticStatus::generating     => $this->generating($statistic),
+            StatisticStatus::outdated       => $this->outdated($statistic),
             StatisticStatus::existCorrectly => $this->existCorrectly($statistic),
         };
     }

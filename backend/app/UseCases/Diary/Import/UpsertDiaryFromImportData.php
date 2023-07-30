@@ -24,8 +24,8 @@ class UpsertDiaryFromImportData
         // 合体するために内容を取得する array_columnでの実装は廃止(右辺に配列を作れないため)
         foreach (Diary::whereIn('date', array_keys($distinctDiary))->get(['date', 'content', 'id', 'uuid'])->toArray() as $diary) {
             $existDateContents[$diary['date']] = [
-                'id' => $diary['id'],
-                'uuid' => $diary['uuid'],
+                'id'      => $diary['id'],
+                'uuid'    => $diary['uuid'],
                 'content' => $diary['content'],
             ];
         }

@@ -17,6 +17,8 @@ use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
+use function count;
+
 /**
  * @todo ここDRYにめちゃくちゃ反してるのでインターフェイス作って抽象化したい
  */
@@ -62,8 +64,8 @@ class ImportFromKadodeCsvAction extends Controller
             // CSVのからデータを取得してuescaseに投げられる形に変換
             $interpreter->addObserver(function (array $row) use (&$importDataProceed): void {
                 $importDataProceed[] = [
-                    'date' => $row[0],
-                    'title' => $row[1],
+                    'date'    => $row[0],
+                    'title'   => $row[1],
                     'content' => $row[2],
                 ];
             });
@@ -84,7 +86,7 @@ class ImportFromKadodeCsvAction extends Controller
             // 重複した日付の日記をDBへ
             $this->upsertDiaryFromImportData->invoke($distinctDiary, $userId);
 
-            $importResult = \count($newDiary).'つの日記が新しくインポートされ、'.\count($distinctDiary).'の日記がアップデートされました🎉';
+            $importResult = count($newDiary).'つの日記が新しくインポートされ、'.count($distinctDiary).'の日記がアップデートされました🎉';
         } else {
             $importResult = 'ファイルが見つかりませんでした😢';
         }

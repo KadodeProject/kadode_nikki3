@@ -20,10 +20,10 @@ final class CreateReleaseNoteAction extends Controller
 
         // 中身作成
         $form = [
-            'title' => $request->title,
-            'genre_id' => $request->releasenote_genre_id,
+            'title'       => $request->title,
+            'genre_id'    => $request->releasenote_genre_id,
             'description' => $request->description,
-            'date' => $request->date,
+            'date'        => $request->date,
         ];
 
         Releasenote::create($form);

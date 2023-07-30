@@ -38,7 +38,7 @@ final class ShowAdminHomeAction extends Controller
             $statistic = Statistic::withoutGlobalScopes()->where('user_id', $user['id'])->first(['statistic_progress', 'total_words', 'total_diaries']);
             if (!empty($statistic)) {
                 // 統計あっても生成中の可能性があるので
-                if (100 === $statistic->statistic_progress) {
+                if ($statistic->statistic_progress === 100) {
                     $user['diary_average'] = round($statistic->total_words / $statistic->total_diaries);
                 } else {
                     $user['diary_average'] = '生成中'; // 無い可能性もあるので0に
@@ -47,7 +47,7 @@ final class ShowAdminHomeAction extends Controller
 
             /** @todo withで取るべきだが、後にこのメソッドごと廃止予定なので一旦これで放置 */
             $userReadNotification = UserReadNotification::withoutGlobalScopes()->where('user_id', $user['id'])->first();
-            if (null === $userReadNotification) {
+            if ($userReadNotification === null) {
                 $user['is_showed_update_user_rank'] = '☐';
                 $user['is_showed_update_system_info'] = '☐';
                 $user['is_showed_service_info'] = '☐';

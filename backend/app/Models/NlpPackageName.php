@@ -14,7 +14,7 @@ class NlpPackageName extends Model
 
     // バリデーション
     public static $rules = [
-        'name' => 'required',
+        'name'        => 'required',
         'description' => 'required',
     ];
     protected $fillable = [

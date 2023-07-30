@@ -6,6 +6,7 @@ namespace App\Http\Requests\Diary;
 
 use App\Rules\Diary\RejectExistDayDiaryForCreateOnDateRule;
 use Illuminate\Foundation\Http\FormRequest;
+use Auth;
 
 class CreateDiaryRequest extends FormRequest
 {
@@ -35,8 +36,8 @@ class CreateDiaryRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'date' => ['required', new RejectExistDayDiaryForCreateOnDateRule(\Auth::id())],
-            'title' => ['max:50'], // laravelのstringはvarchar(255)なので、255文字まで、しかし入らないから50字に抑える
+            'date'    => ['required', new RejectExistDayDiaryForCreateOnDateRule(Auth::id())],
+            'title'   => ['max:50'], // laravelのstringはvarchar(255)なので、255文字まで、しかし入らないから50字に抑える
             'content' => ['required', 'min:1', 'max:16000'], // text型の限界が16384文字なので(マルチバイトで)
         ];
     }

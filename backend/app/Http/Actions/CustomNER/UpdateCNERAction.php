@@ -20,7 +20,7 @@ class UpdateCNERAction extends Controller
 
         $updateContent = [
             'label_id' => $request->label_id,
-            'name' => $request->name,
+            'name'     => $request->name,
         ];
 
         CustomNER::where('id', $request->customNER_id)->update($updateContent);

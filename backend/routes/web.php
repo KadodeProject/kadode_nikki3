@@ -39,9 +39,9 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function (Req
     $geo = geoip()->getLocation($ip);
     $data = [
         'user_id' => Auth::id(),
-        'ip' => $ip,
-        'ua' => $request->header('User-Agent'),
-        'geo' => $geo->country.'_'.$geo->city,
+        'ip'      => $ip,
+        'ua'      => $request->header('User-Agent'),
+        'geo'     => $geo->country.'_'.$geo->city,
     ];
     UserIp::create($data);
 

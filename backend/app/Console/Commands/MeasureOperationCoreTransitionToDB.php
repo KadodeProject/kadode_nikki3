@@ -38,10 +38,10 @@ class MeasureOperationCoreTransitionToDB extends Command
     {
         OperationCoreTransitionPerHour::insert(
             [
-                'user_total' => User::withoutGlobalScopes()->count(),
-                'diary_total' => Diary::withoutGlobalScopes()->count(),
+                'user_total'               => User::withoutGlobalScopes()->count(),
+                'diary_total'              => Diary::withoutGlobalScopes()->count(),
                 'statistic_per_date_total' => StatisticPerDate::withoutGlobalScopes()->count(),
-                'created_at' => now(), // Actionsでのインサートだと不要だが、コントローラー継承クラス外だと自動挿入されない模様
+                'created_at'               => now(), // Actionsでのインサートだと不要だが、コントローラー継承クラス外だと自動挿入されない模様
             ]
         );
 
