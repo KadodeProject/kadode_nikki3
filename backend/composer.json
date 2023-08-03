@@ -20,7 +20,8 @@
         "laravel/tinker": "^2.7",
         "spatie/laravel-backup": "^8.0",
         "symfony/mailgun-mailer": "^6.0",
-        "torann/geoip": "^3.0"
+        "torann/geoip": "^3.0",
+        "vyuldashev/laravel-openapi": "^1.11"
     },
     "require-dev": {
         "barryvdh/laravel-debugbar": "^3.6",

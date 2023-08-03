@@ -1,9 +1,14 @@
 // import type { OsiraseType } from '$lib/types/Osirase';
-import { apiUrlResolver } from '$lib/utils/apiUrlResolver';
-export async function load({ fetch }) {
-	const response = await fetch(`${apiUrlResolver()}/api/Osirase/all`);
-	const data = response.json();
+import api from '$apiSchema/$api';
+import { apiUrlResolver } from '$src/lib/utils/apiUrlResolver';
+import aspida from '@aspida/node-fetch';
+const fetchConfig = {
+	baseURL: apiUrlResolver()
+};
+export async function load() {
+	const client = api(aspida(fetch, fetchConfig));
+	const response = await client.api.v1.Osirase.all.$get();
 	return {
-		data
+		response
 	};
 }

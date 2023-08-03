@@ -147,6 +147,16 @@ u-f:
 u-n:
 	docker compose exec -T nlp poetry update
 
+# init
+init-b:
+	docker compose exec backend composer install
+	docker compose exec backend chmod -R 777 storage bootstrap/cache
+
+init-f:
+	docker compose exec frontend pnpm install
+
+init-n:
+	docker compose exec nlp poetry install
 
 
 
@@ -154,8 +164,8 @@ u-n:
 # バックエンド固有のもの
 #
 cc:
-	docker compose exec -T backend php artisan config:clear
-	docker compose exec -T backend php artisan route:clear
+	docker compose exec -T backend php artisan config:cache
+	docker compose exec -T backend php artisan route:cache
 migrate:
 	docker compose exec -T backend php artisan migrate
 # DB再構築
@@ -176,13 +186,21 @@ ide-helper:
 	docker compose exec -T backend php artisan ide-helper:meta
 	docker compose exec -T backend php artisan ide-helper:models --nowrite
 make-model:
-# make-model name=ModelName
-	docker-compose exec -T backend php artisan make:model $(name) --migration
+	docker compose exec -T backend php artisan make:model $(name) --migration
+	# make-model name=ModelName
+response:
+	docker compose exec -T backend php artisan openapi:make-response $(name)
+request:
+	docker compose exec -T backend php artisan openapi:make-requestBody $(name)
+schema:
+	docker compose exec -T backend php artisan openapi:make-schema $(name)
 
 
 #
 # フロントエンド固有のもの
 #
+dev-f:
+	docker compose exec frontend pnpm dev
 pnpm-dev:
 	docker compose exec -T frontend pnpm dev
 pnpm-build:
@@ -209,3 +227,9 @@ b-log:
 	sh script/backend_log.sh
 tag:
 	sh script/git_tag.sh
+openapi:
+	sh script/generate_schema.sh
+
+
+
+

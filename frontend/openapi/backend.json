@@ -1,0 +1,70 @@
+{
+	"openapi": "3.0.2",
+	"info": {
+		"title": "kadode_nikki_api",
+		"description": "かどで日記のバックエンドAPIのOpenAPI",
+		"version": "1.0.0"
+	},
+	"servers": [
+		{
+			"url": "http://localhost:2010"
+		}
+	],
+	"paths": {
+		"/api/v1/Osirase/all": {
+			"get": {
+				"summary": "お知らせを全部取得",
+				"responses": {
+					"200": {
+						"description": "成功レスポンス",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/GetAllOsiraseResponse"
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	},
+	"components": {
+		"schemas": {
+			"GetAllOsiraseResponse": {
+				"type": "object",
+				"properties": {
+					"osirase": {
+						"type": "array",
+						"items": {
+							"type": "object",
+							"properties": {
+								"id": {
+									"type": "string",
+									"example": "1"
+								},
+								"title": {
+									"type": "string",
+									"example": "タイトル"
+								},
+								"content": {
+									"description": "改行含む文字列が入ってくるがエスケープなどはされていない",
+									"type": "string",
+									"example": "内容"
+								},
+								"created_at": {
+									"type": "string",
+									"example": "2021-01-01 00:00:00"
+								},
+								"updated_at": {
+									"type": "string",
+									"example": "2021-01-01 00:00:00"
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+}

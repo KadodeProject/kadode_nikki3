@@ -11,7 +11,7 @@ const config: UserConfig = {
 	test: {
 		globals: true,
 		environment: 'jsdom',
-		include: ['tests/unit/**/*.vitest.ts']
+		include: ['./tests/unit/**/*.vitest.ts']
 	}
 };
 

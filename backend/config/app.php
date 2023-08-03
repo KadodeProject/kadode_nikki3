@@ -171,6 +171,7 @@ return [
         App\Providers\RouteServiceProvider::class,
 
         \Torann\GeoIP\GeoIPServiceProvider::class,
+        Vyuldashev\LaravelOpenApi\OpenApiServiceProvider::class,
     ],
 
     /*
