@@ -39,10 +39,11 @@
 		"svelte": "^3.59.2",
 		"svelte-check": "^3.4.6",
 		"tailwindcss": "^3.3.3",
+		"tinyspy": "^2.1.1",
 		"tslib": "^2.6.1",
 		"typescript": "^5.1.6",
 		"vite": "^4.4.7",
-		"vitest": "^0.25.8"
+		"vitest": "^0.34.1"
 	},
 	"type": "module",
 	"dependencies": {
