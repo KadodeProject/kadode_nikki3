@@ -40,3 +40,5 @@ if [ ${#nlpFiles} -gt 0 ]; then
   # エラーがなければ、Linterが変更した差分を取り込んでコミット
   git add ${nlpFiles[@]}
 fi
+
+echo '🎆コミット前ルーティン終了！'
