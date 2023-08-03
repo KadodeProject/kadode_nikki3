@@ -186,8 +186,14 @@ ide-helper:
 	docker compose exec -T backend php artisan ide-helper:meta
 	docker compose exec -T backend php artisan ide-helper:models --nowrite
 make-model:
-# make-model name=ModelName
-	docker-compose exec -T backend php artisan make:model $(name) --migration
+	docker compose exec -T backend php artisan make:model $(name) --migration
+	# make-model name=ModelName
+response:
+	docker compose exec -T backend php artisan openapi:make-response $(name)
+request:
+	docker compose exec -T backend php artisan openapi:make-requestBody $(name)
+schema:
+	docker compose exec -T backend php artisan openapi:make-schema $(name)
 
 
 #
@@ -221,3 +227,9 @@ b-log:
 	sh script/backend_log.sh
 tag:
 	sh script/git_tag.sh
+openapi:
+	# たまに失敗する？？
+	docker compose exec -T backend php artisan openapi:generate > ./frontend/openapi/backend.json
+	docker compose exec -T frontend rm -rf src/apiSchema
+	docker compose exec -T frontend pnpm openapi2aspida -i ./openapi/backend.json -o src/apiSchema
+
