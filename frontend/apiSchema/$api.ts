@@ -1,3 +1,4 @@
+// @ts-nocheck
 import type { AspidaClient, BasicHeaders } from 'aspida';
 import type { Methods as Methods0 } from './api/v1/Osirase/all';
 

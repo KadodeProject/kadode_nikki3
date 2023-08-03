@@ -228,8 +228,8 @@ b-log:
 tag:
 	sh script/git_tag.sh
 openapi:
-	# たまに失敗する？？
-	docker compose exec -T backend php artisan openapi:generate > ./frontend/openapi/backend.json
-	docker compose exec -T frontend rm -rf src/apiSchema
-	docker compose exec -T frontend pnpm openapi2aspida -i ./openapi/backend.json -o src/apiSchema
+	sh script/generate_schema.sh
+
+
+
 
