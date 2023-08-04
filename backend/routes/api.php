@@ -19,7 +19,7 @@ use Illuminate\Support\Facades\Route;
 Route::prefix('v1')->group(function (): void {
     Route::group(['middleware' => ['web']], function (): void {
         Route::get('/login/{provider}', ApiActions\OAuth\GetProviderOAuthURLAction::class)
-            ->name('oautRequest');
+            ->name('oAuthRequest');
     });
     Route::get('/auth/{provider}/callback', ApiActions\OAuth\HandleProviderCallbackAction::class)
         ->name('oAuthCallBack');
@@ -47,8 +47,17 @@ Route::prefix('v1')->group(function (): void {
     Route::get('ReleaseNote/latest', ApiActions\ReleaseNote\GetLatestReleaseNoteAction::class)->name('GetLatestReleaseNoteAction');
 
     Route::group(['middleware' => ['auth:sanctum']], function (): void {
+        // 裏側で必要なエンドポイント
         Route::get('/user/init', ApiActions\User\GetUserInfoAction::class)->name('getUserInfo');
+
+        /**
+         * ページ表示用エンドポイント
+         * - 値をまとめて返す系
+         * - そのページ独自のform系
+         */
+        // home
         Route::get('/home', ApiActions\GetHomeAction::class)->name('GetHomeApi');
+        // edit
         Route::post('/diary/create', ApiActions\Diary\CreateDiaryAction::class)->name('CreateDiaryApi');
     });
 });

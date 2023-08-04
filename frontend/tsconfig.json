@@ -11,8 +11,9 @@
 		"strict": true,
 		"types": ["vitest/globals"]
 		// "baseUrl": "."
-	}
-	//exclude効かないのでコメントで対処
+	},
+	//src/apiSchema/$api.tsだけは効かないが、それより下のディレクトリは有効っぽいので、src/apiSchema/$api.tsだけはコメントで対処している
+	"exclude": ["src/apiSchema"]
 	// Path aliases are handled by https://kit.svelte.dev/docs/configuration#alias
 	//
 	// If you want to overwrite includes/excludes, make sure to copy over the relevant includes/excludes
