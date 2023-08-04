@@ -14,7 +14,7 @@ use Vyuldashev\LaravelOpenApi\Attributes as OpenApi;
 final class GetAllOsiraseAction extends Controller
 {
     /**
-     * お知らせを全部取得
+     * 全てのお知らせを取得
      */
     #[OpenApi\Operation()]
     #[OpenApi\Response(OsiraseResponse::class)]

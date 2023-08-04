@@ -13,14 +13,14 @@
 	"paths": {
 		"/api/v1/Osirase/all": {
 			"get": {
-				"summary": "お知らせを全部取得",
+				"summary": "全てのお知らせを取得",
 				"responses": {
 					"200": {
 						"description": "成功レスポンス",
 						"content": {
 							"application/json": {
 								"schema": {
-									"$ref": "#/components/schemas/GetAllOsiraseResponse"
+									"$ref": "#/components/schemas/osirase"
 								}
 							}
 						}
@@ -37,7 +37,41 @@
 						"content": {
 							"application/json": {
 								"schema": {
-									"$ref": "#/components/schemas/GetAllOsiraseResponse"
+									"$ref": "#/components/schemas/osirase"
+								}
+							}
+						}
+					}
+				}
+			}
+		},
+		"/api/v1/ReleaseNote/all": {
+			"get": {
+				"summary": "全てのリリースノートを取得",
+				"responses": {
+					"200": {
+						"description": "成功レスポンス",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/releaseNote"
+								}
+							}
+						}
+					}
+				}
+			}
+		},
+		"/api/v1/ReleaseNote/latest": {
+			"get": {
+				"summary": "直近5件のリリースノートを取得",
+				"responses": {
+					"200": {
+						"description": "成功レスポンス",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/releaseNote"
 								}
 							}
 						}
@@ -48,36 +82,52 @@
 	},
 	"components": {
 		"schemas": {
-			"GetAllOsiraseResponse": {
-				"type": "object",
-				"properties": {
-					"osirase": {
-						"type": "array",
-						"items": {
-							"type": "object",
-							"properties": {
-								"id": {
-									"type": "string",
-									"example": "1"
-								},
-								"title": {
-									"type": "string",
-									"example": "タイトル"
-								},
-								"content": {
-									"description": "改行含む文字列が入ってくるがエスケープなどはされていない",
-									"type": "string",
-									"example": "内容"
-								},
-								"created_at": {
-									"type": "string",
-									"example": "2021-01-01 00:00:00"
-								},
-								"updated_at": {
-									"type": "string",
-									"example": "2021-01-01 00:00:00"
-								}
-							}
+			"osirase": {
+				"type": "array",
+				"items": {
+					"type": "object",
+					"properties": {
+						"title": {
+							"type": "string",
+							"example": "タイトル"
+						},
+						"date": {
+							"type": "string",
+							"example": "2021-12-29T15:00:00.000000Z"
+						},
+						"description": {
+							"description": "改行含む文字列が入ってくるがエスケープなどはされていない",
+							"type": "string",
+							"example": "内容"
+						},
+						"url": {
+							"type": "string",
+							"example": "http://localhost:2010/osirase"
+						}
+					}
+				}
+			},
+			"releaseNote": {
+				"type": "array",
+				"items": {
+					"type": "object",
+					"properties": {
+						"title": {
+							"type": "string",
+							"example": "タイトル"
+						},
+						"date": {
+							"type": "string",
+							"example": "2021-12-29T15:00:00.000000Z"
+						},
+						"description": {
+							"description": "改行含む文字列が入ってくるがエスケープなどはされていない",
+							"type": "string",
+							"example": "内容"
+						},
+						"url": {
+							"type": "string",
+							"example": "http://localhost:2010/releaseNote"
 						}
 					}
 				}

@@ -5,6 +5,6 @@ export type Methods = {
 	get: {
 		status: 200;
 		/** 成功レスポンス */
-		resBody: Types.Osirase;
+		resBody: Types.ReleaseNote;
 	};
 };
