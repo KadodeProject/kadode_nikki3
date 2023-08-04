@@ -20,7 +20,7 @@ final class GetLatestReleaseNoteAction extends Controller
     #[OpenApi\Response(ReleaseNoteResponse::class)]
     public function __invoke(): JsonResponse
     {
-        /** @todo リリースノートの個別ページがないので、現状お知らせ一覧をリンク先にしているため、個別ページできたら差し替え */
+        /** @todo リリースノートの個別ページがないので、現状リリースノート一覧をリンク先にしているため、個別ページできたら差し替え */
         $url = route('ShowReleaseNote');
         $releaseNotes = Releasenote::orderBy('date', 'desc')->limit(5)->get(['title', 'date', 'description']);
 
