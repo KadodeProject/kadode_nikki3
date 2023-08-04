@@ -1,6 +1,6 @@
 <script lang="ts">
 	import type { ArchiveDiaryType } from '$lib/types/Diary';
-	import DateYyyymDddd from '$lib/components/atom/diary/DateYYYYMDddd.svelte';
+	import DateYyyymDddd from '$lib/components/atom/showDiary/DateYYYYMDddd.svelte';
 	export let diary: ArchiveDiaryType;
 </script>
 

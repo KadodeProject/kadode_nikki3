@@ -1,7 +1,7 @@
 <script lang="ts">
-	import ArchiveDiaryCard from '$lib/components/molecule/diary/ArchiveDiaryCard.svelte';
+	import ArchiveDiaryCard from '$lib/components/molecule/showDiary/ArchiveDiaryCard.svelte';
 	import type { ArchiveDiaryType } from '$lib/types/Diary';
-	import AttributeDateBubble from '$lib/components/atom/diary/AttributeDateBubble.svelte';
+	import AttributeDateBubble from '$lib/components/atom/showDiary/AttributeDateBubble.svelte';
 	export let diaries: ArchiveDiaryType[];
 </script>
 
