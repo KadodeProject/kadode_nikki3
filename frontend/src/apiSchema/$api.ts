@@ -2,10 +2,12 @@
 // @ts-nocheck
 import type { AspidaClient, BasicHeaders } from 'aspida';
 import type { Methods as Methods0 } from './api/v1/Osirase/all';
+import type { Methods as Methods1 } from './api/v1/Osirase/latest';
 
 const api = <T>({ baseURL, fetch }: AspidaClient<T>) => {
 	const prefix = (baseURL === undefined ? 'http://localhost:2010' : baseURL).replace(/\/$/, '');
 	const PATH0 = '/api/v1/Osirase/all';
+	const PATH1 = '/api/v1/Osirase/latest';
 	const GET = 'GET';
 
 	return {
@@ -34,6 +36,29 @@ const api = <T>({ baseURL, fetch }: AspidaClient<T>) => {
 								.json()
 								.then((r) => r.body),
 						$path: () => `${prefix}${PATH0}`
+					},
+					latest: {
+						/**
+						 * @returns 成功レスポンス
+						 */
+						get: (option?: { config?: T | undefined } | undefined) =>
+							fetch<
+								Methods1['get']['resBody'],
+								BasicHeaders,
+								Methods1['get']['status']
+							>(prefix, PATH1, GET, option).json(),
+						/**
+						 * @returns 成功レスポンス
+						 */
+						$get: (option?: { config?: T | undefined } | undefined) =>
+							fetch<
+								Methods1['get']['resBody'],
+								BasicHeaders,
+								Methods1['get']['status']
+							>(prefix, PATH1, GET, option)
+								.json()
+								.then((r) => r.body),
+						$path: () => `${prefix}${PATH1}`
 					}
 				}
 			}

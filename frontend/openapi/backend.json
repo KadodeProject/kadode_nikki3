@@ -27,6 +27,23 @@
 					}
 				}
 			}
+		},
+		"/api/v1/Osirase/latest": {
+			"get": {
+				"summary": "直近5件のお知らせを取得",
+				"responses": {
+					"200": {
+						"description": "成功レスポンス",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/GetAllOsiraseResponse"
+								}
+							}
+						}
+					}
+				}
+			}
 		}
 	},
 	"components": {
