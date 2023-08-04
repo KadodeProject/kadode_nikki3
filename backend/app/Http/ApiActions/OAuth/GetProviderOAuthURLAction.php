@@ -6,10 +6,12 @@ namespace App\Http\ApiActions\OAuth;
 
 use App\Http\Controllers\Controller;
 use Laravel\Socialite\Facades\Socialite;
+use Vyuldashev\LaravelOpenApi\Attributes as OpenApi;
 
 use function assert;
 use function in_array;
 
+#[OpenApi\PathItem]
 final class GetProviderOAuthURLAction extends Controller
 {
     // private $domain;

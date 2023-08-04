@@ -13,7 +13,9 @@ use Carbon\CarbonImmutable;
 use Illuminate\Auth\AuthenticationException;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\Auth;
+use Vyuldashev\LaravelOpenApi\Attributes as OpenApi;
 
+#[OpenApi\PathItem]
 final class GetHomeAction extends Controller
 {
     public function __construct(

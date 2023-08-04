@@ -7,6 +7,11 @@ export type Osirase = {
 	url?: string | undefined;
 }[];
 
+export type User = {
+	id?: number | undefined;
+	name?: string | undefined;
+};
+
 export type ReleaseNote = {
 	title?: string | undefined;
 	date?: string | undefined;

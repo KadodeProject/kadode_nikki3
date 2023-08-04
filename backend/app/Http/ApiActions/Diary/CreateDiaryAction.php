@@ -11,7 +11,9 @@ use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
+use Vyuldashev\LaravelOpenApi\Attributes as OpenApi;
 
+#[OpenApi\PathItem]
 final class CreateDiaryAction extends Controller
 {
     public function __invoke(CreateDiaryRequest $request): JsonResponse

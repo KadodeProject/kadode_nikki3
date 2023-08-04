@@ -14,7 +14,9 @@ return [
 
             'servers'     => [
                 [
-                    'url'         => env('APP_URL'),
+                    // どちらにしてもopenapiで定義したURLをフロント側では上書きして使うので、ここのurlはメインのurlを入れておく
+                    'url'         => 'https://api.kado.day',
+                    // 'url'         => env('APP_URL'),
                     'description' => '環境変数に応じて適切なURLに置き換え',
                     'variables'   => [],
                 ],

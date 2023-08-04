@@ -3,6 +3,8 @@ import type { Methods as Methods0 } from './Osirase/all';
 import type { Methods as Methods1 } from './Osirase/latest';
 import type { Methods as Methods2 } from './ReleaseNote/all';
 import type { Methods as Methods3 } from './ReleaseNote/latest';
+import type { Methods as Methods4 } from './status';
+import type { Methods as Methods5 } from './user/init';
 
 const api = <T>({ baseURL, fetch }: AspidaClient<T>) => {
 	const prefix = (baseURL === undefined ? 'http://localhost:2010' : baseURL).replace(/\/$/, '');
@@ -10,6 +12,8 @@ const api = <T>({ baseURL, fetch }: AspidaClient<T>) => {
 	const PATH1 = '/api/v1/Osirase/latest';
 	const PATH2 = '/api/v1/ReleaseNote/all';
 	const PATH3 = '/api/v1/ReleaseNote/latest';
+	const PATH4 = '/api/v1/status';
+	const PATH5 = '/api/v1/user/init';
 	const GET = 'GET';
 
 	return {
@@ -115,6 +119,58 @@ const api = <T>({ baseURL, fetch }: AspidaClient<T>) => {
 						.json()
 						.then((r) => r.body),
 				$path: () => `${prefix}${PATH3}`
+			}
+		},
+		status: {
+			/**
+			 * @returns 成功レスポンス
+			 */
+			get: (option?: { config?: T | undefined } | undefined) =>
+				fetch<Methods4['get']['resBody'], BasicHeaders, Methods4['get']['status']>(
+					prefix,
+					PATH4,
+					GET,
+					option
+				).json(),
+			/**
+			 * @returns 成功レスポンス
+			 */
+			$get: (option?: { config?: T | undefined } | undefined) =>
+				fetch<Methods4['get']['resBody'], BasicHeaders, Methods4['get']['status']>(
+					prefix,
+					PATH4,
+					GET,
+					option
+				)
+					.json()
+					.then((r) => r.body),
+			$path: () => `${prefix}${PATH4}`
+		},
+		user: {
+			init: {
+				/**
+				 * @returns 成功レスポンス
+				 */
+				get: (option?: { config?: T | undefined } | undefined) =>
+					fetch<Methods5['get']['resBody'], BasicHeaders, Methods5['get']['status']>(
+						prefix,
+						PATH5,
+						GET,
+						option
+					).json(),
+				/**
+				 * @returns 成功レスポンス
+				 */
+				$get: (option?: { config?: T | undefined } | undefined) =>
+					fetch<Methods5['get']['resBody'], BasicHeaders, Methods5['get']['status']>(
+						prefix,
+						PATH5,
+						GET,
+						option
+					)
+						.json()
+						.then((r) => r.body),
+				$path: () => `${prefix}${PATH5}`
 			}
 		}
 	};

@@ -7,10 +7,34 @@
 	},
 	"servers": [
 		{
-			"url": "http://localhost:2010"
+			"url": "http://localhost:2010",
+			"description": "環境変数に応じて適切なURLに置き換え"
 		}
 	],
 	"paths": {
+		"/api/v1/status": {
+			"get": {
+				"summary": "✌を返す",
+				"responses": {
+					"200": {
+						"description": "成功レスポンス",
+						"content": {
+							"application/json": {
+								"schema": {
+									"type": "object",
+									"properties": {
+										"status": {
+											"type": "string",
+											"example": "✌"
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		},
 		"/api/v1/Osirase/all": {
 			"get": {
 				"summary": "全てのお知らせを取得",
@@ -78,6 +102,23 @@
 					}
 				}
 			}
+		},
+		"/api/v1/user/init": {
+			"get": {
+				"summary": "ログイン中userの情報を取得",
+				"responses": {
+					"200": {
+						"description": "成功レスポンス",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/user"
+								}
+							}
+						}
+					}
+				}
+			}
 		}
 	},
 	"components": {
@@ -104,6 +145,19 @@
 							"type": "string",
 							"example": "http://localhost:2010/osirase"
 						}
+					}
+				}
+			},
+			"user": {
+				"type": "object",
+				"properties": {
+					"id": {
+						"type": "integer",
+						"example": 1
+					},
+					"name": {
+						"type": "string",
+						"example": "usuyuki"
 					}
 				}
 			},

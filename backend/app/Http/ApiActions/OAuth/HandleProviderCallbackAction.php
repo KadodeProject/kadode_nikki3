@@ -11,10 +11,12 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Routing\Redirector;
 use Illuminate\Support\Facades\Auth;
 use Laravel\Socialite\Facades\Socialite;
+use Vyuldashev\LaravelOpenApi\Attributes as OpenApi;
 
 use function assert;
 use function in_array;
 
+#[OpenApi\PathItem]
 final class HandleProviderCallbackAction extends Controller
 {
     /**
