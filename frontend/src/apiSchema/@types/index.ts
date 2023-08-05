@@ -82,8 +82,8 @@ export type Diary = {
 };
 
 export type DiaryRequestBody = {
-	date?: number | undefined;
-	title?: string | undefined;
+	date?: string | undefined;
+	title?: string | null | undefined;
 	content?: string | undefined;
 };
 

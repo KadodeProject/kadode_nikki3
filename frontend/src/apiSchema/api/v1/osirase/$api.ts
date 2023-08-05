@@ -4,8 +4,8 @@ import type { Methods as Methods1 } from './latest';
 
 const api = <T>({ baseURL, fetch }: AspidaClient<T>) => {
 	const prefix = (baseURL === undefined ? 'https://api.kado.day' : baseURL).replace(/\/$/, '');
-	const PATH0 = '/api/v1/Osirase/all';
-	const PATH1 = '/api/v1/Osirase/latest';
+	const PATH0 = '/api/v1/osirase/all';
+	const PATH1 = '/api/v1/osirase/latest';
 	const GET = 'GET';
 
 	return {

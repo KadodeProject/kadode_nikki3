@@ -14,7 +14,6 @@
 	"paths": {
 		"/api/v1/login/{provider}": {
 			"get": {
-				"summary": "Undocumented function.",
 				"parameters": [
 					{
 						"name": "provider",
@@ -48,7 +47,7 @@
 		},
 		"/api/v1/auth/{provider}/callback": {
 			"get": {
-				"summary": "ソーシャルログイン処理.",
+				"summary": "ソーシャルログイン処理",
 				"parameters": [
 					{
 						"name": "provider",
@@ -94,7 +93,7 @@
 				}
 			}
 		},
-		"/api/v1/Osirase/all": {
+		"/api/v1/osirase/all": {
 			"get": {
 				"summary": "全てのお知らせを取得",
 				"responses": {
@@ -111,7 +110,7 @@
 				}
 			}
 		},
-		"/api/v1/Osirase/latest": {
+		"/api/v1/osirase/latest": {
 			"get": {
 				"summary": "直近5件のお知らせを取得",
 				"responses": {
@@ -128,7 +127,7 @@
 				}
 			}
 		},
-		"/api/v1/ReleaseNote/all": {
+		"/api/v1/releaseNote/all": {
 			"get": {
 				"summary": "全てのリリースノートを取得",
 				"responses": {
@@ -145,7 +144,7 @@
 				}
 			}
 		},
-		"/api/v1/ReleaseNote/latest": {
+		"/api/v1/releaseNote/latest": {
 			"get": {
 				"summary": "直近5件のリリースノートを取得",
 				"responses": {
@@ -527,11 +526,12 @@
 				"type": "object",
 				"properties": {
 					"date": {
-						"type": "integer",
+						"type": "string",
 						"example": "2021-12-29"
 					},
 					"title": {
 						"type": "string",
+						"nullable": true,
 						"example": "タイトル"
 					},
 					"content": {

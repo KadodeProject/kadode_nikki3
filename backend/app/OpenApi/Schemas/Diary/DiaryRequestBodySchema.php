@@ -22,8 +22,8 @@ class DiaryRequestBodySchema extends SchemaFactory implements Reusable
     {
         return Schema::object('DiaryRequestBody')
             ->properties(
-                Schema::integer('date')->example('2021-12-29'),
-                Schema::string('title')->example('タイトル'),
+                Schema::string('date')->example('2021-12-29'),
+                Schema::string('title')->nullable()->example('タイトル'),
                 Schema::string('content')->example('本文~~~~~~~~'),
             );
     }
