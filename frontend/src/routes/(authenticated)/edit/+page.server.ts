@@ -1,17 +1,16 @@
-import { backendAuthApiAdapter } from '$lib/utils/adapter/backendAuthApiAdapter';
+import { aApiClient } from '$src/lib/utils/client/backendAuthenticatedApiClient';
 import type { RequestEvent } from '@sveltejs/kit';
 import type { Actions } from './$types';
 export const actions = {
 	default: async (event: RequestEvent) => {
 		const form = await event.request.formData();
-		const response = await backendAuthApiAdapter({
-			method: 'post',
-			resource: 'api/diary/create',
-			event: event,
-			data: {
-				date: form.has('date') ? form.get('date') : undefined,
-				title: form.has('title') ? form.get('title') : undefined,
-				content: form.has('content') ? form.get('content') : undefined
+		const response = await aApiClient({
+			event: event
+		}).api.v1.diary.$post({
+			body: {
+				date: form.get('date')?.toString(),
+				title: form.get('title')?.toString(),
+				content: form.get('content')?.toString()
 			}
 		});
 		return response;

@@ -1,10 +1,9 @@
 <script lang="ts">
 	import AuthenticatedHead from '$lib/components/atom/head/AuthenticatedHead.svelte';
-	import HomeHeading from '$lib/components/atom/heading/HomeHeading.svelte';
 	import PageHeading from '$lib/components/atom/heading/PageHeading.svelte';
 	import ArchiveSettingWrapper from '$lib/components/atom/wrapper/ArchiveSettingWrapper.svelte';
-	import type { PageData } from './$types';
-	export let data: PageData;
+	// import type { PageData } from './$types';
+	// export let data: PageData;
 </script>
 
 <AuthenticatedHead title="アーカイブ" description="過去の日記をみるばしょ" />

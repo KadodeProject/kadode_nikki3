@@ -188,6 +188,9 @@ ide-helper:
 make-model:
 	docker compose exec -T backend php artisan make:model $(name) --migration
 	# make-model name=ModelName
+# parameterはPHPDocに定義したほうがわかりやすいので使わない
+# parameter:
+# 	docker compose exec -T backend php artisan openapi:make-parameters $(name)
 response:
 	docker compose exec -T backend php artisan openapi:make-response $(name)
 request:
