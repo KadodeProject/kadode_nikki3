@@ -2,29 +2,29 @@ import type { AspidaClient, BasicHeaders } from 'aspida';
 import type { Methods as Methods0 } from '.';
 
 const api = <T>({ baseURL, fetch }: AspidaClient<T>) => {
-	const prefix = (baseURL === undefined ? 'http://localhost:2010' : baseURL).replace(/\/$/, '');
-	const PATH0 = '/api/v1/diary/create';
-	const POST = 'POST';
+	const prefix = (baseURL === undefined ? 'https://api.kado.day' : baseURL).replace(/\/$/, '');
+	const PATH0 = '/api/v1/home';
+	const GET = 'GET';
 
 	return {
 		/**
 		 * @returns 成功レスポンス
 		 */
-		post: (option: { body: Methods0['post']['reqBody']; config?: T | undefined }) =>
-			fetch<Methods0['post']['resBody'], BasicHeaders, Methods0['post']['status']>(
+		get: (option?: { config?: T | undefined } | undefined) =>
+			fetch<Methods0['get']['resBody'], BasicHeaders, Methods0['get']['status']>(
 				prefix,
 				PATH0,
-				POST,
+				GET,
 				option
 			).json(),
 		/**
 		 * @returns 成功レスポンス
 		 */
-		$post: (option: { body: Methods0['post']['reqBody']; config?: T | undefined }) =>
-			fetch<Methods0['post']['resBody'], BasicHeaders, Methods0['post']['status']>(
+		$get: (option?: { config?: T | undefined } | undefined) =>
+			fetch<Methods0['get']['resBody'], BasicHeaders, Methods0['get']['status']>(
 				prefix,
 				PATH0,
-				POST,
+				GET,
 				option
 			)
 				.json()

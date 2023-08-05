@@ -15,7 +15,7 @@ type Response = {
 export const load = async (event: RequestEvent) => {
 	const response = await backendAuthApiAdapter({
 		method: 'get',
-		resource: 'api/home',
+		resource: 'api/v1/home',
 		event: event
 	});
 	const data = response as Response;

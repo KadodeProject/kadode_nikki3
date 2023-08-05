@@ -39,12 +39,12 @@ Route::prefix('v1')->group(function (): void {
     Route::get('MachineResource/relative/month', ApiActions\MachineResource\GetMachineResourceLatestMonth::class)->name('GetMachineResourceLatestMonth');
 
     // お知らせ一覧取得API
-    Route::get('Osirase/all', ApiActions\Osirase\GetAllOsiraseAction::class)->name('GetAllOsiraseAction');
-    Route::get('Osirase/latest', ApiActions\Osirase\GetLatestOsiraseAction::class)->name('GetLatestOsiraseAction');
+    Route::get('osirase/all', ApiActions\Osirase\GetAllOsiraseAction::class)->name('GetAllOsiraseAction');
+    Route::get('osirase/latest', ApiActions\Osirase\GetLatestOsiraseAction::class)->name('GetLatestOsiraseAction');
 
     // リリースノート一覧取得API
-    Route::get('ReleaseNote/all', ApiActions\ReleaseNote\GetAllReleaseNoteAction::class)->name('GetAllReleaseNoteAction');
-    Route::get('ReleaseNote/latest', ApiActions\ReleaseNote\GetLatestReleaseNoteAction::class)->name('GetLatestReleaseNoteAction');
+    Route::get('releaseNote/all', ApiActions\ReleaseNote\GetAllReleaseNoteAction::class)->name('GetAllReleaseNoteAction');
+    Route::get('releaseNote/latest', ApiActions\ReleaseNote\GetLatestReleaseNoteAction::class)->name('GetLatestReleaseNoteAction');
 
     Route::group(['middleware' => ['auth:sanctum']], function (): void {
         // 裏側で必要なエンドポイント

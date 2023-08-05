@@ -29,7 +29,7 @@ class GetDiariesByYear
      */
     public function invoke(int $year): array
     {
-        $diaries = Diary::with('statisticPerDate')->whereYear('date', $year)->orderby('date', 'desc')->get();
+        $diaries = Diary::with(['statisticPerDate', 'diaryProcessed'])->whereYear('date', $year)->orderby('date', 'desc')->get();
 
         /** ->get()だと必ずcollationが返ってくるので条件分岐不要(0の場合は内部からのcollationが来るのでループ勝手に飛ぶ) */
         $arrangedDiaries = [];

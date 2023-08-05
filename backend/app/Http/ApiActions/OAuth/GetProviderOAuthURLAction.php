@@ -16,8 +16,6 @@ use function in_array;
 final class GetProviderOAuthURLAction extends Controller
 {
     /**
-     * Undocumented function.
-     *
      * @param string $provider 認証プロバイダーとなるサービス名
      */
     #[OpenApi\Operation()]

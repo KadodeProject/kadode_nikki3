@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Http\ApiActions;
 
 use App\Http\Controllers\Controller;
+use App\OpenApi\Responses\GetHomeActionResponse;
 use App\UseCases\Diary\GetDiariesByArray;
 use App\UseCases\Diary\GetLatestDiaries;
 use App\UseCases\Diary\GetSameDayDiariesByDate;
@@ -26,6 +27,11 @@ final class GetHomeAction extends Controller
     ) {
     }
 
+    /**
+     * ホーム画面に表示する情報を取得
+     */
+    #[OpenApi\Operation()]
+    #[OpenApi\Response(GetHomeActionResponse::class)]
     public function __invoke(): JsonResponse
     {
         /** 使うもの用意 */

@@ -2,7 +2,7 @@ import type { AspidaClient, BasicHeaders } from 'aspida';
 import type { Methods as Methods0 } from './init';
 
 const api = <T>({ baseURL, fetch }: AspidaClient<T>) => {
-	const prefix = (baseURL === undefined ? 'http://localhost:2010' : baseURL).replace(/\/$/, '');
+	const prefix = (baseURL === undefined ? 'https://api.kado.day' : baseURL).replace(/\/$/, '');
 	const PATH0 = '/api/v1/user/init';
 	const GET = 'GET';
 

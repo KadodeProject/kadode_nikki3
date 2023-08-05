@@ -3,7 +3,7 @@ import type { Methods as Methods0 } from './all';
 import type { Methods as Methods1 } from './latest';
 
 const api = <T>({ baseURL, fetch }: AspidaClient<T>) => {
-	const prefix = (baseURL === undefined ? 'http://localhost:2010' : baseURL).replace(/\/$/, '');
+	const prefix = (baseURL === undefined ? 'https://api.kado.day' : baseURL).replace(/\/$/, '');
 	const PATH0 = '/api/v1/ReleaseNote/all';
 	const PATH1 = '/api/v1/ReleaseNote/latest';
 	const GET = 'GET';

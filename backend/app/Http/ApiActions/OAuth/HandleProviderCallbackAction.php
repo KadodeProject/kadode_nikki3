@@ -21,7 +21,7 @@ use function in_array;
 final class HandleProviderCallbackAction extends Controller
 {
     /**
-     * ソーシャルログイン処理.
+     * ソーシャルログイン処理
      */
     #[OpenApi\Operation()]
     #[OpenApi\Response(HandleProviderCallbackActionResponse::class)]

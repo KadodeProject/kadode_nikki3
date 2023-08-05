@@ -27,7 +27,7 @@ class GetDiaryByUuid
      */
     public function invoke(string $uuid): array
     {
-        $diary = Diary::with('statisticPerDate')->where('uuid', $uuid)->first();
+        $diary = Diary::with(['statisticPerDate', 'diaryProcessed'])->where('uuid', $uuid)->first();
         if ($diary instanceof Diary) {
             /** @todo ここでハイフンを年月日に変えたい*/
             $statisticStatus = $this->checkStatisticStatusByDiary->invoke($diary);
