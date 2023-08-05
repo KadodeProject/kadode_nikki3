@@ -1,642 +1,642 @@
 {
-	"openapi": "3.0.2",
-	"info": {
-		"title": "kadode_nikki_api",
-		"description": "かどで日記のバックエンドAPIのOpenAPI",
-		"version": "1.0.0"
-	},
-	"servers": [
-		{
-			"url": "https://api.kado.day",
-			"description": "環境変数に応じて適切なURLに置き換え"
-		}
-	],
-	"paths": {
-		"/api/v1/login/{provider}": {
-			"get": {
-				"parameters": [
-					{
-						"name": "provider",
-						"in": "path",
-						"description": "認証プロバイダーとなるサービス名",
-						"required": true,
-						"schema": {
-							"type": "string"
-						}
-					}
-				],
-				"responses": {
-					"200": {
-						"description": "成功レスポンス",
-						"content": {
-							"application/json": {
-								"schema": {
-									"type": "object",
-									"properties": {
-										"redirect_url": {
-											"type": "string",
-											"example": "http://localhost:2010/hoge"
-										}
-									}
-								}
-							}
-						}
-					}
-				}
-			}
-		},
-		"/api/v1/auth/{provider}/callback": {
-			"get": {
-				"summary": "ソーシャルログイン処理",
-				"parameters": [
-					{
-						"name": "provider",
-						"in": "path",
-						"required": true,
-						"schema": {
-							"type": "string"
-						}
-					}
-				],
-				"responses": {
-					"302": {
-						"description": "ホームリダイレクト",
-						"links": {
-							"": {
-								"operationId": "Redirect to home"
-							}
-						}
-					}
-				}
-			}
-		},
-		"/api/v1/status": {
-			"get": {
-				"summary": "✌を返す",
-				"responses": {
-					"200": {
-						"description": "成功レスポンス",
-						"content": {
-							"application/json": {
-								"schema": {
-									"type": "object",
-									"properties": {
-										"status": {
-											"type": "string",
-											"example": "✌"
-										}
-									}
-								}
-							}
-						}
-					}
-				}
-			}
-		},
-		"/api/v1/osirase/all": {
-			"get": {
-				"summary": "全てのお知らせを取得",
-				"responses": {
-					"200": {
-						"description": "成功レスポンス",
-						"content": {
-							"application/json": {
-								"schema": {
-									"$ref": "#/components/schemas/osirase"
-								}
-							}
-						}
-					}
-				}
-			}
-		},
-		"/api/v1/osirase/latest": {
-			"get": {
-				"summary": "直近5件のお知らせを取得",
-				"responses": {
-					"200": {
-						"description": "成功レスポンス",
-						"content": {
-							"application/json": {
-								"schema": {
-									"$ref": "#/components/schemas/osirase"
-								}
-							}
-						}
-					}
-				}
-			}
-		},
-		"/api/v1/releaseNote/all": {
-			"get": {
-				"summary": "全てのリリースノートを取得",
-				"responses": {
-					"200": {
-						"description": "成功レスポンス",
-						"content": {
-							"application/json": {
-								"schema": {
-									"$ref": "#/components/schemas/releaseNote"
-								}
-							}
-						}
-					}
-				}
-			}
-		},
-		"/api/v1/releaseNote/latest": {
-			"get": {
-				"summary": "直近5件のリリースノートを取得",
-				"responses": {
-					"200": {
-						"description": "成功レスポンス",
-						"content": {
-							"application/json": {
-								"schema": {
-									"$ref": "#/components/schemas/releaseNote"
-								}
-							}
-						}
-					}
-				}
-			}
-		},
-		"/api/v1/user/init": {
-			"get": {
-				"summary": "ログイン中userの情報を取得",
-				"responses": {
-					"200": {
-						"description": "成功レスポンス",
-						"content": {
-							"application/json": {
-								"schema": {
-									"$ref": "#/components/schemas/user"
-								}
-							}
-						}
-					}
-				}
-			}
-		},
-		"/api/v1/diary": {
-			"post": {
-				"summary": "日記を作成する",
-				"requestBody": {
-					"content": {
-						"application/json": {
-							"schema": {
-								"$ref": "#/components/schemas/DiaryRequestBody"
-							}
-						}
-					}
-				},
-				"responses": {
-					"200": {
-						"description": "成功レスポンス",
-						"content": {
-							"application/json": {
-								"schema": {
-									"type": "object",
-									"properties": {
-										"result": {
-											"type": "string",
-											"example": "success"
-										}
-									}
-								}
-							}
-						}
-					}
-				}
-			}
-		},
-		"/api/v1/home": {
-			"get": {
-				"summary": "ホーム画面に表示する情報を取得",
-				"responses": {
-					"200": {
-						"description": "成功レスポンス",
-						"content": {
-							"application/json": {
-								"schema": {
-									"type": "object",
-									"properties": {
-										"unreadNotifications": {
-											"type": "array",
-											"items": {
-												"type": "object",
-												"properties": {
-													"url": {
-														"type": "string",
-														"example": "/osirase"
-													},
-													"actionUrl": {
-														"type": "string",
-														"example": "http://backend:2010/notification/osirase/remove"
-													},
-													"bg_color": {
-														"type": "string",
-														"example": "51, 118, 156"
-													},
-													"title": {
-														"type": "string",
-														"example": "xxについて"
-													},
-													"date": {
-														"type": "string",
-														"example": "2021-12-29T15:00:00.000000Z"
-													}
-												}
-											}
-										},
-										"oldDiaries": {
-											"type": "array",
-											"items": {
-												"$ref": "#/components/schemas/diary"
-											}
-										},
-										"zeroDayAgoDiary": {
-											"$ref": "#/components/schemas/diary"
-										},
-										"oneDayAgoDiary": {
-											"$ref": "#/components/schemas/diary"
-										},
-										"twoDayAgoDiary": {
-											"$ref": "#/components/schemas/diary"
-										},
-										"threeDayAgoDiary": {
-											"$ref": "#/components/schemas/diary"
-										},
-										"latestDiaries": {
-											"type": "array",
-											"items": {
-												"$ref": "#/components/schemas/diary"
-											}
-										}
-									}
-								}
-							}
-						}
-					}
-				}
-			}
-		}
-	},
-	"components": {
-		"schemas": {
-			"affiliation": {
-				"type": "array",
-				"items": {
-					"description": "固有表現抽出",
-					"type": "object",
-					"properties": {
-						"start": {
-							"description": "単語開始位置",
-							"type": "integer",
-							"example": 642
-						},
-						"end": {
-							"description": "単語終了位置",
-							"type": "integer",
-							"example": 641
-						},
-						"lemma": {
-							"description": "単語の原型",
-							"type": "string",
-							"example": "朝"
-						},
-						"form": {
-							"description": "分類(関根の拡張固有表現階層 ver7.1.2ベース)",
-							"type": "string",
-							"example": "Time"
-						}
-					}
-				}
-			},
-			"chunk": {
-				"type": "array",
-				"items": {
-					"description": "係り受け構造",
-					"type": "object",
-					"properties": {
-						"dependencyTag": {
-							"description": "形態論情報",
-							"type": "string",
-							"example": "advmod"
-						},
-						"dependencyTxt": {
-							"description": "該当単語",
-							"type": "string",
-							"example": "じっと"
-						},
-						"dependencyForId": {
-							"description": "係り先",
-							"type": "integer",
-							"example": 37
-						},
-						"dependencyForTxt": {
-							"description": "係り先の単語",
-							"type": "string",
-							"example": "隠れ"
-						}
-					}
-				}
-			},
-			"token": {
-				"type": "array",
-				"items": {
-					"description": "形態素分析された中身",
-					"type": "object",
-					"properties": {
-						"start": {
-							"description": "単語開始位置",
-							"type": "integer",
-							"example": 61
-						},
-						"end": {
-							"description": "単語終了位置",
-							"type": "integer",
-							"example": 65
-						},
-						"form": {
-							"description": "単語本体",
-							"type": "string",
-							"example": "しゃがん"
-						},
-						"lemma": {
-							"description": "単語の原型",
-							"type": "string",
-							"example": "しゃがむ"
-						},
-						"uPOSTag": {
-							"description": "Universal Part-Of-Speech Tag/自然言語共通のタグ",
-							"type": "string",
-							"example": "PROPN"
-						},
-						"xPOSTag": {
-							"description": "Language-Specific Part-Of-Speech Tag/日本語の品詞",
-							"type": "string",
-							"example": "動詞-一般"
-						},
-						"isUnknown": {
-							"description": "未知判定",
-							"type": "boolean",
-							"example": true
-						}
-					}
-				}
-			},
-			"diary_processed": {
-				"type": "object",
-				"properties": {
-					"id": {
-						"type": "integer",
-						"example": 1
-					},
-					"diary_id": {
-						"type": "integer",
-						"example": 1
-					},
-					"statistic_progress": {
-						"type": "integer",
-						"example": 100
-					},
-					"sentence": {
-						"$ref": "#/components/schemas/sentence"
-					},
-					"chunk": {
-						"$ref": "#/components/schemas/chunk"
-					},
-					"token": {
-						"$ref": "#/components/schemas/token"
-					},
-					"affiliation": {
-						"$ref": "#/components/schemas/affiliation"
-					},
-					"char_length": {
-						"type": "integer",
-						"example": 200
-					},
-					"created_at": {
-						"type": "string",
-						"example": "2023-08-05T04:36:55.000000Z"
-					},
-					"updated_at": {
-						"type": "string",
-						"example": "2023-08-05T04:36:55.000000Z"
-					}
-				},
-				"nullable": true
-			},
-			"sentence": {
-				"type": "array",
-				"items": {
-					"description": "一文ごとの位置(係り受けで使う)",
-					"type": "object",
-					"properties": {
-						"end": {
-							"description": "終了位置",
-							"type": "integer",
-							"example": 0
-						},
-						"start": {
-							"description": "開始位置",
-							"type": "integer",
-							"example": 18
-						}
-					}
-				}
-			},
-			"statistic_per_date": {
-				"type": "object",
-				"properties": {
-					"id": {
-						"type": "integer",
-						"example": 1
-					},
-					"diary_id": {
-						"type": "integer",
-						"example": 1
-					},
-					"statistic_progress": {
-						"type": "integer",
-						"example": 100
-					},
-					"emotions": {
-						"type": "number",
-						"example": 0.16129032258064516
-					},
-					"classification": {
-						"type": "string",
-						"example": "人物"
-					},
-					"important_words": {
-						"$ref": "#/components/schemas/important_words"
-					},
-					"special_people": {
-						"$ref": "#/components/schemas/special_people"
-					},
-					"created_at": {
-						"type": "string",
-						"example": "2021-01-01 00:00:00"
-					},
-					"updated_at": {
-						"type": "string",
-						"example": "2021-01-01 00:00:00"
-					}
-				},
-				"nullable": true
-			},
-			"diary": {
-				"type": "object",
-				"properties": {
-					"id": {
-						"type": "integer",
-						"example": 1
-					},
-					"date": {
-						"type": "string",
-						"example": "2021-01-01"
-					},
-					"title": {
-						"type": "string",
-						"example": "タイトル"
-					},
-					"contente": {
-						"type": "string",
-						"example": "本文。"
-					},
-					"updated_at": {
-						"type": "string",
-						"example": "2021-01-01 00:00:00"
-					},
-					"statisticStatus": {
-						"type": "integer",
-						"example": 2
-					},
-					"statistic_per_date": {
-						"$ref": "#/components/schemas/statistic_per_date"
-					},
-					"diary_processed": {
-						"$ref": "#/components/schemas/diary_processed"
-					}
-				}
-			},
-			"DiaryRequestBody": {
-				"type": "object",
-				"properties": {
-					"date": {
-						"type": "string",
-						"example": "2021-12-29"
-					},
-					"title": {
-						"type": "string",
-						"nullable": true,
-						"example": "タイトル"
-					},
-					"content": {
-						"type": "string",
-						"example": "本文~~~~~~~~"
-					}
-				}
-			},
-			"osirase": {
-				"type": "array",
-				"items": {
-					"type": "object",
-					"properties": {
-						"title": {
-							"type": "string",
-							"example": "タイトル"
-						},
-						"date": {
-							"type": "string",
-							"example": "2021-12-29T15:00:00.000000Z"
-						},
-						"description": {
-							"description": "改行含む文字列が入ってくるがエスケープなどはされていない",
-							"type": "string",
-							"example": "内容"
-						},
-						"url": {
-							"type": "string",
-							"example": "http://localhost:2010/osirase"
-						}
-					}
-				}
-			},
-			"user": {
-				"type": "object",
-				"properties": {
-					"id": {
-						"type": "integer",
-						"example": 1
-					},
-					"name": {
-						"type": "string",
-						"example": "usuyuki"
-					}
-				}
-			},
-			"important_words": {
-				"type": "array",
-				"items": {
-					"type": "object",
-					"properties": {
-						"name": {
-							"description": "単語",
-							"type": "string",
-							"example": "サナトリウム"
-						},
-						"count": {
-							"type": "integer",
-							"example": 4
-						}
-					}
-				}
-			},
-			"special_people": {
-				"type": "array",
-				"items": {
-					"type": "object",
-					"properties": {
-						"name": {
-							"description": "人物名",
-							"type": "string",
-							"example": "時雨"
-						},
-						"count": {
-							"type": "integer",
-							"example": 4
-						}
-					}
-				}
-			},
-			"releaseNote": {
-				"type": "array",
-				"items": {
-					"type": "object",
-					"properties": {
-						"title": {
-							"type": "string",
-							"example": "タイトル"
-						},
-						"date": {
-							"type": "string",
-							"example": "2021-12-29T15:00:00.000000Z"
-						},
-						"description": {
-							"description": "改行含む文字列が入ってくるがエスケープなどはされていない",
-							"type": "string",
-							"example": "内容"
-						},
-						"url": {
-							"type": "string",
-							"example": "http://localhost:2010/releaseNote"
-						}
-					}
-				}
-			}
-		}
-	}
+    "openapi": "3.0.2",
+    "info": {
+        "title": "kadode_nikki_api",
+        "description": "かどで日記のバックエンドAPIのOpenAPI",
+        "version": "1.0.0"
+    },
+    "servers": [
+        {
+            "url": "https:\/\/api.kado.day",
+            "description": "環境変数に応じて適切なURLに置き換え"
+        }
+    ],
+    "paths": {
+        "\/api\/v1\/login\/{provider}": {
+            "get": {
+                "parameters": [
+                    {
+                        "name": "provider",
+                        "in": "path",
+                        "description": "認証プロバイダーとなるサービス名",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "成功レスポンス",
+                        "content": {
+                            "application\/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "redirect_url": {
+                                            "type": "string",
+                                            "example": "http:\/\/localhost:2010\/hoge"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "\/api\/v1\/auth\/{provider}\/callback": {
+            "get": {
+                "summary": "ソーシャルログイン処理",
+                "parameters": [
+                    {
+                        "name": "provider",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "302": {
+                        "description": "ホームリダイレクト",
+                        "links": {
+                            "": {
+                                "operationId": "Redirect to home"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "\/api\/v1\/status": {
+            "get": {
+                "summary": "✌を返す",
+                "responses": {
+                    "200": {
+                        "description": "成功レスポンス",
+                        "content": {
+                            "application\/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "status": {
+                                            "type": "string",
+                                            "example": "✌"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "\/api\/v1\/osirase\/all": {
+            "get": {
+                "summary": "全てのお知らせを取得",
+                "responses": {
+                    "200": {
+                        "description": "成功レスポンス",
+                        "content": {
+                            "application\/json": {
+                                "schema": {
+                                    "$ref": "#\/components\/schemas\/osirase"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "\/api\/v1\/osirase\/latest": {
+            "get": {
+                "summary": "直近5件のお知らせを取得",
+                "responses": {
+                    "200": {
+                        "description": "成功レスポンス",
+                        "content": {
+                            "application\/json": {
+                                "schema": {
+                                    "$ref": "#\/components\/schemas\/osirase"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "\/api\/v1\/releaseNote\/all": {
+            "get": {
+                "summary": "全てのリリースノートを取得",
+                "responses": {
+                    "200": {
+                        "description": "成功レスポンス",
+                        "content": {
+                            "application\/json": {
+                                "schema": {
+                                    "$ref": "#\/components\/schemas\/releaseNote"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "\/api\/v1\/releaseNote\/latest": {
+            "get": {
+                "summary": "直近5件のリリースノートを取得",
+                "responses": {
+                    "200": {
+                        "description": "成功レスポンス",
+                        "content": {
+                            "application\/json": {
+                                "schema": {
+                                    "$ref": "#\/components\/schemas\/releaseNote"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "\/api\/v1\/user\/init": {
+            "get": {
+                "summary": "ログイン中userの情報を取得",
+                "responses": {
+                    "200": {
+                        "description": "成功レスポンス",
+                        "content": {
+                            "application\/json": {
+                                "schema": {
+                                    "$ref": "#\/components\/schemas\/user"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "\/api\/v1\/diary": {
+            "post": {
+                "summary": "日記を作成する",
+                "requestBody": {
+                    "content": {
+                        "application\/json": {
+                            "schema": {
+                                "$ref": "#\/components\/schemas\/DiaryRequestBody"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "成功レスポンス",
+                        "content": {
+                            "application\/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "result": {
+                                            "type": "string",
+                                            "example": "success"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "\/api\/v1\/home": {
+            "get": {
+                "summary": "ホーム画面に表示する情報を取得",
+                "responses": {
+                    "200": {
+                        "description": "成功レスポンス",
+                        "content": {
+                            "application\/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "unreadNotifications": {
+                                            "type": "array",
+                                            "items": {
+                                                "type": "object",
+                                                "properties": {
+                                                    "url": {
+                                                        "type": "string",
+                                                        "example": "\/osirase"
+                                                    },
+                                                    "actionUrl": {
+                                                        "type": "string",
+                                                        "example": "http:\/\/backend:2010\/notification\/osirase\/remove"
+                                                    },
+                                                    "bg_color": {
+                                                        "type": "string",
+                                                        "example": "51, 118, 156"
+                                                    },
+                                                    "title": {
+                                                        "type": "string",
+                                                        "example": "xxについて"
+                                                    },
+                                                    "date": {
+                                                        "type": "string",
+                                                        "example": "2021-12-29T15:00:00.000000Z"
+                                                    }
+                                                }
+                                            }
+                                        },
+                                        "oldDiaries": {
+                                            "type": "array",
+                                            "items": {
+                                                "$ref": "#\/components\/schemas\/diary"
+                                            }
+                                        },
+                                        "zeroDayAgoDiary": {
+                                            "$ref": "#\/components\/schemas\/diary"
+                                        },
+                                        "oneDayAgoDiary": {
+                                            "$ref": "#\/components\/schemas\/diary"
+                                        },
+                                        "twoDayAgoDiary": {
+                                            "$ref": "#\/components\/schemas\/diary"
+                                        },
+                                        "threeDayAgoDiary": {
+                                            "$ref": "#\/components\/schemas\/diary"
+                                        },
+                                        "latestDiaries": {
+                                            "type": "array",
+                                            "items": {
+                                                "$ref": "#\/components\/schemas\/diary"
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "affiliation": {
+                "type": "array",
+                "items": {
+                    "description": "固有表現抽出",
+                    "type": "object",
+                    "properties": {
+                        "start": {
+                            "description": "単語開始位置",
+                            "type": "integer",
+                            "example": 642
+                        },
+                        "end": {
+                            "description": "単語終了位置",
+                            "type": "integer",
+                            "example": 641
+                        },
+                        "lemma": {
+                            "description": "単語の原型",
+                            "type": "string",
+                            "example": "朝"
+                        },
+                        "form": {
+                            "description": "分類(関根の拡張固有表現階層 ver7.1.2ベース)",
+                            "type": "string",
+                            "example": "Time"
+                        }
+                    }
+                }
+            },
+            "chunk": {
+                "type": "array",
+                "items": {
+                    "description": "係り受け構造",
+                    "type": "object",
+                    "properties": {
+                        "dependencyTag": {
+                            "description": "形態論情報",
+                            "type": "string",
+                            "example": "advmod"
+                        },
+                        "dependencyTxt": {
+                            "description": "該当単語",
+                            "type": "string",
+                            "example": "じっと"
+                        },
+                        "dependencyForId": {
+                            "description": "係り先",
+                            "type": "integer",
+                            "example": 37
+                        },
+                        "dependencyForTxt": {
+                            "description": "係り先の単語",
+                            "type": "string",
+                            "example": "隠れ"
+                        }
+                    }
+                }
+            },
+            "token": {
+                "type": "array",
+                "items": {
+                    "description": "形態素分析された中身",
+                    "type": "object",
+                    "properties": {
+                        "start": {
+                            "description": "単語開始位置",
+                            "type": "integer",
+                            "example": 61
+                        },
+                        "end": {
+                            "description": "単語終了位置",
+                            "type": "integer",
+                            "example": 65
+                        },
+                        "form": {
+                            "description": "単語本体",
+                            "type": "string",
+                            "example": "しゃがん"
+                        },
+                        "lemma": {
+                            "description": "単語の原型",
+                            "type": "string",
+                            "example": "しゃがむ"
+                        },
+                        "uPOSTag": {
+                            "description": "Universal Part-Of-Speech Tag\/自然言語共通のタグ",
+                            "type": "string",
+                            "example": "PROPN"
+                        },
+                        "xPOSTag": {
+                            "description": "Language-Specific Part-Of-Speech Tag\/日本語の品詞",
+                            "type": "string",
+                            "example": "動詞-一般"
+                        },
+                        "isUnknown": {
+                            "description": "未知判定",
+                            "type": "boolean",
+                            "example": true
+                        }
+                    }
+                }
+            },
+            "diary_processed": {
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "type": "integer",
+                        "example": 1
+                    },
+                    "diary_id": {
+                        "type": "integer",
+                        "example": 1
+                    },
+                    "statistic_progress": {
+                        "type": "integer",
+                        "example": 100
+                    },
+                    "sentence": {
+                        "$ref": "#\/components\/schemas\/sentence"
+                    },
+                    "chunk": {
+                        "$ref": "#\/components\/schemas\/chunk"
+                    },
+                    "token": {
+                        "$ref": "#\/components\/schemas\/token"
+                    },
+                    "affiliation": {
+                        "$ref": "#\/components\/schemas\/affiliation"
+                    },
+                    "char_length": {
+                        "type": "integer",
+                        "example": 200
+                    },
+                    "created_at": {
+                        "type": "string",
+                        "example": "2023-08-05T04:36:55.000000Z"
+                    },
+                    "updated_at": {
+                        "type": "string",
+                        "example": "2023-08-05T04:36:55.000000Z"
+                    }
+                },
+                "nullable": true
+            },
+            "sentence": {
+                "type": "array",
+                "items": {
+                    "description": "一文ごとの位置(係り受けで使う)",
+                    "type": "object",
+                    "properties": {
+                        "end": {
+                            "description": "終了位置",
+                            "type": "integer",
+                            "example": 0
+                        },
+                        "start": {
+                            "description": "開始位置",
+                            "type": "integer",
+                            "example": 18
+                        }
+                    }
+                }
+            },
+            "statistic_per_date": {
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "type": "integer",
+                        "example": 1
+                    },
+                    "diary_id": {
+                        "type": "integer",
+                        "example": 1
+                    },
+                    "statistic_progress": {
+                        "type": "integer",
+                        "example": 100
+                    },
+                    "emotions": {
+                        "type": "number",
+                        "example": 0.16129032258064516
+                    },
+                    "classification": {
+                        "type": "string",
+                        "example": "人物"
+                    },
+                    "important_words": {
+                        "$ref": "#\/components\/schemas\/important_words"
+                    },
+                    "special_people": {
+                        "$ref": "#\/components\/schemas\/special_people"
+                    },
+                    "created_at": {
+                        "type": "string",
+                        "example": "2021-01-01 00:00:00"
+                    },
+                    "updated_at": {
+                        "type": "string",
+                        "example": "2021-01-01 00:00:00"
+                    }
+                },
+                "nullable": true
+            },
+            "diary": {
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "type": "integer",
+                        "example": 1
+                    },
+                    "date": {
+                        "type": "string",
+                        "example": "2021-01-01"
+                    },
+                    "title": {
+                        "type": "string",
+                        "example": "タイトル"
+                    },
+                    "contente": {
+                        "type": "string",
+                        "example": "本文。"
+                    },
+                    "updated_at": {
+                        "type": "string",
+                        "example": "2021-01-01 00:00:00"
+                    },
+                    "statisticStatus": {
+                        "type": "integer",
+                        "example": 2
+                    },
+                    "statistic_per_date": {
+                        "$ref": "#\/components\/schemas\/statistic_per_date"
+                    },
+                    "diary_processed": {
+                        "$ref": "#\/components\/schemas\/diary_processed"
+                    }
+                }
+            },
+            "DiaryRequestBody": {
+                "type": "object",
+                "properties": {
+                    "date": {
+                        "type": "string",
+                        "example": "2021-12-29"
+                    },
+                    "title": {
+                        "type": "string",
+                        "nullable": true,
+                        "example": "タイトル"
+                    },
+                    "content": {
+                        "type": "string",
+                        "example": "本文~~~~~~~~"
+                    }
+                }
+            },
+            "osirase": {
+                "type": "array",
+                "items": {
+                    "type": "object",
+                    "properties": {
+                        "title": {
+                            "type": "string",
+                            "example": "タイトル"
+                        },
+                        "date": {
+                            "type": "string",
+                            "example": "2021-12-29T15:00:00.000000Z"
+                        },
+                        "description": {
+                            "description": "改行含む文字列が入ってくるがエスケープなどはされていない",
+                            "type": "string",
+                            "example": "内容"
+                        },
+                        "url": {
+                            "type": "string",
+                            "example": "http:\/\/localhost:2010\/osirase"
+                        }
+                    }
+                }
+            },
+            "user": {
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "type": "integer",
+                        "example": 1
+                    },
+                    "name": {
+                        "type": "string",
+                        "example": "usuyuki"
+                    }
+                }
+            },
+            "important_words": {
+                "type": "array",
+                "items": {
+                    "type": "object",
+                    "properties": {
+                        "name": {
+                            "description": "単語",
+                            "type": "string",
+                            "example": "サナトリウム"
+                        },
+                        "count": {
+                            "type": "integer",
+                            "example": 4
+                        }
+                    }
+                }
+            },
+            "special_people": {
+                "type": "array",
+                "items": {
+                    "type": "object",
+                    "properties": {
+                        "name": {
+                            "description": "人物名",
+                            "type": "string",
+                            "example": "時雨"
+                        },
+                        "count": {
+                            "type": "integer",
+                            "example": 4
+                        }
+                    }
+                }
+            },
+            "releaseNote": {
+                "type": "array",
+                "items": {
+                    "type": "object",
+                    "properties": {
+                        "title": {
+                            "type": "string",
+                            "example": "タイトル"
+                        },
+                        "date": {
+                            "type": "string",
+                            "example": "2021-12-29T15:00:00.000000Z"
+                        },
+                        "description": {
+                            "description": "改行含む文字列が入ってくるがエスケープなどはされていない",
+                            "type": "string",
+                            "example": "内容"
+                        },
+                        "url": {
+                            "type": "string",
+                            "example": "http:\/\/localhost:2010\/releaseNote"
+                        }
+                    }
+                }
+            }
+        }
+    }
 }

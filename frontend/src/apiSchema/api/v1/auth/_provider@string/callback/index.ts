@@ -1,6 +1,6 @@
 /* eslint-disable */
 export type Methods = {
-	get: {
-		status: 302;
-	};
-};
+  get: {
+    status: 302
+  }
+}

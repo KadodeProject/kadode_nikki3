@@ -1,15 +1,15 @@
 /* eslint-disable */
-import type * as Types from '../../../@types';
+import type * as Types from '../../../@types'
 
 export type Methods = {
-	post: {
-		status: 200;
+  post: {
+    status: 200
 
-		/** 成功レスポンス */
-		resBody: {
-			result: string;
-		};
+    /** 成功レスポンス */
+    resBody: {
+      result: string
+    }
 
-		reqBody: Types.DiaryRequestBody;
-	};
-};
+    reqBody: Types.DiaryRequestBody
+  }
+}
