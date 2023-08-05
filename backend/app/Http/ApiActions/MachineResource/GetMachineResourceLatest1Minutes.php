@@ -7,11 +7,9 @@ namespace App\Http\ApiActions\MachineResource;
 use App\Http\Controllers\Controller;
 use App\UseCases\MachineResource\GetAllMachineResourceFromRedis;
 use Illuminate\Http\JsonResponse;
-use Vyuldashev\LaravelOpenApi\Attributes as OpenApi;
 
 use function array_slice;
 
-#[OpenApi\PathItem]
 final class GetMachineResourceLatest1Minutes extends Controller
 {
     public function __construct(

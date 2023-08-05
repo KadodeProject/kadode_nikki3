@@ -229,7 +229,8 @@ tag:
 	sh script/git_tag.sh
 openapi:
 	sh script/generate_schema.sh
-
+openapi-b:
+	docker compose exec -T backend php artisan openapi:generate
 
 
 

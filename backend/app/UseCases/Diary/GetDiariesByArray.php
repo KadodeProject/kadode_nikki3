@@ -31,7 +31,7 @@ class GetDiariesByArray
      */
     public function invoke(array $dates): array
     {
-        $diaries = Diary::with('statisticPerDate')->whereIn('date', $dates)->orderby('date', 'desc')->get(['id', 'date', 'title', 'content', 'updated_at']);
+        $diaries = Diary::with(['statisticPerDate', 'diaryProcessed'])->whereIn('date', $dates)->orderby('date', 'desc')->get(['id', 'date', 'title', 'content', 'updated_at']);
 
         /** ->get()だと必ずcollationが返ってくるので条件分岐不要(0の場合は内部からのcollationが来るのでループ勝手に飛ぶ) */
         $arrangedDiaries = [];

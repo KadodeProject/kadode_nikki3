@@ -7,13 +7,23 @@ namespace App\Http\ApiActions\Diary;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Diary\CreateDiaryRequest;
 use App\Models\Diary;
+use App\OpenApi\RequestBodies\Diary\CreateDiaryActionRequsetBody;
+use App\OpenApi\Responses\Diary\CreateDiaryActionResponse;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
+use Vyuldashev\LaravelOpenApi\Attributes as OpenApi;
 
+#[OpenApi\PathItem]
 final class CreateDiaryAction extends Controller
 {
+    /**
+     * 日記を作成する
+     */
+    #[OpenApi\Operation()]
+    #[OpenApi\RequestBody(CreateDiaryActionRequsetBody::class)]
+    #[OpenApi\Response(CreateDiaryActionResponse::class)]
     public function __invoke(CreateDiaryRequest $request): JsonResponse
     {
         $request->date ??= Carbon::today()->format('y-m-d');

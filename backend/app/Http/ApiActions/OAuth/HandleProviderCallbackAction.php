@@ -7,19 +7,24 @@ namespace App\Http\ApiActions\OAuth;
 use App\Enums\AuthType;
 use App\Http\Controllers\Controller;
 use App\Models\User;
+use App\OpenApi\Responses\OAuth\HandleProviderCallbackActionResponse;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Routing\Redirector;
 use Illuminate\Support\Facades\Auth;
 use Laravel\Socialite\Facades\Socialite;
+use Vyuldashev\LaravelOpenApi\Attributes as OpenApi;
 
 use function assert;
 use function in_array;
 
+#[OpenApi\PathItem]
 final class HandleProviderCallbackAction extends Controller
 {
     /**
-     * ソーシャルログイン処理.
+     * ソーシャルログイン処理
      */
+    #[OpenApi\Operation()]
+    #[OpenApi\Response(HandleProviderCallbackActionResponse::class)]
     public function __invoke(string $provider): Redirector|RedirectResponse
     {
         assert(in_array($provider, ['google', 'github'], true));
