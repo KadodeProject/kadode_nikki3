@@ -10,7 +10,7 @@
 <PageHeading title="リリースノート" />
 
 <div class="document-center">
-	{#each data.data as osirase}
+	{#each data.response as osirase}
 		<OsiraseSentence {osirase} />
 	{/each}
 </div>

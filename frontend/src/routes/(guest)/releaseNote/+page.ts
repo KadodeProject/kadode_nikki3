@@ -1,9 +1,10 @@
-// import type { OsiraseType } from '$lib/types/Osirase';
-import { apiUrlResolver } from '$lib/utils/apiUrlResolver';
-export async function load({ fetch }) {
-	const response = await fetch(`${apiUrlResolver()}/api/ReleaseNote/all`);
-	const data = response.json();
-	return {
-		data
-	};
+import api from '$apiSchema/$api';
+import { aspidaFetchConfig } from '$src/lib/config/aspidaFetchConfig';
+import aspida from '@aspida/node-fetch';
+export async function load() {
+    const client = api(aspida(fetch, aspidaFetchConfig));
+    const response = await client.api.v1.releaseNote.all.$get();
+    return {
+        response
+    };
 }
