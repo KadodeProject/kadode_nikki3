@@ -1,4 +1,4 @@
-// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+//git reset --hard origin/master eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-nocheck
 import type { AspidaClient, BasicHeaders } from 'aspida';
 import type { Methods as Methods0 } from './api/v1/auth/_provider@string/callback';
