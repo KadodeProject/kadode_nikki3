@@ -12,6 +12,65 @@
 		}
 	],
 	"paths": {
+		"/api/v1/login/{provider}": {
+			"get": {
+				"summary": "Undocumented function.",
+				"parameters": [
+					{
+						"name": "provider",
+						"in": "path",
+						"description": "認証プロバイダーとなるサービス名",
+						"required": true,
+						"schema": {
+							"type": "string"
+						}
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "成功レスポンス",
+						"content": {
+							"application/json": {
+								"schema": {
+									"type": "object",
+									"properties": {
+										"redirect_url": {
+											"type": "string",
+											"example": "http://localhost:2010/hoge"
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		},
+		"/api/v1/auth/{provider}/callback": {
+			"get": {
+				"summary": "ソーシャルログイン処理.",
+				"parameters": [
+					{
+						"name": "provider",
+						"in": "path",
+						"required": true,
+						"schema": {
+							"type": "string"
+						}
+					}
+				],
+				"responses": {
+					"302": {
+						"description": "ホームリダイレクト",
+						"links": {
+							"": {
+								"operationId": "Redirect to home"
+							}
+						}
+					}
+				}
+			}
+		},
 		"/api/v1/status": {
 			"get": {
 				"summary": "✌を返す",
@@ -119,10 +178,59 @@
 					}
 				}
 			}
+		},
+		"/api/v1/diary/create": {
+			"post": {
+				"summary": "日記を作成する",
+				"requestBody": {
+					"content": {
+						"application/json": {
+							"schema": {
+								"$ref": "#/components/schemas/DiaryRequestBody"
+							}
+						}
+					}
+				},
+				"responses": {
+					"200": {
+						"description": "成功レスポンス",
+						"content": {
+							"application/json": {
+								"schema": {
+									"type": "object",
+									"properties": {
+										"result": {
+											"type": "string",
+											"example": "success"
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
 		}
 	},
 	"components": {
 		"schemas": {
+			"DiaryRequestBody": {
+				"type": "object",
+				"properties": {
+					"date": {
+						"type": "integer",
+						"example": "2021-12-29"
+					},
+					"title": {
+						"type": "string",
+						"example": "タイトル"
+					},
+					"content": {
+						"type": "string",
+						"example": "本文~~~~~~~~"
+					}
+				}
+			},
 			"osirase": {
 				"type": "array",
 				"items": {

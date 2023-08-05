@@ -50,6 +50,11 @@ Route::prefix('v1')->group(function (): void {
         // 裏側で必要なエンドポイント
         Route::get('/user/init', ApiActions\User\GetUserInfoAction::class)->name('getUserInfo');
 
+        // edit
+        Route::post('/diary', ApiActions\Diary\CreateDiaryAction::class)->name('CreateDiaryApi');
+        // Route::put('/diary', ApiActions\Diary\CreateDiaryAction::class)->name('UpdateDiaryApi');
+        // Route::delete('/diary', ApiActions\Diary\CreateDiaryAction::class)->name('DeleteDiaryApi');
+
         /**
          * ページ表示用エンドポイント
          * - 値をまとめて返す系
@@ -57,7 +62,5 @@ Route::prefix('v1')->group(function (): void {
          */
         // home
         Route::get('/home', ApiActions\GetHomeAction::class)->name('GetHomeApi');
-        // edit
-        Route::post('/diary/create', ApiActions\Diary\CreateDiaryAction::class)->name('CreateDiaryApi');
     });
 });

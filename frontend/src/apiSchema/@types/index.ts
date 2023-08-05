@@ -1,4 +1,10 @@
 /* eslint-disable */
+export type DiaryRequestBody = {
+	date?: number | undefined;
+	title?: string | undefined;
+	content?: string | undefined;
+};
+
 export type Osirase = {
 	title?: string | undefined;
 	date?: string | undefined;

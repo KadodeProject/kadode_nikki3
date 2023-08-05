@@ -5,8 +5,11 @@ import type { Methods as Methods0 } from './api/v1/Osirase/all';
 import type { Methods as Methods1 } from './api/v1/Osirase/latest';
 import type { Methods as Methods2 } from './api/v1/ReleaseNote/all';
 import type { Methods as Methods3 } from './api/v1/ReleaseNote/latest';
-import type { Methods as Methods4 } from './api/v1/status';
-import type { Methods as Methods5 } from './api/v1/user/init';
+import type { Methods as Methods4 } from './api/v1/auth/_provider@string/callback';
+import type { Methods as Methods5 } from './api/v1/diary/create';
+import type { Methods as Methods6 } from './api/v1/login/_provider@string';
+import type { Methods as Methods7 } from './api/v1/status';
+import type { Methods as Methods8 } from './api/v1/user/init';
 
 const api = <T>({ baseURL, fetch }: AspidaClient<T>) => {
 	const prefix = (baseURL === undefined ? 'http://localhost:2010' : baseURL).replace(/\/$/, '');
@@ -14,9 +17,14 @@ const api = <T>({ baseURL, fetch }: AspidaClient<T>) => {
 	const PATH1 = '/api/v1/Osirase/latest';
 	const PATH2 = '/api/v1/ReleaseNote/all';
 	const PATH3 = '/api/v1/ReleaseNote/latest';
-	const PATH4 = '/api/v1/status';
-	const PATH5 = '/api/v1/user/init';
+	const PATH4 = '/api/v1/auth';
+	const PATH5 = '/callback';
+	const PATH6 = '/api/v1/diary/create';
+	const PATH7 = '/api/v1/login';
+	const PATH8 = '/api/v1/status';
+	const PATH9 = '/api/v1/user/init';
 	const GET = 'GET';
+	const POST = 'POST';
 
 	return {
 		api: {
@@ -117,14 +125,101 @@ const api = <T>({ baseURL, fetch }: AspidaClient<T>) => {
 						$path: () => `${prefix}${PATH3}`
 					}
 				},
+				auth: {
+					_provider: (val3: string) => {
+						const prefix3 = `${PATH4}/${val3}`;
+
+						return {
+							callback: {
+								get: (option?: { config?: T | undefined } | undefined) =>
+									fetch<void, BasicHeaders, Methods4['get']['status']>(
+										prefix,
+										`${prefix3}${PATH5}`,
+										GET,
+										option
+									).send(),
+								$get: (option?: { config?: T | undefined } | undefined) =>
+									fetch<void, BasicHeaders, Methods4['get']['status']>(
+										prefix,
+										`${prefix3}${PATH5}`,
+										GET,
+										option
+									)
+										.send()
+										.then((r) => r.body),
+								$path: () => `${prefix}${prefix3}${PATH5}`
+							}
+						};
+					}
+				},
+				diary: {
+					create: {
+						/**
+						 * @returns 成功レスポンス
+						 */
+						post: (option: {
+							body: Methods5['post']['reqBody'];
+							config?: T | undefined;
+						}) =>
+							fetch<
+								Methods5['post']['resBody'],
+								BasicHeaders,
+								Methods5['post']['status']
+							>(prefix, PATH6, POST, option).json(),
+						/**
+						 * @returns 成功レスポンス
+						 */
+						$post: (option: {
+							body: Methods5['post']['reqBody'];
+							config?: T | undefined;
+						}) =>
+							fetch<
+								Methods5['post']['resBody'],
+								BasicHeaders,
+								Methods5['post']['status']
+							>(prefix, PATH6, POST, option)
+								.json()
+								.then((r) => r.body),
+						$path: () => `${prefix}${PATH6}`
+					}
+				},
+				login: {
+					_provider: (val3: string) => {
+						const prefix3 = `${PATH7}/${val3}`;
+
+						return {
+							/**
+							 * @returns 成功レスポンス
+							 */
+							get: (option?: { config?: T | undefined } | undefined) =>
+								fetch<
+									Methods6['get']['resBody'],
+									BasicHeaders,
+									Methods6['get']['status']
+								>(prefix, prefix3, GET, option).json(),
+							/**
+							 * @returns 成功レスポンス
+							 */
+							$get: (option?: { config?: T | undefined } | undefined) =>
+								fetch<
+									Methods6['get']['resBody'],
+									BasicHeaders,
+									Methods6['get']['status']
+								>(prefix, prefix3, GET, option)
+									.json()
+									.then((r) => r.body),
+							$path: () => `${prefix}${prefix3}`
+						};
+					}
+				},
 				status: {
 					/**
 					 * @returns 成功レスポンス
 					 */
 					get: (option?: { config?: T | undefined } | undefined) =>
-						fetch<Methods4['get']['resBody'], BasicHeaders, Methods4['get']['status']>(
+						fetch<Methods7['get']['resBody'], BasicHeaders, Methods7['get']['status']>(
 							prefix,
-							PATH4,
+							PATH8,
 							GET,
 							option
 						).json(),
@@ -132,15 +227,15 @@ const api = <T>({ baseURL, fetch }: AspidaClient<T>) => {
 					 * @returns 成功レスポンス
 					 */
 					$get: (option?: { config?: T | undefined } | undefined) =>
-						fetch<Methods4['get']['resBody'], BasicHeaders, Methods4['get']['status']>(
+						fetch<Methods7['get']['resBody'], BasicHeaders, Methods7['get']['status']>(
 							prefix,
-							PATH4,
+							PATH8,
 							GET,
 							option
 						)
 							.json()
 							.then((r) => r.body),
-					$path: () => `${prefix}${PATH4}`
+					$path: () => `${prefix}${PATH8}`
 				},
 				user: {
 					init: {
@@ -149,22 +244,22 @@ const api = <T>({ baseURL, fetch }: AspidaClient<T>) => {
 						 */
 						get: (option?: { config?: T | undefined } | undefined) =>
 							fetch<
-								Methods5['get']['resBody'],
+								Methods8['get']['resBody'],
 								BasicHeaders,
-								Methods5['get']['status']
-							>(prefix, PATH5, GET, option).json(),
+								Methods8['get']['status']
+							>(prefix, PATH9, GET, option).json(),
 						/**
 						 * @returns 成功レスポンス
 						 */
 						$get: (option?: { config?: T | undefined } | undefined) =>
 							fetch<
-								Methods5['get']['resBody'],
+								Methods8['get']['resBody'],
 								BasicHeaders,
-								Methods5['get']['status']
-							>(prefix, PATH5, GET, option)
+								Methods8['get']['status']
+							>(prefix, PATH9, GET, option)
 								.json()
 								.then((r) => r.body),
-						$path: () => `${prefix}${PATH5}`
+						$path: () => `${prefix}${PATH9}`
 					}
 				}
 			}
