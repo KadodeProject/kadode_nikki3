@@ -17,16 +17,19 @@ export type ArchiveDiaryType = {
 	content: string;
 	updated_at: string;
 	// 自然言語処理関連
+
 	sentence?: JSON;
 	chunk?: JSON;
 	token?: JSON;
 	affiliation?: JSON;
 	char_length: number;
 	// 処理済みの統計関連
-	statisticStatus: number;
-	statistic_per_date?: string;
-	emotion?: number;
-	classfications?: string;
-	important_words?: JSON;
-	special_people?: JSON;
+	statistic_per_date: {
+		statisticStatus: number;
+		statistic_per_date?: string;
+		emotion?: number;
+		classfications?: string;
+		important_words?: JSON;
+		special_people?: JSON;
+	};
 };

@@ -14,6 +14,7 @@
         "google/cloud-storage": "^1.30",
         "grpc/grpc": "^1.52",
         "guzzlehttp/guzzle": "^7.5",
+        "illuminatech/multipart-middleware": "^1.1",
         "laravel/framework": "^10.0",
         "laravel/sanctum": "^3.2",
         "laravel/socialite": "^5.6",
