@@ -22,7 +22,7 @@ final class ReadDiaryAction extends Controller
     }
 
     /**
-     * idで指定された日記を取得する
+     * 指定された日付の日記を取得する
      *
      * @param string $date 日記の日付
      */

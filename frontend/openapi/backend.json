@@ -199,7 +199,7 @@
         },
         "\/api\/v1\/diary\/{date}": {
             "get": {
-                "summary": "idで指定された日記を取得する",
+                "summary": "指定された日付の日記を取得する",
                 "parameters": [
                     {
                         "name": "date",
@@ -231,7 +231,7 @@
                 }
             },
             "patch": {
-                "summary": "日記を作成する",
+                "summary": "指定された日付の日記を更新する",
                 "parameters": [
                     {
                         "name": "date",
@@ -259,7 +259,7 @@
                 }
             },
             "delete": {
-                "summary": "idで指定された日記を削除する",
+                "summary": "指定された日付の日記を削除する",
                 "parameters": [
                     {
                         "name": "date",

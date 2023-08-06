@@ -15,7 +15,7 @@ use Vyuldashev\LaravelOpenApi\Attributes as OpenApi;
 final class UpdateDiaryAction extends Controller
 {
     /**
-     * 日記を作成する
+     * 指定された日付の日記を更新する
      *
      * @param string $date 日記の日付
      */

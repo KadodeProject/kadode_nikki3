@@ -14,7 +14,7 @@ use Vyuldashev\LaravelOpenApi\Attributes as OpenApi;
 final class DeleteDiaryAction extends Controller
 {
     /**
-     * idで指定された日記を削除する
+     * 指定された日付の日記を削除する
      *
      * @param string $date 日記の日付
      */
