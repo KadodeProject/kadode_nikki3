@@ -54,9 +54,9 @@ Route::prefix('v1')->group(function (): void {
          * Diary
          */
         Route::post('/diary', ApiActions\Diary\CreateDiaryAction::class)->name('CreateDiaryApi');
-        Route::get('/diary/{date}', ApiActions\Diary\ReadDiaryAction::class)->name('ReadDiaryApi');
-        Route::patch('/diary/{date}', ApiActions\Diary\UpdateDiaryAction::class)->name('UpdateDiaryApi');
-        Route::delete('/diary/{date}', ApiActions\Diary\DeleteDiaryAction::class)->name('DeleteDiaryApi');
+        Route::get('/diary/{date}', ApiActions\Diary\ReadDiaryAction::class)->where('date', '^\d{4}-\d{2}-\d{2}$')->name('ReadDiaryApi');
+        Route::patch('/diary/{date}', ApiActions\Diary\UpdateDiaryAction::class)->where('date', '^\d{4}-\d{2}-\d{2}$')->name('UpdateDiaryApi');
+        Route::delete('/diary/{date}', ApiActions\Diary\DeleteDiaryAction::class)->where('date', '^\d{4}-\d{2}-\d{2}$')->name('DeleteDiaryApi');
 
         /**
          * ページ表示用エンドポイント
