@@ -17,15 +17,15 @@ final class UpdateDiaryAction extends Controller
     /**
      * 日記を作成する
      *
-     * @param int $id 日記のid
+     * @param string $date 日記の日付
      */
     #[OpenApi\Operation()]
     #[OpenApi\RequestBody(DiaryRequsetBody::class)]
     #[OpenApi\Response(OkResponse::class)]
-    public function __invoke(int $id, DiaryRequest $request): void
+    public function __invoke(string $date, DiaryRequest $request): void
     {
         // グローバルスコープでログイン中のユーザーであることは確認済み
-        $diary = Diary::where('id', $id)->first();
+        $diary = Diary::where('date', $date)->first();
         if ($diary !== null) {
             // 同じならupdated_atを更新しなくて良いのでupdateでなくsaveを使う
             $diary->save([

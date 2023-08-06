@@ -24,16 +24,16 @@ final class ReadDiaryAction extends Controller
     /**
      * idで指定された日記を取得する
      *
-     * @param int $id 日記のid
+     * @param string $date 日記の日付
      */
     #[OpenApi\Operation()]
     #[OpenApi\Response(DiaryResponse::class)]
-    public function __invoke(int $id): JsonResource
+    public function __invoke(string $date): JsonResource
     {
         // ログイン中のuserかの判定をしていないよいうに見えるが、グローバルスコープでやってるので弾けている
-        $diary = Diary::with(['statisticPerDate', 'diaryProcessed'])->whereId($id)->first();
+        $diary = Diary::with(['statisticPerDate', 'diaryProcessed'])->where('date', $date)->first();
         if ($diary === null) {
-            abort(404);
+            abort(404, '指定された日記は存在しません');
         }
         $statisticStatus = $this->checkStatisticStatusByDiary->invoke($diary);
 

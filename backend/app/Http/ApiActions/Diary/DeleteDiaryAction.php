@@ -16,13 +16,13 @@ final class DeleteDiaryAction extends Controller
     /**
      * idで指定された日記を削除する
      *
-     * @param int $id 日記のid
+     * @param string $date 日記の日付
      */
     #[OpenApi\Operation()]
     #[OpenApi\Response(OkResponse::class)]
-    public function __invoke(int $id): void
+    public function __invoke(string $date): void
     {
         // ログイン中のuserかの判定をしていないよいうに見えるが、グローバルスコープでやってるので弾けている
-        Diary::whereId($id)->delete();
+        Diary::where('date', $date)->delete();
     }
 }
