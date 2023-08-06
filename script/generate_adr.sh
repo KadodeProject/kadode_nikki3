@@ -6,12 +6,12 @@ read -p "タイトルを入力してください: " TITLE
 echo "ADRのStatusを選択してください:"
 echo "1. 🟡提案"
 echo "2. 🟢承認"
-read -p "番号で指定してください (1-2): " choice
+read -p "全角番号で指定してください (１-２): " choice
 
 # ステータスの設定
-if [ "$choice" == "1" ]; then
+if [ "$choice" == "１" ]; then
     STATUS="🟡提案"
-elif [ "$choice" == "2" ]; then
+elif [ "$choice" == "２" ]; then
     STATUS="🟢承認"
 else
     echo "不正な値です"
@@ -26,7 +26,8 @@ NEXT_NUM=$((FILE_COUNT))
 NEXT_NUM_FORMAT=$(printf "%04d" $((FILE_COUNT)))
 
 # 新規ファイル名
-NEW_FILE="./docs/arc/${NEXT_NUM_FORMAT}-${TITLE}.md"
+FILE_NAME="${NEXT_NUM_FORMAT}-${TITLE}"
+NEW_FILE="./docs/arc/${FILE_NAME}.md"
 
 # テンプレート内容
 TEMPLATE="# ADR ${NEXT_NUM} : ${TITLE}
@@ -66,4 +67,8 @@ TEMPLATE="# ADR ${NEXT_NUM} : ${TITLE}
 
 # 新規ファイルの作成とテンプレートの書き込み
 echo "$TEMPLATE" >$NEW_FILE
-echo "新しいADRを作成しました💖: ${NEW_FILE}"
+echo "新しいADRを作成しました: ${NEW_FILE}"
+
+# README.mdに新しいファイルへのリンクを追加
+ENCODED_FILE=$(printf %s ${FILE_NAME} | jq -sRr @uri)
+echo "-   [${NEXT_NUM_FORMAT}-${TITLE}](${ENCODED_FILE}.md)" >>./docs/arc/README.md
