@@ -1,7 +1,7 @@
 import { apiUrlResolver } from '$src/lib/utils/apiUrlResolver';
 import api from '$apiSchema/$api';
-import aspida from '@aspida/node-fetch';
-import fetch from 'node-fetch';
+//node-fetchだとクライアントで動かなくなるので使わない
+import aspida from '@aspida/fetch';
 export const gApiClient = () => {
 	const aspidaFetchConfig = {
 		baseURL: apiUrlResolver(),

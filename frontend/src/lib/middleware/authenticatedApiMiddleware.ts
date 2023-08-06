@@ -1,4 +1,4 @@
-import { HTTPError } from '@aspida/node-fetch';
+import { HTTPError } from '@aspida/fetch';
 import { redirect } from '@sveltejs/kit';
 import { error } from '@sveltejs/kit';
 // eslint-disable-next-line @typescript-eslint/no-explicit-any

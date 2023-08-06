@@ -1,5 +1,5 @@
 import { userStore } from '$lib/stores/userStore';
-import { HTTPError } from '@aspida/node-fetch';
+import { HTTPError } from '@aspida/fetch';
 import { aApiClient } from '../utils/client/backendAuthenticatedApiClient';
 import type { Handle } from '@sveltejs/kit';
 import type { UserStore } from '$lib/types/stores/UserStore';
