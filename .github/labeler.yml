@@ -8,6 +8,9 @@
   - backend/public/**
   - backend/resources/**
   - frontend_discontinued/**
+✨script:
+  - script/**
+  - Makefile
 💻frontend:
   - frontend/**
 # バックエンド
