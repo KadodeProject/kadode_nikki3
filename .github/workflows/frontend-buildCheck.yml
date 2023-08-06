@@ -1,0 +1,58 @@
+name: 【frontend】build可能チェック
+
+on:
+  pull_request:
+    branches:
+      - main
+    paths:
+      - frontend/**
+
+defaults:
+  run:
+    working-directory: frontend
+
+jobs:
+  frontend_build_check:
+    name: svelte-check
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - uses: pnpm/action-setup@v2
+        name: Setup pnpm
+        id: pnpm-install
+        with:
+          version: 8
+
+      - name: Install Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+          cache: "pnpm"
+          cache-dependency-path: |
+            frontend/pnpm-lock.yaml
+          #
+      # node_modelusはキャッシュしてくれないっぽいので自分でやる
+      - name: Cache node_modelus
+        id: cache-node-modules
+        uses: actions/cache@v3
+        with:
+          path: "**/node_modules"
+          key: frontend-node-modules-${{ hashfiles('**/pnpm-lock.yaml') }}
+          restore-keys: |
+            frontend-node-modules-
+
+      - name: Install dependencies
+        if: steps.cache-node-modules.outputs.cache-hit != 'true'
+        run: pnpm install --frozen-lockfile
+
+      - name: Svelte-build
+        run: pnpm build
+        env:
+          PUBLIC_API_URL: "http://backend:2010"
+          PUBLIC_API_SERVER_SIDE_URL: "http://backend:2010"
+          PUBLIC_API_CLIENT_SIDE_URL: "http://localhost:2010"
+          PUBLIC_APP_URL: "http://localhost:2000"
+          PUBLIC_LOGIN_PATH: "/login"
