@@ -1,4 +1,5 @@
-# たまに失敗する？？
+# 初回は絶対に失敗する
+docker compose exec -T backend php artisan route:cache
 docker compose exec -T backend php artisan openapi:generate >./frontend/openapi/backend.json
 docker compose exec -T frontend rm -rf src/apiSchema
 docker compose exec -T frontend pnpm openapi2aspida -i ./openapi/backend.json -o src/apiSchema

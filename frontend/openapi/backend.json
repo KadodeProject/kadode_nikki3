@@ -197,6 +197,87 @@
                 }
             }
         },
+        "\/api\/v1\/diary\/{date}": {
+            "get": {
+                "summary": "idで指定された日記を取得する",
+                "parameters": [
+                    {
+                        "name": "date",
+                        "in": "path",
+                        "description": "日記の日付",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "成功レスポンス",
+                        "content": {
+                            "application\/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "result": {
+                                            "type": "string",
+                                            "example": "success"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "patch": {
+                "summary": "日記を作成する",
+                "parameters": [
+                    {
+                        "name": "date",
+                        "in": "path",
+                        "description": "日記の日付",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application\/json": {
+                            "schema": {
+                                "$ref": "#\/components\/schemas\/DiaryRequestBody"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "成功レスポンス"
+                    }
+                }
+            },
+            "delete": {
+                "summary": "idで指定された日記を削除する",
+                "parameters": [
+                    {
+                        "name": "date",
+                        "in": "path",
+                        "description": "日記の日付",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "成功レスポンス"
+                    }
+                }
+            }
+        },
         "\/api\/v1\/home": {
             "get": {
                 "summary": "ホーム画面に表示する情報を取得",
