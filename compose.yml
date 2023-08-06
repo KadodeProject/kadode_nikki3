@@ -110,6 +110,7 @@ services:
     ports:
       - "2000:2000"
       - "2802:2802" # playwright report
+      - "24678:24678" # hot relaod
     user: "1000:1000"
     volumes:
       - ./frontend:/frontend
