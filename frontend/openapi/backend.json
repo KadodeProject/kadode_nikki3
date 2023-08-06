@@ -192,20 +192,7 @@
                 },
                 "responses": {
                     "200": {
-                        "description": "成功レスポンス",
-                        "content": {
-                            "application\/json": {
-                                "schema": {
-                                    "type": "object",
-                                    "properties": {
-                                        "result": {
-                                            "type": "string",
-                                            "example": "success"
-                                        }
-                                    }
-                                }
-                            }
-                        }
+                        "description": "成功レスポンス"
                     }
                 }
             }

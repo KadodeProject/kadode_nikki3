@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace App\Http\Actions\Diary;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Diary\CreateDiaryRequest;
+use App\Http\Requests\Diary\DiaryRequest;
 use App\Models\Diary;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Routing\Redirector;
@@ -15,7 +15,7 @@ use Illuminate\Support\Str;
 
 final class CreateDiaryAction extends Controller
 {
-    public function __invoke(CreateDiaryRequest $request): Redirector|RedirectResponse
+    public function __invoke(DiaryRequest $request): Redirector|RedirectResponse
     {
         $request->date ??= Carbon::today()->format('y-m-d');
 

@@ -7,16 +7,10 @@ const api = <T>({ baseURL, fetch }: AspidaClient<T>) => {
   const POST = 'POST'
 
   return {
-    /**
-     * @returns 成功レスポンス
-     */
     post: (option: { body: Methods0['post']['reqBody'], config?: T | undefined }) =>
-      fetch<Methods0['post']['resBody'], BasicHeaders, Methods0['post']['status']>(prefix, PATH0, POST, option).json(),
-    /**
-     * @returns 成功レスポンス
-     */
+      fetch<void, BasicHeaders, Methods0['post']['status']>(prefix, PATH0, POST, option).send(),
     $post: (option: { body: Methods0['post']['reqBody'], config?: T | undefined }) =>
-      fetch<Methods0['post']['resBody'], BasicHeaders, Methods0['post']['status']>(prefix, PATH0, POST, option).json().then(r => r.body),
+      fetch<void, BasicHeaders, Methods0['post']['status']>(prefix, PATH0, POST, option).send().then(r => r.body),
     $path: () => `${prefix}${PATH0}`
   }
 }

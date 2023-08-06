@@ -8,6 +8,9 @@ use App\Rules\Diary\RejectExistDayDiaryForUpdateOnDateRule;
 use Illuminate\Foundation\Http\FormRequest;
 use Auth;
 
+/**
+ * @todo APIへの移行が終わったら消す
+ */
 class UpdateDiaryRequest extends FormRequest
 {
     /**
@@ -30,6 +33,8 @@ class UpdateDiaryRequest extends FormRequest
      *
      * numericが整数値のバリデーション
      * user_idは後で入れるので不要
+     *
+     * @deprecated
      *
      * @return array<string, mixed>
      */

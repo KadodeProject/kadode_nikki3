@@ -5,12 +5,10 @@ declare(strict_types=1);
 namespace App\Http\ApiActions\Diary;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Diary\CreateDiaryRequest;
+use App\Http\Requests\Diary\DiaryRequest;
 use App\Models\Diary;
-use App\OpenApi\RequestBodies\Diary\CreateDiaryActionRequsetBody;
-use App\OpenApi\Responses\Diary\CreateDiaryActionResponse;
-use Illuminate\Http\JsonResponse;
-use Illuminate\Support\Carbon;
+use App\OpenApi\RequestBodies\Diary\DiaryRequsetBody;
+use App\OpenApi\Responses\OkResponse;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
 use Vyuldashev\LaravelOpenApi\Attributes as OpenApi;
@@ -22,13 +20,11 @@ final class CreateDiaryAction extends Controller
      * 日記を作成する
      */
     #[OpenApi\Operation()]
-    #[OpenApi\RequestBody(CreateDiaryActionRequsetBody::class)]
-    #[OpenApi\Response(CreateDiaryActionResponse::class)]
-    public function __invoke(CreateDiaryRequest $request): JsonResponse
+    #[OpenApi\RequestBody(DiaryRequsetBody::class)]
+    #[OpenApi\Response(OkResponse::class)]
+    public function __invoke(DiaryRequest $request): void
     {
-        $request->date ??= Carbon::today()->format('y-m-d');
-
-        $form = [
+        $diary = [
             'user_id' => Auth::id(),
             'title'   => $request->title,
             'content' => $request->content,
@@ -36,12 +32,7 @@ final class CreateDiaryAction extends Controller
             'uuid'    => Str::uuid(),
         ];
 
-        Diary::create($form);
+        Diary::create($diary);
         // ここで統計用テーブル作成するのもありだが、後方互換を保つためにはできないたいめ、生成時になかったら作る方式を採用している
-        return response()->json(
-            [
-                'result' => 'success',
-            ]
-        );
     }
 }

@@ -9,7 +9,7 @@ use GoldSpecDigital\ObjectOrientedOAS\Objects\Response;
 use GoldSpecDigital\ObjectOrientedOAS\Objects\Schema;
 use Vyuldashev\LaravelOpenApi\Factories\ResponseFactory;
 
-class CreateDiaryActionResponse extends ResponseFactory
+class DiaryResponse extends ResponseFactory
 {
     public function build(): Response
     {

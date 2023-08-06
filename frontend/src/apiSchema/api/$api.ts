@@ -44,16 +44,10 @@ const api = <T>({ baseURL, fetch }: AspidaClient<T>) => {
         }
       },
       diary: {
-        /**
-         * @returns 成功レスポンス
-         */
         post: (option: { body: Methods1['post']['reqBody'], config?: T | undefined }) =>
-          fetch<Methods1['post']['resBody'], BasicHeaders, Methods1['post']['status']>(prefix, PATH2, POST, option).json(),
-        /**
-         * @returns 成功レスポンス
-         */
+          fetch<void, BasicHeaders, Methods1['post']['status']>(prefix, PATH2, POST, option).send(),
         $post: (option: { body: Methods1['post']['reqBody'], config?: T | undefined }) =>
-          fetch<Methods1['post']['resBody'], BasicHeaders, Methods1['post']['status']>(prefix, PATH2, POST, option).json().then(r => r.body),
+          fetch<void, BasicHeaders, Methods1['post']['status']>(prefix, PATH2, POST, option).send().then(r => r.body),
         $path: () => `${prefix}${PATH2}`
       },
       home: {

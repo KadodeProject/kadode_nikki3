@@ -50,10 +50,13 @@ Route::prefix('v1')->group(function (): void {
         // 裏側で必要なエンドポイント
         Route::get('/user/init', ApiActions\User\GetUserInfoAction::class)->name('getUserInfo');
 
-        // edit
+        /**
+         * Diary
+         */
         Route::post('/diary', ApiActions\Diary\CreateDiaryAction::class)->name('CreateDiaryApi');
-        // Route::put('/diary', ApiActions\Diary\CreateDiaryAction::class)->name('UpdateDiaryApi');
-        // Route::delete('/diary', ApiActions\Diary\CreateDiaryAction::class)->name('DeleteDiaryApi');
+        Route::get('/diary/{id}', ApiActions\Diary\ReadDiaryAction::class)->name('ReadDiaryApi');
+        Route::patch('/diary/{id}', ApiActions\Diary\UpdateDiaryAction::class)->name('UpdateDiaryApi');
+        Route::delete('/diary/{id}', ApiActions\Diary\DeleteDiaryAction::class)->name('DeleteDiaryApi');
 
         /**
          * ページ表示用エンドポイント

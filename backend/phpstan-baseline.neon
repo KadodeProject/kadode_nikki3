@@ -456,11 +456,6 @@ parameters:
 			path: app/Http/Middleware/VerifyCsrfToken.php
 
 		-
-			message: "#^Parameter \\#1 \\$user_id of class App\\\\Rules\\\\Diary\\\\RejectExistDayDiaryForCreateOnDateRule constructor expects int, int\\|string\\|null given\\.$#"
-			count: 1
-			path: app/Http/Requests/Diary/CreateDiaryRequest.php
-
-		-
 			message: "#^Parameter \\#1 \\$user_id of class App\\\\Rules\\\\Diary\\\\RejectExistDayDiaryForUpdateOnDateRule constructor expects int, int\\|string\\|null given\\.$#"
 			count: 1
 			path: app/Http/Requests/Diary/UpdateDiaryRequest.php
