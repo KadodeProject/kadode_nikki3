@@ -235,6 +235,6 @@ openapi:
 openapi-b:
 	docker compose exec -T backend php artisan route:cache
 	docker compose exec -T backend php artisan openapi:generate
-
-
+adr:
+	sh script/generate_adr.sh
 
