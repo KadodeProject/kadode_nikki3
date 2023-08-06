@@ -48,9 +48,10 @@
 	},
 	"type": "module",
 	"dependencies": {
-		"@aspida/node-fetch": "^1.13.3",
+		"@aspida/node-fetch": "~1.12.0",
 		"axios": "^1.4.0",
 		"dayjs": "^1.11.9",
+		"node-fetch": "^2.6.12",
 		"set-cookie-parser": "^2.6.0"
 	}
 }

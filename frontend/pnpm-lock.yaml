@@ -6,14 +6,17 @@ settings:
 
 dependencies:
   '@aspida/node-fetch':
-    specifier: ^1.13.3
-    version: 1.13.3(node-fetch@2.6.12)
+    specifier: ~1.12.0
+    version: 1.12.0
   axios:
     specifier: ^1.4.0
     version: 1.4.0
   dayjs:
     specifier: ^1.11.9
     version: 1.11.9
+  node-fetch:
+    specifier: ^2.6.12
+    version: 2.6.12
   set-cookie-parser:
     specifier: ^2.6.0
     version: 2.6.0
@@ -148,13 +151,10 @@ packages:
       openapi-types: 12.1.3
     dev: true
 
-  /@aspida/node-fetch@1.13.3(node-fetch@2.6.12):
-    resolution: {integrity: sha512-+bM2/WDxBCE5KbN+kU2SEp5Zmn/y0+asBvJi6TXNr59dJpSAZq5MX2Fo1XgCrG1RlhrV91fEkkE4r3LlQ41r9g==}
-    peerDependencies:
-      node-fetch: 2.x
+  /@aspida/node-fetch@1.12.0:
+    resolution: {integrity: sha512-zzfR7hyds+/CrmHFjSvhJN/J8B5A6AviOo3DgETjJ1GNDokwxCteCED1um7LCZWEsjs9Hgcrtod/F36ijKFQLw==}
     dependencies:
       aspida: 1.13.3
-      node-fetch: 2.6.12
     dev: false
 
   /@babel/code-frame@7.22.5:
