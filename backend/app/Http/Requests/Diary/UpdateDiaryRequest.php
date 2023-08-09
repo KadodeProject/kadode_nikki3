@@ -9,7 +9,7 @@ use Illuminate\Foundation\Http\FormRequest;
 use Auth;
 
 /**
- * @todo APIへの移行が終わったら消す
+ * Createでは既存の日付判定が必要だが、updateではそれが不要なのでCreateとは別で必要
  */
 class UpdateDiaryRequest extends FormRequest
 {
@@ -41,18 +41,18 @@ class UpdateDiaryRequest extends FormRequest
     public function rules(): array
     {
         return [
+            'id'      => ['required', 'integer'], // 日記重複日付比較のために必要
             'title'   => ['max:50'], // laravelのstringはvarchar(255)なので、255文字までだが、マルチバイトなど色々踏まえて50に押
             'content' => ['required', 'min:1', 'max:16000'], // text型の限界が16384文字なので(マルチバイトで)
-            'id'      => ['required', 'int'],
             /*
              * 結構豪快な方法でid引っ張ってきてて良くない(バリデーションを通さない値が取れてしまうため)
              *
-             * 正しい意味でのintキャストをしています(そもそも$this->request->all()で来る値が全部string型なのがよくない……)
              * strict_type=1で指定しているため、明示的にintにキャストが必要
              * たとえば'2aaa'も2になり、これは意図しない値ですが、この先のRuleで処理しているメソッド内部で呼ぶeloquentでユーザー絞った後にid検索のため、不正な値はヒットせず問題なし
              * eloquent側もSQLインジェクション対策は施されているため、結果としてこの処理は安全です。
+             * $this->request->idだと取れない
              */
-            'date'    => ['required', new RejectExistDayDiaryForUpdateOnDateRule(Auth::id(), (int)$this->request->all()['id'])],
+            'date'    => ['required', new RejectExistDayDiaryForUpdateOnDateRule(Auth::id(), $this->request->all()['id'])],
         ];
     }
 }

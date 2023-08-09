@@ -81,12 +81,6 @@ export type Diary = {
   diary_processed?: Diary_processed | undefined
 }
 
-export type DiaryRequestBody = {
-  date?: string | undefined
-  title?: string | null | undefined
-  content?: string | undefined
-}
-
 export type Osirase = {
   title?: string | undefined
   date?: string | undefined

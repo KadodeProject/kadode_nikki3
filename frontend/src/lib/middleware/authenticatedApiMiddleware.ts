@@ -7,14 +7,20 @@ export const authenticatedApiMiddleware = async (apiClient: () => Promise<any>) 
 		return await apiClient();
 	} catch (e) {
 		if (e instanceof HTTPError) {
-			if (e.response.status === 401) {
-				console.log('redirecting');
-				// 401エラーの場合は、ログイン画面にリダイレクト
-				throw redirect(307, '/login');
-			} else if (e.response.status === 404) {
-				throw error(404, {
-					message: 'Not found'
-				});
+			//statusに応じてswitch
+			switch (e.response.status) {
+				case 401:
+					throw redirect(307, '/login');
+				case 404:
+					throw error(404, {
+						message: 'Not found'
+					});
+				case 422:
+					console.log('えらー');
+					console.log(e.response.body);
+					throw e;
+				default:
+					throw e;
 			}
 		}
 		throw e;
