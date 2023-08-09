@@ -1,7 +1,7 @@
 <script lang="ts">
 	import AuthenticatedHead from '$lib/components/atom/head/AuthenticatedHead.svelte';
-	import type { PageData } from './$types';
-	export let data: PageData;
+	import type { LayoutData } from './$types';
+	export let data: LayoutData;
 </script>
 
 <AuthenticatedHead title="日記" description="日記作成ページ" />
