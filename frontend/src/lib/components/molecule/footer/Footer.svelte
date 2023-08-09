@@ -1,20 +1,44 @@
-<footer class="flex flex-col items-center">
-	<div class="flex flex-col justify-center items-center my-4 mx-2 md:flex-row">
-		<a class="p-2" href="/releaseNote">リリースノート</a>
-		<a class="p-2" href="/notice">お知らせ</a>
-		<a class="p-2" href="/">トップ</a>
-		<a class="p-2" href="/privacyPolicy">プライバシーポリシー</a>
-		<a class="p-2" href="/terms">利用規約</a>
-		<a class="p-2" href="/aboutThisSite">このサイトについて</a>
-		<a class="p-2" href="/contact">お問い合わせ</a>
-		<a class="p-2" href="/credit">クレジット</a>
-	</div>
-	<p class="text-xs text-purple">copyright kadodeProject 2020~2023</p>
-</footer>
+<script lang="ts">
+	import KadodeLogoString from '$lib/assets/logo/kadodeLogoString.svg?url';
+	import FooterSection from '$lib/components/atom/footer/FooterSection.svelte';
+	const sitemapContent = [
+		{ href: '/', title: 'かどで日記トップ' },
+		// { href: '/', title: 'しくみ' },
+		{ href: '/credit', title: 'クレジット' },
+		{ href: '/contact', title: 'お問い合わせ' },
+		{ href: '/releaseNote', title: 'リリースノート' },
+		{ href: '/notice', title: 'お知らせ' }
+	];
+	const administrationContent = [
+		{ href: 'https://portal.kado.day', title: 'かどでポータル' },
+		{ href: 'https://note.com/kadoday', title: 'note' }
+		// { href: '', title: 'misskey' }
+	];
+</script>
 
-<style>
-	footer {
-		min-height: var(--footer-height);
-		box-shadow: inset 0px 4px 4px rgba(0, 0, 0, 0.25);
-	}
-</style>
+<footer class="border-t-2 border-brown">
+	<p class="text-xs text-brown mt-4 text-center">copyright Kadode Project 2020~2023</p>
+	<div class="flex flex-col md:flex-row mx-auto md:w-4/5">
+		<div class="md:w-1/5 w-2/3 mx-auto">
+			<img src={KadodeLogoString} alt="Kadode Logo" class="p-2 object-fit" />
+		</div>
+		<div
+			class="md:w-4/5 flex flex-col justify-center items-center my-4 mx-2 md:flex-row flex-wrap"
+		>
+			<FooterSection title="sitemap" content={sitemapContent} />
+			<FooterSection title="administration" content={administrationContent}>
+				<div class="pl-2">
+					<p class="text-lg mt-2">Kadode Project</p>
+					<p>本サービスは「うすゆき」が個人で運営しています</p>
+				</div>
+			</FooterSection>
+			<div
+				class="border-t-2 border-dashed border-brown w-full flex flex-wrap flex-col md:flex-row justify-center items-center"
+			>
+				<a class="p-2" href="/privacyPolicy">プライバシーポリシー</a>
+				<a class="p-2" href="/terms">利用規約</a>
+				<a class="p-2" href="/aboutThisSite">このサイトについて</a>
+			</div>
+		</div>
+	</div>
+</footer>

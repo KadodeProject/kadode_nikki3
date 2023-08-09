@@ -5,7 +5,7 @@
 	export let diaries: ArchiveDiaryType[];
 </script>
 
-<div class="flex flex-wrap justify-center space-x-4 itemse-center">
+<div class="flex flex-wrap justify-center space-x-4 itemse-center mb-12">
 	{#each diaries as diary}
 		<div>
 			<AttributeDateBubble dateString={diary.date} />
