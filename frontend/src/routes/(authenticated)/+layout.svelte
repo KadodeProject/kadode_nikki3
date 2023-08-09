@@ -8,9 +8,11 @@
 	<SideMenu />
 	<div class="main-wrapper">
 		<AuthenticatedHeader />
-		<main>
-			<slot />
-		</main>
-		<Footer />
+		<div class="main-with-header">
+			<main>
+				<slot />
+			</main>
+			<Footer />
+		</div>
 	</div>
 </div>

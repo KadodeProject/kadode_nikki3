@@ -5,8 +5,10 @@
 
 <div class="main-wrapper">
 	<GuestHeader />
-	<main>
-		<slot />
-	</main>
-	<Footer />
+	<div class="main-with-header">
+		<main>
+			<slot />
+		</main>
+		<Footer />
+	</div>
 </div>
