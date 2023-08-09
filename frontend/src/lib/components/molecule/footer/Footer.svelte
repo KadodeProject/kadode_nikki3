@@ -11,6 +11,8 @@
 	];
 	const administrationContent = [
 		{ href: 'https://portal.kado.day', title: 'かどでポータル' },
+		{ href: 'https://wiki.kado.day', title: 'かどで日記wiki' },
+		{ href: 'https://github.com/KadodeProject', title: 'GitHub' },
 		{ href: 'https://note.com/kadoday', title: 'note' }
 		// { href: '', title: 'misskey' }
 	];
