@@ -3,5 +3,6 @@ import { writable, type Writable } from 'svelte/store';
 
 export const userStore: Writable<UserStore> = writable({
 	id: 0,
-	name: 'guest'
+	name: '',
+	isGuest: true
 });

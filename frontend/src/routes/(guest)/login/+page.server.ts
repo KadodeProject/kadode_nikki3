@@ -1,5 +1,4 @@
 import { env } from '$env/dynamic/public';
-import { userStore } from '$lib/stores/userStore';
 import { redirect, type RequestEvent } from '@sveltejs/kit';
 import axios from 'axios';
 import setCookieParser from 'set-cookie-parser';
@@ -74,10 +73,6 @@ export const actions: Actions = {
 				httpOnly: sessionLoggedIn.httpOnly,
 				secure: sessionLoggedIn.secure,
 				sameSite: sessionLoggedIn.sameSite as 'lax' | 'strict' | 'none' | undefined
-			});
-			userStore.set({
-				id: data.id,
-				name: data.name
 			});
 		} catch (error) {
 			console.error(error);

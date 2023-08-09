@@ -1,6 +1,7 @@
 <script lang="ts">
 	import KadodeLogoString from '$lib/assets/logo/kadodeLogoString.svg?url';
 	import YellowButton from '$lib/components/atom/button/YellowButton.svelte';
+	import { userStore } from '$lib/stores/userStore';
 </script>
 
 <header class="sticky inset-x-0 top-0 w-screen">
@@ -14,8 +15,12 @@
 			</a>
 		</div>
 		<div class="flex justify-center items-center space-x-2 w-full md:justify-end md:w-1/3">
-			<YellowButton title="新規登録" url="/register" />
-			<YellowButton title="ログイン" url="/login" />
+			{#if $userStore.isGuest}
+				<YellowButton title="新規登録" url="/register" />
+				<YellowButton title="ログイン" url="/login" />
+			{:else}
+				<YellowButton title="ホーム" url="/home" />
+			{/if}
 		</div>
 	</div>
 </header>

@@ -6,7 +6,7 @@ export const actions: Actions = {
 	logout: async (event: RequestEvent) => {
 		console.log('delete cookie');
 		event.cookies.delete('XSRF-TOKEN');
-		event.cookies.delete('3_session');
+		event.cookies.delete('kadode_nikki3_session');
 		throw redirect(302, env.PUBLIC_LOGIN_PATH);
 	}
 };

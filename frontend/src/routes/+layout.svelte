@@ -1,13 +1,19 @@
 <script lang="ts">
 	import '$src/app.css';
 	import { browser } from '$app/environment';
+	import { userStore } from '$lib/stores/userStore';
 	import { isDark } from '$lib/stores/utility';
+	import type { LayoutData } from './$types';
 
 	if (browser && localStorage.theme === 'dark') {
 		isDark.update(() => true);
 	} else {
 		isDark.update(() => false);
 	}
+
+	//サイト訪問時に認証情報をセットする
+	export let data: LayoutData;
+	userStore.set(data.user);
 </script>
 
 <!-- フッターなどは(authenticated),(auth)でそれぞれ使う。ここはグローバルで使うCSSを入れる -->
