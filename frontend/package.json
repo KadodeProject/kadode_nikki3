@@ -17,22 +17,22 @@
 		"test:i": "playwright test -c playwright.config.ts"
 	},
 	"devDependencies": {
+		"@felte/validator-yup": "^1.1.2",
 		"@playwright/experimental-ct-svelte": "^1.36.2",
 		"@playwright/test": "^1.36.2",
 		"@poppanator/sveltekit-svg": "^3.0.1",
 		"@sveltejs/adapter-auto": "^2.1.0",
 		"@sveltejs/adapter-node": "^1.3.1",
-		"@sveltejs/kit": "^1.22.3",
+		"@sveltejs/kit": "^1.22.4",
 		"@testing-library/svelte": "^3.2.2",
 		"@types/set-cookie-parser": "^2.4.3",
 		"@typescript-eslint/eslint-plugin": "^5.62.0",
 		"@typescript-eslint/parser": "^5.62.0",
 		"autoprefixer": "^10.4.14",
 		"eslint": "^8.46.0",
-		"eslint-config-prettier": "^8.9.0",
+		"eslint-config-prettier": "^8.10.0",
 		"eslint-plugin-svelte3": "^4.0.0",
 		"jsdom": "^22.1.0",
-		"openapi2aspida": "^0.21.0",
 		"postcss": "^8.4.27",
 		"prettier": "^2.8.8",
 		"prettier-plugin-svelte": "^2.10.1",
@@ -42,17 +42,17 @@
 		"tinyspy": "^2.1.1",
 		"tslib": "^2.6.1",
 		"typescript": "^5.1.6",
-		"vite": "^4.4.7",
-		"vitest": "^0.34.1"
+		"vite": "^4.4.8",
+		"vitest": "^0.34.1",
+		"yup": "^1.2.0",
+		"yup-locale-ja": "^1.0.0"
 	},
 	"type": "module",
 	"dependencies": {
-		"@aspida/axios": "^1.12.0",
-		"@aspida/node-fetch": "^1.12.0",
-		"@types/node": "^20.4.6",
+		"@aspida/fetch": "~1.12.0",
 		"axios": "^1.4.0",
 		"dayjs": "^1.11.9",
-		"set-cookie-parser": "^2.6.0",
-		"ts-node": "^10.9.1"
+		"felte": "^1.2.11",
+		"set-cookie-parser": "^2.6.0"
 	}
 }

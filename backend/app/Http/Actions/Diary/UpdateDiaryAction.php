@@ -19,7 +19,7 @@ final class UpdateDiaryAction extends Controller
             'content' => $request->content,
             'date'    => $request->date,
         ];
-        Diary::where('id', $request->id)->update($updateContent);
+        Diary::where('date', $request->date)->update($updateContent);
 
         return redirect(route('ShowHome'));
     }

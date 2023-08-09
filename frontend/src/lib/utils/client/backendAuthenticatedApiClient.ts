@@ -1,6 +1,6 @@
 import { apiUrlResolver } from '$src/lib/utils/apiUrlResolver';
 import api from '$apiSchema/$api';
-import aspida from '@aspida/node-fetch';
+import aspida from '@aspida/fetch';
 import type { RequestEvent } from '@sveltejs/kit';
 
 import { env } from '$env/dynamic/public';

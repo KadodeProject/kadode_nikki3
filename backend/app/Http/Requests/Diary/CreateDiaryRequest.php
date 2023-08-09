@@ -8,7 +8,7 @@ use App\Rules\Diary\RejectExistDayDiaryForCreateOnDateRule;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Support\Facades\Auth;
 
-class DiaryRequest extends FormRequest
+class CreateDiaryRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.

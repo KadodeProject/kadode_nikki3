@@ -1,7 +1,7 @@
 <script lang="ts">
 	import AuthenticatedHead from '$lib/components/atom/head/AuthenticatedHead.svelte';
-	import EditElement from '$lib/components/molecule/editDiary/EditElement.svelte';
+	import CreateDiaryBaseElement from '$src/lib/components/molecule/editDiary/CreateDiaryBaseElement.svelte';
 </script>
 
 <AuthenticatedHead title="日記作成" description="日記作成ページ" />
-<EditElement />
+<CreateDiaryBaseElement method="POST" action="" />

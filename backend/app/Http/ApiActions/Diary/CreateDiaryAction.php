@@ -5,9 +5,9 @@ declare(strict_types=1);
 namespace App\Http\ApiActions\Diary;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Diary\DiaryRequest;
+use App\Http\Requests\Diary\CreateDiaryRequest;
 use App\Models\Diary;
-use App\OpenApi\RequestBodies\Diary\DiaryRequsetBody;
+use App\OpenApi\RequestBodies\Diary\CreateDiaryRequestBody;
 use App\OpenApi\Responses\OkResponse;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
@@ -20,9 +20,9 @@ final class CreateDiaryAction extends Controller
      * 日記を作成する
      */
     #[OpenApi\Operation()]
-    #[OpenApi\RequestBody(DiaryRequsetBody::class)]
+    #[OpenApi\RequestBody(CreateDiaryRequestBody::class)]
     #[OpenApi\Response(OkResponse::class)]
-    public function __invoke(DiaryRequest $request): void
+    public function __invoke(CreateDiaryRequest $request): void
     {
         $diary = [
             'user_id' => Auth::id(),

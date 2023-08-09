@@ -1,9 +1,12 @@
 /* eslint-disable */
-import type * as Types from '../../../@types'
-
 export type Methods = {
   post: {
     status: 200
-    reqBody: Types.DiaryRequestBody
+
+    reqBody: {
+      date: string
+      title: string | null
+      content: string
+    }
   }
 }

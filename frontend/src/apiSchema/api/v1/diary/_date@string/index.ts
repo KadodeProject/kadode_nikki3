@@ -1,6 +1,4 @@
 /* eslint-disable */
-import type * as Types from '../../../../@types'
-
 export type Methods = {
   get: {
     status: 200
@@ -13,7 +11,13 @@ export type Methods = {
 
   patch: {
     status: 200
-    reqBody: Types.DiaryRequestBody
+
+    reqBody: {
+      id: number
+      date: string
+      title: string | null
+      content: string
+    }
   }
 
   delete: {

@@ -185,7 +185,22 @@
                     "content": {
                         "application\/json": {
                             "schema": {
-                                "$ref": "#\/components\/schemas\/DiaryRequestBody"
+                                "type": "object",
+                                "properties": {
+                                    "date": {
+                                        "type": "string",
+                                        "example": "2021-12-29"
+                                    },
+                                    "title": {
+                                        "type": "string",
+                                        "nullable": true,
+                                        "example": "タイトル"
+                                    },
+                                    "content": {
+                                        "type": "string",
+                                        "example": "本文~~~~~~~~"
+                                    }
+                                }
                             }
                         }
                     }
@@ -247,7 +262,26 @@
                     "content": {
                         "application\/json": {
                             "schema": {
-                                "$ref": "#\/components\/schemas\/DiaryRequestBody"
+                                "type": "object",
+                                "properties": {
+                                    "id": {
+                                        "type": "integer",
+                                        "example": 1
+                                    },
+                                    "date": {
+                                        "type": "string",
+                                        "example": "2021-12-29"
+                                    },
+                                    "title": {
+                                        "type": "string",
+                                        "nullable": true,
+                                        "example": "タイトル"
+                                    },
+                                    "content": {
+                                        "type": "string",
+                                        "example": "本文~~~~~~~~"
+                                    }
+                                }
                             }
                         }
                     }
@@ -587,24 +621,6 @@
                     },
                     "diary_processed": {
                         "$ref": "#\/components\/schemas\/diary_processed"
-                    }
-                }
-            },
-            "DiaryRequestBody": {
-                "type": "object",
-                "properties": {
-                    "date": {
-                        "type": "string",
-                        "example": "2021-12-29"
-                    },
-                    "title": {
-                        "type": "string",
-                        "nullable": true,
-                        "example": "タイトル"
-                    },
-                    "content": {
-                        "type": "string",
-                        "example": "本文~~~~~~~~"
                     }
                 }
             },

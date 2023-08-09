@@ -2,6 +2,7 @@ import type { RequestEvent } from '@sveltejs/kit';
 import { aApiClient } from '$src/lib/utils/client/backendAuthenticatedApiClient';
 import { authenticatedApiMiddleware } from '$src/lib/middleware/authenticatedApiMiddleware';
 import { error } from '@sveltejs/kit';
+//layoutにすることで配下のページでも再度リクエスト叩かず使えるようにする
 export const load = async (event: RequestEvent) => {
 	const paramDate = event?.params?.date as string; //ここでは絶対日付の文字列あるので、型アサーション
 
