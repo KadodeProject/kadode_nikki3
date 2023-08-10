@@ -94,14 +94,54 @@ export type User = {
   name?: string | undefined
 }
 
+export type Statistic = {
+  id?: number | undefined
+  user_id?: number | undefined
+  statistic_progress?: number | undefined
+  month_words?: Date | undefined
+  month_diaries?: Date | undefined
+  year_words?: Date | undefined
+  year_diaries?: Date | undefined
+  /** 合計文字数 */
+  total_words?: number | undefined
+  /** 合計日記数 */
+  total_diaries?: number | undefined
+  total_noun_asc?: Words_count_schema | undefined
+  total_adjective_asc?: Words_count_schema | undefined
+  emotions?: Emotions | undefined
+  classifications?: Words_count_schema | undefined
+  special_people?: Words_count_schema | undefined
+  important_words?: Words_count_schema | undefined
+  created_at?: string | undefined
+  updated_at?: string | undefined
+} | null
+
 export type Important_words = {
   /** 単語 */
   name?: string | undefined
   count?: number | undefined
 }[]
 
+/** keyに2022-04のように月が入る */
+export type Date = {
+  /** 数 */
+  [key: string]: number | undefined
+}
+
 export type Special_people = {
   /** 人物名 */
+  name?: string | undefined
+  count?: number | undefined
+}[]
+
+export type Emotions = {
+  /** 年月 */
+  date?: string | undefined
+  value?: number | undefined
+}[]
+
+export type Words_count_schema = {
+  /** 単語 */
   name?: string | undefined
   count?: number | undefined
 }[]

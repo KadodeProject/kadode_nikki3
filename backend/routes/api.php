@@ -59,6 +59,18 @@ Route::prefix('v1')->group(function (): void {
         Route::delete('/diary/{date}', ApiActions\Diary\DeleteDiaryAction::class)->where('date', '^\d{4}-\d{2}-\d{2}$')->name('DeleteDiaryApi');
 
         /**
+         * Diaries
+         */
+
+        /*
+         * Statistics
+         */
+        Route::get('/statistic', ApiActions\Statistic\GetStatisticAction::class)->name('GetStatisticsApi');
+
+        // Route::get('/statistic/{year}', ApiActions\StatisticsPerMonth\GetStatisticsPerMonthAction::class)->where('year', '^\d{4}$')->name('GetStatisticsPerYearApi');
+        // Route::get('/statistic/{year}/{month}', ApiActions\StatisticsPerMonth\GetStatisticsPerMonthAction::class)->where('year', '^\d{4}$')->where('month', '^\d{2}$')->name('GetStatisticsPerMonthApi');
+
+        /**
          * ページ表示用エンドポイント
          * - 値をまとめて返す系
          * - そのページ独自のform系
