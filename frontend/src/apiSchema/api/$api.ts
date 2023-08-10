@@ -8,8 +8,9 @@ import type { Methods as Methods5 } from './v1/osirase/all';
 import type { Methods as Methods6 } from './v1/osirase/latest';
 import type { Methods as Methods7 } from './v1/releaseNote/all';
 import type { Methods as Methods8 } from './v1/releaseNote/latest';
-import type { Methods as Methods9 } from './v1/status';
-import type { Methods as Methods10 } from './v1/user/init';
+import type { Methods as Methods9 } from './v1/statistic';
+import type { Methods as Methods10 } from './v1/status';
+import type { Methods as Methods11 } from './v1/user/init';
 
 const api = <T>({ baseURL, fetch }: AspidaClient<T>) => {
   const prefix = (baseURL === undefined ? 'https://api.kado.day' : baseURL).replace(/\/$/, '');
@@ -22,8 +23,9 @@ const api = <T>({ baseURL, fetch }: AspidaClient<T>) => {
   const PATH6 = '/api/v1/osirase/latest';
   const PATH7 = '/api/v1/releaseNote/all';
   const PATH8 = '/api/v1/releaseNote/latest';
-  const PATH9 = '/api/v1/status';
-  const PATH10 = '/api/v1/user/init';
+  const PATH9 = '/api/v1/statistic';
+  const PATH10 = '/api/v1/status';
+  const PATH11 = '/api/v1/user/init';
   const GET = 'GET';
   const POST = 'POST';
   const DELETE = 'DELETE';
@@ -166,7 +168,7 @@ const api = <T>({ baseURL, fetch }: AspidaClient<T>) => {
           $path: () => `${prefix}${PATH8}`,
         },
       },
-      status: {
+      statistic: {
         /**
          * @returns 成功レスポンス
          */
@@ -179,19 +181,32 @@ const api = <T>({ baseURL, fetch }: AspidaClient<T>) => {
           fetch<Methods9['get']['resBody'], BasicHeaders, Methods9['get']['status']>(prefix, PATH9, GET, option).json().then(r => r.body),
         $path: () => `${prefix}${PATH9}`,
       },
+      status: {
+        /**
+         * @returns 成功レスポンス
+         */
+        get: (option?: { config?: T | undefined } | undefined) =>
+          fetch<Methods10['get']['resBody'], BasicHeaders, Methods10['get']['status']>(prefix, PATH10, GET, option).json(),
+        /**
+         * @returns 成功レスポンス
+         */
+        $get: (option?: { config?: T | undefined } | undefined) =>
+          fetch<Methods10['get']['resBody'], BasicHeaders, Methods10['get']['status']>(prefix, PATH10, GET, option).json().then(r => r.body),
+        $path: () => `${prefix}${PATH10}`,
+      },
       user: {
         init: {
           /**
            * @returns 成功レスポンス
            */
           get: (option?: { config?: T | undefined } | undefined) =>
-            fetch<Methods10['get']['resBody'], BasicHeaders, Methods10['get']['status']>(prefix, PATH10, GET, option).json(),
+            fetch<Methods11['get']['resBody'], BasicHeaders, Methods11['get']['status']>(prefix, PATH11, GET, option).json(),
           /**
            * @returns 成功レスポンス
            */
           $get: (option?: { config?: T | undefined } | undefined) =>
-            fetch<Methods10['get']['resBody'], BasicHeaders, Methods10['get']['status']>(prefix, PATH10, GET, option).json().then(r => r.body),
-          $path: () => `${prefix}${PATH10}`,
+            fetch<Methods11['get']['resBody'], BasicHeaders, Methods11['get']['status']>(prefix, PATH11, GET, option).json().then(r => r.body),
+          $path: () => `${prefix}${PATH11}`,
         },
       },
     },

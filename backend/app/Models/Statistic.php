@@ -23,6 +23,31 @@ class Statistic extends Model
     ];
 
     /**
+     * 日付の登録(format使えるように).
+     * JSON系は文字列になるのでJSONに明示的に指定
+     *
+     * @var array<string,string>
+     */
+    protected $casts = [
+        'created_at'          => 'datetime',
+        'updated_at'          => 'datetime',
+        'month_words'         => 'json',
+        'month_diaries'       => 'json',
+        'year_words'          => 'json',
+        'year_diaries'        => 'json',
+        'total_noun_asc'      => 'json',
+        'year_noun_asc'       => 'json',
+        'month_noun_asc'      => 'json',
+        'total_adjective_asc' => 'json',
+        'year_adjective_asc'  => 'json',
+        'month_adjective_asc' => 'json',
+        'diary_grass'         => 'json',
+        'emotions'            => 'json',
+        'classifications'     => 'json',
+        'special_people'      => 'json',
+    ];
+
+    /**
      * $castsではtoArray,toJsonでUTCになってしまうため、アクセサで上書きする.
      */
     public function createdAt(): Attribute

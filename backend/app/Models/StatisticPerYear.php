@@ -22,6 +22,24 @@ class StatisticPerYear extends Model
     ];
 
     /**
+     * 日付の登録(format使えるように).
+     * JSON系は文字列になるのでJSONに明示的に指定
+     *
+     * @var array<string,string>
+     */
+    protected $casts = [
+        'created_at'      => 'datetime',
+        'updated_at'      => 'datetime',
+        'emotions'        => 'json',
+        'word_counts'     => 'json',
+        'noun_rank'       => 'json',
+        'adjective_rank'  => 'json',
+        'important_words' => 'json',
+        'special_people'  => 'json',
+        'classifications' => 'json',
+    ];
+
+    /**
      * $castsではtoArray,toJsonでUTCになってしまうため、アクセサで上書きする.
      */
     public function createdAt(): Attribute

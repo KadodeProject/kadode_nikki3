@@ -312,6 +312,23 @@
                 }
             }
         },
+        "\/api\/v1\/statistic": {
+            "get": {
+                "summary": "ログイン中userの情報を取得",
+                "responses": {
+                    "200": {
+                        "description": "成功レスポンス",
+                        "content": {
+                            "application\/json": {
+                                "schema": {
+                                    "$ref": "#\/components\/schemas\/statistic"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
         "\/api\/v1\/home": {
             "get": {
                 "summary": "ホーム画面に表示する情報を取得",
@@ -662,6 +679,72 @@
                     }
                 }
             },
+            "statistic": {
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "type": "integer",
+                        "example": 1
+                    },
+                    "user_id": {
+                        "type": "integer",
+                        "example": 1
+                    },
+                    "statistic_progress": {
+                        "type": "integer",
+                        "example": 100
+                    },
+                    "month_words": {
+                        "$ref": "#\/components\/schemas\/date"
+                    },
+                    "month_diaries": {
+                        "$ref": "#\/components\/schemas\/date"
+                    },
+                    "year_words": {
+                        "$ref": "#\/components\/schemas\/date"
+                    },
+                    "year_diaries": {
+                        "$ref": "#\/components\/schemas\/date"
+                    },
+                    "total_words": {
+                        "description": "合計文字数",
+                        "type": "integer",
+                        "example": 100000
+                    },
+                    "total_diaries": {
+                        "description": "合計日記数",
+                        "type": "integer",
+                        "example": 100
+                    },
+                    "total_noun_asc": {
+                        "$ref": "#\/components\/schemas\/words_count_schema"
+                    },
+                    "total_adjective_asc": {
+                        "$ref": "#\/components\/schemas\/words_count_schema"
+                    },
+                    "emotions": {
+                        "$ref": "#\/components\/schemas\/emotions"
+                    },
+                    "classifications": {
+                        "$ref": "#\/components\/schemas\/words_count_schema"
+                    },
+                    "special_people": {
+                        "$ref": "#\/components\/schemas\/words_count_schema"
+                    },
+                    "important_words": {
+                        "$ref": "#\/components\/schemas\/words_count_schema"
+                    },
+                    "created_at": {
+                        "type": "string",
+                        "example": "2021-01-01 00:00:00"
+                    },
+                    "updated_at": {
+                        "type": "string",
+                        "example": "2021-01-01 00:00:00"
+                    }
+                },
+                "nullable": true
+            },
             "important_words": {
                 "type": "array",
                 "items": {
@@ -679,6 +762,15 @@
                     }
                 }
             },
+            "date": {
+                "description": "keyに2022-04のように月が入る",
+                "type": "object",
+                "additionalProperties": {
+                    "description": "数",
+                    "type": "integer",
+                    "example": 20
+                }
+            },
             "special_people": {
                 "type": "array",
                 "items": {
@@ -688,6 +780,40 @@
                             "description": "人物名",
                             "type": "string",
                             "example": "時雨"
+                        },
+                        "count": {
+                            "type": "integer",
+                            "example": 4
+                        }
+                    }
+                }
+            },
+            "emotions": {
+                "type": "array",
+                "items": {
+                    "type": "object",
+                    "properties": {
+                        "date": {
+                            "description": "年月",
+                            "type": "string",
+                            "example": "2023-08"
+                        },
+                        "value": {
+                            "type": "number",
+                            "example": 0.432258064516129
+                        }
+                    }
+                }
+            },
+            "words_count_schema": {
+                "type": "array",
+                "items": {
+                    "type": "object",
+                    "properties": {
+                        "name": {
+                            "description": "単語",
+                            "type": "string",
+                            "example": "サナトリウム"
                         },
                         "count": {
                             "type": "integer",

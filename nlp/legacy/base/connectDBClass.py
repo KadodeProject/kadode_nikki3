@@ -171,6 +171,28 @@ class connectDB:
         return rows
 
     """
+    これ廃止したい(ON DUPLICATE KEY UPDATEとかでやりたい)
+    元々がPHP側で統計ボタン押すときに生成していた名残
+    """
+
+    def create_statistic_if_not_exist(
+        self,
+        user_id: int,
+        date,
+    ):
+        # カーソルを取得する
+        cur = self.conn.cursor()
+        cur.execute(
+            "INSERT INTO statistics (user_id,statistic_progress,created_at,updated_at) VALUES (%s,%s,%s,%s) ON DUPLICATE KEY UPDATE user_id=%s;",
+            (user_id, 1, date, date, user_id),
+        )
+        # 保存する
+        self.conn.commit()
+        # カーソルを閉じる
+        cur.close()
+        self.conn.ping(True)  # mysql2003エラー(サーバー接続切れ防止)
+
+    """
     解析済みのJSONデータを書き込む(user_idのみで決まるもの)
     """
 

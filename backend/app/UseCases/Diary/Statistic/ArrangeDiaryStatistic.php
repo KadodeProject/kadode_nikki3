@@ -48,8 +48,6 @@ class ArrangeDiaryStatistic
     {
         $diary->statisticStatus = StatisticStatus::existCorrectly;
         // toArrayでいい感じにjson_decodeされるわけではないので、ここでjsonから配列に変換
-        $diary->statisticPerDate->important_words = array_values(json_decode($diary->statisticPerDate->important_words, true));
-        $diary->statisticPerDate->special_people = array_values(json_decode($diary->statisticPerDate->special_people, true));
 
         return $diary;
     }

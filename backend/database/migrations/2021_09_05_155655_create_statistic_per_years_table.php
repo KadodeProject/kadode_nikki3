@@ -15,7 +15,7 @@ class CreateStatisticPerYearsTable extends Migration
     {
         Schema::create('statistic_per_years', function (Blueprint $table): void {
             $table->id();
-            $table->unsignedBigInteger('user_id')->comment('ユーザーID');
+            $table->unsignedBigInteger('user_id')->unique()->comment('ユーザーID');
             $table->integer('statistic_progress')->nullable()->comment('生成状況(生成まで時間かかるので)');
             $table->integer('year')->comment('年');
             $table->json('emotions')->nullable()->comment('感情数値化のグラフと平均用json');
