@@ -232,13 +232,7 @@
                         "content": {
                             "application\/json": {
                                 "schema": {
-                                    "type": "object",
-                                    "properties": {
-                                        "result": {
-                                            "type": "string",
-                                            "example": "success"
-                                        }
-                                    }
+                                    "$ref": "#\/components\/schemas\/diary"
                                 }
                             }
                         }
