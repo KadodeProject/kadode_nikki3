@@ -99,7 +99,7 @@ https://wiki.kado.day
 
 # 開発おたより
 
-**現在はかどで日記 v3 系「リファクタリングのフェーズ」です!**
+**現在はかどで日記 v4 系「フロントエンドリプレースのフェーズ」です!**
 
 ## 大域ロードマップ
 
@@ -138,7 +138,7 @@ flowchart TD
 
 [LICENSE](./LICENSE.md)
 
-    Copyright (c) 2021-2022 usuyuki
+    Copyright (c) 2021-2023 usuyuki
 
     Released under the MIT license
 
