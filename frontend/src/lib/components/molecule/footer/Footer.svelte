@@ -11,29 +11,31 @@
 	];
 	const administrationContent = [
 		{ href: 'https://portal.kado.day', title: 'かどでポータル' },
+		{ href: 'https://wiki.kado.day', title: 'かどで日記wiki' },
+		{ href: 'https://github.com/KadodeProject', title: 'GitHub' },
 		{ href: 'https://note.com/kadoday', title: 'note' }
 		// { href: '', title: 'misskey' }
 	];
 </script>
 
 <footer class="border-t-2 border-brown">
-	<p class="text-xs text-brown mt-4 text-center">copyright Kadode Project 2020~2023</p>
+	<p class="text-xs text-kn-a-green mt-4 text-center">copyright Kadode Project 2020~2023</p>
 	<div class="flex flex-col md:flex-row mx-auto md:w-4/5">
-		<div class="md:w-1/5 w-2/3 mx-auto">
+		<div class="md:w-1/5 w-2/3 md:mx-0 mx-auto">
 			<img src={KadodeLogoString} alt="Kadode Logo" class="p-2 object-fit" />
 		</div>
 		<div
-			class="md:w-4/5 flex flex-col justify-center items-center my-4 mx-2 md:flex-row flex-wrap"
+			class="md:w-4/5 flex flex-col justify-center items-stretch my-4 mx-2 md:flex-row flex-wrap"
 		>
 			<FooterSection title="sitemap" content={sitemapContent} />
 			<FooterSection title="administration" content={administrationContent}>
-				<div class="pl-2">
+				<div class="pl-2 text-kn-a-light-blue">
 					<p class="text-lg mt-2">Kadode Project</p>
 					<p>本サービスは「うすゆき」が個人で運営しています</p>
 				</div>
 			</FooterSection>
 			<div
-				class="border-t-2 border-dashed border-brown w-full flex flex-wrap flex-col md:flex-row justify-center items-center"
+				class="text-brown border-t-2 border-dashed border-kn-a-green w-full flex flex-wrap flex-col md:flex-row justify-center items-center"
 			>
 				<a class="p-2" href="/privacyPolicy">プライバシーポリシー</a>
 				<a class="p-2" href="/terms">利用規約</a>

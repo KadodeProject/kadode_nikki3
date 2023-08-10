@@ -71,4 +71,5 @@ echo "新しいADRを作成しました: ${NEW_FILE}"
 
 # README.mdに新しいファイルへのリンクを追加
 ENCODED_FILE=$(printf %s ${FILE_NAME} | jq -sRr @uri)
-echo "-   [${NEXT_NUM_FORMAT}-${TITLE}](${ENCODED_FILE}.md)" >>./docs/arc/README.md
+# GitHub Pagesで生成するときに.mdだと文字化けしたファイルになるので、パスのみを記載する
+echo "-   [${NEXT_NUM_FORMAT}-${TITLE}](${ENCODED_FILE})" >>./docs/arc/README.md
