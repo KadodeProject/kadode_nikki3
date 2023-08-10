@@ -7,7 +7,7 @@
 <header class="sticky inset-x-0 top-0 w-screen">
 	<div class="flex flex-col justify-center items-center md:flex-row">
 		<div class="hidden w-1/3 md:block">
-			<p>おためし</p>
+			<p>public beta</p>
 		</div>
 		<div class="flex justify-center pt-8 w-full md:pt-0 md:w-1/3">
 			<a href="/" class="">

@@ -21,7 +21,7 @@
 <footer class="border-t-2 border-brown">
 	<p class="text-xs text-kn-a-green mt-4 text-center">copyright Kadode Project 2020~2023</p>
 	<div class="flex flex-col md:flex-row mx-auto md:w-4/5">
-		<div class="md:w-1/5 w-2/3 mx-auto">
+		<div class="md:w-1/5 w-2/3 md:mx-0 mx-auto">
 			<img src={KadodeLogoString} alt="Kadode Logo" class="p-2 object-fit" />
 		</div>
 		<div

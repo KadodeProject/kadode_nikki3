@@ -1,3 +1,4 @@
+<!-- PC版のサイドメニュー -->
 <script lang="ts">
 	import SideMenuButton from '$lib/components/atom/button/SideMenuButton.svelte';
 	import InterfaceContentBook2 from '$lib/assets/icon/interface-content-book-2.svg?src';
@@ -12,8 +13,7 @@
 
 {#if $isSideMenuOpen}
 	<!-- ここイージングでslideとかしてきれいにしたい -->
-	<nav class="bg-purple" transition:fly={{ x: -200, duration: 1000 }}>
-		<button on:click={closeSideMenu}> 閉 </button>
+	<nav class="bg-purple hidden md:block" transition:fly={{ x: -200, duration: 1000 }}>
 		<a href="/" class="flex justify-center items-center p-2 mb-4">
 			<KadodeLogo width="60" height="60" />
 			<h2 class="pl-2 text-2xl">かどで日記</h2>
@@ -26,9 +26,14 @@
 			<SideMenuButton title="ハイライト" url="/highlight" icon={EntertainmentPartyPopper} />
 			<SideMenuButton title="設定" url="/settings" icon={InterfaceSettingCog} />
 		</div>
+		<button on:click={closeSideMenu} class="rounded-full w-8 h-8 bg-brown mx-auto ml-2 mt-4">
+			←
+		</button>
 	</nav>
 {:else}
-	<button on:click={openSideMenu} style="writing-mode: vertical-rl;"> メニュー </button>
+	<button on:click={openSideMenu} style="writing-mode: vertical-rl;" class="bg-purple">
+		メニュー
+	</button>
 {/if}
 
 <style>

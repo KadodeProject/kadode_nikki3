@@ -2,6 +2,7 @@
 	import Footer from '$lib/components/molecule/footer/Footer.svelte';
 	import SideMenu from '$lib/components/molecule/sidemenu/SideMenu.svelte';
 	import AuthenticatedHeader from '$lib/components/molecule/header/AuthenticatedHeader.svelte';
+	import FooterMenu from '$src/lib/components/molecule/footer/FooterMenu.svelte';
 </script>
 
 <div class="flex h-screen">
@@ -14,5 +15,6 @@
 			</main>
 			<Footer />
 		</div>
+		<FooterMenu />
 	</div>
 </div>
