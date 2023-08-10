@@ -3,6 +3,7 @@
 	import '$lib/styles/readingAssist.css';
 	import type { LayoutData } from './$types';
 	export let data: LayoutData;
+	// console.log(data.diary_processed.chunk);
 
 	let assist = false;
 
@@ -59,4 +60,3 @@
 	}}
 	class="text-white bg-brown hover:underline p-2 rounded-full">アシスト</button
 >
-<span title="Person">人</span>
