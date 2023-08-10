@@ -1,0 +1,6 @@
+@tailwind components;
+@layer components {
+	span[title='Person'] {
+		@apply bg-white text-black;
+	}
+}

@@ -223,6 +223,9 @@ flake:
 mypy:
 	@make c-n
 
+run-1:
+	docker compose exec nlp python legacy/pythonUseFromPHP.py 1
+
 #
 # 開発支援
 #

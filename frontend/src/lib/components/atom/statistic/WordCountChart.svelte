@@ -14,7 +14,6 @@
 	ChartJS.register(Title, Tooltip, Legend, LineElement, LinearScale, PointElement, CategoryScale);
 	export let data: { [key: string]: number };
 	export let title: string;
-	console.log(typeof data, Object.keys(data), Object.values(data));
 	const processedData = {
 		labels: Object.keys(data),
 		datasets: [
