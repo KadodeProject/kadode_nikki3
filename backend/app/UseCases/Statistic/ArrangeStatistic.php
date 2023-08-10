@@ -51,16 +51,6 @@ class ArrangeStatistic
         $statistic->statisticStatus = StatisticStatus::existCorrectly;
         // toArrayでいい感じにjson_decodeされるわけではないので、ここでjsonから配列に変換
 
-        $statistic->total_noun_asc = array_values(json_decode($statistic->total_noun_asc, true));
-        $statistic->total_adjective_asc = array_values(json_decode($statistic->total_adjective_asc, true));
-        $statistic->emotions = array_values(json_decode($statistic->emotions, true));
-        $statistic->special_people = array_values(json_decode($statistic->special_people, true));
-        $statistic->classifications = array_values(json_decode($statistic->classifications, true));
-        $statistic->important_words = array_values(json_decode($statistic->important_words, true));
-        $statistic->months = array_keys(json_decode($statistic->month_words, true));
-        $statistic->month_words = array_values(json_decode($statistic->month_words, true));
-        $statistic->month_diaries = array_values(json_decode($statistic->month_diaries, true));
-
         return $statistic;
     }
 }

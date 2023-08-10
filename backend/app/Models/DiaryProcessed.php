@@ -19,11 +19,16 @@ class DiaryProcessed extends Model
 
     /**
      * 日付の登録(format使えるように).
+     * JSON系は文字列になるのでJSONに明示的に指定
      *
      * @var array<string,string>
      */
     protected $casts = [
-        'created_at' => 'datetime',
-        'updated_at' => 'datetime',
+        'created_at'  => 'datetime',
+        'updated_at'  => 'datetime',
+        'sentence'    => 'json',
+        'chunk'       => 'json',
+        'token'       => 'json',
+        'affiliation' => 'json',
     ];
 }

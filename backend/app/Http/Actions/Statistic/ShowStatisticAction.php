@@ -51,12 +51,15 @@ class ShowStatisticAction extends Controller
                 /** @var array<int> 一度変数に代入しないと怒られるのでこうしている。 */
                 $statistic_month_diaries = $statistic->month_diaries; // 平均文字数で利用
 
+                /** @var array<int> 一度変数に代入しないと怒られるのでこうしている。 */
+                $statistic_month_words = $statistic->month_words;
+
                 /**
                  * 月当たりの平均文字数にする(月の合計文字数わる日記数).
                  */
                 $tmp = [];
                 $i = 0;
-                foreach ($statistic->month_words as $month_word) {
+                foreach ($statistic_month_words as $month_word) {
                     $tmp[] = $month_word / $statistic_month_diaries[$i];
                     $i++;
                 }

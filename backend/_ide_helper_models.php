@@ -97,10 +97,10 @@ namespace App\Models{
  * @property int $id
  * @property int $diary_id 日記のid
  * @property int|null $statistic_progress 生成状況(生成まで時間かかるので)
- * @property mixed|null $sentence 一文ごとの位置(係り受けで使う)
- * @property mixed|null $chunk 係り受け構造
- * @property mixed|null $token 形態素分析された中身を格納 品詞(POS)、原形(lemma)などが存在
- * @property mixed|null $affiliation 固有表現抽出
+ * @property array|null $sentence 一文ごとの位置(係り受けで使う)
+ * @property array|null $chunk 係り受け構造
+ * @property array|null $token 形態素分析された中身を格納 品詞(POS)、原形(lemma)などが存在
+ * @property array|null $affiliation 固有表現抽出
  * @property int|null $char_length 文字数
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
@@ -398,18 +398,18 @@ namespace App\Models{
  * @property int $id
  * @property int $user_id ユーザーID
  * @property int|null $statistic_progress 生成状況(生成まで時間かかるので)
- * @property mixed|null $month_words 各月の合計文字数
- * @property mixed|null $month_diaries 各月の合計日記数
- * @property mixed|null $year_words 各年の合計文字数
- * @property mixed|null $year_diaries 各年の合計日記数
+ * @property array|null $month_words 各月の合計文字数
+ * @property array|null $month_diaries 各月の合計日記数
+ * @property array|null $year_words 各年の合計文字数
+ * @property array|null $year_diaries 各年の合計日記数
  * @property int|null $total_words トータル文字数
  * @property int|null $total_diaries トータル日記数
- * @property mixed|null $total_noun_asc トータルの名詞トップ50
- * @property mixed|null $total_adjective_asc トータルの形容詞トップ50
- * @property mixed|null $diary_grass 日記投稿頻度閲覧用
- * @property mixed|null $emotions 感情数値化のグラフと平均用json
- * @property mixed|null $classifications 推定分類(top10)
- * @property mixed|null $special_people 登場人物(top10)
+ * @property array|null $total_noun_asc トータルの名詞トップ50
+ * @property array|null $total_adjective_asc トータルの形容詞トップ50
+ * @property array|null $diary_grass 日記投稿頻度閲覧用
+ * @property array|null $emotions 感情数値化のグラフと平均用json
+ * @property array|null $classifications 推定分類(top10)
+ * @property array|null $special_people 登場人物(top10)
  * @property mixed|null $important_words 重要そうな言葉
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
@@ -457,9 +457,9 @@ namespace App\Models{
  * @property int $diary_id 日記のid
  * @property int|null $statistic_progress 生成状況(生成まで時間かかるので)
  * @property float|null $emotions 感情数値化
- * @property string|null $classification 推定分類
- * @property mixed|null $important_words 重要そうな言葉(top3)
- * @property mixed|null $special_people 登場人物
+ * @property array|null $classification 推定分類
+ * @property array|null $important_words 重要そうな言葉(top3)
+ * @property array|null $special_people 登場人物
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @method static \Illuminate\Database\Eloquent\Builder|StatisticPerDate newModelQuery()
@@ -487,13 +487,13 @@ namespace App\Models{
  * @property int|null $statistic_progress 生成状況(生成まで時間かかるので)
  * @property int $year 年
  * @property int $month 月
- * @property mixed|null $emotions 感情数値化ののグラフと平均用json
- * @property mixed|null $word_counts 文字数推移のグラフ用の数値json
- * @property mixed|null $noun_rank 名詞登場順(top10)
- * @property mixed|null $adjective_rank 形容詞登場順(top10)
- * @property mixed|null $important_words 重要な言葉(top3)
- * @property mixed|null $special_people 登場人物(top3)
- * @property mixed|null $classifications 推定分類(top3)
+ * @property array|null $emotions 感情数値化ののグラフと平均用json
+ * @property array|null $word_counts 文字数推移のグラフ用の数値json
+ * @property array|null $noun_rank 名詞登場順(top10)
+ * @property array|null $adjective_rank 形容詞登場順(top10)
+ * @property array|null $important_words 重要な言葉(top3)
+ * @property array|null $special_people 登場人物(top3)
+ * @property array|null $classifications 推定分類(top3)
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @method static \Illuminate\Database\Eloquent\Builder|StatisticPerMonth newModelQuery()
@@ -525,13 +525,13 @@ namespace App\Models{
  * @property int $user_id ユーザーID
  * @property int|null $statistic_progress 生成状況(生成まで時間かかるので)
  * @property int $year 年
- * @property mixed|null $emotions 感情数値化のグラフと平均用json
- * @property mixed|null $word_counts 文字数推移のグラフ用の数値json
- * @property mixed|null $noun_rank 名詞登場順(top20)
- * @property mixed|null $adjective_rank 形容詞登場順(top20)
- * @property mixed|null $important_words 重要な言葉(top10)
- * @property mixed|null $special_people 登場人物(top10)
- * @property mixed|null $classifications 推定分類(top10)
+ * @property array|null $emotions 感情数値化のグラフと平均用json
+ * @property array|null $word_counts 文字数推移のグラフ用の数値json
+ * @property array|null $noun_rank 名詞登場順(top20)
+ * @property array|null $adjective_rank 形容詞登場順(top20)
+ * @property array|null $important_words 重要な言葉(top10)
+ * @property array|null $special_people 登場人物(top10)
+ * @property array|null $classifications 推定分類(top10)
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @method static \Illuminate\Database\Eloquent\Builder|StatisticPerYear newModelQuery()

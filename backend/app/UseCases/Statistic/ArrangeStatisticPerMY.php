@@ -52,13 +52,6 @@ class ArrangeStatisticPerMY
     {
         $statistic->statisticStatus = StatisticStatus::existCorrectly;
         // toArrayでいい感じにjson_decodeされるわけではないので、ここでjsonから配列に変換
-        $statistic->emotions = array_values(json_decode($statistic->emotions, true));
-        $statistic->word_counts = array_values(json_decode($statistic->word_counts, true));
-        $statistic->noun_rank = array_values(json_decode($statistic->noun_rank, true));
-        $statistic->adjective_rank = array_values(json_decode($statistic->adjective_rank, true));
-        $statistic->important_words = array_values(json_decode($statistic->important_words, true));
-        $statistic->special_people = array_values(json_decode($statistic->special_people, true));
-        $statistic->classifications = array_values(json_decode($statistic->classifications, true));
 
         return $statistic;
     }
