@@ -9,6 +9,7 @@
 	import KadodeLogo from '$lib/assets/logo/kadodeLogo.svg?component';
 	import { fly } from 'svelte/transition';
 	import { isSideMenuOpen, closeSideMenu, openSideMenu } from '$lib/stores/sidemenu';
+	import DarkModeButton from '$lib/components/atom/button/DarkModeButton.svelte';
 </script>
 
 {#if $isSideMenuOpen}
@@ -29,6 +30,7 @@
 		<button on:click={closeSideMenu} class="rounded-full w-8 h-8 bg-brown mx-auto ml-2 mt-4">
 			←
 		</button>
+		<DarkModeButton />
 	</nav>
 {:else}
 	<button on:click={openSideMenu} style="writing-mode: vertical-rl;" class="bg-purple">

@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace App\OpenApi\Responses\Diary;
 
+use App\OpenApi\Schemas\Diary\DiaryResponseSchema;
 use GoldSpecDigital\ObjectOrientedOAS\Objects\MediaType;
 use GoldSpecDigital\ObjectOrientedOAS\Objects\Response;
-use GoldSpecDigital\ObjectOrientedOAS\Objects\Schema;
 use Vyuldashev\LaravelOpenApi\Factories\ResponseFactory;
 
 class DiaryResponse extends ResponseFactory
@@ -15,12 +15,7 @@ class DiaryResponse extends ResponseFactory
     {
         return Response::ok()->description('成功レスポンス')
             ->content(
-                MediaType::json()->schema(
-                    Schema::object('status')
-                        ->properties(
-                            Schema::string('result')->example('success'),
-                        )
-                )
+                MediaType::json()->schema(DiaryResponseSchema::ref())
             );
     }
 }

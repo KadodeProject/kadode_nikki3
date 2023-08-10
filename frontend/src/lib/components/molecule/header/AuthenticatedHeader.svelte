@@ -1,6 +1,5 @@
 <script lang="ts">
 	import { userStore } from '$lib/stores/userStore';
-	import DarkModeButton from '$lib/components/atom/button/DarkModeButton.svelte';
 </script>
 
 <header class="border-b border-brown">
@@ -11,7 +10,6 @@
 	>
 		LogOut
 	</a>
-	<DarkModeButton />
 </header>
 
 <style>
