@@ -22,7 +22,7 @@
 		<div class="flex flex-col justify-center items-center space-y-4">
 			<SideMenuButton title="ホーム" url="/home" icon={InterfaceHome3} />
 			<SideMenuButton title="アーカイブ" url="/archive" icon={InterfaceContentBook2} />
-			<SideMenuButton title="統計" url="/statistics" icon={InterfaceContentChart} />
+			<SideMenuButton title="統計" url="/statistic" icon={InterfaceContentChart} />
 			<SideMenuButton title="ハイライト" url="/highlight" icon={EntertainmentPartyPopper} />
 			<SideMenuButton title="設定" url="/settings" icon={InterfaceSettingCog} />
 		</div>

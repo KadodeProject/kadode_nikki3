@@ -2,6 +2,7 @@
 	import AuthenticatedHead from '$lib/components/atom/head/AuthenticatedHead.svelte';
 	import type { LayoutData } from './$types';
 	export let data: LayoutData;
+	console.log(data);
 </script>
 
 <AuthenticatedHead title="日記" description="日記作成ページ" />
