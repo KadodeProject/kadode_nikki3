@@ -1,6 +1,9 @@
+# Standard Librarye
 # Standard Library
 import json
 import sys
+from datetime import datetime as dt
+from datetime import timedelta, timezone
 
 # Third Party Library
 import base.connectDBClass as database
@@ -10,6 +13,8 @@ def nlpForTotal(user_id):
     # DBインスタンス
     db = database.connectDB()
     yearDataList = db.get_all_yearStatistics_from_user(user_id)
+    # タイムゾーン
+    JST = timezone(timedelta(hours=+9), "JST")
 
     """
     year,emotions,word_counts,noun_asc,adjective_asc,important_words,special_people,classifications
@@ -137,6 +142,8 @@ def nlpForTotal(user_id):
     # print(total_month_diaries)
     # print(total_emotions)
     # 本目的のDB代入処理
+    now_jst = dt.now(JST)
+    db.create_statistic_if_not_exist(user_id, now_jst)
     db.set_statistics_json(
         user_id,
         important_words=total_important_words,
