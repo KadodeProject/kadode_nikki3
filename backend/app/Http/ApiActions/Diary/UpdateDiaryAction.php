@@ -9,7 +9,6 @@ use App\Http\Requests\Diary\UpdateDiaryRequest;
 use App\Models\Diary;
 use App\OpenApi\RequestBodies\Diary\UpdateDiaryRequestBody;
 use App\OpenApi\Responses\OkResponse;
-use Illuminate\Support\Facades\Log;
 use Vyuldashev\LaravelOpenApi\Attributes as OpenApi;
 
 #[OpenApi\PathItem]
@@ -27,9 +26,7 @@ final class UpdateDiaryAction extends Controller
     {
         // グローバルスコープでログイン中のユーザーであることは確認済み
         $diary = Diary::where('date', $date)->first();
-        Log::debug('test', $request->all());
         if ($diary !== null) {
-            Log::debug($diary);
             // saveだとうまくいかないのでupdate(@todo Larevelのコード読んで原因調べる)
             $diary->update([
                 'title'   => $request->title,

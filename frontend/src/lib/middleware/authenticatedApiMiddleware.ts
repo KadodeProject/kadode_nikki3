@@ -16,7 +16,6 @@ export const authenticatedApiMiddleware = async (apiClient: () => Promise<any>) 
 						message: 'Not found'
 					});
 				case 422:
-					console.log('えらー');
 					console.log(e.response.body);
 					throw e;
 				default:
