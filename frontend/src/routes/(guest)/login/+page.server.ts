@@ -19,11 +19,7 @@ export const actions: Actions = {
 			const cookies = setCookieParser.parse(setCookieHeader as readonly string[]);
 			const xsrfToken = cookies[0];
 			const session = cookies[1];
-			const {
-				data,
-				status: statusAfterLogin,
-				headers: headersAfterLogin
-			} = await axios.post(
+			const { status: statusAfterLogin, headers: headersAfterLogin } = await axios.post(
 				`${base}/login`,
 				{
 					email: form.has('email') ? form.get('email') : undefined,
