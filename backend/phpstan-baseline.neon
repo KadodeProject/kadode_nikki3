@@ -156,11 +156,6 @@ parameters:
 			path: app/Http/Actions/Diary/ShowSingleDiaryAction.php
 
 		-
-			message: "#^Binary operation \"/\" between array\\|null and array\\|null results in an error\\.$#"
-			count: 1
-			path: app/Http/Actions/ShowAdminHomeAction.php
-
-		-
 			message: "#^Cannot access offset 'diary_average' on mixed\\.$#"
 			count: 3
 			path: app/Http/Actions/ShowAdminHomeAction.php
