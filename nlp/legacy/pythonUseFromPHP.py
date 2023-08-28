@@ -11,11 +11,8 @@ pre終わる前に次の実行行ってエラーでる
 # Standard Library
 import sys
 
-# Third Party Library
-import nlpForDiary
-import nlpForMonthAndYear
-import nlpForPre
-import nlpForTotal
+# First Party Library
+from legacy import nlpForDiary, nlpForMonthAndYear, nlpForPre, nlpForTotal
 
 
 def legacyRun(user_id):
