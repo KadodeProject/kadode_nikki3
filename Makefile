@@ -212,6 +212,12 @@ pnpm-build:
 #
 # NLP固有のもの
 #
+# grpcサーバーの起動
+grpc:
+	docker compose exec nlp python grpc_manager.py
+# 自然言語処理走らせる
+run-nlp:
+	docker compose exec -T backend php artisan nlp:runLegacyNLPOperation
 
 black:
 	# previewは原則導入しない
@@ -222,9 +228,6 @@ flake:
 	docker compose exec -T nlp pflake8 .
 mypy:
 	@make c-n
-
-run-1:
-	docker compose exec nlp python legacy/pythonUseFromPHP.py 1
 
 #
 # 開発支援
