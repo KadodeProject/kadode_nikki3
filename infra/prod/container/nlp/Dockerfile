@@ -18,6 +18,8 @@ RUN \
     gcc \
     default-libmysqlclient-dev \
     sudo \
+    # mysqlclientライブラリが2.2.0から必要になった↓ https://github.com/PyMySQL/mysqlclient/releases/tag/v2.2.0
+    pkg-config \
     && \
     #
     # arm向けビルドでrustコンパイラが必要なので

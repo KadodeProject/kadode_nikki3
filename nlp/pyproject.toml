@@ -9,6 +9,7 @@ readme = "README.md"
 [tool.poetry.dependencies]
 python = "^3.11"
 python-dotenv = "^1.0.0"
+# mysqlclient2.2.0からpkg-configが依存しているので、mysqlclientを消すときはDockerfileのaptのpgk-configも消す
 mysqlclient = "^2.1.1"
 ahocorapy = "^1.6.2"
 ginza = "^5.1.2"
@@ -117,11 +118,11 @@ warn_redundant_casts = true
 #  error: Skipping analyzing "ginza": module is installed, but missing library stubs or py.typed marker  [import] ←こういうのが出てくるので
 [[tool.mypy.overrides]]
 module = [
-  "grpc.tools",
-  "ahocorapy.keywordtree",
-  "ginza",
-  "grpc",
-  "grpc_reflection.v1alpha",
+    "grpc.tools",
+    "ahocorapy.keywordtree",
+    "ginza",
+    "grpc",
+    "grpc_reflection.v1alpha",
 ]
 ignore_missing_imports = true
 
