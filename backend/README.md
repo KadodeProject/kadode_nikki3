@@ -8,6 +8,14 @@ protoc --proto_path=resources/proto \
 
 手動でPythonにgRPCで自然言語処理実行を投げる
 
+grpc サーバーを起動
+
+```
+dc exec nlp python grpc_manager.py
 ```
 
+実行
+
+```
+php artisan nlp:runLegacyNLPOperation
 ```
