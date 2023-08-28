@@ -5,11 +5,11 @@ from datetime import datetime as dt
 from datetime import timedelta, timezone
 
 # Third Party Library
-import base.connectDBClass as database
 import spacy
 
 # First Party Library
-from nlp import meta_generate
+import legacy.base.connectDBClass as database
+from legacy.nlp import meta_generate
 
 
 def nlpForPre(user_id):

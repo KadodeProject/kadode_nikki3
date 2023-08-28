@@ -7,6 +7,7 @@ namespace App\Services\Grpc;
 use Grpc\ChannelCredentials;
 use GrpcClient\Nlp\GenerateAllRequest;
 use GrpcClient\Nlp\NlpManagerClient;
+use Illuminate\Support\Facades\Log;
 
 class GrpcGetter
 {
@@ -23,6 +24,11 @@ class GrpcGetter
         $grpcRequest = new GenerateAllRequest();
         $grpcRequest->setUserId($userId);
         [$response, $status] = $client->GenerateAll($grpcRequest)->wait();
+        if ($status->code !== 0) {
+            Log::error('gRPC error: '.$status->details);
+
+            return false;
+        }
 
         return $response->start;
     }

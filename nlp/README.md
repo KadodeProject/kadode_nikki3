@@ -22,7 +22,10 @@ proto ファイルからの生成
 dc exec nlp python ./proto/codegen.py
 ```
 
-# 手動実行
+# ~~手動実行~~
+
+廃止
+bakcned/README.mdに書いてある手法でgrpc経由で叩く
 
 ```
 docker compose exec nlp python legacy/pythonUseFromPHP.py 1
